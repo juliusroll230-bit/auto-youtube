@@ -47,7 +47,8 @@ def device_wait(client_id, client_secret, code):
         if tok.get("error") == "slow_down":
             interval += 5
         elif tok.get("error") == "access_denied":
-            raise RuntimeError("Die Anmeldung wurde bei Google abgelehnt.")
+            raise RuntimeError("Google hat die Anmeldung abgelehnt. Steht das Google-Konto deines Kanals in "
+                               "Google Cloud unter Zielgruppe → Testnutzer? Dann einfach nochmal verbinden.")
         elif tok.get("error") != "authorization_pending":
             raise RuntimeError(tok.get("error_description") or tok.get("error"))
     raise RuntimeError("Der Code ist abgelaufen. Bitte noch einmal verbinden.")
