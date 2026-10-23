@@ -27,6 +27,9 @@ def _post(url, data):
 def device_start(client_id):
     code = _post("https://oauth2.googleapis.com/device/code", {"client_id": client_id, "scope": SCOPE})
     if "device_code" not in code:
+        if code.get("error") in ("invalid_client", "unauthorized_client"):
+            raise RuntimeError("Google kennt diese Client-ID nicht. Bitte die Client-ID aus Google Cloud → Clients "
+                               "neu kopieren. Der Client muss vom Typ „Fernseher und Geräte mit begrenzter Eingabe“ sein.")
         raise RuntimeError(code.get("error_description") or code.get("error") or "Google hat keinen Code geliefert.")
     code["expires_at"] = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=code.get("expires_in", 1800))).isoformat()
     return code
@@ -49,6 +52,10 @@ def device_wait(client_id, client_secret, code):
         elif tok.get("error") == "access_denied":
             raise RuntimeError("Google hat die Anmeldung abgelehnt. Steht das Google-Konto deines Kanals in "
                                "Google Cloud unter Zielgruppe → Testnutzer? Dann einfach nochmal verbinden.")
+        elif tok.get("error") == "invalid_client":
+            raise RuntimeError("Client-ID und Clientschlüssel passen nicht zusammen. In Google Cloud → Clients → "
+                               "deinen Client öffnen, „Secret hinzufügen“ klicken und Client-ID plus neuen "
+                               "Schlüssel (beginnt mit GOCSPX-) hier eintragen.")
         elif tok.get("error") != "authorization_pending":
             raise RuntimeError(tok.get("error_description") or tok.get("error"))
     raise RuntimeError("Der Code ist abgelaufen. Bitte noch einmal verbinden.")

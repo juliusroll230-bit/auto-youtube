@@ -260,6 +260,13 @@ class Handler(BaseHTTPRequestHandler):
             for key in ("client_id", "client_secret"):
                 if isinstance(data.get(key), str) and data[key].strip():
                     changes[key] = data[key].strip()
+            if "*" in changes.get("client_secret", "") or "•" in changes.get("client_secret", ""):
+                return self.send(400, {"error": "Das ist nur die verdeckte Anzeige. Bitte in Google Cloud "
+                                                "„Secret hinzufügen“ klicken und den neuen Schlüssel kopieren."})
+            if changes.get("client_id") and not changes["client_id"].endswith(".apps.googleusercontent.com"):
+                return self.send(400, {"error": "Die Client-ID endet auf .apps.googleusercontent.com. Bitte prüfen."})
+            if changes.get("client_id") and changes["client_id"] != store.config()["client_id"]:
+                changes["refresh_token"] = ""  # die alte Verbindung gehört zum alten Client
             if "post_hours" in data:
                 hours = sorted({int(h) for h in data["post_hours"] if 0 <= int(h) <= 23})
                 if not 1 <= len(hours) <= 6:
