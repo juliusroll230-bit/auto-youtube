@@ -36,3 +36,28 @@ jobs:
           tags: ${{ steps.name.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: App starten und prüfen
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}:latest"
+          docker run -d --name app -p 8090:8080 "$image"
+          for i in $(seq 1 30); do curl -sf localhost:8090/api/dashboard > /dev/null && break; sleep 2; done
+          curl -sf localhost:8090/api/dashboard | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['queue'], 'Warteschlange leer'; print(len(d['queue']), 'Videos geplant')"
+          curl -sf -o /dev/null localhost:8090/
+          curl -sf -o thumb.jpg localhost:8090/api/thumb/psychologie-tricks.jpg && test -s thumb.jpg
+      - name: Testvideo erstellen
+        run: |
+          docker exec app python -c "
+          import json, glob, os, make_short
+          spec = json.load(open(sorted(glob.glob('seed/*.json'))[1]))
+          path, dur = make_short.build_video(spec, '/tmp/out', make_short.load_tts())
+          assert os.path.getsize(path) > 500000, 'Video zu klein'
+          print(path, round(dur, 1), 'Sekunden')
+          "
+      - name: Log bei Fehler
+        if: failure()
+        run: docker logs app
