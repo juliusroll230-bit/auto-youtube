@@ -4,7 +4,7 @@
   python3 post_next.py            rendert und lädt das nächste Video hoch
   python3 post_next.py --force    ignoriert den Zeitplan (für Tests)
 
-Zugangsdaten kommen aus den Umgebungsvariablen YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN.
+Zugang: YT_CLIENT_ID und YT_CLIENT_SECRET, dazu YT_REFRESH_TOKEN oder content/channel.enc (siehe yt_auth.py).
 """
 import datetime as dt
 import glob
@@ -48,20 +48,6 @@ def next_script():
     return files[0] if files else None
 
 
-def youtube_client():
-    from google.oauth2.credentials import Credentials
-    from googleapiclient.discovery import build
-
-    creds = Credentials(
-        token=None,
-        refresh_token=os.environ["YT_REFRESH_TOKEN"],
-        client_id=os.environ["YT_CLIENT_ID"],
-        client_secret=os.environ["YT_CLIENT_SECRET"],
-        token_uri="https://oauth2.googleapis.com/token",
-    )
-    return build("youtube", "v3", credentials=creds, cache_discovery=False)
-
-
 def upload(path, meta):
     from googleapiclient.http import MediaFileUpload
 
@@ -83,6 +69,8 @@ def upload(path, meta):
         },
     }
     media = MediaFileUpload(path, mimetype="video/mp4", chunksize=-1, resumable=True)
+    from yt_auth import youtube_client
+
     request = youtube_client().videos().insert(part="snippet,status", body=body, media_body=media)
     response = None
     while response is None:
@@ -126,6 +114,9 @@ def main():
     state["done_slots"] = (state["done_slots"] + [slot])[-60:]
     state["uploads"].append({"slot": slot, "slug": spec["slug"], "video_id": video_id, "title": spec["title"]})
     json.dump(state, open(STATE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+
+    import build_dashboard
+    build_dashboard.main()
 
 
 if __name__ == "__main__":
