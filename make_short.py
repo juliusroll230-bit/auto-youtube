@@ -15,7 +15,8 @@ from piper import PiperVoice, SynthesisConfig
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 W, H, FPS = 1080, 1920, 30
-PAUSE = 0.3  # Sekunden Stille nach jedem Satz
+PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
+SPEED = 0.88      # Sprechtempo der Stimme (kleiner = schneller)
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.environ.get("TTS_MODEL_DIR", os.path.join(HERE, "models", "vits-piper-de_DE-thorsten-high"))
 FONT_BOLD = os.path.join(HERE, "fonts", "InterDisplay-Black.otf")
@@ -27,19 +28,23 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path):
-    """Spricht alle Sätze ein und gibt Start/Ende jedes Satzes zurück."""
+def synthesize(tts, segments, wav_path, seed=0):
+    """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück."""
+    import audio
+
     chunks, timings, t = [], [], 0.0
-    rate = None
+    rate = tts.config.sample_rate
     for seg in segments:
-        cfg = SynthesisConfig(length_scale=0.92)
+        cfg = SynthesisConfig(length_scale=SPEED)
         samples = np.concatenate([c.audio_float_array for c in tts.synthesize(seg["text"], syn_config=cfg)])
-        rate = tts.config.sample_rate
         dur = len(samples) / rate
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
         t += dur + PAUSE
-    pcm = (np.clip(np.concatenate(chunks), -1, 1) * 32767).astype(np.int16)
+    tail = np.zeros(int(0.6 * rate), dtype=np.float32)  # kurzer Ausklang
+    voice = np.concatenate(chunks + [tail])
+    track = audio.mix(voice, rate, [s for s, _ in timings[1:]], seed)
+    pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
         f.setsampwidth(2)
@@ -49,23 +54,27 @@ def synthesize(tts, segments, wav_path):
 
 
 def caption_chunks(text, start, end, max_words=3):
-    """Teilt einen Satz in kurze Untertitel und verteilt die Zeit nach Zeichenlänge."""
+    """Teilt einen Satz in kurze Untertitel. Zeit wird nach Zeichenlänge auf die Wörter verteilt.
+
+    Gibt je Untertitel (start, ende, [(wort, wort_start, wort_ende), ...]) zurück.
+    """
     words = text.split()
+    weight = [len(w) + 2 for w in words]  # +2: auch kurze Wörter brauchen etwas Zeit
+    total = sum(weight)
+    timed, t = [], start
+    for w, k in zip(words, weight):
+        d = (end - start) * k / total
+        timed.append((w, t, t + d))
+        t += d
     groups, cur = [], []
-    for w in words:
-        cur.append(w)
-        if len(cur) >= max_words or w[-1] in ".,?!:":
-            groups.append(" ".join(cur))
+    for item in timed:
+        cur.append(item)
+        if len(cur) >= max_words or item[0][-1] in ".,?!:":
+            groups.append(cur)
             cur = []
     if cur:
-        groups.append(" ".join(cur))
-    total = sum(len(g) for g in groups)
-    out, t = [], start
-    for g in groups:
-        d = (end - start) * len(g) / total
-        out.append((t, t + d, g))
-        t += d
-    return out
+        groups.append(cur)
+    return [(g[0][1], g[-1][2], g) for g in groups]
 
 
 def hex_rgb(h):
@@ -97,32 +106,60 @@ def render_emoji(ch, size):
     return img.resize((size, int(size * img.height / img.width)), Image.LANCZOS)
 
 
-def render_caption(text, accent):
-    """Untertitel als Bild: große weiße Schrift mit dunkler Kontur, Zahlen in Akzentfarbe."""
-    font = ImageFont.truetype(FONT_BOLD, 104)
-    lines, line = [], ""
+_fonts = {}
+
+
+def font(path, size):
+    key = (path, size)
+    if key not in _fonts:
+        _fonts[key] = ImageFont.truetype(path, size)
+    return _fonts[key]
+
+
+def render_caption(words, active, accent):
+    """Untertitel als Bild, Wort für Wort: Das gerade gesprochene Wort ist größer und farbig.
+
+    words: Liste der Wörter, active: Index des gesprochenen Worts (oder -1).
+    """
     probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
-    for word in text.split():
-        test = (line + " " + word).strip()
-        if probe.textlength(test.upper(), font=font) > W - 160 and line:
-            lines.append(line)
-            line = word
-        else:
-            line = test
-    lines.append(line)
-    # Zu lange Zeilen verkleinern, damit nichts aus dem Bild ragt
-    widest = max(probe.textlength(ln.upper(), font=font) for ln in lines)
-    size = max(60, min(104, int(104 * (W - 140) / widest)))
-    font = ImageFont.truetype(FONT_BOLD, size)
-    lh = int(size * 1.2)
-    img = Image.new("RGBA", (W, lh * len(lines) + 40), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    for i, ln in enumerate(lines):
-        has_digit = any(c.isdigit() for c in ln) or ln.lower().startswith("nummer")
-        d.text((W // 2, 20 + i * lh + lh // 2), ln.upper(), font=font, anchor="mm",
-               fill=hex_rgb(accent) if has_digit else (255, 255, 255),
-               stroke_width=10, stroke_fill=(15, 15, 25))
-    return img
+    up = [w.upper() for w in words]
+    size = 112
+    while size > 60:
+        f, big = font(FONT_BOLD, size), font(FONT_BOLD, int(size * 1.14))
+        space = probe.textlength(" ", font=f) * 1.1
+        lines, cur, cur_w = [], [], 0.0
+        for i, w in enumerate(up):
+            ww = probe.textlength(w, font=big)  # Platz wie für das große Wort, damit nichts springt
+            if cur and cur_w + space + ww > W - 170:
+                lines.append(cur)
+                cur, cur_w = [], 0.0
+            cur.append((i, ww))
+            cur_w += (space if len(cur) > 1 else 0) + ww
+        lines.append(cur)
+        if len(lines) <= 2 and all(sum(x[1] for x in ln) + space * (len(ln) - 1) <= W - 170 for ln in lines):
+            break
+        size -= 6
+    f, big = font(FONT_BOLD, size), font(FONT_BOLD, int(size * 1.14))
+    lh = int(size * 1.22)
+    img = Image.new("RGBA", (W, lh * len(lines) + 60), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    d, ds = ImageDraw.Draw(img), ImageDraw.Draw(shadow)
+    for row, ln in enumerate(lines):
+        line_w = sum(x[1] for x in ln) + space * (len(ln) - 1)
+        x = W / 2 - line_w / 2
+        y = 30 + row * lh + lh / 2
+        for i, ww in ln:
+            cx = x + ww / 2
+            is_num = any(c.isdigit() for c in up[i])
+            on = i == active
+            color = hex_rgb(accent) if (on or is_num) else (255, 255, 255)
+            ds.text((cx + 6, y + 8), up[i], font=big if on else f, anchor="mm", fill=(0, 0, 0, 150))
+            d.text((cx, y), up[i], font=big if on else f, anchor="mm", fill=color,
+                   stroke_width=11 if on else 10, stroke_fill=(12, 12, 20))
+            x += ww + space
+    shadow = shadow.filter(ImageFilter.GaussianBlur(8))
+    shadow.alpha_composite(img)
+    return shadow
 
 
 def ease_out_back(x):
@@ -134,8 +171,19 @@ def scaled(img, s):
     return img.resize((max(1, int(img.width * s)), max(1, int(img.height * s))), Image.BILINEAR)
 
 
+def ease_out_cubic(x):
+    return 1 - (1 - x) ** 3
+
+
 class Scene:
-    """Zeichnet die Bilder eines Shorts. timings: Start/Ende jedes Satzes in Sekunden."""
+    """Zeichnet die Bilder eines Shorts. timings: Start/Ende jedes Satzes in Sekunden.
+
+    Damit Zuschauer dranbleiben, ist immer etwas in Bewegung:
+    - Kamera zoomt langsam hinein und macht bei jedem neuen Satz einen kurzen Stoß mit Wackeln
+    - kurzer heller Blitz als Übergang zwischen den Sätzen
+    - Untertitel Wort für Wort, das gesprochene Wort ist größer und farbig
+    - Emoji springt herein, wippt und dreht sich leicht, Partikel schweben nach oben
+    """
 
     def __init__(self, spec, timings, total):
         self.timings, self.total = timings, total
@@ -153,14 +201,48 @@ class Scene:
             self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
         self.cap_y = 640 if self.car else 1180
         self.bar_y = 280 if self.car else H - 210
-        self.caps = []
+        self.chunks = []
         for (s, e), seg in zip(timings, spec["segments"]):
-            for cs, ce, txt in caption_chunks(seg["text"], s, e):
-                self.caps.append((cs, ce, render_caption(txt, self.accent)))
-        if not self.caps:
+            self.chunks += caption_chunks(seg["text"], s, e)
+        if not self.chunks:
             raise ValueError("Skript ohne Text")
-        self.label_font = ImageFont.truetype(FONT_SEMI, 46)
+        self._cap_cache = {}
+        self.label_font = font(FONT_SEMI, 46)
         self.label = spec["niche"].upper()
+        rnd = np.random.default_rng(len(spec["slug"]))
+        self.particles = [(rnd.uniform(0, W), rnd.uniform(0, H), rnd.uniform(40, 140), rnd.uniform(3, 9),
+                           rnd.uniform(0, 6.28), int(rnd.uniform(50, 150))) for _ in range(26)]
+
+    # --- Bausteine ---------------------------------------------------------
+
+    def caption(self, t):
+        """Aktueller Untertitel als Bild plus Startzeit, oder None."""
+        idx = next((i for i, c in enumerate(self.chunks) if c[0] <= t < c[1]), None)
+        if idx is None:
+            prev = [i for i, c in enumerate(self.chunks) if c[1] <= t]
+            if not prev or t - self.chunks[prev[-1]][1] >= PAUSE:
+                return None
+            idx = prev[-1]
+        start, _, words = self.chunks[idx]
+        active = next((j for j, (_, ws, we) in enumerate(words) if ws <= t < we), -1)
+        key = (idx, active)
+        if key not in self._cap_cache:
+            self._cap_cache = {k: v for k, v in self._cap_cache.items() if k[0] >= idx - 1}
+            self._cap_cache[key] = render_caption([w for w, _, _ in words], active, self.accent)
+        return self._cap_cache[key], start
+
+    def segment_at(self, t):
+        return next((i for i, (s, e) in enumerate(self.timings) if t < e + PAUSE), len(self.timings) - 1)
+
+    def punch(self, t):
+        """Stärke des Kamera-Stoßes: kurz nach jedem Satzanfang groß, dann schnell weg."""
+        p = 0.0
+        for i, (s, _) in enumerate(self.timings):
+            if s <= t < s + 0.35:
+                p = max(p, (1 - (t - s) / 0.35) ** 2 * (1.6 if i == 0 else 1.0))
+        return p
+
+    # --- Bild --------------------------------------------------------------
 
     def frame(self, t):
         if self.car:
@@ -172,34 +254,53 @@ class Scene:
         for blob, speed, phase in self.blobs:
             bx = int(W / 2 + 380 * math.sin(t * speed * 6 + phase) - blob.width / 2)
             by = int(H / 2 + 700 * math.cos(t * speed * 4 + phase) - blob.height / 2)
-            frame.paste(blob, (bx, by), blob)  # paste schneidet am Rand sauber ab
+            frame.paste(blob, (bx, by), blob)
 
-        d = ImageDraw.Draw(frame)
-        # Themen-Label oben
-        tw = d.textlength(self.label, font=self.label_font)
-        d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 110))
-        d.text((W / 2, 193), self.label, font=self.label_font, anchor="mm", fill=(255, 255, 255))
+        # Partikel, die langsam nach oben schweben
+        d = ImageDraw.Draw(frame, "RGBA")
+        for x0, y0, speed, r, ph, a in self.particles:
+            y = (y0 - speed * t) % (H + 40) - 20
+            x = x0 + 24 * math.sin(t * 0.8 + ph)
+            d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 255, 255, a))
 
-        # Emoji des aktuellen Satzes mit Pop-in und leichtem Schweben
-        idx = next((i for i, (s, e) in enumerate(self.timings) if t < e + PAUSE), len(self.timings) - 1)
-        since = t - self.timings[idx][0]
-        pop = ease_out_back(min(1, max(0, since / 0.35))) if since >= 0 else 1
+        # Emoji des aktuellen Satzes: springt herein, wippt und dreht sich leicht
+        idx = self.segment_at(t)
         if self.emojis:
-            em = scaled(self.emojis[idx], max(0.05, pop))
-            bob = int(18 * math.sin(t * 2.2))
+            since = t - self.timings[idx][0]
+            pop = ease_out_back(min(1, max(0, since / 0.32))) if since >= 0 else 1
+            em = scaled(self.emojis[idx], max(0.05, pop * (1 + 0.04 * math.sin(t * 5))))
+            em = em.rotate(7 * math.sin(t * 2.6), resample=Image.BICUBIC, expand=True)
+            bob = int(22 * math.sin(t * 2.2))
             frame.alpha_composite(em, (int(W / 2 - em.width / 2), int(620 - em.height / 2 + bob)))
 
-        # Untertitel
-        cap = next((c for c in self.caps if c[0] <= t < c[1]), None)
-        if cap is None:
-            prev = [c for c in self.caps if c[1] <= t]
-            cap = prev[-1] if prev and t - prev[-1][1] < PAUSE else None
+        # Untertitel Wort für Wort
+        cap = self.caption(t)
         if cap:
-            k = min(1, (t - cap[0]) / 0.12)
-            ci = scaled(cap[2], 0.85 + 0.15 * ease_out_back(k))
+            img, start = cap
+            k = min(1, (t - start) / 0.14)
+            ci = scaled(img, 0.82 + 0.18 * ease_out_back(k))
             frame.alpha_composite(ci, (int(W / 2 - ci.width / 2), int(self.cap_y - ci.height / 2)))
 
-        # Fortschrittsbalken
+        # Kamera: langsamer Zoom über das ganze Video plus Stoß mit Wackeln bei jedem Satz
+        p = self.punch(t)
+        zoom = 1.0 + 0.06 * (t / self.total) + 0.07 * p
+        shake_x = p * 14 * math.sin(t * 61)
+        shake_y = p * 10 * math.cos(t * 47)
+        cw, ch = W / zoom, H / zoom
+        x0 = (W - cw) / 2 + shake_x
+        y0 = (H - ch) / 2 + shake_y
+        frame = frame.convert("RGB").resize((W, H), Image.BILINEAR, box=(x0, y0, x0 + cw, y0 + ch))
+
+        # Heller Blitz als Übergang zwischen zwei Sätzen
+        s = self.timings[idx][0]
+        if idx > 0 and 0 <= t - s < 0.12:
+            frame = Image.blend(frame, Image.new("RGB", (W, H), (255, 255, 255)), 0.32 * (1 - (t - s) / 0.12))
+
+        # Feste Elemente (bewegen sich nicht mit der Kamera): Themen-Label und Fortschrittsbalken
+        d = ImageDraw.Draw(frame, "RGBA")
+        tw = d.textlength(self.label, font=self.label_font)
+        d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 120))
+        d.text((W / 2, 193), self.label, font=self.label_font, anchor="mm", fill=(255, 255, 255))
         bar_y = self.bar_y
         d.rounded_rectangle((90, bar_y, W - 90, bar_y + 14), radius=7, fill=(255, 255, 255, 70))
         d.rounded_rectangle((90, bar_y, 90 + (W - 180) * min(1, t / self.total), bar_y + 14), radius=7,
@@ -211,7 +312,7 @@ def estimated_timings(spec):
     """Grobe Satz-Zeiten ohne Sprachausgabe (für Vorschaubilder)."""
     t, out = 0.0, []
     for seg in spec["segments"]:
-        dur = len(seg["text"].split()) / 2.5
+        dur = len(seg["text"].split()) / 2.8
         out.append((t, t + dur))
         t += dur + PAUSE
     return out, t
@@ -221,7 +322,7 @@ def render_thumbnail(spec, path, width=360):
     """Speichert ein Vorschaubild: der erste Satz, kurz nachdem er eingeblendet wurde."""
     timings, total = estimated_timings(spec)
     scene = Scene(spec, timings, total)
-    img = scene.frame(1.0).convert("RGB")
+    img = scene.frame(0.9)
     img.resize((width, int(width * H / W)), Image.LANCZOS).save(path, "JPEG", quality=84)
 
 
@@ -229,17 +330,17 @@ def build_video(spec, out_dir, tts):
     os.makedirs(out_dir, exist_ok=True)
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
-    timings, total = synthesize(tts, spec["segments"], wav)
-    total += 0.4
+    timings, total = synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])))
+    total += 0.6
     scene = Scene(spec, timings, total)
 
     ff = subprocess.Popen([
         "ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
         "-r", str(FPS), "-i", "-", "-i", wav, "-c:v", "libx264", "-preset", "medium", "-crf", "20",
-        "-pix_fmt", "yuv420p", "-af", "apad", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", mp4,
+        "-pix_fmt", "yuv420p", "-af", "apad", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", mp4,
     ], stdin=subprocess.PIPE)
     for f in range(int(total * FPS)):
-        ff.stdin.write(scene.frame(f / FPS).convert("RGB").tobytes())
+        ff.stdin.write(scene.frame(f / FPS).tobytes())
     ff.stdin.close()
     if ff.wait() != 0:
         raise RuntimeError("ffmpeg konnte das Video nicht erstellen")
