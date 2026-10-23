@@ -1,0 +1,39 @@
+{
+  "slug": "geschichte-napoleon-groesse",
+  "niche": "Geschichte",
+  "colors": [
+    "#1b2a49",
+    "#8a6b3d"
+  ],
+  "accent": "#fff1d6",
+  "title": "Napoleon war gar nicht klein 🤯",
+  "description": "Wie ein Rechenfehler und Propaganda einen Mythos erschufen.\n\n#geschichte #napoleon #shorts",
+  "tags": [
+    "geschichte",
+    "napoleon",
+    "mythen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "👑",
+      "text": "Napoleon war gar nicht klein."
+    },
+    {
+      "emoji": "📏",
+      "text": "Er war ungefähr ein Meter neunundsechzig groß. Für seine Zeit war das ganz normaler Durchschnitt."
+    },
+    {
+      "emoji": "🇫🇷",
+      "text": "Der Mythos entstand unter anderem, weil französische Zoll länger waren als englische. Seine Größe wurde falsch umgerechnet."
+    },
+    {
+      "emoji": "🖋️",
+      "text": "Dazu kamen britische Karikaturen, die ihn absichtlich winzig zeichneten."
+    },
+    {
+      "emoji": "👉",
+      "text": "Welchen Geschichtsmythos kennst du noch? Folge für mehr Geschichte."
+    }
+  ]
+}

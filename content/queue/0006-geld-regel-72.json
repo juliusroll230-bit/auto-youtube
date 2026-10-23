@@ -1,0 +1,40 @@
+{
+  "slug": "geld-regel-72",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#0b3d2e",
+    "#1fa774"
+  ],
+  "accent": "#d9ff7a",
+  "title": "Die Regel 72: So schnell verdoppelt sich dein Geld 💸",
+  "description": "Eine einfache Faustregel für den Zinseszins. Keine Anlageberatung, Renditen sind nicht garantiert.\n\n#geld #finanzen #shorts",
+  "tags": [
+    "geld",
+    "finanzen",
+    "zinseszins",
+    "sparen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "💸",
+      "text": "Mit dieser Faustregel weißt du sofort, wann sich dein Geld verdoppelt."
+    },
+    {
+      "emoji": "🧮",
+      "text": "Sie heißt Regel zweiundsiebzig. Teile einfach zweiundsiebzig durch den jährlichen Zinssatz."
+    },
+    {
+      "emoji": "📈",
+      "text": "Bei sechs Prozent Rendite pro Jahr verdoppelt sich dein Geld also in ungefähr zwölf Jahren. Bei einem Prozent dauert es zweiundsiebzig Jahre."
+    },
+    {
+      "emoji": "⏰",
+      "text": "Darum ist Zeit so wichtig. Wer früher anfängt, lässt den Zinseszins länger für sich arbeiten."
+    },
+    {
+      "emoji": "👉",
+      "text": "Das ist keine Anlageberatung, aber gutes Grundwissen. Folge für mehr Geld-Tipps."
+    }
+  ]
+}

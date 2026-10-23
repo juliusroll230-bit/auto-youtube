@@ -1,0 +1,39 @@
+{
+  "slug": "psychologie-spotlight-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#1d1a39",
+    "#e86f68"
+  ],
+  "accent": "#ffd166",
+  "title": "Niemand achtet so sehr auf dich, wie du denkst 😳",
+  "description": "Der Spotlight-Effekt erklärt, warum peinliche Momente halb so schlimm sind.\n\n#psychologie #fakten #shorts",
+  "tags": [
+    "psychologie",
+    "selbstbewusstsein",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🔦",
+      "text": "Niemand achtet so sehr auf dich, wie du denkst."
+    },
+    {
+      "emoji": "👕",
+      "text": "In einem Experiment mussten Studenten ein peinliches T-Shirt tragen. Sie schätzten, dass etwa die Hälfte der Leute es bemerkt."
+    },
+    {
+      "emoji": "📊",
+      "text": "In Wahrheit war es nur ungefähr ein Viertel."
+    },
+    {
+      "emoji": "🧠",
+      "text": "Das nennt man den Spotlight-Effekt. Wir glauben, alle schauen auf uns, dabei sind die meisten mit sich selbst beschäftigt."
+    },
+    {
+      "emoji": "👉",
+      "text": "Also mach dir weniger Sorgen. Folge für mehr Psychologie."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "geschichte-zeitgefuehl",
+  "niche": "Geschichte",
+  "colors": [
+    "#3d2c1e",
+    "#c08552"
+  ],
+  "accent": "#fff1d6",
+  "title": "3 Geschichtsfakten, die dein Zeitgefühl zerstören 🏛️",
+  "description": "Geschichte ist näher, als du denkst.\n\n#geschichte #fakten #shorts",
+  "tags": [
+    "geschichte",
+    "fakten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏛️",
+      "text": "Drei Geschichtsfakten, die dein Zeitgefühl zerstören."
+    },
+    {
+      "emoji": "🌙",
+      "text": "Kleopatra lebte zeitlich näher an der Mondlandung als am Bau der Cheops-Pyramide. Die Pyramide war zu ihrer Zeit schon über zweitausend Jahre alt."
+    },
+    {
+      "emoji": "🦣",
+      "text": "Als die Pyramiden gebaut wurden, lebten auf der Wrangelinsel in Sibirien noch Mammuts. Die letzten starben erst vor etwa viertausend Jahren."
+    },
+    {
+      "emoji": "🎓",
+      "text": "Die Universität Oxford ist älter als das Reich der Azteken. In Oxford wurde schon um das Jahr elfhundert unterrichtet, die Hauptstadt der Azteken entstand erst um dreizehnhundertfünfundzwanzig."
+    },
+    {
+      "emoji": "👉",
+      "text": "Welcher Fakt hat dich am meisten geschockt? Folge für mehr Geschichte."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "geografie-australien-mond",
+  "niche": "Geografie",
+  "colors": [
+    "#3a1c0b",
+    "#d9822b"
+  ],
+  "accent": "#ffe8a3",
+  "title": "Australien ist breiter als der Mond 🌕",
+  "description": "Drei Geografie-Fakten, die kaum jemand glaubt.\n\n#geografie #fakten #shorts",
+  "tags": [
+    "geografie",
+    "fakten",
+    "australien",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌕",
+      "text": "Australien ist breiter als der Mond."
+    },
+    {
+      "emoji": "🦘",
+      "text": "Von West nach Ost misst Australien rund viertausend Kilometer. Der Mond hat nur etwa dreitausendfünfhundert Kilometer Durchmesser."
+    },
+    {
+      "emoji": "🍁",
+      "text": "Kanada hat die längste Küste der Welt, über zweihunderttausend Kilometer."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Und Russland grenzt an vierzehn andere Länder, so viele wie kaum ein anderes Land."
+    },
+    {
+      "emoji": "👉",
+      "text": "Welcher Fakt hat dich überrascht? Folge für mehr Geografie."
+    }
+  ]
+}

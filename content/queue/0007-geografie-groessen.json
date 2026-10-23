@@ -1,0 +1,39 @@
+{
+  "slug": "geografie-groessen",
+  "niche": "Geografie",
+  "colors": [
+    "#0a2342",
+    "#2ca6a4"
+  ],
+  "accent": "#7cf5e6",
+  "title": "Diese Größenvergleiche sprengen dein Weltbild 🌍",
+  "description": "Karten täuschen. Diese Fakten zeigen, wie groß die Welt wirklich ist.\n\n#geografie #fakten #shorts",
+  "tags": [
+    "geografie",
+    "fakten",
+    "welt",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌍",
+      "text": "Diese Größenvergleiche sprengen dein Weltbild."
+    },
+    {
+      "emoji": "🪐",
+      "text": "Russland hat eine größere Fläche als der Zwergplanet Pluto. Russland hat rund siebzehn Millionen Quadratkilometer, Plutos Oberfläche nur etwa sechzehneinhalb."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Afrika ist so groß, dass die USA, China und Indien zusammen hineinpassen, und es bleibt noch Platz übrig. Die meisten Weltkarten lassen Afrika viel zu klein aussehen."
+    },
+    {
+      "emoji": "🕐",
+      "text": "Und das Land mit den meisten Zeitzonen ist nicht Russland, sondern Frankreich. Dank seiner Überseegebiete hat es zwölf."
+    },
+    {
+      "emoji": "👉",
+      "text": "Welcher Fakt war neu für dich? Folge für mehr Geografie."
+    }
+  ]
+}
