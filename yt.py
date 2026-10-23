@@ -9,6 +9,12 @@ import urllib.request
 SCOPE = "https://www.googleapis.com/auth/youtube"
 
 
+def is_expired(error):
+    """True, wenn Google den gespeicherten Zugang nicht mehr annimmt (z. B. nach 7 Tagen im Testmodus)."""
+    from google.auth.exceptions import RefreshError
+    return isinstance(error, RefreshError) and "invalid_grant" in str(error)
+
+
 def _post(url, data):
     req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode())
     try:
@@ -47,13 +53,24 @@ def device_wait(client_id, client_secret, code):
     raise RuntimeError("Der Code ist abgelaufen. Bitte noch einmal verbinden.")
 
 
-def client(cfg):
+def _credentials(cfg):
     from google.oauth2.credentials import Credentials
+
+    return Credentials(token=None, refresh_token=cfg["refresh_token"], client_id=cfg["client_id"],
+                       client_secret=cfg["client_secret"], token_uri="https://oauth2.googleapis.com/token")
+
+
+def check(cfg):
+    """Prüft vor der Arbeit, ob der Zugang noch gilt. Wirft RefreshError, wenn nicht."""
+    from google.auth.transport.requests import Request
+
+    _credentials(cfg).refresh(Request())
+
+
+def client(cfg):
     from googleapiclient.discovery import build
 
-    creds = Credentials(token=None, refresh_token=cfg["refresh_token"], client_id=cfg["client_id"],
-                        client_secret=cfg["client_secret"], token_uri="https://oauth2.googleapis.com/token")
-    return build("youtube", "v3", credentials=creds, cache_discovery=False)
+    return build("youtube", "v3", credentials=_credentials(cfg), cache_discovery=False)
 
 
 def upload(cfg, video_path, spec):

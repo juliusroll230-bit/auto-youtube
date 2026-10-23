@@ -57,6 +57,8 @@ def post_next(slot, manual=False):
                 store.write("state.json", st)
             return
         spec = store.load_spec(files[0])
+        status["busy"] = "Prüft die Verbindung zu YouTube"
+        yt.check(store.config())
         status["busy"] = f"Erstelle Video: {spec['title']}"
         from make_short import build_video, load_tts
         _tts = _tts or load_tts()
@@ -68,6 +70,9 @@ def post_next(slot, manual=False):
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
         refresh_stats()
     except Exception as e:
+        if yt.is_expired(e):
+            connection_expired()
+            return  # Sendeplatz bleibt offen und wird nach dem Neu-Verbinden nachgeholt
         traceback.print_exc()
         store.log("error", f"Upload fehlgeschlagen: {e}")
         if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
@@ -89,7 +94,16 @@ def refresh_stats():
         store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"),
                                    "videos": yt.video_stats(cfg, ids) if ids else {}})
     except Exception as e:
+        if yt.is_expired(e):
+            return connection_expired()
         store.log("error", f"Statistiken konnten nicht geladen werden: {e}")
+
+
+def connection_expired():
+    """Google nimmt den Zugang nicht mehr an: Kanal als getrennt markieren, damit die Website es anzeigt."""
+    store.save_config(refresh_token="", expired=True)
+    status["connect"] = {"status": "idle"}
+    store.log("warn", "Die Verbindung zu YouTube ist abgelaufen. Bitte im Reiter Kanal neu verbinden.")
 
 
 def sync_scripts():
@@ -130,7 +144,7 @@ def connect_channel():
                              "verification_url": code.get("verification_url", "https://www.google.com/device"),
                              "expires_at": code["expires_at"]}
         token = yt.device_wait(cfg["client_id"], cfg["client_secret"], code)
-        store.save_config(refresh_token=token)
+        store.save_config(refresh_token=token, expired=False)
         refresh_stats()
         ch = store.read("channel.json", {}) or {}
         status["connect"] = {"status": "verbunden"}
@@ -263,7 +277,7 @@ class Handler(BaseHTTPRequestHandler):
             background(connect_channel)
             return self.send(200, {"ok": True})
         if p == "/api/disconnect":
-            store.save_config(refresh_token="")
+            store.save_config(refresh_token="", expired=False)
             store.write("channel.json", None)
             status["connect"] = {"status": "idle"}
             store.log("warn", "Kanal getrennt.")

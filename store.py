@@ -25,7 +25,7 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [12, 17, 20], "privacy": "public"}
+                  "post_hours": [12, 17, 20], "privacy": "public", "expired": False}
 
 
 def path(*parts):
@@ -177,6 +177,7 @@ def dashboard(extra=None):
         "privacy": cfg["privacy"],
         "has_client": bool(cfg["client_id"] and cfg["client_secret"]),
         "connected": bool(cfg["refresh_token"]),
+        "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),
         "queue": [card(load_spec(f)) for f in queue_files()],
         "posted": posted,

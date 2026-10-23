@@ -58,6 +58,7 @@ Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_colo
 ## Hinweise
 
 - Google stellt Uploads aus neuen, nicht geprüften API-Projekten automatisch auf **privat**. Für automatisch öffentliche Videos muss das Projekt das kostenlose YouTube-API-Audit bestehen.
+- Solange die Google-App im Status „Test“ ist, läuft die Verbindung alle 7 Tage ab. Die Website zeigt das an, dann im Reiter **Kanal** einfach neu verbinden. Zum Veröffentlichen der Google-App braucht es eine Startseite mit Datenschutzerklärung.
 - Das kostenlose API-Kontingent reicht für bis zu 6 Uploads pro Tag.
 - Die Website nur im Heimnetz nutzen oder mit `PASSWORD` schützen.
 - Lokal starten ohne Docker: `pip install -r requirements.txt`, Stimme nach `models/` laden (siehe `Dockerfile`), dann `python3 server.py`.

@@ -211,8 +211,8 @@ details[open] summary { margin-bottom: 10px; }
         <span class="status" id="ovStatus"></span>
       </div>
       <div class="banner" id="ovBanner" hidden>
-        <div><b>Kanal noch nicht verbunden.</b> <span class="muted">Der Sendeplan steht, gepostet wird ab der Verbindung.</span></div>
-        <a class="btn primary" href="#kanal">Kanal verbinden</a>
+        <div id="ovBannerText"><b>Kanal noch nicht verbunden.</b> <span class="muted">Der Sendeplan steht, gepostet wird ab der Verbindung.</span></div>
+        <a class="btn primary" href="#kanal" id="ovBannerBtn">Kanal verbinden</a>
       </div>
       <div class="box kpis">
         <div class="kpi"><span class="label">Aufrufe gesamt</span><span class="v" id="kViews">–</span><span class="s" id="kViewsS">alle geposteten Shorts</span></div>
@@ -327,7 +327,7 @@ details[open] summary { margin-bottom: 10px; }
                 <ol class="steps">
                   <li>Mit dem Google-Konto deines Kanals ein <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Projekt anlegen</a>.</li>
                   <li><a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com" target="_blank" rel="noopener">YouTube Data API v3</a> aktivieren.</li>
-                  <li>Unter <a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener">Google Auth Platform</a> starten: App-Name z. B. „Shorts Zentrale“ (ohne „YouTube“ oder „Google“, das lehnt Google ab), Zielgruppe Extern, danach unter Zielgruppe „App veröffentlichen“.</li>
+                  <li>Unter <a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener">Google Auth Platform</a> starten: App-Name z. B. „Shorts Zentrale“ (ohne „YouTube“ oder „Google“, das lehnt Google ab), Zielgruppe Extern. Danach unter Zielgruppe → Testnutzer das Google-Konto deines Kanals eintragen.</li>
                   <li>Unter Clients einen Client vom Typ „Fernseher und Geräte mit begrenzter Eingabe“ erstellen.</li>
                   <li>Client-ID und Clientschlüssel hier eintragen.</li>
                 </ol>
@@ -459,6 +459,10 @@ details[open] summary { margin-bottom: 10px; }
     st.appendChild(h("span", { cls: "dot " + (d.connected ? "live" : "warn") }));
     st.appendChild(document.createTextNode(d.connected ? "Automatik aktiv" : "Wartet auf Kanal"));
     $("ovBanner").hidden = d.connected;
+    if (d.expired) {
+      clear($("ovBannerText")).append(h("b", { text: "Die Verbindung zu YouTube ist abgelaufen." }), " ", h("span", { cls: "muted", text: "Bitte einmal neu verbinden, dann geht es automatisch weiter." }));
+      $("ovBannerBtn").textContent = "Neu verbinden";
+    }
 
     var hasStats = d.posted.some(function (v) { return v.views != null; });
     var views = d.posted.reduce(function (a, v) { return a + (v.views || 0); }, 0);
@@ -613,6 +617,7 @@ details[open] summary { margin-bottom: 10px; }
       return;
     }
     if (c.status === "fehler") body.appendChild(h("p", { cls: "msg err", text: c.message || "Die Verbindung hat nicht geklappt." }));
+    else if (d.expired) body.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Solange deine Google-App im Testmodus ist, passiert das alle 7 Tage. Einfach neu verbinden." }));
     body.appendChild(h("p", { cls: "muted", text: d.has_client ? "Startet die Anmeldung bei Google. Du bekommst einen Code, den du auf google.com/device eingibst." : "Trage zuerst Client-ID und Clientschlüssel ein." }));
     var go = h("button", { cls: "btn primary", type: "button", text: c.status === "start" ? "Startet …" : "Mit YouTube verbinden" });
     go.disabled = preview || !d.has_client || c.status === "start";
