@@ -128,6 +128,8 @@ th button[aria-pressed="true"]::after { content: " ↓"; }
 .vid .tt { font-weight: 500; line-height: 1.35; min-width: 0; }
 .vid .sub { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 52ch; }
 .rank { font-family: var(--f-mono); color: var(--muted); width: 28px; }
+.bar { height: 6px; border-radius: 3px; background: var(--sunken); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
 .rank.top { color: var(--ink); font-weight: 600; }
 .day-row td { background: var(--sunken); font-size: 12px; font-weight: 600; color: var(--ink-2); padding-block: 7px; }
 tr.is-next td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
@@ -279,6 +281,14 @@ details[open] summary { margin-bottom: 10px; }
           <h1>Bestenliste</h1>
           <p id="lbSub">Deine erfolgreichsten Shorts</p>
         </div>
+      </div>
+      <div class="box">
+        <div class="box-h"><h2>Lernmodus</h2><span class="status" id="learnStatus"></span></div>
+        <div class="box-b"><p class="muted" id="learnText" style="margin:0"></p></div>
+        <div class="scroll"><table>
+          <thead><tr><th>Thema</th><th class="r hide-sm">Bewertete Videos</th><th class="r">Ø Aufrufe (3 Tage)</th><th class="hide-sm" style="width:30%"></th></tr></thead>
+          <tbody id="learnBody"></tbody>
+        </table></div>
       </div>
       <div class="box scroll">
         <table>
@@ -454,7 +464,8 @@ details[open] summary { margin-bottom: 10px; }
 
   function renderOverview(d, sch) {
     var hoursTxt = d.slots.map(function (x) { return (x < 10 ? "0" : "") + x + ":00"; }).join(", ");
-    $("ovSub").textContent = "Postet täglich um " + hoursTxt + " Uhr";
+    var fav = d.learning && d.learning.favorite;
+    $("ovSub").textContent = "Postet täglich um " + hoursTxt + " Uhr" + (fav ? " · bevorzugt gerade " + fav : "");
     var st = clear($("ovStatus"));
     st.appendChild(h("span", { cls: "dot " + (d.connected ? "live" : "warn") }));
     st.appendChild(document.createTextNode(d.connected ? "Automatik aktiv" : "Wartet auf Kanal"));
@@ -582,6 +593,26 @@ details[open] summary { margin-bottom: 10px; }
       ]));
     });
     if (!ranked.length) body.appendChild(emptyRow(5, "Noch keine Zahlen", "Aufrufe, Likes und Kommentare werden alle 3 Stunden von YouTube geholt."));
+    renderLearning(d);
+  }
+
+  function renderLearning(d) {
+    var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
+    setStatus("learnStatus", L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
+    $("learnText").textContent = L.favorite
+      ? "„" + L.favorite + "“ läuft am besten. Darum kommen " + (L.explore_every - 1) + " von " + L.explore_every + " Videos aus diesem Thema, jedes " + L.explore_every + ". testet ein anderes. Der Sendeplan passt sich von selbst an."
+      : "Die Themen wechseln sich ab, bis jedes mindestens " + L.min_videos + " Videos mit Aufrufen hat. Danach postet die Automatik öfter das Thema, das am besten läuft. Private Videos zählen dabei nicht, weil sie keine Aufrufe bekommen.";
+    var body = clear($("learnBody"));
+    var max = L.niches.reduce(function (a, n) { return Math.max(a, n.score); }, 0) || 1;
+    L.niches.forEach(function (n) {
+      body.appendChild(h("tr", null, [
+        h("td", null, [h("span", { cls: "tag", text: n.niche }), n.niche === L.favorite ? h("span", { cls: "label", style: "margin-left:8px", text: "bevorzugt" }) : null]),
+        h("td", { cls: "r num hide-sm", text: nf.format(n.videos) }),
+        h("td", { cls: "r num", text: nf.format(n.score) }),
+        h("td", { cls: "hide-sm" }, [h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%" })])])
+      ]));
+    });
+    if (!L.niches.length) body.appendChild(emptyRow(4, "Noch keine Daten", "Nach den ersten Videos steht hier, welches Thema am besten ankommt."));
   }
 
   function statusEl(cls, text) { return [h("span", { cls: "dot " + cls }), document.createTextNode(text)]; }

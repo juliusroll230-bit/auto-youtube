@@ -48,15 +48,15 @@ def post_next(slot, manual=False):
     if not work_lock.acquire(blocking=False):
         return
     try:
-        files = store.queue_files()
-        if not files:
+        planned = store.planned_queue()  # Reihenfolge nach Lernmodus
+        if not planned:
             store.log("warn", "Sendeplatz verpasst: Die Warteschlange ist leer.")
             if slot:
                 st = store.state()
                 st["done_slots"].append(slot)
                 store.write("state.json", st)
             return
-        spec = store.load_spec(files[0])
+        file, spec = planned[0]
         status["busy"] = "Prüft die Verbindung zu YouTube"
         yt.check(store.config())
         status["busy"] = f"Erstelle Video: {spec['title']}"
@@ -65,7 +65,7 @@ def post_next(slot, manual=False):
         video, _ = build_video(spec, store.path("out"), _tts)
         status["busy"] = f"Lade hoch: {spec['title']}"
         video_id = yt.upload(store.config(), video, spec)
-        store.mark_posted(files[0], slot, spec, video_id)
+        store.mark_posted(file, slot, spec, video_id)
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
         refresh_stats()

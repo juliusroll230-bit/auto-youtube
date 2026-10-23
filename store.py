@@ -16,6 +16,8 @@ import shutil
 import threading
 from zoneinfo import ZoneInfo
 
+import learn
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.environ.get("DATA_DIR", os.path.join(HERE, "data"))
 SEED = os.path.join(HERE, "seed")
@@ -161,14 +163,29 @@ def card(spec):
     }
 
 
-def dashboard(extra=None):
-    cfg, st = config(), state()
+def posted_items():
+    """Alle Uploads mit Thema und den letzten Zahlen von YouTube, älteste zuerst."""
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     posted = []
-    for u in st["uploads"]:
+    for u in state()["uploads"]:
         spec = find_spec(u["slug"])
         base = card(spec) if spec else {"slug": u["slug"], "title": u["title"]}
         posted.append({**base, **u, **stats["videos"].get(u["video_id"], {})})
+    return posted
+
+
+def planned_queue(posted=None):
+    """Warteschlange als (datei, skript) in der Reihenfolge, die der Lernmodus vorgibt."""
+    posted = posted if posted is not None else posted_items()
+    queue = [(f, load_spec(f)) for f in queue_files()]
+    history = [p["niche"] for p in posted if p.get("niche")]
+    return learn.plan(queue, history, learn.niche_scores(posted, now()))
+
+
+def dashboard(extra=None):
+    cfg = config()
+    stats = read("stats.json", {"videos": {}, "updated_at": None})
+    posted = posted_items()
     return {
         "source": "server",
         "updated_at": now().isoformat(timespec="seconds"),
@@ -179,8 +196,9 @@ def dashboard(extra=None):
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),
-        "queue": [card(load_spec(f)) for f in queue_files()],
+        "queue": [card(spec) for _, spec in planned_queue(posted)],
         "posted": posted,
-        "events": list(reversed(st["events"][-30:])),
+        "learning": learn.summary(learn.niche_scores(posted, now())),
+        "events": list(reversed(state()["events"][-30:])),
         **(extra or {}),
     }

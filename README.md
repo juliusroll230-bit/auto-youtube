@@ -16,6 +16,7 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 - **Zeitplan:** Zu jeder Sendezeit (Standard 12, 17 und 20 Uhr) wird das nächste Skript aus der Warteschlange zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Die Zeiten lassen sich im Reiter **Kanal** ändern.
 - **Nachschub:** Alle 2 Stunden holt die App neue Skripte aus dem Ordner `seed/` dieses Repos (`SCRIPTS_REPO`).
 - **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 3 Stunden von YouTube.
+- **Lernmodus:** Am Anfang wechseln sich die Themen ab. Sobald jedes Thema 2 Videos mit Aufrufen hat, kommen 3 von 4 Videos aus dem Thema mit den meisten Aufrufen (hochgerechnet auf die ersten 3 Tage), jedes 4. testet ein anderes. Details in `learn.py`, die Übersicht steht im Reiter **Bestenliste**.
 - **Updates:** Jede Code-Änderung baut über GitHub Actions ein neues Image `ghcr.io/<besitzer>/auto-youtube:latest`. In ZimaOS die App neu laden bzw. aktualisieren, um es zu übernehmen.
 
 ## Dateien
