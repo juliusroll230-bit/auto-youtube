@@ -128,8 +128,8 @@ th button[aria-pressed="true"]::after { content: " ↓"; }
 .vid .tt { font-weight: 500; line-height: 1.35; min-width: 0; }
 .vid .sub { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 52ch; }
 .rank { font-family: var(--f-mono); color: var(--muted); width: 28px; }
-.bar { height: 6px; border-radius: 3px; background: var(--sunken); overflow: hidden; }
-.bar i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+.meter { height: 6px; border-radius: 3px; background: var(--sunken); overflow: hidden; }
+.meter i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
 .rank.top { color: var(--ink); font-weight: 600; }
 .day-row td { background: var(--sunken); font-size: 12px; font-weight: 600; color: var(--ink-2); padding-block: 7px; }
 tr.is-next td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
@@ -609,7 +609,7 @@ details[open] summary { margin-bottom: 10px; }
         h("td", null, [h("span", { cls: "tag", text: n.niche }), n.niche === L.favorite ? h("span", { cls: "label", style: "margin-left:8px", text: "bevorzugt" }) : null]),
         h("td", { cls: "r num hide-sm", text: nf.format(n.videos) }),
         h("td", { cls: "r num", text: nf.format(n.score) }),
-        h("td", { cls: "hide-sm" }, [h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%" })])])
+        h("td", { cls: "hide-sm" }, [h("div", { cls: "meter" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%" })])])
       ]));
     });
     if (!L.niches.length) body.appendChild(emptyRow(4, "Noch keine Daten", "Nach den ersten Videos steht hier, welches Thema am besten ankommt."));
