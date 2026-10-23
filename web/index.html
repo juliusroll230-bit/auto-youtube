@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: schlichte Arbeitsoberfläche. Feste Kopfzeile mit Reitern, darunter je Reiter eine ruhige Tabelle oder Liste. Farbe nur für Status und die eine Hauptaktion. */
+/* Layout: schlichte Arbeitsoberfläche. Seitenleiste links (am Handy unten), rechts je Bereich eine ruhige Tabelle oder Liste. Farbe nur für Status und die eine Hauptaktion. */
 :root {
   --bg: #f7f7f8;
   --surface: #ffffff;
@@ -49,18 +49,22 @@ button, input, select { font: inherit; color: inherit; }
 .gutter { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 .inner { max-width: 1120px; margin: 0 auto; }
 
-/* Kopfzeile */
+/* Seitenleiste (am Handy: Leiste unten) */
+body { margin: 0; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
-.bar .inner { display: flex; align-items: center; gap: 24px; min-height: 56px; }
-.mark { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.app { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 22px; padding: max(20px, env(safe-area-inset-top, 0px)) 14px 18px max(14px, env(safe-area-inset-left, 0px)); background: var(--surface); border-right: 1px solid var(--line); }
+.mark { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; white-space: nowrap; padding: 4px 10px; }
 .mark i { width: 10px; height: 10px; border-radius: 2px; background: var(--accent); }
-.tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
-.tabs::-webkit-scrollbar { display: none; }
-.tabs a { padding: 18px 9px 16px; color: var(--muted); font-weight: 500; white-space: nowrap; border-bottom: 2px solid transparent; text-decoration: none; }
-.tabs a:hover { color: var(--ink); }
-.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
-.who { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav a { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 8px; color: var(--muted); font-weight: 500; text-decoration: none; transition: background-color .15s ease, color .15s ease; }
+.nav a:hover { background: var(--sunken); color: var(--ink); }
+.nav a[aria-current="page"] { background: var(--sunken); color: var(--ink); font-weight: 600; }
+.nav svg { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.side .who { margin-top: auto; padding: 12px 10px 0; border-top: 1px solid var(--line); }
+.who .nm { overflow: hidden; text-overflow: ellipsis; min-width: 0; font-weight: 500; }
+.topbar { display: none; }
+.who { display: flex; align-items: center; gap: 10px; white-space: nowrap; min-width: 0; }
 .avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--sunken); border: 1px solid var(--line); overflow: hidden; display: grid; place-items: center; font-size: 12px; font-weight: 600; color: var(--muted); flex: none; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex: none; }
@@ -168,11 +172,19 @@ details[open] summary { margin-bottom: 10px; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kpi:nth-child(3) { border-left: 0; }
   .kpi:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .who .nm { display: none; }
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; min-height: 52px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .topbar .mark { padding: 0; }
+  .side { position: fixed; inset: auto 0 0 0; height: auto; z-index: 20; flex-direction: row; gap: 0; padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); border-right: 0; border-top: 1px solid var(--line); }
+  .side .mark, .side .who { display: none; }
+  .nav { flex-direction: row; flex: 1; justify-content: space-around; }
+  .nav a { flex: 1; flex-direction: column; gap: 3px; padding: 6px 2px; font-size: 11px; text-align: center; }
+  .nav a[aria-current="page"] { background: none; color: var(--accent); }
+  .nav a:hover { background: none; }
+  main { padding-bottom: 110px; }
 }
 @media (max-width: 560px) {
-  .bar .inner { gap: 12px; }
-  .mark span { display: none; }
+  .topbar .who .nm { display: none; }
   .next { grid-template-columns: 88px minmax(0, 1fr); gap: 14px; }
   .next .when { font-size: 20px; }
   .kpi .v { font-size: 22px; }
@@ -180,24 +192,33 @@ details[open] summary { margin-bottom: 10px; }
   .hide-sm { display: none; }
   .hours { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }
-@media (prefers-reduced-motion: reduce) { .dot.live { animation: none; } .btn { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .dot.live { animation: none; } .btn, .nav a { transition: none; } }
 </style>
 
-<header class="bar gutter">
-  <div class="inner">
-    <div class="mark"><i aria-hidden="true"></i><span>Shorts-Zentrale</span></div>
-    <nav class="tabs" aria-label="Bereiche">
-      <a href="#uebersicht" data-tab="uebersicht">Übersicht</a>
-      <a href="#plan" data-tab="plan">Sendeplan</a>
-      <a href="#gepostet" data-tab="gepostet">Gepostet</a>
-      <a href="#bestenliste" data-tab="bestenliste">Bestenliste</a>
-      <a href="#kanal" data-tab="kanal">Kanal</a>
-    </nav>
-    <div class="who">
-      <div class="avatar" id="avatar" aria-hidden="true"></div>
-      <span class="nm" id="whoName">Kein Kanal</span>
-      <span class="dot warn" id="whoDot" title="Status"></span>
-    </div>
+<div class="app">
+<aside class="side">
+  <div class="mark"><i aria-hidden="true"></i><span>Shorts-Zentrale</span></div>
+  <nav class="nav" aria-label="Bereiche">
+    <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Übersicht</span></a>
+    <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg><span>Sendeplan</span></a>
+    <a href="#gepostet" data-tab="gepostet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 9 5 3-5 3z"/></svg><span>Gepostet</span></a>
+    <a href="#bestenliste" data-tab="bestenliste"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 16.5V21M7 3.5h10V9a5 5 0 0 1-10 0z"/><path d="M17 5.5h3V7a3 3 0 0 1-3 3M7 5.5H4V7a3 3 0 0 0 3 3"/></svg><span>Bestenliste</span></a>
+    <a href="#kanal" data-tab="kanal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg><span>Kanal</span></a>
+  </nav>
+  <div class="who">
+    <div class="avatar js-avatar" aria-hidden="true"></div>
+    <span class="nm js-whoName">Kein Kanal</span>
+    <span class="dot warn js-whoDot" title="Status"></span>
+  </div>
+</aside>
+
+<div class="content">
+<header class="topbar gutter">
+  <div class="mark"><i aria-hidden="true"></i><span>Shorts-Zentrale</span></div>
+  <div class="who">
+    <span class="nm js-whoName">Kein Kanal</span>
+    <div class="avatar js-avatar" aria-hidden="true"></div>
+    <span class="dot warn js-whoDot" title="Status"></span>
   </div>
 </header>
 
@@ -383,6 +404,8 @@ details[open] summary { margin-bottom: 10px; }
     </footer>
   </div>
 </main>
+</div>
+</div>
 
 <script>
 (function () {
@@ -454,12 +477,17 @@ details[open] summary { margin-bottom: 10px; }
   }
 
   function renderHeader(d) {
-    var ch = d.channel, av = clear($("avatar"));
-    if (ch && ch.thumbnail) av.appendChild(h("img", { src: ch.thumbnail, alt: "" }));
-    else av.textContent = ch && ch.title ? ch.title.charAt(0).toUpperCase() : "–";
-    $("whoName").textContent = ch ? ch.title : "Kein Kanal";
-    $("whoDot").className = "dot " + (d.connected ? "live" : "warn");
-    $("whoDot").title = d.connected ? "Verbunden" : "Nicht verbunden";
+    var ch = d.channel;
+    document.querySelectorAll(".js-avatar").forEach(function (av) {
+      clear(av);
+      if (ch && ch.thumbnail) av.appendChild(h("img", { src: ch.thumbnail, alt: "" }));
+      else av.textContent = ch && ch.title ? ch.title.charAt(0).toUpperCase() : "–";
+    });
+    document.querySelectorAll(".js-whoName").forEach(function (e) { e.textContent = ch ? ch.title : "Kein Kanal"; });
+    document.querySelectorAll(".js-whoDot").forEach(function (e) {
+      e.className = "dot js-whoDot " + (d.connected ? "live" : "warn");
+      e.title = d.connected ? "Verbunden" : "Nicht verbunden";
+    });
   }
 
   function renderOverview(d, sch) {
