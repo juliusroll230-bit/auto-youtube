@@ -20,6 +20,12 @@ RUN mkdir -p models \
 
 COPY . .
 
+# Version für die Fußzeile der Website (setzt GitHub Actions beim Bauen)
+ARG APP_VERSION=dev
+ARG APP_BUILT=
+ENV APP_VERSION=$APP_VERSION \
+    APP_BUILT=$APP_BUILT
+
 VOLUME /data
 EXPOSE 8080
 HEALTHCHECK --interval=1m --timeout=10s CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8080/api/dashboard')" || exit 1

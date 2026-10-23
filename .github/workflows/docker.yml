@@ -27,12 +27,17 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Name in Kleinbuchstaben
         id: name
-        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          echo "built=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
       - uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
           push: true
+          build-args: |
+            APP_VERSION=${{ github.sha }}
+            APP_BUILT=${{ steps.name.outputs.built }}
           tags: ${{ steps.name.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -46,7 +51,7 @@ jobs:
           image="ghcr.io/${GITHUB_REPOSITORY,,}:latest"
           docker run -d --name app -p 8090:8080 "$image"
           for i in $(seq 1 30); do curl -sf localhost:8090/api/dashboard > /dev/null && break; sleep 2; done
-          curl -sf localhost:8090/api/dashboard | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['queue'], 'Warteschlange leer'; print(len(d['queue']), 'Videos geplant')"
+          curl -sf localhost:8090/api/dashboard | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['queue'], 'Warteschlange leer'; assert d['version']['built'], 'Version fehlt'; print(len(d['queue']), 'Videos geplant, Version', d['version'])"
           curl -sf -o /dev/null localhost:8090/
           curl -sf -o thumb.jpg localhost:8090/api/thumb/psychologie-tricks.jpg && test -s thumb.jpg
       - name: Testvideo erstellen

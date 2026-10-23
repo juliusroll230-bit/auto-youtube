@@ -34,6 +34,7 @@ PORT = int(os.environ.get("PORT", "8080"))
 PASSWORD = os.environ.get("PASSWORD", "")
 SCRIPTS_REPO = os.environ.get("SCRIPTS_REPO", "").strip()
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
+VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
 status = {"busy": "", "connect": {"status": "idle"}}
@@ -235,7 +236,8 @@ class Handler(BaseHTTPRequestHandler):
         if p in ("/icon.png", "/favicon.ico"):
             return self.send(200, open(os.path.join(WEB, "icon.png"), "rb").read(), "image/png", cache="max-age=86400")
         if p == "/api/dashboard":
-            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"]}))
+            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
+                                                   "version": VERSION}))
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
         if m:
             return self.thumb(m.group(1))

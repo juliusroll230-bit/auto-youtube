@@ -684,7 +684,8 @@ details[open] summary { margin-bottom: 10px; }
     renderChannel(d);
     renderHours(d);
     var u = new Date(d.updated_at);
-    $("host").textContent = S.live ? "Läuft auf deinem Server" : "Vorschau, die echte App läuft auf deinem Zima-Server";
+    var ver = d.version && d.version.built ? " · Version vom " + fDayS.format(new Date(d.version.built)) + " " + fTime.format(new Date(d.version.built)) + " Uhr" : "";
+    $("host").textContent = S.live ? "Läuft auf deinem Server" + ver : "Vorschau, die echte App läuft auf deinem Zima-Server";
     $("stand").textContent = (S.live ? "Aktualisiert " : "Vorschau mit Stand vom ") + fDayS.format(u) + ", " + fTime.format(u) + " Uhr";
   }
 
