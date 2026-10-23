@@ -1,0 +1,24 @@
+# Shorts-Updater: hält die Shorts-Zentrale automatisch aktuell.
+# Prüft beim Start und dann jede Nacht um 4 Uhr, ob es eine neue Version gibt,
+# und tauscht nur den Container "shorts-zentrale" aus. Einstellungen und Daten bleiben.
+name: shorts-updater
+services:
+  shorts-updater:
+    image: nickfedor/watchtower:latest
+    container_name: shorts-updater
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: Europe/Berlin
+      WATCHTOWER_SCHEDULE: "0 0 4 * * *"
+      WATCHTOWER_UPDATE_ON_START: "true"
+      WATCHTOWER_CLEANUP: "true"
+    command: shorts-zentrale
+x-casaos:
+  architectures:
+    - amd64
+  main: shorts-updater
+  title:
+    en_us: Shorts-Updater
+  icon: https://raw.githubusercontent.com/juliusroll230-bit/auto-youtube/main/web/icon.png
