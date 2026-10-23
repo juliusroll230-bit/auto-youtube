@@ -3,3 +3,4 @@ pillow>=11
 numpy>=2
 google-api-python-client>=2.150
 google-auth>=2.35
+tzdata

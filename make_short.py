@@ -134,96 +134,116 @@ def scaled(img, s):
     return img.resize((max(1, int(img.width * s)), max(1, int(img.height * s))), Image.BILINEAR)
 
 
+class Scene:
+    """Zeichnet die Bilder eines Shorts. timings: Start/Ende jedes Satzes in Sekunden."""
+
+    def __init__(self, spec, timings, total):
+        self.timings, self.total = timings, total
+        self.accent = spec["accent"]
+        self.car = None
+        if spec.get("style") == "car":
+            from car_scene import CarScene
+            self.car = CarScene(hex_rgb(spec["car_color"]), seed=len(spec["slug"]))
+            self.blobs, self.emojis = [], []
+        else:
+            self.bg = make_background(*spec["colors"])
+            self.blobs = [(soft_blob(520, hex_rgb(self.accent), 60), 0.11, 0.0),
+                          (soft_blob(700, (255, 255, 255), 40), 0.07, 2.0),
+                          (soft_blob(420, hex_rgb(spec["colors"][1]), 120), 0.15, 4.0)]
+            self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
+        self.cap_y = 640 if self.car else 1180
+        self.bar_y = 280 if self.car else H - 210
+        self.caps = []
+        for (s, e), seg in zip(timings, spec["segments"]):
+            for cs, ce, txt in caption_chunks(seg["text"], s, e):
+                self.caps.append((cs, ce, render_caption(txt, self.accent)))
+        if not self.caps:
+            raise ValueError("Skript ohne Text")
+        self.label_font = ImageFont.truetype(FONT_SEMI, 46)
+        self.label = spec["niche"].upper()
+
+    def frame(self, t):
+        if self.car:
+            frame = self.car.frame(t)
+        else:
+            ox = int(200 + 200 * math.sin(t * 0.35))
+            oy = int(400 + 400 * math.sin(t * 0.22))
+            frame = self.bg.crop((ox, oy, ox + W, oy + H)).convert("RGBA")
+        for blob, speed, phase in self.blobs:
+            bx = int(W / 2 + 380 * math.sin(t * speed * 6 + phase) - blob.width / 2)
+            by = int(H / 2 + 700 * math.cos(t * speed * 4 + phase) - blob.height / 2)
+            frame.paste(blob, (bx, by), blob)  # paste schneidet am Rand sauber ab
+
+        d = ImageDraw.Draw(frame)
+        # Themen-Label oben
+        tw = d.textlength(self.label, font=self.label_font)
+        d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 110))
+        d.text((W / 2, 193), self.label, font=self.label_font, anchor="mm", fill=(255, 255, 255))
+
+        # Emoji des aktuellen Satzes mit Pop-in und leichtem Schweben
+        idx = next((i for i, (s, e) in enumerate(self.timings) if t < e + PAUSE), len(self.timings) - 1)
+        since = t - self.timings[idx][0]
+        pop = ease_out_back(min(1, max(0, since / 0.35))) if since >= 0 else 1
+        if self.emojis:
+            em = scaled(self.emojis[idx], max(0.05, pop))
+            bob = int(18 * math.sin(t * 2.2))
+            frame.alpha_composite(em, (int(W / 2 - em.width / 2), int(620 - em.height / 2 + bob)))
+
+        # Untertitel
+        cap = next((c for c in self.caps if c[0] <= t < c[1]), None)
+        if cap is None:
+            prev = [c for c in self.caps if c[1] <= t]
+            cap = prev[-1] if prev and t - prev[-1][1] < PAUSE else None
+        if cap:
+            k = min(1, (t - cap[0]) / 0.12)
+            ci = scaled(cap[2], 0.85 + 0.15 * ease_out_back(k))
+            frame.alpha_composite(ci, (int(W / 2 - ci.width / 2), int(self.cap_y - ci.height / 2)))
+
+        # Fortschrittsbalken
+        bar_y = self.bar_y
+        d.rounded_rectangle((90, bar_y, W - 90, bar_y + 14), radius=7, fill=(255, 255, 255, 70))
+        d.rounded_rectangle((90, bar_y, 90 + (W - 180) * min(1, t / self.total), bar_y + 14), radius=7,
+                            fill=hex_rgb(self.accent))
+        return frame
+
+
+def estimated_timings(spec):
+    """Grobe Satz-Zeiten ohne Sprachausgabe (für Vorschaubilder)."""
+    t, out = 0.0, []
+    for seg in spec["segments"]:
+        dur = len(seg["text"].split()) / 2.5
+        out.append((t, t + dur))
+        t += dur + PAUSE
+    return out, t
+
+
+def render_thumbnail(spec, path, width=360):
+    """Speichert ein Vorschaubild: der erste Satz, kurz nachdem er eingeblendet wurde."""
+    timings, total = estimated_timings(spec)
+    scene = Scene(spec, timings, total)
+    img = scene.frame(1.0).convert("RGB")
+    img.resize((width, int(width * H / W)), Image.LANCZOS).save(path, "JPEG", quality=84)
+
+
 def build_video(spec, out_dir, tts):
     os.makedirs(out_dir, exist_ok=True)
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = synthesize(tts, spec["segments"], wav)
     total += 0.4
-
-    car = None
-    if spec.get("style") == "car":
-        from car_scene import CarScene
-        car = CarScene(hex_rgb(spec["car_color"]), seed=len(spec["slug"]))
-    else:
-        bg = make_background(*spec["colors"])
-    accent = spec["accent"]
-    blobs = [] if car else [(soft_blob(520, hex_rgb(accent), 60), 0.11, 0.0), (soft_blob(700, (255, 255, 255), 40), 0.07, 2.0),
-             (soft_blob(420, hex_rgb(spec["colors"][1]), 120), 0.15, 4.0)]
-    emojis = [render_emoji(s["emoji"], 400) for s in spec["segments"]] if not car else []
-    cap_y = 640 if car else 1180
-    bar_y = 280 if car else H - 210
-    caps = []
-    for (s, e), seg in zip(timings, spec["segments"]):
-        for cs, ce, txt in caption_chunks(seg["text"], s, e):
-            caps.append((cs, ce, render_caption(txt, accent)))
-    if not caps:
-        raise ValueError("Skript ohne Text")
-
-    label_font = ImageFont.truetype(FONT_SEMI, 46)
-    label = spec["niche"].upper()
+    scene = Scene(spec, timings, total)
 
     ff = subprocess.Popen([
         "ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
         "-r", str(FPS), "-i", "-", "-i", wav, "-c:v", "libx264", "-preset", "medium", "-crf", "20",
         "-pix_fmt", "yuv420p", "-af", "apad", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", mp4,
     ], stdin=subprocess.PIPE)
-
-    n = int(total * FPS)
-    for f in range(n):
-        t = f / FPS
-        if car:
-            frame = car.frame(t)
-            blobs_now = []
-        else:
-            ox = int(200 + 200 * math.sin(t * 0.35))
-            oy = int(400 + 400 * math.sin(t * 0.22))
-            frame = bg.crop((ox, oy, ox + W, oy + H)).convert("RGBA")
-            blobs_now = blobs
-
-        for blob, speed, phase in blobs_now:
-            bx = int(W / 2 + 380 * math.sin(t * speed * 6 + phase) - blob.width / 2)
-            by = int(H / 2 + 700 * math.cos(t * speed * 4 + phase) - blob.height / 2)
-            frame.paste(blob, (bx, by), blob)  # paste schneidet am Rand sauber ab
-
-        d = ImageDraw.Draw(frame)
-        # Nischen-Label oben
-        tw = d.textlength(label, font=label_font)
-        d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 110))
-        d.text((W / 2, 193), label, font=label_font, anchor="mm", fill=(255, 255, 255))
-
-        # Emoji des aktuellen Satzes mit Pop-in und leichtem Schweben
-        idx = next((i for i, (s, e) in enumerate(timings) if t < e + PAUSE), len(timings) - 1)
-        since = t - timings[idx][0]
-        pop = ease_out_back(min(1, max(0, since / 0.35))) if since >= 0 else 1
-        if emojis:
-            em = scaled(emojis[idx], max(0.05, pop))
-            bob = int(18 * math.sin(t * 2.2))
-            frame.alpha_composite(em, (int(W / 2 - em.width / 2), int(620 - em.height / 2 + bob)))
-
-        # Untertitel
-        cap = next((c for c in caps if c[0] <= t < c[1]), None)
-        if cap is None:
-            prev = [c for c in caps if c[1] <= t]
-            cap = prev[-1] if prev and t - prev[-1][1] < PAUSE else None
-        if cap:
-            k = min(1, (t - cap[0]) / 0.12)
-            s = 0.85 + 0.15 * ease_out_back(k)
-            ci = scaled(cap[2], s)
-            frame.alpha_composite(ci, (int(W / 2 - ci.width / 2), int(cap_y - ci.height / 2)))
-
-        # Fortschrittsbalken
-        d.rounded_rectangle((90, bar_y, W - 90, bar_y + 14), radius=7, fill=(255, 255, 255, 70))
-        d.rounded_rectangle((90, bar_y, 90 + (W - 180) * min(1, t / total), bar_y + 14), radius=7, fill=hex_rgb(accent))
-
-        ff.stdin.write(frame.convert("RGB").tobytes())
-
+    for f in range(int(total * FPS)):
+        ff.stdin.write(scene.frame(f / FPS).convert("RGB").tobytes())
     ff.stdin.close()
-    ff.wait()
+    if ff.wait() != 0:
+        raise RuntimeError("ffmpeg konnte das Video nicht erstellen")
     os.remove(wav)
-    meta = {k: spec[k] for k in ("title", "description", "tags")}
-    with open(os.path.join(out_dir, f"{spec['slug']}.json"), "w", encoding="utf-8") as fh:
-        json.dump(meta, fh, ensure_ascii=False, indent=2)
     return mp4, total
 
 

@@ -1,0 +1,30 @@
+# Shorts-Zentrale für ZimaOS / CasaOS
+# Installation: App Store -> "+" (Benutzerdefinierte App) -> Importieren -> diese Datei einfügen.
+name: shorts-zentrale
+services:
+  shorts-zentrale:
+    image: ghcr.io/juliusroll230-bit/auto-youtube:latest
+    container_name: shorts-zentrale
+    restart: unless-stopped
+    ports:
+      - "8090:8080"
+    volumes:
+      - /DATA/AppData/shorts-zentrale:/data
+    environment:
+      SCRIPTS_REPO: juliusroll230-bit/auto-youtube
+      # PASSWORD: hier-ein-passwort     # optional: Website mit Passwort schützen (Benutzer: admin)
+      # GITHUB_TOKEN: ...               # nur nötig, wenn das Repo privat ist
+x-casaos:
+  architectures:
+    - amd64
+  main: shorts-zentrale
+  author: Julius
+  category: Media
+  description:
+    en_us: Erstellt und postet automatisch YouTube Shorts.
+  title:
+    en_us: Shorts-Zentrale
+  icon: https://raw.githubusercontent.com/juliusroll230-bit/auto-youtube/main/web/icon.png
+  port_map: "8090"
+  index: /
+  scheme: http

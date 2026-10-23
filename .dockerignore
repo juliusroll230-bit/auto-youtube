@@ -1,0 +1,6 @@
+models
+data
+out
+__pycache__
+.git
+*.mp4

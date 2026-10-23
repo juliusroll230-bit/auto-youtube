@@ -1,20 +1,34 @@
-# Auto-YouTube
+# Shorts-Zentrale
 
-Erstellt und postet automatisch deutsche YouTube Shorts.
+Erstellt und postet automatisch deutsche YouTube Shorts und zeigt alles auf einer Website: Sendeplan, gepostete Videos, Bestenliste und die Kanal-Verbindung. Läuft als ein Docker-Container, zum Beispiel auf einem ZimaOS-Server.
 
-- **Wann:** täglich um 12, 17 und 20 Uhr (deutsche Zeit), über GitHub Actions.
-- **Was:** Das nächste Skript aus `content/queue/` wird zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Danach landet es in `content/posted/`, und `content/state.json` merkt sich die Uploads.
-- **Nachschub:** Neue Skripte werden regelmäßig in `content/queue/` gelegt. Ist die Warteschlange leer, wird nichts gepostet.
+## Installation auf ZimaOS
+
+1. ZimaOS öffnen → **App Store** → oben rechts **+** → **Benutzerdefinierte App installieren** → **Importieren**.
+2. Den Inhalt von [`docker-compose.yml`](docker-compose.yml) einfügen und installieren.
+3. Die App öffnen: `http://<IP-deines-Servers>:8090`
+4. Im Reiter **Kanal** Client-ID und Clientschlüssel eintragen (Anleitung steht dort) und auf **Mit YouTube verbinden** tippen.
+
+Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
+
+## So funktioniert es
+
+- **Zeitplan:** Zu jeder Sendezeit (Standard 12, 17 und 20 Uhr) wird das nächste Skript aus der Warteschlange zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Die Zeiten lassen sich im Reiter **Kanal** ändern.
+- **Nachschub:** Alle 2 Stunden holt die App neue Skripte aus dem Ordner `seed/` dieses Repos (`SCRIPTS_REPO`).
+- **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 3 Stunden von YouTube.
+- **Updates:** Jede Code-Änderung baut über GitHub Actions ein neues Image `ghcr.io/<besitzer>/auto-youtube:latest`. In ZimaOS die App neu laden bzw. aktualisieren, um es zu übernehmen.
 
 ## Dateien
 
 | Datei | Zweck |
 |---|---|
+| `server.py` | Website, Zeitplan, Uploads |
+| `store.py` | Speichert Einstellungen, Warteschlange und Statistiken in `/data` |
+| `yt.py` | YouTube: Anmeldung per Geräte-Code, Upload, Statistiken |
 | `make_short.py` | Baut aus einem Skript ein 1080x1920-Video |
 | `car_scene.py` | Hintergrund "Sportwagen bei Nacht" für Skripte mit `"style": "car"` |
-| `post_next.py` | Prüft den Zeitplan, rendert und lädt hoch |
-| `connect_channel.py` | Verbindet einmalig den YouTube-Kanal |
-| `.github/workflows/post.yml` | Der Zeitplan |
+| `web/index.html` | Die Website |
+| `seed/` | Skripte für die Warteschlange |
 
 ## Skript-Format
 
@@ -31,25 +45,20 @@ Erstellt und postet automatisch deutsche YouTube Shorts.
 }
 ```
 
-Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_color": "#d0101c"`.
+Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_color": "#d0101c"`. Dateinamen sind fortlaufend nummeriert (`0016-slug.json`), die kleinste Nummer wird zuerst gepostet.
 
-## Einrichtung
+## Einstellungen (Umgebungsvariablen)
 
-1. **Google Cloud:** Projekt anlegen, "YouTube Data API v3" aktivieren, OAuth-Zustimmungsbildschirm (extern) einrichten und auf "In Produktion" stellen, OAuth-Client vom Typ "Fernseher und Geräte mit begrenzter Eingabe" erstellen.
-2. **Kanal verbinden:** `python3 connect_channel.py CLIENT_ID CLIENT_SECRET`, dann den angezeigten Code auf google.com/device eingeben.
-3. **GitHub Secrets** im Repo anlegen: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
-4. **Öffentliche Uploads:** Google stellt Uploads aus nicht geprüften API-Projekten automatisch auf "privat". Für öffentliche Uploads muss das Projekt das kostenlose YouTube-API-Audit bestehen. Bis dahin die Videos in YouTube Studio selbst auf "öffentlich" stellen.
-
-## Testen
-
-```bash
-pip install -r requirements.txt
-DRY_RUN=1 python3 post_next.py --force   # rendert das nächste Video, ohne hochzuladen
-```
-
-In GitHub: Actions → "Shorts posten" → "Run workflow" mit "force" postet sofort ein Video.
+| Variable | Bedeutung |
+|---|---|
+| `PASSWORD` | schützt die Website (Benutzer `admin`) |
+| `SCRIPTS_REPO` | Repo, aus dem neue Skripte kommen |
+| `GITHUB_TOKEN` | nur nötig, wenn dieses Repo privat ist |
 
 ## Hinweise
 
-- Bis zu 6 Uploads pro Tag passen in das kostenlose Standardkontingent der YouTube API. Die Uhrzeiten lassen sich über die Repo-Variable `POST_HOURS` ändern (z. B. `12,15,17,20`).
+- Google stellt Uploads aus neuen, nicht geprüften API-Projekten automatisch auf **privat**. Für automatisch öffentliche Videos muss das Projekt das kostenlose YouTube-API-Audit bestehen.
+- Das kostenlose API-Kontingent reicht für bis zu 6 Uploads pro Tag.
+- Die Website nur im Heimnetz nutzen oder mit `PASSWORD` schützen.
+- Lokal starten ohne Docker: `pip install -r requirements.txt`, Stimme nach `models/` laden (siehe `Dockerfile`), dann `python3 server.py`.
 - Schriften: Inter und Noto Color Emoji (SIL Open Font License, siehe `fonts/`). Stimme: Piper "thorsten" (CC0).
