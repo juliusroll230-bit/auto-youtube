@@ -27,7 +27,7 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [12, 17, 20], "privacy": "public", "expired": False}
+                  "post_hours": [8, 11, 13, 16, 18, 20], "privacy": "public", "expired": False}
 
 
 def path(*parts):
@@ -58,6 +58,11 @@ def init():
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
         cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
+        # Alte Standardzeiten (3 pro Tag) einmalig auf 6 pro Tag umstellen, eigene Zeiten bleiben
+        if not cfg.get("hours_v2"):
+            if cfg["post_hours"] == [12, 17, 20]:
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+            cfg["hours_v2"] = True
         write("config.json", cfg)
         try:
             os.chmod(path("config.json"), 0o600)

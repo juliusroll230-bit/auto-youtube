@@ -19,7 +19,7 @@ RED = (240, 68, 68)
 NICHES = [("🏎️", "Business"), ("🧠", "Psychologie"), ("🏛️", "Geschichte"), ("💸", "Geld"), ("🌍", "Geografie")]
 
 # Erhöhen, wenn sich Banner oder Beschreibung ändern: dann setzt die App sie neu.
-VERSION = 1
+VERSION = 2
 
 
 def description(channel_title, hours):
@@ -129,9 +129,8 @@ def banner(title, hours):
     d.text((tx, cy - 70), name, font=_font(FONT_BOLD, size), anchor="lm", fill=(255, 255, 255),
            stroke_width=4, stroke_fill=(10, 10, 20))
     sub = "  ·  ".join(n for _, n in NICHES)
-    d.text((tx + 4, cy + 30), sub.upper(), font=_font(FONT_SEMI, 40), anchor="lm", fill=ACCENT)
-    times = " · ".join(f"{h_} Uhr" for h_ in hours)
-    d.text((tx + 4, cy + 95), f"Täglich neue Shorts: {times}", font=_font(FONT_SEMI, 36), anchor="lm",
+    d.text((tx + 4, cy + 30), sub.upper(), font=_font(FONT_SEMI, 34), anchor="lm", fill=ACCENT)
+    d.text((tx + 4, cy + 95), f"Jeden Tag {len(hours)} neue Shorts", font=_font(FONT_SEMI, 36), anchor="lm",
            fill=(255, 255, 255, 200))
     return img.convert("RGB")
 
@@ -146,4 +145,4 @@ def render_all(title, hours, out_dir):
 
 
 if __name__ == "__main__":
-    print(render_all(sys.argv[1], [12, 17, 20], sys.argv[2]))
+    print(render_all(sys.argv[1], [8, 11, 13, 16, 18, 20], sys.argv[2]))

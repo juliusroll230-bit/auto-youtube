@@ -81,7 +81,7 @@ def client(cfg):
     return build("youtube", "v3", credentials=_credentials(cfg), cache_discovery=False)
 
 
-FOOTER = ("🔔 Abonnieren für täglich neue Fakten: 12, 17 und 20 Uhr\n"
+FOOTER = ("🔔 Abonnieren für täglich neue Fakten!\n"
           "Erstellt mit KI-Stimme und eigenen Animationen.")
 
 
