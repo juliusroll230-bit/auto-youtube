@@ -1,0 +1,39 @@
+{
+  "slug": "geschichte-kuerzester-krieg",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1e14",
+    "#b07a45"
+  ],
+  "accent": "#fff1d6",
+  "title": "Der kürzeste Krieg dauerte keine Stunde ⚔️",
+  "description": "Der Britisch-Sansibarische Krieg von 1896 war nach etwa 40 Minuten vorbei.\n\n#geschichte #fakten #shorts",
+  "tags": [
+    "geschichte",
+    "fakten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "⚔️",
+      "text": "Dieser Krieg war vorbei, bevor du einen Film zu Ende geschaut hättest."
+    },
+    {
+      "emoji": "👑",
+      "text": "Achtzehnhundertsechsundneunzig starb der Sultan von Sansibar. Ein neuer Sultan übernahm, ohne Großbritannien zu fragen."
+    },
+    {
+      "emoji": "⏰",
+      "text": "Die Briten stellten ein Ultimatum bis neun Uhr morgens. Als es ablief, beschossen ihre Schiffe den Palast."
+    },
+    {
+      "emoji": "🏳️",
+      "text": "Nach rund vierzig Minuten war alles vorbei. Es gilt als der kürzeste Krieg der Geschichte."
+    },
+    {
+      "emoji": "👉",
+      "text": "Hättest du das gedacht? Folge für mehr Geschichte."
+    }
+  ]
+}

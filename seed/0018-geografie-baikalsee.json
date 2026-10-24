@@ -1,0 +1,39 @@
+{
+  "slug": "geografie-baikalsee",
+  "niche": "Geografie",
+  "colors": [
+    "#08243a",
+    "#2b8fb3"
+  ],
+  "accent": "#7cf5e6",
+  "title": "In diesem See steckt ein Fünftel des Süßwassers 💧",
+  "description": "Der Baikalsee in Sibirien ist der tiefste und älteste See der Welt.\n\n#geografie #fakten #shorts",
+  "tags": [
+    "geografie",
+    "fakten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "💧",
+      "text": "In einem einzigen See steckt etwa ein Fünftel des flüssigen Süßwassers der Erde."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Es ist der Baikalsee in Sibirien. Er ist über sechshundert Kilometer lang."
+    },
+    {
+      "emoji": "📏",
+      "text": "An der tiefsten Stelle geht es über sechzehnhundert Meter nach unten. Kein See der Welt ist tiefer."
+    },
+    {
+      "emoji": "🦭",
+      "text": "Er ist rund fünfundzwanzig Millionen Jahre alt und hat eigene Robben, die nur dort leben."
+    },
+    {
+      "emoji": "👉",
+      "text": "Wusstest du das? Folge für mehr Geografie."
+    }
+  ]
+}
