@@ -85,10 +85,14 @@ def post_next(slot, manual=False):
         work_lock.release()
 
 
+_last_refresh = [0.0]
+
+
 def refresh_stats():
     cfg = store.config()
     if not cfg["refresh_token"]:
         return
+    _last_refresh[0] = time.time()
     try:
         store.write("channel.json", yt.channel(cfg))
         ids = [u["video_id"] for u in store.state()["uploads"]]
@@ -204,7 +208,7 @@ def scheduler():
                 slot = store.due_slot()
                 if slot and not status["busy"]:
                     post_next(slot)
-                if time.time() - last_stats > 3 * 3600:
+                if time.time() - last_stats > 20 * 60:  # kostet kaum API-Quote
                     refresh_stats()
                     apply_branding()
                     last_stats = time.time()
@@ -261,6 +265,9 @@ class Handler(BaseHTTPRequestHandler):
         if p in ("/icon.png", "/favicon.ico"):
             return self.send(200, open(os.path.join(WEB, "icon.png"), "rb").read(), "image/png", cache="max-age=86400")
         if p == "/api/dashboard":
+            if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
+                _last_refresh[0] = time.time()
+                background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
                                                    "version": VERSION}))
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
@@ -326,6 +333,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, {"ok": True})
         if p == "/api/sync":
             background(sync_scripts)
+            background(refresh_stats)
             return self.send(200, {"ok": True})
         self.send(404, {"error": "Nicht gefunden"})
 
