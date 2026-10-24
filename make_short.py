@@ -43,7 +43,7 @@ def synthesize(tts, segments, wav_path, seed=0):
         t += dur + PAUSE
     tail = np.zeros(int(0.6 * rate), dtype=np.float32)  # kurzer Ausklang
     voice = np.concatenate(chunks + [tail])
-    track = audio.mix(voice, rate, [s for s, _ in timings[1:]], seed)
+    track = audio.mix(voice, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings))
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -53,18 +53,31 @@ def synthesize(tts, segments, wav_path, seed=0):
     return timings, t
 
 
+def number_hits(segments, timings, gap=0.6):
+    """Zeitpunkte, an denen eine Zahl gesprochen wird (für Kamera-Stoß und Klick-Ton)."""
+    hits = []
+    for (s, e), seg in zip(timings, segments):
+        for _, _, words in caption_chunks(seg["text"], s, e):
+            for w, ws, _ in words:
+                if any(c.isdigit() for c in w) and ws - s > 0.4 and (not hits or ws - hits[-1] >= gap):
+                    hits.append(ws)
+    return hits
+
+
 def caption_chunks(text, start, end, max_words=3):
     """Teilt einen Satz in kurze Untertitel. Zeit wird nach Zeichenlänge auf die Wörter verteilt.
 
     Gibt je Untertitel (start, ende, [(wort, wort_start, wort_ende), ...]) zurück.
     """
+    import numerals
+
     words = text.split()
     weight = [len(w) + 2 for w in words]  # +2: auch kurze Wörter brauchen etwas Zeit
     total = sum(weight)
     timed, t = [], start
     for w, k in zip(words, weight):
         d = (end - start) * k / total
-        timed.append((w, t, t + d))
+        timed.append((numerals.display_word(w), t, t + d))  # Zahlen als Ziffern anzeigen
         t += d
     groups, cur = [], []
     for item in timed:
@@ -187,6 +200,7 @@ class Scene:
         self.chunks = []
         for (s, e), seg in zip(timings, spec["segments"]):
             self.chunks += caption_chunks(seg["text"], s, e)
+        self.hits = number_hits(spec["segments"], timings)
         if not self.chunks:
             raise ValueError("Skript ohne Text")
         self._cap_cache = {}
@@ -220,6 +234,9 @@ class Scene:
         for i, (s, _) in enumerate(self.timings):
             if s <= t < s + 0.35:
                 p = max(p, (1 - (t - s) / 0.35) ** 2 * (1.6 if i == 0 else 1.0))
+        for s in self.hits:  # kleiner Stoß, wenn eine Zahl kommt
+            if s <= t < s + 0.28:
+                p = max(p, 0.75 * (1 - (t - s) / 0.28) ** 2)
         return p
 
     # --- Bild --------------------------------------------------------------

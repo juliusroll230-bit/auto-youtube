@@ -129,10 +129,18 @@ def pop(rate):
     return (np.sin(2 * np.pi * np.cumsum(f) / rate) * np.exp(-t * 35)).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed):
+def tick(rate):
+    """Heller, kurzer Klick, wenn eine Zahl eingeblendet wird."""
+    n = int(0.07 * rate)
+    t = np.arange(n) / rate
+    return (np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 60) + 0.5 * np.sin(2 * np.pi * 2700 * t) * np.exp(-t * 80)).astype(np.float32)
+
+
+def mix(voice, rate, cuts, seed, pops=()):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
-    voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes.
+    voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
+    pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick).
     """
     n = len(voice)
     bed = music(n / rate + 0.1, rate, seed)[:n]
@@ -146,6 +154,8 @@ def mix(voice, rate, cuts, seed):
     out = voice * 1.0 + bed * 0.22 * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.35 * pop(rate))
+    for p in pops:
+        _add(sfx, p * rate, 0.18 * tick(rate))
     for i, c in enumerate(cuts):
         w = whoosh(rate, seed + i)
         _add(sfx, max(0, c - 0.2) * rate, 0.22 * w)
