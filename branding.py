@@ -66,8 +66,13 @@ def _emoji(ch, size):
 
 
 def _timer_ring(d, cx, cy, r, width, frac):
-    d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(255, 255, 255, 40), width=width)
-    d.arc((cx - r, cy - r, cx + r, cy + r), start=-90, end=-90 + 360 * frac, fill=RED + (255,), width=width)
+    # Eigene Ebene, damit der blasse Teil wirklich durchscheinend ist
+    img = d._image
+    layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ld = ImageDraw.Draw(layer)
+    ld.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(255, 255, 255, 45), width=width)
+    ld.arc((cx - r, cy - r, cx + r, cy + r), start=-90, end=-90 + 360 * frac, fill=RED + (255,), width=width)
+    img.alpha_composite(layer)
 
 
 def _split_title(title):
@@ -132,9 +137,10 @@ def banner(title, hours):
 
 
 def render_all(title, hours, out_dir):
+    """Speichert banner.jpg (für YouTube, unter 6 MB) und profilbild.png."""
     os.makedirs(out_dir, exist_ok=True)
-    b, p = os.path.join(out_dir, "banner.png"), os.path.join(out_dir, "profilbild.png")
-    banner(title, hours).save(b, optimize=True)
+    b, p = os.path.join(out_dir, "banner.jpg"), os.path.join(out_dir, "profilbild.png")
+    banner(title, hours).save(b, "JPEG", quality=92)
     profile_picture(title).save(p, optimize=True)
     return b, p
 

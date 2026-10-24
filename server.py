@@ -150,9 +150,32 @@ def connect_channel():
         ch = store.read("channel.json", {}) or {}
         status["connect"] = {"status": "verbunden"}
         store.log("ok", f"Kanal verbunden: {ch.get('title', 'YouTube')}")
+        apply_branding()
     except Exception as e:
         status["connect"] = {"status": "fehler", "message": str(e)}
         store.log("error", f"Kanal-Verbindung fehlgeschlagen: {e}")
+
+
+def apply_branding(force=False):
+    """Setzt Banner, Beschreibung und Stichwörter auf YouTube, einmal je Design-Version."""
+    import branding
+
+    cfg, st = store.config(), store.state()
+    if not cfg["refresh_token"] or (not force and st.get("branding_version") == branding.VERSION):
+        return
+    try:
+        title = (store.read("channel.json", {}) or {}).get("title") or "60 Sekunden Wissen"
+        banner, profile = branding.render_all(title, cfg["post_hours"], store.path("branding"))
+        yt.set_branding(cfg, banner, branding.description(title, cfg["post_hours"]), branding.KEYWORDS)
+        with store.LOCK:
+            st = store.state()
+            st["branding_version"] = branding.VERSION
+            store.write("state.json", st)
+        store.log("ok", "Kanal-Design gesetzt: Banner, Beschreibung und Stichwörter.")
+    except Exception as e:
+        if yt.is_expired(e):
+            return connection_expired()
+        store.log("error", f"Kanal-Design konnte nicht gesetzt werden: {e}")
 
 
 def warm_thumbs():
@@ -182,6 +205,7 @@ def scheduler():
                     post_next(slot)
                 if time.time() - last_stats > 3 * 3600:
                     refresh_stats()
+                    apply_branding()
                     last_stats = time.time()
             if time.time() - last_sync > 2 * 3600:
                 sync_scripts()

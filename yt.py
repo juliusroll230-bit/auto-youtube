@@ -81,14 +81,21 @@ def client(cfg):
     return build("youtube", "v3", credentials=_credentials(cfg), cache_discovery=False)
 
 
+FOOTER = ("🔔 Abonnieren für täglich neue Fakten: 12, 17 und 20 Uhr\n"
+          "Erstellt mit KI-Stimme und eigenen Animationen.")
+
+
 def upload(cfg, video_path, spec):
     from googleapiclient.http import MediaFileUpload
 
     title = spec["title"]
+    description = spec.get("description", "").rstrip()
+    if FOOTER.splitlines()[0] not in description:
+        description += "\n\n" + FOOTER
     if "#shorts" not in title.lower() and len(title) <= 90:
         title += " #shorts"
     body = {
-        "snippet": {"title": title[:100], "description": spec.get("description", ""), "tags": spec.get("tags", []),
+        "snippet": {"title": title[:100], "description": description[:4900], "tags": spec.get("tags", []),
                     "categoryId": "27", "defaultLanguage": "de", "defaultAudioLanguage": "de"},
         "status": {"privacyStatus": cfg.get("privacy", "public"), "selfDeclaredMadeForKids": False},
     }
@@ -124,3 +131,24 @@ def video_stats(cfg, ids):
                             "comments": int(s.get("commentCount", 0)),
                             "privacy": v.get("status", {}).get("privacyStatus", "")}
     return out
+
+
+def set_branding(cfg, banner_path, description, keywords):
+    """Lädt das Kanalbanner hoch und setzt Beschreibung und Stichwörter.
+
+    Das Profilbild lässt sich über die YouTube-Schnittstelle nicht ändern, das geht nur in YouTube Studio.
+    """
+    from googleapiclient.http import MediaFileUpload
+
+    yt = client(cfg)
+    media = MediaFileUpload(banner_path, mimetype="image/jpeg", resumable=False)
+    banner_url = yt.channelBanners().insert(media_body=media).execute()["url"]
+    ch = yt.channels().list(part="brandingSettings", mine=True).execute()["items"][0]
+    # Beim Speichern ersetzt YouTube alle brandingSettings, darum die bestehenden übernehmen
+    branding = ch.get("brandingSettings", {})
+    channel_settings = {**branding.get("channel", {}), "description": description, "keywords": keywords}
+    channel_settings.setdefault("defaultLanguage", "de")
+    channel_settings.setdefault("country", "DE")
+    body = {"id": ch["id"], "brandingSettings": {"channel": channel_settings,
+                                                 "image": {"bannerExternalUrl": banner_url}}}
+    yt.channels().update(part="brandingSettings", body=body).execute()
