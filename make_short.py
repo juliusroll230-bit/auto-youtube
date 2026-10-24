@@ -82,22 +82,6 @@ def hex_rgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def make_background(c1, c2):
-    """Großer diagonaler Farbverlauf, aus dem pro Frame ein Ausschnitt genommen wird."""
-    bw, bh = W + 400, H + 800
-    y = np.linspace(0, 1, bh)[:, None]
-    x = np.linspace(0, 1, bw)[None, :]
-    t = (0.5 + 0.5 * np.sin((y * 1.6 + x * 0.6) * math.pi))[..., None]
-    a, b = np.array(hex_rgb(c1)), np.array(hex_rgb(c2))
-    return Image.fromarray((a * (1 - t) + b * t).astype(np.uint8), "RGB")
-
-
-def soft_blob(size, color, alpha):
-    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    ImageDraw.Draw(img).ellipse((size * 0.2, size * 0.2, size * 0.8, size * 0.8), fill=color + (alpha,))
-    return img.filter(ImageFilter.GaussianBlur(size * 0.12))
-
-
 def render_emoji(ch, size):
     font = ImageFont.truetype(FONT_EMOJI, 109)
     img = Image.new("RGBA", (160, 160), (0, 0, 0, 0))
@@ -179,10 +163,11 @@ class Scene:
     """Zeichnet die Bilder eines Shorts. timings: Start/Ende jedes Satzes in Sekunden.
 
     Damit Zuschauer dranbleiben, ist immer etwas in Bewegung:
+    - Hintergrund passend zum Thema, der sich bei jedem Satz verändert (themes.py, car_scene.py)
     - Kamera zoomt langsam hinein und macht bei jedem neuen Satz einen kurzen Stoß mit Wackeln
     - kurzer heller Blitz als Übergang zwischen den Sätzen
     - Untertitel Wort für Wort, das gesprochene Wort ist größer und farbig
-    - Emoji springt herein, wippt und dreht sich leicht, Partikel schweben nach oben
+    - Emoji springt herein, wippt und dreht sich leicht
     """
 
     def __init__(self, spec, timings, total):
@@ -191,13 +176,11 @@ class Scene:
         self.car = None
         if spec.get("style") == "car":
             from car_scene import CarScene
-            self.car = CarScene(hex_rgb(spec["car_color"]), seed=len(spec["slug"]))
-            self.blobs, self.emojis = [], []
+            self.car = CarScene(hex_rgb(spec["car_color"]), seed=len(spec["slug"]), skies=len(timings))
+            self.emojis = []
         else:
-            self.bg = make_background(*spec["colors"])
-            self.blobs = [(soft_blob(520, hex_rgb(self.accent), 60), 0.11, 0.0),
-                          (soft_blob(700, (255, 255, 255), 40), 0.07, 2.0),
-                          (soft_blob(420, hex_rgb(spec["colors"][1]), 120), 0.15, 4.0)]
+            import themes
+            self.theme = themes.for_spec(spec, timings, total, PAUSE)
             self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
         self.cap_y = 640 if self.car else 1180
         self.bar_y = 280 if self.car else H - 210
@@ -209,9 +192,6 @@ class Scene:
         self._cap_cache = {}
         self.label_font = font(FONT_SEMI, 46)
         self.label = spec["niche"].upper()
-        rnd = np.random.default_rng(len(spec["slug"]))
-        self.particles = [(rnd.uniform(0, W), rnd.uniform(0, H), rnd.uniform(40, 140), rnd.uniform(3, 9),
-                           rnd.uniform(0, 6.28), int(rnd.uniform(50, 150))) for _ in range(26)]
 
     # --- Bausteine ---------------------------------------------------------
 
@@ -245,26 +225,14 @@ class Scene:
     # --- Bild --------------------------------------------------------------
 
     def frame(self, t):
+        idx = self.segment_at(t)
         if self.car:
-            frame = self.car.frame(t)
+            frame = self.car.frame(t, self.timings, PAUSE)
         else:
-            ox = int(200 + 200 * math.sin(t * 0.35))
-            oy = int(400 + 400 * math.sin(t * 0.22))
-            frame = self.bg.crop((ox, oy, ox + W, oy + H)).convert("RGBA")
-        for blob, speed, phase in self.blobs:
-            bx = int(W / 2 + 380 * math.sin(t * speed * 6 + phase) - blob.width / 2)
-            by = int(H / 2 + 700 * math.cos(t * speed * 4 + phase) - blob.height / 2)
-            frame.paste(blob, (bx, by), blob)
-
-        # Partikel, die langsam nach oben schweben
-        d = ImageDraw.Draw(frame, "RGBA")
-        for x0, y0, speed, r, ph, a in self.particles:
-            y = (y0 - speed * t) % (H + 40) - 20
-            x = x0 + 24 * math.sin(t * 0.8 + ph)
-            d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 255, 255, a))
+            frame = self.theme.frame(t)
+        frame = frame.convert("RGBA")
 
         # Emoji des aktuellen Satzes: springt herein, wippt und dreht sich leicht
-        idx = self.segment_at(t)
         if self.emojis:
             since = t - self.timings[idx][0]
             pop = ease_out_back(min(1, max(0, since / 0.32))) if since >= 0 else 1

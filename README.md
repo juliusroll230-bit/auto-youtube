@@ -13,6 +13,8 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 
 ## So funktioniert es
 
+- **Hintergründe:** Jedes Thema hat einen eigenen bewegten Hintergrund, der sich bei jedem Satz ändert (Psychologie: Nervenzellen, Geschichte: Bauwerke im Abendlicht, Geld: Börsenkurs und Münzen, Geografie: drehende Erde mit Markierung, Business: Autofahrt mit wechselnder Tageszeit). Siehe `themes.py` und `car_scene.py`.
+- **Kanal-Design:** Banner, Kanalbeschreibung und Stichwörter setzt die App automatisch (`branding.py`). Das Profilbild erlaubt YouTube nur von Hand.
 - **Zeitplan:** Zu jeder Sendezeit (Standard 8, 11, 13, 16, 18 und 20 Uhr, also 6 am Tag; mehr erlaubt die YouTube-Schnittstelle pro Tag nicht) wird das nächste Skript aus der Warteschlange zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Die Zeiten lassen sich im Reiter **Kanal** ändern.
 - **Nachschub:** Alle 2 Stunden holt die App neue Skripte aus dem Ordner `seed/` dieses Repos (`SCRIPTS_REPO`).
 - **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 3 Stunden von YouTube.

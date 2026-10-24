@@ -660,6 +660,9 @@ details[open] summary { margin-bottom: 10px; }
         h("div", { cls: "avatar", style: "width:44px;height:44px" }, [ch.thumbnail ? h("img", { src: ch.thumbnail, alt: "" }) : null]),
         h("div", null, [h("div", { style: "font-weight:600", text: ch.title || "YouTube-Kanal" }), h("div", { cls: "sub num", text: (ch.handle ? ch.handle + " · " : "") + nf.format(ch.subscribers || 0) + " Abonnenten" })])
       ]));
+      body.appendChild(h("p", { cls: "muted", text: d.branding_at
+        ? "Kanal-Design: Banner und Kanalbeschreibung wurden am " + fDayS.format(new Date(d.branding_at)) + " um " + fTime.format(new Date(d.branding_at)) + " Uhr automatisch gesetzt."
+        : "Kanal-Design: Banner und Kanalbeschreibung werden in den nächsten Minuten automatisch gesetzt." }));
       var off = h("button", { cls: "btn danger", type: "button", text: "Kanal trennen" });
       off.addEventListener("click", function () { if (off.dataset.sure) { api("api/disconnect"); } else { off.dataset.sure = "1"; off.textContent = "Wirklich trennen?"; } });
       body.appendChild(h("div", { cls: "row" }, [off]));

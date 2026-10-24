@@ -170,6 +170,7 @@ def apply_branding(force=False):
         with store.LOCK:
             st = store.state()
             st["branding_version"] = branding.VERSION
+            st["branding_at"] = store.now().isoformat(timespec="seconds")
             store.write("state.json", st)
         store.log("ok", "Kanal-Design gesetzt: Banner, Beschreibung und Stichwörter.")
     except Exception as e:

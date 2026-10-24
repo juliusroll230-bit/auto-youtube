@@ -17,13 +17,24 @@ def _scale(y):
     return (y - HORIZON) / (H - HORIZON)
 
 
-def _sky_and_city(seed):
+# Himmel je Satz: (oben, unten, Dunst). Bei jedem neuen Satz wechselt die Tageszeit.
+SKIES = [
+    ((8, 10, 30), (48, 28, 80), (255, 140, 80)),      # Nacht
+    ((36, 14, 58), (236, 108, 70), (255, 170, 90)),   # Sonnenuntergang
+    ((16, 4, 40), (120, 30, 150), (255, 60, 190)),    # Neon
+    ((8, 26, 64), (58, 118, 186), (140, 200, 255)),   # Blaue Stunde
+    ((28, 28, 60), (222, 156, 88), (255, 210, 140)),  # Morgengold
+]
+
+
+def _sky_and_city(seed, sky=SKIES[0]):
     rnd = random.Random(seed)
+    top, bottom, haze_col = sky
     img = Image.new("RGB", (W, H))
     d = ImageDraw.Draw(img)
     for y in range(HORIZON):
         k = y / HORIZON
-        d.line([(0, y), (W, y)], fill=(int(8 + 40 * k), int(10 + 18 * k), int(30 + 50 * k)))
+        d.line([(0, y), (W, y)], fill=tuple(int(a + (b - a) * k) for a, b in zip(top, bottom)))
     # Skyline mit beleuchteten Fenstern
     x = -20
     while x < W:
@@ -41,7 +52,7 @@ def _sky_and_city(seed):
         x += bw + rnd.randint(-10, 8)
     # Dunst über dem Horizont
     haze = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(haze).rectangle((0, HORIZON - 140, W, HORIZON + 20), fill=(255, 140, 80, 55))
+    ImageDraw.Draw(haze).rectangle((0, HORIZON - 140, W, HORIZON + 20), fill=haze_col + (55,))
     img = img.convert("RGBA")
     img.alpha_composite(haze.filter(ImageFilter.GaussianBlur(60)))
     # Straße
@@ -100,8 +111,9 @@ def _glow_dot(radius, color):
 
 
 class CarScene:
-    def __init__(self, car_color=(200, 20, 30), seed=7):
-        self.base = _sky_and_city(seed)
+    def __init__(self, car_color=(200, 20, 30), seed=7, skies=1):
+        self.bases = [_sky_and_city(seed, SKIES[(seed + k) % len(SKIES)]).convert("RGBA") for k in range(skies)]
+        self.base = self.bases[0]
         car = _car_sprite(car_color)
         self.car = car.resize((int(car.width * 1.25), int(car.height * 1.25)), Image.LANCZOS)
         self.lamp = _glow_dot(40, (255, 180, 90, 230))
@@ -112,11 +124,21 @@ class CarScene:
             sd.rectangle((0, y, W, y + 4), fill=(0, 0, 0, int(150 * (1 - y / 900))))
         self.shade = shade
 
-    def frame(self, t, speed=1.0):
+    def frame(self, t, timings=None, pause=0.0, speed=1.0):
+        travel = t * 26 * speed
         img = self.base.copy()
+        if timings:
+            # Himmel blendet bei jedem Satz zur nächsten Tageszeit über, das Auto gibt kurz Gas
+            i = next((k for k, (s, e) in enumerate(timings) if t < e + pause), len(timings) - 1)
+            i = min(i, len(self.bases) - 1)
+            since = t - timings[i][0]
+            fade = min(1.0, max(0.0, since / 0.8))
+            img = Image.blend(self.bases[i - 1], self.bases[i], fade) if i > 0 and fade < 1 else self.bases[i].copy()
+            for s, _ in timings[1:]:
+                if t > s:
+                    travel += 14 * (1 - math.exp(-(t - s) * 3))
         d = ImageDraw.Draw(img)
         # Mittelstreifen, die auf die Kamera zukommen
-        travel = t * 26 * speed
         for i in range(14):
             z = 1 + ((i * 4.0 - travel) % 56)
             y1 = HORIZON + (H - HORIZON) * 2.2 / z

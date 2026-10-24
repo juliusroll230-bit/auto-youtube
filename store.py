@@ -203,6 +203,7 @@ def dashboard(extra=None):
         "channel": read("channel.json", None),
         "queue": [card(spec) for _, spec in planned_queue(posted)],
         "posted": posted,
+        "branding_at": state().get("branding_at"),
         "learning": learn.summary(learn.niche_scores(posted, now())),
         "events": list(reversed(state()["events"][-30:])),
         **(extra or {}),
