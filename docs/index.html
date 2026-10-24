@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shorts Zentrale</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f7f7fb; --fg: #16151d; --muted: #5b5a66; --card: #fff; --accent: #5a3fc0; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f0e15; --fg: #ecebf3; --muted: #a3a1b0; --card: #1a1924; --accent: #a996ff; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 48px 16px; }
+  h1 { font-size: 2rem; margin: 0 0 8px; }
+  p.lead { color: var(--muted); margin-top: 0; }
+  section { background: var(--card); border-radius: 14px; padding: 20px 22px; margin: 20px 0; }
+  a { color: var(--accent); }
+  footer { color: var(--muted); font-size: 0.9rem; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Shorts Zentrale</h1>
+  <p class="lead">Ein privates Werkzeug, das kurze Wissensvideos für den eigenen YouTube-Kanal „60 Sekunden Wissen“ erstellt und hochlädt.</p>
+  <section>
+    <h2>Was die App macht</h2>
+    <p>Die App läuft auf einem eigenen Heimserver. Sie erstellt aus selbst geschriebenen Skripten kurze Videos mit Computerstimme, Untertiteln und Animationen. Zu festen Zeiten lädt sie diese Videos auf den verbundenen YouTube-Kanal hoch und zeigt die Aufrufe der eigenen Videos an.</p>
+    <p>Die App nutzt dafür die YouTube API Services. Sie wird nur für den eigenen Kanal verwendet und ist nicht für andere Nutzer gedacht.</p>
+  </section>
+  <section>
+    <h2>Rechtliches</h2>
+    <p><a href="datenschutz.html">Datenschutzerklärung</a></p>
+    <p>Mit der Nutzung gelten die <a href="https://www.youtube.com/t/terms">YouTube-Nutzungsbedingungen</a> und die <a href="https://policies.google.com/privacy">Datenschutzerklärung von Google</a>.</p>
+  </section>
+  <footer>Quellcode: <a href="https://github.com/juliusroll230-bit/auto-youtube">github.com/juliusroll230-bit/auto-youtube</a></footer>
+</main>
+</body>
+</html>
