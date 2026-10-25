@@ -4,6 +4,8 @@
   state.json     erledigte Sendeplätze, Uploads, Aktivitätsprotokoll
   stats.json     Aufrufe/Likes je Video
   channel.json   Name, Bild und Abonnenten des Kanals
+  history.json   Verlauf von Aufrufen und Abonnenten (für das Diagramm auf der Website)
+  analytics.json Zuschauerbindung je Video (wann Zuschauer abschalten), von YouTube Analytics
   queue/         Skripte, die noch gepostet werden
   posted/        Skripte, die schon online sind
   thumbs/        Vorschaubilder
@@ -27,7 +29,11 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [8, 11, 13, 16, 18, 20], "privacy": "public", "expired": False}
+                  "post_hours": [8, 11, 13, 16, 18, 20], "privacy": "public", "expired": False,
+                  # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
+                  "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": ""}
+PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
+WORDS_PER_S = 2.8
 
 
 def path(*parts):
@@ -146,14 +152,24 @@ def due_slot(at=None):
     return None
 
 
-def mark_posted(file, slot, spec, video_id):
+def sentence_marks(spec):
+    """Geschätzte Satzanfänge als Anteil der Videolänge (0..1), wenn die echten Zeiten fehlen."""
+    t, starts = 0.0, []
+    for seg in spec.get("segments", []):
+        starts.append(t)
+        t += len(seg["text"].split()) / WORDS_PER_S + PAUSE_S
+    return [round(x / t, 4) for x in starts] if t else []
+
+
+def mark_posted(file, slot, spec, video_id, marks=None, duration=None):
     with LOCK:
         shutil.move(file, path("posted", os.path.basename(file)))
         st = state()
         if slot:
             st["done_slots"] = (st["done_slots"] + [slot])[-90:]
         st["uploads"].append({"slot": slot, "slug": spec["slug"], "video_id": video_id, "title": spec["title"],
-                              "posted_at": now().isoformat(timespec="seconds")})
+                              "posted_at": now().isoformat(timespec="seconds"),
+                              "marks": marks, "duration": duration})
         write("state.json", st)
 
 
@@ -171,12 +187,31 @@ def card(spec):
 def posted_items():
     """Alle Uploads mit Thema und den letzten Zahlen von YouTube, älteste zuerst."""
     stats = read("stats.json", {"videos": {}, "updated_at": None})
+    ana = read("analytics.json", {}).get("videos", {})
     posted = []
     for u in state()["uploads"]:
         spec = find_spec(u["slug"])
         base = card(spec) if spec else {"slug": u["slug"], "title": u["title"]}
-        posted.append({**base, **u, **stats["videos"].get(u["video_id"], {})})
+        item = {**base, **u, **stats["videos"].get(u["video_id"], {}), **ana.get(u["video_id"], {})}
+        if spec:  # Satztexte für die Abschalt-Kurve auf der Website
+            item["sentences"] = [seg["text"].replace("*", "") for seg in spec.get("segments", [])]
+        if not item.get("marks") and spec:
+            item["marks"] = sentence_marks(spec)
+            item["marks_estimated"] = True
+        posted.append(item)
     return posted
+
+
+def record_history(views, subs):
+    """Merkt sich Aufrufe und Abonnenten für das Verlaufs-Diagramm, höchstens ein Punkt pro Stunde."""
+    with LOCK:
+        hist = read("history.json", [])
+        point = {"at": now().isoformat(timespec="minutes"), "views": views, "subs": subs}
+        if hist and hist[-1]["at"][:13] == point["at"][:13]:
+            hist[-1] = point
+        else:
+            hist.append(point)
+        write("history.json", hist[-24 * 180:])
 
 
 def planned_queue(posted=None):
@@ -205,6 +240,13 @@ def dashboard(extra=None):
         "posted": posted,
         "branding_at": state().get("branding_at"),
         "learning": learn.summary(learn.niche_scores(posted, now())),
+        "history": read("history.json", []),
+        "analytics": {
+            "connected": bool(cfg["analytics_token"]),
+            "has_client": bool(cfg["analytics_client_id"] and cfg["analytics_client_secret"]),
+            "updated_at": read("analytics.json", {}).get("updated_at"),
+            "error": read("analytics.json", {}).get("error"),
+        },
         "events": list(reversed(state()["events"][-30:])),
         **(extra or {}),
     }

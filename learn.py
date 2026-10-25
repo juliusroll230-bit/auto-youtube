@@ -1,7 +1,8 @@
 """Lernmodus: Themen, die bei den Zuschauern gut ankommen, kommen öfter dran.
 
 Jedes Video bekommt einen Wert: seine Aufrufe, hochgerechnet auf die ersten 3 Tage
-(da sammeln Shorts die meisten Aufrufe). Ein Thema zählt als bewertet, sobald es
+(da sammeln Shorts die meisten Aufrufe). Sind Zuschauer-Daten verbunden, zählt auch, wie lange
+die Leute dranbleiben: Videos, die zu mehr als 80 % angesehen werden, zählen mehr, andere weniger. Ein Thema zählt als bewertet, sobald es
 mindestens MIN_VIDEOS bewertete Videos hat. Dann gilt:
 
 - 3 von 4 Videos kommen aus dem Thema mit dem besten Durchschnitt.
@@ -17,9 +18,18 @@ MIN_VIDEOS = 2      # so viele bewertete Videos braucht ein Thema, bevor es bevo
 EXPLORE_EVERY = 4   # jedes 4. Video testet ein anderes Thema
 
 
-def video_score(views, age_h):
-    """Aufrufe, hochgerechnet auf 3 Tage. Unter einem Tag wird nicht weiter hochgerechnet."""
-    return views * FULL_AGE_H / min(max(age_h, 24), FULL_AGE_H)
+RETENTION_REF = 80.0   # Ø angesehen in %, ab dem ein Video mehr zählt
+
+
+def video_score(views, age_h, avg_pct=None):
+    """Aufrufe, hochgerechnet auf 3 Tage, gewichtet mit der Zuschauerbindung (falls bekannt).
+
+    Unter einem Tag wird nicht weiter hochgerechnet.
+    """
+    score = views * FULL_AGE_H / min(max(age_h, 24), FULL_AGE_H)
+    if avg_pct:
+        score *= min(1.5, max(0.5, avg_pct / RETENTION_REF))
+    return score
 
 
 def niche_scores(posted, now):
@@ -31,9 +41,12 @@ def niche_scores(posted, now):
         age_h = (now - dt.datetime.fromisoformat(v["posted_at"])).total_seconds() / 3600
         if age_h < MIN_AGE_H:
             continue
-        total, n = sums.get(v["niche"], (0.0, 0))
-        sums[v["niche"]] = (total + video_score(v["views"], age_h), n + 1)
-    return {niche: {"score": total / n, "videos": n} for niche, (total, n) in sums.items()}
+        total, n, pct, pn = sums.get(v["niche"], (0.0, 0, 0.0, 0))
+        has = bool(v.get("avg_pct"))
+        sums[v["niche"]] = (total + video_score(v["views"], age_h, v.get("avg_pct")), n + 1,
+                            pct + (v["avg_pct"] if has else 0), pn + has)
+    return {niche: {"score": total / n, "videos": n, "avg_pct": (pct / pn) if pn else None}
+            for niche, (total, n, pct, pn) in sums.items()}
 
 
 def favorite(scores):
@@ -77,5 +90,6 @@ def summary(scores):
         "favorite": best,
         "min_videos": MIN_VIDEOS,
         "explore_every": EXPLORE_EVERY,
-        "niches": [{"niche": n, "score": round(s["score"]), "videos": s["videos"]} for n, s in ranked],
+        "niches": [{"niche": n, "score": round(s["score"]), "videos": s["videos"],
+                    "avg_pct": round(s["avg_pct"], 1) if s.get("avg_pct") else None} for n, s in ranked],
     }

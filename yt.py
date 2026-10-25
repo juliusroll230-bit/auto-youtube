@@ -81,6 +81,60 @@ def client(cfg):
     return build("youtube", "v3", credentials=_credentials(cfg), cache_discovery=False)
 
 
+# --- Zuschauer-Daten (YouTube Analytics) --------------------------------------
+# Die Anmeldung per Geräte-Code erlaubt nur die Berechtigung "youtube". Für die Analytics-Daten
+# (wann Zuschauer abschalten) braucht es darum einen zweiten Zugang über einen Client vom Typ
+# "Webanwendung". Google leitet nach der Anmeldung auf eine kleine Seite auf GitHub Pages weiter
+# (docs/oauth.html), die den Code an die Shorts-Zentrale im Heimnetz zurückgibt.
+
+ANALYTICS_SCOPE = "https://www.googleapis.com/auth/yt-analytics.readonly"
+
+
+def analytics_auth_url(client_id, redirect_uri, state):
+    return "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode({
+        "client_id": client_id, "redirect_uri": redirect_uri, "response_type": "code",
+        "scope": ANALYTICS_SCOPE, "access_type": "offline", "prompt": "consent", "state": state,
+    })
+
+
+def analytics_exchange(client_id, client_secret, redirect_uri, code):
+    tok = _post("https://oauth2.googleapis.com/token", {
+        "client_id": client_id, "client_secret": client_secret, "code": code,
+        "redirect_uri": redirect_uri, "grant_type": "authorization_code",
+    })
+    if "refresh_token" not in tok:
+        raise RuntimeError(tok.get("error_description") or tok.get("error") or "Google hat keinen Zugang geliefert.")
+    return tok["refresh_token"]
+
+
+def _analytics(cfg):
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+
+    creds = Credentials(token=None, refresh_token=cfg["analytics_token"], client_id=cfg["analytics_client_id"],
+                        client_secret=cfg["analytics_client_secret"], token_uri="https://oauth2.googleapis.com/token")
+    return build("youtubeAnalytics", "v2", credentials=creds, cache_discovery=False).reports()
+
+
+def analytics_summary(cfg, start, end):
+    """Je Video: Aufrufe, Ø Wiedergabedauer (s) und Ø angesehener Anteil (%)."""
+    rows = _analytics(cfg).query(
+        ids="channel==MINE", startDate=start, endDate=end, dimensions="video",
+        metrics="views,averageViewDuration,averageViewPercentage", sort="-views", maxResults=200,
+    ).execute().get("rows", [])
+    return {r[0]: {"a_views": int(r[1]), "avg_dur": round(float(r[2]), 1), "avg_pct": round(float(r[3]), 1)}
+            for r in rows}
+
+
+def retention_curve(cfg, video_id, start, end):
+    """Zuschauerbindung über die Videolänge: [(anteil 0..1, zuschauer_anteil), ...]. Leer, wenn noch keine Daten."""
+    rows = _analytics(cfg).query(
+        ids="channel==MINE", startDate=start, endDate=end, dimensions="elapsedVideoTimeRatio",
+        metrics="audienceWatchRatio", filters=f"video=={video_id}",
+    ).execute().get("rows", [])
+    return [(round(float(r[0]), 3), round(float(r[1]), 4)) for r in rows]
+
+
 FOOTER = ("🔔 Abonnieren für täglich neue Fakten!\n"
           "Erstellt mit KI-Stimme und eigenen Animationen.")
 

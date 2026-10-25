@@ -7,15 +7,20 @@ Umgebungsvariablen:
   PASSWORD       optional: schützt die Website mit Benutzer "admin" und diesem Passwort
   SCRIPTS_REPO   optional: GitHub-Repo, aus dem neue Skripte geholt werden (z. B. name/auto-youtube)
   GITHUB_TOKEN   optional: nur nötig, wenn dieses Repo privat ist
+  OAUTH_PAGE     optional: Weiterleitungsseite für die Zuschauer-Daten
+                 (Standard: https://<besitzer>.github.io/<repo>/oauth.html aus SCRIPTS_REPO)
 """
 import base64
+import datetime as dt
 import glob
 import json
 import os
 import re
+import secrets
 import threading
 import time
 import traceback
+import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -34,10 +39,12 @@ PORT = int(os.environ.get("PORT", "8080"))
 PASSWORD = os.environ.get("PASSWORD", "")
 SCRIPTS_REPO = os.environ.get("SCRIPTS_REPO", "").strip()
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
+OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
+    "https://{}.github.io/{}/oauth.html".format(*SCRIPTS_REPO.split("/", 1)) if "/" in SCRIPTS_REPO else "")
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
-status = {"busy": "", "connect": {"status": "idle"}}
+status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 
 
@@ -63,10 +70,11 @@ def post_next(slot, manual=False):
         status["busy"] = f"Erstelle Video: {spec['title']}"
         from make_short import build_video, load_tts
         _tts = _tts or load_tts()
-        video, _ = build_video(spec, store.path("out"), _tts)
+        video, total, timings = build_video(spec, store.path("out"), _tts)
         status["busy"] = f"Lade hoch: {spec['title']}"
         video_id = yt.upload(store.config(), video, spec)
-        store.mark_posted(file, slot, spec, video_id)
+        marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
+        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1))
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
         refresh_stats()
@@ -94,14 +102,60 @@ def refresh_stats():
         return
     _last_refresh[0] = time.time()
     try:
-        store.write("channel.json", yt.channel(cfg))
+        ch = yt.channel(cfg)
+        store.write("channel.json", ch)
         ids = [u["video_id"] for u in store.state()["uploads"]]
-        store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"),
-                                   "videos": yt.video_stats(cfg, ids) if ids else {}})
+        videos = yt.video_stats(cfg, ids) if ids else {}
+        store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"), "videos": videos})
+        store.record_history(sum(v["views"] for v in videos.values()), ch.get("subscribers", 0))
     except Exception as e:
         if yt.is_expired(e):
             return connection_expired()
         store.log("error", f"Statistiken konnten nicht geladen werden: {e}")
+
+
+def refresh_analytics():
+    """Holt von YouTube Analytics, wie lange Zuschauer dranbleiben (Ø angesehen und Kurve je Video).
+
+    YouTube liefert diese Daten mit 1 bis 3 Tagen Verzögerung. Kurven werden je Video höchstens
+    alle 12 Stunden neu geholt, damit es schnell bleibt.
+    """
+    cfg = store.config()
+    if not cfg["analytics_token"]:
+        return
+    data = store.read("analytics.json", {"videos": {}})
+    videos = data.get("videos", {})
+    uploads = store.state()["uploads"]
+    today = store.now().date()
+    start = min([u["posted_at"][:10] for u in uploads] or [str(today - dt.timedelta(days=28))])
+    try:
+        summary = yt.analytics_summary(cfg, start, str(today))
+        fetched = 0
+        for u in reversed(uploads):  # neueste zuerst
+            vid, age_h = u["video_id"], (store.now() - dt.datetime.fromisoformat(u["posted_at"])).total_seconds() / 3600
+            entry = {**videos.get(vid, {}), **summary.get(vid, {})}
+            stale = time.time() - entry.get("curve_ts", 0) > 12 * 3600
+            if age_h >= 24 and stale and fetched < 30:
+                curve = yt.retention_curve(cfg, vid, u["posted_at"][:10], str(today))
+                fetched += 1
+                if curve:
+                    entry["curve"] = [[r, w] for i, (r, w) in enumerate(curve) if i % 2 == 1 or len(curve) <= 50]
+                entry["curve_ts"] = time.time()
+            if entry:
+                videos[vid] = entry
+        store.write("analytics.json", {"updated_at": store.now().isoformat(timespec="seconds"),
+                                       "videos": videos, "error": None})
+    except Exception as e:
+        text = str(e)
+        if yt.is_expired(e):
+            store.save_config(analytics_token="")
+            error = "Der Zugang für die Zuschauer-Daten ist abgelaufen. Bitte im Reiter Kanal neu verbinden."
+        elif "accessNotConfigured" in text or "has not been used" in text or "is disabled" in text:
+            error = "Die YouTube Analytics API ist im Google-Projekt noch nicht aktiviert."
+        else:
+            error = f"Zuschauer-Daten konnten nicht geladen werden: {text[:200]}"
+        store.write("analytics.json", {**data, "error": error})
+        store.log("error", error)
 
 
 def connection_expired():
@@ -201,7 +255,7 @@ def background(fn, *args):
 
 
 def scheduler():
-    last_stats = last_sync = 0.0
+    last_stats = last_sync = last_analytics = 0.0
     while True:
         try:
             if store.config()["refresh_token"]:
@@ -212,6 +266,9 @@ def scheduler():
                     refresh_stats()
                     apply_branding()
                     last_stats = time.time()
+            if store.config()["analytics_token"] and time.time() - last_analytics > 3 * 3600:
+                last_analytics = time.time()
+                refresh_analytics()
             if time.time() - last_sync > 2 * 3600:
                 sync_scripts()
                 last_sync = time.time()
@@ -269,11 +326,40 @@ class Handler(BaseHTTPRequestHandler):
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
-                                                   "version": VERSION}))
+                                                   "version": VERSION, "oauth_page": OAUTH_PAGE}))
+        if p == "/api/analytics/callback":
+            return self.analytics_callback()
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
         if m:
             return self.thumb(m.group(1))
         self.send(404, {"error": "Nicht gefunden"})
+
+    def analytics_callback(self):
+        """Google hat über die Weiterleitungsseite einen Code geschickt: gegen einen Zugang tauschen."""
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        nonce = (q.get("state", [""])[0]).split(".")[0]
+        ok = nonce and status["oauth_states"].pop(nonce, None)
+        note = ""
+        if q.get("error"):
+            note = "abgebrochen"
+        elif not ok:
+            note = "ungueltig"
+        else:
+            cfg = store.config()
+            try:
+                token = yt.analytics_exchange(cfg["analytics_client_id"], cfg["analytics_client_secret"],
+                                              OAUTH_PAGE, q.get("code", [""])[0])
+                store.save_config(analytics_token=token)
+                store.write("analytics.json", {**store.read("analytics.json", {"videos": {}}), "error": None})
+                store.log("ok", "Zuschauer-Daten verbunden. Die ersten Werte kommen in den nächsten Minuten.")
+                background(refresh_analytics)
+                note = "ok"
+            except Exception as e:
+                store.log("error", f"Zuschauer-Daten: Verbindung fehlgeschlagen: {e}")
+                note = "fehler"
+        self.send_response(303)
+        self.send_header("Location", f"/?analytics={note}#zuschauer")
+        self.end_headers()
 
     def thumb(self, slug):
         file = store.path("thumbs", slug + ".jpg")
@@ -291,13 +377,14 @@ class Handler(BaseHTTPRequestHandler):
         p, data = self.path, self.body()
         if p == "/api/settings":
             changes = {}
-            for key in ("client_id", "client_secret"):
+            for key in ("client_id", "client_secret", "analytics_client_id", "analytics_client_secret"):
                 if isinstance(data.get(key), str) and data[key].strip():
                     changes[key] = data[key].strip()
-            if "*" in changes.get("client_secret", "") or "•" in changes.get("client_secret", ""):
+            if any(c in changes.get(k, "") for k in ("client_secret", "analytics_client_secret") for c in "*•"):
                 return self.send(400, {"error": "Das ist nur die verdeckte Anzeige. Bitte in Google Cloud "
                                                 "„Secret hinzufügen“ klicken und den neuen Schlüssel kopieren."})
-            if changes.get("client_id") and not changes["client_id"].endswith(".apps.googleusercontent.com"):
+            if any(changes.get(k) and not changes[k].endswith(".apps.googleusercontent.com")
+                   for k in ("client_id", "analytics_client_id")):
                 return self.send(400, {"error": "Die Client-ID endet auf .apps.googleusercontent.com. Bitte prüfen."})
             if changes.get("client_id") and changes["client_id"] != store.config()["client_id"]:
                 changes["refresh_token"] = ""  # die alte Verbindung gehört zum alten Client
@@ -317,6 +404,23 @@ class Handler(BaseHTTPRequestHandler):
             status["connect"] = {"status": "start"}
             background(connect_channel)
             return self.send(200, {"ok": True})
+        if p == "/api/analytics/start":
+            cfg = store.config()
+            if not (cfg["analytics_client_id"] and cfg["analytics_client_secret"]):
+                return self.send(400, {"error": "Bitte zuerst Client-ID und Clientschlüssel der Webanwendung speichern."})
+            if not OAUTH_PAGE:
+                return self.send(400, {"error": "Keine Weiterleitungsseite eingestellt (SCRIPTS_REPO oder OAUTH_PAGE)."})
+            origin = str(data.get("origin", ""))
+            if not re.fullmatch(r"https?://[\w.\-\[\]:]+", origin):
+                return self.send(400, {"error": "Ungültige Adresse."})
+            nonce = secrets.token_urlsafe(16)
+            status["oauth_states"] = {**dict(list(status["oauth_states"].items())[-5:]), nonce: origin}
+            state = nonce + "." + base64.urlsafe_b64encode(origin.encode()).decode().rstrip("=")
+            return self.send(200, {"url": yt.analytics_auth_url(cfg["analytics_client_id"], OAUTH_PAGE, state)})
+        if p == "/api/analytics/disconnect":
+            store.save_config(analytics_token="")
+            store.log("warn", "Zuschauer-Daten getrennt.")
+            return self.send(200, {"ok": True})
         if p == "/api/disconnect":
             store.save_config(refresh_token="", expired=False)
             store.write("channel.json", None)
@@ -334,6 +438,7 @@ class Handler(BaseHTTPRequestHandler):
         if p == "/api/sync":
             background(sync_scripts)
             background(refresh_stats)
+            background(refresh_analytics)
             return self.send(200, {"ok": True})
         self.send(404, {"error": "Nicht gefunden"})
 

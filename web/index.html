@@ -1,208 +1,303 @@
 <title>Shorts-Zentrale</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: schlichte Arbeitsoberfläche. Seitenleiste links (am Handy unten), rechts je Bereich eine ruhige Tabelle oder Liste. Farbe nur für Status und die eine Hauptaktion. */
+/* Shorts-Zentrale im Look des Kanals: dunkles Indigo, gelbe Akzente, rote und violette Lichter.
+   Diagramme sind eigenes SVG (keine Bibliothek), jede Themenfarbe gehört fest zu einem Thema. */
 :root {
-  --bg: #f7f7f8;
-  --surface: #ffffff;
-  --sunken: #f1f1f3;
-  --ink: #0e0e11;
-  --ink-2: #3c3c44;
-  --muted: #73737e;
-  --line: #e7e7eb;
-  --line-2: #d6d6dc;
-  --accent: #dc2626;
-  --ok: #15803d;
-  --warn: #b45309;
-  --err: #c62828;
-  --thumb: #e4e4e8;
+  color-scheme: dark;
+  --bg: #0b0a14;
+  --side: #0f0d1c;
+  --surface: #16142a;
+  --surface-2: #1e1b37;
+  --line: rgba(255, 255, 255, .08);
+  --line-2: rgba(255, 255, 255, .15);
+  --ink: #f3f1fb;
+  --ink-2: #cbc7df;
+  --muted: #8f8aab;
+  --accent: #ffd166;
+  --red: #f04444;
+  --violet: #7850ff;
+  --ok: #3ccf7a;
+  --warn: #eaa53f;
+  --err: #ff6b6b;
+  /* Themenfarben, geprüft auf der Kartenfläche (dataviz-Validator, dunkel) */
+  --n1: #3987e5; --n2: #d95926; --n3: #199e70; --n4: #c98500; --n5: #d55181; --n0: #6f6a8a;
   --f-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --r: 10px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0a0a0c; --surface: #111114; --sunken: #17171b; --ink: #f2f2f4; --ink-2: #cacad1; --muted: #8b8b96;
-    --line: #222228; --line-2: #2f2f37; --accent: #f04444; --ok: #3ccf7a; --warn: #eaa53f; --err: #ff6b6b; --thumb: #1c1c21;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0a0a0c; --surface: #111114; --sunken: #17171b; --ink: #f2f2f4; --ink-2: #cacad1; --muted: #8b8b96;
-  --line: #222228; --line-2: #2f2f37; --accent: #f04444; --ok: #3ccf7a; --warn: #eaa53f; --err: #ff6b6b; --thumb: #1c1c21;
-  color-scheme: dark;
+  --r: 18px;
 }
 * { box-sizing: border-box; }
 html, body { background: var(--bg); }
-body { color: var(--ink); font-family: var(--f-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.01em; text-wrap: balance; }
+body { margin: 0; color: var(--ink); font-family: var(--f-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background: radial-gradient(900px 500px at 15% -10%, rgba(120, 80, 255, .18), transparent 60%),
+              radial-gradient(700px 500px at 100% 0%, rgba(240, 68, 68, .10), transparent 60%); }
+h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
 button, input, select { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 6px; }
-.num, .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--f-mono); }
 .muted { color: var(--muted); }
-.gutter { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-.inner { max-width: 1120px; margin: 0 auto; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1180px; margin: 0 auto; }
 
 /* Seitenleiste (am Handy: Leiste unten) */
-body { margin: 0; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
-.app { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 100vh; }
-.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 22px; padding: max(20px, env(safe-area-inset-top, 0px)) 14px 18px max(14px, env(safe-area-inset-left, 0px)); background: var(--surface); border-right: 1px solid var(--line); }
-.mark { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; white-space: nowrap; padding: 4px 10px; }
-.mark i { width: 10px; height: 10px; border-radius: 2px; background: var(--accent); }
-.nav { display: flex; flex-direction: column; gap: 2px; }
-.nav a { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 8px; color: var(--muted); font-weight: 500; text-decoration: none; transition: background-color .15s ease, color .15s ease; }
-.nav a:hover { background: var(--sunken); color: var(--ink); }
-.nav a[aria-current="page"] { background: var(--sunken); color: var(--ink); font-weight: 600; }
-.nav svg { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.side .who { margin-top: auto; padding: 12px 10px 0; border-top: 1px solid var(--line); }
-.who .nm { overflow: hidden; text-overflow: ellipsis; min-width: 0; font-weight: 500; }
-.topbar { display: none; }
+.app { display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 26px; padding: max(22px, env(safe-area-inset-top, 0px)) 14px 18px max(14px, env(safe-area-inset-left, 0px)); background: var(--side); border-right: 1px solid var(--line); }
+.mark { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; white-space: nowrap; padding: 2px 8px; letter-spacing: -.01em; }
+.mark svg { width: 32px; height: 32px; flex: none; }
+.nav { display: flex; flex-direction: column; gap: 3px; }
+.nav a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; color: var(--muted); font-weight: 500; transition: background-color .15s ease, color .15s ease; }
+.nav a:hover { background: var(--surface); color: var(--ink); }
+.nav a[aria-current="page"] { background: linear-gradient(90deg, rgba(255, 209, 102, .16), rgba(255, 209, 102, .04)); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+.nav svg { width: 19px; height: 19px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nav a[aria-current="page"] svg { color: var(--accent); }
+.side .who { margin-top: auto; padding: 14px 10px 0; border-top: 1px solid var(--line); }
 .who { display: flex; align-items: center; gap: 10px; white-space: nowrap; min-width: 0; }
-.avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--sunken); border: 1px solid var(--line); overflow: hidden; display: grid; place-items: center; font-size: 12px; font-weight: 600; color: var(--muted); flex: none; }
+.who .nm { overflow: hidden; text-overflow: ellipsis; min-width: 0; font-weight: 600; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--surface-2); overflow: hidden; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--muted); flex: none; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
-.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex: none; }
+.topbar { display: none; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
 .dot.ok { background: var(--ok); }
-.dot.live { background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: live 2s infinite; }
+.dot.live { background: var(--ok); animation: live 2s infinite; }
 .dot.warn { background: var(--warn); }
 .dot.err { background: var(--err); }
-@keyframes live { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); } 70%, 100% { box-shadow: 0 0 0 6px transparent; } }
+@keyframes live { 0% { box-shadow: 0 0 0 0 rgba(60, 207, 122, .55); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
 
-main { padding-block: 28px 64px; }
-.view { display: flex; flex-direction: column; gap: 28px; }
+main { padding-block: 28px 72px; }
+.view { display: flex; flex-direction: column; gap: 22px; animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
-.head h1 { font-size: 22px; }
+.head h1 { font-size: 28px; }
 .head p { color: var(--muted); margin-top: 4px; }
 
-/* Bausteine */
-.box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; }
-.box-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
-.box-h h2 { font-size: 14px; }
-.box-b { padding: 18px; }
+/* Karten */
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; }
+.card-h { display: flex; align-items: center; justify-content: space-between; gap: 10px 12px; padding: 18px 20px 0; flex-wrap: wrap; }
+.card-h h2 { font-size: 15px; font-weight: 650; letter-spacing: -.01em; }
+.card-h .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.card-b { padding: 16px 20px 20px; }
+.grid { display: grid; gap: 22px; }
+.g-21 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.g-11 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.g-111 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .label { font-size: 12px; color: var(--muted); font-weight: 500; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface); font-weight: 500; cursor: pointer; white-space: nowrap; transition: background-color .15s ease, transform .1s ease; text-decoration: none; }
-.btn:hover { background: var(--sunken); text-decoration: none; }
-.btn:active { transform: scale(.98); }
-.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.btn.primary:hover { background: var(--ink-2); }
+.link { color: var(--accent); font-size: 12px; font-weight: 600; }
+.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 11px; border: 1px solid var(--line-2); background: var(--surface-2); font-weight: 600; cursor: pointer; white-space: nowrap; transition: background-color .15s ease, transform .1s ease, filter .15s ease; }
+.btn:hover { background: #27234a; }
+.btn:active { transform: scale(.97); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #17130a; }
+.btn.primary:hover { filter: brightness(1.06); background: var(--accent); }
 .btn.danger { color: var(--err); }
+.btn.sm { height: 30px; padding: 0 11px; font-size: 12px; border-radius: 9px; }
 .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
-.status { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; white-space: nowrap; }
-.banner { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 14px 18px; border: 1px solid var(--line); border-left: 3px solid var(--warn); border-radius: var(--r); background: var(--surface); }
-.banner.info { border-left-color: var(--line-2); }
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 99px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 99px; font-size: 11.5px; font-weight: 600; color: var(--ink-2); background: rgba(255, 255, 255, .06); white-space: nowrap; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--n0)); }
+.banner { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 16px 20px; border-radius: var(--r); background: linear-gradient(90deg, rgba(234, 165, 63, .16), rgba(234, 165, 63, .04)); border: 1px solid rgba(234, 165, 63, .35); }
+.empty { padding: 34px 18px; text-align: center; color: var(--muted); }
+.empty b { display: block; color: var(--ink); font-weight: 650; margin-bottom: 4px; }
+.toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 50; padding: 12px 18px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line-2); box-shadow: 0 20px 50px rgba(0, 0, 0, .5); font-weight: 600; }
 
-/* Kennzahlen */
-.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.kpi { padding: 18px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.kpi:first-child { border-left: 0; }
-.kpi .v { font-family: var(--f-mono); font-size: 26px; font-weight: 500; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.kpi .s { font-size: 12px; color: var(--muted); }
+/* Hero */
+.hero { overflow: hidden; padding: 26px; background:
+  radial-gradient(500px 260px at 0% 0%, rgba(120, 80, 255, .45), transparent 70%),
+  radial-gradient(420px 260px at 100% 100%, rgba(240, 68, 68, .28), transparent 70%),
+  linear-gradient(135deg, #1e1745, #120f24); border: 1px solid rgba(255, 255, 255, .1); }
+.hero-top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero .avatar { width: 64px; height: 64px; font-size: 22px; box-shadow: 0 0 0 3px rgba(255, 209, 102, .5); }
+.hero h1 { font-size: 26px; }
+.hero .handle { color: var(--ink-2); margin-top: 2px; }
+.hero .pill { margin-left: auto; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+.stat { padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, .055); border: 1px solid rgba(255, 255, 255, .08); min-width: 0; }
+.stat .v { font-size: 30px; font-weight: 750; letter-spacing: -.03em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.stat .s { font-size: 12px; color: var(--ink-2); margin-top: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.up { color: var(--ok); font-weight: 650; }
+.stat svg.spark { display: block; width: 100%; height: 30px; margin-top: 8px; }
 
-/* Vorschaubild 9:16 */
-.thumb { aspect-ratio: 9 / 16; max-width: 100%; border-radius: 6px; background: var(--thumb); overflow: hidden; flex: none; display: block; }
+/* Nächster Upload */
+.next { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; align-items: center; }
+.next .when { font-size: 30px; font-weight: 750; letter-spacing: -.03em; line-height: 1.1; margin-top: 2px; }
+.next .ttl { font-weight: 650; margin-top: 10px; line-height: 1.35; }
+.ring { position: relative; width: 112px; }
+.cd { display: inline-flex; margin-top: 8px; }
+.busy { margin-top: 12px; display: flex; gap: 8px; align-items: center; color: var(--accent); font-weight: 600; font-size: 12px; }
+.busy[hidden] { display: none; }
+
+/* Vorschaubilder 9:16 */
+.thumb { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; background: var(--surface-2); overflow: hidden; flex: none; display: block; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.t-xs { width: 30px; border-radius: 4px; }
-.t-sm { width: 40px; }
-.t-lg { width: 120px; border-radius: 8px; }
+.t-xs { width: 34px; border-radius: 7px; }
+.t-sm { width: 46px; border-radius: 8px; }
+.t-lg { width: 112px; border-radius: 14px; box-shadow: 0 14px 40px rgba(0, 0, 0, .45); }
+.strip { display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 20px; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; }
+.strip .item { width: 132px; flex: none; scroll-snap-align: start; }
+.strip .thumb { width: 132px; }
+.strip .t { font-size: 12px; margin-top: 8px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.strip .w { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.badge { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 8px; background: rgba(8, 7, 16, .78); backdrop-filter: blur(6px); font-size: 12px; font-weight: 700; }
+.badge.r { left: auto; right: 8px; }
 
-.grid-2 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: start; }
-.next { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; align-items: center; }
-.next .when { font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; margin-top: 4px; }
-.next .cd { font-family: var(--f-mono); color: var(--accent); font-weight: 500; margin-top: 4px; }
-.next .ttl { font-weight: 600; margin-top: 14px; }
-.tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: var(--sunken); border: 1px solid var(--line); font-size: 12px; color: var(--ink-2); font-weight: 500; white-space: nowrap; }
+/* Diagramme */
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart .grid-l { stroke: rgba(255, 255, 255, .07); }
+.chart .axis-t { fill: var(--muted); font-size: 11px; font-family: var(--f-sans); }
+.tip { position: absolute; z-index: 5; pointer-events: none; min-width: 120px; max-width: 260px; padding: 10px 12px; border-radius: 12px; background: rgba(12, 11, 24, .96); border: 1px solid var(--line-2); box-shadow: 0 14px 40px rgba(0, 0, 0, .5); font-size: 12px; line-height: 1.4; opacity: 0; transition: opacity .12s ease; }
+.tip.on { opacity: 1; }
+.tip b { display: block; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tip .t { color: var(--ink-2); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-2); }
+.legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 11px; background: rgba(255, 255, 255, .05); border: 1px solid var(--line); flex-wrap: wrap; }
+.card-h .seg { flex-wrap: nowrap; flex: none; }
+.seg button { white-space: nowrap; }
+.seg button { border: 0; background: none; padding: 5px 11px; border-radius: 8px; color: var(--muted); font-weight: 600; font-size: 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset; }
+.donut-wrap { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; justify-content: center; }
+.donut-wrap #donut { width: 150px; flex: none; }
+.donut-wrap .rows { flex: 1 1 210px; min-width: 0; }
+.rows { display: grid; gap: 9px; }
+.rows .r { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; font-size: 12.5px; }
+.rows .bar { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+.rows .bar i { display: block; height: 100%; border-radius: 3px; background: var(--c, var(--accent)); transform-origin: left; animation: grow .8s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes grow { from { transform: scaleX(0); } }
 
-/* Listen und Tabellen */
+/* Ziele */
+.goal { display: grid; gap: 7px; }
+.goal + .goal { margin-top: 16px; }
+.goal .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 10px; align-items: baseline; }
+.goal .top b { font-size: 13px; }
+.goal .pct { white-space: nowrap; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.goal .track { height: 10px; border-radius: 5px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+.goal .track i { display: block; height: 100%; min-width: 4px; border-radius: 5px; background: linear-gradient(90deg, var(--violet), var(--red), var(--accent)); transform-origin: left; animation: grow 1s cubic-bezier(.2, .8, .2, 1) both; }
+
+/* Aktivität */
+.log { list-style: none; margin: 0; padding: 0 20px 14px; }
+.log li { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.log li:last-child { border-bottom: 0; }
+.log time { font-size: 11.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Zuschauer */
+.insight { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border-radius: 14px; background: linear-gradient(90deg, rgba(255, 209, 102, .12), rgba(255, 209, 102, .03)); border: 1px solid rgba(255, 209, 102, .28); }
+.insight .ic { font-size: 22px; line-height: 1; }
+.insight b { display: block; margin-bottom: 2px; }
+.picker { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px; }
+.picker button { flex: none; width: 64px; padding: 0; border: 2px solid transparent; border-radius: 12px; background: none; cursor: pointer; opacity: .6; transition: opacity .15s ease, border-color .15s ease; }
+.picker button .thumb { width: 100%; border-radius: 10px; }
+.picker button[aria-pressed="true"] { opacity: 1; border-color: var(--accent); }
+.picker button:hover { opacity: 1; }
+.sents { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.sents li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .035); font-size: 13px; }
+.sents .n { width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; background: rgba(255, 255, 255, .08); font-weight: 700; font-size: 12px; }
+.sents .loss { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sents li.worst { background: rgba(240, 68, 68, .12); box-shadow: inset 0 0 0 1px rgba(240, 68, 68, .35); }
+.sents li.worst .n { background: var(--red); }
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; counter-increment: s; }
+.steps li::before { content: counter(s); width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; background: rgba(255, 209, 102, .16); color: var(--accent); font-weight: 750; }
+.steps a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.copy { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+.copy code { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 7px 10px; border-radius: 9px; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); font-family: var(--f-mono); font-size: 12px; }
+
+/* Videos */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 18px; }
+.vcard { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.vcard .thumb { width: 100%; transition: transform .2s ease, box-shadow .2s ease; }
+.vcard:hover .thumb { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(0, 0, 0, .5); }
+.vcard .t { font-weight: 600; font-size: 13px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.vcard .m { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); }
+.keep { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+.keep i { display: block; height: 100%; background: var(--accent); }
+.rank { position: absolute; left: 8px; top: 8px; width: 26px; height: 26px; border-radius: 9px; display: grid; place-items: center; font-weight: 800; font-size: 12px; background: rgba(8, 7, 16, .78); }
+.rank.gold { background: var(--accent); color: #17130a; }
+
+/* Tabellen */
 .scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
-th { text-align: left; font-size: 12px; font-weight: 500; color: var(--muted); padding: 10px 18px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 10px 18px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { text-align: left; font-size: 12px; font-weight: 500; color: var(--muted); padding: 12px 20px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 10px 20px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 tr:last-child td { border-bottom: 0; }
 th.r, td.r { text-align: right; }
-th button { border: 0; background: none; padding: 0; color: inherit; font-size: inherit; font-weight: inherit; cursor: pointer; }
-th button[aria-pressed="true"] { color: var(--ink); }
-th button[aria-pressed="true"]::after { content: " ↓"; }
 .vid { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.vid .tt { font-weight: 500; line-height: 1.35; min-width: 0; }
-.vid .sub { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 52ch; }
-.rank { font-family: var(--f-mono); color: var(--muted); width: 28px; }
-.meter { height: 6px; border-radius: 3px; background: var(--sunken); overflow: hidden; }
-.meter i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
-.rank.top { color: var(--ink); font-weight: 600; }
-.day-row td { background: var(--sunken); font-size: 12px; font-weight: 600; color: var(--ink-2); padding-block: 7px; }
-tr.is-next td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
-.empty { padding: 36px 18px; text-align: center; color: var(--muted); }
-.empty b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
-.log { list-style: none; margin: 0; padding: 0; }
-.log li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 9px 18px; border-bottom: 1px solid var(--line); }
-.log li:last-child { border-bottom: 0; }
-.log time { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
-.seg { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); flex-wrap: wrap; }
-.seg button { border: 0; background: none; padding: 4px 10px; border-radius: 6px; color: var(--muted); font-weight: 500; cursor: pointer; }
-.seg button[aria-pressed="true"] { background: var(--sunken); color: var(--ink); }
+.vid .tt { font-weight: 600; line-height: 1.35; min-width: 0; }
+.vid .sub { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 56ch; }
+.day-row td { background: rgba(255, 255, 255, .03); font-size: 12px; font-weight: 700; color: var(--ink-2); padding-block: 8px; }
+tr.is-next td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 
-/* Kanal */
+/* Formulare */
 .form { display: grid; gap: 14px; }
 .field { display: grid; gap: 6px; }
-.field label { font-weight: 500; }
-.field input, .field select { height: 36px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); padding: 0 10px; width: 100%; min-width: 0; }
+.field label { font-weight: 600; }
+.field input, .field select { height: 40px; border: 1px solid var(--line-2); border-radius: 11px; background: rgba(0, 0, 0, .25); padding: 0 12px; width: 100%; min-width: 0; }
 .field .hint { font-size: 12px; color: var(--muted); }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.hours { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
-.hours button { height: 32px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-family: var(--f-mono); font-size: 12px; cursor: pointer; color: var(--muted); padding: 0; }
-.hours button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.code { font-family: var(--f-mono); font-size: 30px; font-weight: 600; letter-spacing: .14em; padding: 14px; text-align: center; border: 1px solid var(--line-2); border-radius: var(--r); background: var(--sunken); }
-.steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); }
-.steps a { text-decoration: underline; text-underline-offset: 3px; }
-details summary { cursor: pointer; font-weight: 500; }
-details[open] summary { margin-bottom: 10px; }
+.hours { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 5px; }
+.hours button { height: 34px; border: 1px solid var(--line); border-radius: 9px; background: rgba(0, 0, 0, .2); font-size: 12px; cursor: pointer; color: var(--muted); padding: 0; font-variant-numeric: tabular-nums; }
+.hours button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #17130a; font-weight: 700; }
+.code { font-family: var(--f-mono); font-size: 30px; font-weight: 600; letter-spacing: .14em; padding: 14px; text-align: center; border: 1px solid var(--line-2); border-radius: 14px; background: rgba(0, 0, 0, .3); }
+details summary { cursor: pointer; font-weight: 600; }
+details[open] summary { margin-bottom: 12px; }
 .msg { font-size: 13px; }
 .msg.err { color: var(--err); }
 .msg.ok { color: var(--ok); }
 .foot { color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
+@media (max-width: 1020px) {
+  .g-21, .g-11, .g-111 { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 860px) {
-  .grid-2 { grid-template-columns: minmax(0, 1fr); }
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .kpi:nth-child(3) { border-left: 0; }
-  .kpi:nth-child(n+3) { border-top: 1px solid var(--line); }
   .app { grid-template-columns: minmax(0, 1fr); }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; min-height: 52px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 5; min-height: 56px; padding-top: env(safe-area-inset-top, 0px); background: rgba(11, 10, 20, .86); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
   .topbar .mark { padding: 0; }
-  .side { position: fixed; inset: auto 0 0 0; height: auto; z-index: 20; flex-direction: row; gap: 0; padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); border-right: 0; border-top: 1px solid var(--line); }
+  .side { position: fixed; inset: auto 0 0 0; height: auto; z-index: 20; flex-direction: row; gap: 0; padding: 6px max(6px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px)); border-right: 0; border-top: 1px solid var(--line); background: rgba(15, 13, 28, .94); backdrop-filter: blur(12px); }
   .side .mark, .side .who { display: none; }
   .nav { flex-direction: row; flex: 1; justify-content: space-around; }
-  .nav a { flex: 1; flex-direction: column; gap: 3px; padding: 6px 2px; font-size: 11px; text-align: center; }
-  .nav a[aria-current="page"] { background: none; color: var(--accent); }
-  .nav a:hover { background: none; }
-  main { padding-bottom: 110px; }
+  .nav a { flex: 1; flex-direction: column; gap: 3px; padding: 6px 2px; font-size: 10.5px; text-align: center; border-radius: 10px; }
+  .nav a[aria-current="page"] { background: none; box-shadow: none; color: var(--accent); }
+  main { padding-top: 18px; padding-bottom: 110px; }
+  .toast { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); width: max-content; max-width: calc(100vw - 32px); }
 }
 @media (max-width: 560px) {
-  .topbar .who .nm { display: none; }
+  .hero { padding: 18px; }
+  .hero .pill { margin-left: 0; }
+  .stat { padding: 12px; }
+  .stat .v { font-size: 23px; }
   .next { grid-template-columns: 88px minmax(0, 1fr); gap: 14px; }
-  .next .when { font-size: 20px; }
-  .kpi .v { font-size: 22px; }
+  .t-lg { width: 88px; }
+  .next .when { font-size: 22px; }
+  .card-h { padding: 16px 16px 0; }
+  .card-b { padding: 14px 16px 16px; }
+  .strip { padding-inline: 16px; scroll-padding-inline: 16px; }
+  .log { padding-inline: 16px; }
   th, td { padding-inline: 12px; }
   .hide-sm { display: none; }
   .hours { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .head h1 { font-size: 24px; }
 }
-@media (prefers-reduced-motion: reduce) { .dot.live { animation: none; } .btn, .nav a { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 
 <div class="app">
 <aside class="side">
-  <div class="mark"><i aria-hidden="true"></i><span>Shorts-Zentrale</span></div>
+  <div class="mark"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="#1e1745" stroke="rgba(255,255,255,.15)" stroke-width="2.5"/><path d="M16 3a13 13 0 1 1-12.4 9" fill="none" stroke="#f04444" stroke-width="2.5" stroke-linecap="round"/><text x="16" y="20.2" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Geist, system-ui">60</text></svg><span>Shorts-Zentrale</span></div>
   <nav class="nav" aria-label="Bereiche">
-    <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Übersicht</span></a>
-    <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg><span>Sendeplan</span></a>
-    <a href="#gepostet" data-tab="gepostet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 9 5 3-5 3z"/></svg><span>Gepostet</span></a>
-    <a href="#bestenliste" data-tab="bestenliste"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 16.5V21M7 3.5h10V9a5 5 0 0 1-10 0z"/><path d="M17 5.5h3V7a3 3 0 0 1-3 3M7 5.5H4V7a3 3 0 0 0 3 3"/></svg><span>Bestenliste</span></a>
+    <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
+    <a href="#zuschauer" data-tab="zuschauer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v15a1 1 0 0 0 1 1h17"/><path d="M7 8c3 0 4 2 6 5s3 3 7 3"/></svg><span>Zuschauer</span></a>
+    <a href="#videos" data-tab="videos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><path d="m10 9 5 3-5 3z"/></svg><span>Videos</span></a>
+    <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg><span>Sendeplan</span></a>
     <a href="#kanal" data-tab="kanal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg><span>Kanal</span></a>
   </nav>
   <div class="who">
@@ -214,9 +309,8 @@ details[open] summary { margin-bottom: 10px; }
 
 <div class="content">
 <header class="topbar gutter">
-  <div class="mark"><i aria-hidden="true"></i><span>Shorts-Zentrale</span></div>
+  <div class="mark"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="#1e1745" stroke="rgba(255,255,255,.15)" stroke-width="2.5"/><path d="M16 3a13 13 0 1 1-12.4 9" fill="none" stroke="#f04444" stroke-width="2.5" stroke-linecap="round"/><text x="16" y="20.2" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Geist, system-ui">60</text></svg><span>Shorts-Zentrale</span></div>
   <div class="who">
-    <span class="nm js-whoName">Kein Kanal</span>
     <div class="avatar js-avatar" aria-hidden="true"></div>
     <span class="dot warn js-whoDot" title="Status"></span>
   </div>
@@ -225,46 +319,162 @@ details[open] summary { margin-bottom: 10px; }
 <main class="gutter">
   <div class="inner">
 
+    <!-- ÜBERSICHT -->
     <section class="view" id="v-uebersicht">
-      <div class="head">
-        <div>
-          <h1>Übersicht</h1>
-          <p id="ovSub">Lädt …</p>
-        </div>
-        <span class="status" id="ovStatus"></span>
-      </div>
       <div class="banner" id="ovBanner" hidden>
         <div id="ovBannerText"><b>Kanal noch nicht verbunden.</b> <span class="muted">Der Sendeplan steht, gepostet wird ab der Verbindung.</span></div>
         <a class="btn primary" href="#kanal" id="ovBannerBtn">Kanal verbinden</a>
       </div>
-      <div class="box kpis">
-        <div class="kpi"><span class="label">Aufrufe gesamt</span><span class="v" id="kViews">–</span><span class="s" id="kViewsS">alle geposteten Shorts</span></div>
-        <div class="kpi"><span class="label">Abonnenten</span><span class="v" id="kSubs">–</span><span class="s">verbundener Kanal</span></div>
-        <div class="kpi"><span class="label">Videos online</span><span class="v" id="kPosted">0</span><span class="s" id="kPostedS">seit Start</span></div>
-        <div class="kpi"><span class="label">Vorrat</span><span class="v" id="kQueue">0</span><span class="s" id="kQueueS">geplante Videos</span></div>
+
+      <div class="card hero">
+        <div class="hero-top">
+          <div class="avatar js-avatar" aria-hidden="true"></div>
+          <div style="min-width:0">
+            <h1 id="hName">Shorts-Zentrale</h1>
+            <div class="handle" id="hSub">Lädt …</div>
+          </div>
+          <span class="pill" id="hStatus"></span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Aufrufe gesamt</div><div class="v" id="kViews">–</div><div class="s" id="kViewsS">alle Shorts</div><svg class="spark" id="sparkViews" aria-hidden="true"></svg></div>
+          <div class="stat"><div class="label">Abonnenten</div><div class="v" id="kSubs">–</div><div class="s" id="kSubsS">verbundener Kanal</div><svg class="spark" id="sparkSubs" aria-hidden="true"></svg></div>
+          <div class="stat"><div class="label">Videos online</div><div class="v" id="kPosted">0</div><div class="s" id="kPostedS">seit Start</div></div>
+          <div class="stat"><div class="label">Ø angesehen</div><div class="v" id="kKeep">–</div><div class="s" id="kKeepS">Zuschauer-Daten</div></div>
+        </div>
       </div>
-      <div class="grid-2">
-        <div class="box">
-          <div class="box-h"><h2>Nächster Upload</h2><span class="label" id="busy"></span></div>
-          <div class="box-b" id="nextBox"></div>
+
+      <div class="grid g-21">
+        <div class="card">
+          <div class="card-h">
+            <div><h2 id="growTitle">Wachstum</h2><div class="sub" id="growSub"></div></div>
+            <div class="seg" id="growSeg" role="group" aria-label="Kennzahl wählen">
+              <button type="button" data-k="views" aria-pressed="true">Aufrufe</button>
+              <button type="button" data-k="subs" aria-pressed="false">Abonnenten</button>
+            </div>
+          </div>
+          <div class="card-b"><div class="chart" id="growChart"></div></div>
         </div>
-        <div class="box">
-          <div class="box-h"><h2>Top-Videos</h2><a class="label" href="#bestenliste">Alle ansehen</a></div>
-          <div id="topBox"></div>
+        <div class="card">
+          <div class="card-h"><h2>Nächster Upload</h2><a class="link" href="#plan">Sendeplan</a></div>
+          <div class="card-b" id="nextBox"></div>
         </div>
       </div>
-      <div class="grid-2">
-        <div class="box">
-          <div class="box-h"><h2>Als Nächstes</h2><a class="label" href="#plan">Ganzer Sendeplan</a></div>
-          <div class="scroll"><table><tbody id="soonBody"></tbody></table></div>
+
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Aufrufe je Video</h2><div class="sub">Die letzten Uploads, Farbe = Thema</div></div><a class="link" href="#videos">Alle Videos</a></div>
+          <div class="card-b"><div class="chart" id="barChart"></div><div class="legend" id="barLegend"></div></div>
         </div>
-        <div class="box">
-          <div class="box-h"><h2>Aktivität</h2></div>
+        <div class="card">
+          <div class="card-h"><div><h2>Themen</h2><div class="sub">Anteil an allen Aufrufen</div></div></div>
+          <div class="card-b"><div class="donut-wrap"><div class="chart" id="donut"></div><div class="rows" id="donutRows"></div></div></div>
+        </div>
+      </div>
+
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Ziel: Geld mit YouTube</h2><div class="sub">YouTube-Partnerprogramm, ungefährer Stand</div></div></div>
+          <div class="card-b" id="goals"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h2>Aktivität</h2><span class="label" id="busyTop"></span></div>
           <ul class="log" id="logList"></ul>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-h"><div><h2>Als Nächstes</h2><div class="sub" id="soonSub"></div></div><a class="link" href="#plan">Ganzer Plan</a></div>
+        <div class="strip" id="soonStrip" style="margin-top:14px"></div>
+      </div>
     </section>
 
+    <!-- ZUSCHAUER -->
+    <section class="view" id="v-zuschauer" hidden>
+      <div class="head">
+        <div>
+          <h1>Zuschauer</h1>
+          <p id="zSub">Wie lange die Leute dranbleiben und wo sie abschalten</p>
+        </div>
+        <span class="pill" id="zStatus"></span>
+      </div>
+
+      <div class="card" id="zSetup" hidden>
+        <div class="card-h"><div><h2>Zuschauer-Daten freischalten</h2><div class="sub">Einmalig, dauert etwa 5 Minuten</div></div></div>
+        <div class="card-b">
+          <p class="muted" style="margin-bottom:16px">YouTube gibt die Daten, wann Zuschauer abschalten, nur über eine eigene Schnittstelle heraus. Dafür braucht die Shorts-Zentrale einen zweiten Zugang. Dein Upload-Zugang bleibt, wie er ist.</p>
+          <ol class="steps">
+            <li><div>In Google Cloud die <a href="https://console.cloud.google.com/apis/library/youtubeanalytics.googleapis.com" target="_blank" rel="noopener">YouTube Analytics API</a> öffnen und auf <b>Aktivieren</b> klicken. Oben muss dein Projekt ausgewählt sein.</div></li>
+            <li><div>Unter <a href="https://console.cloud.google.com/auth/clients" target="_blank" rel="noopener">Google Auth Platform → Clients</a> auf <b>Client erstellen</b> klicken, Typ <b>Webanwendung</b>. Bei <b>Autorisierte Weiterleitungs-URIs</b> diese Adresse eintragen:
+              <div class="copy"><code id="redirUri">–</code><button class="btn sm" type="button" id="copyRedir">Kopieren</button></div></div></li>
+            <li><div>Client-ID und Clientschlüssel des neuen Clients hier eintragen: <b id="aSaved" style="color:var(--ok)" hidden>✓ schon gespeichert</b>
+              <form class="form" id="aForm" style="margin-top:10px">
+                <div class="field"><label for="aId">Client-ID (Webanwendung)</label><input id="aId" autocomplete="off" spellcheck="false" placeholder="1234567890-xyz.apps.googleusercontent.com"></div>
+                <div class="field"><label for="aSecret">Clientschlüssel</label><input id="aSecret" type="password" autocomplete="off" spellcheck="false" placeholder="GOCSPX-…"></div>
+                <div class="row"><button class="btn" type="submit">Speichern</button><span class="msg" id="aMsg"></span></div>
+              </form></div></li>
+            <li><div>Auf <b>Verbinden</b> klicken und mit dem Google-Konto deines Kanals anmelden. Zeigt Google „App wurde nicht überprüft“, auf <b>Erweitert</b> und dann <b>Weiter</b> tippen.
+              <div class="row" style="margin-top:10px"><button class="btn primary" type="button" id="aConnect">Verbinden</button><span class="msg" id="aConMsg"></span></div></div></li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="zData">
+        <div class="grid g-111" style="margin-bottom:22px">
+          <div class="stat card" style="padding:18px"><div class="label">Ø angesehen</div><div class="v" id="zPct" style="font-size:30px;font-weight:750">–</div><div class="s muted" id="zPctS">der Videolänge</div></div>
+          <div class="stat card" style="padding:18px"><div class="label">Ø Wiedergabedauer</div><div class="v" id="zDur" style="font-size:30px;font-weight:750">–</div><div class="s muted">pro Aufruf</div></div>
+          <div class="stat card" style="padding:18px"><div class="label">Bestes Thema beim Dranbleiben</div><div class="v" id="zBest" style="font-size:22px;font-weight:750;margin-top:6px">–</div><div class="s muted" id="zBestS"></div></div>
+        </div>
+
+        <div class="insight" id="zInsight" hidden><div class="ic" aria-hidden="true">💡</div><div id="zInsightText"></div></div>
+
+        <div class="grid g-21" style="margin-top:22px">
+          <div class="card">
+            <div class="card-h"><div><h2>Wo Zuschauer abschalten</h2><div class="sub">Durchschnitt aller Videos · senkrechte Linien = Satzanfänge</div></div></div>
+            <div class="card-b"><div class="chart" id="avgCurve"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div><h2>Verlust je Satz</h2><div class="sub">So viele Zuschauer gehen im Schnitt während des Satzes (in Prozentpunkten)</div></div></div>
+            <div class="card-b"><div class="chart" id="lossBars"></div></div>
+          </div>
+        </div>
+
+        <div class="card" id="oneCard" style="margin-top:22px">
+          <div class="card-h"><div><h2>Einzelnes Video</h2><div class="sub" id="oneSub">Video antippen</div></div><a class="link" id="oneLink" href="#" target="_blank" rel="noopener" hidden>Auf YouTube öffnen</a></div>
+          <div class="card-b">
+            <div class="picker" id="picker"></div>
+            <div class="chart" id="oneCurve" style="margin-top:8px"></div>
+            <ol class="sents" id="sents"></ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><div><h2>Lernmodus</h2><div class="sub" id="learnText"></div></div><span class="pill" id="learnStatus"></span></div>
+        <div class="scroll" style="margin-top:8px"><table>
+          <thead><tr><th>Thema</th><th class="r hide-sm">Videos</th><th class="r">Wert</th><th class="r">Ø angesehen</th><th class="hide-sm" style="width:28%"></th></tr></thead>
+          <tbody id="learnBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="view" id="v-videos" hidden>
+      <div class="head">
+        <div>
+          <h1>Videos</h1>
+          <p id="vSub">Alle hochgeladenen Shorts</p>
+        </div>
+        <div class="seg" id="vSort" role="group" aria-label="Sortieren">
+          <button type="button" data-s="new" aria-pressed="true">Neueste</button>
+          <button type="button" data-s="views" aria-pressed="false">Aufrufe</button>
+          <button type="button" data-s="likes" aria-pressed="false">Likes</button>
+          <button type="button" data-s="avg_pct" aria-pressed="false">Dranbleiben</button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- SENDEPLAN -->
     <section class="view" id="v-plan" hidden>
       <div class="head">
         <div>
@@ -273,7 +483,7 @@ details[open] summary { margin-bottom: 10px; }
         </div>
         <div class="seg" id="planFilter" role="group" aria-label="Nach Thema filtern"></div>
       </div>
-      <div class="box scroll">
+      <div class="card scroll">
         <table>
           <thead><tr><th>Zeit</th><th>Video</th><th class="hide-sm">Thema</th><th class="r hide-sm">Länge</th></tr></thead>
           <tbody id="planBody"></tbody>
@@ -281,49 +491,7 @@ details[open] summary { margin-bottom: 10px; }
       </div>
     </section>
 
-    <section class="view" id="v-gepostet" hidden>
-      <div class="head">
-        <div>
-          <h1>Gepostet</h1>
-          <p id="postSub">Alle hochgeladenen Shorts, neueste zuerst</p>
-        </div>
-      </div>
-      <div class="box scroll">
-        <table>
-          <thead><tr><th>Video</th><th class="hide-sm">Gepostet</th><th class="r">Aufrufe</th><th class="r hide-sm">Likes</th><th class="r hide-sm">Kommentare</th></tr></thead>
-          <tbody id="postBody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="view" id="v-bestenliste" hidden>
-      <div class="head">
-        <div>
-          <h1>Bestenliste</h1>
-          <p id="lbSub">Deine erfolgreichsten Shorts</p>
-        </div>
-      </div>
-      <div class="box">
-        <div class="box-h"><h2>Lernmodus</h2><span class="status" id="learnStatus"></span></div>
-        <div class="box-b"><p class="muted" id="learnText" style="margin:0"></p></div>
-        <div class="scroll"><table>
-          <thead><tr><th>Thema</th><th class="r hide-sm">Bewertete Videos</th><th class="r">Ø Aufrufe (3 Tage)</th><th class="hide-sm" style="width:30%"></th></tr></thead>
-          <tbody id="learnBody"></tbody>
-        </table></div>
-      </div>
-      <div class="box scroll">
-        <table>
-          <thead><tr>
-            <th>#</th><th>Video</th>
-            <th class="r"><button type="button" data-sort="views" aria-pressed="true">Aufrufe</button></th>
-            <th class="r hide-sm"><button type="button" data-sort="likes" aria-pressed="false">Likes</button></th>
-            <th class="r hide-sm"><button type="button" data-sort="comments" aria-pressed="false">Kommentare</button></th>
-          </tr></thead>
-          <tbody id="lbBody"></tbody>
-        </table>
-      </div>
-    </section>
-
+    <!-- KANAL -->
     <section class="view" id="v-kanal" hidden>
       <div class="head">
         <div>
@@ -331,18 +499,22 @@ details[open] summary { margin-bottom: 10px; }
           <p>Verbindung zu YouTube, Sendezeiten und Aktionen</p>
         </div>
       </div>
-      <div class="banner info" id="previewNote" hidden>
+      <div class="banner" id="previewNote" hidden>
         <div><b>Vorschau.</b> <span class="muted">Einstellungen und Aktionen funktionieren auf deinem Zima-Server.</span></div>
       </div>
-      <div class="grid-2">
-        <div class="view" style="gap:20px">
-          <div class="box">
-            <div class="box-h"><h2>YouTube-Verbindung</h2><span class="status" id="conStatus"></span></div>
-            <div class="box-b form" id="conBody"></div>
+      <div class="grid g-11" style="align-items:start">
+        <div class="view" style="gap:22px;animation:none">
+          <div class="card">
+            <div class="card-h"><h2>YouTube-Verbindung</h2><span class="pill" id="conStatus"></span></div>
+            <div class="card-b form" id="conBody"></div>
           </div>
-          <div class="box">
-            <div class="box-h"><h2>Google-Zugang</h2><span class="status" id="credStatus"></span></div>
-            <form class="box-b form" id="credForm">
+          <div class="card">
+            <div class="card-h"><h2>Zuschauer-Daten</h2><span class="pill" id="anaStatus"></span></div>
+            <div class="card-b form" id="anaBody"></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h2>Google-Zugang (Uploads)</h2><span class="pill" id="credStatus"></span></div>
+            <form class="card-b form" id="credForm">
               <div class="field">
                 <label for="clientId">Client-ID</label>
                 <input id="clientId" autocomplete="off" spellcheck="false" placeholder="1234567890-abc.apps.googleusercontent.com">
@@ -356,20 +528,20 @@ details[open] summary { margin-bottom: 10px; }
               <details>
                 <summary>So bekommst du Client-ID und Clientschlüssel</summary>
                 <ol class="steps">
-                  <li>Mit dem Google-Konto deines Kanals ein <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Projekt anlegen</a>.</li>
-                  <li><a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com" target="_blank" rel="noopener">YouTube Data API v3</a> aktivieren.</li>
-                  <li>Unter <a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener">Google Auth Platform</a> starten: App-Name z. B. „Shorts Zentrale“ (ohne „YouTube“ oder „Google“, das lehnt Google ab), Zielgruppe Extern. Danach unter Zielgruppe → Testnutzer das Google-Konto deines Kanals eintragen.</li>
-                  <li>Unter Clients einen Client vom Typ „Fernseher und Geräte mit begrenzter Eingabe“ erstellen.</li>
-                  <li>Client-ID und Clientschlüssel hier eintragen.</li>
+                  <li><div>Mit dem Google-Konto deines Kanals ein <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">Projekt anlegen</a>.</div></li>
+                  <li><div><a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com" target="_blank" rel="noopener">YouTube Data API v3</a> aktivieren.</div></li>
+                  <li><div>Unter <a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener">Google Auth Platform</a> starten: App-Name z. B. „Shorts Zentrale“ (ohne „YouTube“ oder „Google“), Zielgruppe Extern.</div></li>
+                  <li><div>Unter Clients einen Client vom Typ „Fernseher und Geräte mit begrenzter Eingabe“ erstellen.</div></li>
+                  <li><div>Client-ID und Clientschlüssel hier eintragen.</div></li>
                 </ol>
               </details>
             </form>
           </div>
         </div>
-        <div class="view" style="gap:20px">
-          <div class="box">
-            <div class="box-h"><h2>Zeitplan</h2></div>
-            <form class="box-b form" id="planForm">
+        <div class="view" style="gap:22px;animation:none">
+          <div class="card">
+            <div class="card-h"><h2>Zeitplan</h2></div>
+            <form class="card-b form" id="planForm">
               <div class="field">
                 <span class="label">Sendezeiten (deutsche Zeit, bis zu 6 pro Tag)</span>
                 <div class="hours" id="hours" role="group" aria-label="Sendezeiten"></div>
@@ -381,16 +553,15 @@ details[open] summary { margin-bottom: 10px; }
                   <option value="unlisted">Nicht gelistet</option>
                   <option value="private">Privat</option>
                 </select>
-                <span class="hint">Neue Google-Projekte laden zunächst nur privat hoch, bis YouTube das Projekt geprüft hat.</span>
               </div>
               <div class="row"><button class="btn primary" type="submit" id="planSave">Speichern</button><span class="msg" id="planMsg"></span></div>
             </form>
           </div>
-          <div class="box">
-            <div class="box-h"><h2>Aktionen</h2></div>
-            <div class="box-b form">
-              <div class="row"><button class="btn" type="button" id="postNow">Jetzt ein Video posten</button><span class="hint muted">Nimmt das nächste Video aus dem Sendeplan.</span></div>
-              <div class="row"><button class="btn" type="button" id="syncNow">Neue Skripte abrufen</button><span class="hint muted">Passiert sonst alle 2 Stunden.</span></div>
+          <div class="card">
+            <div class="card-h"><h2>Aktionen</h2></div>
+            <div class="card-b form">
+              <div class="row"><button class="btn" type="button" id="postNow">Jetzt ein Video posten</button><span class="label">Nimmt das nächste Video aus dem Sendeplan.</span></div>
+              <div class="row"><button class="btn" type="button" id="syncNow">Alles aktualisieren</button><span class="label">Neue Skripte, Aufrufe und Zuschauer-Daten holen.</span></div>
               <span class="msg" id="actMsg"></span>
             </div>
           </div>
@@ -398,7 +569,7 @@ details[open] summary { margin-bottom: 10px; }
       </div>
     </section>
 
-    <footer class="foot" style="margin-top:32px">
+    <footer class="foot" style="margin-top:36px">
       <span id="stand"></span>
       <span id="host"></span>
     </footer>
@@ -411,15 +582,22 @@ details[open] summary { margin-bottom: 10px; }
 (function () {
   "use strict";
   var TZ = "Europe/Berlin";
-  var S = { d: null, live: false, filter: "Alle", sort: "views", hours: null, timer: null };
+  var S = { d: null, live: false, filter: "Alle", vsort: "new", grow: "views", one: null, hours: null, timer: null, counted: {} };
   var $ = function (id) { return document.getElementById(id); };
   var nf = new Intl.NumberFormat("de-DE");
+  var nf1 = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
   var nfc = new Intl.NumberFormat("de-DE", { notation: "compact", maximumFractionDigits: 1 });
   var fDay = new Intl.DateTimeFormat("de-DE", { timeZone: TZ, weekday: "long", day: "numeric", month: "long" });
   var fDayS = new Intl.DateTimeFormat("de-DE", { timeZone: TZ, weekday: "short", day: "2-digit", month: "2-digit" });
+  var fDate = new Intl.DateTimeFormat("de-DE", { timeZone: TZ, day: "numeric", month: "short" });
   var fTime = new Intl.DateTimeFormat("de-DE", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
   var fKey = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23" });
+  // Feste Farbe je Thema (nie nach Rang): gleiche Reihenfolge wie die Nischen des Kanals
+  var NICHES = ["Business", "Psychologie", "Geschichte", "Geld & Finanzen", "Geografie"];
+  function nicheColor(n) { var i = NICHES.indexOf(n); return "var(--n" + (i === -1 ? 0 : i + 1) + ")"; }
+  var SVGNS = "http://www.w3.org/2000/svg";
 
+  // --- kleine Helfer ---------------------------------------------------------
   function h(tag, attrs, kids) {
     var e = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
@@ -430,12 +608,17 @@ details[open] summary { margin-bottom: 10px; }
     (kids || []).forEach(function (c) { if (c != null) e.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
     return e;
   }
+  function s(tag, attrs, kids) {
+    var e = document.createElementNS(SVGNS, tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) { if (k === "text") e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); });
+    (kids || []).forEach(function (c) { if (c) e.appendChild(c); });
+    return e;
+  }
   function clear(e) { e.textContent = ""; return e; }
   function berlin(d) {
     var p = fKey.formatToParts(d), g = function (t) { return p.find(function (x) { return x.type === t; }).value; };
     return { day: g("year") + "-" + g("month") + "-" + g("day"), hour: Number(g("hour")) };
   }
-  // Kommende Sendeplätze. Zeitumstellungen in Deutschland sind ganze Stunden, daher genügt ein Stundenraster.
   function slots(hours, n) {
     var out = [], t = new Date(); t.setUTCMinutes(0, 0, 0); t = new Date(t.getTime() + 3600e3);
     for (var i = 0; out.length < n && i < 24 * 500; i++) {
@@ -449,31 +632,241 @@ details[open] summary { margin-bottom: 10px; }
     var m = Math.round(ms / 60000), d = Math.floor(m / 1440), hh = Math.floor((m % 1440) / 60), mm = m % 60;
     return "in " + (d ? d + " T " + hh + " Std" : hh ? hh + " Std " + mm + " Min" : mm + " Min");
   }
-  function thumb(v, size) {
-    var box = h("span", { cls: "thumb " + size });
+  function thumb(v, size, extra) {
+    var box = h("span", { cls: "thumb " + (size || "") });
     if (v && v.slug) {
       var img = h("img", { src: "api/thumb/" + v.slug + ".jpg", alt: "", loading: "lazy" });
       img.addEventListener("error", function () { img.remove(); });
       box.appendChild(img);
     }
+    (extra || []).forEach(function (x) { if (x) box.appendChild(x); });
     return box;
   }
-  function ytLink(v, text) {
-    return v.video_id ? h("a", { href: "https://youtube.com/shorts/" + v.video_id, target: "_blank", rel: "noopener", text: text }) : h("span", { text: text });
-  }
+  function ytUrl(v) { return v.video_id ? "https://youtube.com/shorts/" + v.video_id : null; }
   function vidCell(v, sub) {
-    return h("div", { cls: "vid" }, [thumb(v, "t-xs"), h("div", { cls: "tt" }, [ytLink(v, v.title || v.slug), sub ? h("div", { cls: "sub", text: sub }) : null])]);
+    var title = ytUrl(v) ? h("a", { href: ytUrl(v), target: "_blank", rel: "noopener", text: v.title || v.slug }) : h("span", { text: v.title || v.slug });
+    return h("div", { cls: "vid" }, [thumb(v, "t-xs"), h("div", { cls: "tt" }, [title, sub ? h("div", { cls: "sub", text: sub }) : null])]);
   }
-  function postedAt(v) {
-    var d = v.posted_at ? new Date(v.posted_at) : null;
-    return d ? fDayS.format(d) + ", " + fTime.format(d) : "–";
+  function chip(n) { return h("span", { cls: "chip", style: "--c:" + nicheColor(n) }, [h("i"), n || "–"]); }
+  function pill(el, cls, text) { clear(el).append(h("span", { cls: "dot " + cls }), text); }
+  function pct(x) { return x == null ? "–" : nf1.format(x) + " %"; }
+  function secs(x) { return x == null ? "–" : nf1.format(x) + " s"; }
+  function countUp(el, to, fmt) {
+    var key = el.id, from = S.counted[key] == null ? 0 : S.counted[key];
+    S.counted[key] = to;
+    if (from === to || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt(to); return; }
+    var t0 = performance.now(), dur = 900;
+    (function step(now) {
+      var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(from + (to - from) * e);
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
   }
-  function emptyRow(cols, title, text) {
-    return h("tr", null, [h("td", { colspan: String(cols) }, [h("div", { cls: "empty" }, [h("b", { text: title }), text])])]);
+
+  // --- Diagramme ---------------------------------------------------------------
+  function tipFor(box) {
+    var t = box.querySelector(".tip");
+    if (!t) { t = h("div", { cls: "tip" }); box.appendChild(t); }
+    return t;
   }
+  function showTip(box, x, y, html) {
+    var t = tipFor(box);
+    clear(t).append.apply(t, html);
+    t.classList.add("on");
+    var bw = box.clientWidth, tw = t.offsetWidth, th = t.offsetHeight;
+    var left = Math.min(Math.max(0, x + 14), bw - tw);
+    if (x + 14 + tw > bw) left = Math.max(0, x - tw - 14);
+    t.style.left = left + "px";
+    t.style.top = Math.max(0, y - th - 10) + "px";
+  }
+  function hideTip(box) { var t = box.querySelector(".tip"); if (t) t.classList.remove("on"); }
+  function niceMax(v) {
+    if (v <= 0) return 1;
+    var p = Math.pow(10, Math.floor(Math.log10(v))), m = v / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p;
+  }
+  // Achse mit runden Schritten (z. B. 0, 1.000, 2.000, 3.000, 4.000) statt krummer Viertel.
+  function niceScale(v) {
+    if (v <= 0) return { max: 4, step: 1 };
+    var step = niceMax(v / 4);
+    if (step < 1) step = 1;
+    return { max: Math.ceil(v / step - 1e-9) * step, step: step };
+  }
+  // Obergrenze für Prozent-Kurven: mindestens 100 %, sonst in 25er-Schritten (Shorts laufen oft in Schleife, dann über 100 %)
+  function pctTop(pts) { var m = Math.max.apply(null, pts.map(function (p) { return p.y; })); return Math.max(100, m > 150 ? Math.ceil(m / 50) * 50 : Math.ceil(m / 25) * 25); }
+  function big(v) { return Math.abs(v) >= 1e6 ? nfc.format(v) : nf.format(Math.round(v)); }
+  function emptyChart(box, title, text, height) {
+    clear(box).appendChild(h("div", { cls: "empty", style: "min-height:" + (height || 200) + "px;display:grid;place-content:center" }, [h("b", { text: title }), text]));
+  }
+
+  // Linie mit Fläche, Fadenkreuz und Tooltip. pts: [{x: Zahl, y: Zahl}], x aufsteigend.
+  function lineChart(box, pts, o) {
+    clear(box);
+    var W = Math.max(260, box.clientWidth), H = o.height || 230, L = o.left || 46, R = 10, T = 12, B = 28;
+    var xs = pts.map(function (p) { return p.x; }), x0 = o.x0 != null ? o.x0 : Math.min.apply(null, xs), x1 = o.x1 != null ? o.x1 : Math.max.apply(null, xs);
+    if (x1 === x0) x1 = x0 + 1;
+    var yMin = o.yMin || 0;
+    var sc = o.yMax ? { max: o.yMax, step: o.yStep || (o.yMax - yMin) / 4 } : niceScale(Math.max.apply(null, pts.map(function (p) { return p.y; })) * 1.05);
+    var yMax = sc.max;
+    while ((yMax - yMin) / sc.step > 6) sc.step *= 2;
+    var X = function (v) { return L + (v - x0) / (x1 - x0) * (W - L - R); };
+    var Y = function (v) { return T + (1 - (v - yMin) / (yMax - yMin)) * (H - T - B); };
+    var svg = s("svg", { viewBox: "0 0 " + W + " " + H, height: H, role: "img", "aria-label": o.label || "Diagramm" });
+    var gid = "g" + Math.random().toString(36).slice(2);
+    svg.appendChild(s("defs", null, [s("linearGradient", { id: gid, x1: 0, y1: 0, x2: 0, y2: 1 }, [
+      s("stop", { offset: "0%", "stop-color": o.color, "stop-opacity": .35 }), s("stop", { offset: "100%", "stop-color": o.color, "stop-opacity": 0 })])]));
+    for (var gv = yMin; gv <= yMax + 1e-9; gv += sc.step) {
+      var gy = Y(gv);
+      svg.appendChild(s("line", { x1: L, x2: W - R, y1: gy, y2: gy, class: "grid-l" }));
+      svg.appendChild(s("text", { x: L - 8, y: gy + 4, "text-anchor": "end", class: "axis-t", text: o.yFmt(gv) }));
+    }
+    (o.xTicks || []).forEach(function (tk) {
+      svg.appendChild(s("text", { x: X(tk.x), y: H - 6, "text-anchor": "middle", class: "axis-t", text: tk.label }));
+    });
+    (o.marks || []).forEach(function (m, i) {
+      var mx = X(m.x);
+      svg.appendChild(s("line", { x1: mx, x2: mx, y1: T, y2: H - B, stroke: "rgba(255,255,255,.18)", "stroke-dasharray": "3 4" }));
+      svg.appendChild(s("text", { x: mx + 5, y: T + 11, class: "axis-t", text: m.label }));
+    });
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + X(p.x).toFixed(1) + " " + Y(p.y).toFixed(1); }).join(" ");
+    svg.appendChild(s("path", { d: d + " L" + X(pts[pts.length - 1].x).toFixed(1) + " " + Y(yMin) + " L" + X(pts[0].x).toFixed(1) + " " + Y(yMin) + " Z", fill: "url(#" + gid + ")" }));
+    var line = s("path", { d: d, fill: "none", stroke: o.color, "stroke-width": 2.5, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    svg.appendChild(line);
+    var cross = s("line", { y1: T, y2: H - B, stroke: "rgba(255,255,255,.35)", visibility: "hidden" });
+    var dot = s("circle", { r: 5, fill: o.color, stroke: "#16142a", "stroke-width": 2, visibility: "hidden" });
+    svg.appendChild(cross); svg.appendChild(dot);
+    var hit = s("rect", { x: L, y: 0, width: W - L - R, height: H, fill: "transparent" });
+    svg.appendChild(hit);
+    box.appendChild(svg);
+    try { var len = line.getTotalLength(); line.style.strokeDasharray = len; line.style.strokeDashoffset = len; line.getBoundingClientRect(); line.style.transition = "stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)"; line.style.strokeDashoffset = "0"; } catch (e) {}
+    function move(ev) {
+      var r = svg.getBoundingClientRect(), mx = (ev.clientX - r.left) * W / r.width;
+      var best = pts[0];
+      pts.forEach(function (p) { if (Math.abs(X(p.x) - mx) < Math.abs(X(best.x) - mx)) best = p; });
+      var px = X(best.x), py = Y(best.y);
+      cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("visibility", "visible");
+      dot.setAttribute("cx", px); dot.setAttribute("cy", py); dot.setAttribute("visibility", "visible");
+      showTip(box, px * r.width / W, py * r.height / H, o.tip(best));
+    }
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", function () { cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); hideTip(box); });
+  }
+
+  // Säulen. items: [{value, color, tip: [nodes], label}]
+  function barChart(box, items, o) {
+    clear(box);
+    var W = Math.max(260, box.clientWidth), H = o.height || 220, L = o.left || 46, R = 6, T = 10, B = o.bottom == null ? 24 : o.bottom;
+    var sc = niceScale(Math.max.apply(null, items.map(function (x) { return x.value; }).concat([1])) * 1.05), max = sc.max;
+    var Y = function (v) { return T + (1 - v / max) * (H - T - B); };
+    var svg = s("svg", { viewBox: "0 0 " + W + " " + H, height: H, role: "img", "aria-label": o.label || "Säulendiagramm" });
+    for (var gv = 0; gv <= max + 1e-9; gv += sc.step) {
+      var gy = Y(gv);
+      svg.appendChild(s("line", { x1: L, x2: W - R, y1: gy, y2: gy, class: "grid-l" }));
+      svg.appendChild(s("text", { x: L - 8, y: gy + 4, "text-anchor": "end", class: "axis-t", text: o.yFmt(gv) }));
+    }
+    var n = items.length, slot = (W - L - R) / Math.max(1, n), bw = Math.max(4, Math.min(o.maxBar || 34, slot - 2));
+    items.forEach(function (it, i) {
+      var x = L + slot * i + (slot - bw) / 2, y = Y(Math.max(0, it.value)), hgt = Math.max(1.5, H - B - y);
+      var g = s("g", { style: "cursor:pointer" });
+      var r = Math.min(4, bw / 2);
+      var path = "M" + x + " " + (H - B) + " V" + (y + r) + " Q" + x + " " + y + " " + (x + r) + " " + y + " H" + (x + bw - r) + " Q" + (x + bw) + " " + y + " " + (x + bw) + " " + (y + r) + " V" + (H - B) + " Z";
+      var bar = s("path", { d: path, fill: it.color, style: "transform-origin:" + (x + bw / 2) + "px " + (H - B) + "px;animation:barIn .7s " + (i * 0.02) + "s cubic-bezier(.2,.8,.2,1) both" });
+      g.appendChild(s("rect", { x: L + slot * i, y: T, width: slot, height: H - T - B, fill: "transparent" }));
+      g.appendChild(bar);
+      if (it.label && o.showLabels) svg.appendChild(s("text", { x: x + bw / 2, y: H - 6, "text-anchor": "middle", class: "axis-t", text: it.label }));
+      if (it.valueLabel) svg.appendChild(s("text", { x: x + bw / 2, y: y - 6, "text-anchor": "middle", fill: "#f3f1fb", "font-size": 12, "font-weight": 700, text: it.valueLabel }));
+      g.addEventListener("pointerenter", function () { bar.setAttribute("opacity", .8); showTip(box, (x + bw / 2) * box.clientWidth / W, y * box.clientHeight / H, it.tip); });
+      g.addEventListener("pointerleave", function () { bar.removeAttribute("opacity"); hideTip(box); });
+      if (it.href) g.addEventListener("click", function () { window.open(it.href, "_blank", "noopener"); });
+      svg.appendChild(g);
+    });
+    box.appendChild(svg);
+  }
+
+  function donut(box, items, total) {
+    clear(box);
+    var size = 150, r = 62, w = 18, c = size / 2, a = -Math.PI / 2;
+    var svg = s("svg", { viewBox: "0 0 " + size + " " + size, role: "img", "aria-label": "Anteil der Aufrufe je Thema" });
+    svg.appendChild(s("circle", { cx: c, cy: c, r: r, fill: "none", stroke: "rgba(255,255,255,.06)", "stroke-width": w }));
+    var gap = items.length > 1 ? 0.035 : 0;
+    items.forEach(function (it) {
+      var frac = it.value / total; if (frac <= 0) return;
+      var a2 = a + frac * Math.PI * 2, s1 = a + gap / 2, s2 = Math.max(s1 + 0.001, a2 - gap / 2);
+      var large = s2 - s1 > Math.PI ? 1 : 0;
+      var d = "M" + (c + r * Math.cos(s1)) + " " + (c + r * Math.sin(s1)) + " A" + r + " " + r + " 0 " + large + " 1 " + (c + r * Math.cos(s2)) + " " + (c + r * Math.sin(s2));
+      var p = s("path", { d: d, fill: "none", stroke: it.color, "stroke-width": w, "stroke-linecap": "butt", style: "cursor:pointer" });
+      p.addEventListener("pointerenter", function () { p.setAttribute("stroke-width", w + 4); showTip(box, 75, 20, it.tip); });
+      p.addEventListener("pointerleave", function () { p.setAttribute("stroke-width", w); hideTip(box); });
+      svg.appendChild(p);
+      a = a2;
+    });
+    svg.appendChild(s("text", { x: c, y: c + 2, "text-anchor": "middle", fill: "#f3f1fb", "font-size": 22, "font-weight": 750, text: big(total) }));
+    svg.appendChild(s("text", { x: c, y: c + 20, "text-anchor": "middle", fill: "#8f8aab", "font-size": 11, text: "Aufrufe" }));
+    box.appendChild(svg);
+  }
+
+  function spark(el, vals, color) {
+    clear(el);
+    if (vals.length < 2) return;
+    var W = 200, H = 30, mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals);
+    if (mx === mn) mx = mn + 1;
+    el.setAttribute("viewBox", "0 0 " + W + " " + H);
+    el.setAttribute("preserveAspectRatio", "none");
+    var d = vals.map(function (v, i) { return (i ? "L" : "M") + (i / (vals.length - 1) * W).toFixed(1) + " " + (H - 3 - (v - mn) / (mx - mn) * (H - 6)).toFixed(1); }).join(" ");
+    el.appendChild(s("path", { d: d, fill: "none", stroke: color, "stroke-width": 2, "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));
+  }
+
+  // --- Zuschauer-Daten auswerten ----------------------------------------------
+  // Kurve: [[anteil 0..1, zuschauer 0..1+], ...]. Wert an Stelle x durch lineare Interpolation.
+  function at(curve, x) {
+    if (!curve || !curve.length) return null;
+    if (x <= curve[0][0]) return curve[0][1];
+    for (var i = 1; i < curve.length; i++) {
+      if (x <= curve[i][0]) { var a = curve[i - 1], b = curve[i]; return a[1] + (b[1] - a[1]) * (x - a[0]) / (b[0] - a[0]); }
+    }
+    return curve[curve.length - 1][1];
+  }
+  function withCurve(posted) { return posted.filter(function (v) { return v.curve && v.curve.length > 3; }); }
+  function sentenceLoss(v) {
+    var m = v.marks || [];
+    if (!m.length) return [];
+    return m.map(function (start, i) {
+      var end = i + 1 < m.length ? m[i + 1] : 1;
+      var a = at(v.curve, Math.max(start, v.curve[0][0])), b = at(v.curve, end);
+      return { i: i, start: start, end: end, loss: Math.max(0, (a - b) * 100), keep: b * 100 };
+    });
+  }
+  function avgLoss(vs) {
+    var sums = [], n = [];
+    vs.forEach(function (v) { sentenceLoss(v).forEach(function (x) { sums[x.i] = (sums[x.i] || 0) + x.loss; n[x.i] = (n[x.i] || 0) + 1; }); });
+    return sums.map(function (t, i) { return t / n[i]; });
+  }
+  function sentenceName(i, n) { return i === 0 ? "Satz 1 (Einstieg)" : i === n - 1 ? "Satz " + (i + 1) + " (Schluss)" : "Satz " + (i + 1); }
+
+  // --- Bereiche ------------------------------------------------------------------
   function schedule(d) {
-    var at = slots(d.slots, d.queue.length);
-    return d.queue.map(function (v, i) { return { v: v, at: at[i], i: i }; });
+    var at2 = slots(d.slots, d.queue.length);
+    return d.queue.map(function (v, i) { return { v: v, at: at2[i], i: i }; });
+  }
+  function totals(d) {
+    var withStats = d.posted.filter(function (v) { return v.views != null; });
+    var views = withStats.reduce(function (a, v) { return a + (v.views || 0); }, 0);
+    var pcts = d.posted.filter(function (v) { return v.avg_pct != null; });
+    var durs = d.posted.filter(function (v) { return v.avg_dur != null; });
+    return {
+      has: withStats.length > 0, views: views,
+      avgPct: pcts.length ? pcts.reduce(function (a, v) { return a + v.avg_pct; }, 0) / pcts.length : null,
+      avgDur: durs.length ? durs.reduce(function (a, v) { return a + v.avg_dur; }, 0) / durs.length : null
+    };
+  }
+  function histDelta(d, key, hours) {
+    var hst = d.history || [];
+    if (hst.length < 2) return null;
+    var last = hst[hst.length - 1], cut = new Date(new Date(last.at).getTime() - hours * 3600e3), base = null;
+    for (var i = hst.length - 1; i >= 0; i--) { if (new Date(hst[i].at) <= cut) { base = hst[i]; break; } }
+    base = base || hst[0];
+    return last[key] - base[key];
   }
 
   function renderHeader(d) {
@@ -481,7 +874,7 @@ details[open] summary { margin-bottom: 10px; }
     document.querySelectorAll(".js-avatar").forEach(function (av) {
       clear(av);
       if (ch && ch.thumbnail) av.appendChild(h("img", { src: ch.thumbnail, alt: "" }));
-      else av.textContent = ch && ch.title ? ch.title.charAt(0).toUpperCase() : "–";
+      else av.textContent = ch && ch.title ? ch.title.charAt(0).toUpperCase() : "60";
     });
     document.querySelectorAll(".js-whoName").forEach(function (e) { e.textContent = ch ? ch.title : "Kein Kanal"; });
     document.querySelectorAll(".js-whoDot").forEach(function (e) {
@@ -491,70 +884,63 @@ details[open] summary { margin-bottom: 10px; }
   }
 
   function renderOverview(d, sch) {
-    var hoursTxt = d.slots.map(function (x) { return (x < 10 ? "0" : "") + x + ":00"; }).join(", ");
-    var fav = d.learning && d.learning.favorite;
-    $("ovSub").textContent = "Postet täglich um " + hoursTxt + " Uhr" + (fav ? " · bevorzugt gerade " + fav : "");
-    var st = clear($("ovStatus"));
-    st.appendChild(h("span", { cls: "dot " + (d.connected ? "live" : "warn") }));
-    st.appendChild(document.createTextNode(d.connected ? "Automatik aktiv" : "Wartet auf Kanal"));
+    var ch = d.channel || {}, T = totals(d);
+    $("hName").textContent = ch.title || "Shorts-Zentrale";
+    var hoursTxt = d.slots.map(function (x) { return (x < 10 ? "0" : "") + x; }).join(", ");
+    $("hSub").textContent = (ch.handle ? ch.handle + " · " : "") + d.slots.length + " Shorts täglich um " + hoursTxt + " Uhr";
+    pill($("hStatus"), d.connected ? "live" : "warn", d.connected ? "Automatik läuft" : "Wartet auf Kanal");
     $("ovBanner").hidden = d.connected;
     if (d.expired) {
       clear($("ovBannerText")).append(h("b", { text: "Die Verbindung zu YouTube ist abgelaufen." }), " ", h("span", { cls: "muted", text: "Bitte einmal neu verbinden, dann geht es automatisch weiter." }));
       $("ovBannerBtn").textContent = "Neu verbinden";
     }
 
-    var hasStats = d.posted.some(function (v) { return v.views != null; });
-    var views = d.posted.reduce(function (a, v) { return a + (v.views || 0); }, 0);
-    $("kViews").textContent = hasStats ? nfc.format(views) : "–";
-    $("kSubs").textContent = d.channel ? nfc.format(d.channel.subscribers || 0) : "–";
-    $("kPosted").textContent = nf.format(d.posted.length);
-    var days = Math.floor(d.queue.length / Math.max(1, d.slots.length));
-    $("kQueue").textContent = nf.format(d.queue.length);
-    $("kQueueS").textContent = d.queue.length ? "reicht für " + days + (days === 1 ? " Tag" : " Tage") : "Warteschlange leer";
-    $("busy").textContent = d.busy || "";
+    if (T.has) countUp($("kViews"), T.views, function (v) { return nf.format(Math.round(v)); }); else $("kViews").textContent = "–";
+    if (d.channel) countUp($("kSubs"), ch.subscribers || 0, function (v) { return nf.format(Math.round(v)); }); else $("kSubs").textContent = "–";
+    countUp($("kPosted"), d.posted.length, function (v) { return nf.format(Math.round(v)); });
+    var dv = histDelta(d, "views", 24), ds = histDelta(d, "subs", 24);
+    clear($("kViewsS")).append(dv != null ? h("span", { cls: "up", text: "+" + nf.format(dv) }) : "", dv != null ? " in 24 Std" : "alle Shorts");
+    clear($("kSubsS")).append(ds != null ? h("span", { cls: "up", text: (ds >= 0 ? "+" : "") + nf.format(ds) }) : "", ds != null ? " in 24 Std" : "verbundener Kanal");
+    var today = berlin(new Date()).day;
+    var todayN = d.posted.filter(function (v) { return v.posted_at && berlin(new Date(v.posted_at)).day === today; }).length;
+    $("kPostedS").textContent = todayN + " heute · Vorrat " + d.queue.length;
+    $("kKeep").textContent = pct(T.avgPct);
+    $("kKeepS").textContent = T.avgPct != null ? "der Videolänge, Ø " + secs(T.avgDur) : d.analytics && d.analytics.connected ? "kommt in 1–3 Tagen" : "noch nicht verbunden";
+    var hst = d.history || [];
+    spark($("sparkViews"), hst.slice(-72).map(function (p) { return p.views; }), "#ffd166");
+    spark($("sparkSubs"), hst.slice(-72).map(function (p) { return p.subs; }), "#ffd166");
 
+    renderGrowth(d);
+
+    // Nächster Upload mit Countdown-Ring
     var nb = clear($("nextBox"));
     if (!sch.length) {
-      nb.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Nichts geplant" }), "Neue Skripte kommen automatisch dazu."]));
+      nb.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Nichts geplant" }), "Neue Skripte kommen jeden Morgen automatisch dazu."]));
     } else {
-      var s = sch[0];
+      var x = sch[0];
       nb.appendChild(h("div", { cls: "next" }, [
-        thumb(s.v, "t-lg"),
+        thumb(x.v, "t-lg"),
         h("div", { style: "min-width:0" }, [
-          h("div", { cls: "label", text: fDay.format(s.at) }),
-          h("div", { cls: "when num", text: fTime.format(s.at) + " Uhr" }),
-          h("div", { cls: "cd", id: "cd", text: rel(s.at - new Date()) }),
-          h("div", { cls: "ttl", text: s.v.title }),
-          h("div", { cls: "row", style: "margin-top:8px" }, [h("span", { cls: "tag", text: s.v.niche }), h("span", { cls: "label num", text: "ca. " + s.v.seconds + " s" })])
+          h("div", { cls: "label", text: fDay.format(x.at) }),
+          h("div", { cls: "when", text: fTime.format(x.at) + " Uhr" }),
+          h("span", { cls: "pill cd", id: "cd" }, [h("span", { cls: "dot live" }), rel(x.at - new Date())]),
+          h("div", { cls: "ttl", text: x.v.title }),
+          h("div", { cls: "row", style: "margin-top:8px" }, [chip(x.v.niche), h("span", { cls: "label", text: "ca. " + x.v.seconds + " s" })])
         ])
       ]));
+      var busy = h("div", { cls: "busy" }, [h("span", { cls: "dot live" }), d.busy || ""]);
+      busy.hidden = !d.busy;
+      nb.appendChild(busy);
     }
 
-    var soon = clear($("soonBody"));
-    sch.slice(1, 7).forEach(function (s) {
-      soon.appendChild(h("tr", null, [
-        h("td", { cls: "num", style: "white-space:nowrap" }, [fDayS.format(s.at).replace(".,", ","), h("br"), h("span", { cls: "muted", text: fTime.format(s.at) })]),
-        h("td", null, [vidCell(s.v, s.v.niche)])
-      ]));
-    });
-    if (sch.length <= 1) soon.appendChild(emptyRow(2, "Keine weiteren Videos geplant", ""));
-
-    var top = clear($("topBox"));
-    var ranked = d.posted.filter(function (v) { return v.views != null; }).sort(function (a, b) { return b.views - a.views; }).slice(0, 5);
-    if (!ranked.length) {
-      top.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Noch keine Zahlen" }), "Sobald Videos online sind, stehen hier die meistgesehenen."]));
-    } else {
-      var tb = h("tbody");
-      ranked.forEach(function (v, i) {
-        tb.appendChild(h("tr", null, [h("td", { cls: "rank" + (i < 3 ? " top" : ""), text: String(i + 1) }), h("td", null, [vidCell(v)]), h("td", { cls: "r num", text: nfc.format(v.views) })]));
-      });
-      top.appendChild(h("div", { cls: "scroll" }, [h("table", null, [tb])]));
-    }
+    renderBars(d);
+    renderDonut(d);
+    renderGoals(d, T);
 
     var log = clear($("logList"));
     var ev = d.events || [];
     if (!ev.length) log.appendChild(h("li", null, [h("span", { cls: "dot" }), h("span", { cls: "muted", text: "Noch keine Aktivität." }), h("time", { text: "" })]));
-    ev.slice(0, 8).forEach(function (e) {
+    ev.slice(0, 7).forEach(function (e) {
       var t = new Date(e.at);
       log.appendChild(h("li", null, [
         h("span", { cls: "dot " + (e.level === "ok" ? "ok" : e.level === "error" ? "err" : "warn") }),
@@ -562,129 +948,333 @@ details[open] summary { margin-bottom: 10px; }
         h("time", { datetime: e.at, text: fDayS.format(t) + " " + fTime.format(t) })
       ]));
     });
-  }
+    $("busyTop").textContent = d.busy || "";
 
-  function renderPlan(d, sch) {
-    $("planSub").textContent = d.queue.length + " Videos geplant. Täglich um " + d.slots.map(function (x) { return x + " Uhr"; }).join(", ").replace(/, ([^,]+)$/, " und $1") + ".";
-    var seg = clear($("planFilter"));
-    ["Alle"].concat(Array.from(new Set(d.queue.map(function (v) { return v.niche; })))).forEach(function (n) {
-      var b = h("button", { type: "button", "aria-pressed": String(S.filter === n), text: n });
-      b.addEventListener("click", function () { S.filter = n; render(); });
-      seg.appendChild(b);
-    });
-    var body = clear($("planBody")), lastDay = "";
-    var rows = sch.filter(function (s) { return S.filter === "Alle" || s.v.niche === S.filter; });
-    rows.forEach(function (s) {
-      var day = berlin(s.at).day;
-      if (day !== lastDay) {
-        body.appendChild(h("tr", { cls: "day-row" }, [h("td", { colspan: "4", text: fDay.format(s.at) })]));
-        lastDay = day;
-      }
-      body.appendChild(h("tr", { cls: s.i === 0 ? "is-next" : "" }, [
-        h("td", { cls: "num", text: fTime.format(s.at) }),
-        h("td", null, [vidCell(s.v, s.v.hook)]),
-        h("td", { cls: "hide-sm" }, [h("span", { cls: "tag", text: s.v.niche })]),
-        h("td", { cls: "r num hide-sm", text: s.v.seconds + " s" })
+    var strip = clear($("soonStrip"));
+    var daysLeft = Math.floor(d.queue.length / Math.max(1, d.slots.length));
+    $("soonSub").textContent = !d.queue.length ? "Warteschlange leer"
+      : d.queue.length + " Videos im Vorrat, " + (daysLeft < 1 ? "reicht für heute" : "reicht für " + daysLeft + (daysLeft === 1 ? " Tag" : " Tage"));
+    sch.slice(1, 13).forEach(function (x) {
+      strip.appendChild(h("div", { cls: "item" }, [
+        thumb(x.v, "", [h("span", { cls: "badge", text: fTime.format(x.at) })]),
+        h("div", { cls: "t", text: x.v.title }),
+        h("div", { cls: "w", text: fDayS.format(x.at) + " · " + x.v.niche })
       ]));
     });
-    if (!rows.length) body.appendChild(emptyRow(4, "Keine Videos geplant", "Für dieses Thema liegt gerade nichts in der Warteschlange."));
+    if (sch.length <= 1) strip.appendChild(h("div", { cls: "empty", style: "width:100%" }, [h("b", { text: "Keine weiteren Videos geplant" })]));
   }
 
-  function renderPosted(d) {
-    var body = clear($("postBody"));
-    var list = d.posted.slice().reverse();
-    $("postSub").textContent = list.length ? list.length + " Shorts hochgeladen, neueste zuerst" : "Alle hochgeladenen Shorts, neueste zuerst";
-    list.forEach(function (v) {
-      body.appendChild(h("tr", null, [
-        h("td", null, [vidCell(v, (v.niche || "") + (v.privacy && v.privacy !== "public" ? " · " + (v.privacy === "private" ? "privat" : "nicht gelistet") : ""))]),
-        h("td", { cls: "num hide-sm", style: "white-space:nowrap", text: postedAt(v) }),
-        h("td", { cls: "r num", text: v.views != null ? nf.format(v.views) : "–" }),
-        h("td", { cls: "r num hide-sm", text: v.likes != null ? nf.format(v.likes) : "–" }),
-        h("td", { cls: "r num hide-sm", text: v.comments != null ? nf.format(v.comments) : "–" })
-      ]));
+  function renderGrowth(d) {
+    var box = $("growChart"), hst = d.history || [], key = S.grow;
+    document.querySelectorAll("#growSeg button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.k === key)); });
+    var label = key === "views" ? "Aufrufe" : "Abonnenten";
+    if (hst.length < 2) {
+      $("growSub").textContent = "Verlauf über die Zeit";
+      return emptyChart(box, "Der Verlauf startet gerade", "Alle 20 Minuten kommt ein Messpunkt dazu. Morgen siehst du hier eine Kurve.", 230);
+    }
+    var pts = hst.map(function (p) { return { x: new Date(p.at).getTime(), y: p[key] || 0, at: p.at }; });
+    var x0 = pts[0].x, x1 = pts[pts.length - 1].x, ticks = [], days = (x1 - x0) / 864e5;
+    if (days < 1.5) {
+      for (var i = 0; i <= 4; i++) { var tx = x0 + (x1 - x0) * i / 4; ticks.push({ x: tx, label: fTime.format(new Date(tx)) }); }
+    } else {
+      // je ein Strich um Mitternacht, damit kein Datum doppelt steht
+      var stepD = Math.ceil(days / 6), md = new Date(x0);
+      md.setHours(24, 0, 0, 0);
+      for (; md.getTime() <= x1; md.setDate(md.getDate() + stepD)) ticks.push({ x: md.getTime(), label: fDate.format(md) });
+    }
+    var delta = pts[pts.length - 1].y - pts[0].y;
+    $("growSub").textContent = label + " seit " + fDate.format(new Date(x0)) + ": +" + nf.format(delta);
+    lineChart(box, pts, {
+      color: "#ffd166", height: 230, label: label + " im Verlauf", xTicks: ticks,
+      yMin: key === "views" ? 0 : 0,
+      yFmt: function (v) { return big(v); },
+      tip: function (p) { return [h("b", { text: nf.format(p.y) + " " + label }), h("span", { cls: "t", text: fDayS.format(new Date(p.x)) + ", " + fTime.format(new Date(p.x)) + " Uhr" })]; }
     });
-    if (!list.length) body.appendChild(emptyRow(5, "Noch nichts gepostet", "Das erste Video geht zum nächsten Sendeplatz nach der Kanal-Verbindung online."));
   }
 
-  function renderBoard(d) {
-    document.querySelectorAll("[data-sort]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.sort === S.sort)); });
-    var ranked = d.posted.filter(function (v) { return v.views != null; }).sort(function (a, b) { return (b[S.sort] || 0) - (a[S.sort] || 0); });
-    var body = clear($("lbBody"));
-    $("lbSub").textContent = d.stats_updated_at ? "Zahlen von YouTube, Stand " + fDayS.format(new Date(d.stats_updated_at)) + " " + fTime.format(new Date(d.stats_updated_at)) + " Uhr" : "Deine erfolgreichsten Shorts";
-    ranked.forEach(function (v, i) {
-      body.appendChild(h("tr", null, [
-        h("td", { cls: "rank" + (i < 3 ? " top" : ""), text: String(i + 1) }),
-        h("td", null, [vidCell(v, postedAt(v))]),
-        h("td", { cls: "r num", text: nf.format(v.views || 0) }),
-        h("td", { cls: "r num hide-sm", text: nf.format(v.likes || 0) }),
-        h("td", { cls: "r num hide-sm", text: nf.format(v.comments || 0) })
+  function renderBars(d) {
+    var vids = d.posted.filter(function (v) { return v.views != null; }).slice(-24);
+    var box = $("barChart");
+    if (!vids.length) { emptyChart(box, "Noch keine Zahlen", "Sobald Videos online sind, siehst du hier ihre Aufrufe.", 220); clear($("barLegend")); return; }
+    barChart(box, vids.map(function (v) {
+      return {
+        value: v.views, color: nicheColor(v.niche), href: ytUrl(v),
+        tip: [h("b", { text: nf.format(v.views) + " Aufrufe" }), h("span", { cls: "t", text: v.title }), h("div", { cls: "t", style: "margin-top:4px", text: v.niche + (v.avg_pct != null ? " · " + pct(v.avg_pct) + " angesehen" : "") + " · " + fDayS.format(new Date(v.posted_at)) })]
+      };
+    }), { height: 220, yFmt: function (v) { return big(v); }, label: "Aufrufe der letzten Videos" });
+    var used = NICHES.filter(function (n) { return vids.some(function (v) { return v.niche === n; }); });
+    clear($("barLegend")).append.apply($("barLegend"), used.map(function (n) { return h("span", { style: "--c:" + nicheColor(n) }, [h("i"), n]); }));
+  }
+
+  function renderDonut(d) {
+    var by = {};
+    d.posted.forEach(function (v) { if (v.views != null && v.niche) by[v.niche] = (by[v.niche] || 0) + v.views; });
+    var items = NICHES.filter(function (n) { return by[n] != null; }).map(function (n) { return { label: n, value: by[n], color: nicheColor(n) }; });
+    var total = items.reduce(function (a, x) { return a + x.value; }, 0);
+    var rows = clear($("donutRows"));
+    if (!total) { donut($("donut"), [], 0); rows.appendChild(h("div", { cls: "muted", text: "Noch keine Aufrufe. Sobald Videos online sind, siehst du hier, welches Thema am meisten bringt." })); return; }
+    items.forEach(function (x) { x.tip = [h("b", { text: nf.format(x.value) }), h("span", { cls: "t", text: x.label + " · " + nf1.format(100 * x.value / total) + " %" })]; });
+    donut($("donut"), items, total);
+    items.slice().sort(function (a, b) { return b.value - a.value; }).forEach(function (x) {
+      rows.appendChild(h("div", { cls: "r" }, [
+        h("span", null, [chip(x.label)]),
+        h("span", { cls: "num", style: "font-weight:650", text: nf1.format(100 * x.value / total) + " %" }),
+        h("div", { cls: "bar" }, [h("i", { style: "width:" + (100 * x.value / total) + "%;--c:" + x.color })])
       ]));
     });
-    if (!ranked.length) body.appendChild(emptyRow(5, "Noch keine Zahlen", "Aufrufe, Likes und Kommentare werden alle 3 Stunden von YouTube geholt."));
+  }
+
+  function renderGoals(d, T) {
+    var subs = d.channel ? d.channel.subscribers || 0 : 0;
+    var cut = Date.now() - 90 * 864e5;
+    var v90 = d.posted.reduce(function (a, v) { return a + (v.posted_at && new Date(v.posted_at).getTime() >= cut ? v.views || 0 : 0); }, 0);
+    var goals = [
+      { name: "Erste Stufe: 500 Abonnenten", now: subs, goal: 500, unit: "Abos" },
+      { name: "Erste Stufe: 3 Mio. Shorts-Aufrufe in 90 Tagen", now: v90, goal: 3e6, unit: "Aufrufe" },
+      { name: "Werbegeld: 1.000 Abonnenten", now: subs, goal: 1000, unit: "Abos" },
+      { name: "Werbegeld: 10 Mio. Shorts-Aufrufe in 90 Tagen", now: v90, goal: 1e7, unit: "Aufrufe" }
+    ];
+    var box = clear($("goals"));
+    goals.forEach(function (g) {
+      var p = Math.min(100, 100 * g.now / g.goal);
+      box.appendChild(h("div", { cls: "goal" }, [
+        h("div", { cls: "top" }, [h("b", { text: g.name }), h("span", { cls: "pct", text: big(g.now) + " von " + big(g.goal) + " · " + (p < 0.1 && p > 0 ? "<0,1" : nf1.format(p)) + " %" })]),
+        h("div", { cls: "track" }, [h("i", { style: "width:" + p + "%" })])
+      ]));
+    });
+    box.appendChild(h("p", { cls: "label", style: "margin-top:14px", text: "Die Aufrufe zählen hier alle Shorts der letzten 90 Tage. YouTube rechnet eigene und verdächtige Aufrufe heraus, darum ist die Zahl in YouTube Studio etwas kleiner." }));
+  }
+
+  // --- Zuschauer ---------------------------------------------------------------
+  function renderViewers(d) {
+    var A = d.analytics || {};
+    var vs = withCurve(d.posted);
+    $("redirUri").textContent = d.oauth_page || "–";
+    pill($("zStatus"), A.connected ? (A.error ? "err" : "live") : "warn", A.connected ? (A.error ? "Fehler" : "Verbunden") : "Nicht verbunden");
+    $("zSetup").hidden = !!A.connected;
+    $("aConnect").disabled = !S.live || !A.has_client;
+    $("aSaved").hidden = !A.has_client;
+    $("zSub").textContent = A.connected
+      ? (A.updated_at ? "Von YouTube Analytics, Stand " + fDayS.format(new Date(A.updated_at)) + " " + fTime.format(new Date(A.updated_at)) + " Uhr. YouTube liefert diese Zahlen mit 1–3 Tagen Verzögerung." : "Die ersten Werte kommen in den nächsten Minuten.")
+      : "Wie lange die Leute dranbleiben und wo sie abschalten";
+    var T = totals(d);
+    $("zPct").textContent = pct(T.avgPct);
+    $("zDur").textContent = secs(T.avgDur);
+    var L = d.learning || { niches: [] };
+    var bestKeep = (L.niches || []).filter(function (n) { return n.avg_pct != null; }).sort(function (a, b) { return b.avg_pct - a.avg_pct; })[0];
+    $("zBest").textContent = bestKeep ? bestKeep.niche : "–";
+    $("zBestS").textContent = bestKeep ? pct(bestKeep.avg_pct) + " angesehen" : "sobald Daten da sind";
+
+    if (A.error) {
+      $("zInsight").hidden = false;
+      clear($("zInsightText")).append(h("b", { text: A.error }), h("span", { cls: "muted", text: "Prüfe die Schritte unter Kanal → Zuschauer-Daten." }));
+    }
+
+    if (!vs.length) {
+      var why = A.connected ? "Für Videos ab etwa 2 Tagen alt liefert YouTube eine Abschalt-Kurve. Schau morgen wieder vorbei." : "Sobald die Zuschauer-Daten verbunden sind, siehst du hier, an welcher Stelle die Leute wegwischen.";
+      emptyChart($("avgCurve"), "Noch keine Kurven", why, 240);
+      emptyChart($("lossBars"), "Noch keine Daten", "", 240);
+      clear($("picker")); clear($("sents")); clear($("oneCurve"));
+      $("oneCard").hidden = true;
+      if (!A.error) $("zInsight").hidden = true;
+      renderLearning(d);
+      return;
+    }
+
+    // Durchschnittskurve
+    var grid = [];
+    for (var x = 0.01; x <= 1.0001; x += 0.01) grid.push(x);
+    var avg = grid.map(function (x) { var t = 0; vs.forEach(function (v) { t += at(v.curve, x); }); return { x: x, y: 100 * t / vs.length }; });
+    var five = vs.filter(function (v) { return (v.marks || []).length; });
+    var nS = five.length ? five[0].marks.length : 0, marks = [];
+    for (var i = 0; i < nS; i++) {
+      var m = five.filter(function (v) { return v.marks.length === nS; }).reduce(function (a, v) { return a + v.marks[i]; }, 0) / Math.max(1, five.filter(function (v) { return v.marks.length === nS; }).length);
+      if (i > 0) marks.push({ x: m, label: "S" + (i + 1) });
+    }
+    var yTop = pctTop(avg);
+    lineChart($("avgCurve"), avg, {
+      color: "#ffd166", height: 250, x0: 0, x1: 1, yMax: yTop, yStep: 25, marks: marks, label: "Durchschnittliche Zuschauerbindung",
+      xTicks: [0, .25, .5, .75, 1].map(function (t) { return { x: t, label: Math.round(t * 100) + " %" }; }),
+      yFmt: function (v) { return Math.round(v) + " %"; },
+      tip: function (p) { return [h("b", { text: Math.round(p.y) + " % schauen noch" }), h("span", { cls: "t", text: "bei " + Math.round(p.x * 100) + " % der Videolänge" })]; }
+    });
+
+    // Verlust je Satz
+    var loss = avgLoss(vs), worst = loss.indexOf(Math.max.apply(null, loss));
+    barChart($("lossBars"), loss.map(function (l, i) {
+      return { value: l, color: i === worst ? "#f04444" : "rgba(255,255,255,.28)", label: "S" + (i + 1), valueLabel: "−" + Math.round(l),
+        tip: [h("b", { text: "−" + nf1.format(l) + " Prozentpunkte" }), h("span", { cls: "t", text: sentenceName(i, loss.length) })] };
+    }), { height: 250, showLabels: true, maxBar: 46, yFmt: function (v) { return Math.round(v); }, label: "Verlust je Satz" });
+
+    // Tipp
+    var tip = worst === 0 ? "Ein stärkerer erster Satz (überraschende Behauptung oder Frage) bringt hier am meisten."
+      : worst === loss.length - 1 ? "Ein kürzeres Ende mit einer letzten Überraschung hält die Leute bis zum Schluss."
+      : "Dort hilft eine neue Frage oder ein überraschender Fakt.";
+    $("zInsight").hidden = false;
+    var where = worst === 0 ? "beim Einstieg" : worst === loss.length - 1 ? "am Schluss" : "bei Satz " + (worst + 1);
+    clear($("zInsightText")).append(h("b", { text: "Die meisten schalten " + where + " ab: im Schnitt −" + Math.round(loss[worst]) + " Prozentpunkte" }), h("span", { cls: "muted", text: tip + " Die neuen Skripte sind darauf ausgelegt: starker erster Satz, die Auflösung erst am Ende, kurzer Schluss." }));
+
+    // Einzelnes Video
+    $("oneCard").hidden = false;
+    var sorted = vs.slice().reverse();
+    if (!S.one || !sorted.some(function (v) { return v.video_id === S.one; })) S.one = sorted[0].video_id;
+    var picker = clear($("picker"));
+    sorted.slice(0, 30).forEach(function (v) {
+      var b = h("button", { type: "button", title: v.title, "aria-pressed": String(v.video_id === S.one) }, [thumb(v, "", [h("span", { cls: "badge", style: "left:4px;bottom:4px;font-size:10px;padding:1px 5px", text: v.avg_pct != null ? Math.round(v.avg_pct) + "%" : "" })])]);
+      b.addEventListener("click", function () { S.one = v.video_id; renderViewers(S.d); });
+      picker.appendChild(b);
+    });
+    var one = sorted.find(function (v) { return v.video_id === S.one; });
+    $("oneSub").textContent = one.title + " · " + nf.format(one.views || 0) + " Aufrufe · " + pct(one.avg_pct) + " angesehen";
+    $("oneLink").hidden = !ytUrl(one); if (ytUrl(one)) $("oneLink").href = ytUrl(one);
+    var pts = one.curve.map(function (p) { return { x: p[0], y: p[1] * 100 }; });
+    var sl = sentenceLoss(one), dur = one.duration || (one.seconds || 30);
+    lineChart($("oneCurve"), pts, {
+      color: "#ffd166", height: 200, x0: 0, x1: 1, yMax: pctTop(pts), yStep: 25,
+      marks: (one.marks || []).slice(1).map(function (m, i) { return { x: m, label: "S" + (i + 2) }; }), label: "Zuschauerbindung dieses Videos",
+      xTicks: [0, .5, 1].map(function (t) { return { x: t, label: Math.round(t * dur) + " s" }; }),
+      yFmt: function (v) { return Math.round(v) + " %"; },
+      tip: function (p) { return [h("b", { text: Math.round(p.y) + " % schauen noch" }), h("span", { cls: "t", text: "bei Sekunde " + Math.round(p.x * dur) })]; }
+    });
+    var w1 = sl.reduce(function (a, x, i) { return x.loss > sl[a].loss ? i : a; }, 0);
+    var list = clear($("sents"));
+    (one.sentences || []).forEach(function (t, i) {
+      var x = sl[i];
+      list.appendChild(h("li", { cls: x && i === w1 ? "worst" : "" }, [
+        h("span", { cls: "n", text: String(i + 1) }), h("span", { text: t }),
+        h("span", { cls: "loss", style: "color:" + (x && i === w1 ? "var(--err)" : "var(--ink-2)"), text: x ? "−" + Math.round(x.loss) + " %" : "" })
+      ]));
+    });
+    if (one.marks_estimated) list.appendChild(h("li", { style: "grid-template-columns:1fr;background:none;padding:0" }, [h("span", { cls: "label", text: "Satzanfänge bei diesem älteren Video geschätzt." })]));
     renderLearning(d);
   }
 
   function renderLearning(d) {
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
-    setStatus("learnStatus", L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
+    pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite
-      ? "„" + L.favorite + "“ läuft am besten. Darum kommen " + (L.explore_every - 1) + " von " + L.explore_every + " Videos aus diesem Thema, jedes " + L.explore_every + ". testet ein anderes. Der Sendeplan passt sich von selbst an."
-      : "Die Themen wechseln sich ab, bis jedes mindestens " + L.min_videos + " Videos mit Aufrufen hat. Danach postet die Automatik öfter das Thema, das am besten läuft. Private Videos zählen dabei nicht, weil sie keine Aufrufe bekommen.";
+      ? "„" + L.favorite + "“ läuft am besten. " + (L.explore_every - 1) + " von " + L.explore_every + " Videos kommen aus diesem Thema, jedes " + L.explore_every + ". testet ein anderes. Themen, bei denen Zuschauer länger bleiben, zählen mehr."
+      : "Die Themen wechseln sich ab, bis jedes mindestens " + L.min_videos + " Videos mit Aufrufen hat. Danach kommt öfter das Thema, das am besten läuft.";
     var body = clear($("learnBody"));
     var max = L.niches.reduce(function (a, n) { return Math.max(a, n.score); }, 0) || 1;
     L.niches.forEach(function (n) {
       body.appendChild(h("tr", null, [
-        h("td", null, [h("span", { cls: "tag", text: n.niche }), n.niche === L.favorite ? h("span", { cls: "label", style: "margin-left:8px", text: "bevorzugt" }) : null]),
+        h("td", null, [chip(n.niche), n.niche === L.favorite ? h("span", { cls: "label", style: "margin-left:8px;color:var(--accent)", text: "bevorzugt" }) : null]),
         h("td", { cls: "r num hide-sm", text: nf.format(n.videos) }),
         h("td", { cls: "r num", text: nf.format(n.score) }),
-        h("td", { cls: "hide-sm" }, [h("div", { cls: "meter" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%" })])])
+        h("td", { cls: "r num", text: pct(n.avg_pct) }),
+        h("td", { cls: "hide-sm" }, [h("div", { cls: "keep", style: "height:6px;border-radius:3px" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%;background:" + nicheColor(n.niche) })])])
       ]));
     });
-    if (!L.niches.length) body.appendChild(emptyRow(4, "Noch keine Daten", "Nach den ersten Videos steht hier, welches Thema am besten ankommt."));
+    if (!L.niches.length) body.appendChild(h("tr", null, [h("td", { colspan: "5" }, [h("div", { cls: "empty" }, [h("b", { text: "Noch keine Daten" }), "Nach den ersten Videos steht hier, welches Thema am besten ankommt."])])]));
   }
 
-  function statusEl(cls, text) { return [h("span", { cls: "dot " + cls }), document.createTextNode(text)]; }
-  function setStatus(id, cls, text) { var e = clear($(id)); statusEl(cls, text).forEach(function (n) { e.appendChild(n); }); }
+  // --- Videos --------------------------------------------------------------------
+  function renderVideos(d) {
+    document.querySelectorAll("#vSort button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.s === S.vsort)); });
+    var list = d.posted.slice();
+    if (S.vsort === "new") list.reverse();
+    else list.sort(function (a, b) { return (b[S.vsort] || 0) - (a[S.vsort] || 0); });
+    var T = totals(d);
+    $("vSub").textContent = list.length ? list.length + " Shorts online · " + nf.format(T.views) + " Aufrufe" : "Alle hochgeladenen Shorts";
+    var g = clear($("gallery"));
+    list.forEach(function (v, i) {
+      var ranked = S.vsort !== "new";
+      var card = h("a", { cls: "vcard", href: ytUrl(v) || "#", target: "_blank", rel: "noopener" }, [
+        thumb(v, "", [
+          ranked ? h("span", { cls: "rank" + (i < 3 ? " gold" : ""), text: String(i + 1) }) : null,
+          h("span", { cls: "badge", text: v.views != null ? "▶ " + big(v.views) : "neu" }),
+          v.avg_pct != null ? h("span", { cls: "badge r", text: Math.round(v.avg_pct) + " %" }) : null
+        ]),
+        h("div", { cls: "t", text: v.title || v.slug }),
+        h("div", { cls: "m" }, [chip(v.niche), v.posted_at ? fDayS.format(new Date(v.posted_at)) : "", v.likes != null ? "· ♥ " + nf.format(v.likes) : ""]),
+        v.avg_pct != null ? h("div", { cls: "keep", title: "Ø angesehen" }, [h("i", { style: "width:" + Math.min(100, v.avg_pct) + "%" })]) : null
+      ]);
+      if (!ytUrl(v)) card.removeAttribute("href");
+      g.appendChild(card);
+    });
+    if (!list.length) g.appendChild(h("div", { cls: "empty card", style: "grid-column:1/-1" }, [h("b", { text: "Noch nichts gepostet" }), "Das erste Video geht zum nächsten Sendeplatz online."]));
+  }
 
+  // --- Sendeplan -------------------------------------------------------------------
+  function renderPlan(d, sch) {
+    $("planSub").textContent = d.queue.length + " Videos geplant. Täglich um " + d.slots.map(function (x) { return x + " Uhr"; }).join(", ").replace(/, ([^,]+)$/, " und $1") + ".";
+    var seg = clear($("planFilter"));
+    ["Alle"].concat(Array.from(new Set(d.queue.map(function (v) { return v.niche; })))).forEach(function (n) {
+      var b = h("button", { type: "button", "aria-pressed": String(S.filter === n), text: n });
+      b.addEventListener("click", function () { S.filter = n; renderPlan(S.d, schedule(S.d)); });
+      seg.appendChild(b);
+    });
+    var body = clear($("planBody")), lastDay = "";
+    var rows = sch.filter(function (x) { return S.filter === "Alle" || x.v.niche === S.filter; });
+    rows.forEach(function (x) {
+      var day = berlin(x.at).day;
+      if (day !== lastDay) { body.appendChild(h("tr", { cls: "day-row" }, [h("td", { colspan: "4", text: fDay.format(x.at) })])); lastDay = day; }
+      body.appendChild(h("tr", { cls: x.i === 0 ? "is-next" : "" }, [
+        h("td", { cls: "num", style: "font-weight:650", text: fTime.format(x.at) }),
+        h("td", null, [vidCell(x.v, x.v.hook)]),
+        h("td", { cls: "hide-sm" }, [chip(x.v.niche)]),
+        h("td", { cls: "r num hide-sm", text: x.v.seconds + " s" })
+      ]));
+    });
+    if (!rows.length) body.appendChild(h("tr", null, [h("td", { colspan: "4" }, [h("div", { cls: "empty" }, [h("b", { text: "Keine Videos geplant" }), "Für dieses Thema liegt gerade nichts in der Warteschlange."])])]));
+  }
+
+  // --- Kanal -------------------------------------------------------------------------
   function renderChannel(d) {
     var preview = !S.live;
     $("previewNote").hidden = !preview;
-    document.querySelectorAll("#v-kanal input, #v-kanal select, #v-kanal button").forEach(function (e) { e.disabled = preview; });
-    setStatus("credStatus", d.has_client ? "ok" : "warn", d.has_client ? "Gespeichert" : "Fehlt");
+    document.querySelectorAll("#v-kanal input, #v-kanal select, #v-kanal button, #aForm input, #aForm button").forEach(function (e) { e.disabled = preview; });
+    pill($("credStatus"), d.has_client ? "ok" : "warn", d.has_client ? "Gespeichert" : "Fehlt");
     var c = d.connect || { status: "idle" };
-    setStatus("conStatus", d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
+    pill($("conStatus"), d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
     var body = clear($("conBody"));
     if (d.connected) {
       var ch = d.channel || {};
       body.appendChild(h("div", { cls: "vid" }, [
-        h("div", { cls: "avatar", style: "width:44px;height:44px" }, [ch.thumbnail ? h("img", { src: ch.thumbnail, alt: "" }) : null]),
-        h("div", null, [h("div", { style: "font-weight:600", text: ch.title || "YouTube-Kanal" }), h("div", { cls: "sub num", text: (ch.handle ? ch.handle + " · " : "") + nf.format(ch.subscribers || 0) + " Abonnenten" })])
+        h("div", { cls: "avatar", style: "width:48px;height:48px" }, [ch.thumbnail ? h("img", { src: ch.thumbnail, alt: "" }) : null]),
+        h("div", null, [h("div", { style: "font-weight:700", text: ch.title || "YouTube-Kanal" }), h("div", { cls: "sub", text: (ch.handle ? ch.handle + " · " : "") + nf.format(ch.subscribers || 0) + " Abonnenten" })])
       ]));
       body.appendChild(h("p", { cls: "muted", text: d.branding_at
-        ? "Kanal-Design: Banner und Kanalbeschreibung wurden am " + fDayS.format(new Date(d.branding_at)) + " um " + fTime.format(new Date(d.branding_at)) + " Uhr automatisch gesetzt."
-        : "Kanal-Design: Banner und Kanalbeschreibung werden in den nächsten Minuten automatisch gesetzt." }));
+        ? "Banner und Kanalbeschreibung wurden am " + fDayS.format(new Date(d.branding_at)) + " um " + fTime.format(new Date(d.branding_at)) + " Uhr automatisch gesetzt."
+        : "Banner und Kanalbeschreibung werden in den nächsten Minuten automatisch gesetzt." }));
       var off = h("button", { cls: "btn danger", type: "button", text: "Kanal trennen" });
+      off.disabled = preview;
       off.addEventListener("click", function () { if (off.dataset.sure) { api("api/disconnect"); } else { off.dataset.sure = "1"; off.textContent = "Wirklich trennen?"; } });
       body.appendChild(h("div", { cls: "row" }, [off]));
-      return;
-    }
-    if (c.status === "code") {
+    } else if (c.status === "code") {
       body.appendChild(h("p", { text: "Öffne google.com/device, melde dich mit dem Konto deines Kanals an und gib diesen Code ein:" }));
       body.appendChild(h("div", { cls: "code", text: c.user_code }));
       body.appendChild(h("div", { cls: "row" }, [
         h("a", { cls: "btn primary", href: c.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" }),
-        h("span", { cls: "hint muted", text: "Gültig bis " + fTime.format(new Date(c.expires_at)) + " Uhr" })
+        h("span", { cls: "label", text: "Gültig bis " + fTime.format(new Date(c.expires_at)) + " Uhr" })
       ]));
-      body.appendChild(h("p", { cls: "muted", text: "Zeigt Google „App wurde nicht überprüft“, tippe auf Erweitert und dann auf Weiter. Das ist bei einer eigenen App normal." }));
-      return;
+    } else {
+      if (c.status === "fehler") body.appendChild(h("p", { cls: "msg err", text: c.message || "Die Verbindung hat nicht geklappt." }));
+      else if (d.expired) body.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+      body.appendChild(h("p", { cls: "muted", text: d.has_client ? "Startet die Anmeldung bei Google. Du bekommst einen Code, den du auf google.com/device eingibst." : "Trage zuerst Client-ID und Clientschlüssel ein." }));
+      var go = h("button", { cls: "btn primary", type: "button", text: c.status === "start" ? "Startet …" : "Mit YouTube verbinden" });
+      go.disabled = preview || !d.has_client || c.status === "start";
+      go.addEventListener("click", function () { api("api/connect").then(function () { poll(3000); }); });
+      body.appendChild(h("div", { cls: "row" }, [go]));
     }
-    if (c.status === "fehler") body.appendChild(h("p", { cls: "msg err", text: c.message || "Die Verbindung hat nicht geklappt." }));
-    else if (d.expired) body.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Solange deine Google-App im Testmodus ist, passiert das alle 7 Tage. Einfach neu verbinden." }));
-    body.appendChild(h("p", { cls: "muted", text: d.has_client ? "Startet die Anmeldung bei Google. Du bekommst einen Code, den du auf google.com/device eingibst." : "Trage zuerst Client-ID und Clientschlüssel ein." }));
-    var go = h("button", { cls: "btn primary", type: "button", text: c.status === "start" ? "Startet …" : "Mit YouTube verbinden" });
-    go.disabled = preview || !d.has_client || c.status === "start";
-    go.addEventListener("click", function () { api("api/connect").then(function () { poll(3000); }); });
-    body.appendChild(h("div", { cls: "row" }, [go]));
+
+    var A = d.analytics || {};
+    pill($("anaStatus"), A.connected ? (A.error ? "err" : "live") : "warn", A.connected ? (A.error ? "Fehler" : "Verbunden") : "Nicht verbunden");
+    var ab = clear($("anaBody"));
+    if (A.connected) {
+      ab.appendChild(h("p", { cls: A.error ? "msg err" : "muted", text: A.error || "Die Shorts-Zentrale holt alle 3 Stunden, wie lange Zuschauer dranbleiben. Zu sehen im Bereich Zuschauer." }));
+      var off2 = h("button", { cls: "btn danger", type: "button", text: "Zuschauer-Daten trennen" });
+      off2.disabled = preview;
+      off2.addEventListener("click", function () { if (off2.dataset.sure) api("api/analytics/disconnect"); else { off2.dataset.sure = "1"; off2.textContent = "Wirklich trennen?"; } });
+      var again = h("button", { cls: "btn", type: "button", text: "Neu verbinden" });
+      again.disabled = preview || !A.has_client;
+      again.addEventListener("click", startAnalytics);
+      ab.appendChild(h("div", { cls: "row" }, [again, off2]));
+    } else {
+      ab.appendChild(h("p", { cls: "muted", text: "Zeigt, an welcher Stelle Zuschauer abschalten, und hilft dem Lernmodus. Einrichtung im Bereich Zuschauer." }));
+      ab.appendChild(h("div", { cls: "row" }, [h("a", { cls: "btn primary", href: "#zuschauer", text: "Einrichten" })]));
+    }
   }
 
   function renderHours(d) {
@@ -694,8 +1284,8 @@ details[open] summary { margin-bottom: 10px; }
       var b = h("button", { type: "button", "aria-pressed": String(S.hours.indexOf(hr) !== -1), text: (hr < 10 ? "0" : "") + hr });
       b.disabled = !S.live;
       b.addEventListener("click", function () {
-        var at = S.hours.indexOf(hr);
-        if (at === -1) { if (S.hours.length < 6) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at, 1);
+        var at2 = S.hours.indexOf(hr);
+        if (at2 === -1) { if (S.hours.length < 6) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at2, 1);
         S.hours.sort(function (a, b) { return a - b; });
         renderHours(d);
       });
@@ -709,9 +1299,9 @@ details[open] summary { margin-bottom: 10px; }
     var sch = schedule(d);
     renderHeader(d);
     renderOverview(d, sch);
+    renderViewers(d);
+    renderVideos(d);
     renderPlan(d, sch);
-    renderPosted(d);
-    renderBoard(d);
     renderChannel(d);
     renderHours(d);
     var u = new Date(d.updated_at);
@@ -720,17 +1310,37 @@ details[open] summary { margin-bottom: 10px; }
     $("stand").textContent = (S.live ? "Aktualisiert " : "Vorschau mit Stand vom ") + fDayS.format(u) + ", " + fTime.format(u) + " Uhr";
   }
 
+  // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {
     return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); return j; }); })
       .then(function (j) { load(); return j; });
   }
-  function flash(id, cls, text) { var m = $(id); m.className = "msg " + cls; m.textContent = text; setTimeout(function () { m.textContent = ""; }, 4000); }
+  function flash(id, cls, text) { var m = $(id); m.className = "msg " + cls; m.textContent = text; setTimeout(function () { m.textContent = ""; }, 5000); }
+  function toast(text) { var t = h("div", { cls: "toast", text: text }); document.body.appendChild(t); setTimeout(function () { t.remove(); }, 6000); }
+  function startAnalytics() {
+    fetch("api/analytics/start", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ origin: location.origin }) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); return j; }); })
+      .then(function (j) { location.href = j.url; }, function (err) { flash("aConMsg", "err", err.message); });
+  }
 
   $("credForm").addEventListener("submit", function (e) {
     e.preventDefault();
     api("api/settings", { client_id: $("clientId").value, client_secret: $("clientSecret").value })
       .then(function () { $("clientSecret").value = ""; flash("credMsg", "ok", "Gespeichert"); }, function (err) { flash("credMsg", "err", err.message); });
+  });
+  $("aForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    api("api/settings", { analytics_client_id: $("aId").value, analytics_client_secret: $("aSecret").value })
+      .then(function () { $("aSecret").value = ""; flash("aMsg", "ok", "Gespeichert. Jetzt auf Verbinden klicken."); load(); }, function (err) { flash("aMsg", "err", err.message); });
+  });
+  $("aConnect").addEventListener("click", startAnalytics);
+  $("copyRedir").addEventListener("click", function () {
+    var t = $("redirUri").textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { $("copyRedir").textContent = "Kopiert"; }, function () {
+      var r = document.createRange(); r.selectNodeContents($("redirUri")); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    });
+    setTimeout(function () { $("copyRedir").textContent = "Kopieren"; }, 2000);
   });
   $("planForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -741,27 +1351,37 @@ details[open] summary { margin-bottom: 10px; }
     api("api/post-now").then(function () { flash("actMsg", "ok", "Das Video wird erstellt und hochgeladen. Das dauert ein paar Minuten."); poll(5000); }, function (err) { flash("actMsg", "err", err.message); });
   });
   $("syncNow").addEventListener("click", function () {
-    api("api/sync").then(function () { flash("actMsg", "ok", "Suche nach neuen Skripten …"); }, function (err) { flash("actMsg", "err", err.message); });
+    api("api/sync").then(function () { flash("actMsg", "ok", "Wird aktualisiert …"); setTimeout(load, 8000); }, function (err) { flash("actMsg", "err", err.message); });
   });
-  document.querySelectorAll("[data-sort]").forEach(function (b) { b.addEventListener("click", function () { S.sort = b.dataset.sort; renderBoard(S.d); }); });
+  document.querySelectorAll("#growSeg button").forEach(function (b) { b.addEventListener("click", function () { S.grow = b.dataset.k; renderGrowth(S.d); }); });
+  document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["uebersicht", "plan", "gepostet", "bestenliste", "kanal"];
+  var TABS = ["uebersicht", "zuschauer", "videos", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
+    if (t === "gepostet" || t === "bestenliste") t = "videos";
     if (TABS.indexOf(t) === -1) t = "uebersicht";
     TABS.forEach(function (x) { $("v-" + x).hidden = x !== t; });
     document.querySelectorAll("[data-tab]").forEach(function (a) { if (a.dataset.tab === t) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     window.scrollTo(0, 0);
+    if (S.d) render();  // Diagramme brauchen die Breite des sichtbaren Bereichs
   }
   window.addEventListener("hashchange", showTab);
-  showTab();
+  var rz;
+  window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (S.d) render(); }, 200); });
+
+  var q = new URLSearchParams(location.search).get("analytics");
+  if (q) {
+    toast(q === "ok" ? "Zuschauer-Daten verbunden. Die ersten Werte kommen gleich." : q === "abgebrochen" ? "Anmeldung abgebrochen." : "Verbinden hat nicht geklappt. Bitte nochmal versuchen.");
+    history.replaceState(null, "", location.pathname + location.hash);
+  }
 
   function load() {
     return fetch("api/dashboard", { cache: "no-store" })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (d) { S.live = d.source === "server"; S.d = d; render(); return d; })
-      .catch(function () { if (!S.d) $("ovSub").textContent = "Daten konnten nicht geladen werden."; });
+      .catch(function () { if (!S.d) $("hSub").textContent = "Daten konnten nicht geladen werden."; });
   }
   function poll(ms) {
     clearTimeout(S.timer);
@@ -773,10 +1393,12 @@ details[open] summary { margin-bottom: 10px; }
       });
     }, ms);
   }
+  showTab();
   load().then(function () { if (S.live) poll(30000); });
   setInterval(function () {
     var cd = $("cd");
-    if (cd && S.d && S.d.queue.length) cd.textContent = rel(slots(S.d.slots, 1)[0] - new Date());
+    if (cd && S.d && S.d.queue.length) { clear(cd).append(h("span", { cls: "dot live" }), rel(slots(S.d.slots, 1)[0] - new Date())); }
   }, 30000);
 })();
 </script>
+<style>@keyframes barIn { from { transform: scaleY(0); } }</style>

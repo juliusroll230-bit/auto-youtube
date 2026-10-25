@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 W, H, FPS = 1080, 1920, 30
 PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
 SPEED = 0.88      # Sprechtempo der Stimme (kleiner = schneller)
+TAIL = 0.35       # Stille nach dem letzten Satz: kurz, damit das Video sofort wieder von vorn läuft (Schleife)
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.environ.get("TTS_MODEL_DIR", os.path.join(HERE, "models", "vits-piper-de_DE-thorsten-high"))
 FONT_BOLD = os.path.join(HERE, "fonts", "InterDisplay-Black.otf")
@@ -42,7 +43,7 @@ def synthesize(tts, segments, wav_path, seed=0):
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
         t += dur + PAUSE
-    tail = np.zeros(int(0.6 * rate), dtype=np.float32)  # kurzer Ausklang
+    tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice = np.concatenate(chunks + [tail])
     track = audio.mix(voice, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings))
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
@@ -322,7 +323,7 @@ def build_video(spec, out_dir, tts):
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])))
-    total += 0.6
+    total += TAIL
     scene = Scene(spec, timings, total)
 
     ff = subprocess.Popen([
@@ -336,7 +337,7 @@ def build_video(spec, out_dir, tts):
     if ff.wait() != 0:
         raise RuntimeError("ffmpeg konnte das Video nicht erstellen")
     os.remove(wav)
-    return mp4, total
+    return mp4, total, timings
 
 
 def main():
@@ -347,7 +348,7 @@ def main():
     for spec in data if isinstance(data, list) else [data]:
         if only and spec["slug"] != only:
             continue
-        path, dur = build_video(spec, out_dir, tts)
+        path, dur, _ = build_video(spec, out_dir, tts)
         print(f"{path}  {dur:.1f}s")
 
 

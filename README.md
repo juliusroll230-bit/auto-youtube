@@ -1,6 +1,6 @@
 # Shorts-Zentrale
 
-Erstellt und postet automatisch deutsche YouTube Shorts und zeigt alles auf einer Website: Sendeplan, gepostete Videos, Bestenliste und die Kanal-Verbindung. Läuft als ein Docker-Container, zum Beispiel auf einem ZimaOS-Server.
+Erstellt und postet automatisch deutsche YouTube Shorts und zeigt alles auf einer Website: Kennzahlen mit Diagrammen, wann Zuschauer abschalten, gepostete Videos, Sendeplan und die Kanal-Verbindung. Läuft als ein Docker-Container, zum Beispiel auf einem ZimaOS-Server.
 
 ## Installation auf ZimaOS
 
@@ -17,8 +17,9 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 - **Kanal-Design:** Banner, Kanalbeschreibung und Stichwörter setzt die App automatisch (`branding.py`). Das Profilbild erlaubt YouTube nur von Hand.
 - **Zeitplan:** Zu jeder Sendezeit (Standard 8, 11, 13, 16, 18 und 20 Uhr, also 6 am Tag; mehr erlaubt die YouTube-Schnittstelle pro Tag nicht) wird das nächste Skript aus der Warteschlange zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Die Zeiten lassen sich im Reiter **Kanal** ändern.
 - **Nachschub:** Alle 2 Stunden holt die App neue Skripte aus dem Ordner `seed/` dieses Repos (`SCRIPTS_REPO`).
-- **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 3 Stunden von YouTube.
-- **Lernmodus:** Am Anfang wechseln sich die Themen ab. Sobald jedes Thema 2 Videos mit Aufrufen hat, kommen 3 von 4 Videos aus dem Thema mit den meisten Aufrufen (hochgerechnet auf die ersten 3 Tage), jedes 4. testet ein anderes. Details in `learn.py`, die Übersicht steht im Reiter **Bestenliste**.
+- **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 20 Minuten von YouTube. Daraus entsteht auch der Verlauf (`history.json`) für das Wachstums-Diagramm.
+- **Zuschauer-Daten:** Optional holt die App alle 3 Stunden aus YouTube Analytics, wie viel von jedem Video angesehen wird und an welcher Stelle Zuschauer abschalten. Die Website zeigt das im Reiter **Zuschauer** als Kurve mit den Satzanfängen und als Verlust je Satz. Einrichten: siehe unten.
+- **Lernmodus:** Am Anfang wechseln sich die Themen ab. Sobald jedes Thema 2 Videos mit Aufrufen hat, kommen 3 von 4 Videos aus dem Thema mit den meisten Aufrufen (hochgerechnet auf die ersten 3 Tage), jedes 4. testet ein anderes. Mit Zuschauer-Daten zählen Themen mehr, bei denen die Leute länger dranbleiben. Details in `learn.py`, die Übersicht steht im Reiter **Zuschauer**.
 - **Updates:** Jede Code-Änderung baut über GitHub Actions ein neues Image `ghcr.io/<besitzer>/auto-youtube:latest`. Automatisch übernehmen: zusätzlich [`updater/docker-compose.yml`](updater/docker-compose.yml) in ZimaOS importieren. Der Updater prüft beim Start und jede Nacht um 4 Uhr und tauscht nur den Container `shorts-zentrale` aus (außerhalb der Sendezeiten).
 
 ## Dateien
@@ -27,10 +28,11 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 |---|---|
 | `server.py` | Website, Zeitplan, Uploads |
 | `store.py` | Speichert Einstellungen, Warteschlange und Statistiken in `/data` |
-| `yt.py` | YouTube: Anmeldung per Geräte-Code, Upload, Statistiken |
+| `yt.py` | YouTube: Anmeldung per Geräte-Code, Upload, Statistiken, Zuschauer-Daten (Analytics) |
 | `make_short.py` | Baut aus einem Skript ein 1080x1920-Video |
 | `car_scene.py` | Hintergrund "Sportwagen bei Nacht" für Skripte mit `"style": "car"` |
 | `web/index.html` | Die Website |
+| `docs/` | Startseite, Datenschutz und `oauth.html` (Weiterleitung für die Zuschauer-Daten) auf GitHub Pages |
 | `seed/` | Skripte für die Warteschlange |
 
 ## Skript-Format
@@ -61,6 +63,17 @@ Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_colo
 | `PASSWORD` | schützt die Website (Benutzer `admin`) |
 | `SCRIPTS_REPO` | Repo, aus dem neue Skripte kommen |
 | `GITHUB_TOKEN` | nur nötig, wenn dieses Repo privat ist |
+| `OAUTH_PAGE` | Weiterleitungsseite für die Zuschauer-Daten (Standard: `https://<besitzer>.github.io/<repo>/oauth.html`) |
+
+## Zuschauer-Daten einrichten
+
+Die Anmeldung per Geräte-Code erlaubt nur Upload-Rechte, nicht YouTube Analytics. Darum gibt es einen zweiten Google-Zugang vom Typ **Webanwendung**:
+
+1. In Google Cloud die **YouTube Analytics API** aktivieren.
+2. Unter Google Auth Platform → Clients einen Client vom Typ **Webanwendung** anlegen, Weiterleitungs-URI: `https://<besitzer>.github.io/<repo>/oauth.html`.
+3. Client-ID und Clientschlüssel auf der Website im Reiter **Zuschauer** eintragen und **Verbinden** klicken.
+
+Google schickt nach der Anmeldung zu `oauth.html`; die Seite leitet den Code an die Shorts-Zentrale im Heimnetz weiter (die Adresse des Servers steht im `state`, der Server prüft ihn mit einer Einmal-Nummer). Darum klappt das Verbinden nur im selben Netz wie der Server. YouTube liefert die Werte mit 1 bis 3 Tagen Verzögerung.
 
 ## Hinweise
 
