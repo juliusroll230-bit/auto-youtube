@@ -48,6 +48,8 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 }
 ```
 
+Im Text markieren Sternchen ein Schlüsselwort (`*Toyota*`), es wird im Untertitel farbig und größer gezeigt; vorgelesen wird es ohne Sternchen. Steht nach einer Zahl eine großgeschriebene Einheit („sechshundert Kilometer“), zeigt das Video einen Zähler, der bis zu dieser Zahl hochzählt.
+
 Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_color": "#d0101c"`. Dateinamen sind fortlaufend nummeriert (`0016-slug.json`), die kleinste Nummer wird zuerst gepostet.
 
 ## Einstellungen (Umgebungsvariablen)

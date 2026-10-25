@@ -163,7 +163,7 @@ def card(spec):
         "slug": spec["slug"], "title": spec["title"], "niche": spec["niche"],
         "style": spec.get("style", "gradient"), "colors": spec.get("colors", []),
         "car_color": spec.get("car_color", ""), "accent": spec.get("accent", ""),
-        "emoji": spec["segments"][0].get("emoji", ""), "hook": spec["segments"][0]["text"],
+        "emoji": spec["segments"][0].get("emoji", ""), "hook": spec["segments"][0]["text"].replace("*", ""),
         "seconds": round(words / 2.5 + 0.3 * len(spec["segments"])),
     }
 

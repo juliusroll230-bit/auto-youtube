@@ -12,7 +12,7 @@ import wave
 
 import numpy as np
 from piper import PiperVoice, SynthesisConfig
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1080, 1920, 30
 PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
@@ -36,7 +36,8 @@ def synthesize(tts, segments, wav_path, seed=0):
     rate = tts.config.sample_rate
     for seg in segments:
         cfg = SynthesisConfig(length_scale=SPEED)
-        samples = np.concatenate([c.audio_float_array for c in tts.synthesize(seg["text"], syn_config=cfg)])
+        text = seg["text"].replace("*", "")
+        samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
         dur = len(samples) / rate
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
@@ -58,7 +59,7 @@ def number_hits(segments, timings, gap=0.6):
     hits = []
     for (s, e), seg in zip(timings, segments):
         for _, _, words in caption_chunks(seg["text"], s, e):
-            for w, ws, _ in words:
+            for w, ws, _, _ in words:
                 if any(c.isdigit() for c in w) and ws - s > 0.4 and (not hits or ws - hits[-1] >= gap):
                     hits.append(ws)
     return hits
@@ -67,18 +68,26 @@ def number_hits(segments, timings, gap=0.6):
 def caption_chunks(text, start, end, max_words=3):
     """Teilt einen Satz in kurze Untertitel. Zeit wird nach Zeichenlänge auf die Wörter verteilt.
 
-    Gibt je Untertitel (start, ende, [(wort, wort_start, wort_ende), ...]) zurück.
+    Gibt je Untertitel (start, ende, [(wort, wort_start, wort_ende, schluesselwort), ...]) zurück.
+    Wörter mit *Sternchen* im Skript sind Schlüsselwörter und werden im Untertitel hervorgehoben.
     """
     import numerals
 
-    words = text.split()
+    raw = text.split()
+    words = [w.replace("*", "") for w in raw]
+    keys = [w.count("*") > 0 for w in raw]
     weight = [len(w) + 2 for w in words]  # +2: auch kurze Wörter brauchen etwas Zeit
     total = sum(weight)
     timed, t = [], start
-    for w, k in zip(words, weight):
+    for w, key, k in zip(words, keys, weight):
         d = (end - start) * k / total
-        timed.append((numerals.display_word(w), t, t + d))  # Zahlen als Ziffern anzeigen
+        timed.append((numerals.display_word(w), t, t + d, key))  # Zahlen als Ziffern anzeigen
         t += d
+    # "1600 Meter" ist keine Jahreszahl: mit Punkt schreiben, wenn eine Einheit folgt
+    for i in range(len(timed) - 1):
+        w, nxt = timed[i][0], words[i + 1]
+        if w.isdigit() and len(w) == 4 and nxt[:1].isupper():
+            timed[i] = (f"{w[0]}.{w[1:]}",) + timed[i][1:]
     groups, cur = [], []
     for item in timed:
         cur.append(item)
@@ -113,65 +122,6 @@ def font(path, size):
     return _fonts[key]
 
 
-def render_caption(words, active, accent):
-    """Untertitel als Bild, Wort für Wort: Das gerade gesprochene Wort ist größer und farbig.
-
-    words: Liste der Wörter, active: Index des gesprochenen Worts (oder -1).
-    """
-    probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
-    up = [w.upper() for w in words]
-    size = 112
-    while size > 60:
-        f, big = font(FONT_BOLD, size), font(FONT_BOLD, int(size * 1.14))
-        space = probe.textlength(" ", font=f) * 1.1
-        lines, cur, cur_w = [], [], 0.0
-        for i, w in enumerate(up):
-            ww = probe.textlength(w, font=big)  # Platz wie für das große Wort, damit nichts springt
-            if cur and cur_w + space + ww > W - 170:
-                lines.append(cur)
-                cur, cur_w = [], 0.0
-            cur.append((i, ww))
-            cur_w += (space if len(cur) > 1 else 0) + ww
-        lines.append(cur)
-        if len(lines) <= 2 and all(sum(x[1] for x in ln) + space * (len(ln) - 1) <= W - 170 for ln in lines):
-            break
-        size -= 6
-    f, big = font(FONT_BOLD, size), font(FONT_BOLD, int(size * 1.14))
-    lh = int(size * 1.22)
-    img = Image.new("RGBA", (W, lh * len(lines) + 60), (0, 0, 0, 0))
-    shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    d, ds = ImageDraw.Draw(img), ImageDraw.Draw(shadow)
-    for row, ln in enumerate(lines):
-        line_w = sum(x[1] for x in ln) + space * (len(ln) - 1)
-        x = W / 2 - line_w / 2
-        y = 30 + row * lh + lh / 2
-        for i, ww in ln:
-            cx = x + ww / 2
-            is_num = any(c.isdigit() for c in up[i])
-            on = i == active
-            color = hex_rgb(accent) if (on or is_num) else (255, 255, 255)
-            ds.text((cx + 6, y + 8), up[i], font=big if on else f, anchor="mm", fill=(0, 0, 0, 150))
-            d.text((cx, y), up[i], font=big if on else f, anchor="mm", fill=color,
-                   stroke_width=11 if on else 10, stroke_fill=(12, 12, 20))
-            x += ww + space
-    shadow = shadow.filter(ImageFilter.GaussianBlur(8))
-    shadow.alpha_composite(img)
-    return shadow
-
-
-def ease_out_back(x):
-    c1, c3 = 1.70158, 2.70158
-    return 1 + c3 * (x - 1) ** 3 + c1 * (x - 1) ** 2
-
-
-def scaled(img, s):
-    return img.resize((max(1, int(img.width * s)), max(1, int(img.height * s))), Image.BILINEAR)
-
-
-def ease_out_cubic(x):
-    return 1 - (1 - x) ** 3
-
-
 class Scene:
     """Zeichnet die Bilder eines Shorts. timings: Start/Ende jedes Satzes in Sekunden.
 
@@ -179,11 +129,14 @@ class Scene:
     - Hintergrund passend zum Thema, der sich bei jedem Satz verändert (themes.py, car_scene.py)
     - Kamera zoomt langsam hinein und macht bei jedem neuen Satz einen kurzen Stoß mit Wackeln
     - kurzer heller Blitz als Übergang zwischen den Sätzen
-    - Untertitel Wort für Wort, das gesprochene Wort ist größer und farbig
-    - Emoji springt herein, wippt und dreht sich leicht
+    - Untertitel: jedes Wort fliegt herein, das gesprochene Wort steht auf einem farbigen Kasten (motion.py)
+    - Emoji auf leuchtendem Kreis mit kreisenden Funken
+    - bei Zahlen ein Zähler mit Ring, der hochzählt und das Emoji ablöst
     """
 
     def __init__(self, spec, timings, total):
+        import motion
+
         self.timings, self.total = timings, total
         self.accent = spec["accent"]
         self.car = None
@@ -197,12 +150,18 @@ class Scene:
             self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
         self.cap_y = 640 if self.car else 1180
         self.bar_y = 280 if self.car else H - 210
-        self.chunks = []
+        self.icon_y = 930 if self.car else 620
+        self.chunks, self.numbers = [], []
         for (s, e), seg in zip(timings, spec["segments"]):
-            self.chunks += caption_chunks(seg["text"], s, e)
+            chunks = caption_chunks(seg["text"], s, e)
+            self.chunks += chunks
+            self.numbers.append(motion.number_events([w[:3] for c in chunks for w in c[2]]))
         self.hits = number_hits(spec["segments"], timings)
         if not self.chunks:
             raise ValueError("Skript ohne Text")
+        rgb = hex_rgb(self.accent)
+        self.badge = motion.EmojiBadge(rgb)
+        self.card = motion.NumberCard(rgb, FONT_BOLD, FONT_SEMI, scale=0.62 if self.car else 1.0)
         self._cap_cache = {}
         self.label_font = font(FONT_SEMI, 46)
         self.label = spec["niche"].upper()
@@ -210,20 +169,19 @@ class Scene:
     # --- Bausteine ---------------------------------------------------------
 
     def caption(self, t):
-        """Aktueller Untertitel als Bild plus Startzeit, oder None."""
+        """Aktueller Untertitel (motion.Caption), oder None."""
+        import motion
+
         idx = next((i for i, c in enumerate(self.chunks) if c[0] <= t < c[1]), None)
         if idx is None:
             prev = [i for i, c in enumerate(self.chunks) if c[1] <= t]
             if not prev or t - self.chunks[prev[-1]][1] >= PAUSE:
                 return None
             idx = prev[-1]
-        start, _, words = self.chunks[idx]
-        active = next((j for j, (_, ws, we) in enumerate(words) if ws <= t < we), -1)
-        key = (idx, active)
-        if key not in self._cap_cache:
-            self._cap_cache = {k: v for k, v in self._cap_cache.items() if k[0] >= idx - 1}
-            self._cap_cache[key] = render_caption([w for w, _, _ in words], active, self.accent)
-        return self._cap_cache[key], start
+        if idx not in self._cap_cache:
+            self._cap_cache = {k: v for k, v in self._cap_cache.items() if k >= idx - 1}
+            self._cap_cache[idx] = motion.Caption(self.chunks[idx][2], hex_rgb(self.accent), FONT_BOLD)
+        return self._cap_cache[idx]
 
     def segment_at(self, t):
         return next((i for i, (s, e) in enumerate(self.timings) if t < e + PAUSE), len(self.timings) - 1)
@@ -249,22 +207,20 @@ class Scene:
             frame = self.theme.frame(t)
         frame = frame.convert("RGBA")
 
-        # Emoji des aktuellen Satzes: springt herein, wippt und dreht sich leicht
+        # Emoji des aktuellen Satzes, bei einer Zahl übernimmt der Zähler
+        since = t - self.timings[idx][0]
+        spoken = [ev for ev in self.numbers[idx] if ev[0] <= t]
+        bob = 22 * math.sin(t * 2.2)
         if self.emojis:
-            since = t - self.timings[idx][0]
-            pop = ease_out_back(min(1, max(0, since / 0.32))) if since >= 0 else 1
-            em = scaled(self.emojis[idx], max(0.05, pop * (1 + 0.04 * math.sin(t * 5))))
-            em = em.rotate(7 * math.sin(t * 2.6), resample=Image.BICUBIC, expand=True)
-            bob = int(22 * math.sin(t * 2.2))
-            frame.alpha_composite(em, (int(W / 2 - em.width / 2), int(620 - em.height / 2 + bob)))
+            out = (t - spoken[0][0]) / 0.2 if spoken else 0.0
+            self.badge.draw(frame, t, W / 2, self.icon_y + bob, self.emojis[idx], max(since, 0), out)
+        if spoken:
+            self.card.draw(frame, t, W / 2, self.icon_y + bob * 0.5, spoken[-1], appear=spoken[-1][0])
 
-        # Untertitel Wort für Wort
+        # Untertitel: Wörter fliegen herein, das gesprochene Wort hat einen farbigen Kasten
         cap = self.caption(t)
         if cap:
-            img, start = cap
-            k = min(1, (t - start) / 0.14)
-            ci = scaled(img, 0.82 + 0.18 * ease_out_back(k))
-            frame.alpha_composite(ci, (int(W / 2 - ci.width / 2), int(self.cap_y - ci.height / 2)))
+            cap.draw(frame, t, self.cap_y)
 
         # Kamera: langsamer Zoom über das ganze Video plus Stoß mit Wackeln bei jedem Satz
         p = self.punch(t)

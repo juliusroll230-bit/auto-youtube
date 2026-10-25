@@ -81,7 +81,7 @@ class Theme:
         self.seed = sum(map(ord, spec["slug"]))
         self.accent = hex_rgb(spec.get("accent") or "#ffd166")
         self.colors = spec.get("colors") or ["#1d1a39", "#5a3fc0"]
-        self.texts = [s["text"] for s in spec["segments"]]
+        self.texts = [s["text"].replace("*", "") for s in spec["segments"]]
         self.emojis = [s.get("emoji", "") for s in spec["segments"]]
 
     def seg(self, t):
