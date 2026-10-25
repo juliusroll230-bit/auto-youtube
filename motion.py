@@ -95,7 +95,8 @@ class Caption:
                 cur.append(i)
                 cur_w += (space if len(cur) > 1 else 0) + ww
             lines.append(cur)
-            if len(lines) <= 2 and all(sum(widths[i] for i in ln) + space * (len(ln) - 1) <= W - 150 for ln in lines):
+            # lieber drei Zeilen als winzige Schrift bei langen Wörtern
+            if (len(lines) <= 2 or (size <= 88 and len(lines) <= 3)) and all(sum(widths[i] for i in ln) + space * (len(ln) - 1) <= W - 150 for ln in lines):
                 break
             size -= 6
         f, big = font(font_path, size), font(font_path, int(size * 1.1))
@@ -157,7 +158,7 @@ def number_events(words):
     out = []
     for i, (w, ws, _) in enumerate(words):
         v = number_value(w)
-        if v is None:
+        if v is None or v <= 2:  # "2 Inseln" lohnt keinen Zähler
             continue
         digits = re.search(r"\d[\d.,]*", w).group(0).rstrip(".,")
         unit = []
