@@ -166,6 +166,14 @@ main { padding-block: 28px 72px; }
 .donut-wrap #donut { width: 150px; flex: none; }
 .donut-wrap .rows { flex: 1 1 210px; min-width: 0; }
 .rows { display: grid; gap: 9px; }
+.looks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 22px; }
+.looks h3 { font-size: 12px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+.looks .lr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 8px; font-size: 13px; margin-bottom: 8px; }
+.looks .lr .meta { color: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.looks .lr .bar { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+.looks .lr .bar i { display: block; height: 100%; border-radius: 3px; background: rgba(255, 255, 255, .35); }
+.looks .lr.best .bar i { background: var(--accent); }
+.looks .lr.best b { color: var(--accent); }
 .rows .r { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; font-size: 12.5px; }
 .rows .bar { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .06); overflow: hidden; }
 .rows .bar i { display: block; height: 100%; border-radius: 3px; background: var(--c, var(--accent)); transform-origin: left; animation: grow .8s cubic-bezier(.2, .8, .2, 1) both; }
@@ -454,6 +462,11 @@ details[open] summary { margin-bottom: 12px; }
           <thead><tr><th>Thema</th><th class="r hide-sm">Videos</th><th class="r">Wert</th><th class="r">Ø angesehen</th><th class="hide-sm" style="width:28%"></th></tr></thead>
           <tbody id="learnBody"></tbody>
         </table></div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-h"><div><h2>Was am besten funktioniert</h2><div class="sub">Wert je Merkmal (Aufrufe hochgerechnet, mit Dranbleiben gewichtet). Untertitel und Übergang wählt die App danach selbst, 3 von 4 Videos bekommen den besten.</div></div></div>
+        <div class="card-b"><div class="looks" id="looks"></div></div>
       </div>
     </section>
 
@@ -1149,7 +1162,27 @@ details[open] summary { margin-bottom: 12px; }
     renderLearning(d);
   }
 
+  function renderLooks(d) {
+    var box = clear($("looks")), groups = d.looks || [];
+    var nice = function (v) { return v.charAt(0).toUpperCase() + v.slice(1); };
+    groups.forEach(function (g) {
+      var max = g.values.reduce(function (a, x) { return Math.max(a, x.score); }, 0) || 1;
+      var best = g.values.length > 1 && g.values[0].videos >= 2 ? g.values[0].value : null;
+      var col = h("div", null, [h("h3", { text: g.label })]);
+      if (!g.values.length) col.appendChild(h("div", { cls: "label", text: "Noch keine Daten" }));
+      g.values.forEach(function (x) {
+        col.appendChild(h("div", { cls: "lr" + (x.value === best ? " best" : "") }, [
+          h("b", { text: nice(x.value) + (x.value === best ? " ★" : "") }),
+          h("span", { cls: "meta", text: nf.format(x.score) + " · " + x.videos + " Vid." + (x.avg_pct != null ? " · " + Math.round(x.avg_pct) + " %" : "") }),
+          h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.max(2, Math.round(100 * x.score / max)) + "%" })])
+        ]));
+      });
+      box.appendChild(col);
+    });
+  }
+
   function renderLearning(d) {
+    renderLooks(d);
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite

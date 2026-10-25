@@ -93,3 +93,84 @@ def summary(scores):
         "niches": [{"niche": n, "score": round(s["score"]), "videos": s["videos"],
                     "avg_pct": round(s["avg_pct"], 1) if s.get("avg_pct") else None} for n, s in ranked],
     }
+
+
+# --- Was im Video am besten funktioniert -------------------------------------
+# Neben dem Thema lernt die App auch den Look: Untertitel-Stil und Übergang werden wie die Themen
+# gewählt (3 von 4 Videos bekommen den besten, jedes 4. testet einen anderen). Länge, Einstieg und
+# Grafik kommen aus den Skripten; die Website zeigt, was davon am besten läuft.
+
+CAPTION_STYLES = ("kasten", "unterstrich", "pop")       # wie motion.Caption.STYLES
+TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TRANSITIONS
+FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "laenge": "Länge",
+                 "einstieg": "Erster Satz", "grafik": "Grafik"}
+
+
+def default_look(spec):
+    """Der Look, den make_short ohne Vorgabe gewählt hätte (gleicher Zufall wie dort)."""
+    import random
+    rng = random.Random(sum(map(ord, spec["slug"])) * 7919)
+    style = rng.choice(CAPTION_STYLES)
+    return {"caption_style": style, "transition": rng.choice(TRANSITIONS)}
+
+
+def features(spec, look):
+    words = [len(s["text"].split()) for s in spec.get("segments", [])]
+    total, hook = sum(words), (words[0] if words else 0)
+    kinds = [str((s.get("visual") or {}).get("type", "")).lower() for s in spec.get("segments", [])]
+    kinds = [k for k in kinds if k]
+    return {
+        "caption_style": look.get("caption_style"),
+        "transition": look.get("transition"),
+        "laenge": "kurz (bis 60 Wörter)" if total <= 60 else "mittel (61 bis 75)" if total <= 75 else "lang (über 75)",
+        "einstieg": "kurz (bis 8 Wörter)" if hook <= 8 else "mittel (9 bis 12)" if hook <= 12 else "lang (über 12)",
+        "grafik": kinds[0] if kinds else "keine",
+    }
+
+
+def feature_scores(posted, now):
+    """Je Merkmal und Wert: Durchschnitt der Video-Werte, Anzahl und Ø angesehen."""
+    out = {}
+    for v in posted:
+        if v.get("views") is None or not v.get("features") or not v.get("posted_at"):
+            continue
+        age_h = (now - dt.datetime.fromisoformat(v["posted_at"])).total_seconds() / 3600
+        if age_h < MIN_AGE_H:
+            continue
+        score = video_score(v["views"], age_h, v.get("avg_pct"))
+        for name, value in v["features"].items():
+            if value is None:
+                continue
+            e = out.setdefault(name, {}).setdefault(value, {"total": 0.0, "videos": 0, "pct": 0.0, "pn": 0})
+            e["total"] += score
+            e["videos"] += 1
+            if v.get("avg_pct"):
+                e["pct"] += v["avg_pct"]
+                e["pn"] += 1
+    return {name: {val: {"score": e["total"] / e["videos"], "videos": e["videos"],
+                         "avg_pct": e["pct"] / e["pn"] if e["pn"] else None} for val, e in vals.items()}
+            for name, vals in out.items()}
+
+
+def choose(options, scores, step):
+    """Bester Wert (3 von 4 Mal) oder ein Test: der am wenigsten genutzte Wert."""
+    rated = {o: scores[o]["score"] for o in options if o in scores and scores[o]["videos"] >= MIN_VIDEOS}
+    if rated and len(rated) == len(options) and step % EXPLORE_EVERY != EXPLORE_EVERY - 1:
+        return max(rated, key=rated.get)
+    return min(options, key=lambda o: (scores.get(o, {}).get("videos", 0), options.index(o)))
+
+
+def choose_look(fscores, step):
+    return {"caption_style": choose(CAPTION_STYLES, fscores.get("caption_style", {}), step),
+            "transition": choose(TRANSITIONS, fscores.get("transition", {}), step + 1)}
+
+
+def feature_summary(fscores):
+    rows = []
+    for name, label in FEATURE_NAMES.items():
+        vals = fscores.get(name, {})
+        ranked = sorted(vals.items(), key=lambda kv: kv[1]["score"], reverse=True)
+        rows.append({"key": name, "label": label,
+                     "values": [{"value": v, "score": round(s["score"]), "videos": s["videos"],
+                                 "avg_pct": round(s["avg_pct"], 1) if s["avg_pct"] else None} for v, s in ranked]})
+    return rows

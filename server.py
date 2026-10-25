@@ -70,11 +70,12 @@ def post_next(slot, manual=False):
         status["busy"] = f"Erstelle Video: {spec['title']}"
         from make_short import build_video, load_tts
         _tts = _tts or load_tts()
-        video, total, timings = build_video(spec, store.path("out"), _tts)
+        look = store.next_look()  # Untertitel-Stil und Übergang, die bisher am besten liefen
+        video, total, timings = build_video({**spec, **look}, store.path("out"), _tts)
         status["busy"] = f"Lade hoch: {spec['title']}"
         video_id = yt.upload(store.config(), video, spec)
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
-        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1))
+        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look)
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
         refresh_stats()

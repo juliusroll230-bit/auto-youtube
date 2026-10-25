@@ -161,7 +161,7 @@ def sentence_marks(spec):
     return [round(x / t, 4) for x in starts] if t else []
 
 
-def mark_posted(file, slot, spec, video_id, marks=None, duration=None):
+def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None):
     with LOCK:
         shutil.move(file, path("posted", os.path.basename(file)))
         st = state()
@@ -169,7 +169,7 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None):
             st["done_slots"] = (st["done_slots"] + [slot])[-90:]
         st["uploads"].append({"slot": slot, "slug": spec["slug"], "video_id": video_id, "title": spec["title"],
                               "posted_at": now().isoformat(timespec="seconds"),
-                              "marks": marks, "duration": duration})
+                              "marks": marks, "duration": duration, "look": look})
         write("state.json", st)
 
 
@@ -195,6 +195,8 @@ def posted_items():
         item = {**base, **u, **stats["videos"].get(u["video_id"], {}), **ana.get(u["video_id"], {})}
         if spec:  # Satztexte für die Abschalt-Kurve auf der Website
             item["sentences"] = [seg["text"].replace("*", "") for seg in spec.get("segments", [])]
+        if spec:  # Merkmale für "Was am besten funktioniert"
+            item["features"] = learn.features(spec, u.get("look") or learn.default_look(spec))
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
@@ -222,6 +224,12 @@ def planned_queue(posted=None):
     return learn.plan(queue, history, learn.niche_scores(posted, now()))
 
 
+def next_look(posted=None):
+    """Untertitel-Stil und Übergang für das nächste Video, nach dem was bisher am besten lief."""
+    posted = posted if posted is not None else posted_items()
+    return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
+
+
 def dashboard(extra=None):
     cfg = config()
     stats = read("stats.json", {"videos": {}, "updated_at": None})
@@ -240,6 +248,7 @@ def dashboard(extra=None):
         "posted": posted,
         "branding_at": state().get("branding_at"),
         "learning": learn.summary(learn.niche_scores(posted, now())),
+        "looks": learn.feature_summary(learn.feature_scores(posted, now())),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),
