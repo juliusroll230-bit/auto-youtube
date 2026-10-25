@@ -1,0 +1,40 @@
+{
+  "slug": "geschichte-emu-krieg",
+  "niche": "Geschichte",
+  "colors": [
+    "#3a2412",
+    "#b5763a"
+  ],
+  "accent": "#ffcf8a",
+  "title": "Australien führte Krieg gegen Vögel und verlor 🐦",
+  "description": "Der Große Emu-Krieg von 1932 in Westaustralien.\n\n#geschichte #australien #fakten #shorts",
+  "tags": [
+    "geschichte",
+    "australien",
+    "emu",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🐦",
+      "text": "Australien hat einmal einen Krieg gegen Vögel geführt. Und verloren."
+    },
+    {
+      "emoji": "🌾",
+      "text": "Neunzehnhundertzweiunddreißig fraßen rund zwanzigtausend Emus in Westaustralien die Weizenfelder der Farmer leer."
+    },
+    {
+      "emoji": "🪖",
+      "text": "Also schickte die Armee Soldaten mit zwei Maschinengewehren und zehntausend Schuss Munition. Was sollte da schiefgehen?"
+    },
+    {
+      "emoji": "🏃",
+      "text": "Die Emus rannten in alle Richtungen davon, und ein Gewehr klemmte. Nach rund einem Monat wurde die Aktion abgebrochen."
+    },
+    {
+      "emoji": "👉",
+      "text": "Die Zeitungen nannten es den Großen Emu-Krieg. Folge für mehr Geschichte."
+    }
+  ]
+}

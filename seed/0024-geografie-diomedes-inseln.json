@@ -1,0 +1,40 @@
+{
+  "slug": "geografie-diomedes-inseln",
+  "niche": "Geografie",
+  "colors": [
+    "#0a2238",
+    "#2f7fb8"
+  ],
+  "accent": "#8fe3ff",
+  "title": "Vier Kilometer entfernt und fast einen Tag auseinander 🏝️",
+  "description": "Die Diomedes-Inseln in der Beringstraße: Russland und USA, getrennt von der Datumsgrenze.\n\n#geografie #fakten #shorts",
+  "tags": [
+    "geografie",
+    "fakten",
+    "wissen",
+    "datumsgrenze",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏝️",
+      "text": "Zwei Inseln, nur vier Kilometer entfernt, aber fast einen Tag auseinander."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Sie heißen Große und Kleine Diomedes-Insel und liegen in der Beringstraße zwischen Russland und Alaska."
+    },
+    {
+      "emoji": "❓",
+      "text": "Die große gehört zu Russland, die kleine zu den USA. Aber warum fast ein ganzer Tag?"
+    },
+    {
+      "emoji": "🕐",
+      "text": "Genau zwischen ihnen verläuft die Datumsgrenze. Der Zeitunterschied beträgt bis zu einundzwanzig Stunden. Die große Insel heißt deshalb auch Morgen-Insel."
+    },
+    {
+      "emoji": "👉",
+      "text": "Im Winter friert das Meer dazwischen oft zu. Folge für mehr Geografie."
+    }
+  ]
+}

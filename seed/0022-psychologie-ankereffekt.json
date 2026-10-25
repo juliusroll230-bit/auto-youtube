@@ -1,0 +1,40 @@
+{
+  "slug": "psychologie-ankereffekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#24123d",
+    "#7a3fc0"
+  ],
+  "accent": "#ff9be8",
+  "title": "Eine zufällige Zahl verändert dein Urteil 🎡",
+  "description": "Der Ankereffekt: ein berühmtes Experiment von Tversky und Kahneman.\n\n#psychologie #fakten #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "ankereffekt",
+    "wissen",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧠",
+      "text": "Eine zufällige Zahl kann dein Urteil verändern. Ohne dass du es merkst."
+    },
+    {
+      "emoji": "🎡",
+      "text": "In einem berühmten Experiment drehten Forscher ein Glücksrad. Es blieb heimlich immer bei zehn oder bei fünfundsechzig stehen."
+    },
+    {
+      "emoji": "🌍",
+      "text": "Dann sollten die Leute schätzen, wie viel Prozent der Länder in den Vereinten Nationen afrikanisch sind. Was meinst du, passierte?"
+    },
+    {
+      "emoji": "📊",
+      "text": "Wer die zehn gesehen hatte, schätzte im Mittel fünfundzwanzig Prozent. Nach der fünfundsechzig waren es fünfundvierzig Prozent."
+    },
+    {
+      "emoji": "👉",
+      "text": "Das nennt man den Ankereffekt. Händler nutzen ihn mit durchgestrichenen Preisen. Folge für mehr Psychologie."
+    }
+  ]
+}

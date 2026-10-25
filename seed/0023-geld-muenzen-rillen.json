@@ -1,0 +1,40 @@
+{
+  "slug": "geld-muenzen-rillen",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#0d3326",
+    "#2a9d6a"
+  ],
+  "accent": "#e6ff8a",
+  "title": "Warum Münzen Rillen am Rand haben 🪙",
+  "description": "Gegen Betrug und zum Ertasten: die Geschichte der Münzränder. Keine Anlageberatung.\n\n#geld #finanzen #geschichte #shorts",
+  "tags": [
+    "geld",
+    "münzen",
+    "finanzen",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪙",
+      "text": "Warum haben manche Münzen Rillen am Rand? Der Grund ist Betrug."
+    },
+    {
+      "emoji": "✂️",
+      "text": "Früher waren Münzen aus echtem Silber. Gauner schnitten heimlich kleine Stücke vom Rand ab und schmolzen sie ein."
+    },
+    {
+      "emoji": "⚖️",
+      "text": "Sogar Isaac Newton jagte als Aufseher der englischen Münze Fälscher. Doch was half wirklich?"
+    },
+    {
+      "emoji": "👆",
+      "text": "Rillen am Rand. Fehlte ein Stück, sah man es sofort. Heute helfen die verschiedenen Ränder auch blinden Menschen, Münzen zu ertasten."
+    },
+    {
+      "emoji": "👉",
+      "text": "Keine Anlageberatung, nur Geldgeschichte. Folge für mehr Geld-Wissen."
+    }
+  ]
+}
