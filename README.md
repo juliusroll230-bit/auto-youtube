@@ -50,6 +50,8 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 
 Im Text markieren Sternchen ein Schlüsselwort (`*Toyota*`), es wird im Untertitel farbig und größer gezeigt; vorgelesen wird es ohne Sternchen. Steht nach einer Zahl eine großgeschriebene Einheit („sechshundert Kilometer“), zeigt das Video einen Zähler, der bis zu dieser Zahl hochzählt.
 
+Ein Segment kann eine Grafik bekommen: `"visual": {"type": "zeitstrahl" | "vergleich" | "liste" | "anteil" | "wort", ...}` (Beispiele oben in `visuals.py`). Jedes Video bekommt außerdem einen eigenen Untertitel-Stil und eigene Übergänge.
+
 Für den Auto-Hintergrund statt `colors` und `emoji`: `"style": "car", "car_color": "#d0101c"`. Dateinamen sind fortlaufend nummeriert (`0016-slug.json`), die kleinste Nummer wird zuerst gepostet.
 
 ## Einstellungen (Umgebungsvariablen)

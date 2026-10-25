@@ -51,8 +51,8 @@ def font(path, size):
 
 # --- Untertitel ------------------------------------------------------------
 
-def word_sprite(text, fnt, fill, box=None):
-    """Ein Wort als Bild mit Umrandung und Schatten, optional auf einem farbigen Kasten."""
+def word_sprite(text, fnt, fill, box=None, underline=None):
+    """Ein Wort als Bild mit Umrandung und Schatten, optional auf einem farbigen Kasten oder unterstrichen."""
     probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
     l, t, r, b = probe.textbbox((0, 0), text, font=fnt, anchor="mm")
     pad = 40
@@ -69,6 +69,9 @@ def word_sprite(text, fnt, fill, box=None):
     else:
         ds.text((cx + 6, cy + 8), text, font=fnt, anchor="mm", fill=(0, 0, 0, 150))
         d.text((cx, cy), text, font=fnt, anchor="mm", fill=fill, stroke_width=10, stroke_fill=(12, 12, 20))
+        if underline:
+            uy = cy + (b - t) / 2 + 14
+            d.rounded_rectangle((cx - (r - l) / 2, uy, cx + (r - l) / 2, uy + 14), radius=7, fill=underline)
     shadow = shadow.filter(ImageFilter.GaussianBlur(8))
     shadow.alpha_composite(img)
     return shadow
@@ -77,8 +80,11 @@ def word_sprite(text, fnt, fill, box=None):
 class Caption:
     """Ein Untertitel (bis zu 3 Wörter): Layout und Bilder werden einmal berechnet, pro Bild nur bewegt."""
 
-    def __init__(self, words, accent, font_path):
-        """words: Liste von (text, start, ende, schluesselwort)."""
+    STYLES = ("kasten", "unterstrich", "pop")
+
+    def __init__(self, words, accent, font_path, style="kasten"):
+        """words: Liste von (text, start, ende, schluesselwort). style: wie das gesprochene Wort aussieht."""
+        self.style = style
         self.words = words
         probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
         up = [w[0].upper() for w in words]
@@ -114,7 +120,12 @@ class Caption:
         for u, (_, _, _, key) in zip(up, words):
             colored = key or any(c.isdigit() for c in u)
             self.normal.append(word_sprite(u, big if key else f, acc if colored else (255, 255, 255)))
-            self.active.append(word_sprite(u, big, dark_text_for(acc), box=acc))
+            if style == "unterstrich":
+                self.active.append(word_sprite(u, big, acc, underline=acc))
+            elif style == "pop":
+                self.active.append(word_sprite(u, font(font_path, int(size * 1.18)), acc))
+            else:
+                self.active.append(word_sprite(u, big, dark_text_for(acc), box=acc))
 
     def draw(self, frame, t, cy):
         for i, (_, ws, we, _) in enumerate(self.words):
@@ -128,6 +139,8 @@ class Caption:
             if on:
                 s *= 1.0 + 0.05 * math.sin(clamp01(since / 0.2) * math.pi)
             dy = 60 * (1 - ease_out_cubic(k))
+            if self.style == "pop" and on:
+                dy -= 14 * math.sin(clamp01(since / 0.25) * math.pi)
             x, y = self.pos[i]
             paste_center(frame, scaled(spr, s), x, cy + y + dy)
 

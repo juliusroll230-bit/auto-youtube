@@ -128,14 +128,19 @@ class Scene:
     Damit Zuschauer dranbleiben, ist immer etwas in Bewegung:
     - Hintergrund passend zum Thema, der sich bei jedem Satz verändert (themes.py, car_scene.py)
     - Kamera zoomt langsam hinein und macht bei jedem neuen Satz einen kurzen Stoß mit Wackeln
-    - kurzer heller Blitz als Übergang zwischen den Sätzen
-    - Untertitel: jedes Wort fliegt herein, das gesprochene Wort steht auf einem farbigen Kasten (motion.py)
-    - Emoji auf leuchtendem Kreis mit kreisenden Funken
-    - bei Zahlen ein Zähler mit Ring, der hochzählt und das Emoji ablöst
+    - Übergang zwischen den Sätzen (Blitz, Wischen, Zoom oder Glitch, je Video anders)
+    - Untertitel: jedes Wort fliegt herein, das gesprochene Wort ist hervorgehoben (Stil je Video anders, motion.py)
+    - Grafik zum Satz, wenn das Skript eine hat (Zeitstrahl, Vergleich, Liste, Anteil, großes Wort; visuals.py)
+    - sonst bei Zahlen ein Zähler mit Ring, sonst das Emoji auf leuchtendem Kreis
     """
 
+    TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")
+
     def __init__(self, spec, timings, total):
+        import random
+
         import motion
+        import visuals
 
         self.timings, self.total = timings, total
         self.accent = spec["accent"]
@@ -148,7 +153,7 @@ class Scene:
             import themes
             self.theme = themes.for_spec(spec, timings, total, PAUSE)
             self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
-        self.cap_y = 640 if self.car else 1180
+        self.cap_y = 560 if self.car else 1180
         self.bar_y = 280 if self.car else H - 210
         self.icon_y = 930 if self.car else 620
         self.chunks, self.numbers = [], []
@@ -160,6 +165,11 @@ class Scene:
         if not self.chunks:
             raise ValueError("Skript ohne Text")
         rgb = hex_rgb(self.accent)
+        # Jedes Video bekommt seinen eigenen Look, damit nicht alle gleich aussehen
+        rng = random.Random(sum(map(ord, spec["slug"])) * 7919)
+        self.cap_style = spec.get("caption_style") or rng.choice(motion.Caption.STYLES)
+        self.transition = spec.get("transition") or rng.choice(self.TRANSITIONS)
+        self.visuals = [visuals.build(seg.get("visual"), rgb, (FONT_BOLD, FONT_SEMI)) for seg in spec["segments"]]
         self.badge = motion.EmojiBadge(rgb)
         self.card = motion.NumberCard(rgb, FONT_BOLD, FONT_SEMI, scale=0.62 if self.car else 1.0)
         self._cap_cache = {}
@@ -180,7 +190,8 @@ class Scene:
             idx = prev[-1]
         if idx not in self._cap_cache:
             self._cap_cache = {k: v for k, v in self._cap_cache.items() if k >= idx - 1}
-            self._cap_cache[idx] = motion.Caption(self.chunks[idx][2], hex_rgb(self.accent), FONT_BOLD)
+            self._cap_cache[idx] = motion.Caption(self.chunks[idx][2], hex_rgb(self.accent), FONT_BOLD,
+                                                  self.cap_style)
         return self._cap_cache[idx]
 
     def segment_at(self, t):
@@ -197,6 +208,34 @@ class Scene:
                 p = max(p, 0.75 * (1 - (t - s) / 0.28) ** 2)
         return p
 
+    def transition_fx(self, frame, dt):
+        """Effekt kurz nach einem Satzwechsel. dt: Sekunden seit Satzanfang."""
+        kind = self.transition
+        if kind in ("blitz", "zoom") and 0 <= dt < 0.12:
+            return Image.blend(frame, Image.new("RGB", (W, H), (255, 255, 255)), 0.32 * (1 - dt / 0.12))
+        if kind == "wischen" and 0 <= dt < 0.3:
+            # farbiges Band fegt schräg über das Bild
+            k = ease_out_cubic(dt / 0.3)
+            x = -700 + (W + 1400) * k
+            d = ImageDraw.Draw(frame, "RGBA")
+            acc = hex_rgb(self.accent)
+            d.polygon([(x - 260, 0), (x + 40, 0), (x - 260 + 600, H), (x - 560 + 600, H)], fill=acc + (150,))
+            d.polygon([(x + 70, 0), (x + 130, 0), (x + 130 + 600, H), (x + 70 + 600, H)], fill=(255, 255, 255, 120))
+            return frame
+        if kind == "glitch" and 0 <= dt < 0.16:
+            # Farbkanäle verrutschen, Streifen springen zur Seite
+            amt = int(26 * (1 - dt / 0.16))
+            r, g, b = frame.split()
+            r = r.transform(r.size, Image.AFFINE, (1, 0, -amt, 0, 1, 0))
+            b = b.transform(b.size, Image.AFFINE, (1, 0, amt, 0, 1, 0))
+            frame = Image.merge("RGB", (r, g, b))
+            for i in range(4):
+                y = int((H * ((i * 0.37 + dt * 3.1) % 1)))
+                band = frame.crop((0, y, W, min(H, y + 50)))
+                frame.paste(band, ((i % 2 * 2 - 1) * amt * 2, y))
+            return frame
+        return frame
+
     # --- Bild --------------------------------------------------------------
 
     def frame(self, t):
@@ -207,14 +246,19 @@ class Scene:
             frame = self.theme.frame(t)
         frame = frame.convert("RGBA")
 
-        # Emoji des aktuellen Satzes, bei einer Zahl übernimmt der Zähler
+        # Grafik zum Satz, sonst Emoji; bei einer Zahl übernimmt der Zähler
         since = t - self.timings[idx][0]
         spoken = [ev for ev in self.numbers[idx] if ev[0] <= t]
         bob = 22 * math.sin(t * 2.2)
-        if self.emojis:
+        vis = self.visuals[idx]
+        if vis:
+            s, e = self.timings[idx]
+            y = 950 if self.car else self.icon_y
+            vis.draw(frame, t, s, e, W / 2, y + bob * 0.4, scale=0.8 if self.car else 1.0)
+        elif self.emojis:
             out = (t - spoken[0][0]) / 0.2 if spoken else 0.0
             self.badge.draw(frame, t, W / 2, self.icon_y + bob, self.emojis[idx], max(since, 0), out)
-        if spoken:
+        if spoken and not vis:
             self.card.draw(frame, t, W / 2, self.icon_y + bob * 0.5, spoken[-1], appear=spoken[-1][0])
 
         # Untertitel: Wörter fliegen herein, das gesprochene Wort hat einen farbigen Kasten
@@ -224,7 +268,10 @@ class Scene:
 
         # Kamera: langsamer Zoom über das ganze Video plus Stoß mit Wackeln bei jedem Satz
         p = self.punch(t)
+        s = self.timings[idx][0]
         zoom = 1.0 + 0.06 * (t / self.total) + 0.07 * p
+        if self.transition == "zoom" and idx > 0 and 0 <= t - s < 0.3:
+            zoom += 0.22 * (1 - ease_out_cubic((t - s) / 0.3))
         shake_x = p * 14 * math.sin(t * 61)
         shake_y = p * 10 * math.cos(t * 47)
         cw, ch = W / zoom, H / zoom
@@ -232,10 +279,9 @@ class Scene:
         y0 = (H - ch) / 2 + shake_y
         frame = frame.convert("RGB").resize((W, H), Image.BILINEAR, box=(x0, y0, x0 + cw, y0 + ch))
 
-        # Heller Blitz als Übergang zwischen zwei Sätzen
-        s = self.timings[idx][0]
-        if idx > 0 and 0 <= t - s < 0.12:
-            frame = Image.blend(frame, Image.new("RGB", (W, H), (255, 255, 255)), 0.32 * (1 - (t - s) / 0.12))
+        # Übergang zwischen zwei Sätzen
+        if idx > 0:
+            frame = self.transition_fx(frame, t - s)
 
         # Feste Elemente (bewegen sich nicht mit der Kamera): Themen-Label und Fortschrittsbalken
         d = ImageDraw.Draw(frame, "RGBA")
@@ -247,6 +293,10 @@ class Scene:
         d.rounded_rectangle((90, bar_y, 90 + (W - 180) * min(1, t / self.total), bar_y + 14), radius=7,
                             fill=hex_rgb(self.accent))
         return frame
+
+
+def ease_out_cubic(x):
+    return 1 - (1 - x) ** 3
 
 
 def estimated_timings(spec):
