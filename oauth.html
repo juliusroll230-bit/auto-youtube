@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Shorts Zentrale: Anmeldung</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f7f7fb; --fg: #16151d; --muted: #5b5a66; --card: #fff; --accent: #5a3fc0; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f0e15; --fg: #ecebf3; --muted: #a3a1b0; --card: #1a1924; --accent: #a996ff; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 64px 16px; }
+  section { background: var(--card); border-radius: 14px; padding: 20px 22px; }
+  a { color: var(--accent); }
+  code { word-break: break-all; }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>Shorts Zentrale</h1>
+    <p id="msg">Einen Moment, du wirst zurück zur Shorts-Zentrale geleitet …</p>
+  </section>
+</main>
+<script>
+// Google leitet nach der Anmeldung hierher. Diese Seite gibt den Code an die Shorts-Zentrale
+// im Heimnetz weiter. Ihre Adresse steckt im Feld "state" (vom Server erzeugt).
+(function () {
+  var q = new URLSearchParams(location.search);
+  var state = q.get("state") || "";
+  var part = state.split(".")[1] || "";
+  var origin = "";
+  try { origin = atob(part.replace(/-/g, "+").replace(/_/g, "/")); } catch (e) {}
+  var msg = document.getElementById("msg");
+  if (!/^https?:\/\/[\w.\-\[\]:]+$/.test(origin)) {
+    msg.textContent = "Diese Seite wird nur bei der Anmeldung für die Shorts-Zentrale gebraucht.";
+    return;
+  }
+  var target = origin + "/api/analytics/callback" + location.search;
+  msg.innerHTML = "";
+  msg.append("Weiter zur Shorts-Zentrale … Falls nichts passiert: ");
+  var a = document.createElement("a");
+  a.href = target; a.textContent = "hier klicken";
+  msg.append(a, ". Das klappt nur im selben WLAN wie dein Server.");
+  location.replace(target);
+})();
+</script>
+</body>
+</html>
