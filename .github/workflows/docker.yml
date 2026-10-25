@@ -59,7 +59,7 @@ jobs:
           docker exec app python -c "
           import json, glob, os, make_short
           spec = json.load(open(sorted(glob.glob('seed/*.json'))[1]))
-          path, dur = make_short.build_video(spec, '/tmp/out', make_short.load_tts())
+          path, dur, _ = make_short.build_video(spec, '/tmp/out', make_short.load_tts())
           assert os.path.getsize(path) > 500000, 'Video zu klein'
           print(path, round(dur, 1), 'Sekunden')
           "
