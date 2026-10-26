@@ -1,27 +1,19 @@
 {
   "permissions": {
     "allow": [
+      "Bash",
+      "Read",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "mcp__github",
+      "mcp__claude-code-remote",
+      "mcp__hearthbot",
+      "mcp__remote-devices",
+      "mcp__Firecrawl",
       "Edit",
-      "Write",
-      "Bash(git status *)",
-      "Bash(git diff *)",
-      "Bash(git log *)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git push *)",
-      "Bash(git pull *)",
-      "Bash(git fetch *)",
-      "Bash(git stash *)",
-      "Bash(gh run *)",
-      "Bash(python3 *)",
-      "Bash(node *)",
-      "Bash(ffmpeg *)",
-      "Bash(ffprobe *)",
-      "Bash(curl -s localhost*)",
-      "Bash(curl -sf localhost*)",
-      "Bash(mkdir -p *)",
-      "Bash(cp *)",
-      "Bash(ls *)"
+      "Write"
     ]
   }
 }
