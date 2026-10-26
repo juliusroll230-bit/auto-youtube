@@ -1,0 +1,46 @@
+{
+  "slug": "geografie-kanada-seen",
+  "niche": "Geografie",
+  "colors": [
+    "#0b2440",
+    "#2c86c4"
+  ],
+  "accent": "#9ff0ff",
+  "title": "Ein Land hat mehr Seen als der Rest der Welt 🏞️",
+  "description": "Kanada hat mehr große Seen als alle anderen Länder zusammen – dank der Eiszeit.\n\n#geografie #kanada #fakten #shorts",
+  "tags": [
+    "geografie",
+    "kanada",
+    "seen",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏞️",
+      "text": "Ein Land hat mehr Seen als der Rest der *Welt*."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Nicht Finnland und nicht Russland. Welches Land ist es, und wie kam es dazu?"
+    },
+    {
+      "emoji": "🧊",
+      "text": "In der *Eiszeit* lag dort ein riesiger Gletscher. Er grub tausende Mulden in den Boden, die sich mit Wasser füllten."
+    },
+    {
+      "emoji": "🍁",
+      "text": "Es ist *Kanada*. Dort liegen rund sechzig Prozent aller größeren Seen der Erde.",
+      "visual": {
+        "type": "anteil",
+        "teil": 3,
+        "von": 5,
+        "text": "aller größeren Seen"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Kanada ist voller Wasser. Folge für mehr Geografie."
+    }
+  ]
+}

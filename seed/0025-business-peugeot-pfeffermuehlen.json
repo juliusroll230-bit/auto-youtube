@@ -1,0 +1,50 @@
+{
+  "slug": "business-peugeot-pfeffermuehlen",
+  "style": "car",
+  "car_color": "#1d4fb8",
+  "niche": "Business",
+  "accent": "#ffd166",
+  "title": "Peugeot hat nicht mit Autos angefangen 🧂",
+  "description": "Bevor Peugeot Autos baute, machte die Familie Stahlwaren – und ein Produkt gibt es bis heute.\n\n#business #peugeot #autos #shorts",
+  "tags": [
+    "business",
+    "peugeot",
+    "autos",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Die erste Erfindung von *Peugeot* war kein Auto."
+    },
+    {
+      "text": "Die Familie machte Stahl, Sägen und Korsettstangen. Doch ein Produkt von damals gibt es bis heute. Welches?"
+    },
+    {
+      "text": "Später kamen *Fahrräder* und erst achtzehnhundertneunundachtzig das erste Auto.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1840,
+            "Mühlen"
+          ],
+          [
+            1882,
+            "Fahrräder"
+          ],
+          [
+            1889,
+            "Autos"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Es ist die *Pfeffermühle*. Peugeot verkauft sie seit achtzehnhundertvierzig, länger als jedes Auto."
+    },
+    {
+      "text": "Der Löwe im Logo stand zuerst auf Sägen. Folge für mehr."
+    }
+  ]
+}

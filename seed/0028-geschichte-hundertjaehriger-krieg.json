@@ -1,0 +1,57 @@
+{
+  "slug": "geschichte-hundertjaehriger-krieg",
+  "niche": "Geschichte",
+  "colors": [
+    "#33200f",
+    "#a8682f"
+  ],
+  "accent": "#ffd59a",
+  "title": "Der Hundertjährige Krieg hat gelogen ⚔️",
+  "description": "Der Hundertjährige Krieg zwischen England und Frankreich dauerte länger als sein Name sagt.\n\n#geschichte #mittelalter #fakten #shorts",
+  "tags": [
+    "geschichte",
+    "mittelalter",
+    "frankreich",
+    "england",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "⚔️",
+      "text": "Der *Hundertjährige Krieg* dauerte gar nicht hundert Jahre."
+    },
+    {
+      "emoji": "🏰",
+      "text": "England und Frankreich stritten um den französischen Thron. Aber wie lange kämpften sie wirklich?"
+    },
+    {
+      "emoji": "🛡️",
+      "text": "Dazwischen gab es lange Pausen und Waffenstillstände. Mittendrin führte *Jeanne d'Arc* die Franzosen an.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1337,
+            "Beginn"
+          ],
+          [
+            1429,
+            "Jeanne d'Arc"
+          ],
+          [
+            1453,
+            "Ende"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "📜",
+      "text": "Er ging von dreizehnhundertsiebenunddreißig bis vierzehnhundertdreiundfünfzig. Das sind einhundertsechzehn Jahre."
+    },
+    {
+      "emoji": "👉",
+      "text": "Der Name kam erst später. Folge für mehr Geschichte."
+    }
+  ]
+}

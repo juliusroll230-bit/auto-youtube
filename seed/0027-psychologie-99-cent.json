@@ -1,0 +1,52 @@
+{
+  "slug": "psychologie-99-cent",
+  "niche": "Psychologie",
+  "colors": [
+    "#2a1240",
+    "#8a46c9"
+  ],
+  "accent": "#ffb3f0",
+  "title": "Warum fast jeder Preis auf 99 endet 🏷️",
+  "description": "Der Linke-Ziffer-Effekt: Unser Gehirn liest Preise von links und rundet ab.\n\n#psychologie #preise #marketing #shorts",
+  "tags": [
+    "psychologie",
+    "preise",
+    "marketing",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏷️",
+      "text": "Neun Euro neunundneunzig ist ein *Trick*."
+    },
+    {
+      "emoji": "🧠",
+      "text": "Fast jeder Laden nutzt ihn, und fast jeder fällt darauf rein. Aber warum funktioniert er so gut?"
+    },
+    {
+      "emoji": "⚖️",
+      "text": "Der Unterschied zu zehn Euro ist nur ein Cent. Trotzdem fühlt sich der Preis deutlich *billiger* an.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Gefühlt",
+          9
+        ],
+        "b": [
+          "Wirklich",
+          10
+        ],
+        "einheit": "Euro"
+      }
+    },
+    {
+      "emoji": "👀",
+      "text": "Unser Gehirn liest von links und merkt sich vor allem die erste *Ziffer*. Forscher nennen das den Linke-Ziffer-Effekt."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ab jetzt rundest du richtig auf. Folge für mehr Psychologie."
+    }
+  ]
+}

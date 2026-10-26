@@ -1,0 +1,37 @@
+{
+  "slug": "business-volvo-ich-rolle",
+  "style": "car",
+  "car_color": "#c9ccd3",
+  "niche": "Business",
+  "accent": "#7fd0ff",
+  "title": "Was der Name Volvo wirklich bedeutet 🚗",
+  "description": "Volvo war ursprünglich ein Markenname für Kugellager. Die Bedeutung kommt aus dem Lateinischen.\n\n#business #volvo #autos #shorts",
+  "tags": [
+    "business",
+    "volvo",
+    "autos",
+    "marken",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Der Name *Volvo* war nie für Autos gedacht."
+    },
+    {
+      "text": "Er gehörte zuerst dem schwedischen Kugellager-Hersteller *SKF*. Aber was bedeutet das Wort eigentlich?"
+    },
+    {
+      "text": "SKF wollte damit Kugellager verkaufen. Dann wurde daraus eine eigene Autofirma, und neunzehnhundertsiebenundzwanzig rollte das erste Auto vom Band."
+    },
+    {
+      "text": "Volvo ist Latein und heißt *Ich rolle*. Perfekt für Kugellager, und später auch für Autos.",
+      "visual": {
+        "type": "wort",
+        "text": "Ich rolle"
+      }
+    },
+    {
+      "text": "Ein Name, zwei Produkte. Folge für mehr Auto-Storys."
+    }
+  ]
+}

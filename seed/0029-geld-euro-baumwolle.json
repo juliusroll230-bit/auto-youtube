@@ -1,0 +1,48 @@
+{
+  "slug": "geld-euro-baumwolle",
+  "niche": "Geld",
+  "colors": [
+    "#0c2f2a",
+    "#2b9a7a"
+  ],
+  "accent": "#d8ff8f",
+  "title": "Dein Geldschein ist kein Papier 💶",
+  "description": "Euro-Banknoten bestehen aus Baumwolle statt aus Holzpapier. Keine Anlageberatung.\n\n#geld #euro #fakten #shorts",
+  "tags": [
+    "geld",
+    "euro",
+    "banknoten",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "💶",
+      "text": "Dein *Geldschein* ist eigentlich gar kein Papier."
+    },
+    {
+      "emoji": "🧺",
+      "text": "Er übersteht sogar die Waschmaschine, normales Papier würde zerfallen. Aber woraus besteht er dann?"
+    },
+    {
+      "emoji": "🔍",
+      "text": "In jedem Schein stecken außerdem mehrere Schutzmerkmale, die man fühlen und sehen kann. Sie helfen gegen *Fälscher*.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Baumwolle",
+          "Wasserzeichen",
+          "Sicherheitsfaden"
+        ]
+      }
+    },
+    {
+      "emoji": "🌱",
+      "text": "Euro-Scheine bestehen aus *Baumwolle*. Die Fasern sind reißfest und fühlen sich deshalb so besonders an."
+    },
+    {
+      "emoji": "👉",
+      "text": "Fühl mal nach. Folge für mehr über Geld."
+    }
+  ]
+}
