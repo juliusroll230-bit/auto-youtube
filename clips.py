@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import time
 import unicodedata
+import urllib.parse
 
 import numpy as np
 
@@ -180,28 +181,54 @@ def add_stream(rfile, length, filename, origin, rights=False, credit="", name=No
 
 def check_url(url):
     if not re.match(r"https?://", url or ""):
-        raise ValueError("Bitte eine http(s)-Adresse einer Videodatei angeben.")
+        raise ValueError("Bitte einen Link einfügen, der mit http:// oder https:// beginnt.")
     if re.search(r"(youtube\.com|youtu\.be|tiktok\.com|instagram\.com)", url):
-        raise ValueError("Links zu YouTube, TikTok oder Instagram werden nicht geladen. Bitte die Videodatei selbst schicken.")
+        raise ValueError("Links zu YouTube, TikTok oder Instagram werden nicht geladen. "
+                         "Nimm den Link zur Videodatei, zum Beispiel aus Google Drive oder Dropbox.")
 
 
-def add_url(url, rights=False, credit="", name=None):
-    """Lädt eine Videodatei von einer direkten Adresse (z. B. aus dem Heimnetz). Keine YouTube-Links."""
+def direct_link(url):
+    """Macht aus Freigabe-Links von Google Drive und Dropbox einen direkten Download-Link."""
+    url = (url or "").strip()
+    m = re.search(r"drive\.google\.com/(?:file/d/|open\?id=|uc\?(?:[^#]*&)?id=)([\w-]{10,})", url)
+    if m:
+        return f"https://drive.usercontent.google.com/download?id={m.group(1)}&export=download&confirm=t"
+    if re.search(r"(^https?://)(www\.)?dropbox\.com/", url):
+        url = re.sub(r"([?&])dl=0", r"\1dl=1", url)
+        if not re.search(r"[?&]dl=1", url):
+            url += ("&" if "?" in url else "?") + "dl=1"
+    return url
+
+
+def _link_filename(r, url):
+    cd = r.headers.get("Content-Disposition", "")
+    m = re.search(r"filename\*=UTF-8''([^;]+)", cd) or re.search(r'filename="?([^";]+)"?', cd)
+    if m:
+        return os.path.basename(urllib.parse.unquote(m.group(1)))
+    return os.path.basename(urllib.parse.urlsplit(url).path) or "video.mp4"
+
+
+def add_url(url, rights=False, credit="", name=None, source="webhook"):
+    """Lädt eine Videodatei von einem Link (Google Drive, Dropbox oder direkte Adresse). Keine YouTube-Links."""
     import urllib.request
 
     check_url(url)
-    req = urllib.request.Request(url, headers={"User-Agent": "shorts-zentrale"})
+    url = direct_link(url)
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (shorts-zentrale)"})
     with urllib.request.urlopen(req, timeout=60) as r:
         ctype = r.headers.get("Content-Type", "")
-        if not (ctype.startswith("video/") or "octet-stream" in ctype):
-            raise ValueError("Unter der Adresse liegt kein Video.")
-        filename = os.path.basename(url.split("?")[0]) or "video.mp4"
+        if ctype.startswith("text/html"):
+            raise ValueError("Unter dem Link liegt kein Video. Bei Google Drive oder Dropbox den Link auf "
+                             "„Jeder mit dem Link“ stellen und den Link zur Datei nehmen, nicht zum Ordner.")
+        if not (ctype.startswith("video/") or "octet-stream" in ctype or ctype.startswith("binary/")):
+            raise ValueError("Unter dem Link liegt kein Video.")
+        filename = _link_filename(r, url)
         if os.path.splitext(filename)[1].lower() not in VIDEO_EXT:
             filename += ".mp4"
         length = int(r.headers.get("Content-Length") or 0)
         if length:
-            return add_stream(r, length, filename, "webhook", rights, credit, name)
-        c = create(name or _nice_name(filename), "webhook", rights, credit, os.path.splitext(filename)[1])
+            return add_stream(r, length, filename, source, rights, credit, name)
+        c = create(name or _nice_name(filename), source, rights, credit, os.path.splitext(filename)[1])
         size = 0
         with open(source_path(c), "wb") as f:
             while chunk := r.read(1024 * 1024):

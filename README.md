@@ -29,7 +29,7 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 
 ## Kampagnen und Clips
 
-Im Reiter **Kampagnen** ein langes Video hochladen (oder in den Ordner `/DATA/AppData/shorts-zentrale/inbox` legen, oder per Webhook schicken). Der Video-Clipper
+Im Reiter **Kampagnen** einfach einen Link einfügen (Google Drive oder Dropbox mit Freigabe „Jeder mit dem Link“, oder ein direkter Link zu einer Videodatei) und „Verknüpfen“ drücken. Alternativ ein Video hochladen (oder in den Ordner `/DATA/AppData/shorts-zentrale/inbox` legen, oder per Webhook schicken). Der Video-Clipper
 
 1. schreibt mit, was gesagt wird (Whisper "base" auf der CPU, Modell liegt im Docker-Image),
 2. sucht die stärksten Stellen (Frage oder Zahl am Anfang, ganze Sätze, Länge einstellbar, Stichwörter zählen extra),

@@ -310,12 +310,14 @@ def webhook_video(h):
                  "text": "Wird geschnitten." if c["status"] == "wartet" else "Bitte im Bereich Kampagnen die Rechte bestätigen."})
 
 
-def _download(url, rights, credit, name):
+def _download(url, rights, credit, name, source="webhook"):
     try:
-        clips.add_url(url, rights, credit, name)
+        with working("clipper", task="Lädt das Video vom Link"):
+            c = clips.add_url(url, rights, credit, name, source)
+        store.log("info", f"Video vom Link geladen: {c['name']}", agent="clipper", kind="input")
         _clip_wake.set()
     except Exception as e:
-        store.log("error", f"Video vom Webhook konnte nicht geladen werden: {e}", agent="clipper", kind="error")
+        store.log("error", f"Video vom Link konnte nicht geladen werden: {e}", agent="clipper", kind="error")
 
 
 _last_refresh = [0.0]
@@ -839,6 +841,17 @@ class Handler(BaseHTTPRequestHandler):
             if p == "/api/reject":
                 store.log("warn", f"Skript abgelehnt: {name}")
             return self.send(200, {"ok": True})
+        if p == "/api/campaign/link":
+            url = str(data.get("url") or "").strip()
+            if not data.get("rights"):
+                return self.send(400, {"error": "Bitte bestätigen, dass du das Video verwenden darfst."})
+            try:
+                clips.check_url(url)
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            store.log("info", "Link verknüpft, das Video wird geladen", agent="clipper", kind="input")
+            background(_download, url, True, str(data.get("credit") or "")[:80], (str(data.get("name") or "").strip()[:80] or None), "link")
+            return self.send(200, {"ok": True, "text": "Verknüpft. Das Video wird geladen und dann geschnitten."})
         if p in ("/api/campaign/confirm", "/api/campaign/retry", "/api/campaign/delete"):
             cid = str(data.get("id", ""))
             try:
