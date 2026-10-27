@@ -18,6 +18,9 @@ W, H, FPS = 1080, 1920, 30
 PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
 SPEED = 0.88      # Sprechtempo der Stimme (kleiner = schneller)
 TAIL = 0.35       # Stille nach dem letzten Satz: kurz, damit das Video sofort wieder von vorn läuft (Schleife)
+# Ton: Brummen weg, Stimme gleichmäßiger (Kompressor), Lautheit auf YouTube-Standard (-14 LUFS)
+AUDIO_FILTER = ("highpass=f=70,acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.5,"
+                "loudnorm=I=-14:TP=-1.5:LRA=8,aresample=48000,apad")
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.environ.get("TTS_MODEL_DIR", os.path.join(HERE, "models", "vits-piper-de_DE-thorsten-high"))
 FONT_BOLD = os.path.join(HERE, "fonts", "InterDisplay-Black.otf")
@@ -176,6 +179,12 @@ class Scene:
         self._cap_cache = {}
         self.label_font = font(FONT_SEMI, 46)
         self.label = spec["niche"].upper()
+        # Kopfzeile: der Titel steht vom ersten Bild an oben (macht neugierig, auch ohne Ton)
+        self.headline = headline_sprite(spec.get("title", ""), rgb) if spec.get("kopfzeile") == "mit" else None
+        if self.headline and self.car:
+            self.bar_y = HEAD_Y + self.headline.height + 26
+        elif self.headline:
+            self.icon_y += 45  # Platz zwischen Kopfzeile und Grafik
 
     # --- Bausteine ---------------------------------------------------------
 
@@ -286,9 +295,12 @@ class Scene:
 
         # Feste Elemente (bewegen sich nicht mit der Kamera): Themen-Label und Fortschrittsbalken
         d = ImageDraw.Draw(frame, "RGBA")
-        tw = d.textlength(self.label, font=self.label_font)
-        d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 120))
-        d.text((W / 2, 193), self.label, font=self.label_font, anchor="mm", fill=(255, 255, 255))
+        if self.headline:
+            frame.paste(self.headline, (int(W / 2 - self.headline.width / 2), HEAD_Y), self.headline)
+        else:
+            tw = d.textlength(self.label, font=self.label_font)
+            d.rounded_rectangle((W / 2 - tw / 2 - 36, 150, W / 2 + tw / 2 + 36, 236), radius=43, fill=(0, 0, 0, 120))
+            d.text((W / 2, 193), self.label, font=self.label_font, anchor="mm", fill=(255, 255, 255))
         bar_y = self.bar_y
         d.rounded_rectangle((90, bar_y, W - 90, bar_y + 14), radius=7, fill=(255, 255, 255, 70))
         d.rounded_rectangle((90, bar_y, 90 + (W - 180) * min(1, t / self.total), bar_y + 14), radius=7,
@@ -298,6 +310,45 @@ class Scene:
 
 def ease_out_cubic(x):
     return 1 - (1 - x) ** 3
+
+
+HEAD_Y = 140  # Oberkante der Kopfzeile (darüber liegen bei Shorts die Knöpfe der App)
+
+
+def headline_sprite(title, accent):
+    """Titel ohne Emoji als Kasten mit bis zu 2 Zeilen, oder None ohne Text."""
+    import unicodedata
+
+    text = "".join(c for c in title if unicodedata.category(c)[0] in "LNPZ" or unicodedata.category(c) in ("Sm", "Sc"))
+    text = " ".join(text.split())
+    if not text:
+        return None
+    probe = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    max_w = W - 220
+    for size in (60, 56, 52, 48):
+        f = font(FONT_BOLD, size)
+        lines, cur = [], ""
+        for w in text.split():
+            test = (cur + " " + w).strip()
+            if cur and probe.textlength(test, font=f) > max_w:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = test
+        lines.append(cur)
+        if len(lines) <= 2 and all(probe.textlength(ln, font=f) <= max_w for ln in lines):
+            break
+    lines = lines[:2]
+    lh = int(size * 1.2)
+    pad_x, pad_y = 40, 24
+    tw = max(probe.textlength(ln, font=f) for ln in lines)
+    img = Image.new("RGBA", (int(tw + 2 * pad_x), lh * len(lines) + 2 * pad_y), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle((0, 0, img.width - 1, img.height - 1), radius=30, fill=(0, 0, 0, 165),
+                        outline=accent + (255,), width=4)
+    for i, ln in enumerate(lines):
+        d.text((img.width / 2, pad_y + lh * i + lh / 2), ln, font=f, anchor="mm", fill=(255, 255, 255))
+    return img
 
 
 def estimated_timings(spec):
@@ -328,8 +379,10 @@ def build_video(spec, out_dir, tts):
 
     ff = subprocess.Popen([
         "ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-        "-r", str(FPS), "-i", "-", "-i", wav, "-c:v", "libx264", "-preset", "medium", "-crf", "20",
-        "-pix_fmt", "yuv420p", "-af", "apad", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", mp4,
+        "-r", str(FPS), "-i", "-", "-i", wav,
+        "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-profile:v", "high", "-g", str(FPS * 2),
+        "-pix_fmt", "yuv420p", "-af", AUDIO_FILTER, "-ar", "48000", "-c:a", "aac", "-b:a", "192k",
+        "-shortest", "-movflags", "+faststart", mp4,
     ], stdin=subprocess.PIPE)
     for f in range(int(total * FPS)):
         ff.stdin.write(scene.frame(f / FPS).tobytes())

@@ -97,12 +97,13 @@ def summary(scores):
 
 # --- Was im Video am besten funktioniert -------------------------------------
 # Neben dem Thema lernt die App auch den Look: Untertitel-Stil und Übergang werden wie die Themen
-# gewählt (3 von 4 Videos bekommen den besten, jedes 4. testet einen anderen). Länge, Einstieg und
+# gewählt (3 von 4 Videos bekommen den besten, jedes 4. testet einen anderen), ebenso die Kopfzeile. Länge, Einstieg und
 # Grafik kommen aus den Skripten; die Website zeigt, was davon am besten läuft.
 
 CAPTION_STYLES = ("kasten", "unterstrich", "pop")       # wie motion.Caption.STYLES
 TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TRANSITIONS
-FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "laenge": "Länge",
+HEADLINES = ("mit", "ohne")                             # Titel als Kopfzeile oben im Bild
+FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik"}
 
 
@@ -111,7 +112,8 @@ def default_look(spec):
     import random
     rng = random.Random(sum(map(ord, spec["slug"])) * 7919)
     style = rng.choice(CAPTION_STYLES)
-    return {"caption_style": style, "transition": rng.choice(TRANSITIONS)}
+    # Videos von vor der Kopfzeile hatten keine
+    return {"caption_style": style, "transition": rng.choice(TRANSITIONS), "kopfzeile": "ohne"}
 
 
 def features(spec, look):
@@ -122,6 +124,7 @@ def features(spec, look):
     return {
         "caption_style": look.get("caption_style"),
         "transition": look.get("transition"),
+        "kopfzeile": look.get("kopfzeile") or "ohne",
         "laenge": "kurz (bis 60 Wörter)" if total <= 60 else "mittel (61 bis 75)" if total <= 75 else "lang (über 75)",
         "einstieg": "kurz (bis 8 Wörter)" if hook <= 8 else "mittel (9 bis 12)" if hook <= 12 else "lang (über 12)",
         "grafik": kinds[0] if kinds else "keine",
@@ -162,7 +165,8 @@ def choose(options, scores, step):
 
 def choose_look(fscores, step):
     return {"caption_style": choose(CAPTION_STYLES, fscores.get("caption_style", {}), step),
-            "transition": choose(TRANSITIONS, fscores.get("transition", {}), step + 1)}
+            "transition": choose(TRANSITIONS, fscores.get("transition", {}), step + 1),
+            "kopfzeile": choose(HEADLINES, fscores.get("kopfzeile", {}), step + 2)}
 
 
 def feature_summary(fscores):
