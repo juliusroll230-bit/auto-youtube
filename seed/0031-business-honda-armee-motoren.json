@@ -1,0 +1,50 @@
+{
+  "slug": "business-honda-armee-motoren",
+  "style": "car",
+  "car_color": "#e9e9ec",
+  "niche": "Business",
+  "accent": "#ff4d4d",
+  "title": "Wie Honda mit Resten der Armee anfing 🏍️",
+  "description": "Bevor Honda Autos baute, kamen Kolbenringe und Mofas mit alten Armee-Motoren.\n\n#business #honda #autos #shorts",
+  "tags": [
+    "business",
+    "honda",
+    "autos",
+    "japan",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Honda* baute seine ersten Fahrzeuge aus Resten der Armee."
+    },
+    {
+      "text": "Gründer *Soichiro Honda* verkaufte zuerst Kolbenringe an Toyota. Doch wie wurde daraus eine Weltmarke?"
+    },
+    {
+      "text": "Nach dem Krieg fehlte in Japan fast alles, auch Autos und *Benzin*."
+    },
+    {
+      "text": "Honda baute kleine Armee-Motoren von *Funkgeräten* an Fahrräder. Diese Mofas wurden ein Riesenerfolg.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1937,
+            "Kolbenringe"
+          ],
+          [
+            1946,
+            "Mofas"
+          ],
+          [
+            1963,
+            "Autos"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Das erste Honda-Auto kam erst neunzehnhundertdreiundsechzig. Folge für mehr."
+    }
+  ]
+}

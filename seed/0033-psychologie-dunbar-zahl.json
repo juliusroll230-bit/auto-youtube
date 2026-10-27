@@ -1,0 +1,52 @@
+{
+  "slug": "psychologie-dunbar-zahl",
+  "niche": "Psychologie",
+  "colors": [
+    "#24103d",
+    "#7d3fc4"
+  ],
+  "accent": "#ffc2e8",
+  "title": "So viele Freunde schafft dein Gehirn wirklich 🧠",
+  "description": "Die Dunbar-Zahl: Warum unser Gehirn nur eine begrenzte Zahl echter Beziehungen pflegen kann.\n\n#psychologie #freundschaft #gehirn #shorts",
+  "tags": [
+    "psychologie",
+    "freunde",
+    "gehirn",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧠",
+      "text": "Mehr als hundertfünfzig echte *Freunde* schafft dein Gehirn kaum."
+    },
+    {
+      "emoji": "📱",
+      "text": "Facebook erlaubt fünftausend Freunde. Doch woher kommt ausgerechnet die Grenze von hundertfünfzig?",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Facebook",
+          5000
+        ],
+        "b": [
+          "Gehirn",
+          150
+        ],
+        "einheit": "Freunde"
+      }
+    },
+    {
+      "emoji": "🐒",
+      "text": "Der Forscher *Robin Dunbar* verglich Affen. Je größer ihr Gehirn, desto größer ihre Gruppen."
+    },
+    {
+      "emoji": "🤝",
+      "text": "Für Menschen ergab das etwa hundertfünfzig. Mehr *Beziehungen* kann unser Kopf nicht wirklich pflegen."
+    },
+    {
+      "emoji": "👉",
+      "text": "Zähl mal nach, wie viele es bei dir sind. Folge für mehr."
+    }
+  ]
+}

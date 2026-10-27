@@ -1,0 +1,46 @@
+{
+  "slug": "geografie-gruene-sahara",
+  "niche": "Geografie",
+  "colors": [
+    "#3a2508",
+    "#c98a2e"
+  ],
+  "accent": "#9dffb0",
+  "title": "Die größte Wüste der Welt war einmal grün 🌴",
+  "description": "Vor einigen tausend Jahren war die Sahara voller Seen und Tiere. Der Grund liegt im Weltall.\n\n#geografie #sahara #afrika #shorts",
+  "tags": [
+    "geografie",
+    "sahara",
+    "afrika",
+    "klima",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌴",
+      "text": "Die *Sahara* war einmal grün."
+    },
+    {
+      "emoji": "🦛",
+      "text": "Dort lebten *Flusspferde* und Krokodile. Menschen malten Giraffen an Felsen. Was ist passiert?"
+    },
+    {
+      "emoji": "🏜️",
+      "text": "Heute ist sie die größte heiße Wüste der Welt. Sie bedeckt fast ein Drittel von *Afrika*.",
+      "visual": {
+        "type": "anteil",
+        "teil": 3,
+        "von": 10,
+        "text": "von Afrika"
+      }
+    },
+    {
+      "emoji": "🌍",
+      "text": "Die Erdachse schwankt ganz langsam. Dadurch wanderte der *Monsunregen* vor etwa fünftausend Jahren nach Süden."
+    },
+    {
+      "emoji": "👉",
+      "text": "Und dieser Wechsel kommt immer wieder. Folge für mehr Geografie."
+    }
+  ]
+}

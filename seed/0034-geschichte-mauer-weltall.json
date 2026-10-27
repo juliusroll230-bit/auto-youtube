@@ -1,0 +1,44 @@
+{
+  "slug": "geschichte-mauer-weltall",
+  "niche": "Geschichte",
+  "colors": [
+    "#2e1a0c",
+    "#b0702f"
+  ],
+  "accent": "#ffd27a",
+  "title": "Diesen Mythos über die Chinesische Mauer glauben fast alle 🧱",
+  "description": "Ist die Chinesische Mauer vom Weltall aus zu sehen? Ein bekannter Mythos im Faktencheck.\n\n#geschichte #china #mythen #shorts",
+  "tags": [
+    "geschichte",
+    "china",
+    "mauer",
+    "mythen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧱",
+      "text": "Die Chinesische *Mauer* kann man vom Weltall nicht sehen."
+    },
+    {
+      "emoji": "📏",
+      "text": "Dabei ist sie mit allen Abschnitten über einundzwanzigtausend Kilometer lang. Wieso also nicht?"
+    },
+    {
+      "emoji": "🚀",
+      "text": "Chinas erster Raumfahrer *Yang Liwei* suchte sie zweitausenddrei aus dem All. Er fand sie nicht.",
+      "visual": {
+        "type": "wort",
+        "text": "Unsichtbar"
+      }
+    },
+    {
+      "emoji": "🔭",
+      "text": "Die Mauer ist meist nur wenige Meter *breit* und hat fast die Farbe der Landschaft."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Mythos, der sogar in Schulbüchern stand. Folge für mehr Geschichte."
+    }
+  ]
+}

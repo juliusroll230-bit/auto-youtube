@@ -1,0 +1,49 @@
+{
+  "slug": "geld-dollar-taler",
+  "niche": "Geld",
+  "colors": [
+    "#0e2c22",
+    "#2f8f63"
+  ],
+  "accent": "#c8ff7a",
+  "title": "Der Dollar hat einen deutschen Namen 💵",
+  "description": "Vom Joachimsthaler zum Dollar: woher der Name der Weltwährung kommt. Keine Anlageberatung.\n\n#geld #dollar #geschichte #shorts",
+  "tags": [
+    "geld",
+    "dollar",
+    "taler",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "💵",
+      "text": "Der *Dollar* hat einen deutschen Namen."
+    },
+    {
+      "emoji": "⛰️",
+      "text": "Er stammt aus einem kleinen Tal in *Böhmen*. Wie kam er bis nach Amerika?"
+    },
+    {
+      "emoji": "🪙",
+      "text": "Dort prägte man ab fünfzehnhundertzwanzig die *Joachimsthaler*, Silbermünzen aus dem Joachimstal."
+    },
+    {
+      "emoji": "🌍",
+      "text": "Daraus wurde *Taler*, auf Niederländisch Daalder, auf Englisch *Dollar*. Die USA übernahmen den Namen.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Joachimsthaler",
+          "Taler",
+          "Daalder",
+          "Dollar"
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Der Taler steckt also in jedem Dollar. Folge für mehr."
+    }
+  ]
+}

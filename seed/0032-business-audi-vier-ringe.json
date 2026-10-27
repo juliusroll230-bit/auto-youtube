@@ -1,0 +1,42 @@
+{
+  "slug": "business-audi-vier-ringe",
+  "style": "car",
+  "car_color": "#2b2f36",
+  "niche": "Business",
+  "accent": "#c9d1dc",
+  "title": "Was die vier Ringe von Audi wirklich bedeuten 🔘",
+  "description": "Die vier Ringe stehen für vier Firmen, und der Name Audi ist eine Übersetzung.\n\n#business #audi #autos #shorts",
+  "tags": [
+    "business",
+    "audi",
+    "autos",
+    "marken",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Die vier *Ringe* von Audi waren mal vier Firmen."
+    },
+    {
+      "text": "Und der Name *Audi* ist eigentlich ein Familienname, den keiner mehr benutzen durfte. Wie kann das sein?"
+    },
+    {
+      "text": "Neunzehnhundertzweiunddreißig schlossen sich vier Marken zur *Auto Union* zusammen.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Audi",
+          "DKW",
+          "Horch",
+          "Wanderer"
+        ]
+      }
+    },
+    {
+      "text": "Gründer August *Horch* verlor die Rechte an seinem eigenen Namen. Horch heißt auf Latein *Audi*."
+    },
+    {
+      "text": "Ein Name aus der Not wurde Weltmarke. Folge für mehr."
+    }
+  ]
+}
