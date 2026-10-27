@@ -14,6 +14,7 @@ import datetime as dt
 import glob
 import json
 import os
+import re
 import shutil
 import threading
 from zoneinfo import ZoneInfo
@@ -31,7 +32,10 @@ LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "post_hours": [8, 11, 13, 16, 18, 20], "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
-                  "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": ""}
+                  "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
+                  # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
+                  "agents": {}, "approval": False}
+FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
 WORDS_PER_S = 2.8
 
@@ -60,7 +64,7 @@ def now():
 
 
 def init():
-    for d in ("queue", "posted", "thumbs", "out"):
+    for d in ("queue", "posted", "thumbs", "out", "rejected"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
         cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
@@ -91,7 +95,57 @@ def save_config(**changes):
 
 
 def state():
-    return {"done_slots": [], "uploads": [], "events": [], "known": [], **read("state.json", {})}
+    return {"done_slots": [], "uploads": [], "events": [], "known": [], "approved": [], "agent_runs": {},
+            **read("state.json", {})}
+
+
+def agent_done(agent, error=None):
+    """Merkt sich, wann ein Agent zuletzt gearbeitet hat (und wie oft erfolgreich)."""
+    with LOCK:
+        st = state()
+        run = st["agent_runs"].get(agent, {"count": 0})
+        run.update(at=now().isoformat(timespec="seconds"), error=str(error)[:200] if error else None)
+        if not error:
+            run["count"] = run.get("count", 0) + 1
+        st["agent_runs"][agent] = run
+        write("state.json", st)
+
+
+# --- Freigaben ---------------------------------------------------------------
+
+def _check_name(name):
+    if not FILE_RE.fullmatch(name or ""):
+        raise ValueError("Unbekanntes Skript.")
+
+
+def approve(name):
+    _check_name(name)
+    with LOCK:
+        if not os.path.exists(path("queue", name)):
+            raise ValueError("Das Skript ist nicht mehr in der Warteschlange.")
+        st = state()
+        st["approved"] = sorted(set(st["approved"]) | {name})
+        write("state.json", st)
+
+
+def reject(name):
+    """Nimmt ein Skript aus der Warteschlange (es landet in rejected/ und kann zurückgeholt werden)."""
+    _check_name(name)
+    with LOCK:
+        if not os.path.exists(path("queue", name)):
+            raise ValueError("Das Skript ist nicht mehr in der Warteschlange.")
+        shutil.move(path("queue", name), path("rejected", name))
+        st = state()
+        st["approved"] = [a for a in st["approved"] if a != name]
+        write("state.json", st)
+
+
+def restore(name):
+    _check_name(name)
+    with LOCK:
+        if not os.path.exists(path("rejected", name)):
+            raise ValueError("Das Skript wurde nicht gefunden.")
+        shutil.move(path("rejected", name), path("queue", name))
 
 
 def log(level, text):
@@ -216,12 +270,24 @@ def record_history(views, subs):
         write("history.json", hist[-24 * 180:])
 
 
-def planned_queue(posted=None):
-    """Warteschlange als (datei, skript) in der Reihenfolge, die der Lernmodus vorgibt."""
+def planned_queue(posted=None, ready_only=False):
+    """Warteschlange als (datei, skript) in der Reihenfolge, die der Lernmodus vorgibt.
+
+    ready_only: mit Freigabe-Pflicht nur freigegebene Skripte (für den Upload).
+    """
+    import agents
+
     posted = posted if posted is not None else posted_items()
+    cfg = config()
     queue = [(f, load_spec(f)) for f in queue_files()]
+    if ready_only and cfg["approval"]:
+        ok = set(state()["approved"])
+        queue = [q for q in queue if os.path.basename(q[0]) in ok]
+    planer = agents.settings(cfg)["planer"]
+    if not planer["on"]:
+        return queue  # Lernmodus aus: einfach in Dateireihenfolge
     history = [p["niche"] for p in posted if p.get("niche")]
-    return learn.plan(queue, history, learn.niche_scores(posted, now()))
+    return learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
 
 
 def next_look(posted=None):
@@ -230,10 +296,35 @@ def next_look(posted=None):
     return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
 
 
-def dashboard(extra=None):
+def next_slot(hours, at=None):
+    at = at or now()
+    for day in range(2):
+        for h in sorted(hours):
+            slot = (at + dt.timedelta(days=day)).replace(hour=int(h), minute=0, second=0, microsecond=0)
+            if slot > at:
+                return slot
+    return None
+
+
+def dashboard(extra=None, working=(), repo=True):
+    import agents
+
     cfg = config()
+    st = state()
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     posted = posted_items()
+    planned = planned_queue(posted)
+    approved = set(st["approved"])
+    scores = learn.niche_scores(posted, now())
+    ag = agents.settings(cfg)
+    queue = [{**card(spec), "file": os.path.basename(f), "approved": os.path.basename(f) in approved}
+             for f, spec in planned]
+    rejected = []
+    for f in sorted(glob.glob(path("rejected", "*.json"))):
+        try:
+            rejected.append({**card(load_spec(f)), "file": os.path.basename(f)})
+        except (OSError, ValueError, KeyError):
+            continue
     return {
         "source": "server",
         "updated_at": now().isoformat(timespec="seconds"),
@@ -244,10 +335,18 @@ def dashboard(extra=None):
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),
-        "queue": [card(spec) for _, spec in planned_queue(posted)],
+        "queue": queue,
+        "approval": bool(cfg["approval"]),
+        "rejected": rejected,
+        "agents": agents.overview(cfg, st["agent_runs"], {
+            "connected": bool(cfg["refresh_token"]), "analytics": bool(cfg["analytics_token"]),
+            "working": set(working), "queue": len(queue), "posted": len(posted), "favorite": learn.favorite(scores),
+            "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
+            "branding_at": st.get("branding_at")}),
         "posted": posted,
-        "branding_at": state().get("branding_at"),
-        "learning": learn.summary(learn.niche_scores(posted, now())),
+        "branding_at": st.get("branding_at"),
+        "learning": learn.summary(scores, ag["planer"]["explore_every"]) if ag["planer"]["on"]
+        else {**learn.summary(scores, ag["planer"]["explore_every"]), "favorite": None, "off": True},
         "looks": learn.feature_summary(learn.feature_scores(posted, now())),
         "history": read("history.json", []),
         "analytics": {
@@ -256,6 +355,6 @@ def dashboard(extra=None):
             "updated_at": read("analytics.json", {}).get("updated_at"),
             "error": read("analytics.json", {}).get("error"),
         },
-        "events": list(reversed(state()["events"][-30:])),
+        "events": list(reversed(st["events"][-30:])),
         **(extra or {}),
     }

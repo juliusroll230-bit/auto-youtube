@@ -24,6 +24,7 @@ import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+import agents
 import store
 import yt
 
@@ -44,21 +45,45 @@ OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
-status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}}
+status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}, "working": set()}
 _tts = None
+_tts_lock = threading.Lock()
+
+
+class working:
+    """Markiert Agenten als „arbeitet gerade“, solange der Block läuft (für die Website)."""
+
+    def __init__(self, *ids):
+        self.ids = ids
+
+    def __enter__(self):
+        status["working"].update(self.ids)
+
+    def __exit__(self, *exc):
+        status["working"].difference_update(self.ids)
+
+
+def tts():
+    global _tts
+    with _tts_lock:
+        if _tts is None:
+            from make_short import load_tts
+            _tts = load_tts()
+    return _tts
 
 
 # --- Arbeit ------------------------------------------------------------------
 
 def post_next(slot, manual=False):
     """Rendert das nächste Skript und lädt es hoch."""
-    global _tts
     if not work_lock.acquire(blocking=False):
         return
     try:
-        planned = store.planned_queue()  # Reihenfolge nach Lernmodus
+        with working("planer"):
+            planned = store.planned_queue(ready_only=True)  # Reihenfolge nach Lernmodus
         if not planned:
-            store.log("warn", "Sendeplatz verpasst: Die Warteschlange ist leer.")
+            store.log("warn", "Sendeplatz verpasst: Kein freigegebenes Video in der Warteschlange."
+                      if store.config()["approval"] else "Sendeplatz verpasst: Die Warteschlange ist leer.")
             if slot:
                 st = store.state()
                 st["done_slots"].append(slot)
@@ -66,16 +91,23 @@ def post_next(slot, manual=False):
             return
         file, spec = planned[0]
         status["busy"] = "Prüft die Verbindung zu YouTube"
-        yt.check(store.config())
+        with working("publisher"):
+            yt.check(store.config())
         status["busy"] = f"Erstelle Video: {spec['title']}"
-        from make_short import build_video, load_tts
-        _tts = _tts or load_tts()
-        look = store.next_look()  # Untertitel-Stil und Übergang, die bisher am besten liefen
-        video, total, timings = build_video({**spec, **look}, store.path("out"), _tts)
+        from make_short import build_video
+        ag = agents.settings(store.config())
+        # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
+        look = agents.apply_look(store.next_look(), ag)
+        with working("sprecher", "studio"):
+            video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
+                                                store.path("out"), tts())
         status["busy"] = f"Lade hoch: {spec['title']}"
-        video_id = yt.upload(store.config(), video, spec)
+        with working("publisher"):
+            video_id = yt.upload(store.config(), video, spec)
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
         store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look)
+        for a in ("planer", "sprecher", "studio", "publisher"):
+            store.agent_done(a)
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
         refresh_stats()
@@ -84,6 +116,7 @@ def post_next(slot, manual=False):
             connection_expired()
             return  # Sendeplatz bleibt offen und wird nach dem Neu-Verbinden nachgeholt
         traceback.print_exc()
+        store.agent_done("publisher", error=e)
         store.log("error", f"Upload fehlgeschlagen: {e}")
         if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
             st = store.state()
@@ -103,13 +136,16 @@ def refresh_stats():
         return
     _last_refresh[0] = time.time()
     try:
-        ch = yt.channel(cfg)
-        store.write("channel.json", ch)
-        ids = [u["video_id"] for u in store.state()["uploads"]]
-        videos = yt.video_stats(cfg, ids) if ids else {}
+        with working("analyst"):
+            ch = yt.channel(cfg)
+            store.write("channel.json", ch)
+            ids = [u["video_id"] for u in store.state()["uploads"]]
+            videos = yt.video_stats(cfg, ids) if ids else {}
         store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"), "videos": videos})
         store.record_history(sum(v["views"] for v in videos.values()), ch.get("subscribers", 0))
+        store.agent_done("analyst")
     except Exception as e:
+        store.agent_done("analyst", error=e)
         if yt.is_expired(e):
             return connection_expired()
         store.log("error", f"Statistiken konnten nicht geladen werden: {e}")
@@ -129,6 +165,7 @@ def refresh_analytics():
     uploads = store.state()["uploads"]
     today = store.now().date()
     start = min([u["posted_at"][:10] for u in uploads] or [str(today - dt.timedelta(days=28))])
+    status["working"].add("zuschauer")
     try:
         summary = yt.analytics_summary(cfg, start, str(today))
         fetched = 0
@@ -146,6 +183,7 @@ def refresh_analytics():
                 videos[vid] = entry
         store.write("analytics.json", {"updated_at": store.now().isoformat(timespec="seconds"),
                                        "videos": videos, "error": None})
+        store.agent_done("zuschauer")
     except Exception as e:
         text = str(e)
         if yt.is_expired(e):
@@ -156,7 +194,10 @@ def refresh_analytics():
         else:
             error = f"Zuschauer-Daten konnten nicht geladen werden: {text[:200]}"
         store.write("analytics.json", {**data, "error": error})
+        store.agent_done("zuschauer", error=error)
         store.log("error", error)
+    finally:
+        status["working"].discard("zuschauer")
 
 
 def connection_expired():
@@ -178,6 +219,7 @@ def sync_scripts():
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
             return json.load(r)
 
+    status["working"].add("autor")
     try:
         listing = get(f"https://api.github.com/repos/{SCRIPTS_REPO}/contents/seed")
         known = set(store.state()["known"])
@@ -187,13 +229,17 @@ def sync_scripts():
                 blob = get(item["url"])
                 files[item["name"]] = base64.b64decode(blob["content"]).decode("utf-8")
         added = store.add_scripts(files)
+        store.agent_done("autor")
         if added:
             store.log("ok", f"{added} neue Skripte in die Warteschlange gelegt.")
             warm_thumbs()
         return added
     except Exception as e:
+        store.agent_done("autor", error=e)
         store.log("error", f"Neue Skripte konnten nicht geladen werden: {e}")
         return 0
+    finally:
+        status["working"].discard("autor")
 
 
 def connect_channel():
@@ -222,6 +268,7 @@ def apply_branding(force=False):
     cfg, st = store.config(), store.state()
     if not cfg["refresh_token"] or (not force and st.get("branding_version") == branding.VERSION):
         return
+    status["working"].add("designer")
     try:
         title = (store.read("channel.json", {}) or {}).get("title") or "60 Sekunden Wissen"
         banner, profile = branding.render_all(title, cfg["post_hours"], store.path("branding"))
@@ -231,11 +278,15 @@ def apply_branding(force=False):
             st["branding_version"] = branding.VERSION
             st["branding_at"] = store.now().isoformat(timespec="seconds")
             store.write("state.json", st)
+        store.agent_done("designer")
         store.log("ok", "Kanal-Design gesetzt: Banner, Beschreibung und Stichwörter.")
     except Exception as e:
+        store.agent_done("designer", error=e)
         if yt.is_expired(e):
             return connection_expired()
         store.log("error", f"Kanal-Design konnte nicht gesetzt werden: {e}")
+    finally:
+        status["working"].discard("designer")
 
 
 def warm_thumbs():
@@ -259,18 +310,21 @@ def scheduler():
     last_stats = last_sync = last_analytics = 0.0
     while True:
         try:
-            if store.config()["refresh_token"]:
-                slot = store.due_slot()
+            cfg = store.config()
+            ag = agents.settings(cfg)
+            if cfg["refresh_token"]:
+                slot = store.due_slot() if ag["publisher"]["on"] else None
                 if slot and not status["busy"]:
                     post_next(slot)
-                if time.time() - last_stats > 20 * 60:  # kostet kaum API-Quote
+                if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
                     refresh_stats()
-                    apply_branding()
+                    if ag["designer"]["on"]:
+                        apply_branding()
                     last_stats = time.time()
-            if store.config()["analytics_token"] and time.time() - last_analytics > 3 * 3600:
+            if cfg["analytics_token"] and time.time() - last_analytics > ag["zuschauer"]["hours"] * 3600:
                 last_analytics = time.time()
                 refresh_analytics()
-            if time.time() - last_sync > 2 * 3600:
+            if ag["autor"]["on"] and time.time() - last_sync > ag["autor"]["hours"] * 3600:
                 sync_scripts()
                 last_sync = time.time()
         except Exception:
@@ -327,7 +381,12 @@ class Handler(BaseHTTPRequestHandler):
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
-                                                   "version": VERSION, "oauth_page": OAUTH_PAGE}))
+                                                   "version": VERSION, "oauth_page": OAUTH_PAGE},
+                                                  working=status["working"], repo=bool(SCRIPTS_REPO)))
+        if p == "/api/voice-sample.wav":
+            return self.voice_sample()
+        if p == "/api/preview.jpg":
+            return self.preview()
         if p == "/api/analytics/callback":
             return self.analytics_callback()
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
@@ -361,6 +420,52 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(303)
         self.send_header("Location", f"/?analytics={note}#zuschauer")
         self.end_headers()
+
+    def voice_sample(self):
+        """Ein Satz mit dem eingestellten Sprechtempo, zum Probehören im Panel des Sprechers."""
+        import io
+        import wave
+
+        import numpy as np
+        from piper import SynthesisConfig
+
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        ag = agents.settings(store.config())
+        try:
+            tempo = agents.validate("sprecher", {"tempo": q.get("tempo", [ag["sprecher"]["tempo"]])[0]})["tempo"]
+        except ValueError:
+            tempo = ag["sprecher"]["tempo"]
+        voice = tts()
+        cfg = SynthesisConfig(length_scale=round(agents.BASE_SPEED * 100 / tempo, 3))
+        text = "Hallo! So klingt die Stimme deiner Shorts mit diesem Sprechtempo."
+        with working("sprecher"):
+            audio = np.concatenate([c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)])
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as f:
+            f.setnchannels(1)
+            f.setsampwidth(2)
+            f.setframerate(voice.config.sample_rate)
+            f.writeframes((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes())
+        self.send(200, buf.getvalue(), "audio/wav")
+
+    def preview(self):
+        """Bild aus dem nächsten Video mit dem Look, den das Video-Studio gerade wählen würde."""
+        import io
+
+        from make_short import Scene, estimated_timings
+
+        planned = store.planned_queue()
+        if not planned:
+            return self.send(404, {"error": "Die Warteschlange ist leer."})
+        spec = planned[0][1]
+        look = agents.apply_look(store.next_look(), agents.settings(store.config()))
+        spec = {**spec, **look}
+        timings, total = estimated_timings(spec)
+        with working("studio"):
+            img = Scene(spec, timings, total).frame(min(2.2, timings[0][1]))
+        buf = io.BytesIO()
+        img.resize((540, 960)).save(buf, "JPEG", quality=86)
+        self.send(200, buf.getvalue(), "image/jpeg")
 
     def thumb(self, slug):
         file = store.path("thumbs", slug + ".jpg")
@@ -436,12 +541,76 @@ class Handler(BaseHTTPRequestHandler):
             status["busy"] = "Startet …"
             background(post_next, None, True)
             return self.send(200, {"ok": True})
+        if p == "/api/agent":
+            try:
+                agent = str(data.get("id", ""))
+                changes = agents.validate(agent, data.get("settings") or {})
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            saved = store.config().get("agents") or {}
+            saved[agent] = {**(saved.get(agent) or {}), **changes}
+            store.save_config(agents=saved)
+            return self.send(200, {"ok": True, "settings": agents.settings(store.config())[agent]})
+        if p == "/api/agent/run":
+            return self.run_agent(str(data.get("id", "")))
+        if p == "/api/approval":
+            store.save_config(approval=bool(data.get("on")))
+            store.log("info", "Freigabe-Pflicht eingeschaltet: Nur freigegebene Videos gehen online."
+                      if data.get("on") else "Freigabe-Pflicht ausgeschaltet: Alle Videos gehen automatisch online.")
+            return self.send(200, {"ok": True})
+        if p in ("/api/approve", "/api/reject", "/api/restore"):
+            name = str(data.get("file", ""))
+            try:
+                {"/api/approve": store.approve, "/api/reject": store.reject, "/api/restore": store.restore}[p](name)
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            if p == "/api/reject":
+                store.log("warn", f"Skript abgelehnt: {name}")
+            return self.send(200, {"ok": True})
         if p == "/api/sync":
             background(sync_scripts)
             background(refresh_stats)
             background(refresh_analytics)
             return self.send(200, {"ok": True})
         self.send(404, {"error": "Nicht gefunden"})
+
+
+RUNNERS = {"autor": sync_scripts, "analyst": refresh_stats, "zuschauer": refresh_analytics,
+           "designer": lambda: apply_branding(force=True)}
+
+
+def _run_agent(self, agent):
+    cfg = store.config()
+    if agent == "publisher":
+        if not cfg["refresh_token"]:
+            return self.send(400, {"error": "Es ist noch kein Kanal verbunden."})
+        if status["busy"]:
+            return self.send(409, {"error": "Es läuft gerade schon ein Upload."})
+        status["busy"] = "Startet …"
+        background(post_next, None, True)
+        return self.send(200, {"ok": True, "text": "Das nächste Video wird erstellt und hochgeladen. Das dauert ein paar Minuten."})
+    if agent not in RUNNERS:
+        return self.send(400, {"error": "Dieser Agent lässt sich nicht von Hand starten."})
+    if agent in status["working"]:
+        return self.send(409, {"error": "Der Agent arbeitet gerade schon."})
+    if agent in ("analyst", "designer") and not cfg["refresh_token"]:
+        return self.send(400, {"error": "Es ist noch kein Kanal verbunden."})
+    if agent == "zuschauer" and not cfg["analytics_token"]:
+        return self.send(400, {"error": "Die Zuschauer-Daten sind noch nicht verbunden."})
+    if agent == "autor" and not SCRIPTS_REPO:
+        return self.send(400, {"error": "Kein Skript-Repo eingestellt (SCRIPTS_REPO)."})
+    status["working"].add(agent)  # sofort sichtbar, auch bevor der Thread startet
+
+    def job():
+        try:
+            RUNNERS[agent]()
+        finally:
+            status["working"].discard(agent)
+    background(job)
+    return self.send(200, {"ok": True, "text": "Läuft."})
+
+
+Handler.run_agent = _run_agent
 
 
 def main():

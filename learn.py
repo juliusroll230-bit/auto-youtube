@@ -57,7 +57,7 @@ def favorite(scores):
     return max(rated, key=rated.get)
 
 
-def plan(queue, history, scores):
+def plan(queue, history, scores, explore_every=EXPLORE_EVERY):
     """Sortiert die Warteschlange in die Reihenfolge, in der gepostet wird.
 
     queue:   Liste von (datei, skript) in Dateireihenfolge
@@ -69,7 +69,7 @@ def plan(queue, history, scores):
     step, order = len(history), []
     while remaining:
         niches = list(dict.fromkeys(spec["niche"] for _, spec in remaining))
-        explore = best not in niches or step % EXPLORE_EVERY == EXPLORE_EVERY - 1
+        explore = best not in niches or step % explore_every == explore_every - 1
         if explore:
             # das Thema, das am längsten nicht dran war (nie gepostete zuerst)
             pick = min(niches, key=lambda n: (last.get(n, -1), niches.index(n)))
@@ -83,13 +83,13 @@ def plan(queue, history, scores):
     return order
 
 
-def summary(scores):
+def summary(scores, explore_every=EXPLORE_EVERY):
     best = favorite(scores)
     ranked = sorted(scores.items(), key=lambda kv: kv[1]["score"], reverse=True)
     return {
         "favorite": best,
         "min_videos": MIN_VIDEOS,
-        "explore_every": EXPLORE_EVERY,
+        "explore_every": explore_every,
         "niches": [{"niche": n, "score": round(s["score"]), "videos": s["videos"],
                     "avg_pct": round(s["avg_pct"], 1) if s.get("avg_pct") else None} for n, s in ranked],
     }

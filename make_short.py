@@ -32,14 +32,14 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0):
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück."""
     import audio
 
     chunks, timings, t = [], [], 0.0
     rate = tts.config.sample_rate
     for seg in segments:
-        cfg = SynthesisConfig(length_scale=SPEED)
+        cfg = SynthesisConfig(length_scale=speed)
         text = seg["text"].replace("*", "")
         samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
         dur = len(samples) / rate
@@ -373,7 +373,8 @@ def build_video(spec, out_dir, tts):
     os.makedirs(out_dir, exist_ok=True)
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
-    timings, total = synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])))
+    timings, total = synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
+                                speed=spec.get("voice_speed") or SPEED)
     total += TAIL
     scene = Scene(spec, timings, total)
 
