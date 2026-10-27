@@ -452,9 +452,16 @@ def _whisper(model_name):
     return _models[model_name]
 
 
+def pcm16k(path):
+    """Ton als 16-kHz-Mono für Whisper. Über ffmpeg statt PyAV: neuere PyAV-Versionen passen nicht zu faster-whisper."""
+    out = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", path, "-vn", "-ac", "1", "-ar", "16000",
+                          "-f", "s16le", "-"], capture_output=True, check=True, timeout=3600).stdout
+    return np.frombuffer(out, np.int16).astype(np.float32) / 32768.0
+
+
 def whisper_words(path, language, model_name, progress):
     model = _whisper(model_name)
-    segments, info = model.transcribe(path, language=None if language == "auto" else language, beam_size=1,
+    segments, info = model.transcribe(pcm16k(path), language=None if language == "auto" else language, beam_size=1,
                                       word_timestamps=True, vad_filter=True)
     words, total = [], info.duration or 1
     for seg in segments:
