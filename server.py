@@ -9,6 +9,11 @@ Umgebungsvariablen:
   GITHUB_TOKEN   optional: nur nötig, wenn dieses Repo privat ist
   OAUTH_PAGE     optional: Weiterleitungsseite für die Zuschauer-Daten
                  (Standard: https://<besitzer>.github.io/<repo>/oauth.html aus SCRIPTS_REPO)
+
+Video-Webhook (für Kampagnen): POST /webhook/video mit dem Schlüssel aus dem Bereich Kampagnen
+  (Header X-Webhook-Token oder ?token=...). Entweder die Videodatei als Body (…?name=Titel&rights=1)
+  oder JSON {"url": "http://…/video.mp4", "name": "…", "credit": "@kanal", "rights": true}
+  bzw. {"file": "datei.mp4"} für ein Video, das schon im Eingangsordner liegt.
 """
 import base64
 import datetime as dt
@@ -25,6 +30,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
+import clips
 import store
 import yt
 
@@ -45,22 +51,72 @@ OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
-status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}, "working": set()}
+status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 _tts_lock = threading.Lock()
 
+# Live-Ansicht der Zentrale: wer gerade arbeitet (mit Aufgabe für die Sprechblase) und die letzten Ereignisse.
+# Die Website fragt alle paar Sekunden /api/live?since=<seq> und animiert, was neu ist.
+_live = {"seq": 0, "events": [], "working": {}}   # working: agent -> (wie oft gerade, Aufgabe)
+_live_lock = threading.RLock()
+
 
 class working:
-    """Markiert Agenten als „arbeitet gerade“, solange der Block läuft (für die Website)."""
+    """Markiert Agenten als „arbeitet gerade“, solange der Block läuft (für die Website).
+    task: kurzer Text für die Sprechblase über dem Agenten, z. B. „Rendert Video #12“."""
 
-    def __init__(self, *ids):
-        self.ids = ids
+    def __init__(self, *ids, task=None):
+        self.ids, self.task = ids, task
 
     def __enter__(self):
-        status["working"].update(self.ids)
+        start_work(*self.ids, task=self.task)
+        return self
 
     def __exit__(self, *exc):
-        status["working"].difference_update(self.ids)
+        stop_work(*self.ids)
+
+
+def start_work(*ids, task=None):
+    with _live_lock:
+        for a in ids:
+            n, old = _live["working"].get(a, (0, None))
+            _live["working"][a] = (n + 1, task or old)
+
+
+def stop_work(*ids):
+    with _live_lock:
+        for a in ids:
+            n, task = _live["working"].get(a, (1, None))
+            if n <= 1:
+                _live["working"].pop(a, None)
+            else:
+                _live["working"][a] = (n - 1, task)
+
+
+def set_task(agent, task):
+    """Neuer Text für die Sprechblase eines Agenten, der schon arbeitet (z. B. Fortschritt)."""
+    with _live_lock:
+        if agent in _live["working"]:
+            _live["working"][agent] = (_live["working"][agent][0], task)
+
+
+def tasks_now():
+    """{agent: Aufgabe} aller Agenten, die gerade arbeiten."""
+    with _live_lock:
+        return {a: task or "" for a, (n, task) in _live["working"].items()}
+
+
+def live_push(entry):
+    """Wird für jedes neue Ereignis aus store.log aufgerufen."""
+    with _live_lock:
+        _live["seq"] += 1
+        _live["events"] = (_live["events"] + [{**entry, "seq": _live["seq"]}])[-60:]
+
+
+def live_since(seq):
+    with _live_lock:
+        return {"seq": _live["seq"], "events": [e for e in _live["events"] if e["seq"] > seq],
+                "working": tasks_now(), "busy": status["busy"]}
 
 
 def tts():
@@ -79,8 +135,13 @@ def post_next(slot, manual=False):
     if not work_lock.acquire(blocking=False):
         return
     try:
-        with working("planer"):
+        with working("planer", task="Wählt das nächste Video"):
             planned = store.planned_queue(ready_only=True)  # Reihenfolge nach Lernmodus
+            cfg = store.config()
+            clip = clips.choose_for_slot(slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
+                                         store.state()["uploads"], scripts_left=bool(planned))
+        if clip:
+            return post_clip(clip, slot, manual)
         if not planned:
             store.log("warn", "Sendeplatz verpasst: Kein freigegebenes Video in der Warteschlange."
                       if store.config()["approval"] else "Sendeplatz verpasst: Die Warteschlange ist leer.")
@@ -90,26 +151,28 @@ def post_next(slot, manual=False):
                 store.write("state.json", st)
             return
         file, spec = planned[0]
+        n = len(store.state()["uploads"]) + 1  # laufende Nummer für die Sprechblasen
         status["busy"] = "Prüft die Verbindung zu YouTube"
-        with working("publisher"):
+        with working("publisher", task="Prüft die YouTube-Verbindung"):
             yt.check(store.config())
         status["busy"] = f"Erstelle Video: {spec['title']}"
         from make_short import build_video
         ag = agents.settings(store.config())
         # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
         look = agents.apply_look(store.next_look(), ag)
-        with working("sprecher", "studio"):
+        with working("sprecher", task=f"Spricht Video #{n}"), working("studio", task=f"Rendert Video #{n}"):
             video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
                                                 store.path("out"), tts())
         status["busy"] = f"Lade hoch: {spec['title']}"
-        with working("publisher"):
+        with working("publisher", task=f"Lädt Video #{n} hoch"):
             video_id = yt.upload(store.config(), video, spec)
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
         store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look)
         for a in ("planer", "sprecher", "studio", "publisher"):
             store.agent_done(a)
         os.remove(video)
-        store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""))
+        store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""),
+                  agent="publisher", kind="posted", source="youtube")
         refresh_stats()
     except Exception as e:
         if yt.is_expired(e):
@@ -117,7 +180,7 @@ def post_next(slot, manual=False):
             return  # Sendeplatz bleibt offen und wird nach dem Neu-Verbinden nachgeholt
         traceback.print_exc()
         store.agent_done("publisher", error=e)
-        store.log("error", f"Upload fehlgeschlagen: {e}")
+        store.log("error", f"Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
         if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
             st = store.state()
             st["done_slots"].append(slot)
@@ -125,6 +188,134 @@ def post_next(slot, manual=False):
     finally:
         status["busy"] = ""
         work_lock.release()
+
+
+def post_clip(item, slot, manual=False):
+    """Lädt einen freigegebenen Clip hoch (läuft innerhalb von post_next bzw. mit work_lock)."""
+    c, clip = item
+    status["busy"] = f"Lade Clip hoch: {clip['title']}"
+    with working("publisher", task="Prüft die YouTube-Verbindung"):
+        yt.check(store.config())
+    with working("publisher", task=f"Lädt Clip „{clip['title'][:28]}“ hoch"):
+        video_id = yt.upload(store.config(), clips.clip_path(c, clip), clips.upload_spec(c, clip))
+    clips.mark_posted(c["id"], clip["n"], video_id)
+    store.mark_clip_posted(slot, clips.upload_record(c, clip, slot, video_id))
+    store.agent_done("publisher")
+    store.log("ok", f"Clip gepostet: {clip['title']}" + (" (manuell)" if manual else ""),
+              agent="publisher", kind="posted", source="youtube")
+    refresh_stats()
+
+
+def post_clip_now(cid, n):
+    """„Jetzt posten“ für einen einzelnen Clip aus der Freigabe-Station."""
+    if not work_lock.acquire(blocking=False):
+        return
+    try:
+        c = clips.load(cid)
+        clip = next(x for x in c["clips"] if x["n"] == n)
+        if clip["status"] == "neu":
+            clips.set_clip(cid, n, "approve")
+            clip["status"] = "freigegeben"
+        post_clip((c, clip), None, manual=True)
+    except Exception as e:
+        if yt.is_expired(e):
+            connection_expired()
+            return
+        traceback.print_exc()
+        store.agent_done("publisher", error=e)
+        store.log("error", f"Clip-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+    finally:
+        status["busy"] = ""
+        work_lock.release()
+
+
+# --- Video-Clipper -----------------------------------------------------------------
+
+_clip_wake = threading.Event()
+
+
+def clip_worker():
+    """Eigener Faden: holt Videos aus dem Eingangsordner und schneidet bestätigte Kampagnen, eine nach der anderen."""
+    while True:
+        try:
+            ag = agents.settings(store.config())["clipper"]
+            if ag["on"]:
+                clips.scan_inbox(auto_start=ag["auto_start"])
+            job = clips.next_job()
+            if job:
+                run_clip_job(job["id"], ag)
+                continue
+        except Exception:
+            traceback.print_exc()
+        _clip_wake.wait(20)
+        _clip_wake.clear()
+
+
+def run_clip_job(cid, settings):
+    start_work("clipper", task="Startet")
+    try:
+        c = clips.process(cid, settings, task=lambda text: set_task("clipper", text))
+        n = len(c["clips"])
+        store.agent_done("clipper")
+        wait = ", er wartet auf deine Freigabe." if n == 1 else ", sie warten auf deine Freigabe."
+        store.log("ok", f"{n} Clip{'s' if n != 1 else ''} aus „{c['name']}“ fertig"
+                  + (wait if settings["freigabe"] else " und freigegeben."),
+                  agent="clipper", kind="clips", source="clipper")
+    except Exception as e:
+        traceback.print_exc()
+        store.agent_done("clipper", error=e)
+        store.log("error", f"Clipping fehlgeschlagen: {e}", agent="clipper", kind="error")
+    finally:
+        stop_work("clipper")
+
+
+def webhook_video(h):
+    """POST /webhook/video: neues Video für eine Kampagne (geschützt mit dem Webhook-Schlüssel)."""
+    q = urllib.parse.parse_qs(urllib.parse.urlsplit(h.path).query)
+    token = h.headers.get("X-Webhook-Token") or q.get("token", [""])[0]
+    expected = store.config().get("webhook_token") or ""
+    if not expected or not secrets.compare_digest(token.encode(), expected.encode()):
+        return h.send(401, {"error": "Falscher oder fehlender Schlüssel (X-Webhook-Token)."})
+    try:
+        length = int(h.headers.get("Content-Length") or 0)
+    except ValueError:
+        length = 0
+    one = lambda k, d="": q.get(k, [d])[0]
+    try:
+        if (h.headers.get("Content-Type") or "").startswith("application/json"):
+            if length > 100_000:
+                return h.send(413, {"error": "Zu groß."})
+            data = json.loads(h.rfile.read(length) or b"{}")
+            rights, credit, name = bool(data.get("rights")), str(data.get("credit") or ""), data.get("name")
+            if data.get("file"):
+                path = os.path.join(clips.inbox_dir(), os.path.basename(str(data["file"])))
+                if not os.path.isfile(path):
+                    return h.send(404, {"error": "Datei nicht im Eingangsordner gefunden."})
+                c = clips.add_file(path, "webhook", rights, credit, name)
+            elif data.get("url"):
+                url = str(data["url"])
+                clips.check_url(url)
+                background(_download, url, rights, credit, name)
+                return h.send(202, {"ok": True, "text": "Video wird geladen, die Kampagne erscheint gleich."})
+            else:
+                return h.send(400, {"error": "Bitte url, file oder die Videodatei selbst schicken."})
+        else:
+            filename = one("filename") or h.headers.get("X-Filename") or "video.mp4"
+            c = clips.add_stream(h.rfile, length, filename, "webhook", one("rights") in ("1", "true", "ja"),
+                                 one("credit"), one("name") or None)
+    except ValueError as e:
+        return h.send(400, {"error": str(e)})
+    _clip_wake.set()
+    h.send(200, {"ok": True, "campaign": c["id"], "status": c["status"],
+                 "text": "Wird geschnitten." if c["status"] == "wartet" else "Bitte im Bereich Kampagnen die Rechte bestätigen."})
+
+
+def _download(url, rights, credit, name):
+    try:
+        clips.add_url(url, rights, credit, name)
+        _clip_wake.set()
+    except Exception as e:
+        store.log("error", f"Video vom Webhook konnte nicht geladen werden: {e}", agent="clipper", kind="error")
 
 
 _last_refresh = [0.0]
@@ -136,7 +327,7 @@ def refresh_stats():
         return
     _last_refresh[0] = time.time()
     try:
-        with working("analyst"):
+        with working("analyst", task="Holt Aufrufe und Likes"):
             ch = yt.channel(cfg)
             store.write("channel.json", ch)
             ids = [u["video_id"] for u in store.state()["uploads"]]
@@ -148,7 +339,7 @@ def refresh_stats():
         store.agent_done("analyst", error=e)
         if yt.is_expired(e):
             return connection_expired()
-        store.log("error", f"Statistiken konnten nicht geladen werden: {e}")
+        store.log("error", f"Statistiken konnten nicht geladen werden: {e}", agent="analyst", kind="error")
 
 
 def refresh_analytics():
@@ -165,7 +356,7 @@ def refresh_analytics():
     uploads = store.state()["uploads"]
     today = store.now().date()
     start = min([u["posted_at"][:10] for u in uploads] or [str(today - dt.timedelta(days=28))])
-    status["working"].add("zuschauer")
+    start_work("zuschauer", task="Holt Zuschauer-Daten")
     try:
         summary = yt.analytics_summary(cfg, start, str(today))
         fetched = 0
@@ -195,9 +386,9 @@ def refresh_analytics():
             error = f"Zuschauer-Daten konnten nicht geladen werden: {text[:200]}"
         store.write("analytics.json", {**data, "error": error})
         store.agent_done("zuschauer", error=error)
-        store.log("error", error)
+        store.log("error", error, agent="zuschauer", kind="error")
     finally:
-        status["working"].discard("zuschauer")
+        stop_work("zuschauer")
 
 
 def connection_expired():
@@ -219,7 +410,7 @@ def sync_scripts():
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
             return json.load(r)
 
-    status["working"].add("autor")
+    start_work("autor", task="Holt neue Skripte")
     try:
         listing = get(f"https://api.github.com/repos/{SCRIPTS_REPO}/contents/seed")
         known = set(store.state()["known"])
@@ -231,15 +422,16 @@ def sync_scripts():
         added = store.add_scripts(files)
         store.agent_done("autor")
         if added:
-            store.log("ok", f"{added} neue Skripte in die Warteschlange gelegt.")
+            store.log("ok", f"{added} neue Skripte in die Warteschlange gelegt.", agent="autor", kind="scripts",
+                      source="github")
             warm_thumbs()
         return added
     except Exception as e:
         store.agent_done("autor", error=e)
-        store.log("error", f"Neue Skripte konnten nicht geladen werden: {e}")
+        store.log("error", f"Neue Skripte konnten nicht geladen werden: {e}", agent="autor", kind="error")
         return 0
     finally:
-        status["working"].discard("autor")
+        stop_work("autor")
 
 
 def connect_channel():
@@ -268,7 +460,7 @@ def apply_branding(force=False):
     cfg, st = store.config(), store.state()
     if not cfg["refresh_token"] or (not force and st.get("branding_version") == branding.VERSION):
         return
-    status["working"].add("designer")
+    start_work("designer", task="Setzt Banner und Beschreibung")
     try:
         title = (store.read("channel.json", {}) or {}).get("title") or "60 Sekunden Wissen"
         banner, profile = branding.render_all(title, cfg["post_hours"], store.path("branding"))
@@ -279,14 +471,15 @@ def apply_branding(force=False):
             st["branding_at"] = store.now().isoformat(timespec="seconds")
             store.write("state.json", st)
         store.agent_done("designer")
-        store.log("ok", "Kanal-Design gesetzt: Banner, Beschreibung und Stichwörter.")
+        store.log("ok", "Kanal-Design gesetzt: Banner, Beschreibung und Stichwörter.", agent="designer",
+                  kind="branding", source="youtube")
     except Exception as e:
         store.agent_done("designer", error=e)
         if yt.is_expired(e):
             return connection_expired()
-        store.log("error", f"Kanal-Design konnte nicht gesetzt werden: {e}")
+        store.log("error", f"Kanal-Design konnte nicht gesetzt werden: {e}", agent="designer", kind="error")
     finally:
-        status["working"].discard("designer")
+        stop_work("designer")
 
 
 def warm_thumbs():
@@ -367,7 +560,51 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n) or b"{}") if n else {}
 
+    def send_file(self, path, ctype, download=None):
+        """Datei mit Range-Unterstützung (damit man im Video-Player spulen kann)."""
+        size = os.path.getsize(path)
+        start, end, code = 0, size - 1, 200
+        m = re.fullmatch(r"bytes=(\d*)-(\d*)", (self.headers.get("Range") or "").strip())
+        if m and (m.group(1) or m.group(2)):
+            if m.group(1):
+                start = int(m.group(1))
+                end = min(int(m.group(2)), size - 1) if m.group(2) else size - 1
+            else:
+                start = max(0, size - int(m.group(2)))
+            if start > end:
+                self.send_response(416)
+                self.send_header("Content-Range", f"bytes */{size}")
+                self.end_headers()
+                return
+            code = 206
+        self.send_response(code)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Length", str(end - start + 1))
+        self.send_header("Cache-Control", "no-cache")
+        if code == 206:
+            self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        if download:
+            safe = re.sub(r"[^A-Za-z0-9._-]+", "-", download).strip("-") or "clip"
+            self.send_header("Content-Disposition", f"attachment; filename=\"{safe}.mp4\"; "
+                             f"filename*=UTF-8''{urllib.parse.quote(download)}.mp4")
+        self.end_headers()
+        try:
+            with open(path, "rb") as f:
+                f.seek(start)
+                left = end - start + 1
+                while left > 0:
+                    chunk = f.read(min(left, 256 * 1024))
+                    if not chunk:
+                        break
+                    self.wfile.write(chunk)
+                    left -= len(chunk)
+        except (BrokenPipeError, ConnectionResetError):
+            pass
+
     def do_GET(self):
+        if self.path.startswith("/webhook/"):
+            return self.send(200, {"ok": True, "info": "Shorts-Zentrale: Video-Webhook. Videos per POST schicken."})
         if not self.authorized():
             return
         p = self.path.split("?")[0]
@@ -381,8 +618,19 @@ class Handler(BaseHTTPRequestHandler):
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
-                                                   "version": VERSION, "oauth_page": OAUTH_PAGE},
-                                                  working=status["working"], repo=bool(SCRIPTS_REPO)))
+                                                   "version": VERSION, "oauth_page": OAUTH_PAGE,
+                                                   "live_seq": live_since(10 ** 12)["seq"]},
+                                                  working=tasks_now(), repo=bool(SCRIPTS_REPO)))
+        if p == "/api/live":
+            q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+            try:
+                since = int(q.get("since", ["0"])[0])
+            except ValueError:
+                since = 0
+            return self.send(200, live_since(since))
+        m = re.fullmatch(r"/api/clip/([a-z0-9-]+)/(\d+)\.(mp4|jpg)", p)
+        if m:
+            return self.clip_file(m.group(1), int(m.group(2)), m.group(3))
         if p == "/api/voice-sample.wav":
             return self.voice_sample()
         if p == "/api/preview.jpg":
@@ -438,7 +686,7 @@ class Handler(BaseHTTPRequestHandler):
         voice = tts()
         cfg = SynthesisConfig(length_scale=round(agents.BASE_SPEED * 100 / tempo, 3))
         text = "Hallo! So klingt die Stimme deiner Shorts mit diesem Sprechtempo."
-        with working("sprecher"):
+        with working("sprecher", task="Spricht eine Hörprobe"):
             audio = np.concatenate([c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)])
         buf = io.BytesIO()
         with wave.open(buf, "wb") as f:
@@ -461,13 +709,32 @@ class Handler(BaseHTTPRequestHandler):
         look = agents.apply_look(store.next_look(), agents.settings(store.config()))
         spec = {**spec, **look}
         timings, total = estimated_timings(spec)
-        with working("studio"):
+        with working("studio", task="Rendert eine Vorschau"):
             img = Scene(spec, timings, total).frame(min(2.2, timings[0][1]))
         buf = io.BytesIO()
         img.resize((540, 960)).save(buf, "JPEG", quality=86)
         self.send(200, buf.getvalue(), "image/jpeg")
 
+    def clip_file(self, cid, n, ext):
+        try:
+            c = clips.load(cid)
+            clip = next(x for x in c["clips"] if x["n"] == n)
+            path = clips.clip_path(c, clip, ext)
+        except (OSError, ValueError, StopIteration):
+            return self.send(404, {"error": "Clip nicht gefunden"})
+        if not os.path.exists(path):
+            return self.send(404, {"error": "Clip nicht gefunden"})
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        if ext == "jpg":
+            return self.send(200, open(path, "rb").read(), "image/jpeg", cache="max-age=3600")
+        self.send_file(path, "video/mp4", download=clip["title"] if q.get("download") else None)
+
     def thumb(self, slug):
+        if slug.startswith("clip-"):  # geposteter Clip: Vorschaubild aus der Kampagne
+            file = clips.thumb_file(slug)
+            if file and os.path.exists(file):
+                return self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=86400")
+            return self.send(404, {"error": "Unbekanntes Video"})
         file = store.path("thumbs", slug + ".jpg")
         if not os.path.exists(file):
             spec = store.find_spec(slug)
@@ -478,8 +745,13 @@ class Handler(BaseHTTPRequestHandler):
         self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=86400")
 
     def do_POST(self):
+        path = self.path.split("?")[0]
+        if path == "/webhook/video":
+            return webhook_video(self)
         if not self.authorized():
             return
+        if path == "/api/campaign/upload":
+            return self.campaign_upload()
         p, data = self.path, self.body()
         if p == "/api/settings":
             changes = {}
@@ -567,12 +839,67 @@ class Handler(BaseHTTPRequestHandler):
             if p == "/api/reject":
                 store.log("warn", f"Skript abgelehnt: {name}")
             return self.send(200, {"ok": True})
+        if p in ("/api/campaign/confirm", "/api/campaign/retry", "/api/campaign/delete"):
+            cid = str(data.get("id", ""))
+            try:
+                if p.endswith("confirm"):
+                    c = clips.confirm(cid, data.get("credit"))
+                    store.log("info", f"Rechte bestätigt, wird geschnitten: {c['name']}", agent="clipper", kind="input")
+                elif p.endswith("retry"):
+                    clips.retry(cid)
+                else:
+                    name = clips.load(cid)["name"]
+                    clips.delete(cid)
+                    store.log("warn", f"Kampagne gelöscht: {name}", agent="clipper")
+            except (OSError, ValueError) as e:
+                return self.send(400, {"error": str(e) if isinstance(e, ValueError) else "Unbekannte Kampagne."})
+            _clip_wake.set()
+            return self.send(200, {"ok": True})
+        if p == "/api/clip":
+            try:
+                c = clips.set_clip(str(data.get("id", "")), int(data.get("n", 0)), str(data.get("action", "")),
+                                   data.get("title"))
+            except (OSError, ValueError, TypeError) as e:
+                return self.send(400, {"error": str(e) if isinstance(e, ValueError) else "Unbekannter Clip."})
+            if data.get("action") == "reject":
+                store.log("warn", f"Clip abgelehnt: {c['name']} #{data.get('n')}", agent="clipper")
+            return self.send(200, {"ok": True})
+        if p == "/api/clip/post":
+            if not store.config()["refresh_token"]:
+                return self.send(400, {"error": "Es ist noch kein Kanal verbunden."})
+            if status["busy"]:
+                return self.send(409, {"error": "Es läuft gerade schon ein Upload."})
+            try:
+                cid, n = str(data.get("id", "")), int(data.get("n", 0))
+                clip = next(x for x in clips.load(cid)["clips"] if x["n"] == n)
+            except (OSError, ValueError, TypeError, StopIteration):
+                return self.send(400, {"error": "Unbekannter Clip."})
+            if clip["status"] in ("gepostet", "abgelehnt"):
+                return self.send(400, {"error": "Dieser Clip kann nicht gepostet werden."})
+            status["busy"] = "Startet …"
+            background(post_clip_now, cid, n)
+            return self.send(200, {"ok": True, "text": "Der Clip wird hochgeladen."})
         if p == "/api/sync":
             background(sync_scripts)
             background(refresh_stats)
             background(refresh_analytics)
             return self.send(200, {"ok": True})
         self.send(404, {"error": "Nicht gefunden"})
+
+
+    def campaign_upload(self):
+        """Upload eines Videos von der Website, als Datei-Body (?name=…&credit=…&rights=1&filename=…)."""
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        one = lambda k: q.get(k, [""])[0]
+        if one("rights") != "1":
+            return self.send(400, {"error": "Bitte bestätigen, dass du das Video verwenden darfst."})
+        try:
+            c = clips.add_stream(self.rfile, int(self.headers.get("Content-Length") or 0), one("filename"),
+                                 "upload", True, one("credit"), one("name") or None)
+        except ValueError as e:
+            return self.send(400, {"error": str(e)})
+        _clip_wake.set()
+        return self.send(200, {"ok": True, "campaign": c["id"]})
 
 
 RUNNERS = {"autor": sync_scripts, "analyst": refresh_stats, "zuschauer": refresh_analytics,
@@ -589,9 +916,13 @@ def _run_agent(self, agent):
         status["busy"] = "Startet …"
         background(post_next, None, True)
         return self.send(200, {"ok": True, "text": "Das nächste Video wird erstellt und hochgeladen. Das dauert ein paar Minuten."})
+    if agent == "clipper":
+        background(clips.scan_inbox, agents.settings(cfg)["clipper"]["auto_start"])
+        _clip_wake.set()
+        return self.send(200, {"ok": True, "text": "Der Clipper prüft den Eingang. Neue Videos erscheinen gleich im Bereich Kampagnen."})
     if agent not in RUNNERS:
         return self.send(400, {"error": "Dieser Agent lässt sich nicht von Hand starten."})
-    if agent in status["working"]:
+    if agent in tasks_now():
         return self.send(409, {"error": "Der Agent arbeitet gerade schon."})
     if agent in ("analyst", "designer") and not cfg["refresh_token"]:
         return self.send(400, {"error": "Es ist noch kein Kanal verbunden."})
@@ -599,13 +930,13 @@ def _run_agent(self, agent):
         return self.send(400, {"error": "Die Zuschauer-Daten sind noch nicht verbunden."})
     if agent == "autor" and not SCRIPTS_REPO:
         return self.send(400, {"error": "Kein Skript-Repo eingestellt (SCRIPTS_REPO)."})
-    status["working"].add(agent)  # sofort sichtbar, auch bevor der Thread startet
+    start_work(agent)  # sofort sichtbar, auch bevor der Thread startet
 
     def job():
         try:
             RUNNERS[agent]()
         finally:
-            status["working"].discard(agent)
+            stop_work(agent)
     background(job)
     return self.send(200, {"ok": True, "text": "Läuft."})
 
@@ -615,7 +946,10 @@ Handler.run_agent = _run_agent
 
 def main():
     store.init()
+    store.LISTENERS.append(live_push)
+    clips.stale_cleanup()
     threading.Thread(target=scheduler, daemon=True).start()
+    threading.Thread(target=clip_worker, daemon=True).start()
     background(warm_thumbs)
     print(f"Shorts-Zentrale läuft auf Port {PORT}", flush=True)
     ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()

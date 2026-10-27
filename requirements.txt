@@ -4,3 +4,4 @@ numpy>=2
 google-api-python-client>=2.150
 google-auth>=2.35
 tzdata
+faster-whisper==1.2.1

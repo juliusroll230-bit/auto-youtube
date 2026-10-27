@@ -18,6 +18,11 @@ RUN mkdir -p models \
  && curl -sSL https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2 \
     | tar xj -C models
 
+# Spracherkennung für den Video-Clipper (Whisper "base", läuft auf der CPU).
+# Klappt der Download beim Bauen nicht, lädt die App das Modell beim ersten Clip nach.
+RUN python -c "from faster_whisper import download_model; download_model('base', output_dir='/app/models/whisper/base')" \
+ || echo "Whisper-Modell kommt beim ersten Clip"
+
 COPY . .
 
 # Version für die Fußzeile der Website (setzt GitHub Actions beim Bauen)

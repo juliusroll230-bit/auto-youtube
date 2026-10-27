@@ -6,6 +6,8 @@
   channel.json   Name, Bild und Abonnenten des Kanals
   history.json   Verlauf von Aufrufen und Abonnenten (für das Diagramm auf der Website)
   analytics.json Zuschauerbindung je Video (wann Zuschauer abschalten), von YouTube Analytics
+  inbox/         Eingangsordner: Videos hier ablegen, der Video-Clipper macht Clips daraus (clips.py)
+  campaigns/     je Eingangsvideo eine Kampagne mit Original, Mitschrift und fertigen Clips
   queue/         Skripte, die noch gepostet werden
   posted/        Skripte, die schon online sind
   thumbs/        Vorschaubilder
@@ -34,8 +36,11 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
-                  "agents": {}, "approval": False}
+                  "agents": {}, "approval": False,
+                  # Schlüssel für den Video-Webhook (POST /webhook/video), wird beim ersten Start erzeugt
+                  "webhook_token": ""}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
+LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
 WORDS_PER_S = 2.8
 
@@ -64,7 +69,7 @@ def now():
 
 
 def init():
-    for d in ("queue", "posted", "thumbs", "out", "rejected"):
+    for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
         cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
@@ -73,6 +78,9 @@ def init():
             if cfg["post_hours"] == [12, 17, 20]:
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
             cfg["hours_v2"] = True
+        if not cfg.get("webhook_token"):
+            import secrets
+            cfg["webhook_token"] = secrets.token_urlsafe(18)
         write("config.json", cfg)
         try:
             os.chmod(path("config.json"), 0o600)
@@ -148,12 +156,25 @@ def restore(name):
         shutil.move(path("rejected", name), path("queue", name))
 
 
-def log(level, text):
+def log(level, text, agent=None, **extra):
+    """Ereignis für Live-Feed und Aktivität. agent: welcher Agent es ausgelöst hat (für die Animation),
+    extra: z. B. kind ("posted", "input", "clips" …) und source ("youtube", "ordner" …)."""
+    entry = {"at": now().isoformat(timespec="seconds"), "level": level, "text": text}
+    if agent:
+        entry["agent"] = agent
+    for key in ("kind", "source"):
+        if extra.get(key):
+            entry[key] = extra[key]
     with LOCK:
         st = state()
-        st["events"] = (st["events"] + [{"at": now().isoformat(timespec="seconds"), "level": level, "text": text}])[-80:]
+        st["events"] = (st["events"] + [entry])[-80:]
         write("state.json", st)
     print(f"[{level}] {text}", flush=True)
+    for fn in LISTENERS:
+        try:
+            fn({**extra, **entry})
+        except Exception as e:  # die Website darf das Protokoll nie aufhalten
+            print(f"Live-Ereignis fehlgeschlagen: {e}", flush=True)
 
 
 def add_scripts(files):
@@ -227,6 +248,21 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
         write("state.json", st)
 
 
+def mark_clip_posted(slot, record):
+    """Ein Clip ist online: wie mark_posted, nur ohne Skriptdatei."""
+    with LOCK:
+        st = state()
+        if slot:
+            st["done_slots"] = (st["done_slots"] + [slot])[-90:]
+        st["uploads"].append(record)
+        write("state.json", st)
+
+
+def learnable(posted):
+    """Clips zählen nicht für den Lernmodus (sie haben kein Thema und keinen Look der KI-Shorts)."""
+    return [p for p in posted if p.get("kind") != "clip"]
+
+
 def card(spec):
     words = sum(len(s["text"].split()) for s in spec["segments"])
     return {
@@ -254,6 +290,8 @@ def posted_items():
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
+        if u.get("kind") == "clip" and u.get("campaign"):
+            item["thumb"] = f"api/clip/{u['campaign']}/{u['n']}.jpg"
         posted.append(item)
     return posted
 
@@ -286,13 +324,14 @@ def planned_queue(posted=None, ready_only=False):
     planer = agents.settings(cfg)["planer"]
     if not planer["on"]:
         return queue  # Lernmodus aus: einfach in Dateireihenfolge
+    posted = learnable(posted)
     history = [p["niche"] for p in posted if p.get("niche")]
     return learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
 
 
 def next_look(posted=None):
     """Untertitel-Stil und Übergang für das nächste Video, nach dem was bisher am besten lief."""
-    posted = posted if posted is not None else posted_items()
+    posted = learnable(posted if posted is not None else posted_items())
     return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
 
 
@@ -306,16 +345,19 @@ def next_slot(hours, at=None):
     return None
 
 
-def dashboard(extra=None, working=(), repo=True):
+def dashboard(extra=None, working=None, repo=True):
+    """working: {agent: was er gerade tut} für alle Agenten, die gerade arbeiten."""
     import agents
+    import clips
 
+    working = dict(working or {})
     cfg = config()
     st = state()
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     posted = posted_items()
     planned = planned_queue(posted)
     approved = set(st["approved"])
-    scores = learn.niche_scores(posted, now())
+    scores = learn.niche_scores(learnable(posted), now())
     ag = agents.settings(cfg)
     queue = [{**card(spec), "file": os.path.basename(f), "approved": os.path.basename(f) in approved}
              for f, spec in planned]
@@ -325,6 +367,7 @@ def dashboard(extra=None, working=(), repo=True):
             rejected.append({**card(load_spec(f)), "file": os.path.basename(f)})
         except (OSError, ValueError, KeyError):
             continue
+    camp = clips.summary()
     return {
         "source": "server",
         "updated_at": now().isoformat(timespec="seconds"),
@@ -340,14 +383,18 @@ def dashboard(extra=None, working=(), repo=True):
         "rejected": rejected,
         "agents": agents.overview(cfg, st["agent_runs"], {
             "connected": bool(cfg["refresh_token"]), "analytics": bool(cfg["analytics_token"]),
-            "working": set(working), "queue": len(queue), "posted": len(posted), "favorite": learn.favorite(scores),
-            "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
-            "branding_at": st.get("branding_at")}),
+            "working": set(working), "tasks": working, "queue": len(queue), "posted": len(posted),
+            "favorite": learn.favorite(scores), "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
+            "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
+        "campaigns": camp["campaigns"],
+        "clip_totals": camp["totals"],
+        "clips_running": camp["running"],
+        "webhook_token": cfg["webhook_token"],
         "posted": posted,
         "branding_at": st.get("branding_at"),
         "learning": learn.summary(scores, ag["planer"]["explore_every"]) if ag["planer"]["on"]
         else {**learn.summary(scores, ag["planer"]["explore_every"]), "favorite": None, "off": True},
-        "looks": learn.feature_summary(learn.feature_scores(posted, now())),
+        "looks": learn.feature_summary(learn.feature_scores(learnable(posted), now())),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),

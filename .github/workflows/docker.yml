@@ -63,6 +63,8 @@ jobs:
           assert os.path.getsize(path) > 500000, 'Video zu klein'
           print(path, round(dur, 1), 'Sekunden')
           "
+      - name: Clips schneiden (echte Spracherkennung)
+        run: docker exec app python tests/clip_smoke.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app

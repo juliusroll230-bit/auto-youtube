@@ -1,6 +1,6 @@
 # Shorts-Zentrale
 
-Erstellt und postet automatisch deutsche YouTube Shorts und zeigt alles auf einer Website: Kennzahlen mit Diagrammen, wann Zuschauer abschalten, gepostete Videos, Sendeplan und die Kanal-Verbindung. Läuft als ein Docker-Container, zum Beispiel auf einem ZimaOS-Server.
+Erstellt und postet automatisch deutsche YouTube Shorts, schneidet aus langen Videos Clips mit Untertiteln (Kampagnen) und zeigt alles auf einer Website: eine Kommandozentrale mit den KI-Agenten, Kennzahlen mit Diagrammen, wann Zuschauer abschalten, gepostete Videos, Sendeplan und die Kanal-Verbindung. Läuft als ein Docker-Container, zum Beispiel auf einem ZimaOS-Server.
 
 ## Installation auf ZimaOS
 
@@ -22,10 +22,24 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 - **Ton und Bild:** Die Stimme läuft durch einen Kompressor und wird auf die YouTube-Lautheit (-14 LUFS) gebracht, Ton in 48 kHz. Das Video wird in hoher Qualität kodiert (H.264 High, CRF 18).
 - **Kopfzeile:** Bei manchen Videos steht der Titel vom ersten Bild an oben als Kopfzeile. Ob das mehr Aufrufe bringt, testet der Lernmodus selbst.
 - **Lernmodus:** Am Anfang wechseln sich die Themen ab. Sobald jedes Thema 2 Videos mit Aufrufen hat, kommen 3 von 4 Videos aus dem Thema mit den meisten Aufrufen (hochgerechnet auf die ersten 3 Tage), jedes 4. testet ein anderes. Mit Zuschauer-Daten zählen Themen mehr, bei denen die Leute länger dranbleiben. Genauso wählt die App Untertitel-Stil, Übergang und Kopfzeile. Details in `learn.py`, die Übersicht steht im Reiter **Zuschauer**.
-- **Zentrale (Startseite):** Die Website zeigt jede Aufgabe der App als eigenen KI-Agenten im "Brain Room": Das Gehirn (Lernmodus), Writers' Room (Skripte holen), Sprecher, Video-Studio, Publisher (Upload), Analyst (Statistiken), Research (Zuschauer-Daten) und Designer (Kanal-Design). Antippen öffnet ein Bedienfeld mit Status, Kennzahlen, Schaltern und Reglern (z. B. Sprechtempo, wie oft der Analyst abfragt, Kopfzeile immer/nie/selbst lernen) und dem Knopf zum sofortigen Starten. Sprecher und Studio zeigen dort eine Hörprobe bzw. ein Vorschaubild. Die Einstellungen liegen in `config.json` unter `agents`, siehe `agents.py`.
-- **Freigabe-Station:** Normalerweise geht jedes Video automatisch online. Mit "Ablehnen" nimmt man ein Video aus dem Plan (es landet in `rejected/` und lässt sich wiederherstellen). Mit eingeschalteter Freigabe-Pflicht postet der Publisher nur Videos, die vorher freigegeben wurden.
+- **Zentrale (Startseite):** Die Website zeigt jede Aufgabe der App als eigenen KI-Agenten im isometrischen "Brain Room": Das Gehirn (Lernmodus), Writers' Room (Skripte holen), Sprecher, Video-Studio, Video-Clipper (Kampagnen), Publisher (Upload), Analyst (Statistiken), Research (Zuschauer-Daten) und Designer (Kanal-Design). Wer arbeitet, tippt am Schreibtisch, zeigt in einer Sprechblase seine Aufgabe und schickt Datenströme zum Gehirn (live alle 2,5 Sekunden über `/api/live`). Antippen öffnet ein Bedienfeld mit Status, Kennzahlen, Schaltern und Reglern (z. B. Sprechtempo, wie oft der Analyst abfragt, Kopfzeile immer/nie/selbst lernen) und dem Knopf zum sofortigen Starten. Sprecher und Studio zeigen dort eine Hörprobe bzw. ein Vorschaubild. Die Einstellungen liegen in `config.json` unter `agents`, siehe `agents.py`.
+- **Freigabe-Station:** Clips aus Kampagnen warten hier auf "Freigeben" oder "Ablehnen" (abschaltbar beim Video-Clipper). Bei KI-Skripten geht normalerweise jedes Video automatisch online. Mit "Ablehnen" nimmt man ein Video aus dem Plan (es landet in `rejected/` und lässt sich wiederherstellen). Mit eingeschalteter Freigabe-Pflicht postet der Publisher nur Videos, die vorher freigegeben wurden.
 - **Live-Feed:** Zeigt, welcher Agent gerade arbeitet, und die letzten Ereignisse.
 - **Updates:** Jede Code-Änderung baut über GitHub Actions ein neues Image `ghcr.io/<besitzer>/auto-youtube:latest`. Automatisch übernehmen: zusätzlich [`updater/docker-compose.yml`](updater/docker-compose.yml) in ZimaOS importieren. Der Updater prüft beim Start und jede Nacht um 4 Uhr und tauscht nur den Container `shorts-zentrale` aus (außerhalb der Sendezeiten).
+
+## Kampagnen und Clips
+
+Im Reiter **Kampagnen** ein langes Video hochladen (oder in den Ordner `/DATA/AppData/shorts-zentrale/inbox` legen, oder per Webhook schicken). Der Video-Clipper
+
+1. schreibt mit, was gesagt wird (Whisper "base" auf der CPU, Modell liegt im Docker-Image),
+2. sucht die stärksten Stellen (Frage oder Zahl am Anfang, ganze Sätze, Länge einstellbar, Stichwörter zählen extra),
+3. schneidet sie auf 9:16 mit Untertiteln Wort für Wort und dem ersten Satz als Hook-Text oben.
+
+Fertige Clips warten in der Freigabe-Station. Der Publisher setzt freigegebene Clips statt eines KI-Shorts auf Sendeplätze ("Clips pro Tag", gleichmäßig über den Tag verteilt, abwechselnd aus den Kampagnen). TikTok und Instagram erlauben automatisches Posten nur geprüften Firmen-Apps, darum gibt es dort einen **Download**-Knopf.
+
+Nur eigene Videos oder Videos mit Erlaubnis verwenden: Beim Hochladen und bei Ordner-Videos muss man das bestätigen. Links von YouTube, TikTok oder Instagram nimmt der Webhook nicht an.
+
+**Webhook:** `POST http://<server>:8090/webhook/video?name=<Name>&rights=1` mit dem Header `X-Webhook-Token: <Schlüssel>` und der Videodatei als Inhalt, oder als JSON `{"url": "https://…/video.mp4", "name": "…", "rights": true}`. Ohne `rights` muss man die Rechte auf der Website bestätigen. Der Schlüssel und ein fertiges curl-Beispiel stehen im Reiter **Kampagnen**.
 
 ## Dateien
 
@@ -35,6 +49,7 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 | `store.py` | Speichert Einstellungen, Warteschlange und Statistiken in `/data` |
 | `agents.py` | Die Agenten der Zentrale: Einstellungen, Status und Kennzahlen |
 | `learn.py` | Lernmodus: wählt Thema und Look nach Erfolg |
+| `clips.py` | Kampagnen: Mitschrift, beste Stellen finden, Clips schneiden, Clips für den Sendeplan |
 | `yt.py` | YouTube: Anmeldung per Geräte-Code, Upload, Statistiken, Zuschauer-Daten (Analytics) |
 | `make_short.py` | Baut aus einem Skript ein 1080x1920-Video |
 | `car_scene.py` | Hintergrund "Sportwagen bei Nacht" für Skripte mit `"style": "car"` |

@@ -150,7 +150,8 @@ def upload(cfg, video_path, spec):
         title += " #shorts"
     body = {
         "snippet": {"title": title[:100], "description": description[:4900], "tags": spec.get("tags", []),
-                    "categoryId": "27", "defaultLanguage": "de", "defaultAudioLanguage": "de"},
+                    "categoryId": "27", "defaultLanguage": spec.get("language", "de"),
+                    "defaultAudioLanguage": spec.get("language", "de")},
         "status": {"privacyStatus": cfg.get("privacy", "public"), "selfDeclaredMadeForKids": False},
     }
     media = MediaFileUpload(video_path, mimetype="video/mp4", chunksize=-1, resumable=True)
