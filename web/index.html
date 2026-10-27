@@ -493,6 +493,7 @@ details[open] summary { margin-bottom: 12px; }
 .c-ring { fill: none; stroke-width: 1.6; opacity: .8; transform-box: fill-box; transform-origin: 50% 50%; animation: cRing 1s ease-out infinite; }
 @keyframes cRing { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.4); opacity: 0; } }
 
+
 /* Der kleine Claude-Roboter */
 .rbw { transition: filter .2s ease; }
 .stn.hov .rbw, .brain-g.hov .br-float { filter: drop-shadow(0 0 7px rgba(34, 211, 238, .7)); }
@@ -580,7 +581,7 @@ details[open] summary { margin-bottom: 12px; }
 @keyframes brSpinA { to { stroke-dashoffset: -280; } }
 @keyframes brSpinB { to { stroke-dashoffset: -272; } }
 .brain-g.on .br-ring { animation-duration: 3s; }
-.br-lobe { fill: rgba(139, 92, 246, .2); stroke: #a78bfa; stroke-width: 2.6; stroke-linejoin: round; }
+.br-lobe { fill: #f9a8d4; stroke: #be185d; stroke-width: 2.6; stroke-linejoin: round; }
 .br-fold { fill: none; stroke: #67e8f9; stroke-width: 2; stroke-linecap: round; }
 .brain-g.on .br-lobe { animation: lobePulse 1.2s ease-in-out infinite; }
 @keyframes lobePulse { 50% { fill: rgba(139, 92, 246, .45); } }
@@ -796,6 +797,77 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
   .nav a .s { display: inline; }
 }
 @media (prefers-reduced-motion: reduce) { .glow-b::after { animation: none !important; } }
+/* Walddorf: natürliche Farben, nichts leuchtet technisch */
+.room { background: linear-gradient(180deg, #1d2f3a, #16262a); }
+.iso .road { fill: #d9c296; }
+.iso .road-l { display: none; }
+.stn .pl .t { stroke: rgba(255, 255, 255, .18); stroke-width: 1; }
+.stn.hov .pl .t, .stn:focus-visible .pl .t { stroke: #fff6c8; stroke-width: 2.2; filter: drop-shadow(0 0 6px rgba(255, 240, 180, .8)); }
+.stn.s-arbeitet .pl .t { stroke: rgba(255, 236, 170, .7); }
+.stn .dstrip { display: none; }
+.stn.hov .desk .t { fill: #d6ad7e; }
+.stn .keys { stroke: rgba(255, 255, 255, .3); }
+.stn.s-arbeitet .keys { stroke: #fff7d6; }
+.door { fill: #7a5232; stroke: none; }
+.s-arbeitet .door { fill: #8b5e3a; }
+.lamp { fill: #fcd34d; }
+.ridge { stroke: #7a3424; stroke-width: 1.4; }
+.s-arbeitet .ridge { stroke: #7a3424; }
+.win { fill: #3e4c5c; transition: fill .4s ease; }
+.s-arbeitet .win { fill: #ffd98a; }
+.stn.hov .win { fill: #ffe4a8; }
+.s-aus .win { fill: #2f3640; }
+.win-f { fill: none; stroke: #f5ead6; stroke-width: 1.6; stroke-linejoin: round; }
+.smk { fill: rgba(240, 240, 240, .7); }
+.rb-ring, .rb-flame { display: none; }
+.tr-sh { fill: rgba(20, 40, 20, .35); }
+.tr-st { stroke: #7a5634; stroke-linecap: round; fill: none; }
+.tr-cr { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 6s ease-in-out infinite var(--d, 0s); }
+@keyframes sway { 50% { transform: rotate(1.6deg); } }
+.iso .pt { fill: #a87a4b; stroke: #6f4f30; stroke-width: 1; }
+.iso .pt-g { stroke: #fff4dc; }
+.pt-post { stroke: #6f4f30; stroke-width: 3; stroke-linecap: round; }
+.iso .port-g.flash .pt { stroke: #fde68a; filter: drop-shadow(0 0 6px #fde68a); }
+.br-side { fill: url(#padSide); stroke: rgba(0, 0, 0, .12); }
+.br-pad { fill: url(#padTop); stroke: #f3ead6; }
+.brain-g.hov .br-pad, .brain-g:focus-visible .br-pad { stroke: #fff6c8; filter: drop-shadow(0 0 8px rgba(255, 240, 180, .8)); }
+.br-lobe { fill: #f9a8d4; stroke: #be185d; }
+.br-fold { stroke: #be185d; }
+@keyframes lobePulse { 50% { fill: #fbcfe8; } }
+.c-ring { display: none; }
+.c-sh { fill: rgba(20, 40, 20, .35); }
+.stn.got .pl .t { stroke: #fde68a; }
+.br-side { stroke: rgba(0, 0, 0, .12); stroke-width: 1; }
+.br-pad { stroke: #f3ead6; stroke-width: 1.4; }
+.br-in, .br-ring, .br-cone, .sat { display: none; }
+.br-fold { stroke: #be185d; }
+.brain-g.on .br-lobe { animation: lobePulse 1.6s ease-in-out infinite; }
+.stn.hov .rbw, .brain-g.hov .br-float { filter: drop-shadow(0 0 6px rgba(255, 240, 180, .8)); }
+.room { border-color: rgba(255, 255, 255, .08); box-shadow: none; }
+.tag { background: #fffaf0; color: #2b2a26; border: 1px solid rgba(0, 0, 0, .12); box-shadow: 0 4px 12px -6px rgba(0, 0, 0, .55); }
+.tag:hover, .tag.hov { border-color: #c8a46a; box-shadow: 0 0 0 2px rgba(255, 220, 150, .55); }
+.tag .sd { box-shadow: none; }
+.tag[data-st="arbeitet"] { border-color: #e0b866; }
+.tag[data-st="arbeitet"] .sd { background: #f59e0b; box-shadow: none; }
+.tag[data-st="wartet"] .sd { background: #eab308; box-shadow: none; }
+.tag[data-st="aus"] { color: #6b6b6b; border-color: rgba(0, 0, 0, .1); }
+.tag[data-st="fehler"] { border-color: #e11d48; }
+.tag[data-st="fehler"] .sd { box-shadow: none; }
+.tag .sd { background: #16a34a; }
+.tag.brn { border-color: rgba(190, 24, 93, .35); }
+.tag.brn small { color: #6b5e55; }
+.port { background: #fffaf0; color: #3d3a33; border-color: rgba(0, 0, 0, .15); }
+.legend-s .state i { background: #16a34a; box-shadow: none; animation: none; }
+.legend-s .state.arbeitet i { background: #f59e0b; }
+.legend-s .state.wartet i { background: #eab308; }
+.legend-s .state.aus i { background: #64748b; }
+.legend-s .state.fehler i { background: #e11d48; }
+.bub { color: #2b2a26; box-shadow: 0 0 0 1.5px #e0b866, 0 6px 16px -6px rgba(0, 0, 0, .55); }
+.bub::after { box-shadow: 2px 2px 0 0 #e0b866; }
+.tag.tside .bub::after { box-shadow: -2px 2px 0 0 #e0b866; }
+.bub .ty b { background: #d97706 !important; box-shadow: none !important; }
+.tag[data-st="wartet"] .sd, .legend-s .state.wartet i { background: #60a5fa; }
+.state.arbeitet i { background: #f59e0b; box-shadow: none; }
 </style>
 
 <svg class="sprite-defs" aria-hidden="true" focusable="false">
@@ -2020,12 +2092,12 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
   ];
   // Farben je Fläche: [oben, links (+y), rechts (+x)]
   var COL = {
-    plate: ["#18223d", "#111a31", "#0c1325"],
-    desk: ["#33497a", "#202e4f", "#18233d"],
-    key: ["#1b2742", "#141d33", "#0f1628"],
-    house: ["#2f4270", "#24345a", "#1b2847"],
-    roof: ["#4f46a5", "#3b347e", "#5b52c0"],
-    chim: ["#475569", "#334155", "#3b4a60"]
+    plate: ["#8cbc72", "#6a8f4f", "#5a7d43"],
+    desk: ["#c49a6c", "#9f7a52", "#8a6844"],
+    key: ["#4a4038", "#3a322c", "#2f2924"],
+    house: ["#e6c99d", "#d2ad7c", "#bf9767"],
+    roof: ["#b4583f", "#8f412e", "#c8664a"],
+    chim: ["#a39687", "#857a6e", "#93887b"]
   };
 
   var LOBES = ["M70 30C52 26 36 36 38 52C26 58 28 78 40 82C40 96 56 104 70 98Z", "M70 30C88 26 104 36 102 52C114 58 112 78 100 82C100 96 84 104 70 98Z"];
@@ -2104,103 +2176,8 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     return { back: back, front: s("g", { "class": "rbw" }, [arms]), top: -105 };
   }
 
-  // Hologramm-Bildschirm links neben dem Tisch (Fläche bei x = -1). Inhalt in 100 × 60 Einheiten, je Agent eine eigene Szene.
-  function sty(d) { return "--d:" + d.toFixed(2) + "s"; }
-  var HOLO = {
-    autor: function (c) {
-      [70, 54, 80, 40, 66, 30].forEach(function (w, i) {
-        var y = r1(15 + i * 7.6);
-        c.appendChild(s("circle", { "class": "hcf", cx: 4.5, cy: y, r: 0.9, opacity: 0.5 }));
-        c.appendChild(s("path", { "class": "hc ln", d: "M9 " + y + "h" + w, pathLength: 40, style: sty(i * 0.62 - 6) }));
-      });
-      c.appendChild(s("rect", { "class": "hcf p hcur", x: 42, y: 50, width: 3, height: 6, rx: 0.5 }));
-    },
-    sprecher: function (c) {
-      [10, 18, 26, 14, 30, 22, 34, 20, 28, 12, 24, 32, 16, 26, 10].forEach(function (hh, i) {
-        c.appendChild(s("rect", { "class": "hcf wv" + (i % 4 === 1 ? " p" : ""), x: r1(8 + i * 5.8), y: 33 - hh / 2, width: 3.2, height: hh, rx: 1.6, style: sty(-((i * 0.37) % 0.8)) }));
-      });
-      c.appendChild(s("path", { "class": "hc th", d: "M6 33H94", opacity: 0.3 }));
-      c.appendChild(s("path", { "class": "hc p th ph", d: "M7 13V53", style: "--w:86px" }));
-    },
-    studio: function (c) {
-      c.appendChild(s("rect", { "class": "hcd", x: 8, y: 13, width: 56, height: 33, rx: 2 }));
-      c.appendChild(s("path", { "class": "hc th", d: "M12 42L23 31L31 38L38 33L52 42", opacity: 0.55 }));
-      c.appendChild(s("circle", { "class": "hcf", cx: 52, cy: 20, r: 3, opacity: 0.55 }));
-      c.appendChild(s("circle", { "class": "hc p th pulse", cx: 35, cy: 29.5, r: 8 }));
-      c.appendChild(s("path", { "class": "hcf p", d: "M32 24L41 29.5L32 35Z" }));
-      c.appendChild(s("rect", { "class": "hcd", x: 8, y: 51, width: 56, height: 3.4, rx: 1.7 }));
-      c.appendChild(s("rect", { "class": "hcf p prog", x: 8, y: 51, width: 56, height: 3.4, rx: 1.7 }));
-      [13, 26, 39].forEach(function (y, i) { c.appendChild(s("rect", { "class": "thb", x: 70, y: y, width: 22, height: 10, rx: 1.5, style: sty(i - 3) })); });
-    },
-    clipper: function (c, id) {
-      var cid = "hclip-" + id, win = s("g", { "clip-path": "url(#" + cid + ")" }), film = s("g", { "class": "film" });
-      c.appendChild(s("clipPath", { id: cid }, [s("rect", { x: 3, y: 10, width: 94, height: 48 })]));
-      film.appendChild(s("rect", { x: -2, y: 16, width: 130, height: 26, fill: "rgba(255,255,255,.07)" }));
-      for (var x = 0; x < 128; x += 6) {
-        film.appendChild(s("rect", { "class": "hcf", x: x, y: 17.4, width: 3, height: 2.4, rx: 0.6, opacity: 0.5 }));
-        film.appendChild(s("rect", { "class": "hcf", x: x, y: 38.2, width: 3, height: 2.4, rx: 0.6, opacity: 0.5 }));
-      }
-      for (var f = 0; f < 6; f++) film.appendChild(s("rect", { x: f * 24 + 2, y: 22, width: 20, height: 14, rx: 1.5, fill: f % 2 ? "rgba(139,92,246,.42)" : "rgba(34,211,238,.32)" }));
-      win.appendChild(film);
-      c.appendChild(win);
-      c.appendChild(s("path", { "class": "cut", d: "M50 11V46" }));
-      c.appendChild(s("g", { "class": "bla" }, [s("circle", { "class": "hc th", cx: 46.5, cy: 17.5, r: 2.3 }), s("path", { "class": "hc th", d: "M47.6 19.6L53 33" })]));
-      c.appendChild(s("g", { "class": "blb" }, [s("circle", { "class": "hc th", cx: 53.5, cy: 17.5, r: 2.3 }), s("path", { "class": "hc th", d: "M52.4 19.6L47 33" })]));
-      c.appendChild(s("path", { "class": "hc th", d: "M8 51H92", opacity: 0.35 }));
-      [[14, 16], [44, 12], [70, 16]].forEach(function (q) { c.appendChild(s("rect", { "class": "hcf p", x: q[0], y: 49.5, width: q[1], height: 3, rx: 1.5 })); });
-      c.appendChild(s("path", { "class": "hc th ph", d: "M8 46V55", style: "--w:84px" }));
-    },
-    publisher: function (c) {
-      c.appendChild(s("path", { "class": "hcd", d: "M36 34H64A8 8 0 0 0 64 18A11 11 0 0 0 43 15A9 9 0 0 0 36 34Z" }));
-      c.appendChild(s("path", { "class": "hc th", d: "M36 34H64A8 8 0 0 0 64 18A11 11 0 0 0 43 15A9 9 0 0 0 36 34Z" }));
-      c.appendChild(s("g", { "class": "upa" }, [s("path", { "class": "hc p", d: "M50 48V30M44 36L50 30L56 36" })]));
-      c.appendChild(s("rect", { "class": "hcd", x: 20, y: 52, width: 60, height: 3.4, rx: 1.7 }));
-      c.appendChild(s("rect", { "class": "hcf prog", x: 20, y: 52, width: 60, height: 3.4, rx: 1.7 }));
-    },
-    analyst: function (c) {
-      var tops = [];
-      c.appendChild(s("path", { "class": "hc th", d: "M9 13V51H93", opacity: 0.45 }));
-      [12, 17, 15, 22, 27, 31].forEach(function (hh, i) {
-        var x = 15 + i * 12.5;
-        c.appendChild(s("rect", { "class": "hcf gbar" + (i === 5 ? " p" : ""), x: x, y: 50 - hh, width: 7.5, height: hh, rx: 1.5, opacity: i === 5 ? 1 : 0.65, style: sty(-i * 0.27) }));
-        tops.push(r1(x + 3.75) + " " + (45 - hh));
-      });
-      c.appendChild(s("path", { "class": "hc p draw", d: "M" + tops.join("L"), pathLength: 100 }));
-      c.appendChild(s("circle", { "class": "hcf p pulse", cx: 81.3, cy: 14, r: 2.2 }));
-    },
-    zuschauer: function (c) {
-      var curve = "M10 16C24 18 28 30 42 32S70 37 92 43";
-      c.appendChild(s("path", { "class": "hc th", d: "M9 13V51H93", opacity: 0.45 }));
-      c.appendChild(s("path", { d: curve + "V51H10Z", fill: "rgba(34,211,238,.13)" }));
-      c.appendChild(s("path", { "class": "hc draw", d: curve, pathLength: 100 }));
-      c.appendChild(s("g", { "class": "mag" }, [s("circle", { "class": "hc p", cx: 24, cy: 27, r: 6 }), s("path", { "class": "hc p", d: "M28.5 31.5L33 36" })]));
-    },
-    designer: function (c) {
-      ["rgba(34,211,238,.8)", "rgba(167,139,250,.85)", "rgba(251,191,36,.8)", "rgba(52,211,153,.8)"].forEach(function (f, i) {
-        c.appendChild(s("rect", { x: 8, y: 13 + i * 10, width: 11, height: 8, rx: 2, fill: f }));
-      });
-      c.appendChild(s("rect", { "class": "hc th sel", x: 6.4, y: 11.4, width: 14.2, height: 11.2, rx: 2.6 }));
-      c.appendChild(s("rect", { "class": "pv", x: 26, y: 13, width: 66, height: 30, rx: 2.5 }));
-      c.appendChild(s("path", { "class": "hc", d: "M32 22H66M32 29H56" }));
-      c.appendChild(s("path", { "class": "hc p draw", d: "M28 52Q40 45 52 51T76 50T90 47", pathLength: 100 }));
-    }
-  };
-  function holoPanel(id, mir) {
-    var o = P(-0.68, 0.42, 1.42), u = P(-0.68, -1.18, 1.42), v = P(-0.68, 0.42, 0.46);
-    var m = [(u[0] - o[0]) / 100, (u[1] - o[1]) / 100, (v[0] - o[0]) / 60, (v[1] - o[1]) / 60, o[0], o[1]].map(function (x) { return Math.round(x * 1000) / 1000; });
-    var g = s("g", { "class": "holo", transform: "matrix(" + m.join(" ") + ")" + (mir ? " translate(100 0) scale(-1 1)" : "") });
-    g.appendChild(s("rect", { "class": "hf", x: 0, y: 0, width: 100, height: 60, rx: 4 }));
-    g.appendChild(s("rect", { "class": "hh", x: 0.5, y: 0.5, width: 99, height: 8, rx: 3.5 }));
-    [5, 10, 15].forEach(function (x) { g.appendChild(s("circle", { "class": "hd", cx: x, cy: 4.5, r: 1.5 })); });
-    g.appendChild(s("rect", { "class": "hs", x: 78, y: 3, width: 17, height: 3, rx: 1.5 }));
-    g.appendChild(s("rect", { "class": "scan", x: 1, y: 10, width: 98, height: 2 }));
-    var c = s("g");
-    (HOLO[id] || HOLO.autor)(c, id);
-    g.appendChild(c);
-    return g;
-  }
-
   // Grundstück: Häuschen mit Dach, Schornstein und großem Fenster (zeigt die Arbeit), davor Schreibtisch und Roboter
+  function sty(d) { return "--d:" + d.toFixed(2) + "s"; }
   function station(id, mir) {
     var g = s("g", { "class": "stn", "data-agent": id, tabindex: "0", role: "button" });
     var side = function (a, b) { return mir ? b : a; };
@@ -2232,7 +2209,9 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     g.appendChild(cube(0.3, 0.98, 0.06, 0.42, 0.7, 0.735, COL.key, "kbd", mir));
     g.appendChild(s("path", { "class": "keys", d: path3([[0.36, 0.17, 0.737], [0.92, 0.17, 0.737]]) + path3([[0.36, 0.31, 0.737], [0.92, 0.31, 0.737]]) }));
     g.appendChild(rb.front);
-    g.appendChild(holoPanel(id, mir));
+    var wy0 = 0.25, wy1 = -0.95, wz0 = 0.62, wz1 = 1.3, wx = X1 + 0.004, wm = (wy0 + wy1) / 2, wzm = (wz0 + wz1) / 2;
+    g.appendChild(s("polygon", { "class": "win", points: pts([[wx, wy0, wz0], [wx, wy1, wz0], [wx, wy1, wz1], [wx, wy0, wz1]]) }));
+    g.appendChild(s("path", { "class": "win-f", d: path3([[wx, wy0, wz0], [wx, wy1, wz0], [wx, wy1, wz1], [wx, wy0, wz1], [wx, wy0, wz0]]) + path3([[wx, wm, wz0], [wx, wm, wz1]]) + path3([[wx, wy0, wzm], [wx, wy1, wzm]]) }));
     return { g: g, tip: [an[0], an[1] + rb.top * 0.84] };
   }
 
@@ -2244,10 +2223,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     g.appendChild(s("ellipse", { "class": "hit", cx: cx, cy: r1((bz - 44 + cy + ry) / 2), rx: r1(rx + 8), ry: r1((cy + ry - bz + 44) / 2) }));
     g.appendChild(s("path", { "class": "br-side", d: "M" + r1(cx - rx) + " " + r1(top) + "V" + r1(cy) + "A" + r1(rx) + " " + r1(ry) + " 0 0 0 " + r1(cx + rx) + " " + r1(cy) + "V" + r1(top) + "A" + r1(rx) + " " + r1(ry) + " 0 0 1 " + r1(cx - rx) + " " + r1(top) + "Z" }));
     g.appendChild(s("ellipse", { "class": "br-pad", cx: cx, cy: r1(top), rx: r1(rx), ry: r1(ry) }));
-    g.appendChild(s("ellipse", { "class": "br-in", cx: cx, cy: r1(top), rx: r1(rx * 0.74), ry: r1(ry * 0.74) }));
-    g.appendChild(s("ellipse", { "class": "br-in b", cx: cx, cy: r1(top), rx: r1(rx * 0.48), ry: r1(ry * 0.48) }));
     var w0 = rx * 0.46, w1 = 15;
-    g.appendChild(s("path", { "class": "br-cone", d: "M" + r1(cx - w0) + " " + r1(top) + "L" + r1(cx - w1) + " " + r1(bz) + "L" + r1(cx + w1) + " " + r1(bz) + "L" + r1(cx + w0) + " " + r1(top) + "A" + r1(w0) + " " + r1(w0 / 2) + " 0 0 1 " + r1(cx - w0) + " " + r1(top) + "Z" }));
     var fl = s("g", { "class": "br-float" });
     fl.appendChild(s("circle", { "class": "br-glow", cx: cx, cy: r1(bz), r: 66 }));
     var orx = 1.42 * Math.SQRT2 * IA, ory = orx / 2;
@@ -2255,22 +2231,10 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
       var a = r1(cx - orx * k), b = r1(cx + orx * k), y = r1(bz + (k < 1 ? 7 : 0)), R2 = r1(orx * k) + " " + r1(ory * k);
       return front ? "M" + b + " " + y + "A" + R2 + " 0 0 1 " + a + " " + y : "M" + a + " " + y + "A" + R2 + " 0 0 1 " + b + " " + y;
     };
-    fl.appendChild(s("path", { "class": "br-ring", d: half(1, false) }));
-    fl.appendChild(s("path", { "class": "br-ring b", d: half(0.78, false) }));
     var lobes = s("g", { transform: "translate(" + r1(cx) + " " + r1(bz) + ") scale(.9) translate(-70 -65)" });
     LOBES.forEach(function (d) { lobes.appendChild(s("path", { "class": "br-lobe", d: d })); });
     FOLDS.forEach(function (d) { lobes.appendChild(s("path", { "class": "br-fold", d: d })); });
     fl.appendChild(lobes);
-    fl.appendChild(s("path", { "class": "br-ring", d: half(1, true) }));
-    fl.appendChild(s("path", { "class": "br-ring b", d: half(0.78, true) }));
-    if (!RM) {
-      var orbit = half(1, false) + half(1, true).replace(/^M[^A]+/, "");
-      [["sat", "7s", "0s"], ["sat p", "11s", "-4s"]].forEach(function (o) {
-        var dot = s("circle", { "class": o[0], r: 3.4 });
-        dot.appendChild(s("animateMotion", { dur: o[1], begin: o[2], repeatCount: "indefinite", path: orbit }));
-        fl.appendChild(dot);
-      });
-    }
     g.appendChild(fl);
     return { g: g, c: [cx, bz], top: [cx, top], rx: rx, ry: ry };
   }
@@ -2279,6 +2243,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
   function portUnit(pd) {
     var W = function (u, v) { return wallPt(pd.wall, u, v); };
     var g = s("g", { "class": "port-g", "data-port": pd.id }), m = (pd.from + pd.to) / 2, wd = pd.to - pd.from;
+    [pd.from + 0.15, pd.to - 0.15].forEach(function (u) { g.appendChild(s("path", { "class": "pt-post", d: path3([W(u, 0), W(u, 0.25)]) })); });
     g.appendChild(s("polygon", { "class": "pt", points: pts([W(pd.from, 0.2), W(pd.to, 0.2), W(pd.to, 1), W(pd.from, 1)]) }));
     if (pd.glyph === "lines") {
       var d = "";
@@ -2293,39 +2258,52 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     return g;
   }
 
+  // Runder Baum: Schatten, Stamm, zwei Kronen-Kreise (dunkel und hell)
+  function tree(x, y, k, n) {
+    var g = s("g", { "class": "tree", style: "--d:" + (-(n % 7) * 0.6).toFixed(1) + "s" }), b = P(x, y, 0), top = P(x, y, 1.1 * k);
+    g.appendChild(s("ellipse", { "class": "tr-sh", cx: r1(b[0] + 4), cy: r1(b[1] + 1), rx: r1(15 * k), ry: r1(6 * k) }));
+    g.appendChild(s("path", { "class": "tr-st", d: "M" + r1(b[0]) + " " + r1(b[1]) + "V" + r1(top[1] + 6 * k), "stroke-width": r1(4 * k) }));
+    var crown = s("g", { "class": "tr-cr" });
+    crown.appendChild(s("circle", { cx: r1(top[0]), cy: r1(top[1] - 6 * k), r: r1(17 * k), fill: n % 3 ? "#3f7a43" : "#4d8a3f" }));
+    crown.appendChild(s("circle", { cx: r1(top[0] - 5 * k), cy: r1(top[1] - 11 * k), r: r1(10 * k), fill: n % 3 ? "#5c9c56" : "#6aa84f" }));
+    g.appendChild(crown);
+    return g;
+  }
+
   function buildRoom() {
     var svg = clear($("iso")), ov = clear($("ov")), al = clear($("alist"));
     svg.setAttribute("viewBox", VB.join(" "));
     ROOM = { built: true, st: {}, tags: {}, rows: {}, ports: {}, portEl: {} };
     var defs = s("defs");
-    defs.appendChild(lin("floorG", 0, -40, 0, 470, [[0, "#131c33"], [1, "#070b16"]], true));
+    defs.appendChild(lin("floorG", 0, -40, 0, 470, [[0, "#7fb069"], [1, "#5a8f4e"]], true));
     defs.appendChild(lin("wallL", 0, 0, 0, 1, [[0, "#141e38"], [1, "#0a1020"]]));
     defs.appendChild(lin("wallR", 0, 0, 0, 1, [[0, "#18233f"], [1, "#0c1326"]]));
-    defs.appendChild(lin("padTop", 0, 0, 0, 1, [[0, "#1e2a4f"], [1, "#0d1428"]]));
-    defs.appendChild(lin("padSide", 0, 0, 1, 0, [[0, "#151f3d"], [0.5, "#27346b"], [1, "#111a33"]]));
+    defs.appendChild(lin("padTop", 0, 0, 0, 1, [[0, "#e7dcc3"], [1, "#cdbd99"]]));
+    defs.appendChild(lin("padSide", 0, 0, 1, 0, [[0, "#9c8a68"], [0.5, "#b3a07c"], [1, "#8c7a5a"]]));
     defs.appendChild(lin("coneG", 0, 0, 0, 1, [[0, "#a78bfa", 0], [0.5, "#a78bfa", 0.16], [1, "#22d3ee", 0.52]]));
-    defs.appendChild(s("radialGradient", { id: "brainGlow" }, stops([[0, "#8b5cf6", 0.5], [0.5, "#8b5cf6", 0.15], [1, "#8b5cf6", 0]])));
-    defs.appendChild(s("radialGradient", { id: "floorGlow" }, stops([[0, "#a78bfa", 0.3], [0.55, "#22d3ee", 0.08], [1, "#22d3ee", 0]])));
+    defs.appendChild(s("radialGradient", { id: "brainGlow" }, stops([[0, "#fde68a", 0.35], [0.5, "#fde68a", 0.1], [1, "#fde68a", 0]])));
+    defs.appendChild(s("radialGradient", { id: "floorGlow" }, stops([[0, "#fff3c4", 0.35], [0.55, "#fff3c4", 0.1], [1, "#fff3c4", 0]])));
     svg.appendChild(defs);
 
     // Boden: Platte mit Kante, Gitter, leuchtende Vorderkanten
     var fl = s("g", { "class": "floor" });
-    fl.appendChild(s("polygon", { points: pts([[0, 12, 0], [12, 12, 0], [12, 12, -0.3], [0, 12, -0.3]]), fill: "#0d1426" }));
-    fl.appendChild(s("polygon", { points: pts([[12, 0, 0], [12, 12, 0], [12, 12, -0.3], [12, 0, -0.3]]), fill: "#080d1b" }));
+    fl.appendChild(s("polygon", { points: pts([[0, 12, 0], [12, 12, 0], [12, 12, -0.3], [0, 12, -0.3]]), fill: "#6b4f35" }));
+    fl.appendChild(s("polygon", { points: pts([[12, 0, 0], [12, 12, 0], [12, 12, -0.3], [12, 0, -0.3]]), fill: "#56402b" }));
     fl.appendChild(s("polygon", { "class": "t", points: pts([[0, 0, 0], [12, 0, 0], [12, 12, 0], [0, 12, 0]]) }));
-    var gd = "";
-    for (var i = 1; i < 12; i++) gd += path3([[i, 0, 0], [i, 12, 0]]) + path3([[0, i, 0], [12, i, 0]]);
-    fl.appendChild(s("path", { "class": "fl-grid", d: gd }));
-    fl.appendChild(s("path", { "class": "edge o", d: path3([[0, 12, 0], [12, 12, 0]]) }));
-    fl.appendChild(s("path", { "class": "edge p", d: path3([[12, 0, 0], [12, 12, 0]]) }));
     svg.appendChild(fl);
 
-    // Niedrige Dorfmauer mit den drei Toren (GitHub, Eingang, YouTube)
-    var WH = 1.15, wl = s("g", { "class": "walls" });
-    wl.appendChild(s("polygon", { points: pts([[0, 0, 0], [0, 12, 0], [0, 12, WH], [0, 0, WH]]), fill: "url(#wallL)" }));
-    wl.appendChild(s("polygon", { points: pts([[0, 0, 0], [12, 0, 0], [12, 0, WH], [0, 0, WH]]), fill: "url(#wallR)" }));
-    wl.appendChild(s("path", { "class": "wl o", d: path3([[0, 12, WH], [0, 0, WH]]) }));
-    wl.appendChild(s("path", { "class": "wl p", d: path3([[0, 0, WH], [12, 0, WH]]) }));
+    // Waldrand hinten, Wegweiser für GitHub, Eingang und YouTube
+    var wl = s("g", { "class": "walls" }), seed2 = 5;
+    var rnd2 = function () { seed2 = (seed2 * 9301 + 49297) % 233280; return seed2 / 233280; };
+    var treeSpots = [];
+    for (var u = 0.5; u < 12; u += 0.85) {
+      treeSpots.push([0.35 + rnd2() * 0.25, u + rnd2() * 0.3]);
+      treeSpots.push([u + rnd2() * 0.3, 0.35 + rnd2() * 0.25]);
+    }
+    treeSpots.filter(function (q) {
+      return !PORTS.some(function (pd) { var w = pd.wall === "l" ? q[1] : q[0], o = pd.wall === "l" ? q[0] : q[1]; return o < 0.8 && w > pd.from - 0.5 && w < pd.to + 0.5; })
+        && !(q[0] > 3.6 && q[0] < 4.4) && !(q[0] > 7.6 && q[0] < 8.4) && !(q[1] > 3.6 && q[1] < 4.4) && !(q[1] > 7.6 && q[1] < 8.4);
+    }).sort(function (a, b) { return (a[0] + a[1]) - (b[0] + b[1]); }).forEach(function (q, n) { wl.appendChild(tree(q[0], q[1], 0.8 + rnd2() * 0.5, n)); });
     PORTS.forEach(function (pd) {
       var pg = portUnit(pd);
       wl.appendChild(pg);
@@ -2341,7 +2319,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     var rnd = function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
     for (var q = 0; q < 18; q++) {
       var ap = P(0.6 + rnd() * 10.8, 0.6 + rnd() * 10.8, 0.3 + rnd() * 1.6);
-      amb.appendChild(s("circle", { "class": "amb", cx: r1(ap[0]), cy: r1(ap[1]), r: r1(1 + rnd() * 1.3), fill: q % 3 ? "#67e8f9" : "#a78bfa",
+      amb.appendChild(s("circle", { "class": "amb", cx: r1(ap[0]), cy: r1(ap[1]), r: r1(1 + rnd() * 1.3), fill: "#fde68a",
         style: "--d:" + (-rnd() * 9).toFixed(2) + "s;--t:" + (7 + rnd() * 5).toFixed(2) + "s" }));
     }
     svg.appendChild(amb);
