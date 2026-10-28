@@ -797,6 +797,26 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
   .nav a .s { display: inline; }
 }
 @media (prefers-reduced-motion: reduce) { .glow-b::after { animation: none !important; } }
+/* Whop-Kampagnen */
+.wp-logo { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 6px; background: #ff6243; color: #fff; font: 800 13px/1 var(--f-sans); vertical-align: -3px; }
+.wplist { display: grid; gap: 12px; padding: 0 20px 20px; }
+.wplist:empty { display: none; }
+.wp { display: grid; gap: 12px; padding: 16px; border-radius: 14px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .03); }
+.wp-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.wp-h b { display: block; font-size: 15px; line-height: 1.3; overflow-wrap: anywhere; }
+.wp-h .sub { margin-top: 3px; }
+.wp-k { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.wp-k > div { padding: 10px 12px; border-radius: 10px; background: rgba(255, 255, 255, .04); }
+.wp-k .label { display: block; margin-bottom: 4px; }
+.wp-k strong { font-size: 18px; font-weight: 750; font-variant-numeric: tabular-nums; }
+.wp-k small { color: var(--ink-2); font-size: 12px; font-weight: 600; }
+.wp .bar { margin-top: 8px; height: 6px; }
+.wp .bar i { background: var(--ok); }
+.wp-f { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.wp-f .row { flex-wrap: wrap; }
+.wp-add { display: grid; gap: 10px; padding: 12px; border-radius: 12px; background: rgba(34, 211, 238, .05); border: 1px solid rgba(34, 211, 238, .25); }
+.wp-err { color: var(--err); font-size: 12.5px; }
+.chip.wpchip { color: #fff; background: rgba(255, 98, 67, .18); }
 /* Walddorf: natürliche Farben, nichts leuchtet technisch */
 .room { background: linear-gradient(180deg, #1d2f3a, #16262a); }
 .iso .road { fill: #d9c296; }
@@ -1020,6 +1040,15 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
             <div class="row"><button class="btn primary" type="submit" id="upGo" disabled>Hochladen und schneiden</button><span class="msg" id="upMsg"></span></div>
             <div id="upProg" hidden><div class="bar"><i id="upBar"></i></div><div class="label num" id="upTxt" style="margin-top:6px"></div></div>
           </form>
+      </div>
+      <div class="card wpc">
+        <div class="card-h"><div><h2><span class="wp-logo" aria-hidden="true">W</span>Whop-Kampagnen</h2><div class="sub">Link einer Kampagne einfügen. Geld pro 1.000 Aufrufe, Budget und Status holt die Zentrale selbst und schaut alle 3 Stunden nach.</div></div></div>
+        <form class="card-b form" id="wpForm" novalidate>
+          <div class="lnrow"><input id="wpUrl" type="url" inputmode="url" autocomplete="off" placeholder="contentrewards.com/c/campaigns/…" aria-label="Link zur Whop-Kampagne"><button class="btn primary" type="submit" id="wpGo" disabled>Verknüpfen</button></div>
+          <p class="msg" id="wpMsg"></p>
+          <p class="label">Den Link findest du bei Whop in der Kampagne unter „Campaign link“. Ein ganzes Whop-Konto lässt sich nicht verknüpfen, weil Whop dafür keinen Zugang für Clipper anbietet.</p>
+        </form>
+        <div class="wplist" id="wpList"></div>
       </div>
       <details class="card more">
         <summary class="card-h"><div><h2>Weitere Wege</h2><div class="sub">Ordner auf dem Server, Webhook, TikTok und Instagram</div></div></summary>
@@ -3074,7 +3103,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
   // --- Kampagnen ---------------------------------------------------------------------------
   var CST = { laedt: ["warn", "Wird geladen"], neu: ["warn", "Rechte bestätigen"], wartet: ["", "In der Warteschlange"], hoert: ["live", "Hört zu"],
     schneidet: ["live", "Schneidet"], fertig: ["ok", "Fertig"], fehler: ["err", "Fehler"] };
-  var ORIGIN = { upload: "Upload", ordner: "Eingangsordner", webhook: "Webhook" };
+  var ORIGIN = { upload: "Upload", ordner: "Eingangsordner", webhook: "Webhook", link: "Link", whop: "Whop" };
   var CLST = { neu: "Neu", freigegeben: "Freigegeben", gepostet: "Gepostet", abgelehnt: "Abgelehnt" };
   function fmtBytes(b) { return b >= 1e9 ? nf1.format(b / 1e9) + " GB" : b >= 1e6 ? nf.format(Math.round(b / 1e6)) + " MB" : nf.format(Math.max(1, Math.round(b / 1e3))) + " KB"; }
   function progressBox(p, text, active) {
@@ -3141,7 +3170,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     }, true));
     return h("section", { cls: "card camp" + (c.status === "hoert" || c.status === "schneidet" ? " glow-b lit" : "") }, [
       h("div", { cls: "card-h" }, [
-        h("div", { style: "min-width:0" }, [h("h2", { text: c.name }), h("div", { cls: "sub", text: meta })]),
+        h("div", { style: "min-width:0" }, [h("h2", { text: c.name }), h("div", { cls: "sub", text: meta }), wpChip(c, d)]),
         h("span", { cls: "pill" }, [h("span", { cls: "dot " + st[0] }), st[1]])
       ]),
       body,
@@ -3157,6 +3186,7 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
     $("inboxNote").textContent = (ct.inbox ? ct.inbox + (ct.inbox === 1 ? " Video liegt" : " Videos liegen") + " gerade im Eingang. " : "")
       + (cl.on === false ? "Der Ordner wird gerade nicht überwacht (Clipper-Einstellungen)." : cl.auto_start ? "Ordner-Videos werden sofort geschnitten." : "Bei Ordner-Videos bestätigst du zuerst die Rechte.");
     renderHook(d);
+    renderWhop(d);
     if (ae && box.contains(ae) && ae.tagName === "INPUT") { S.campsPending = true; return; }
     S.campsPending = false;
     clear(box);
@@ -3166,6 +3196,90 @@ dialog.player::backdrop { background: rgba(3, 6, 14, .72); backdrop-filter: blur
       return;
     }
     cs.forEach(function (c) { box.appendChild(campCard(c, d)); });
+  }
+  // Whop-Kampagnen: öffentliche Kampagnen-Seite, alle 3 Stunden aktualisiert
+  var WPST = { "läuft": ["ok", "Läuft"], "pausiert": ["warn", "Pausiert"], "beendet": ["", "Beendet"] };
+  function money(v, cur, cents) {
+    if (v == null) return "–";
+    var s = new Intl.NumberFormat("de-DE", { minimumFractionDigits: cents || v % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(v);
+    return cur === "€" ? s + " €" : (cur || "$") + s;
+  }
+  function wpChip(c, d) {
+    if (!c.program) return null;
+    var w = (d.whop || []).find(function (x) { return x.id === c.program; });
+    return h("div", { style: "margin-top:6px" }, [h("span", { cls: "chip wpchip", text: "Whop: " + (w ? w.title : "Kampagne entfernt") })]);
+  }
+  function wpCheck() { $("wpGo").disabled = !S.live || !/contentrewards\.com\/(c\/)?(campaigns|discover)\//i.test($("wpUrl").value) || !!S.wpBusy; }
+  $("wpUrl").addEventListener("input", wpCheck);
+  $("wpForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if ($("wpGo").disabled) return;
+    S.wpBusy = true; wpCheck();
+    flash("wpMsg", "", "Liest die Kampagne …");
+    api("api/whop/add", { url: $("wpUrl").value.trim() }).then(function (j) {
+      flash("wpMsg", "ok", "Verknüpft: " + j.item.title);
+      $("wpForm").reset();
+      soon();
+    }, function (er) { flash("wpMsg", "err", er.message); }).then(function () { S.wpBusy = false; wpCheck(); });
+  });
+  function wpAddForm(w) {
+    var url = h("input", { type: "url", inputmode: "url", autocomplete: "off", placeholder: "Video-Link aus der Kampagne: Google Drive, Dropbox …", "aria-label": "Link zum Video" });
+    var ok = h("input", { type: "checkbox" });
+    var go = h("button", { cls: "btn primary", type: "submit", text: "Laden und schneiden" });
+    var msg = h("p", { cls: "msg" });
+    var chk = function () { go.disabled = !S.live || !/^https?:\/\/\S+\.\S+/.test(url.value.trim()) || !ok.checked; };
+    url.addEventListener("input", chk); ok.addEventListener("change", chk); chk();
+    var f = h("form", { cls: "wp-add", novalidate: "" }, [
+      h("div", { cls: "lnrow" }, [url, go]),
+      h("label", { cls: "check" }, [ok, h("span", {}, [h("b", { text: "Die Kampagne erlaubt das Schneiden dieses Videos." }), " ", h("span", { cls: "muted", text: "Das Video aus „Available content“ bzw. „Reference materials“ der Kampagne nehmen." })])]),
+      msg
+    ]);
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (go.disabled) return;
+      go.disabled = true;
+      api("api/whop/video", { id: w.id, url: url.value.trim(), rights: true }).then(function (j) {
+        toast(j.text); S.wpOpen = null; soon();
+      }, function (er) { msg.className = "msg err"; msg.textContent = er.message; chk(); });
+    });
+    return f;
+  }
+  function wpItem(w) {
+    var st = WPST[w.status] || ["", "Status unbekannt"];
+    var rates = (w.rates || []).map(function (r) { return h("div", {}, [h("span", { cls: "label", text: r.platform + " pro 1.000 Aufrufe" }), h("strong", { text: money(r.rate, r.currency, true) })]); });
+    if (!rates.length) rates.push(h("div", {}, [h("span", { cls: "label", text: "Pro 1.000 Aufrufe" }), h("strong", { text: "–" })]));
+    var k = h("div", { cls: "wp-k" }, rates.concat([
+      h("div", {}, [h("span", { cls: "label", text: "Auszahlung pro Video" }), h("strong", { text: money(w.min_payout, w.currency) }), h("small", { text: " bis " + money(w.max_payout, w.currency) })])
+    ]));
+    if (w.budget_total) {
+      var pct = Math.min(100, Math.round(100 * (w.budget_used || 0) / w.budget_total));
+      k.appendChild(h("div", {}, [h("span", { cls: "label", text: "Budget übrig" }), h("strong", { text: money(w.budget_left, w.currency) }), h("small", { text: " von " + money(w.budget_total, w.currency) }),
+        h("div", { cls: "bar", role: "img", "aria-label": (100 - pct) + " % übrig" }, [h("i", { style: "width:" + (100 - pct) + "%" })])]));
+    }
+    var stats = [w.videos + (w.videos === 1 ? " Video" : " Videos"), w.clips + " Clips", w.posted + " gepostet"].join(" · ");
+    var checked = w.checked_at ? "geprüft " + fTime.format(new Date(w.checked_at)) + " Uhr" : "";
+    var open = S.wpOpen === w.id;
+    var btns = h("div", { cls: "row" }, [
+      (function () { var b = h("button", { cls: "btn sm" + (open ? "" : " primary"), type: "button", text: open ? "Abbrechen" : "Video hinzufügen" });
+        b.disabled = !S.live; b.addEventListener("click", function () { S.wpOpen = open ? null : w.id; renderWhop(S.d, true); }); return b; })(),
+      h("a", { cls: "btn sm", href: w.url, target: "_blank", rel: "noopener", text: "Auf Whop öffnen" }),
+      actBtn("Aktualisieren", "", function () { return api("api/whop/refresh", { id: w.id }).then(function () { toast("Aktualisiert."); soon(); }); }),
+      actBtn("Entfernen", "no", function () { return api("api/whop/delete", { id: w.id }).then(function () { toast("Entfernt. Die Clips bleiben."); soon(); }); }, true)
+    ]);
+    return h("div", { cls: "wp" }, [
+      h("div", { cls: "wp-h" }, [h("div", { style: "min-width:0" }, [h("b", { text: w.title }), h("div", { cls: "sub", text: [w.brand, checked].filter(Boolean).join(" · ") })]),
+        h("span", { cls: "pill" }, [h("span", { cls: "dot " + st[0] }), st[1]])]),
+      k,
+      w.error ? h("div", { cls: "wp-err", text: "Letzte Prüfung ging nicht: " + w.error }) : null,
+      open ? wpAddForm(w) : null,
+      h("div", { cls: "wp-f" }, [h("span", { cls: "label", text: stats }), btns])
+    ]);
+  }
+  function renderWhop(d, force) {
+    var box = $("wpList"), ae = document.activeElement;
+    if (!force && ae && box.contains(ae) && ae.tagName === "INPUT") return;
+    clear(box);
+    (d.whop || []).forEach(function (w) { box.appendChild(wpItem(w)); });
   }
   $("camps").addEventListener("focusout", function () { setTimeout(function () { if (S.campsPending && S.d) renderCampaigns(S.d); }, 0); });
   $("kClipper").addEventListener("click", function () { openAgent("clipper"); });

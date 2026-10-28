@@ -32,6 +32,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import agents
 import clips
 import store
+import whop
 import yt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -310,10 +311,12 @@ def webhook_video(h):
                  "text": "Wird geschnitten." if c["status"] == "wartet" else "Bitte im Bereich Kampagnen die Rechte bestätigen."})
 
 
-def _download(url, rights, credit, name, source="webhook"):
+def _download(url, rights, credit, name, source="webhook", program=None):
     try:
         with working("clipper", task="Lädt das Video vom Link"):
             c = clips.add_url(url, rights, credit, name, source)
+        if program:
+            c = clips.update(c["id"], lambda k: k.__setitem__("program", program))
         store.log("info", f"Video vom Link geladen: {c['name']}", agent="clipper", kind="input")
         _clip_wake.set()
     except Exception as e:
@@ -502,9 +505,13 @@ def background(fn, *args):
 
 
 def scheduler():
-    last_stats = last_sync = last_analytics = 0.0
+    last_stats = last_sync = last_analytics = last_whop = 0.0
     while True:
         try:
+            if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
+                last_whop = time.time()
+                if whop.load():
+                    background(whop.refresh)
             cfg = store.config()
             ag = agents.settings(cfg)
             if cfg["refresh_token"]:
@@ -621,7 +628,7 @@ class Handler(BaseHTTPRequestHandler):
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
-                                                   "live_seq": live_since(10 ** 12)["seq"]},
+                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
             q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
@@ -852,6 +859,39 @@ class Handler(BaseHTTPRequestHandler):
             store.log("info", "Link verknüpft, das Video wird geladen", agent="clipper", kind="input")
             background(_download, url, True, str(data.get("credit") or "")[:80], (str(data.get("name") or "").strip()[:80] or None), "link")
             return self.send(200, {"ok": True, "text": "Verknüpft. Das Video wird geladen und dann geschnitten."})
+        if p == "/api/whop/add":
+            try:
+                item = whop.add(str(data.get("url") or ""))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            except Exception:
+                return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
+            store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
+            return self.send(200, {"ok": True, "item": item})
+        if p in ("/api/whop/refresh", "/api/whop/delete"):
+            pid = str(data.get("id") or "")
+            if not whop.find(pid):
+                return self.send(400, {"error": "Unbekannte Whop-Kampagne."})
+            if p.endswith("delete"):
+                whop.remove(pid)
+                store.log("warn", "Whop-Kampagne entfernt (Clips bleiben)", agent="clipper")
+            else:
+                whop.refresh(pid)
+            return self.send(200, {"ok": True})
+        if p == "/api/whop/video":
+            item = whop.find(str(data.get("id") or ""))
+            url = str(data.get("url") or "").strip()
+            if not item:
+                return self.send(400, {"error": "Unbekannte Whop-Kampagne."})
+            if not data.get("rights"):
+                return self.send(400, {"error": "Bitte bestätigen, dass die Kampagne das Schneiden erlaubt."})
+            try:
+                clips.check_url(url)
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            store.log("info", f"Video für „{item['title']}“ wird geladen", agent="clipper", kind="input")
+            background(_download, url, True, item.get("brand") or "", item["title"][:80], "whop", item["id"])
+            return self.send(200, {"ok": True, "text": "Das Video wird geladen und für diese Kampagne geschnitten."})
         if p in ("/api/campaign/confirm", "/api/campaign/retry", "/api/campaign/delete"):
             cid = str(data.get("id", ""))
             try:

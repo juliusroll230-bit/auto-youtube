@@ -400,7 +400,7 @@ def summary():
     out = []
     for c in camps[:30]:
         out.append({k: c.get(k) for k in ("id", "name", "origin", "credit", "rights", "created_at", "status",
-                                          "progress", "error", "duration", "language", "finished_at")}
+                                          "progress", "error", "duration", "language", "finished_at", "program")}
                    | {"clips": [{k: x.get(k) for k in ("n", "start", "end", "duration", "title", "hook", "score",
                                                          "status", "video_id", "posted_at", "text")}
                                 for x in c["clips"]]})
