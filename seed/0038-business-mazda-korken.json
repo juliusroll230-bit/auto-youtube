@@ -1,0 +1,50 @@
+{
+  "slug": "business-mazda-korken",
+  "style": "car",
+  "car_color": "#9b1b30",
+  "niche": "Business",
+  "accent": "#7ee0ff",
+  "title": "Diese Automarke hat mit etwas ganz anderem angefangen 🍾",
+  "description": "Bevor Mazda Autos baute, stellte die Firma etwas völlig anderes her.\n\n#business #mazda #autos #shorts",
+  "tags": [
+    "business",
+    "mazda",
+    "autos",
+    "japan",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Mazda* hat einmal nur Korken hergestellt."
+    },
+    {
+      "text": "Die Firma hieß zuerst Toyo Cork Kogyo, eine *Korkfabrik*. Wie wurde daraus ein Autobauer?"
+    },
+    {
+      "text": "Der neue Chef *Jujiro Matsuda* setzte auf Maschinen. Bald baute die Firma dreirädrige *Lastwagen*.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1920,
+            "Korken"
+          ],
+          [
+            1931,
+            "Dreiräder"
+          ],
+          [
+            1960,
+            "Autos"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Das erste Auto kam erst neunzehnhundertsechzig. Der Name erinnert an einen alten *Gott* und an Matsuda."
+    },
+    {
+      "text": "Aus Korken wurde eine *Weltmarke*. Folge für mehr Business."
+    }
+  ]
+}

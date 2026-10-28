@@ -1,0 +1,44 @@
+{
+  "slug": "geld-papiergeld-china",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#0f2f2a",
+    "#2f8f6f"
+  ],
+  "accent": "#ffcf5c",
+  "title": "Wo das erste Papiergeld der Welt herkam 💵",
+  "description": "Warum Händler vor rund tausend Jahren lieber Papier als Münzen nahmen. Keine Anlageberatung.\n\n#geld #geschichte #finanzen #shorts",
+  "tags": [
+    "geld",
+    "papiergeld",
+    "china",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "💵",
+      "text": "*Papiergeld* wurde nicht in Europa erfunden."
+    },
+    {
+      "emoji": "🏮",
+      "text": "Schon vor rund tausend Jahren nutzten Händler in *China* Scheine. Warum ausgerechnet Papier?"
+    },
+    {
+      "emoji": "⚖️",
+      "text": "In manchen Gegenden gab es nur Münzen aus *Eisen*. Für große Käufe waren sie viel zu schwer.",
+      "visual": {
+        "type": "wort",
+        "text": "Zu schwer"
+      }
+    },
+    {
+      "emoji": "📜",
+      "text": "Also gab der Staat eigene *Scheine* aus. Europa folgte erst sechzehnhunderteinundsechzig, in *Schweden*."
+    },
+    {
+      "emoji": "👉",
+      "text": "Keine Anlageberatung, nur *Geschichte*. Folge für mehr Geld."
+    }
+  ]
+}

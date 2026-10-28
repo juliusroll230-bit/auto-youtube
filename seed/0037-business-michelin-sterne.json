@@ -1,0 +1,41 @@
+{
+  "slug": "business-michelin-sterne",
+  "style": "car",
+  "car_color": "#1d4fa0",
+  "niche": "Business",
+  "accent": "#ffd23f",
+  "title": "Warum ein Reifenhersteller Sterne an Köche vergibt ⭐",
+  "description": "Der Michelin-Führer begann als kostenloses Heft für Autofahrer.\n\n#business #michelin #autos #shorts",
+  "tags": [
+    "business",
+    "michelin",
+    "autos",
+    "marketing",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Ein *Reifenhersteller* vergibt die berühmtesten Sterne der Küche."
+    },
+    {
+      "text": "Die Brüder *Michelin* verschenkten ab neunzehnhundert ein kleines Buch. Doch warum Reifen und Essen?"
+    },
+    {
+      "text": "Damals fuhren in Frankreich nur wenige tausend *Autos*. Das Buch zeigte Werkstätten, Tankstellen und Hotels.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Werkstätten",
+          "Tankstellen",
+          "Hotels"
+        ]
+      }
+    },
+    {
+      "text": "Der Plan: Wer weit zu guten *Restaurants* fährt, nutzt seine Reifen ab und kauft neue."
+    },
+    {
+      "text": "So wurde Essen zur *Reifenwerbung*. Folge für mehr Business."
+    }
+  ]
+}

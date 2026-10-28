@@ -1,0 +1,44 @@
+{
+  "slug": "psychologie-ikea-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#14213d",
+    "#3a6ea5"
+  ],
+  "accent": "#ffd166",
+  "title": "Warum wir wackelige Möbel lieben 🪑",
+  "description": "Der IKEA-Effekt: Was wir selbst bauen, schätzen wir mehr.\n\n#psychologie #fakten #shorts",
+  "tags": [
+    "psychologie",
+    "ikea",
+    "fakten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪑",
+      "text": "Selbst gebaute *Möbel* finden wir schöner, auch wenn sie wackeln."
+    },
+    {
+      "emoji": "🔧",
+      "text": "Forscher nennen das den *IKEA-Effekt*. Doch woher kommt er?"
+    },
+    {
+      "emoji": "🦢",
+      "text": "In Versuchen bauten Menschen Kisten oder falteten *Origami*. Für eigene Werke wollten sie mehr bezahlen."
+    },
+    {
+      "emoji": "💪",
+      "text": "Der Grund: *Mühe* fühlt sich wertvoll an. Was wir selbst schaffen, wird ein Teil von uns.",
+      "visual": {
+        "type": "wort",
+        "text": "Selbst gebaut"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Achte beim nächsten *Aufbauen* darauf. Folge für mehr Psychologie."
+    }
+  ]
+}

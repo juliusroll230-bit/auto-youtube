@@ -1,0 +1,53 @@
+{
+  "slug": "geschichte-oxford-azteken",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1a0e",
+    "#8a5a2b"
+  ],
+  "accent": "#ffe08a",
+  "title": "Diese Uni ist älter als ein ganzes Weltreich 🏛️",
+  "description": "Klingt falsch, stimmt aber: Oxford und die Azteken im Zeitvergleich.\n\n#geschichte #oxford #azteken #shorts",
+  "tags": [
+    "geschichte",
+    "oxford",
+    "azteken",
+    "fakten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏛️",
+      "text": "Die Uni *Oxford* ist älter als das Aztekenreich."
+    },
+    {
+      "emoji": "📜",
+      "text": "In Oxford wurde schon um tausendsechsundneunzig *unterrichtet*. Wie kann das sein?"
+    },
+    {
+      "emoji": "🌎",
+      "text": "Die *Azteken* wirken uralt. Doch ihr Reich entstand erst viel später in Mexiko."
+    },
+    {
+      "emoji": "🛶",
+      "text": "Ihre Hauptstadt *Tenochtitlan* entstand um dreizehnhundertfünfundzwanzig. Oxford war da über zweihundert Jahre alt.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1096,
+            "Oxford"
+          ],
+          [
+            1325,
+            "Tenochtitlan"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Geschichte liegt näher *beieinander*, als man denkt. Folge für mehr Geschichte."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "geografie-frankreich-zeitzonen",
+  "niche": "Geografie",
+  "colors": [
+    "#0b1d3a",
+    "#2b6cb0"
+  ],
+  "accent": "#ff9f6b",
+  "title": "Dieses Land hat mehr Zeitzonen als Russland 🌍",
+  "description": "Kein Land hat so viele Zeitzonen wie dieses. Der Grund liegt auf Inseln weit weg.\n\n#geografie #zeitzonen #welt #shorts",
+  "tags": [
+    "geografie",
+    "zeitzonen",
+    "frankreich",
+    "welt",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌍",
+      "text": "*Frankreich* hat mehr Zeitzonen als Russland."
+    },
+    {
+      "emoji": "🇷🇺",
+      "text": "*Russland* ist riesig und hat elf Zeitzonen. Wie kann ein kleineres Land mehr haben?"
+    },
+    {
+      "emoji": "🏝️",
+      "text": "Frankreich besitzt Inseln auf der ganzen Welt, etwa *Tahiti* und *Guadeloupe*. Sie liegen in der Karibik, im Indischen Ozean und im Pazifik."
+    },
+    {
+      "emoji": "🕐",
+      "text": "Mit Gebieten wie *Französisch-Guayana* kommt Frankreich auf zwölf Zeitzonen.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Frankreich",
+          12
+        ],
+        "b": [
+          "Russland",
+          11
+        ],
+        "einheit": "Zeitzonen"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Mehr als jedes andere *Land*. Folge für mehr Geografie."
+    }
+  ]
+}
