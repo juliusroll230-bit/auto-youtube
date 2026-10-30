@@ -1,0 +1,44 @@
+{
+  "slug": "psychologie-dunning-kruger",
+  "niche": "Psychologie",
+  "colors": [
+    "#2a1446",
+    "#6b4fa0"
+  ],
+  "accent": "#ffd166",
+  "title": "Warum gerade die Schwächsten sich am besten finden 🧠",
+  "description": "Der Dunning-Kruger-Effekt aus einer Studie von 1999.\n\n#psychologie #fakten #shorts",
+  "tags": [
+    "psychologie",
+    "dunningkruger",
+    "fakten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧠",
+      "text": "Wer am wenigsten weiß, hält sich oft für *richtig* gut."
+    },
+    {
+      "emoji": "📝",
+      "text": "Forscher ließen Studenten Tests in *Logik* und Grammatik machen. Dann sollten sie sich selbst einschätzen."
+    },
+    {
+      "emoji": "📉",
+      "text": "Die *Schwächsten* landeten weit hinten. Doch sie glaubten, besser als die meisten zu sein. Warum?",
+      "visual": {
+        "type": "wort",
+        "text": "Überschätzt"
+      }
+    },
+    {
+      "emoji": "🔍",
+      "text": "Um Fehler zu *erkennen*, braucht man genau das Wissen, das ihnen fehlte. Das nennt man *Dunning-Kruger-Effekt*."
+    },
+    {
+      "emoji": "👉",
+      "text": "Zweifel ist oft ein gutes *Zeichen*. Folge für mehr Psychologie."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "business-rolls-royce-name",
+  "style": "car",
+  "car_color": "#2b2b3a",
+  "niche": "Business",
+  "accent": "#e8c66a",
+  "title": "VW kaufte Rolls-Royce und ging trotzdem leer aus 👑",
+  "description": "Wie VW eine Luxusmarke kaufte, aber den Namen nicht bekam.\n\n#business #rollsroyce #autos #shorts",
+  "tags": [
+    "business",
+    "rollsroyce",
+    "bmw",
+    "vw",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Volkswagen* kaufte Rolls-Royce und durfte den Namen nicht benutzen."
+    },
+    {
+      "text": "Neunzehnhundertachtundneunzig zahlte VW über vierhundert Millionen Pfund für *Fabrik* und Marken. Wie konnte das schiefgehen?",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "VW",
+          430
+        ],
+        "b": [
+          "BMW",
+          40
+        ],
+        "einheit": "Mio. Pfund"
+      }
+    },
+    {
+      "text": "Der Name *Rolls-Royce* gehörte gar nicht der Autofirma. Er gehörte dem Hersteller von *Flugzeugmotoren*."
+    },
+    {
+      "text": "Und der verkaufte die Rechte an *BMW*, für nur vierzig Millionen Pfund. VW behielt *Bentley*."
+    },
+    {
+      "text": "Seitdem baut *BMW* die Rolls-Royce. Folge für mehr Business."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "slug": "business-kia-fahrrad",
+  "style": "car",
+  "car_color": "#b0122a",
+  "niche": "Business",
+  "accent": "#7fe0ff",
+  "title": "Bevor Kia Autos baute, gab es etwas ganz anderes 🚲",
+  "description": "Kia begann mit Stahlrohren und Fahrradteilen.\n\n#business #kia #autos #shorts",
+  "tags": [
+    "business",
+    "kia",
+    "autos",
+    "korea",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Kia* hat mit Fahrradteilen angefangen."
+    },
+    {
+      "text": "Neunzehnhundertvierundvierzig gründete sich die Firma in *Seoul*. Damals hieß sie noch ganz anders. Wie kam sie zu Autos?"
+    },
+    {
+      "text": "Sie stellte Stahlrohre und Teile für *Fahrräder* her. Später baute sie das erste Fahrrad Koreas.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1944,
+            "Fahrradteile"
+          ],
+          [
+            1951,
+            "Fahrräder"
+          ],
+          [
+            1974,
+            "Autos"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Danach kamen Motorräder und kleine Lastwagen. Erst neunzehnhundertvierundsiebzig rollte das erste Kia-Auto, der *Brisa*."
+    },
+    {
+      "text": "Vom Fahrrad zur *Weltmarke*. Folge für mehr Business."
+    }
+  ]
+}

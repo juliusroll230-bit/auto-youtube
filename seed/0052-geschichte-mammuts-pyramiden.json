@@ -1,0 +1,44 @@
+{
+  "slug": "geschichte-mammuts-pyramiden",
+  "niche": "Geschichte",
+  "colors": [
+    "#1b2a3a",
+    "#5b7fa3"
+  ],
+  "accent": "#ffe08a",
+  "title": "Als die Pyramiden standen, lebten noch Mammuts 🦣",
+  "description": "Die letzten Mammuts starben viel später als gedacht.\n\n#geschichte #mammut #aegypten #shorts",
+  "tags": [
+    "geschichte",
+    "mammut",
+    "pyramiden",
+    "eiszeit",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🦣",
+      "text": "Es gab noch *Mammuts*, als die Pyramiden gebaut wurden."
+    },
+    {
+      "emoji": "❄️",
+      "text": "Die meisten Mammuts starben am Ende der *Eiszeit* aus. Doch einige hielten viel länger durch. Wo?"
+    },
+    {
+      "emoji": "🏝️",
+      "text": "Auf einer abgelegenen Insel im Nordpolarmeer. Sie heißt *Wrangelinsel*.",
+      "visual": {
+        "type": "wort",
+        "text": "Wrangelinsel"
+      }
+    },
+    {
+      "emoji": "🔺",
+      "text": "Dort lebten Mammuts bis vor etwa viertausend Jahren. Da stand die große *Pyramide* schon."
+    },
+    {
+      "emoji": "👉",
+      "text": "Die Eiszeit war gar nicht so lange *her*. Folge für mehr Geschichte."
+    }
+  ]
+}

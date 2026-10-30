@@ -1,0 +1,52 @@
+{
+  "slug": "geografie-kanada-kueste",
+  "niche": "Geografie",
+  "colors": [
+    "#0b2a3a",
+    "#2b8aa8"
+  ],
+  "accent": "#ff9f6b",
+  "title": "Dieses Land hat mehr Küste als jedes andere 🌊",
+  "description": "Kanadas Küste ist länger als die von Russland, Australien und den USA.\n\n#geografie #kanada #welt #shorts",
+  "tags": [
+    "geografie",
+    "kanada",
+    "kueste",
+    "welt",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌊",
+      "text": "*Kanada* hat die längste Küste der Welt."
+    },
+    {
+      "emoji": "🇷🇺",
+      "text": "Russland ist fast doppelt so groß wie Kanada. Trotzdem ist seine *Küste* viel kürzer. Warum?"
+    },
+    {
+      "emoji": "📏",
+      "text": "Kanadas *Küste* misst über zweihunderttausend Kilometer. Russlands nur etwa achtunddreißigtausend Kilometer.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Kanada",
+          202080
+        ],
+        "b": [
+          "Russland",
+          37653
+        ],
+        "einheit": "Kilometer Küste"
+      }
+    },
+    {
+      "emoji": "🏝️",
+      "text": "Im Norden liegen zehntausende *Inseln*. Jede hat ihre eigene Küste, und alle zählen mit."
+    },
+    {
+      "emoji": "👉",
+      "text": "Inseln machen *Kanada* zum Küstenmeister. Folge für mehr Geografie."
+    }
+  ]
+}

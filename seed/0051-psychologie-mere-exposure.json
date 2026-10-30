@@ -1,0 +1,48 @@
+{
+  "slug": "psychologie-mere-exposure",
+  "niche": "Psychologie",
+  "colors": [
+    "#123524",
+    "#3f8f62"
+  ],
+  "accent": "#ffd166",
+  "title": "Warum dir Lieder erst beim dritten Hören gefallen 🎧",
+  "description": "Der Mere-Exposure-Effekt: Bekanntes mögen wir mehr.\n\n#psychologie #fakten #shorts",
+  "tags": [
+    "psychologie",
+    "mereexposure",
+    "musik",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🎧",
+      "text": "Je öfter du etwas siehst, desto mehr *magst* du es."
+    },
+    {
+      "emoji": "🔁",
+      "text": "Das gilt für Lieder, Gesichter und sogar für *Fantasiewörter*. Doch warum ist das so?"
+    },
+    {
+      "emoji": "🧪",
+      "text": "Der Forscher *Robert Zajonc* zeigte Menschen erfundene Wörter. Häufig gezeigte Wörter fanden sie später sympathischer.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Lieder",
+          "Gesichter",
+          "Wörter"
+        ]
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Bekanntes fühlt sich *sicher* an. Das Gehirn muss weniger arbeiten und deutet das als gut."
+    },
+    {
+      "emoji": "👉",
+      "text": "Darum hörst du dieses Video gern *nochmal*. Folge für mehr Psychologie."
+    }
+  ]
+}

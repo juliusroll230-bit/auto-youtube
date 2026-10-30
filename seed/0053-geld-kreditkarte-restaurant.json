@@ -1,0 +1,53 @@
+{
+  "slug": "geld-kreditkarte-restaurant",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#2a1530",
+    "#8a4fa0"
+  ],
+  "accent": "#ffcf5c",
+  "title": "Die erste Kreditkarte entstand wegen eines Abendessens 🍽️",
+  "description": "Wie Diners Club die Kreditkarte für Restaurants erfand. Keine Anlageberatung.\n\n#geld #finanzen #geschichte #shorts",
+  "tags": [
+    "geld",
+    "kreditkarte",
+    "dinersclub",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🍽️",
+      "text": "Die erste moderne *Kreditkarte* galt nur für Restaurants."
+    },
+    {
+      "emoji": "👛",
+      "text": "Der Legende nach vergaß *Frank McNamara* beim Essen in New York seine Geldbörse. Was machte er daraus?"
+    },
+    {
+      "emoji": "💳",
+      "text": "Neunzehnhundertfünfzig gründete er mit Partnern den *Diners Club*. Die Karte war aus Pappe.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1950,
+            "Diners Club"
+          ],
+          [
+            1958,
+            "Weitere Karten"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "🧾",
+      "text": "Man aß ohne Bargeld und zahlte am Monatsende eine *Rechnung*. Daraus wurde ein weltweites System."
+    },
+    {
+      "emoji": "👉",
+      "text": "Keine Anlageberatung, nur *Geschichte*. Folge für mehr Geld."
+    }
+  ]
+}

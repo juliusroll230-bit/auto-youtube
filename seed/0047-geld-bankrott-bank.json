@@ -1,0 +1,48 @@
+{
+  "slug": "geld-bankrott-bank",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#102a2a",
+    "#2f7f7a"
+  ],
+  "accent": "#ffcf5c",
+  "title": "Warum Pleite gehen nach einer kaputten Bank klingt 🪑",
+  "description": "Woher das Wort Bankrott kommt. Keine Anlageberatung.\n\n#geld #finanzen #geschichte #shorts",
+  "tags": [
+    "geld",
+    "bankrott",
+    "wortherkunft",
+    "finanzen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪑",
+      "text": "Das Wort *Bankrott* bedeutet eigentlich kaputte Bank."
+    },
+    {
+      "emoji": "🇮🇹",
+      "text": "Im *Italien* des Mittelalters wechselten Händler Geld an einfachen Tischen. Doch was hat das mit Pleite zu tun?"
+    },
+    {
+      "emoji": "🪙",
+      "text": "Diese Tische hießen *banca*. Daher kommt auch unser Wort Bank.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Tisch",
+          "Bank",
+          "Bankrott"
+        ]
+      }
+    },
+    {
+      "emoji": "🔨",
+      "text": "Der Legende nach wurde der Tisch eines zahlungsunfähigen Händlers *zerbrochen*. Auf Italienisch: banca rotta."
+    },
+    {
+      "emoji": "👉",
+      "text": "Keine Anlageberatung, nur *Wortgeschichte*. Folge für mehr Geld."
+    }
+  ]
+}

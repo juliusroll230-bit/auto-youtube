@@ -1,0 +1,41 @@
+{
+  "slug": "business-aston-martin-name",
+  "style": "car",
+  "car_color": "#0f5a3c",
+  "niche": "Business",
+  "accent": "#f2d27a",
+  "title": "Woher der Name Aston Martin wirklich kommt 🏁",
+  "description": "Die Marke von James Bond hat einen ganz einfachen Ursprung.\n\n#business #astonmartin #autos #shorts",
+  "tags": [
+    "business",
+    "astonmartin",
+    "autos",
+    "england",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Aston Martin* ist nach einem Hügel benannt."
+    },
+    {
+      "text": "Gegründet wurde die Firma neunzehnhundertdreizehn von *Lionel Martin*. Doch wer war Aston?"
+    },
+    {
+      "text": "Es gab keinen Herrn Aston. Martin fuhr Bergrennen am *Aston Hill* in England."
+    },
+    {
+      "text": "Dort gewann er mit seinem Auto. Also kombinierte er den *Hügel* mit seinem Nachnamen.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Aston Hill",
+          "Lionel Martin",
+          "Aston Martin"
+        ]
+      }
+    },
+    {
+      "text": "Ein Hügel fährt heute bei *James Bond* mit. Folge für mehr."
+    }
+  ]
+}

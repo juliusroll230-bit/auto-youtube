@@ -1,0 +1,48 @@
+{
+  "slug": "geografie-alaska-ost-west",
+  "niche": "Geografie",
+  "colors": [
+    "#0b2236",
+    "#2b7bb0"
+  ],
+  "accent": "#ffb36b",
+  "title": "Dieser US-Staat liegt ganz im Westen und ganz im Osten 🧭",
+  "description": "Ein Bundesstaat, zwei Rekorde. Der Grund ist eine Linie auf der Karte.\n\n#geografie #alaska #usa #shorts",
+  "tags": [
+    "geografie",
+    "alaska",
+    "usa",
+    "weltkarte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧭",
+      "text": "*Alaska* ist der westlichste und der östlichste US-Staat."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Westlich ist klar, denn Alaska grenzt fast an *Russland*. Aber wie kann es auch am östlichsten sein?"
+    },
+    {
+      "emoji": "🏝️",
+      "text": "Die *Aleuten* sind eine Inselkette, die sich weit nach Westen zieht."
+    },
+    {
+      "emoji": "🌐",
+      "text": "Einige Inseln liegen hinter dem hundertachtzigsten *Längengrad*. Dort beginnt auf der Karte die östliche Hälfte.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Westen",
+          "180. Längengrad",
+          "Osten"
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Westen und Osten treffen sich in *Alaska*. Folge für mehr Geografie."
+    }
+  ]
+}

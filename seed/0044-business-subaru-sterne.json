@@ -1,0 +1,37 @@
+{
+  "slug": "business-subaru-sterne",
+  "style": "car",
+  "car_color": "#1f4fa3",
+  "niche": "Business",
+  "accent": "#ffd23f",
+  "title": "Was die sechs Sterne im Subaru-Logo bedeuten ✨",
+  "description": "Das Subaru-Logo ist ein echter Sternhaufen und erzählt die Geschichte der Firma.\n\n#business #subaru #autos #shorts",
+  "tags": [
+    "business",
+    "subaru",
+    "logo",
+    "japan",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Das *Subaru*-Logo ist eine echte Sternkarte."
+    },
+    {
+      "text": "Die Sterne zeigen den *Sternhaufen* der Plejaden. Doch warum gerade sechs Sterne?",
+      "visual": {
+        "type": "wort",
+        "text": "Plejaden"
+      }
+    },
+    {
+      "text": "Auf Japanisch heißt dieser Sternhaufen *Subaru*. Das Wort bedeutet ungefähr zusammenkommen."
+    },
+    {
+      "text": "Nach dem Krieg schlossen sich mehrere Firmen zu *Fuji Heavy Industries* zusammen. Der große Stern steht für die neue Firma."
+    },
+    {
+      "text": "Die kleinen Sterne für die *Partner*. Folge für mehr Business."
+    }
+  ]
+}

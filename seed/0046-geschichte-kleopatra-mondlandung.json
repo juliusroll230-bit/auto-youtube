@@ -1,0 +1,52 @@
+{
+  "slug": "geschichte-kleopatra-mondlandung",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1a0e",
+    "#a8762e"
+  ],
+  "accent": "#ffe08a",
+  "title": "Kleopatra lebte näher an uns als an den Pyramiden 🏺",
+  "description": "Ein Zeitvergleich, der fast jeden überrascht.\n\n#geschichte #aegypten #kleopatra #shorts",
+  "tags": [
+    "geschichte",
+    "aegypten",
+    "kleopatra",
+    "pyramiden",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏺",
+      "text": "*Kleopatra* lebte näher an der Mondlandung als an den Pyramiden."
+    },
+    {
+      "emoji": "🔺",
+      "text": "Die große *Pyramide* von Gizeh entstand vor rund viertausendfünfhundert Jahren. Wie passt das zusammen?"
+    },
+    {
+      "emoji": "👑",
+      "text": "Kleopatra starb erst dreißig Jahre vor Christus. Die *Pyramide* war für sie schon uralt."
+    },
+    {
+      "emoji": "🚀",
+      "text": "Zwischen Pyramide und Kleopatra liegen etwa zweitausendfünfhundert Jahre. Bis zur *Mondlandung* nur rund zweitausend.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Bis Pyramide",
+          2500
+        ],
+        "b": [
+          "Bis Mond",
+          2000
+        ],
+        "einheit": "Jahre"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Ägypten war schon damals *Geschichte*. Folge für mehr Geschichte."
+    }
+  ]
+}
