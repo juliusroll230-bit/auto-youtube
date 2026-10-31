@@ -1,0 +1,47 @@
+{
+  "slug": "geschichte-schabowski-sofort",
+  "niche": "Geschichte",
+  "colors": [
+    "#1a1a22",
+    "#8a4a3a"
+  ],
+  "accent": "#ffd98a",
+  "title": "Ein einziges Wort öffnete die Berliner Mauer 🧱",
+  "description": "Wie eine Pressekonferenz am neunten November die Grenze öffnete.\n\n#geschichte #berlinermauer #ddr #shorts",
+  "tags": [
+    "geschichte",
+    "berlinermauer",
+    "ddr",
+    "deutschland",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧱",
+      "text": "Eine *Panne* öffnete die Berliner Mauer."
+    },
+    {
+      "emoji": "🎤",
+      "text": "Am neunten November neunzehnhundertneunundachtzig las ein *DDR-Sprecher* eine neue Reiseregel vor. Er war kaum vorbereitet."
+    },
+    {
+      "emoji": "❗",
+      "text": "Auf die Frage, ab wann sie gilt, antwortete er: *Sofort*. Unverzüglich.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Sofort",
+          "Unverzüglich"
+        ]
+      }
+    },
+    {
+      "emoji": "🚪",
+      "text": "Noch am selben Abend drängten tausende Menschen zu den *Grenzübergängen*. Kurz vor Mitternacht gaben die Grenzer nach."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Wort veränderte *Europa*. Folge für mehr Geschichte."
+    }
+  ]
+}

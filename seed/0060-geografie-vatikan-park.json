@@ -1,0 +1,52 @@
+{
+  "slug": "geografie-vatikan-park",
+  "niche": "Geografie",
+  "colors": [
+    "#10262e",
+    "#3c8aa0"
+  ],
+  "accent": "#ffb86b",
+  "title": "Dieses Land ist kleiner als ein Park 🌍",
+  "description": "Der Vatikan im Größenvergleich mit dem Central Park.\n\n#geografie #vatikan #welt #shorts",
+  "tags": [
+    "geografie",
+    "vatikan",
+    "welt",
+    "staaten",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌍",
+      "text": "Dieses *Land* ist kleiner als ein Park."
+    },
+    {
+      "emoji": "⛪",
+      "text": "Der *Vatikan* ist der kleinste Staat der Welt. Doch wie klein genau?"
+    },
+    {
+      "emoji": "📏",
+      "text": "Er misst nur vierundvierzig Hektar. Der *Central Park* in New York hat dreihunderteinundvierzig Hektar.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Vatikan",
+          44
+        ],
+        "b": [
+          "Central Park",
+          341
+        ],
+        "einheit": "Hektar"
+      }
+    },
+    {
+      "emoji": "✉️",
+      "text": "Dort leben weniger als tausend Menschen. Trotzdem gibt es eigene *Briefmarken*, eine eigene Bank und eine eigene Garde."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein ganzer *Staat* passt in einen Park. Folge für mehr Geografie."
+    }
+  ]
+}

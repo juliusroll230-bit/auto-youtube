@@ -1,0 +1,44 @@
+{
+  "slug": "geld-hyperinflation-brot",
+  "niche": "Geld",
+  "colors": [
+    "#16261a",
+    "#3f7a52"
+  ],
+  "accent": "#ffd24a",
+  "title": "Dieses Brot kostete hunderte Milliarden 🍞",
+  "description": "Die deutsche Hyperinflation von neunzehnhundertdreiundzwanzig. Keine Anlageberatung.\n\n#geld #finanzen #geschichte #shorts",
+  "tags": [
+    "geld",
+    "finanzen",
+    "inflation",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🍞",
+      "text": "Ein *Brot* kostete über hundert Milliarden Mark."
+    },
+    {
+      "emoji": "📅",
+      "text": "Das war Deutschland im Jahr neunzehnhundertdreiundzwanzig. Doch wie kam es so weit?"
+    },
+    {
+      "emoji": "🖨️",
+      "text": "Der Staat druckte immer mehr *Geld*, um Schulden zu zahlen. Die Preise stiegen schneller als die Löhne."
+    },
+    {
+      "emoji": "💸",
+      "text": "Manche bekamen ihren Lohn täglich und gaben ihn sofort aus. Sonst wurde das Geld *wertlos*.",
+      "visual": {
+        "type": "wort",
+        "text": "Wertlos"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Geld ist nur *Vertrauen*. Keine Anlageberatung. Folge für mehr Geld."
+    }
+  ]
+}

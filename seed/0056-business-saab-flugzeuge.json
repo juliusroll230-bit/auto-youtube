@@ -1,0 +1,51 @@
+{
+  "slug": "business-saab-flugzeuge",
+  "style": "car",
+  "car_color": "#e9edf2",
+  "niche": "Business",
+  "accent": "#ff8a3d",
+  "title": "Dieses Auto wurde von Flugzeugbauern erfunden ✈️",
+  "description": "Saab baute erst Flugzeuge und dann Autos.\n\n#business #saab #autos #shorts",
+  "tags": [
+    "business",
+    "saab",
+    "autos",
+    "schweden",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "✈️",
+      "text": "Dieses Auto kommt von *Flugzeugbauern*."
+    },
+    {
+      "emoji": "❓",
+      "text": "Saab steht für *Svenska Aeroplan*, schwedische Flugzeuge. Warum baut eine Flugzeugfirma plötzlich Autos?"
+    },
+    {
+      "emoji": "🛩️",
+      "text": "Gegründet wurde die Firma neunzehnhundertsiebenunddreißig für *Militärflugzeuge*. Nach dem Zweiten Weltkrieg fehlten Aufträge."
+    },
+    {
+      "emoji": "🚗",
+      "text": "Also entwarfen die Ingenieure ein *Auto* wie einen Flügel. Der erste Saab kam neunzehnhundertneunundvierzig auf den Markt.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1937,
+            "Flugzeuge"
+          ],
+          [
+            1949,
+            "Autos"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Erst *Flügel*, dann Räder, und beides aus Schweden. Folge für mehr Autowelt."
+    }
+  ]
+}

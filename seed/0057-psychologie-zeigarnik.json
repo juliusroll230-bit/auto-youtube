@@ -1,0 +1,44 @@
+{
+  "slug": "psychologie-zeigarnik",
+  "niche": "Psychologie",
+  "colors": [
+    "#1c1038",
+    "#6a4bb8"
+  ],
+  "accent": "#9af0d0",
+  "title": "Warum dich Unerledigtes nicht loslässt 🧠",
+  "description": "Der Zeigarnik-Effekt: offene Aufgaben bleiben im Kopf.\n\n#psychologie #gehirn #zeigarnik #shorts",
+  "tags": [
+    "psychologie",
+    "gehirn",
+    "zeigarnik",
+    "gedaechtnis",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧠",
+      "text": "Dein Gehirn vergisst *Unfertiges* nicht."
+    },
+    {
+      "emoji": "📋",
+      "text": "Offene Aufgaben beschäftigen dich mehr als erledigte. Doch warum?",
+      "visual": {
+        "type": "wort",
+        "text": "Offen"
+      }
+    },
+    {
+      "emoji": "🍽️",
+      "text": "Die Psychologin *Bluma Zeigarnik* untersuchte das in den zwanziger Jahren. Der Legende nach beobachtete sie *Kellner*."
+    },
+    {
+      "emoji": "🔄",
+      "text": "Unterbrochene Aufgaben blieben oft besser im Gedächtnis. Dein Kopf hält sie *aktiv*, bis du fertig bist."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein kleiner *Anfang* beruhigt den Kopf. Folge für mehr Psychologie."
+    }
+  ]
+}

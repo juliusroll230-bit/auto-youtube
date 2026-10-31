@@ -1,0 +1,51 @@
+{
+  "slug": "business-maserati-dreizack",
+  "style": "car",
+  "car_color": "#1f3fa8",
+  "niche": "Business",
+  "accent": "#ffd24a",
+  "title": "Dieses Autologo stammt von einem Brunnen 🔱",
+  "description": "Der Dreizack von Maserati hat eine Vorlage mitten in Bologna.\n\n#business #maserati #autos #shorts",
+  "tags": [
+    "business",
+    "maserati",
+    "autos",
+    "bologna",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🔱",
+      "text": "Dieses Autologo stammt von einem *Brunnen*."
+    },
+    {
+      "emoji": "🏛️",
+      "text": "Der *Dreizack* von Maserati kommt aus Bologna. Doch von welcher Figur genau?"
+    },
+    {
+      "emoji": "🌊",
+      "text": "Er gehört dem Meeresgott *Neptun*. Die Statue steht seit dem sechzehnten Jahrhundert auf dem Hauptplatz."
+    },
+    {
+      "emoji": "🎨",
+      "text": "Maserati startete neunzehnhundertvierzehn. Zwölf Jahre später zeichnete Bruder Mario das *Logo*.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1914,
+            "Gründung"
+          ],
+          [
+            1926,
+            "Dreizack"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Gott fährt auf der Haube mit. Folge für mehr Autowelt."
+    }
+  ]
+}
