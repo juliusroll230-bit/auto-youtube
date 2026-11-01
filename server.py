@@ -620,6 +620,8 @@ class Handler(BaseHTTPRequestHandler):
         if p in ("/", "/index.html"):
             page = PAGE_HEAD + open(os.path.join(WEB, "index.html"), encoding="utf-8").read() + "</body></html>"
             return self.send(200, page, "text/html; charset=utf-8")
+        if p.startswith("/static/"):
+            return self.static_file(p[len("/static/"):])
         if p in ("/icon.png", "/favicon.ico"):
             return self.send(200, open(os.path.join(WEB, "icon.png"), "rb").read(), "image/png", cache="max-age=86400")
         if p == "/api/dashboard":
@@ -737,6 +739,21 @@ class Handler(BaseHTTPRequestHandler):
         if ext == "jpg":
             return self.send(200, open(path, "rb").read(), "image/jpeg", cache="max-age=3600")
         self.send_file(path, "video/mp4", download=clip["title"] if q.get("download") else None)
+
+    STATIC_TYPES = {".js": "text/javascript; charset=utf-8", ".html": "text/html; charset=utf-8",
+                    ".css": "text/css; charset=utf-8", ".woff2": "font/woff2", ".jpg": "image/jpeg",
+                    ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8"}
+
+    def static_file(self, rel):
+        """Feste Dateien der Website (HyperFrames-Player, Film, Schriften) aus web/static."""
+        ext = os.path.splitext(rel)[1].lower()
+        root = os.path.realpath(os.path.join(WEB, "static"))
+        path = os.path.realpath(os.path.join(root, rel))
+        if (not re.fullmatch(r"[A-Za-z0-9._/-]+", rel) or ".." in rel.split("/")
+                or not path.startswith(root + os.sep) or ext not in self.STATIC_TYPES or not os.path.isfile(path)):
+            return self.send(404, {"error": "Nicht gefunden"})
+        with open(path, "rb") as f:
+            return self.send(200, f.read(), self.STATIC_TYPES[ext], cache="max-age=86400")
 
     def thumb(self, slug):
         if slug.startswith("clip-"):  # geposteter Clip: Vorschaubild aus der Kampagne
