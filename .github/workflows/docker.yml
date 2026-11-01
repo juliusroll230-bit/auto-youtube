@@ -8,6 +8,9 @@ on:
     paths-ignore:
       - "seed/**"
       - "README.md"
+      - "docs/**"
+      - "tools/**"
+      - ".github/workflows/kanal.yml"
   workflow_dispatch:
 
 permissions:

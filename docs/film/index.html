@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="de" data-resolution="portrait"
+  data-composition-variables='[{"id":"hook","type":"string","label":"Erster Satz","default":"Ein Fakt."},{"id":"claim","type":"string","label":"Versprechen","default":"Jeden Tag sechs neue Shorts."},{"id":"handle","type":"string","label":"Kanal","default":"@60SekundenWissen-s4i"}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>60 Sekunden Wissen – Teaser</title>
+    <!-- HyperFrames-Komposition: 11 Sekunden, 1080×1920. Läuft live auf der Homepage
+         (<hyperframes-player>) und lässt sich mit "npm run render" als MP4 ausgeben. -->
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter Display";
+        src: url("assets/fonts/InterDisplay-Black.woff2") format("woff2");
+        font-weight: 900;
+      }
+      @font-face {
+        font-family: "Inter Display";
+        src: url("assets/fonts/InterDisplay-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+      }
+      :root {
+        --ground: #000;
+        --ink: #f5f5f7;
+        --muted: #86868b;
+        --glass: rgba(255, 255, 255, 0.07);
+        --hairline: rgba(255, 255, 255, 0.14);
+        --blue: #2997ff;
+        --teal: #40c8e0;
+        --violet: #a78bfa;
+        --font: "Inter Display", -apple-system, "SF Pro Display", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ground);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: var(--font);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Weiches Farblicht im Hintergrund */
+      .aura { position: absolute; inset: 0; }
+      .blob { position: absolute; border-radius: 50%; opacity: 0.55; }
+      #blobA { width: 980px; height: 980px; left: -260px; top: 120px;
+        background: radial-gradient(circle, rgba(41,151,255,.55) 0%, rgba(41,151,255,0) 68%); }
+      #blobB { width: 900px; height: 900px; left: 420px; top: 560px;
+        background: radial-gradient(circle, rgba(167,139,250,.5) 0%, rgba(167,139,250,0) 68%); }
+      #blobC { width: 760px; height: 760px; left: 120px; top: 980px;
+        background: radial-gradient(circle, rgba(64,200,224,.38) 0%, rgba(64,200,224,0) 68%); }
+
+      .scene { position: absolute; inset: 0; }
+      .center {
+        position: absolute; left: 0; right: 0; top: 168px; height: 1162px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center;
+      }
+
+      /* Szene 1 */
+      .hero-line { font-weight: 900; font-size: 168px; line-height: 1; letter-spacing: -0.045em; }
+      .hero-sub { margin-top: 36px; font-weight: 600; font-size: 76px; letter-spacing: -0.03em; color: var(--muted); }
+
+      /* Szene 2 */
+      .kicker { font-weight: 900; font-size: 104px; letter-spacing: -0.04em; margin-bottom: 64px; }
+      .card {
+        width: 780px; height: 148px; margin: 12px 0; padding: 0 40px;
+        display: flex; align-items: center; gap: 34px;
+        border-radius: 44px; background: var(--glass); border: 2px solid var(--hairline);
+        backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+        font-weight: 600; font-size: 54px; letter-spacing: -0.02em;
+      }
+      .icon { width: 84px; height: 84px; border-radius: 26px; display: grid; place-items: center; flex: none; }
+      .icon svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* Szene 3 */
+      .ring-wrap { position: relative; width: 700px; height: 700px; }
+      .ring-wrap svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+      .count {
+        position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      }
+      .num { font-weight: 900; font-size: 300px; line-height: .9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+      .unit { font-weight: 600; font-size: 64px; color: var(--muted); letter-spacing: -0.02em; margin-top: 10px; }
+
+      /* Szene 4 */
+      .mark { font-weight: 900; font-size: 150px; line-height: .98; letter-spacing: -0.05em; }
+      .mark .grad {
+        background: linear-gradient(100deg, var(--blue), var(--violet) 55%, var(--teal));
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .claim { margin-top: 44px; font-weight: 600; font-size: 60px; color: var(--muted); letter-spacing: -0.025em; }
+      .pill {
+        margin-top: 90px; padding: 30px 56px; border-radius: 999px;
+        background: var(--glass); border: 2px solid var(--hairline);
+        backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+        font-weight: 600; font-size: 46px; letter-spacing: -0.01em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="11" data-width="1080" data-height="1920">
+      <div id="aura" class="aura clip" data-start="0" data-duration="11" data-track-index="0">
+        <div id="blobA" class="blob"></div>
+        <div id="blobB" class="blob"></div>
+        <div id="blobC" class="blob"></div>
+      </div>
+
+      <section id="s1" class="scene clip" data-start="0" data-duration="2.8" data-track-index="1">
+        <div class="center">
+          <h1 id="s1a" class="hero-line" data-var-text="hook">Ein Fakt.</h1>
+          <p id="s1b" class="hero-sub">Sechzig Sekunden.</p>
+        </div>
+      </section>
+
+      <section id="s2" class="scene clip" data-start="2.8" data-duration="3.1" data-track-index="1">
+        <div class="center">
+          <h2 id="s2k" class="kicker">Fünf Themen.</h2>
+          <div class="card" id="c1"><span class="icon" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M3 15l2-5.5A2 2 0 0 1 6.9 8h10.2a2 2 0 0 1 1.9 1.5L21 15v3h-2.2M5.2 18H3v-3"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M9.3 18h5.4M3.5 13h17"/></svg></span>Autos &amp; Business</div>
+          <div class="card" id="c2"><span class="icon" style="background:#bf5af2"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>Psychologie</div>
+          <div class="card" id="c3"><span class="icon" style="background:#ff9f0a"><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5M4 21h16M6 10v8M10 10v8M14 10v8M18 10v8"/></svg></span>Geschichte</div>
+          <div class="card" id="c4"><span class="icon" style="background:#30d158"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6A4 4 0 1 0 15.5 15.4M7 11h6M7 13.4h6"/></svg></span>Geld</div>
+          <div class="card" id="c5"><span class="icon" style="background:#40c8e0"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg></span>Geografie</div>
+        </div>
+      </section>
+
+      <section id="s3" class="scene clip" data-start="5.9" data-duration="2.2" data-track-index="1">
+        <div class="center">
+          <div id="ring" class="ring-wrap">
+            <svg viewBox="0 0 700 700" aria-hidden="true">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2997ff" />
+                  <stop offset=".6" stop-color="#a78bfa" />
+                  <stop offset="1" stop-color="#40c8e0" />
+                </linearGradient>
+              </defs>
+              <circle cx="350" cy="350" r="310" stroke="rgba(255,255,255,.1)" stroke-width="26" fill="none" />
+              <circle id="arc" cx="350" cy="350" r="310" stroke="url(#g)" stroke-width="26" fill="none"
+                stroke-linecap="round" stroke-dasharray="1947.79" stroke-dashoffset="1947.79" />
+            </svg>
+            <div class="count">
+              <span id="num" class="num">0</span>
+              <span id="unit" class="unit">Sekunden</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4" class="scene clip" data-start="8.1" data-duration="2.9" data-track-index="1">
+        <div class="center">
+          <h2 id="m1" class="mark">60 Sekunden<br /><span class="grad">Wissen.</span></h2>
+          <p id="m2" class="claim" data-var-text="claim">Jeden Tag sechs neue Shorts.</p>
+          <p id="m3" class="pill" data-var-text="handle">@60SekundenWissen-s4i</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const ease = "power3.out";
+      const tl = gsap.timeline({ paused: true, defaults: { ease } });
+
+      // Hintergrund: langsames Driften über die ganze Länge
+      tl.fromTo("#blobA", { x: 0, y: 0 }, { x: 220, y: 160, duration: 11, ease: "sine.inOut" }, 0);
+      tl.fromTo("#blobB", { x: 0, y: 0 }, { x: -260, y: -120, duration: 11, ease: "sine.inOut" }, 0);
+      tl.fromTo("#blobC", { x: 0, y: 0, scale: 1 }, { x: 140, y: -220, scale: 1.2, duration: 11, ease: "sine.inOut" }, 0);
+
+      // Szene 1: der Hook steht schon im ersten Bild
+      tl.fromTo("#s1a", { scale: 1.08 }, { scale: 1, duration: 1.2 }, 0);
+      tl.fromTo("#s1b", { opacity: 0, y: 40, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 }, 0.55);
+      tl.to(["#s1a", "#s1b"], { opacity: 0, scale: 0.94, filter: "blur(10px)", duration: 0.4, ease: "power2.in", stagger: 0.05 }, 2.3);
+
+      // Szene 2: fünf Glaskarten
+      tl.fromTo("#s2k", { opacity: 0, y: 30, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6 }, 2.85);
+      tl.fromTo(["#c1", "#c2", "#c3", "#c4", "#c5"], { opacity: 0, y: 70, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.12, ease: "expo.out" }, 3.05);
+      tl.to(["#s2k", "#c1", "#c2", "#c3", "#c4", "#c5"], { opacity: 0, y: -40, duration: 0.4, stagger: 0.03, ease: "power2.in" }, 5.45);
+
+      // Szene 3: Ring und Zähler bis 60
+      const counter = { v: 0 };
+      tl.fromTo("#ring", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 5.95);
+      tl.fromTo("#arc", { attr: { "stroke-dashoffset": 1947.79 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.5, ease: "power2.inOut" }, 6.05);
+      tl.fromTo(counter, { v: 0 }, {
+        v: 60, duration: 1.5, ease: "power2.inOut",
+        onUpdate: () => { document.getElementById("num").textContent = Math.round(counter.v); },
+      }, 6.05);
+      tl.to("#ring", { opacity: 0, scale: 1.08, filter: "blur(12px)", duration: 0.35, ease: "power2.in" }, 7.75);
+
+      // Szene 4: Name, Versprechen, Kanal
+      tl.fromTo("#m1", { opacity: 0, y: 50, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7 }, 8.15);
+      tl.fromTo("#m2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 8.45);
+      tl.fromTo("#m3", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 8.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

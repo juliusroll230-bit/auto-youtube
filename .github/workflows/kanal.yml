@@ -1,0 +1,38 @@
+name: Kanal für die Homepage
+
+# Holt alle 3 Stunden die neuesten Shorts (RSS-Feed, ohne API-Schlüssel)
+# und legt Liste + Vorschaubilder in docs/ ab. GitHub Pages zeigt sie auf der Homepage.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/channel_feed.py"
+      - ".github/workflows/kanal.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kanal
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/channel_feed.py
+      - name: Speichern, wenn sich etwas geändert hat
+        run: |
+          git add docs/videos.json docs/thumbs
+          if git diff --cached --quiet; then echo "Nichts Neues"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Homepage: neueste Shorts"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

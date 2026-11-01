@@ -2,23 +2,39 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Datenschutz – Shorts Zentrale</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Datenschutz – 60 Sekunden Wissen</title>
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root { color-scheme: light dark; --bg: #f7f7fb; --fg: #16151d; --muted: #5b5a66; --card: #fff; --accent: #5a3fc0; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #0f0e15; --fg: #ecebf3; --muted: #a3a1b0; --card: #1a1924; --accent: #a996ff; } }
-  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 680px; margin: 0 auto; padding: 48px 16px; }
-  h1 { font-size: 1.8rem; margin: 0 0 8px; }
-  section { background: var(--card); border-radius: 14px; padding: 20px 22px; margin: 20px 0; }
-  a { color: var(--accent); }
-  footer { color: var(--muted); font-size: 0.9rem; margin-top: 32px; }
+  .legal { padding: 64px 0 96px; }
+  .legal h1 { font-size: clamp(40px, 6vw, 56px); line-height: 1.05; font-weight: 700; letter-spacing: -0.04em; }
+  .legal .lead { margin: 14px 0 40px; max-width: none; font-size: 19px; }
+  .legal section { margin: 0 0 16px; padding: 28px 30px; border-radius: var(--radius-l); background: var(--surface); box-shadow: var(--shadow-1); }
+  .legal h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.025em; margin-bottom: 10px; }
+  .legal p, .legal li { color: var(--ink-2); font-size: 16px; }
+  .legal p { margin: 0 0 10px; }
+  .legal ul { margin: 0 0 10px; padding-left: 20px; }
+  .legal .wrap { max-width: 760px; }
 </style>
 </head>
 <body>
-<main>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">60</span>60 Sekunden Wissen</a>
+    <nav class="nav-links" aria-label="Bereiche"><a href="index.html#kanal">Shorts</a><a href="index.html#ueber">Über die App</a></nav>
+  </div>
+</header>
+<main class="legal section alt">
+<div class="wrap">
   <h1>Datenschutzerklärung</h1>
-  <p>für die App „Shorts Zentrale“. Stand: 25. Oktober 2026.</p>
+  <p class="lead">für die App „Shorts Zentrale“ und diese Website. Stand: 1. November 2026.</p>
+
+  <section>
+    <h2>Diese Website</h2>
+    <p>Die Website wird über GitHub Pages ausgeliefert. GitHub verarbeitet dabei technisch nötige Daten wie die IP-Adresse, um die Seite auszuliefern (<a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">Datenschutzerklärung von GitHub</a>).</p>
+    <p>Die Website setzt keine Cookies, nutzt kein Tracking und keine Werbung. Schriften, Vorschaubilder und der animierte Film liegen auf derselben Website; beim Öffnen wird nichts von YouTube oder anderen Diensten geladen.</p>
+    <p>Erst wenn du ein Video antippst, lädt der YouTube-Player im erweiterten Datenschutzmodus (youtube-nocookie.com). Dann gelten die Regeln von Google und YouTube.</p>
+  </section>
   <section>
     <h2>Wer die App nutzt</h2>
     <p>Die App ist ein privates Werkzeug für einen einzigen, eigenen YouTube-Kanal. Sie läuft auf einem privaten Heimserver und wird nicht an andere Personen angeboten.</p>
@@ -50,7 +66,8 @@
     <h2>Kontakt</h2>
     <p>Fragen zur App über GitHub: <a href="https://github.com/juliusroll230-bit/auto-youtube/issues">github.com/juliusroll230-bit/auto-youtube/issues</a></p>
   </section>
-  <footer><a href="index.html">Zur Startseite</a></footer>
+</div>
 </main>
+<footer class="footer"><div class="wrap"><span>60 Sekunden Wissen</span><span><a href="index.html">Zur Startseite</a></span></div></footer>
 </body>
 </html>
