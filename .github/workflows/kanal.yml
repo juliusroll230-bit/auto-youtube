@@ -1,7 +1,8 @@
-name: Kanal für die Homepage
+name: Homepage
 
-# Holt alle 3 Stunden die neuesten Shorts (RSS-Feed, ohne API-Schlüssel)
-# und legt Liste + Vorschaubilder in docs/ ab. GitHub Pages zeigt sie auf der Homepage.
+# Hält die Homepage aktuell:
+# 1. holt alle 3 Stunden die neuesten Shorts (RSS-Feed, ohne API-Schlüssel) nach docs/,
+# 2. veröffentlicht docs/ auf dem Zweig gh-pages, den GitHub Pages ausliefert.
 on:
   schedule:
     - cron: "17 */3 * * *"
@@ -9,6 +10,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "docs/**"
       - "tools/channel_feed.py"
       - ".github/workflows/kanal.yml"
 
@@ -16,23 +18,43 @@ permissions:
   contents: write
 
 concurrency:
-  group: kanal
+  group: homepage
   cancel-in-progress: false
 
 jobs:
-  feed:
+  homepage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python tools/channel_feed.py
-      - name: Speichern, wenn sich etwas geändert hat
+      - name: Git-Name setzen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Neueste Shorts holen
+        run: python tools/channel_feed.py
+      - name: Liste auf main speichern
         run: |
           git add docs/videos.json docs/thumbs
           if git diff --cached --quiet; then echo "Nichts Neues"; exit 0; fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Homepage: neueste Shorts"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
+      - name: Auf GitHub Pages veröffentlichen
+        run: |
+          rm -rf /tmp/site && cp -r docs /tmp/site
+          rm -rf /tmp/site/film/.hyperframes /tmp/site/thumbs/.gitkeep
+          touch /tmp/site/.nojekyll
+          git fetch origin gh-pages
+          git worktree add /tmp/pages origin/gh-pages
+          cd /tmp/pages
+          git checkout -B gh-pages
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/site/. .
+          git add -A
+          if git diff --cached --quiet; then echo "Seite unverändert"; exit 0; fi
+          git commit -m "Homepage aus main veröffentlicht (${GITHUB_SHA::7})"
+          git push origin gh-pages
