@@ -2197,8 +2197,8 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("kKeep").textContent = pct(T.avgPct);
     $("kKeepS").textContent = T.avgPct != null ? "der Videolänge, Ø " + secs(T.avgDur) : d.analytics && d.analytics.connected ? "kommt in 1–3 Tagen" : "noch nicht verbunden";
     var hst = d.history || [];
-    spark($("sparkViews"), hst.slice(-72).map(function (p) { return p.views; }), "#9ad4a6");
-    spark($("sparkSubs"), hst.slice(-72).map(function (p) { return p.subs; }), "#9ad4a6");
+    spark($("sparkViews"), hst.slice(-72).map(function (p) { return p.views; }), "#0a84ff");
+    spark($("sparkSubs"), hst.slice(-72).map(function (p) { return p.subs; }), "#0a84ff");
 
     renderGrowth(d);
 
@@ -2276,7 +2276,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var delta = pts[pts.length - 1].y - pts[0].y;
     $("growSub").textContent = label + " seit " + fDate.format(new Date(x0)) + ": +" + nf.format(delta);
     lineChart(box, pts, {
-      color: "#9ad4a6", height: 230, label: label + " im Verlauf", xTicks: ticks,
+      color: "#0a84ff", height: 230, label: label + " im Verlauf", xTicks: ticks,
       yMin: key === "views" ? 0 : 0,
       yFmt: function (v) { return big(v); },
       tip: function (p) { return [h("b", { text: nf.format(p.y) + " " + label }), h("span", { cls: "t", text: fDayS.format(new Date(p.x)) + ", " + fTime.format(new Date(p.x)) + " Uhr" })]; }
@@ -2384,7 +2384,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     }
     var yTop = pctTop(avg);
     lineChart($("avgCurve"), avg, {
-      color: "#9ad4a6", height: 250, x0: 0, x1: 1, yMax: yTop, yStep: 25, marks: marks, label: "Durchschnittliche Zuschauerbindung",
+      color: "#0a84ff", height: 250, x0: 0, x1: 1, yMax: yTop, yStep: 25, marks: marks, label: "Durchschnittliche Zuschauerbindung",
       xTicks: [0, .25, .5, .75, 1].map(function (t) { return { x: t, label: Math.round(t * 100) + " %" }; }),
       yFmt: function (v) { return Math.round(v) + " %"; },
       tip: function (p) { return [h("b", { text: Math.round(p.y) + " % schauen noch" }), h("span", { cls: "t", text: "bei " + Math.round(p.x * 100) + " % der Videolänge" })]; }
@@ -2421,7 +2421,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var pts = one.curve.map(function (p) { return { x: p[0], y: p[1] * 100 }; });
     var sl = sentenceLoss(one), dur = one.duration || (one.seconds || 30);
     lineChart($("oneCurve"), pts, {
-      color: "#9ad4a6", height: 200, x0: 0, x1: 1, yMax: pctTop(pts), yStep: 25,
+      color: "#0a84ff", height: 200, x0: 0, x1: 1, yMax: pctTop(pts), yStep: 25,
       marks: (one.marks || []).slice(1).map(function (m, i) { return { x: m, label: "S" + (i + 2) }; }), label: "Zuschauerbindung dieses Videos",
       xTicks: [0, .5, 1].map(function (t) { return { x: t, label: Math.round(t * dur) + " s" }; }),
       yFmt: function (v) { return Math.round(v) + " %"; },
