@@ -1,0 +1,55 @@
+{
+  "slug": "business-dacia-roemer",
+  "style": "car",
+  "car_color": "#2c6e49",
+  "niche": "Business",
+  "accent": "#ffc93c",
+  "title": "Dieser Autoname ist über zweitausend Jahre alt 🏛️",
+  "description": "Dacia trägt den Namen einer römischen Provinz.\n\n#business #dacia #autos #shorts",
+  "tags": [
+    "business",
+    "dacia",
+    "autos",
+    "rumaenien",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏛️",
+      "text": "Dieser *Autoname* ist über zweitausend Jahre alt."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Dacia hieß eine römische *Provinz* im heutigen Rumänien. Doch was hat das mit Autos zu tun?"
+    },
+    {
+      "emoji": "🇷🇴",
+      "text": "Die Marke wurde neunzehnhundertsechsundsechzig in Rumänien gegründet. Der Name erinnert an das alte *Land*."
+    },
+    {
+      "emoji": "💶",
+      "text": "Neunzehnhundertneunundneunzig kaufte Renault die Marke. Mit dem Logan kam zweitausendvier das *Billigauto*.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1966,
+            "Gründung"
+          ],
+          [
+            1999,
+            "Renault"
+          ],
+          [
+            2004,
+            "Logan"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Aus einem Römernamen wurde ein *Preisbrecher*. Folge für mehr Autowelt."
+    }
+  ]
+}

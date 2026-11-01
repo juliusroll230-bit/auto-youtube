@@ -1,0 +1,48 @@
+{
+  "slug": "psychologie-halo-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#20123a",
+    "#8a4fb0"
+  ],
+  "accent": "#8ef0c8",
+  "title": "Warum wir gutaussehende Menschen für klüger halten 🧠",
+  "description": "Der Halo-Effekt färbt den ersten Eindruck.\n\n#psychologie #haloeffekt #gehirn #shorts",
+  "tags": [
+    "psychologie",
+    "haloeffekt",
+    "gehirn",
+    "eindruck",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧠",
+      "text": "Wer gut aussieht, wirkt *klüger*."
+    },
+    {
+      "emoji": "😇",
+      "text": "Das ist kein Zufall, sondern der *Halo-Effekt*. Doch wer hat ihn entdeckt?"
+    },
+    {
+      "emoji": "🎖️",
+      "text": "Edward Thorndike ließ im Jahr neunzehnhundertzwanzig Vorgesetzte ihre *Soldaten* bewerten. Ein gutes Merkmal färbte auf alle anderen ab."
+    },
+    {
+      "emoji": "✨",
+      "text": "Wer gut aussieht, wirkt auch klug, nett und kompetent. Dein Kopf schließt von *einer* Stärke auf alles.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Klug",
+          "Nett",
+          "Kompetent"
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Der erste *Eindruck* färbt alles. Folge für mehr Psychologie."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "business-fiat-abkuerzung",
+  "style": "car",
+  "car_color": "#c9d3dc",
+  "niche": "Business",
+  "accent": "#ff6b4a",
+  "title": "Dieser Autoname ist eigentlich eine Abkürzung 🚗",
+  "description": "Hinter Fiat steckt mehr als vier Buchstaben.\n\n#business #fiat #autos #shorts",
+  "tags": [
+    "business",
+    "fiat",
+    "autos",
+    "turin",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🚗",
+      "text": "Dieser Autoname ist eigentlich eine *Abkürzung*."
+    },
+    {
+      "emoji": "🏁",
+      "text": "*Fiat* wurde neunzehnhundertneunundneunzig in Turin gegründet. Aber wofür steht der Name?"
+    },
+    {
+      "emoji": "📜",
+      "text": "Er steht für *Fabbrica Italiana Automobili Torino*. Auf Lateinisch heißt fiat aber auch: Es werde.",
+      "visual": {
+        "type": "wort",
+        "text": "Es werde"
+      }
+    },
+    {
+      "emoji": "🏭",
+      "text": "Die Gründer waren Investoren aus Turin, darunter Giovanni Agnelli. Seine Familie prägt die *Firma* bis heute."
+    },
+    {
+      "emoji": "👉",
+      "text": "Vier Wörter wurden zur *Weltmarke*. Folge für mehr Autowelt."
+    }
+  ]
+}

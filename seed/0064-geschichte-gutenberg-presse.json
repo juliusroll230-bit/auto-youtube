@@ -1,0 +1,53 @@
+{
+  "slug": "geschichte-gutenberg-presse",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1c10",
+    "#9a6a34"
+  ],
+  "accent": "#ffe29a",
+  "title": "Ein Goldschmied veränderte, wie die Welt liest 📖",
+  "description": "Wie Gutenbergs Druckpresse Wissen vervielfältigte.\n\n#geschichte #gutenberg #buchdruck #shorts",
+  "tags": [
+    "geschichte",
+    "gutenberg",
+    "buchdruck",
+    "mainz",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "📖",
+      "text": "Ein *Goldschmied* veränderte, wie die Welt liest."
+    },
+    {
+      "emoji": "⚙️",
+      "text": "Johannes Gutenberg lebte in Mainz und baute eine *Druckpresse*. Was machte sie so besonders?"
+    },
+    {
+      "emoji": "🔤",
+      "text": "Er nutzte bewegliche *Bleilettern*. Bücher mussten nicht mehr einzeln abgeschrieben werden."
+    },
+    {
+      "emoji": "📚",
+      "text": "Um vierzehnhundertfünfundfünfzig entstand die Gutenberg-*Bibel* in rund hundertachtzig Exemplaren. Heute gibt es noch rund fünfzig.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1450,
+            "Druckpresse"
+          ],
+          [
+            1455,
+            "Bibel"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Gedanke ließ sich plötzlich *vervielfältigen*. Folge für mehr Geschichte."
+    }
+  ]
+}

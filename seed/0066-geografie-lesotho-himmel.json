@@ -1,0 +1,44 @@
+{
+  "slug": "geografie-lesotho-himmel",
+  "niche": "Geografie",
+  "colors": [
+    "#122a30",
+    "#4a9a8a"
+  ],
+  "accent": "#ffa86b",
+  "title": "Dieses Land steckt komplett in einem anderen 🌍",
+  "description": "Lesotho: ein Königreich mitten in Südafrika.\n\n#geografie #lesotho #afrika #shorts",
+  "tags": [
+    "geografie",
+    "lesotho",
+    "afrika",
+    "welt",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌍",
+      "text": "Dieses *Land* steckt komplett in einem anderen."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Lesotho wird ganz von *Südafrika* umschlossen. Doch das ist nicht das Verrückte.",
+      "visual": {
+        "type": "wort",
+        "text": "Umschlossen"
+      }
+    },
+    {
+      "emoji": "⛰️",
+      "text": "Das ganze Land liegt über tausend *Meter* hoch. Sein tiefster Punkt misst tausendvierhundert Meter."
+    },
+    {
+      "emoji": "☁️",
+      "text": "Deshalb nennt man Lesotho das *Königreich im Himmel*. Kein anderes Land liegt komplett so hoch."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Königreich im Himmel, mitten in *Afrika*. Folge für mehr Geografie."
+    }
+  ]
+}

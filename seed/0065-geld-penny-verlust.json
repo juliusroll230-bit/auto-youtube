@@ -1,0 +1,52 @@
+{
+  "slug": "geld-penny-verlust",
+  "niche": "Geld",
+  "colors": [
+    "#1a2618",
+    "#5a7a3a"
+  ],
+  "accent": "#ffb347",
+  "title": "Diese Münze kostet mehr, als sie wert ist 🪙",
+  "description": "Der amerikanische Penny im Kostencheck. Keine Anlageberatung.\n\n#geld #finanzen #usa #shorts",
+  "tags": [
+    "geld",
+    "finanzen",
+    "penny",
+    "usa",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪙",
+      "text": "Diese *Münze* kostet mehr, als sie wert ist."
+    },
+    {
+      "emoji": "🇺🇸",
+      "text": "Ein amerikanischer *Penny* ist ein Cent wert. Doch was kostet seine Herstellung?"
+    },
+    {
+      "emoji": "🧮",
+      "text": "Im Jahr zweitausenddreiundzwanzig kostete ein Penny rund drei Cent. Pro *Münze*.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Wert",
+          1
+        ],
+        "b": [
+          "Herstellung",
+          3
+        ],
+        "einheit": "Cent"
+      }
+    },
+    {
+      "emoji": "📉",
+      "text": "Der Staat verliert also an jedem *Penny* Geld. Schuld sind Metall und Herstellung."
+    },
+    {
+      "emoji": "👉",
+      "text": "Kleingeld ist manchmal ein *Verlustgeschäft*. Keine Anlageberatung. Folge für mehr Geld."
+    }
+  ]
+}
