@@ -96,8 +96,8 @@
       `<span class="vviews">${compact.format(v.views)} Aufrufe</span>`);
     const meta = document.createElement("div");
     meta.className = "vmeta";
-    meta.innerHTML = `<span class="dot"></span>`;
-    meta.append(`${v.niche} · ${ago(v.published)}`);
+    meta.innerHTML = `<span class="dot"></span><span class="vmeta-t"></span>`;
+    meta.lastChild.textContent = `${v.niche} · ${ago(v.published)}`;
     const title = document.createElement("div");
     title.className = "vtitle";
     title.textContent = v.title;
