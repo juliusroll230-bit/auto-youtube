@@ -6,11 +6,47 @@
  },
  "videos": [
   {
+   "id": "4tnk8f4wcnA",
+   "title": "Warum ein kleines Missgeschick dich beliebter macht ☕",
+   "text": "Der Pratfall-Effekt: Warum kompetente Menschen durch einen kleinen Fehler sympathischer wirken.",
+   "niche": "Psychologie",
+   "views": 0,
+   "published": "2026-11-02T14:36:51+00:00",
+   "thumb": "thumbs/4tnk8f4wcnA.jpg"
+  },
+  {
+   "id": "Qt-0acyd3I0",
+   "title": "Der Eiffelturm sollte abgerissen werden 🗼",
+   "text": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.",
+   "niche": "Geschichte",
+   "views": 211,
+   "published": "2026-11-02T12:36:37+00:00",
+   "thumb": "thumbs/Qt-0acyd3I0.jpg"
+  },
+  {
+   "id": "Gr1tDcUHnCo",
+   "title": "In deinem Gehalt steckt ein altes Wort für Salz 🧂",
+   "text": "Woher das Wort Salär kommt und was Salz damit zu tun haben soll. Keine Anlageberatung.",
+   "niche": "Geld",
+   "views": 109,
+   "published": "2026-11-02T10:36:43+00:00",
+   "thumb": "thumbs/Gr1tDcUHnCo.jpg"
+  },
+  {
+   "id": "yPefjF3R-cY",
+   "title": "Dieses Land ist größer als ein ganzer Zwergplanet 🪐",
+   "text": "Russland hat mehr Fläche als die gesamte Oberfläche von Pluto.",
+   "niche": "Geografie",
+   "views": 231,
+   "published": "2026-11-02T08:36:49+00:00",
+   "thumb": "thumbs/yPefjF3R-cY.jpg"
+  },
+  {
    "id": "UCIZRDjLJOk",
    "title": "VW kaufte Rolls-Royce und ging trotzdem leer aus 👑",
    "text": "Wie VW eine Luxusmarke kaufte, aber den Namen nicht bekam.",
    "niche": "Autos",
-   "views": 599,
+   "views": 998,
    "published": "2026-11-01T18:37:48+00:00",
    "thumb": "thumbs/UCIZRDjLJOk.jpg"
   },
@@ -19,7 +55,7 @@
    "title": "Warum wir gutaussehende Menschen für klüger halten 🧠",
    "text": "Der Halo-Effekt färbt den ersten Eindruck.",
    "niche": "Psychologie",
-   "views": 314,
+   "views": 515,
    "published": "2026-11-01T17:41:59+00:00",
    "thumb": "thumbs/_swff3-SXRA.jpg"
   },
@@ -28,7 +64,7 @@
    "title": "Diese Automarke hat mit etwas ganz anderem angefangen 🍾",
    "text": "Bevor Mazda Autos baute, stellte die Firma etwas völlig anderes her.",
    "niche": "Autos",
-   "views": 212,
+   "views": 311,
    "published": "2026-11-01T17:36:54+00:00",
    "thumb": "thumbs/tAYzbIb2qmM.jpg"
   },
@@ -37,7 +73,7 @@
    "title": "Ein Goldschmied veränderte, wie die Welt liest 📖",
    "text": "Wie Gutenbergs Druckpresse Wissen vervielfältigte.",
    "niche": "Geschichte",
-   "views": 82,
+   "views": 122,
    "published": "2026-11-01T15:37:02+00:00",
    "thumb": "thumbs/0FtnM_VD6yI.jpg"
   },
@@ -46,7 +82,7 @@
    "title": "Warum dich Unerledigtes nicht loslässt 🧠",
    "text": "Der Zeigarnik-Effekt: offene Aufgaben bleiben im Kopf.",
    "niche": "Psychologie",
-   "views": 149,
+   "views": 188,
    "published": "2026-11-01T12:37:16+00:00",
    "thumb": "thumbs/W6XgpN27OTU.jpg"
   },
@@ -55,7 +91,7 @@
    "title": "Diese Münze kostet mehr, als sie wert ist 🪙",
    "text": "Der amerikanische Penny im Kostencheck. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 238,
+   "views": 271,
    "published": "2026-11-01T10:36:50+00:00",
    "thumb": "thumbs/W_g9fQMhHBo.jpg"
   },
@@ -64,7 +100,7 @@
    "title": "Dieses Land steckt komplett in einem anderen 🌍",
    "text": "Lesotho: ein Königreich mitten in Südafrika.",
    "niche": "Geografie",
-   "views": 821,
+   "views": 926,
    "published": "2026-11-01T08:36:59+00:00",
    "thumb": "thumbs/YAkDasYdUsQ.jpg"
   },
@@ -73,7 +109,7 @@
    "title": "Warum ein Reifenhersteller Sterne an Köche vergibt ⭐",
    "text": "Der Michelin-Führer begann als kostenloses Heft für Autofahrer.",
    "niche": "Autos",
-   "views": 306,
+   "views": 472,
    "published": "2026-11-01T06:36:52+00:00",
    "thumb": "thumbs/7B1z4ef0cG8.jpg"
   },
@@ -82,7 +118,7 @@
    "title": "Ein einziges Wort öffnete die Berliner Mauer 🧱",
    "text": "Wie eine Pressekonferenz am neunten November die Grenze öffnete.",
    "niche": "Geschichte",
-   "views": 183,
+   "views": 194,
    "published": "2026-10-31T17:37:07+00:00",
    "thumb": "thumbs/5JVjhjS44uA.jpg"
   },
@@ -91,7 +127,7 @@
    "title": "Warum dir Lieder erst beim dritten Hören gefallen 🎧",
    "text": "Der Mere-Exposure-Effekt: Bekanntes mögen wir mehr.",
    "niche": "Psychologie",
-   "views": 262,
+   "views": 303,
    "published": "2026-10-31T15:36:53+00:00",
    "thumb": "thumbs/j0N22c3Pjg4.jpg"
   },
@@ -100,45 +136,9 @@
    "title": "Was die vier Ringe von Audi wirklich bedeuten 🔘",
    "text": "Die vier Ringe stehen für vier Firmen, und der Name Audi ist eine Übersetzung.",
    "niche": "Autos",
-   "views": 1039,
+   "views": 1160,
    "published": "2026-10-31T12:36:52+00:00",
    "thumb": "thumbs/QBK9lsvEsn0.jpg"
-  },
-  {
-   "id": "iNH_90bzjKw",
-   "title": "Die erste Kreditkarte entstand wegen eines Abendessens 🍽️",
-   "text": "Wie Diners Club die Kreditkarte für Restaurants erfand. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 135,
-   "published": "2026-10-31T11:03:13+00:00",
-   "thumb": "thumbs/iNH_90bzjKw.jpg"
-  },
-  {
-   "id": "TCe6cPbmtoE",
-   "title": "Dieses Brot kostete hunderte Milliarden 🍞",
-   "text": "Die deutsche Hyperinflation von neunzehnhundertdreiundzwanzig. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 149,
-   "published": "2026-10-31T08:36:50+00:00",
-   "thumb": "thumbs/TCe6cPbmtoE.jpg"
-  },
-  {
-   "id": "Q9XU2LbVX0o",
-   "title": "Dieses Land ist kleiner als ein Park 🌍",
-   "text": "Der Vatikan im Größenvergleich mit dem Central Park.",
-   "niche": "Geografie",
-   "views": 1107,
-   "published": "2026-10-31T06:37:04+00:00",
-   "thumb": "thumbs/Q9XU2LbVX0o.jpg"
-  },
-  {
-   "id": "DRtpC8USnCY",
-   "title": "Als die Pyramiden standen, lebten noch Mammuts 🦣",
-   "text": "Die letzten Mammuts starben viel später als gedacht.",
-   "niche": "Geschichte",
-   "views": 833,
-   "published": "2026-10-30T18:36:34+00:00",
-   "thumb": "thumbs/DRtpC8USnCY.jpg"
   }
  ]
 }
