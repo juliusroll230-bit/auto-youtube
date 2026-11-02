@@ -1,0 +1,50 @@
+{
+  "slug": "business-hyundai-baufirma",
+  "style": "car",
+  "car_color": "#1d3d8f",
+  "niche": "Business",
+  "accent": "#8fd3ff",
+  "title": "Hyundai hat gar nicht mit Autos angefangen 🏗️",
+  "description": "Hyundai begann als Baufirma, und der Name hat eine einfache Bedeutung.\n\n#business #hyundai #autos #shorts",
+  "tags": [
+    "business",
+    "hyundai",
+    "autos",
+    "korea",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Hyundai* hat mit Häusern und Straßen angefangen, nicht mit Autos."
+    },
+    {
+      "text": "Gründer *Chung Ju-yung* war ein Bauernsohn aus Nordkorea. Wie wurde daraus ein Autokonzern?"
+    },
+    {
+      "text": "Er gründete neunzehnhundertsiebenundvierzig eine *Baufirma*. Erst zwanzig Jahre später kamen Autos dazu.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1947,
+            "Baufirma"
+          ],
+          [
+            1967,
+            "Autos"
+          ],
+          [
+            1975,
+            "Pony"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Neunzehnhundertfünfundsiebzig kam der *Pony*, das erste koreanische Auto aus Serienproduktion. Und Hyundai heißt einfach *modern*."
+    },
+    {
+      "text": "Vom Bauarbeiter zum Weltkonzern. Folge für mehr."
+    }
+  ]
+}

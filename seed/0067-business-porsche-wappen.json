@@ -1,0 +1,41 @@
+{
+  "slug": "business-porsche-wappen",
+  "style": "car",
+  "car_color": "#c8102e",
+  "niche": "Business",
+  "accent": "#ffd34d",
+  "title": "Im Porsche-Logo steckt eine ganze Stadt 🐎",
+  "description": "Pferd, Geweih und Streifen: woher die Teile des Porsche-Wappens stammen.\n\n#business #porsche #autos #shorts",
+  "tags": [
+    "business",
+    "porsche",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Im *Porsche*-Logo steckt eine ganze Stadt."
+    },
+    {
+      "text": "Das Wappen kam neunzehnhundertzweiundfünfzig auf das *Lenkrad* des Porsche dreihundertsechsundfünfzig. Doch was zeigt es eigentlich?"
+    },
+    {
+      "text": "Das Pferd in der Mitte stammt aus dem Wappen von *Stuttgart*.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Pferd",
+          "Geweih",
+          "Streifen"
+        ]
+      }
+    },
+    {
+      "text": "Denn Stuttgart geht auf ein *Gestüt* zurück, einen Stutengarten. Geweih und Streifen kommen aus dem Wappen von *Württemberg*."
+    },
+    {
+      "text": "Eine ganze Heimat auf einem Lenkrad. Folge für mehr."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "geografie-russland-pluto",
+  "niche": "Geografie",
+  "colors": [
+    "#0d2238",
+    "#3a78b5"
+  ],
+  "accent": "#ffb3a0",
+  "title": "Dieses Land ist größer als ein ganzer Zwergplanet 🪐",
+  "description": "Russland hat mehr Fläche als die gesamte Oberfläche von Pluto.\n\n#geografie #russland #pluto #shorts",
+  "tags": [
+    "geografie",
+    "russland",
+    "pluto",
+    "weltall",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪐",
+      "text": "*Russland* ist größer als *Pluto*."
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Russland hat über siebzehn Millionen Quadratkilometer Fläche. Doch wie groß ist Pluto?"
+    },
+    {
+      "emoji": "🔭",
+      "text": "Pluto ist nur etwa halb so breit wie die *USA*. Seine ganze Oberfläche misst rund sechzehn Millionen Quadratkilometer.",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Russland",
+          17100000
+        ],
+        "b": [
+          "Pluto",
+          16700000
+        ],
+        "einheit": "km²"
+      }
+    },
+    {
+      "emoji": "❄️",
+      "text": "Ein einziges Land hat also mehr Fläche als ein ganzer *Zwergplanet*."
+    },
+    {
+      "emoji": "👉",
+      "text": "Und Russland hat elf Zeitzonen. Folge für mehr Geografie."
+    }
+  ]
+}

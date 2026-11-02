@@ -1,0 +1,44 @@
+{
+  "slug": "psychologie-pratfall-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#2a0f3a",
+    "#8a45c9"
+  ],
+  "accent": "#ffd1f0",
+  "title": "Warum ein kleines Missgeschick dich beliebter macht ☕",
+  "description": "Der Pratfall-Effekt: Warum kompetente Menschen durch einen kleinen Fehler sympathischer wirken.\n\n#psychologie #fehler #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "fehler",
+    "sympathie",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "☕",
+      "text": "Ein verschütteter *Kaffee* kann dich sympathischer machen."
+    },
+    {
+      "emoji": "🎧",
+      "text": "Das testete der Psychologe *Elliot Aronson* neunzehnhundertsechsundsechzig. Doch wie kann ein Fehler helfen?"
+    },
+    {
+      "emoji": "🏆",
+      "text": "Versuchspersonen hörten einen sehr guten *Quizkandidaten*. In einer Version verschüttete er am Ende Kaffee."
+    },
+    {
+      "emoji": "😊",
+      "text": "Mit dem Missgeschick fanden sie ihn *sympathischer*. Ein Fehler macht Profis menschlich.",
+      "visual": {
+        "type": "wort",
+        "text": "Sympathischer"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Aber nur, wenn du sonst richtig gut bist. Folge für mehr."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "geschichte-eiffelturm-abriss",
+  "niche": "Geschichte",
+  "colors": [
+    "#1f1a33",
+    "#5a4fa3"
+  ],
+  "accent": "#ffcf6e",
+  "title": "Der Eiffelturm sollte abgerissen werden 🗼",
+  "description": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.\n\n#geschichte #paris #eiffelturm #shorts",
+  "tags": [
+    "geschichte",
+    "paris",
+    "eiffelturm",
+    "frankreich",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🗼",
+      "text": "Der *Eiffelturm* hatte ein Ablaufdatum."
+    },
+    {
+      "emoji": "🎡",
+      "text": "Gebaut wurde er für die *Weltausstellung* achtzehnhundertneunundachtzig. Danach sollte er nur zwanzig Jahre stehen.",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1889,
+            "Eröffnung"
+          ],
+          [
+            1909,
+            "Abriss?"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "😠",
+      "text": "Viele Pariser Künstler fanden ihn hässlich. Wie überlebte er trotzdem?"
+    },
+    {
+      "emoji": "📡",
+      "text": "*Gustave Eiffel* machte ihn zum Labor für Wetter und Funk. Als *Funkturm* wurde er zu wichtig zum Abreißen."
+    },
+    {
+      "emoji": "👉",
+      "text": "Er steht bis heute. Folge für mehr Geschichte."
+    }
+  ]
+}

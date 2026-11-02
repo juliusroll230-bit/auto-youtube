@@ -1,0 +1,48 @@
+{
+  "slug": "geld-salaer-salz",
+  "niche": "Geld",
+  "colors": [
+    "#10302a",
+    "#2d8a6e"
+  ],
+  "accent": "#f4ff8a",
+  "title": "In deinem Gehalt steckt ein altes Wort für Salz 🧂",
+  "description": "Woher das Wort Salär kommt und was Salz damit zu tun haben soll. Keine Anlageberatung.\n\n#geld #gehalt #wortherkunft #shorts",
+  "tags": [
+    "geld",
+    "gehalt",
+    "salz",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧂",
+      "text": "Das Wort *Salär* kommt von Salz."
+    },
+    {
+      "emoji": "📜",
+      "text": "Salär ist ein altes Wort für Gehalt. Doch was hat Salz mit Geld zu tun?"
+    },
+    {
+      "emoji": "🏛️",
+      "text": "Im alten Rom hieß eine Bezahlung *Salarium*. Darin steckt *Sal*, das lateinische Wort für Salz.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Sal",
+          "Salarium",
+          "Salär"
+        ]
+      }
+    },
+    {
+      "emoji": "⚔️",
+      "text": "Der Legende nach bekamen römische *Soldaten* Geld, um sich Salz zu kaufen. Belegt ist das nicht."
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Gehalt mit Würze. Keine Anlageberatung. Folge für mehr."
+    }
+  ]
+}
