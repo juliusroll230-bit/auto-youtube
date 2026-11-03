@@ -6,11 +6,47 @@
  },
  "videos": [
   {
+   "id": "lT1FU16HyL8",
+   "title": "Darum hat deine Geheimzahl genau so viele Ziffern 🏧",
+   "text": "Der erste Geldautomat Großbritanniens und die Geschichte hinter der vierstelligen PIN. Keine Anlageberatung.",
+   "niche": "Geld",
+   "views": 0,
+   "published": "2026-11-03T10:37:02+00:00",
+   "thumb": "thumbs/lT1FU16HyL8.jpg"
+  },
+  {
+   "id": "wL788iykH5I",
+   "title": "Nicht der Everest ragt am weitesten ins All 🏔️",
+   "text": "Warum der Gipfel des Chimborazo weiter vom Erdmittelpunkt entfernt ist als der Mount Everest.",
+   "niche": "Geografie",
+   "views": 26,
+   "published": "2026-11-03T08:37:16+00:00",
+   "thumb": "thumbs/wL788iykH5I.jpg"
+  },
+  {
+   "id": "H1RT-C-ucyM",
+   "title": "Woher der Name Aston Martin wirklich kommt 🏁",
+   "text": "Die Marke von James Bond hat einen ganz einfachen Ursprung.",
+   "niche": "Autos",
+   "views": 106,
+   "published": "2026-11-02T18:36:26+00:00",
+   "thumb": "thumbs/H1RT-C-ucyM.jpg"
+  },
+  {
+   "id": "i9WQ6VbYGbg",
+   "title": "Was die sechs Sterne im Subaru-Logo bedeuten ✨",
+   "text": "Das Subaru-Logo ist ein echter Sternhaufen und erzählt die Geschichte der Firma.",
+   "niche": "Autos",
+   "views": 232,
+   "published": "2026-11-02T16:36:38+00:00",
+   "thumb": "thumbs/i9WQ6VbYGbg.jpg"
+  },
+  {
    "id": "4tnk8f4wcnA",
    "title": "Warum ein kleines Missgeschick dich beliebter macht ☕",
    "text": "Der Pratfall-Effekt: Warum kompetente Menschen durch einen kleinen Fehler sympathischer wirken.",
    "niche": "Psychologie",
-   "views": 0,
+   "views": 61,
    "published": "2026-11-02T14:36:51+00:00",
    "thumb": "thumbs/4tnk8f4wcnA.jpg"
   },
@@ -19,7 +55,7 @@
    "title": "Der Eiffelturm sollte abgerissen werden 🗼",
    "text": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.",
    "niche": "Geschichte",
-   "views": 211,
+   "views": 557,
    "published": "2026-11-02T12:36:37+00:00",
    "thumb": "thumbs/Qt-0acyd3I0.jpg"
   },
@@ -28,7 +64,7 @@
    "title": "In deinem Gehalt steckt ein altes Wort für Salz 🧂",
    "text": "Woher das Wort Salär kommt und was Salz damit zu tun haben soll. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 109,
+   "views": 127,
    "published": "2026-11-02T10:36:43+00:00",
    "thumb": "thumbs/Gr1tDcUHnCo.jpg"
   },
@@ -37,7 +73,7 @@
    "title": "Dieses Land ist größer als ein ganzer Zwergplanet 🪐",
    "text": "Russland hat mehr Fläche als die gesamte Oberfläche von Pluto.",
    "niche": "Geografie",
-   "views": 231,
+   "views": 553,
    "published": "2026-11-02T08:36:49+00:00",
    "thumb": "thumbs/yPefjF3R-cY.jpg"
   },
@@ -46,7 +82,7 @@
    "title": "VW kaufte Rolls-Royce und ging trotzdem leer aus 👑",
    "text": "Wie VW eine Luxusmarke kaufte, aber den Namen nicht bekam.",
    "niche": "Autos",
-   "views": 998,
+   "views": 1044,
    "published": "2026-11-01T18:37:48+00:00",
    "thumb": "thumbs/UCIZRDjLJOk.jpg"
   },
@@ -55,7 +91,7 @@
    "title": "Warum wir gutaussehende Menschen für klüger halten 🧠",
    "text": "Der Halo-Effekt färbt den ersten Eindruck.",
    "niche": "Psychologie",
-   "views": 515,
+   "views": 598,
    "published": "2026-11-01T17:41:59+00:00",
    "thumb": "thumbs/_swff3-SXRA.jpg"
   },
@@ -64,7 +100,7 @@
    "title": "Diese Automarke hat mit etwas ganz anderem angefangen 🍾",
    "text": "Bevor Mazda Autos baute, stellte die Firma etwas völlig anderes her.",
    "niche": "Autos",
-   "views": 311,
+   "views": 348,
    "published": "2026-11-01T17:36:54+00:00",
    "thumb": "thumbs/tAYzbIb2qmM.jpg"
   },
@@ -73,7 +109,7 @@
    "title": "Ein Goldschmied veränderte, wie die Welt liest 📖",
    "text": "Wie Gutenbergs Druckpresse Wissen vervielfältigte.",
    "niche": "Geschichte",
-   "views": 122,
+   "views": 134,
    "published": "2026-11-01T15:37:02+00:00",
    "thumb": "thumbs/0FtnM_VD6yI.jpg"
   },
@@ -82,7 +118,7 @@
    "title": "Warum dich Unerledigtes nicht loslässt 🧠",
    "text": "Der Zeigarnik-Effekt: offene Aufgaben bleiben im Kopf.",
    "niche": "Psychologie",
-   "views": 188,
+   "views": 211,
    "published": "2026-11-01T12:37:16+00:00",
    "thumb": "thumbs/W6XgpN27OTU.jpg"
   },
@@ -91,7 +127,7 @@
    "title": "Diese Münze kostet mehr, als sie wert ist 🪙",
    "text": "Der amerikanische Penny im Kostencheck. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 271,
+   "views": 286,
    "published": "2026-11-01T10:36:50+00:00",
    "thumb": "thumbs/W_g9fQMhHBo.jpg"
   },
@@ -100,45 +136,9 @@
    "title": "Dieses Land steckt komplett in einem anderen 🌍",
    "text": "Lesotho: ein Königreich mitten in Südafrika.",
    "niche": "Geografie",
-   "views": 926,
+   "views": 960,
    "published": "2026-11-01T08:36:59+00:00",
    "thumb": "thumbs/YAkDasYdUsQ.jpg"
-  },
-  {
-   "id": "7B1z4ef0cG8",
-   "title": "Warum ein Reifenhersteller Sterne an Köche vergibt ⭐",
-   "text": "Der Michelin-Führer begann als kostenloses Heft für Autofahrer.",
-   "niche": "Autos",
-   "views": 472,
-   "published": "2026-11-01T06:36:52+00:00",
-   "thumb": "thumbs/7B1z4ef0cG8.jpg"
-  },
-  {
-   "id": "5JVjhjS44uA",
-   "title": "Ein einziges Wort öffnete die Berliner Mauer 🧱",
-   "text": "Wie eine Pressekonferenz am neunten November die Grenze öffnete.",
-   "niche": "Geschichte",
-   "views": 194,
-   "published": "2026-10-31T17:37:07+00:00",
-   "thumb": "thumbs/5JVjhjS44uA.jpg"
-  },
-  {
-   "id": "j0N22c3Pjg4",
-   "title": "Warum dir Lieder erst beim dritten Hören gefallen 🎧",
-   "text": "Der Mere-Exposure-Effekt: Bekanntes mögen wir mehr.",
-   "niche": "Psychologie",
-   "views": 303,
-   "published": "2026-10-31T15:36:53+00:00",
-   "thumb": "thumbs/j0N22c3Pjg4.jpg"
-  },
-  {
-   "id": "QBK9lsvEsn0",
-   "title": "Was die vier Ringe von Audi wirklich bedeuten 🔘",
-   "text": "Die vier Ringe stehen für vier Firmen, und der Name Audi ist eine Übersetzung.",
-   "niche": "Autos",
-   "views": 1160,
-   "published": "2026-10-31T12:36:52+00:00",
-   "thumb": "thumbs/QBK9lsvEsn0.jpg"
   }
  ]
 }
