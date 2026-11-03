@@ -1,0 +1,53 @@
+{
+  "slug": "geschichte-mona-lisa-diebstahl",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1c14",
+    "#8a5a2e"
+  ],
+  "accent": "#ffd98a",
+  "title": "Dieses Verbrechen machte die Mona Lisa berühmt 🖼️",
+  "description": "1911 verschwand die Mona Lisa aus dem Louvre. Die Jagd nach ihr machte sie weltbekannt.\n\n#geschichte #monalisa #louvre #shorts",
+  "tags": [
+    "geschichte",
+    "mona lisa",
+    "louvre",
+    "kunst",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🖼️",
+      "text": "Ein Diebstahl machte die *Mona Lisa* zum Superstar."
+    },
+    {
+      "emoji": "🕳️",
+      "text": "Am einundzwanzigsten August neunzehnhundertelf war ihr Platz im *Louvre* plötzlich leer. Wer hatte sie mitgenommen?",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1911,
+            "Gestohlen"
+          ],
+          [
+            1913,
+            "Gefunden"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "🕵️",
+      "text": "Sogar der Maler *Pablo Picasso* wurde verhört. Zeitungen weltweit druckten ihr Bild."
+    },
+    {
+      "emoji": "🔍",
+      "text": "Der Dieb war *Vincenzo Peruggia*, ein Arbeiter aus dem Museum. Nach zwei Jahren wurde er in *Florenz* geschnappt."
+    },
+    {
+      "emoji": "👉",
+      "text": "Danach kannte sie jeder. Folge für mehr Geschichte."
+    }
+  ]
+}

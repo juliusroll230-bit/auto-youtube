@@ -1,0 +1,37 @@
+{
+  "slug": "business-bugatti-deutschland",
+  "style": "car",
+  "car_color": "#1b3a8c",
+  "niche": "Business",
+  "accent": "#ffd36e",
+  "title": "Diese französische Marke wurde woanders gegründet 🇫🇷",
+  "description": "Ein Italiener, eine Fabrik im Elsass und das Kaiserreich: die Herkunft von Bugatti.\n\n#business #bugatti #autos #geschichte #shorts",
+  "tags": [
+    "business",
+    "bugatti",
+    "autos",
+    "elsass",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Die Luxusmarke *Bugatti* wurde in Deutschland gegründet."
+    },
+    {
+      "text": "Heute gilt Bugatti als französisch. Gründer *Ettore Bugatti* war Italiener aus Mailand. Wie passt das zusammen?"
+    },
+    {
+      "text": "Er eröffnete neunzehnhundertneun eine Fabrik in *Molsheim* im Elsass.",
+      "visual": {
+        "type": "wort",
+        "text": "Molsheim"
+      }
+    },
+    {
+      "text": "Das Elsass gehörte damals zum *Deutschen Kaiserreich*. Erst nach dem Ersten Weltkrieg wurde es *französisch*."
+    },
+    {
+      "text": "Drei Länder in einer Marke. Folge für mehr."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "business-lexus-projekt",
+  "style": "car",
+  "car_color": "#2b2f36",
+  "niche": "Business",
+  "accent": "#9fd8ff",
+  "title": "Diese Luxusmarke begann als geheimes Projekt 🤫",
+  "description": "Wie Toyota mit einem Geheimprojekt die Marke Lexus erfand.\n\n#business #lexus #toyota #autos #shorts",
+  "tags": [
+    "business",
+    "lexus",
+    "toyota",
+    "autos",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Lexus* begann als geheimes Projekt bei Toyota."
+    },
+    {
+      "text": "Neunzehnhundertdreiundachtzig startete Chef *Eiji Toyoda* das Projekt F eins. Aber warum eine eigene Marke?",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1983,
+            "Projekt F1"
+          ],
+          [
+            1989,
+            "LS 400"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Toyota galt als *günstig*. Für reiche Kunden in Amerika brauchte es einen neuen Namen."
+    },
+    {
+      "text": "Neunzehnhundertneunundachtzig kam der *LS vierhundert*. In der Werbung stand eine Pyramide aus *Sektgläsern* auf der Motorhaube. Der Motor lief dabei."
+    },
+    {
+      "text": "Kein Glas fiel um. Folge für mehr."
+    }
+  ]
+}

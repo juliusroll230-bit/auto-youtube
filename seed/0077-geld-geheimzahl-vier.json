@@ -1,0 +1,48 @@
+{
+  "slug": "geld-geheimzahl-vier",
+  "niche": "Geld",
+  "colors": [
+    "#0f2e26",
+    "#2f8f70"
+  ],
+  "accent": "#e9ff8f",
+  "title": "Darum hat deine Geheimzahl genau so viele Ziffern 🏧",
+  "description": "Der erste Geldautomat Großbritanniens und die Geschichte hinter der vierstelligen PIN. Keine Anlageberatung.\n\n#geld #geldautomat #pin #shorts",
+  "tags": [
+    "geld",
+    "geldautomat",
+    "pin",
+    "bank",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏧",
+      "text": "Die erste *Geheimzahl* sollte sechs Ziffern haben."
+    },
+    {
+      "emoji": "🇬🇧",
+      "text": "Neunzehnhundertsiebenundsechzig eröffnete Barclays in London den ersten *Geldautomaten* Großbritanniens. Warum wurden es nur vier Ziffern?"
+    },
+    {
+      "emoji": "☢️",
+      "text": "Statt Karten gab es *Papierschecks* mit einem schwach radioaktiven Stoff.",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Scheck",
+          "Geheimzahl",
+          "Bargeld"
+        ]
+      }
+    },
+    {
+      "emoji": "👩",
+      "text": "Erfinder *John Shepherd-Barron* wollte sechs Ziffern. Laut ihm konnte sich seine Frau aber nur *vier* merken."
+    },
+    {
+      "emoji": "👉",
+      "text": "Darum tippst du heute vier Ziffern. Keine Anlageberatung. Folge für mehr."
+    }
+  ]
+}

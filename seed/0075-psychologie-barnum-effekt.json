@@ -1,0 +1,44 @@
+{
+  "slug": "psychologie-barnum-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#2b1238",
+    "#7d3fb8"
+  ],
+  "accent": "#ffc9ec",
+  "title": "Warum dein Horoskop so gut passt 🔮",
+  "description": "Der Barnum-Effekt: Warum vage Beschreibungen sich so persönlich anfühlen.\n\n#psychologie #horoskop #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "horoskop",
+    "barnum",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🔮",
+      "text": "Dein *Horoskop* passt auf fast jeden Menschen."
+    },
+    {
+      "emoji": "📝",
+      "text": "Neunzehnhundertachtundvierzig gab Psychologe *Bertram Forer* Studenten eine persönliche Charakterbeschreibung. Doch wie persönlich war sie?"
+    },
+    {
+      "emoji": "📚",
+      "text": "Alle bekamen denselben Text. Er stammte großteils aus einem *Astrologiebuch*."
+    },
+    {
+      "emoji": "🎯",
+      "text": "Trotzdem gaben sie im Schnitt über vier von fünf Punkten für *Treffsicherheit*. Das heißt heute *Barnum-Effekt*.",
+      "visual": {
+        "type": "wort",
+        "text": "Barnum-Effekt"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Vage Sätze fühlen sich persönlich an. Folge für mehr."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "geografie-chimborazo-all",
+  "niche": "Geografie",
+  "colors": [
+    "#0c2236",
+    "#3f82b8"
+  ],
+  "accent": "#ffbfa8",
+  "title": "Nicht der Everest ragt am weitesten ins All 🏔️",
+  "description": "Warum der Gipfel des Chimborazo weiter vom Erdmittelpunkt entfernt ist als der Mount Everest.\n\n#geografie #everest #berge #shorts",
+  "tags": [
+    "geografie",
+    "everest",
+    "chimborazo",
+    "berge",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏔️",
+      "text": "Der *Mount Everest* ragt nicht am weitesten ins All."
+    },
+    {
+      "emoji": "📏",
+      "text": "Vom Meer aus gemessen ist er mit achttausendachthundertneunundvierzig Metern der Höchste. Aber welcher Gipfel liegt dem Weltall näher?",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Everest",
+          8849
+        ],
+        "b": [
+          "Chimborazo",
+          6263
+        ],
+        "einheit": "Meter hoch"
+      }
+    },
+    {
+      "emoji": "🌍",
+      "text": "Die Erde ist kein perfekter Ball. Am *Äquator* ist sie dicker."
+    },
+    {
+      "emoji": "🇪🇨",
+      "text": "Darum gewinnt der *Chimborazo* in Ecuador. Sein Gipfel liegt gut zwei Kilometer weiter vom *Erdmittelpunkt* weg."
+    },
+    {
+      "emoji": "👉",
+      "text": "Kleinerer Berg, größerer Abstand. Folge für mehr Geografie."
+    }
+  ]
+}
