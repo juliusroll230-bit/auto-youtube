@@ -32,7 +32,7 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [7, 11, 13, 15, 17, 19, 21], "privacy": "public", "expired": False,
+                  "post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21], "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
@@ -78,11 +78,11 @@ def init():
             if cfg["post_hours"] == [12, 17, 20]:
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
             cfg["hours_v2"] = True
-        # Alte Standardzeiten (6 pro Tag) einmalig auf die neuen 7 Zeiten umstellen, eigene Zeiten bleiben
-        if not cfg.get("hours_v3"):
-            if cfg["post_hours"] == [8, 11, 13, 16, 18, 20]:
+        # Alte Standardzeiten (6 oder 7 pro Tag) einmalig auf die neuen 10 Zeiten umstellen, eigene Zeiten bleiben
+        if not cfg.get("hours_v4"):
+            if cfg["post_hours"] in ([8, 11, 13, 16, 18, 20], [7, 11, 13, 15, 17, 19, 21]):
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
-            cfg["hours_v3"] = True
+            cfg["hours_v4"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
