@@ -712,9 +712,23 @@ def render(c, clip, info, words, settings):
     with open(os.path.join(folder, name + ".ass"), "w", encoding="utf-8") as f:
         f.write(ass(words, start, dur, settings["untertitel"], clip.get("hook") if settings["hook"] else ""))
     crop = settings["crop"]
-    if crop == "auto":
-        crop = "mitte" if info["width"] <= info["height"] * 1.05 else "rahmen"
-    if crop == "mitte":
+    landscape = info["width"] > info["height"] * 1.05
+    face = None
+    if landscape and crop in ("auto", "gesicht"):  # Sprecher im Bild halten (facecrop.py)
+        try:
+            import facecrop
+            face = facecrop.plan(source_path(c), start, dur, info["width"], info["height"], W, H)
+        except Exception:
+            face = None
+        if face and crop == "auto" and face[0] < 0.5:
+            face = None  # nur ab und zu ein Gesicht (z. B. Folien): lieber das ganze Bild zeigen
+    if crop in ("auto", "gesicht"):
+        crop = "gesicht" if face else ("rahmen" if landscape else "mitte")
+    if crop == "gesicht" and not face:
+        crop = "rahmen"
+    if crop == "gesicht":
+        base = f"[0:v]scale={face[1]}:{H},crop={W}:{H}:x={face[2]}:y=0,setsar=1"
+    elif crop == "mitte":
         base = f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1"
     else:
         base = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"

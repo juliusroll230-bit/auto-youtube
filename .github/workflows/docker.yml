@@ -70,6 +70,8 @@ jobs:
         run: docker exec app python tests/clip_smoke.py
       - name: Whop-Kampagnen lesen
         run: docker exec app python tests/whop_test.py
+      - name: Gesichts-Zuschnitt
+        run: docker exec app python tests/facecrop_test.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app

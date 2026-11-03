@@ -2525,7 +2525,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       { type: "sec", label: "Clipping-Stil" },
       { k: "untertitel", type: "choice", label: "Untertitel", opts: [["pop", "Pop"], ["kasten", "Kasten"], ["unterstrich", "Unterstrich"]], hint: "Wort für Wort, das gesprochene Wort leuchtet orange." },
       { k: "hook", type: "switch", label: "Hook-Text oben einblenden", hint: "Der erste Satz steht in den ersten Sekunden groß oben im Bild." },
-      { k: "crop", type: "choice", label: "Bildausschnitt", opts: [["auto", "Automatisch"], ["mitte", "Mitte"], ["rahmen", "Ganzes Bild"]], hint: "„Ganzes Bild“ zeigt Querformat komplett, mit unscharfem Hintergrund oben und unten." },
+      { k: "crop", type: "choice", label: "Bildausschnitt", opts: [["auto", "Automatisch"], ["gesicht", "Gesicht folgen"], ["mitte", "Mitte"], ["rahmen", "Ganzes Bild"]], hint: "„Gesicht folgen“ hält den Sprecher im Bild, wenn das Video quer ist. „Automatisch“ macht das, wenn fast immer ein Gesicht zu sehen ist, sonst „Ganzes Bild“ (mit unscharfem Hintergrund oben und unten)." },
       { k: "sprache", type: "choice", label: "Sprache", opts: [["de", "Deutsch"], ["en", "Englisch"], ["auto", "Erkennen"]] },
       { k: "modell", type: "choice", label: "Spracherkennung", opts: [["base", "Schnell"], ["small", "Genauer"]], hint: "„Genauer“ braucht etwa doppelt so lange." },
       { type: "sec", label: "Freigabe" },

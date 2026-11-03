@@ -45,7 +45,7 @@ RANGES = {
 CHOICES = {
     ("studio", "kopfzeile"): ("auto", "mit", "ohne"),
     ("studio", "untertitel"): ("auto", "kasten", "unterstrich", "pop"),
-    ("clipper", "crop"): ("auto", "mitte", "rahmen"),
+    ("clipper", "crop"): ("auto", "gesicht", "mitte", "rahmen"),
     ("clipper", "untertitel"): ("pop", "kasten", "unterstrich"),
     ("clipper", "sprache"): ("de", "en", "auto"),
     ("clipper", "modell"): ("base", "small"),
