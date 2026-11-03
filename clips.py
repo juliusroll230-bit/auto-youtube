@@ -324,6 +324,17 @@ def set_clip(cid, n, action, title=None):
     return update(cid, go)
 
 
+def approve_waiting():
+    """Alle wartenden Clips freigeben (wenn die automatische Freigabe eingeschaltet wird)."""
+    def go(c):
+        for x in c["clips"]:
+            if x["status"] == "neu":
+                x["status"] = "freigegeben"
+    for c in all_campaigns():
+        if any(x["status"] == "neu" for x in c["clips"]):
+            update(c["id"], go)
+
+
 # --- Posten ------------------------------------------------------------------------------
 
 def ready_clips():

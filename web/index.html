@@ -724,8 +724,28 @@ input[type="range"]:disabled { opacity: .45; cursor: not-allowed; }
 .lnrow input { flex: 1 1 260px; min-width: 0; height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .04); font-size: 15px; }
 .lnrow input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(154, 212, 166, .18); }
 .lnrow .btn { height: 46px; padding: 0 22px; font-size: 14px; }
+.nv { gap: 14px; }
+.nv-steps { list-style: none; display: flex; gap: 8px; margin: 0; padding: 0; flex-wrap: wrap; }
+.nv-steps li { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: var(--muted); background: rgba(255, 255, 255, .05); transition: color .2s ease, background-color .2s ease; }
+.nv-steps li i { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-style: normal; font-size: 11px; background: rgba(255, 255, 255, .1); }
+.nv-steps li.on { color: var(--ink); }
+.nv-steps li.on i { background: var(--accent); color: #fff; }
+.nv-steps li.done { color: var(--ink-2); }
+.nv-steps li.done i { background: rgba(52, 211, 153, .85); color: #04140c; }
+.nv-drop { padding: 34px 18px; }
+.nv-drop.has { border-style: solid; }
+.nv-or { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; text-transform: none; }
+.nv-or::before, .nv-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.nv-hint { margin: 0; padding: 10px 12px; border-radius: 12px; font-size: 13px; background: rgba(255, 159, 10, .1); border: 1px solid rgba(255, 159, 10, .4); }
+.nv-more summary { cursor: pointer; font-size: 13px; color: var(--ink-2); list-style: none; }
+.nv-more summary::-webkit-details-marker { display: none; }
+.nv-more summary::before { content: "+ "; color: var(--accent); }
+.nv-more[open] summary::before { content: "− "; }
+.nv-more .g2 { margin-top: 10px; }
+.nv-go { height: 48px; padding: 0 30px; font-size: 15px; }
+@media (max-width: 560px) { .g2 { grid-template-columns: minmax(0, 1fr); } .nv-go { width: 100%; } }
 details.more { margin-top: 18px; }
-#lnMsg:empty { display: none; }
+#nvMsg:empty { display: none; }
 details.more > summary { cursor: pointer; list-style: none; padding-bottom: 18px; }
 details.more > summary::-webkit-details-marker { display: none; }
 details.more > summary::after { content: "+"; margin-left: auto; font-size: 20px; color: var(--muted); }
@@ -1334,29 +1354,30 @@ dialog.vs[open] { display: grid; place-items: center; }
       </div>
 
       <div class="card newc">
-        <div class="card-h"><div><h2>Neue Kampagne</h2><div class="sub">Link einfügen oder Video hochladen. Den Rest macht der Clipper.</div></div>
-          <div class="seg" id="kMode" role="group" aria-label="Art"><button type="button" data-m="link" aria-pressed="true">Link</button><button type="button" data-m="file" aria-pressed="false">Datei</button></div></div>
-        <form class="card-b form" id="lnForm" novalidate>
-          <div class="lnrow"><input id="lnUrl" type="url" inputmode="url" autocomplete="off" placeholder="Link einfügen: Google Drive, Dropbox oder …/video.mp4" aria-label="Link zum Video"><button class="btn primary" type="submit" id="lnGo" disabled>Verknüpfen</button></div>
-          <label class="check"><input type="checkbox" id="lnRights"><span><b>Ich darf dieses Video verwenden.</b> <span class="muted">Eigenes Video oder Erlaubnis, zum Beispiel bei einer Clipping-Kampagne des Erstellers.</span></span></label>
-          <p class="msg" id="lnMsg"></p>
-          <p class="label">Bei Google Drive und Dropbox muss die Freigabe auf „Jeder mit dem Link“ stehen. Links zu YouTube, TikTok oder Instagram gehen nicht.</p>
-        </form>
-          <form class="card-b form" id="upForm" novalidate hidden>
-            <label class="drop" id="drop">
-              <input type="file" id="upFile" accept="video/*,.mkv,.mov,.m4v">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
-              <b id="dropT">Video hierher ziehen</b>
-              <span class="muted" id="dropS">oder tippen, um eins auszuwählen</span>
-            </label>
+        <div class="card-h"><div><h2>Neues Video</h2><div class="sub">Video wählen, Erlaubnis bestätigen, fertig. Den Rest macht der Clipper.</div></div></div>
+        <form class="card-b form nv" id="nvForm" novalidate>
+          <ol class="nv-steps" aria-hidden="true"><li class="on" id="nvS1"><i>1</i>Video</li><li id="nvS2"><i>2</i>Erlaubnis</li><li id="nvS3"><i>3</i>Los</li></ol>
+          <label class="drop nv-drop" id="drop">
+            <input type="file" id="upFile" accept="video/*,.mkv,.mov,.m4v">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
+            <b id="dropT">Video hierher ziehen</b>
+            <span class="muted" id="dropS">oder tippen, um eins auszuwählen</span>
+          </label>
+          <div class="nv-or"><span>oder Link einfügen</span></div>
+          <div class="lnrow"><input id="lnUrl" type="url" inputmode="url" autocomplete="off" placeholder="Link zum Video: Google Drive, Dropbox oder …/video.mp4" aria-label="Link zum Video"></div>
+          <p class="nv-hint" id="lnHint" hidden></p>
+          <label class="check"><input type="checkbox" id="nvRights"><span><b>Ich darf dieses Video verwenden.</b> <span class="muted">Eigenes Video oder Erlaubnis, zum Beispiel bei einer Clipping-Kampagne des Erstellers.</span></span></label>
+          <details class="nv-more"><summary>Name und Original angeben (optional)</summary>
             <div class="g2">
-              <div class="field"><label for="upName">Name der Kampagne</label><input id="upName" maxlength="80" autocomplete="off" placeholder="z. B. Podcast Folge 12"></div>
-              <div class="field"><label for="upCredit">Original (optional)</label><input id="upCredit" maxlength="80" autocomplete="off" placeholder="z. B. @deinkanal"></div>
+              <div class="field"><label for="upName">Name</label><input id="upName" maxlength="80" autocomplete="off" placeholder="z. B. Podcast Folge 12"></div>
+              <div class="field"><label for="upCredit">Original</label><input id="upCredit" maxlength="80" autocomplete="off" placeholder="z. B. @deinkanal"></div>
             </div>
-            <label class="check"><input type="checkbox" id="upRights"><span><b>Das Video ist von mir oder ich darf es verwenden.</b> <span class="muted">Bei fremden Videos nur mit Erlaubnis, zum Beispiel bei einer Clipping-Kampagne des Erstellers. Sonst drohen Verwarnungen auf YouTube.</span></span></label>
-            <div class="row"><button class="btn primary" type="submit" id="upGo" disabled>Hochladen und schneiden</button><span class="msg" id="upMsg"></span></div>
-            <div id="upProg" hidden><div class="bar"><i id="upBar"></i></div><div class="label num" id="upTxt" style="margin-top:6px"></div></div>
-          </form>
+          </details>
+          <label class="check nv-auto"><input type="checkbox" id="nvAuto"><span><b>Fertige Clips automatisch auf YouTube posten.</b> <span class="muted" id="nvAutoS">Aus: Du gibst jeden Clip erst frei.</span></span></label>
+          <div class="row"><button class="btn primary nv-go" type="submit" id="nvGo" disabled>Clips erstellen</button><span class="msg" id="nvMsg"></span></div>
+          <div id="upProg" hidden><div class="bar"><i id="upBar"></i></div><div class="label num" id="upTxt" style="margin-top:6px"></div></div>
+          <p class="label">Bei Google Drive und Dropbox muss die Freigabe auf „Jeder mit dem Link“ stehen. Links zu YouTube, TikTok oder Instagram gehen nicht, dafür lädst du die Datei hoch.</p>
+        </form>
       </div>
       <div class="card wpc">
         <div class="card-h"><div><h2><span class="wp-logo" aria-hidden="true">W</span>Whop-Kampagnen</h2><div class="sub">Link einer Kampagne einfügen. Geld pro 1.000 Aufrufe, Budget und Status holt die Zentrale selbst und schaut alle 3 Stunden nach.</div></div></div>
@@ -3659,6 +3680,9 @@ dialog.vs[open] { display: grid; place-items: center; }
       + (cl.on === false ? "Der Ordner wird gerade nicht überwacht (Clipper-Einstellungen)." : cl.auto_start ? "Ordner-Videos werden sofort geschnitten." : "Bei Ordner-Videos bestätigst du zuerst die Rechte.");
     renderHook(d);
     renderWhop(d);
+    var pb = (agentById("publisher") || {}).settings || {}, auto = cl.freigabe === false && (Number(pb.clips_per_day) || 0) > 0 && pb.on !== false;
+    $("nvAuto").checked = auto;
+    $("nvAutoS").textContent = auto ? "An: Der Publisher postet bis zu " + pb.clips_per_day + " Clips pro Tag, ohne dass du fragen musst." : "Aus: Du gibst jeden Clip erst frei.";
     if (ae && box.contains(ae) && ae.tagName === "INPUT") { S.campsPending = true; return; }
     S.campsPending = false;
     clear(box);
@@ -3789,52 +3813,75 @@ dialog.vs[open] { display: grid; place-items: center; }
   $("whCopy").addEventListener("click", function () { copyText(S.d && S.d.webhook_token, $("whCopy")); });
   $("whCurlCopy").addEventListener("click", function () { copyText(S.curlReal, $("whCurlCopy")); });
 
-  // Upload mit Fortschritt
+  // Neues Video: Datei oder Link, eine Erlaubnis, ein Knopf
+  var BAD_HOST = /(^|\.)(youtube\.com|youtu\.be|tiktok\.com|instagram\.com)$/i;
+  function lnValue() { return $("lnUrl").value.trim(); }
+  function lnValid() { return /^https?:\/\/\S+\.\S+/.test(lnValue()); }
+  function lnBadHost() {
+    if (!lnValid()) return false;
+    try { return BAD_HOST.test(new URL(lnValue()).hostname); } catch (er) { return false; }
+  }
+  function nvCheck() {
+    var hasSrc = !!S.upFile || lnValid(), bad = !S.upFile && lnBadHost();
+    var hint = $("lnHint");
+    hint.hidden = !bad;
+    if (bad) hint.textContent = "Von YouTube, TikTok und Instagram lädt die App nichts herunter. Lade das Video als Datei herunter (bei eigenen Videos geht das in YouTube Studio) und zieh die Datei oben hinein, oder nimm einen Drive- oder Dropbox-Link.";
+    var rights = $("nvRights").checked;
+    $("nvGo").disabled = !S.live || !hasSrc || bad || !rights || !!S.upXhr || !!S.lnBusy;
+    $("nvS1").className = hasSrc && !bad ? "done" : "on";
+    $("nvS2").className = hasSrc && !bad ? (rights ? "done" : "on") : "";
+    $("nvS3").className = hasSrc && !bad && rights ? "on" : "";
+    $("lnUrl").disabled = !!S.upFile;
+  }
   function setUpFile(f) {
     S.upFile = f || null;
     $("dropT").textContent = f ? f.name : "Video hierher ziehen";
-    $("dropS").textContent = f ? fmtBytes(f.size) : "oder tippen, um eins auszuwählen";
-    if (f && !$("upName").value) $("upName").value = f.name.replace(/\.[^.]+$/, "").replace(/[_]+/g, " ").slice(0, 80);
-    upCheck();
+    $("dropS").textContent = f ? fmtBytes(f.size) + " · zum Ändern anklicken" : "oder tippen, um eins auszuwählen";
+    $("drop").classList.toggle("has", !!f);
+    if (f) { $("lnUrl").value = ""; if (!$("upName").value) $("upName").value = f.name.replace(/\.[^.]+$/, "").replace(/[_]+/g, " ").slice(0, 80); }
+    nvCheck();
   }
-  function upCheck() { $("upGo").disabled = !S.live || !S.upFile || !$("upRights").checked || !!S.upXhr; }
-  // Neue Kampagne: Link (Standard) oder Datei
-  function lnCheck() { $("lnGo").disabled = !S.live || !/^https?:\/\/\S+\.\S+/.test($("lnUrl").value.trim()) || !$("lnRights").checked || !!S.lnBusy; }
-  $("lnUrl").addEventListener("input", lnCheck);
-  $("lnRights").addEventListener("change", lnCheck);
-  document.querySelectorAll("#kMode button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      document.querySelectorAll("#kMode button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      $("lnForm").hidden = b.dataset.m !== "link";
-      $("upForm").hidden = b.dataset.m !== "file";
-    });
+  function nvDone() {
+    $("nvForm").reset();
+    setUpFile(null);
+    S.lnBusy = false;
+    nvCheck();
+  }
+  $("nvAuto").addEventListener("change", function () {
+    var on = $("nvAuto").checked, pb = (agentById("publisher") || {}).settings || {};
+    var ch = saveAgent("clipper", { freigabe: !on });
+    if (on) {
+      saveAgent("publisher", { on: true, clips_per_day: Number(pb.clips_per_day) > 0 ? Number(pb.clips_per_day) : 2 });
+      toast("Clips werden jetzt automatisch gepostet");
+    }
+    ch.then(function () { soon(); });
   });
-  $("lnForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    if ($("lnGo").disabled) return;
-    S.lnBusy = true;
-    lnCheck();
-    api("api/campaign/link", { url: $("lnUrl").value.trim(), rights: true }).then(function (j) {
-      flash("lnMsg", "ok", j.text || "Verknüpft.");
-      toast("Verknüpft. Der Clipper holt das Video.");
-      $("lnForm").reset();
-      soon();
-    }, function (er) { flash("lnMsg", "err", er.message); }).then(function () { S.lnBusy = false; lnCheck(); });
-  });
+  $("lnUrl").addEventListener("input", nvCheck);
+  $("nvRights").addEventListener("change", nvCheck);
   $("upFile").addEventListener("change", function () { setUpFile($("upFile").files[0]); });
-  $("upRights").addEventListener("change", upCheck);
   ["dragenter", "dragover"].forEach(function (t) { $("drop").addEventListener(t, function (e) { e.preventDefault(); $("drop").classList.add("over"); }); });
   ["dragleave", "drop"].forEach(function (t) { $("drop").addEventListener(t, function (e) { e.preventDefault(); $("drop").classList.remove("over"); }); });
   $("drop").addEventListener("drop", function (e) { var f = e.dataTransfer && e.dataTransfer.files[0]; if (f) setUpFile(f); });
-  $("upForm").addEventListener("submit", function (e) {
+  $("nvForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var f = S.upFile;
-    if (!f || !$("upRights").checked || S.upXhr) return;
-    if (f.size > 16e9) { flash("upMsg", "err", "Die Datei ist größer als 16 GB."); return; }
-    var q = "filename=" + encodeURIComponent(f.name) + "&name=" + encodeURIComponent($("upName").value.trim()) + "&credit=" + encodeURIComponent($("upCredit").value.trim()) + "&rights=1";
+    if ($("nvGo").disabled) return;
+    var f = S.upFile, name = $("upName").value.trim(), credit = $("upCredit").value.trim();
+    if (!f) {  // Link: die App lädt das Video selbst
+      S.lnBusy = true;
+      nvCheck();
+      api("api/campaign/link", { url: lnValue(), rights: true, name: name, credit: credit }).then(function (j) {
+        flash("nvMsg", "ok", j.text || "Verknüpft.");
+        toast("Verknüpft. Der Clipper holt das Video.");
+        nvDone();
+        soon();
+      }, function (er) { flash("nvMsg", "err", er.message); S.lnBusy = false; nvCheck(); });
+      return;
+    }
+    if (f.size > 16e9) { flash("nvMsg", "err", "Die Datei ist größer als 16 GB."); return; }
+    var q = "filename=" + encodeURIComponent(f.name) + "&name=" + encodeURIComponent(name) + "&credit=" + encodeURIComponent(credit) + "&rights=1";
     var x = new XMLHttpRequest();
     S.upXhr = x;
-    upCheck();
+    nvCheck();
     $("upProg").hidden = false;
     $("upBar").style.width = "0%";
     $("upTxt").textContent = "Startet …";
@@ -3851,17 +3898,16 @@ dialog.vs[open] { display: grid; place-items: center; }
       if (x.status >= 200 && x.status < 300) {
         $("upTxt").textContent = "Hochgeladen. Der Video-Clipper legt gleich los.";
         toast("Hochgeladen. Der Video-Clipper schneidet jetzt.");
-        $("upForm").reset();
-        setUpFile(null);
+        nvDone();
         setTimeout(function () { $("upProg").hidden = true; }, 5000);
         load();
       } else {
         $("upProg").hidden = true;
-        flash("upMsg", "err", j.error || "Hochladen hat nicht geklappt.");
-        upCheck();
+        flash("nvMsg", "err", j.error || "Hochladen hat nicht geklappt.");
+        nvCheck();
       }
     });
-    x.addEventListener("error", function () { S.upXhr = null; $("upProg").hidden = true; flash("upMsg", "err", "Die Verbindung ist abgebrochen."); upCheck(); });
+    x.addEventListener("error", function () { S.upXhr = null; $("upProg").hidden = true; flash("nvMsg", "err", "Die Verbindung ist abgebrochen."); nvCheck(); });
     x.open("POST", "api/campaign/upload?" + q);
     x.setRequestHeader("Content-Type", "application/octet-stream");
     x.send(f);

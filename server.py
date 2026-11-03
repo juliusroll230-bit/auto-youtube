@@ -861,6 +861,8 @@ class Handler(BaseHTTPRequestHandler):
             saved = store.config().get("agents") or {}
             saved[agent] = {**(saved.get(agent) or {}), **changes}
             store.save_config(agents=saved)
+            if agent == "clipper" and changes.get("freigabe") is False:
+                clips.approve_waiting()
             return self.send(200, {"ok": True, "settings": agents.settings(store.config())[agent]})
         if p == "/api/agent/run":
             return self.run_agent(str(data.get("id", "")))
