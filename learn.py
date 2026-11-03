@@ -103,8 +103,9 @@ def summary(scores, explore_every=EXPLORE_EVERY):
 CAPTION_STYLES = ("kasten", "unterstrich", "pop")       # wie motion.Caption.STYLES
 TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TRANSITIONS
 HEADLINES = ("mit", "ohne")                             # Titel als Kopfzeile oben im Bild
+BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (stock.py) oder gezeichnet
 FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
-                 "einstieg": "Erster Satz", "grafik": "Grafik"}
+                 "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund"}
 
 
 def default_look(spec):
@@ -113,7 +114,7 @@ def default_look(spec):
     rng = random.Random(sum(map(ord, spec["slug"])) * 7919)
     style = rng.choice(CAPTION_STYLES)
     # Videos von vor der Kopfzeile hatten keine
-    return {"caption_style": style, "transition": rng.choice(TRANSITIONS), "kopfzeile": "ohne"}
+    return {"caption_style": style, "transition": rng.choice(TRANSITIONS), "kopfzeile": "ohne", "hintergrund": "animation"}
 
 
 def features(spec, look):
@@ -125,6 +126,7 @@ def features(spec, look):
         "caption_style": look.get("caption_style"),
         "transition": look.get("transition"),
         "kopfzeile": look.get("kopfzeile") or "ohne",
+        "hintergrund": look.get("hintergrund") or "animation",
         "laenge": "kurz (bis 60 Wörter)" if total <= 60 else "mittel (61 bis 75)" if total <= 75 else "lang (über 75)",
         "einstieg": "kurz (bis 8 Wörter)" if hook <= 8 else "mittel (9 bis 12)" if hook <= 12 else "lang (über 12)",
         "grafik": kinds[0] if kinds else "keine",
@@ -166,7 +168,8 @@ def choose(options, scores, step):
 def choose_look(fscores, step):
     return {"caption_style": choose(CAPTION_STYLES, fscores.get("caption_style", {}), step),
             "transition": choose(TRANSITIONS, fscores.get("transition", {}), step + 1),
-            "kopfzeile": choose(HEADLINES, fscores.get("kopfzeile", {}), step + 2)}
+            "kopfzeile": choose(HEADLINES, fscores.get("kopfzeile", {}), step + 2),
+            "hintergrund": choose(BACKGROUNDS, fscores.get("hintergrund", {}), step + 3)}
 
 
 def feature_summary(fscores):

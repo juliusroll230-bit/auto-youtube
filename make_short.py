@@ -140,7 +140,7 @@ class Scene:
 
     TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")
 
-    def __init__(self, spec, timings, total):
+    def __init__(self, spec, timings, total, stock=None):
         import random
 
         import motion
@@ -149,14 +149,18 @@ class Scene:
         self.timings, self.total = timings, total
         self.accent = spec["accent"]
         self.car = None
-        if spec.get("style") == "car":
+        self.stock = stock  # echte Videoclips als Hintergrund (stock.py), sonst Animation
+        has_emoji = all(seg.get("emoji") for seg in spec["segments"])
+        self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]] if has_emoji else []
+        if stock:
+            pass
+        elif spec.get("style") == "car":
             from car_scene import CarScene
             self.car = CarScene(hex_rgb(spec["car_color"]), seed=len(spec["slug"]), skies=len(timings))
             self.emojis = []
         else:
             import themes
             self.theme = themes.for_spec(spec, timings, total, PAUSE)
-            self.emojis = [render_emoji(seg["emoji"], 400) for seg in spec["segments"]]
         self.cap_y = 560 if self.car else 1180
         self.bar_y = 280 if self.car else H - 210
         self.icon_y = 930 if self.car else 620
@@ -250,7 +254,9 @@ class Scene:
 
     def frame(self, t):
         idx = self.segment_at(t)
-        if self.car:
+        if self.stock:
+            frame = self.stock.frame(t)
+        elif self.car:
             frame = self.car.frame(t, self.timings, PAUSE)
         else:
             frame = self.theme.frame(t)
@@ -369,14 +375,22 @@ def render_thumbnail(spec, path, width=360):
     img.resize((width, int(width * H / W)), Image.LANCZOS).save(path, "JPEG", quality=84)
 
 
-def build_video(spec, out_dir, tts):
+def build_video(spec, out_dir, tts, stock_key=None, info=None):
+    """info (dict, optional) bekommt "stock": die Pexels-Clips, falls welche benutzt wurden."""
     os.makedirs(out_dir, exist_ok=True)
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
                                 speed=spec.get("voice_speed") or SPEED)
     total += TAIL
-    scene = Scene(spec, timings, total)
+    bg, credits = None, []
+    if stock_key and spec.get("hintergrund") == "clips":
+        import stock
+        cache = os.path.join(os.path.dirname(os.path.abspath(out_dir)), "stock")
+        bg, credits = stock.prepare(spec, timings, total, PAUSE, stock_key, cache)
+    if info is not None:
+        info["stock"] = credits
+    scene = Scene(spec, timings, total, stock=bg)
 
     ff = subprocess.Popen([
         "ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
@@ -388,6 +402,8 @@ def build_video(spec, out_dir, tts):
     for f in range(int(total * FPS)):
         ff.stdin.write(scene.frame(f / FPS).tobytes())
     ff.stdin.close()
+    if bg:
+        bg.close()
     if ff.wait() != 0:
         raise RuntimeError("ffmpeg konnte das Video nicht erstellen")
     os.remove(wav)

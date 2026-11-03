@@ -35,6 +35,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21], "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
+                  # Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
+                  "pexels_key": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
                   "agents": {}, "approval": False,
                   # Schlüssel für den Video-Webhook (POST /webhook/video), wird beim ersten Start erzeugt
@@ -380,6 +382,7 @@ def dashboard(extra=None, working=None, repo=True):
         "slots": cfg["post_hours"],
         "privacy": cfg["privacy"],
         "has_client": bool(cfg["client_id"] and cfg["client_secret"]),
+        "has_pexels": bool(cfg.get("pexels_key")),
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),

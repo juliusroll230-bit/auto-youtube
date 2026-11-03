@@ -1668,6 +1668,18 @@ dialog.vs[open] { display: grid; place-items: center; }
             </form>
           </div>
           <div class="card">
+            <div class="card-h"><div><h2>Echte Videoclips</h2><div class="sub">Hintergrund aus kostenlosen Pexels-Videos</div></div><span class="pill" id="pxStatus"></span></div>
+            <form class="card-b form" id="pxForm">
+              <p class="muted">Statt der gezeichneten Animation läuft hinter den Untertiteln ein echter Clip, der zum Satz passt. Der Lernmodus testet Clips gegen Animation und nimmt, was besser läuft.</p>
+              <ol class="steps">
+                <li><div>Auf <a href="https://www.pexels.com/api/" target="_blank" rel="noopener">pexels.com/api</a> kostenlos anmelden und <b>Your API Key</b> kopieren.</div></li>
+                <li><div>Hier einfügen und speichern. Zum Ausschalten das Feld leer speichern.</div></li>
+              </ol>
+              <div class="field"><label for="pxKey">Pexels-Schlüssel</label><input id="pxKey" type="password" autocomplete="off" spellcheck="false" placeholder="Schlüssel einfügen"></div>
+              <div class="row"><button class="btn primary" type="submit">Speichern</button><span class="msg" id="pxMsg"></span></div>
+            </form>
+          </div>
+          <div class="card">
             <div class="card-h"><h2>Aktionen</h2></div>
             <div class="card-b form">
               <div class="row"><button class="btn" type="button" id="postNow">Jetzt ein Video posten</button><span class="label">Nimmt das nächste Video aus dem Sendeplan.</span></div>
@@ -4042,6 +4054,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("previewNote").hidden = !preview;
     document.querySelectorAll("#v-kanal input, #v-kanal select, #v-kanal button, #aForm input, #aForm button").forEach(function (e) { e.disabled = preview; });
     pill($("credStatus"), d.has_client ? "ok" : "warn", d.has_client ? "Gespeichert" : "Fehlt");
+    pill($("pxStatus"), d.has_pexels ? "ok" : "warn", d.has_pexels ? "Aktiv" : "Aus");
     var c = d.connect || { status: "idle" };
     pill($("conStatus"), d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
     var body = clear($("conBody"));
@@ -4153,6 +4166,12 @@ dialog.vs[open] { display: grid; place-items: center; }
     e.preventDefault();
     api("api/settings", { analytics_client_id: $("aId").value, analytics_client_secret: $("aSecret").value })
       .then(function () { $("aSecret").value = ""; flash("aMsg", "ok", "Gespeichert. Jetzt auf Verbinden klicken."); load(); }, function (err) { flash("aMsg", "err", err.message); });
+  });
+  $("pxForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = $("pxKey").value.trim();
+    api("api/settings", { pexels_key: v })
+      .then(function () { $("pxKey").value = ""; flash("pxMsg", "ok", v ? "Gespeichert. Die nächsten Videos testen Clips." : "Clips ausgeschaltet"); load(); }, function (err) { flash("pxMsg", "err", err.message); });
   });
   $("aConnect").addEventListener("click", startAnalytics);
   $("copyRedir").addEventListener("click", function () {
