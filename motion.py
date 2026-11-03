@@ -175,7 +175,8 @@ def number_events(words):
             continue
         digits = re.search(r"\d[\d.,]*", w).group(0).rstrip(".,")
         unit = []
-        for nxt, _, _ in words[i + 1:i + 3]:
+        ends_sentence = re.search(r"[!?:;]$|\d\.$", w.replace("*", "")) is not None
+        for nxt, _, _ in ([] if ends_sentence else words[i + 1:i + 3]):  # nach dem Satzende kommt keine Einheit
             clean = re.sub(r"[^\wäöüÄÖÜß%€$]", "", nxt)
             if not clean or not (clean[0].isupper() or clean in "%€$"):
                 break

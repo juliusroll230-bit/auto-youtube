@@ -15,7 +15,7 @@ Die Daten liegen auf dem Server unter `/DATA/AppData/shorts-zentrale`.
 
 - **Hintergründe:** Jedes Thema hat einen eigenen bewegten Hintergrund, der sich bei jedem Satz ändert (Psychologie: Nervenzellen, Geschichte: Bauwerke im Abendlicht, Geld: Börsenkurs und Münzen, Geografie: drehende Erde mit Markierung, Business: Autofahrt mit wechselnder Tageszeit). Siehe `themes.py` und `car_scene.py`.
 - **Kanal-Design:** Banner, Kanalbeschreibung und Stichwörter setzt die App automatisch (`branding.py`). Das Profilbild erlaubt YouTube nur von Hand.
-- **Echte Videoclips:** Mit einem kostenlosen Pexels-Schlüssel (Reiter Kanal) läuft hinter den Untertiteln ein passender Hochkant-Clip statt der Animation (stock.py). Suchbegriff je Satz: Feld "clip" im Skript (englisch), sonst die *Sternchen*-Wörter. Der Lernmodus vergleicht Clips mit Animation.
+- **Echte Videoclips:** Mit einem kostenlosen Pixabay- oder Pexels-Schlüssel (Reiter Kanal) läuft hinter den Untertiteln ein passender Hochkant-Clip statt der Animation (stock.py). Suchbegriff je Satz: Feld "clip" im Skript (englisch), sonst die *Sternchen*-Wörter. Der Lernmodus vergleicht Clips mit Animation.
 - **Zeitplan:** Zu jeder Sendezeit (Standard 7, 9, 11, 13, 14, 15, 17, 18, 19 und 21 Uhr, also 10 am Tag; bis zu 10 sind einstellbar) wird das nächste Skript aus der Warteschlange zum Video (KI-Stimme, Untertitel, Animation) und hochgeladen. Die Zeiten lassen sich im Reiter **Kanal** ändern.
 - **Nachschub:** Alle 2 Stunden holt die App neue Skripte aus dem Ordner `seed/` dieses Repos (`SCRIPTS_REPO`).
 - **Statistiken:** Aufrufe, Likes und Kommentare kommen alle 20 Minuten von YouTube. Daraus entsteht auch der Verlauf (`history.json`) für das Wachstums-Diagramm.

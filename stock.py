@@ -1,14 +1,16 @@
-"""Echte Videoclips von Pexels als Hintergrund (kostenlos, für YouTube erlaubt).
+"""Echte Videoclips als Hintergrund, von Pixabay oder Pexels (beide kostenlos, für YouTube erlaubt).
 
-Für jeden Satz wird ein passender Hochkant-Clip gesucht, geladen und zwischengespeichert.
-Suchbegriff je Satz: das Feld "clip" im Skript (englisch, z. B. "porsche steering wheel"),
-sonst die *Sternchen*-Wörter des Satzes, sonst ein allgemeiner Begriff zur Nische.
+Welcher Anbieter genutzt wird, erkennt die App am Schlüssel (Pixabay: "12345678-abc…", sonst Pexels).
+Für jeden Satz wird ein passender Clip gesucht, geladen und zwischengespeichert; Querformat wird
+mittig auf Hochkant zugeschnitten. Suchbegriff je Satz: das Feld "clip" im Skript (englisch, z. B.
+"porsche steering wheel"), sonst die *Sternchen*-Wörter des Satzes, sonst ein Begriff zur Nische.
 Wird nicht für jeden Satz ein Clip gefunden, bleibt das Video bei der Animation.
 """
 import json
 import os
 import re
 import subprocess
+import time
 import urllib.parse
 import urllib.request
 
@@ -16,8 +18,11 @@ import numpy as np
 from PIL import Image
 
 W, H, FPS = 1080, 1920, 30
-API = "https://api.pexels.com/videos/search"
-KEEP_USED = 300  # so viele zuletzt benutzte Clips nicht wiederholen
+PEXELS_API = "https://api.pexels.com/videos/search"
+PIXABAY_API = "https://pixabay.com/api/videos/"
+KEEP_USED = 300          # so viele zuletzt benutzte Clips nicht wiederholen
+CACHE_SECONDS = 24 * 3600  # Pixabay verlangt, Suchergebnisse 24 Stunden zwischenzuspeichern
+MAX_BYTES = 120 * 1024 * 1024
 
 NICHE_QUERY = {
     "Business": "sports car driving",
@@ -26,10 +31,15 @@ NICHE_QUERY = {
     "Geld": "money coins",
     "Geografie": "aerial landscape",
 }
+CREDIT = {"pixabay": "Pixabay (pixabay.com)", "pexels": "Pexels (pexels.com)"}
 
 
-def _get(url, key, timeout=20):
-    req = urllib.request.Request(url, headers={"Authorization": key, "User-Agent": "shorts-zentrale"})
+def provider(key):
+    return "pixabay" if re.fullmatch(r"\d+-[0-9a-fA-F]{16,48}", key or "") else "pexels"
+
+
+def _get(url, headers=None, timeout=20):
+    req = urllib.request.Request(url, headers={"User-Agent": "shorts-zentrale", **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
 
@@ -38,11 +48,11 @@ def queries(spec, seg):
     """Suchbegriffe für einen Satz, der beste zuerst: (Begriff, Sprache)."""
     out = []
     if seg.get("clip"):
-        out.append((seg["clip"], "en-US"))
+        out.append((seg["clip"], "en"))
     stars = re.findall(r"\*([^*]+)\*", seg.get("text", ""))
     if stars:
-        out.append((" ".join(stars), "de-DE"))
-    out.append((NICHE_QUERY.get(spec.get("niche"), "nature"), "en-US"))
+        out.append((" ".join(stars), "de"))
+    out.append((NICHE_QUERY.get(spec.get("niche"), "nature"), "en"))
     return out
 
 
@@ -56,16 +66,64 @@ def best_file(video):
     return min(files, key=lambda f: (abs(f["height"] - 1920), f["width"]))
 
 
-def search(key, query, locale, min_dur, skip):
+def best_pixabay_file(hit):
+    """Größte Datei bis 4K, mindestens 1080 hoch (Querformat wird später zugeschnitten)."""
+    files = [f for f in (hit.get("videos") or {}).values()
+             if f.get("url") and f.get("height", 0) >= 1080 and f.get("width", 0) <= 3840
+             and (f.get("size") or 0) <= MAX_BYTES]
+    if not files:
+        return None
+    return max(files, key=lambda f: (f["height"] > f["width"], f["height"]))
+
+
+class _Cache:
+    """Suchergebnisse für 24 Stunden merken (weniger Anfragen, so verlangt es Pixabay)."""
+
+    def __init__(self, path):
+        self.path = path
+        try:
+            self.data = json.load(open(path))
+        except (OSError, ValueError):
+            self.data = {}
+        now = time.time()
+        self.data = {k: v for k, v in self.data.items() if now - v["at"] < CACHE_SECONDS}
+
+    def get(self, url, headers):
+        name = re.sub(r"key=[^&]+", "key=*", url)  # den Schlüssel nicht auf die Platte schreiben
+        if name not in self.data:
+            self.data[name] = {"at": time.time(), "body": json.loads(_get(url, headers))}
+        return self.data[name]["body"]
+
+    def save(self):
+        with open(self.path, "w") as f:
+            json.dump(self.data, f)
+
+
+def search(key, query, lang, min_dur, skip, cache=None):
+    get = cache.get if cache else (lambda u, h: json.loads(_get(u, h)))
+    if provider(key) == "pixabay":
+        params = urllib.parse.urlencode({"key": key, "q": query[:100], "lang": lang, "video_type": "film",
+                                         "safesearch": "true", "per_page": 20})
+        data = get(f"{PIXABAY_API}?{params}", None)
+        for v in data.get("hits", []):
+            vid = f"pb{v['id']}"
+            if vid in skip or v.get("duration", 0) < min(min_dur, 6):
+                continue
+            f = best_pixabay_file(v)
+            if f:
+                return {"id": vid, "link": f["url"], "url": v.get("pageURL"), "user": v.get("user"),
+                        "provider": "pixabay"}
+        return None
     params = urllib.parse.urlencode({"query": query, "orientation": "portrait", "size": "medium",
-                                     "per_page": 15, "locale": locale})
-    data = json.loads(_get(f"{API}?{params}", key))
+                                     "per_page": 15, "locale": "de-DE" if lang == "de" else "en-US"})
+    data = get(f"{PEXELS_API}?{params}", {"Authorization": key})
     for v in data.get("videos", []):
         if v["id"] in skip or v.get("duration", 0) < min(min_dur, 6):
             continue
         f = best_file(v)
         if f:
-            return {"id": v["id"], "link": f["link"], "url": v.get("url"), "user": (v.get("user") or {}).get("name")}
+            return {"id": v["id"], "link": f["link"], "url": v.get("url"), "user": (v.get("user") or {}).get("name"),
+                    "provider": "pexels"}
     return None
 
 
@@ -134,11 +192,12 @@ def prepare(spec, timings, total, pause, key, cache_dir, log=print):
     starts = [0.0] + [s for s, _ in timings[1:]]
     ends = starts[1:] + [total]
     clips, credits, mine = [], [], set()
+    cache = _Cache(os.path.join(cache_dir, "searches.json"))
     try:
         for seg, s, e in zip(spec["segments"], starts, ends):
             hit = None
             for q, loc in queries(spec, seg):
-                hit = search(key, q, loc, e - s, set(used) | mine)
+                hit = search(key, q, loc, e - s, set(used) | mine, cache)
                 if hit:
                     break
             if not hit:
@@ -146,7 +205,7 @@ def prepare(spec, timings, total, pause, key, cache_dir, log=print):
                 return None, []
             path = os.path.join(cache_dir, f"{hit['id']}.mp4")
             if not os.path.exists(path):
-                data = _get(hit["link"], key, timeout=90)
+                data = _get(hit["link"], {"Authorization": key} if hit.get("provider") == "pexels" else None, timeout=120)
                 with open(path + ".tmp", "wb") as f:
                     f.write(data)
                 os.replace(path + ".tmp", path)
@@ -158,8 +217,10 @@ def prepare(spec, timings, total, pause, key, cache_dir, log=print):
             clips.append(path)
             credits.append(hit)
     except Exception as e:  # Netz weg, Schlüssel falsch, Limit erreicht: dann eben Animation
-        log(f"Pexels nicht erreichbar: {e}")
+        log(f"Clip-Anbieter nicht erreichbar: {e}")
         return None, []
+    finally:
+        cache.save()
     with open(used_file, "w") as f:
         json.dump((used + sorted(mine))[-KEEP_USED:], f)
     _tidy(cache_dir, keep=set(clips))

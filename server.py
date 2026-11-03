@@ -161,7 +161,7 @@ def post_next(slot, manual=False):
         ag = agents.settings(store.config())
         # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
         look = agents.apply_look(store.next_look(), ag)
-        key = store.config().get("pexels_key", "")
+        key = store.config().get("stock_key", "")
         if not key:
             look["hintergrund"] = "animation"
         info = {}
@@ -170,8 +170,10 @@ def post_next(slot, manual=False):
                                                 store.path("out"), tts(), stock_key=key, info=info)
         if look.get("hintergrund") == "clips" and not info.get("stock"):
             look["hintergrund"] = "animation"  # kein Clip gefunden, das Video ist animiert
-        if info.get("stock"):  # Pexels bittet um einen Hinweis auf die Quelle
-            spec = {**spec, "description": spec.get("description", "") + "\n\nHintergrundvideos: Pexels (pexels.com)"}
+        if info.get("stock"):  # Pixabay und Pexels bitten um einen Hinweis auf die Quelle
+            import stock
+            src = stock.CREDIT.get(info["stock"][0].get("provider"), "Pixabay (pixabay.com)")
+            spec = {**spec, "description": spec.get("description", "") + f"\n\nHintergrundvideos: {src}"}
         status["busy"] = f"Lade hoch: {spec['title']}"
         with working("publisher", task=f"Lädt Video #{n} hoch"):
             video_id = yt.upload(store.config(), video, spec)
@@ -790,8 +792,8 @@ class Handler(BaseHTTPRequestHandler):
         p, data = self.path, self.body()
         if p == "/api/settings":
             changes = {}
-            if isinstance(data.get("pexels_key"), str):
-                changes["pexels_key"] = data["pexels_key"].strip()  # leer = Clips ausschalten
+            if isinstance(data.get("stock_key"), str):
+                changes["stock_key"] = data["stock_key"].strip()  # leer = Clips ausschalten
             for key in ("client_id", "client_secret", "analytics_client_id", "analytics_client_secret"):
                 if isinstance(data.get(key), str) and data[key].strip():
                     changes[key] = data[key].strip()
