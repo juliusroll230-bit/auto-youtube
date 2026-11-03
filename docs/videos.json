@@ -6,11 +6,47 @@
  },
  "videos": [
   {
+   "id": "5gxP8j4alWY",
+   "title": "Dieses Autologo stammt von einem Brunnen 🔱",
+   "text": "Der Dreizack von Maserati hat eine Vorlage mitten in Bologna.",
+   "niche": "Autos",
+   "views": 49,
+   "published": "2026-11-03T18:36:46+00:00",
+   "thumb": "thumbs/5gxP8j4alWY.jpg"
+  },
+  {
+   "id": "SVvYt73juyE",
+   "title": "Bevor Kia Autos baute, gab es etwas ganz anderes 🚲",
+   "text": "Kia begann mit Stahlrohren und Fahrradteilen.",
+   "niche": "Autos",
+   "views": 100,
+   "published": "2026-11-03T16:36:59+00:00",
+   "thumb": "thumbs/SVvYt73juyE.jpg"
+  },
+  {
+   "id": "v_XYr-_5I7M",
+   "title": "Warum dein Horoskop so gut passt 🔮",
+   "text": "Der Barnum-Effekt: Warum vage Beschreibungen sich so persönlich anfühlen.",
+   "niche": "Psychologie",
+   "views": 145,
+   "published": "2026-11-03T14:37:08+00:00",
+   "thumb": "thumbs/v_XYr-_5I7M.jpg"
+  },
+  {
+   "id": "yZ0iF_kdJKM",
+   "title": "Dieses Verbrechen machte die Mona Lisa berühmt 🖼️",
+   "text": "1911 verschwand die Mona Lisa aus dem Louvre. Die Jagd nach ihr machte sie weltbekannt.",
+   "niche": "Geschichte",
+   "views": 70,
+   "published": "2026-11-03T12:36:56+00:00",
+   "thumb": "thumbs/yZ0iF_kdJKM.jpg"
+  },
+  {
    "id": "lT1FU16HyL8",
    "title": "Darum hat deine Geheimzahl genau so viele Ziffern 🏧",
    "text": "Der erste Geldautomat Großbritanniens und die Geschichte hinter der vierstelligen PIN. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 0,
+   "views": 78,
    "published": "2026-11-03T10:37:02+00:00",
    "thumb": "thumbs/lT1FU16HyL8.jpg"
   },
@@ -19,7 +55,7 @@
    "title": "Nicht der Everest ragt am weitesten ins All 🏔️",
    "text": "Warum der Gipfel des Chimborazo weiter vom Erdmittelpunkt entfernt ist als der Mount Everest.",
    "niche": "Geografie",
-   "views": 26,
+   "views": 58,
    "published": "2026-11-03T08:37:16+00:00",
    "thumb": "thumbs/wL788iykH5I.jpg"
   },
@@ -28,7 +64,7 @@
    "title": "Woher der Name Aston Martin wirklich kommt 🏁",
    "text": "Die Marke von James Bond hat einen ganz einfachen Ursprung.",
    "niche": "Autos",
-   "views": 106,
+   "views": 120,
    "published": "2026-11-02T18:36:26+00:00",
    "thumb": "thumbs/H1RT-C-ucyM.jpg"
   },
@@ -37,7 +73,7 @@
    "title": "Was die sechs Sterne im Subaru-Logo bedeuten ✨",
    "text": "Das Subaru-Logo ist ein echter Sternhaufen und erzählt die Geschichte der Firma.",
    "niche": "Autos",
-   "views": 232,
+   "views": 248,
    "published": "2026-11-02T16:36:38+00:00",
    "thumb": "thumbs/i9WQ6VbYGbg.jpg"
   },
@@ -55,7 +91,7 @@
    "title": "Der Eiffelturm sollte abgerissen werden 🗼",
    "text": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.",
    "niche": "Geschichte",
-   "views": 557,
+   "views": 618,
    "published": "2026-11-02T12:36:37+00:00",
    "thumb": "thumbs/Qt-0acyd3I0.jpg"
   },
@@ -64,7 +100,7 @@
    "title": "In deinem Gehalt steckt ein altes Wort für Salz 🧂",
    "text": "Woher das Wort Salär kommt und was Salz damit zu tun haben soll. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 127,
+   "views": 129,
    "published": "2026-11-02T10:36:43+00:00",
    "thumb": "thumbs/Gr1tDcUHnCo.jpg"
   },
@@ -73,7 +109,7 @@
    "title": "Dieses Land ist größer als ein ganzer Zwergplanet 🪐",
    "text": "Russland hat mehr Fläche als die gesamte Oberfläche von Pluto.",
    "niche": "Geografie",
-   "views": 553,
+   "views": 630,
    "published": "2026-11-02T08:36:49+00:00",
    "thumb": "thumbs/yPefjF3R-cY.jpg"
   },
@@ -82,7 +118,7 @@
    "title": "VW kaufte Rolls-Royce und ging trotzdem leer aus 👑",
    "text": "Wie VW eine Luxusmarke kaufte, aber den Namen nicht bekam.",
    "niche": "Autos",
-   "views": 1044,
+   "views": 1071,
    "published": "2026-11-01T18:37:48+00:00",
    "thumb": "thumbs/UCIZRDjLJOk.jpg"
   },
@@ -91,7 +127,7 @@
    "title": "Warum wir gutaussehende Menschen für klüger halten 🧠",
    "text": "Der Halo-Effekt färbt den ersten Eindruck.",
    "niche": "Psychologie",
-   "views": 598,
+   "views": 609,
    "published": "2026-11-01T17:41:59+00:00",
    "thumb": "thumbs/_swff3-SXRA.jpg"
   },
@@ -100,45 +136,9 @@
    "title": "Diese Automarke hat mit etwas ganz anderem angefangen 🍾",
    "text": "Bevor Mazda Autos baute, stellte die Firma etwas völlig anderes her.",
    "niche": "Autos",
-   "views": 348,
+   "views": 361,
    "published": "2026-11-01T17:36:54+00:00",
    "thumb": "thumbs/tAYzbIb2qmM.jpg"
-  },
-  {
-   "id": "0FtnM_VD6yI",
-   "title": "Ein Goldschmied veränderte, wie die Welt liest 📖",
-   "text": "Wie Gutenbergs Druckpresse Wissen vervielfältigte.",
-   "niche": "Geschichte",
-   "views": 134,
-   "published": "2026-11-01T15:37:02+00:00",
-   "thumb": "thumbs/0FtnM_VD6yI.jpg"
-  },
-  {
-   "id": "W6XgpN27OTU",
-   "title": "Warum dich Unerledigtes nicht loslässt 🧠",
-   "text": "Der Zeigarnik-Effekt: offene Aufgaben bleiben im Kopf.",
-   "niche": "Psychologie",
-   "views": 211,
-   "published": "2026-11-01T12:37:16+00:00",
-   "thumb": "thumbs/W6XgpN27OTU.jpg"
-  },
-  {
-   "id": "W_g9fQMhHBo",
-   "title": "Diese Münze kostet mehr, als sie wert ist 🪙",
-   "text": "Der amerikanische Penny im Kostencheck. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 286,
-   "published": "2026-11-01T10:36:50+00:00",
-   "thumb": "thumbs/W_g9fQMhHBo.jpg"
-  },
-  {
-   "id": "YAkDasYdUsQ",
-   "title": "Dieses Land steckt komplett in einem anderen 🌍",
-   "text": "Lesotho: ein Königreich mitten in Südafrika.",
-   "niche": "Geografie",
-   "views": 960,
-   "published": "2026-11-01T08:36:59+00:00",
-   "thumb": "thumbs/YAkDasYdUsQ.jpg"
   }
  ]
 }
