@@ -145,4 +145,4 @@ def render_all(title, hours, out_dir):
 
 
 if __name__ == "__main__":
-    print(render_all(sys.argv[1], [8, 11, 13, 16, 18, 20], sys.argv[2]))
+    print(render_all(sys.argv[1], [7, 11, 13, 15, 17, 19, 21], sys.argv[2]))

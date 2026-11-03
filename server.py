@@ -463,7 +463,8 @@ def apply_branding(force=False):
     import branding
 
     cfg, st = store.config(), store.state()
-    if not cfg["refresh_token"] or (not force and st.get("branding_version") == branding.VERSION):
+    version = f"{branding.VERSION}|{','.join(map(str, cfg['post_hours']))}"  # neue Sendezeiten = neues Banner
+    if not cfg["refresh_token"] or (not force and st.get("branding_version") == version):
         return
     start_work("designer", task="Setzt Banner und Beschreibung")
     try:
@@ -472,7 +473,7 @@ def apply_branding(force=False):
         yt.set_branding(cfg, banner, branding.description(title, cfg["post_hours"]), branding.KEYWORDS)
         with store.LOCK:
             st = store.state()
-            st["branding_version"] = branding.VERSION
+            st["branding_version"] = version
             st["branding_at"] = store.now().isoformat(timespec="seconds")
             store.write("state.json", st)
         store.agent_done("designer")
@@ -794,8 +795,8 @@ class Handler(BaseHTTPRequestHandler):
                 changes["refresh_token"] = ""  # die alte Verbindung gehört zum alten Client
             if "post_hours" in data:
                 hours = sorted({int(h) for h in data["post_hours"] if 0 <= int(h) <= 23})
-                if not 1 <= len(hours) <= 6:
-                    return self.send(400, {"error": "Bitte 1 bis 6 Sendezeiten wählen."})
+                if not 1 <= len(hours) <= 10:
+                    return self.send(400, {"error": "Bitte 1 bis 10 Sendezeiten wählen."})
                 changes["post_hours"] = hours
             if data.get("privacy") in ("public", "unlisted", "private"):
                 changes["privacy"] = data["privacy"]

@@ -1653,7 +1653,7 @@ dialog.vs[open] { display: grid; place-items: center; }
             <div class="card-h"><h2>Zeitplan</h2></div>
             <form class="card-b form" id="planForm">
               <div class="field">
-                <span class="label">Sendezeiten (deutsche Zeit, bis zu 6 pro Tag)</span>
+                <span class="label">Sendezeiten (deutsche Zeit, bis zu 10 pro Tag)</span>
                 <div class="hours" id="hours" role="group" aria-label="Sendezeiten"></div>
               </div>
               <div class="field">
@@ -4016,7 +4016,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   }
 
   // --- Kanal -------------------------------------------------------------------------
-  var NUM_WORD = ["keine", "einen", "zwei", "drei", "vier", "fünf", "sechs"];
+  var NUM_WORD = ["keine", "einen", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn"];
   function renderShowroom(d) {
     var ch = d.channel || {}, T = totals(d), n = d.slots.length;
     $("shName").textContent = ch.title || "Dein Kanal";
@@ -4101,7 +4101,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       b.disabled = !S.live;
       b.addEventListener("click", function () {
         var at2 = S.hours.indexOf(hr);
-        if (at2 === -1) { if (S.hours.length < 6) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at2, 1);
+        if (at2 === -1) { if (S.hours.length < 10) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at2, 1);
         S.hours.sort(function (a, b) { return a - b; });
         renderHours(d);
       });
