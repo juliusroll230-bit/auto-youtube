@@ -1,0 +1,49 @@
+{
+  "slug": "geschichte-vespasian-urin",
+  "niche": "Geschichte",
+  "colors": [
+    "#2e1f14",
+    "#9a6a38"
+  ],
+  "accent": "#ffe2a0",
+  "title": "Dieser Kaiser besteuerte etwas sehr Seltsames 🏛️",
+  "description": "Kaiser Vespasian und die Steuer auf Urin in Rom.\n\n#geschichte #rom #vespasian #steuer #shorts",
+  "tags": [
+    "geschichte",
+    "rom",
+    "vespasian",
+    "steuer",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏛️",
+      "text": "Ein römischer *Kaiser* besteuerte Urin.",
+      "clip": "roman colosseum"
+    },
+    {
+      "emoji": "🪙",
+      "text": "Nach dem Chaos unter *Nero* war die Staatskasse leer. Kaiser Vespasian suchte neue Geldquellen.",
+      "clip": "ancient roman ruins"
+    },
+    {
+      "emoji": "🧺",
+      "text": "Wäscher nutzten Urin aus öffentlichen Toiletten, um Stoffe zu reinigen. Dafür verlangte Vespasian eine *Steuer*.",
+      "clip": "washing clothes laundry"
+    },
+    {
+      "emoji": "😏",
+      "text": "Sein Sohn *Titus* protestierte. Der Legende nach hielt Vespasian ihm eine Münze unter die Nase: Geld stinkt nicht.",
+      "clip": "old coins closeup",
+      "visual": {
+        "type": "wort",
+        "text": "Non olet"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Der Satz lebt bis heute. Folge für mehr.",
+      "clip": "marble statue roman"
+    }
+  ]
+}

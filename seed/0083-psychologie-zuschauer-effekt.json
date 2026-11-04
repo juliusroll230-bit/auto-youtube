@@ -1,0 +1,56 @@
+{
+  "slug": "psychologie-zuschauer-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#10243a",
+    "#3d6fa8"
+  ],
+  "accent": "#ffd9a8",
+  "title": "Warum bei vielen Zeugen oft keiner hilft 👥",
+  "description": "Der Zuschauereffekt: Warum Menschen in einer Gruppe seltener eingreifen.\n\n#psychologie #zuschauereffekt #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "zuschauereffekt",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "👥",
+      "text": "Je mehr *Zeugen* da sind, desto weniger Hilfe.",
+      "clip": "crowd walking street"
+    },
+    {
+      "emoji": "🔬",
+      "text": "Neunzehnhundertachtundsechzig täuschten Forscher in New York einen *Notfall* vor. Doch wer half wirklich?",
+      "clip": "university campus students"
+    },
+    {
+      "emoji": "📊",
+      "text": "Allein meldeten fünfundachtzig Prozent den Anfall. Mit vier weiteren *Zuhörern* nur noch einunddreißig Prozent.",
+      "clip": "people sitting waiting room",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Allein",
+          85
+        ],
+        "b": [
+          "Zu fünft",
+          31
+        ],
+        "einheit": "Prozent halfen"
+      }
+    },
+    {
+      "emoji": "🤔",
+      "text": "Jeder denkt: Das macht bestimmt jemand anderes. Genau das nennt man *Verantwortungsdiffusion*.",
+      "clip": "busy train station"
+    },
+    {
+      "emoji": "👉",
+      "text": "Sprich im Notfall eine Person direkt an. Folge für mehr.",
+      "clip": "person helping hand"
+    }
+  ]
+}

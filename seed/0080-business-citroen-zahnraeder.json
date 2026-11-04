@@ -1,0 +1,42 @@
+{
+  "slug": "business-citroen-zahnraeder",
+  "style": "car",
+  "car_color": "#8a1c1c",
+  "niche": "Business",
+  "accent": "#ffe08a",
+  "title": "Dieses Autologo ist eigentlich ein Zahnrad ⚙️",
+  "description": "Wie ein Patent aus Polen zum Doppelwinkel-Logo von Citroën wurde.\n\n#business #citroen #autos #logo #shorts",
+  "tags": [
+    "business",
+    "citroen",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Das *Citroën*-Logo ist eigentlich ein Zahnrad.",
+      "clip": "gears turning closeup"
+    },
+    {
+      "text": "Der junge Ingenieur *André Citroën* kaufte in Polen ein Patent für *Zahnräder*. Doch was war daran so besonders?",
+      "clip": "metal gears machinery"
+    },
+    {
+      "text": "Die Zähne liefen in V-Form. So liefen die Räder leiser und ruhiger.",
+      "clip": "engine mechanic workshop",
+      "visual": {
+        "type": "wort",
+        "text": "Pfeilzahn"
+      }
+    },
+    {
+      "text": "Neunzehnhundertneunzehn baute er sein erstes Auto. Als Zeichen wählte er den *Doppelwinkel* der Zahnräder.",
+      "clip": "paris street vintage car"
+    },
+    {
+      "text": "Ein Zahnrad wurde zum Markenzeichen. Folge für mehr.",
+      "clip": "car logo closeup"
+    }
+  ]
+}

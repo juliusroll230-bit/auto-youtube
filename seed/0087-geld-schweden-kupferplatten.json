@@ -1,0 +1,58 @@
+{
+  "slug": "geld-schweden-kupferplatten",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#102a28",
+    "#2f8f7e"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Dieses Geld wog fast zwanzig Kilogramm 🪙",
+  "description": "Schwedens Kupferplatten und das erste Papiergeld Europas. Keine Anlageberatung.\n\n#geld #banknoten #schweden #geschichte #shorts",
+  "tags": [
+    "geld",
+    "banknoten",
+    "schweden",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪙",
+      "text": "Dieses *Geld* wog fast zwanzig Kilogramm.",
+      "clip": "copper metal plates"
+    },
+    {
+      "emoji": "🐴",
+      "text": "Schweden zahlte im siebzehnten Jahrhundert mit *Kupferplatten*. Wer viel kaufte, brauchte einen Karren. Wie löste man das?",
+      "clip": "horse cart old town"
+    },
+    {
+      "emoji": "📜",
+      "text": "Sechzehnhunderteinundsechzig gab die Stockholms Banco die ersten *Banknoten* Europas aus.",
+      "clip": "stockholm old town",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1661,
+            "Banknoten"
+          ],
+          [
+            1664,
+            "Pleite"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "📉",
+      "text": "Nur drei Jahre später ging sie pleite, weil sie zu viele *Zettel* druckte.",
+      "clip": "printing press paper"
+    },
+    {
+      "emoji": "👉",
+      "text": "Aus Papier wurde Geld. Keine Anlageberatung. Folge für mehr.",
+      "clip": "banknotes counting"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "geografie-totes-meer",
+  "niche": "Geografie",
+  "colors": [
+    "#2a1a10",
+    "#b8743a"
+  ],
+  "accent": "#bfe8ff",
+  "title": "Dieser See liegt tiefer als jeder Ort an Land 🌍",
+  "description": "Das Tote Meer: tiefster Punkt an Land, extrem salzig und immer weniger Wasser.\n\n#geografie #totesmeer #wissen #shorts",
+  "tags": [
+    "geografie",
+    "totesmeer",
+    "salz",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌍",
+      "text": "Am *Toten Meer* liegt der tiefste Punkt an Land.",
+      "clip": "dead sea floating"
+    },
+    {
+      "emoji": "📏",
+      "text": "Seine Ufer liegen mehr als vierhundert Meter unter dem *Meeresspiegel*. Doch warum ist das Wasser so besonders?",
+      "clip": "desert canyon aerial"
+    },
+    {
+      "emoji": "☀️",
+      "text": "Es hat keinen Abfluss. Wasser *verdunstet* nur. Das Salz bleibt zurück.",
+      "clip": "salt crystals closeup"
+    },
+    {
+      "emoji": "🧂",
+      "text": "Darum ist es etwa zehnmal so salzig wie das *Meer*. Fische überleben dort nicht.",
+      "clip": "person floating water",
+      "visual": {
+        "type": "anteil",
+        "teil": 34,
+        "von": 100,
+        "text": "Salz im Wasser"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Der Wasserspiegel sinkt jedes Jahr weiter. Folge für mehr.",
+      "clip": "dry lakebed cracked"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "geschichte-tambora-sommer",
+  "niche": "Geschichte",
+  "colors": [
+    "#1c2a30",
+    "#5a7e8c"
+  ],
+  "accent": "#ffd9b0",
+  "title": "Dieses Jahr hatte in Europa keinen Sommer 🌋",
+  "description": "Der Ausbruch des Tambora, das Jahr ohne Sommer und die Entstehung von Frankenstein.\n\n#geschichte #tambora #vulkan #frankenstein #shorts",
+  "tags": [
+    "geschichte",
+    "tambora",
+    "vulkan",
+    "frankenstein",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🥶",
+      "text": "Dieses Jahr hatte in Europa keinen *Sommer*.",
+      "clip": "rainy summer landscape"
+    },
+    {
+      "emoji": "🌧️",
+      "text": "Achtzehnhundertsechzehn blieb es in Europa kalt und nass. Ernten verdarben, Preise stiegen. Doch warum?",
+      "clip": "wet wheat field"
+    },
+    {
+      "emoji": "🌋",
+      "text": "Achtzehnhundertfünfzehn brach der Vulkan *Tambora* in Indonesien aus. Seine Asche trübte das Sonnenlicht weltweit.",
+      "clip": "volcano eruption ash",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1815,
+            "Tambora"
+          ],
+          [
+            1816,
+            "Ohne Sommer"
+          ],
+          [
+            1818,
+            "Frankenstein"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "📖",
+      "text": "Ein verregneter Sommer am Genfer See brachte Autorin *Mary Shelley* auf *Frankenstein*.",
+      "clip": "lake geneva mountains"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Vulkan veränderte Wetter und Literatur. Folge für mehr.",
+      "clip": "old library books"
+    }
+  ]
+}

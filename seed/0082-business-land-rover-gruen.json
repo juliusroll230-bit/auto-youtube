@@ -1,0 +1,42 @@
+{
+  "slug": "business-land-rover-gruen",
+  "style": "car",
+  "car_color": "#2f4a2a",
+  "niche": "Business",
+  "accent": "#e9d48a",
+  "title": "Dieser Geländewagen gab es erst nur in einer Farbe 🟢",
+  "description": "Warum der erste Land Rover grün war und aus Aluminium bestand.\n\n#business #landrover #autos #gelaendewagen #shorts",
+  "tags": [
+    "business",
+    "landrover",
+    "autos",
+    "gelaendewagen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Den ersten *Land Rover* gab es nur in *Grün*.",
+      "clip": "green jeep offroad"
+    },
+    {
+      "text": "Neunzehnhundertachtundvierzig zeigte Rover ihn in Amsterdam. Er sollte ein einfacher *Geländewagen* für Bauern sein. Aber warum Grün?",
+      "clip": "farm tractor field"
+    },
+    {
+      "text": "Stahl war nach dem Krieg knapp. Deshalb bestand die Karosserie aus *Aluminium*.",
+      "clip": "aluminium metal sheet",
+      "visual": {
+        "type": "wort",
+        "text": "Aluminium"
+      }
+    },
+    {
+      "text": "Die Farbe stammte aus Restbeständen: *Militärflugzeuge* hatten sie im Cockpit gebraucht.",
+      "clip": "military airplane cockpit"
+    },
+    {
+      "text": "Aus Restfarbe wurde eine Legende. Folge für mehr.",
+      "clip": "suv mud driving"
+    }
+  ]
+}

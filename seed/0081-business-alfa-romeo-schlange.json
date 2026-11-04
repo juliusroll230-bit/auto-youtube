@@ -1,0 +1,45 @@
+{
+  "slug": "business-alfa-romeo-schlange",
+  "style": "car",
+  "car_color": "#7a1020",
+  "niche": "Business",
+  "accent": "#ffd9a0",
+  "title": "Dieses Autologo zeigt zwei Wappen aus Mailand 🐍",
+  "description": "Schlange und Kreuz im Alfa-Romeo-Logo und was der Name wirklich bedeutet.\n\n#business #alfaromeo #autos #logo #shorts",
+  "tags": [
+    "business",
+    "alfaromeo",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Im *Alfa-Romeo-Logo* steckt eine *Schlange*.",
+      "clip": "red sports car"
+    },
+    {
+      "text": "Sie gehört zur Adelsfamilie *Visconti*, die Mailand im Mittelalter regierte. Doch was hat das mit Autos zu tun?",
+      "clip": "milan cathedral"
+    },
+    {
+      "text": "Das Logo zeigt zwei Wappen von *Mailand*. Links ein rotes Kreuz, rechts die Schlange.",
+      "clip": "medieval castle wall",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Rotes Kreuz",
+          "Schlange"
+        ]
+      }
+    },
+    {
+      "text": "Alfa steht für Anonima Lombarda Fabbrica Automobili. Das *Romeo* kam erst neunzehnhundertachtzehn durch Unternehmer *Nicola Romeo*.",
+      "clip": "italian car factory"
+    },
+    {
+      "text": "Eine Schlange und ein Kreuz aus Mailand. Folge für mehr.",
+      "clip": "car driving italy coast"
+    }
+  ]
+}

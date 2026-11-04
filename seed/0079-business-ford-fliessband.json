@@ -1,0 +1,51 @@
+{
+  "slug": "business-ford-fliessband",
+  "style": "car",
+  "car_color": "#1f3b2d",
+  "niche": "Business",
+  "accent": "#ffd27a",
+  "title": "Dieses Auto wurde plötzlich achtmal schneller gebaut 🏭",
+  "description": "Wie Henry Ford mit dem Fließband den Autobau und den Preis des Modells T veränderte.\n\n#business #ford #autos #fliessband #shorts",
+  "tags": [
+    "business",
+    "ford",
+    "autos",
+    "fliessband",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Ford* baute Autos plötzlich achtmal schneller.",
+      "clip": "vintage car factory"
+    },
+    {
+      "text": "Vorher dauerte der Bau eines Fahrgestells über zwölf Stunden. Doch wie ging das so schnell?",
+      "clip": "assembly line workers"
+    },
+    {
+      "text": "Neunzehnhundertdreizehn startete Ford das *Fließband*. Das Auto kam zum Arbeiter, nicht mehr umgekehrt.",
+      "clip": "car production line",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1908,
+            "Modell T"
+          ],
+          [
+            1913,
+            "Fließband"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Der Bau eines *Fahrgestells* sank auf rund neunzig Minuten. Der Preis des *Modells T* fiel von achthundertfünfzig auf zweihundertsechzig Dollar.",
+      "clip": "old black car"
+    },
+    {
+      "text": "Das Auto für alle. Folge für mehr.",
+      "clip": "classic car driving"
+    }
+  ]
+}

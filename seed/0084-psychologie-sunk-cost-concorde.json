@@ -1,0 +1,49 @@
+{
+  "slug": "psychologie-sunk-cost-concorde",
+  "niche": "Psychologie",
+  "colors": [
+    "#241638",
+    "#6b4aa8"
+  ],
+  "accent": "#ffe39a",
+  "title": "Dieses Flugzeug zeigt einen typischen Denkfehler ✈️",
+  "description": "Die Sunk-Cost-Falle am Beispiel der Concorde.\n\n#psychologie #denkfehler #concorde #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "denkfehler",
+    "concorde",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "✈️",
+      "text": "Ein *Überschallflugzeug* erklärt einen typischen Denkfehler.",
+      "clip": "supersonic jet takeoff"
+    },
+    {
+      "emoji": "💸",
+      "text": "Die *Concorde* wurde viel teurer als geplant. Trotzdem bauten Großbritannien und Frankreich weiter. Doch warum?",
+      "clip": "airplane factory hangar"
+    },
+    {
+      "emoji": "🧾",
+      "text": "Ein Grund: Es steckte schon so viel Geld drin. Dazu band ein *Vertrag* beide Länder.",
+      "clip": "signing contract pen"
+    },
+    {
+      "emoji": "🪤",
+      "text": "Psychologen sprechen von der *Sunk-Cost-Falle*. Das verlorene Geld ist weg, egal wie du dich entscheidest.",
+      "clip": "person thinking desk",
+      "visual": {
+        "type": "wort",
+        "text": "Sunk Cost"
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Entscheide nach der Zukunft, nicht nach der Vergangenheit. Folge für mehr.",
+      "clip": "road ahead sunrise"
+    }
+  ]
+}
