@@ -6,11 +6,74 @@
  },
  "videos": [
   {
+   "id": "sa9iTgcauyU",
+   "title": "Diese Luxusmarke begann als geheimes Projekt 🤫",
+   "text": "Wie Toyota mit einem Geheimprojekt die Marke Lexus erfand.",
+   "niche": "Autos",
+   "views": 8,
+   "published": "2026-11-04T19:37:35+00:00",
+   "thumb": "thumbs/sa9iTgcauyU.jpg"
+  },
+  {
+   "id": "aBsgGw3c1pM",
+   "title": "Hyundai hat gar nicht mit Autos angefangen 🏗️",
+   "text": "Hyundai begann als Baufirma, und der Name hat eine einfache Bedeutung.",
+   "niche": "Autos",
+   "views": 0,
+   "published": "2026-11-04T17:36:44+00:00",
+   "thumb": "thumbs/aBsgGw3c1pM.jpg"
+  },
+  {
+   "id": "JoWr2_RYbos",
+   "title": "Im Porsche-Logo steckt eine ganze Stadt 🐎",
+   "text": "Pferd, Geweih und Streifen: woher die Teile des Porsche-Wappens stammen.",
+   "niche": "Autos",
+   "views": 72,
+   "published": "2026-11-04T16:37:19+00:00",
+   "thumb": "thumbs/JoWr2_RYbos.jpg"
+  },
+  {
+   "id": "MlMDwprE0Xk",
+   "title": "Dieses Flugzeug zeigt einen typischen Denkfehler ✈️",
+   "text": "Die Sunk-Cost-Falle am Beispiel der Concorde.",
+   "niche": "Psychologie",
+   "views": 84,
+   "published": "2026-11-04T15:37:47+00:00",
+   "thumb": "thumbs/MlMDwprE0Xk.jpg"
+  },
+  {
+   "id": "G_MbOisFjII",
+   "title": "Dieser Kaiser besteuerte etwas sehr Seltsames 🏛️",
+   "text": "Kaiser Vespasian und die Steuer auf Urin in Rom.",
+   "niche": "Geschichte",
+   "views": 211,
+   "published": "2026-11-04T13:37:26+00:00",
+   "thumb": "thumbs/G_MbOisFjII.jpg"
+  },
+  {
+   "id": "u3-fYuEbIcM",
+   "title": "Dieser Autoname ist über zweitausend Jahre alt 🏛️",
+   "text": "Dacia trägt den Namen einer römischen Provinz.",
+   "niche": "Autos",
+   "views": 231,
+   "published": "2026-11-04T12:37:34+00:00",
+   "thumb": "thumbs/u3-fYuEbIcM.jpg"
+  },
+  {
+   "id": "9nXyUy8lRzo",
+   "title": "Warum bei vielen Zeugen oft keiner hilft 👥",
+   "text": "Der Zuschauereffekt: Warum Menschen in einer Gruppe seltener eingreifen.",
+   "niche": "Psychologie",
+   "views": 207,
+   "published": "2026-11-04T11:37:43+00:00",
+   "thumb": "thumbs/9nXyUy8lRzo.jpg"
+  },
+  {
    "id": "yBNLaabU5_E",
    "title": "Dieses Jahr hatte in Europa keinen Sommer 🌋",
    "text": "Der Ausbruch des Tambora, das Jahr ohne Sommer und die Entstehung von Frankenstein.",
    "niche": "Geschichte",
-   "views": 12,
+   "views": 101,
    "published": "2026-11-04T09:37:49+00:00",
    "thumb": "thumbs/yBNLaabU5_E.jpg"
   },
@@ -19,7 +82,7 @@
    "title": "Dieses Geld wog fast zwanzig Kilogramm 🪙",
    "text": "Schwedens Kupferplatten und das erste Papiergeld Europas. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 27,
+   "views": 59,
    "published": "2026-11-04T07:37:40+00:00",
    "thumb": "thumbs/aZs1pl-9naQ.jpg"
   },
@@ -28,7 +91,7 @@
    "title": "Dieser See liegt tiefer als jeder Ort an Land 🌍",
    "text": "Das Tote Meer: tiefster Punkt an Land, extrem salzig und immer weniger Wasser.",
    "niche": "Geografie",
-   "views": 129,
+   "views": 328,
    "published": "2026-11-04T05:37:36+00:00",
    "thumb": "thumbs/FgJJCZylhhs.jpg"
   },
@@ -37,7 +100,7 @@
    "title": "Dieser Autoname ist eigentlich eine Abkürzung 🚗",
    "text": "Hinter Fiat steckt mehr als vier Buchstaben.",
    "niche": "Autos",
-   "views": 364,
+   "views": 415,
    "published": "2026-11-03T20:33:11+00:00",
    "thumb": "thumbs/_jRLt8s0SSE.jpg"
   },
@@ -46,7 +109,7 @@
    "title": "Dieses Auto wurde von Flugzeugbauern erfunden ✈️",
    "text": "Saab baute erst Flugzeuge und dann Autos.",
    "niche": "Autos",
-   "views": 216,
+   "views": 227,
    "published": "2026-11-03T20:31:02+00:00",
    "thumb": "thumbs/Care5Wwrk5I.jpg"
   },
@@ -64,7 +127,7 @@
    "title": "Bevor Kia Autos baute, gab es etwas ganz anderes 🚲",
    "text": "Kia begann mit Stahlrohren und Fahrradteilen.",
    "niche": "Autos",
-   "views": 118,
+   "views": 119,
    "published": "2026-11-03T16:36:59+00:00",
    "thumb": "thumbs/SVvYt73juyE.jpg"
   },
@@ -73,72 +136,9 @@
    "title": "Warum dein Horoskop so gut passt 🔮",
    "text": "Der Barnum-Effekt: Warum vage Beschreibungen sich so persönlich anfühlen.",
    "niche": "Psychologie",
-   "views": 221,
+   "views": 249,
    "published": "2026-11-03T14:37:08+00:00",
    "thumb": "thumbs/v_XYr-_5I7M.jpg"
-  },
-  {
-   "id": "yZ0iF_kdJKM",
-   "title": "Dieses Verbrechen machte die Mona Lisa berühmt 🖼️",
-   "text": "1911 verschwand die Mona Lisa aus dem Louvre. Die Jagd nach ihr machte sie weltbekannt.",
-   "niche": "Geschichte",
-   "views": 70,
-   "published": "2026-11-03T12:36:56+00:00",
-   "thumb": "thumbs/yZ0iF_kdJKM.jpg"
-  },
-  {
-   "id": "lT1FU16HyL8",
-   "title": "Darum hat deine Geheimzahl genau so viele Ziffern 🏧",
-   "text": "Der erste Geldautomat Großbritanniens und die Geschichte hinter der vierstelligen PIN. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 101,
-   "published": "2026-11-03T10:37:02+00:00",
-   "thumb": "thumbs/lT1FU16HyL8.jpg"
-  },
-  {
-   "id": "wL788iykH5I",
-   "title": "Nicht der Everest ragt am weitesten ins All 🏔️",
-   "text": "Warum der Gipfel des Chimborazo weiter vom Erdmittelpunkt entfernt ist als der Mount Everest.",
-   "niche": "Geografie",
-   "views": 59,
-   "published": "2026-11-03T08:37:16+00:00",
-   "thumb": "thumbs/wL788iykH5I.jpg"
-  },
-  {
-   "id": "H1RT-C-ucyM",
-   "title": "Woher der Name Aston Martin wirklich kommt 🏁",
-   "text": "Die Marke von James Bond hat einen ganz einfachen Ursprung.",
-   "niche": "Autos",
-   "views": 127,
-   "published": "2026-11-02T18:36:26+00:00",
-   "thumb": "thumbs/H1RT-C-ucyM.jpg"
-  },
-  {
-   "id": "i9WQ6VbYGbg",
-   "title": "Was die sechs Sterne im Subaru-Logo bedeuten ✨",
-   "text": "Das Subaru-Logo ist ein echter Sternhaufen und erzählt die Geschichte der Firma.",
-   "niche": "Autos",
-   "views": 244,
-   "published": "2026-11-02T16:36:38+00:00",
-   "thumb": "thumbs/i9WQ6VbYGbg.jpg"
-  },
-  {
-   "id": "4tnk8f4wcnA",
-   "title": "Warum ein kleines Missgeschick dich beliebter macht ☕",
-   "text": "Der Pratfall-Effekt: Warum kompetente Menschen durch einen kleinen Fehler sympathischer wirken.",
-   "niche": "Psychologie",
-   "views": 61,
-   "published": "2026-11-02T14:36:51+00:00",
-   "thumb": "thumbs/4tnk8f4wcnA.jpg"
-  },
-  {
-   "id": "Qt-0acyd3I0",
-   "title": "Der Eiffelturm sollte abgerissen werden 🗼",
-   "text": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.",
-   "niche": "Geschichte",
-   "views": 670,
-   "published": "2026-11-02T12:36:37+00:00",
-   "thumb": "thumbs/Qt-0acyd3I0.jpg"
   }
  ]
 }
