@@ -6,11 +6,56 @@
  },
  "videos": [
   {
+   "id": "yBNLaabU5_E",
+   "title": "Dieses Jahr hatte in Europa keinen Sommer 🌋",
+   "text": "Der Ausbruch des Tambora, das Jahr ohne Sommer und die Entstehung von Frankenstein.",
+   "niche": "Geschichte",
+   "views": 12,
+   "published": "2026-11-04T09:37:49+00:00",
+   "thumb": "thumbs/yBNLaabU5_E.jpg"
+  },
+  {
+   "id": "aZs1pl-9naQ",
+   "title": "Dieses Geld wog fast zwanzig Kilogramm 🪙",
+   "text": "Schwedens Kupferplatten und das erste Papiergeld Europas. Keine Anlageberatung.",
+   "niche": "Geld",
+   "views": 27,
+   "published": "2026-11-04T07:37:40+00:00",
+   "thumb": "thumbs/aZs1pl-9naQ.jpg"
+  },
+  {
+   "id": "FgJJCZylhhs",
+   "title": "Dieser See liegt tiefer als jeder Ort an Land 🌍",
+   "text": "Das Tote Meer: tiefster Punkt an Land, extrem salzig und immer weniger Wasser.",
+   "niche": "Geografie",
+   "views": 129,
+   "published": "2026-11-04T05:37:36+00:00",
+   "thumb": "thumbs/FgJJCZylhhs.jpg"
+  },
+  {
+   "id": "_jRLt8s0SSE",
+   "title": "Dieser Autoname ist eigentlich eine Abkürzung 🚗",
+   "text": "Hinter Fiat steckt mehr als vier Buchstaben.",
+   "niche": "Autos",
+   "views": 364,
+   "published": "2026-11-03T20:33:11+00:00",
+   "thumb": "thumbs/_jRLt8s0SSE.jpg"
+  },
+  {
+   "id": "Care5Wwrk5I",
+   "title": "Dieses Auto wurde von Flugzeugbauern erfunden ✈️",
+   "text": "Saab baute erst Flugzeuge und dann Autos.",
+   "niche": "Autos",
+   "views": 216,
+   "published": "2026-11-03T20:31:02+00:00",
+   "thumb": "thumbs/Care5Wwrk5I.jpg"
+  },
+  {
    "id": "5gxP8j4alWY",
    "title": "Dieses Autologo stammt von einem Brunnen 🔱",
    "text": "Der Dreizack von Maserati hat eine Vorlage mitten in Bologna.",
    "niche": "Autos",
-   "views": 65,
+   "views": 271,
    "published": "2026-11-03T18:36:46+00:00",
    "thumb": "thumbs/5gxP8j4alWY.jpg"
   },
@@ -19,7 +64,7 @@
    "title": "Bevor Kia Autos baute, gab es etwas ganz anderes 🚲",
    "text": "Kia begann mit Stahlrohren und Fahrradteilen.",
    "niche": "Autos",
-   "views": 96,
+   "views": 118,
    "published": "2026-11-03T16:36:59+00:00",
    "thumb": "thumbs/SVvYt73juyE.jpg"
   },
@@ -28,7 +73,7 @@
    "title": "Warum dein Horoskop so gut passt 🔮",
    "text": "Der Barnum-Effekt: Warum vage Beschreibungen sich so persönlich anfühlen.",
    "niche": "Psychologie",
-   "views": 145,
+   "views": 221,
    "published": "2026-11-03T14:37:08+00:00",
    "thumb": "thumbs/v_XYr-_5I7M.jpg"
   },
@@ -46,7 +91,7 @@
    "title": "Darum hat deine Geheimzahl genau so viele Ziffern 🏧",
    "text": "Der erste Geldautomat Großbritanniens und die Geschichte hinter der vierstelligen PIN. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 79,
+   "views": 101,
    "published": "2026-11-03T10:37:02+00:00",
    "thumb": "thumbs/lT1FU16HyL8.jpg"
   },
@@ -55,7 +100,7 @@
    "title": "Nicht der Everest ragt am weitesten ins All 🏔️",
    "text": "Warum der Gipfel des Chimborazo weiter vom Erdmittelpunkt entfernt ist als der Mount Everest.",
    "niche": "Geografie",
-   "views": 58,
+   "views": 59,
    "published": "2026-11-03T08:37:16+00:00",
    "thumb": "thumbs/wL788iykH5I.jpg"
   },
@@ -64,7 +109,7 @@
    "title": "Woher der Name Aston Martin wirklich kommt 🏁",
    "text": "Die Marke von James Bond hat einen ganz einfachen Ursprung.",
    "niche": "Autos",
-   "views": 120,
+   "views": 127,
    "published": "2026-11-02T18:36:26+00:00",
    "thumb": "thumbs/H1RT-C-ucyM.jpg"
   },
@@ -73,7 +118,7 @@
    "title": "Was die sechs Sterne im Subaru-Logo bedeuten ✨",
    "text": "Das Subaru-Logo ist ein echter Sternhaufen und erzählt die Geschichte der Firma.",
    "niche": "Autos",
-   "views": 246,
+   "views": 244,
    "published": "2026-11-02T16:36:38+00:00",
    "thumb": "thumbs/i9WQ6VbYGbg.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Der Eiffelturm sollte abgerissen werden 🗼",
    "text": "Der Eiffelturm war nur für zwanzig Jahre gedacht. Gerettet hat ihn die Wissenschaft.",
    "niche": "Geschichte",
-   "views": 595,
+   "views": 670,
    "published": "2026-11-02T12:36:37+00:00",
    "thumb": "thumbs/Qt-0acyd3I0.jpg"
-  },
-  {
-   "id": "Gr1tDcUHnCo",
-   "title": "In deinem Gehalt steckt ein altes Wort für Salz 🧂",
-   "text": "Woher das Wort Salär kommt und was Salz damit zu tun haben soll. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 129,
-   "published": "2026-11-02T10:36:43+00:00",
-   "thumb": "thumbs/Gr1tDcUHnCo.jpg"
-  },
-  {
-   "id": "yPefjF3R-cY",
-   "title": "Dieses Land ist größer als ein ganzer Zwergplanet 🪐",
-   "text": "Russland hat mehr Fläche als die gesamte Oberfläche von Pluto.",
-   "niche": "Geografie",
-   "views": 631,
-   "published": "2026-11-02T08:36:49+00:00",
-   "thumb": "thumbs/yPefjF3R-cY.jpg"
-  },
-  {
-   "id": "UCIZRDjLJOk",
-   "title": "VW kaufte Rolls-Royce und ging trotzdem leer aus 👑",
-   "text": "Wie VW eine Luxusmarke kaufte, aber den Namen nicht bekam.",
-   "niche": "Autos",
-   "views": 1066,
-   "published": "2026-11-01T18:37:48+00:00",
-   "thumb": "thumbs/UCIZRDjLJOk.jpg"
-  },
-  {
-   "id": "_swff3-SXRA",
-   "title": "Warum wir gutaussehende Menschen für klüger halten 🧠",
-   "text": "Der Halo-Effekt färbt den ersten Eindruck.",
-   "niche": "Psychologie",
-   "views": 609,
-   "published": "2026-11-01T17:41:59+00:00",
-   "thumb": "thumbs/_swff3-SXRA.jpg"
-  },
-  {
-   "id": "tAYzbIb2qmM",
-   "title": "Diese Automarke hat mit etwas ganz anderem angefangen 🍾",
-   "text": "Bevor Mazda Autos baute, stellte die Firma etwas völlig anderes her.",
-   "niche": "Autos",
-   "views": 361,
-   "published": "2026-11-01T17:36:54+00:00",
-   "thumb": "thumbs/tAYzbIb2qmM.jpg"
   }
  ]
 }
