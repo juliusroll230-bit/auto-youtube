@@ -68,6 +68,8 @@ jobs:
           "
       - name: Clips schneiden (echte Spracherkennung)
         run: docker exec app python tests/clip_smoke.py
+      - name: Genug Clips aus kurzen Videos
+        run: docker exec app python tests/clip_pick_test.py
       - name: Whop-Kampagnen lesen
         run: docker exec app python tests/whop_test.py
       - name: Gesichts-Zuschnitt

@@ -607,17 +607,55 @@ def candidates(sents, rms, keywords, min_len, max_len):
     return out
 
 
+MIN_CLIP = 8  # kürzester Clip in Sekunden, wenn ein kurzes Video auf mehrere Clips verteilt wird
+
+
 def energy_windows(rms, duration, length, count):
     """Ohne Sprache: die lautesten Abschnitte."""
+    if not rms:  # Video ohne Ton: gleichmäßig verteilt
+        n = max(1, int(duration // max(1.0, length)))
+        return [{"start": k * length, "end": min(duration, (k + 1) * length), "score": 0} for k in range(n)]
     step = max(1, int(length * 2))
     wins = []
-    for k in range(0, max(1, len(rms) - step), max(1, step // 2)):
+    for k in range(0, max(1, len(rms) - step + 1), 2 if count > 1 else max(1, step // 2)):
         wins.append({"start": k / 2, "end": min(duration, k / 2 + length), "score": sum(rms[k:k + step]) / step})
     return wins or [{"start": 0, "end": min(duration, length), "score": 0}]
 
 
-def pick(cands, count, gap=1.0):
-    chosen = []
+def clip_lengths(duration, count, min_len, max_len):
+    """Clip-Länge passend zum Video: Bei kurzen Videos (z. B. Trailern) werden die Clips kürzer,
+    damit trotzdem die eingestellte Zahl herauskommt."""
+    lo, hi = sorted((min_len, max_len))
+    hi = min(hi, max(lo, duration))
+    if count > 1 and 0.75 * duration < count * hi:
+        hi = max(MIN_CLIP, min(hi, 0.75 * duration / count))  # Luft lassen, damit alle Clips nebeneinander passen
+        lo = max(MIN_CLIP * 0.75, min(lo, hi * 0.6))
+    return lo, hi
+
+
+def choose_parts(sents, rms, duration, settings):
+    """Die besten Stellen. Zuerst ganze Sätze; fehlen dann noch Clips, füllen die lautesten
+    Abschnitte auf (wichtig bei Trailern mit wenig Sprache)."""
+    count = settings["clips"]
+    lo, hi = clip_lengths(duration, count, settings["min_len"], settings["max_len"])
+    chosen = pick(candidates(sents, rms, settings["keywords"], lo, hi), count)
+    if len(chosen) < count:
+        chosen = pick(energy_windows(rms, duration, min(hi, duration), count), count, taken=chosen)
+    while len(chosen) < count:  # notfalls die größte freie Lücke nehmen
+        edges = [0.0] + [x for c in sorted(chosen, key=lambda c: c["start"]) for x in (c["start"], c["end"])] + [duration]
+        free = max(((edges[k], edges[k + 1]) for k in range(0, len(edges), 2)), key=lambda g: g[1] - g[0])
+        if free[1] - free[0] - 1.0 < MIN_CLIP * 0.75:
+            break
+        a = free[0] + (0.5 if free[0] > 0 else 0)
+        b = min(free[1] - (0.5 if free[1] < duration else 0), a + hi)
+        chosen = sorted(chosen + [{"start": a, "end": b, "score": 0}], key=lambda c: c["start"])
+    return chosen
+
+
+def pick(cands, count, gap=1.0, taken=()):
+    chosen = list(taken)
+    if len(chosen) >= count:
+        return sorted(chosen, key=lambda c: c["start"])
     for c in sorted(cands, key=lambda c: -c["score"]):
         if all(c["end"] + gap <= x["start"] or c["start"] >= x["end"] + gap for x in chosen):
             chosen.append(c)
@@ -822,13 +860,8 @@ def process(cid, settings, task=lambda text: None):
         c = update(cid, lambda c: c.update(status="schneidet", progress=66, language=tr.get("language"),
                                            keywords=settings["keywords"]))
         rms = loudness(source_path(c)) if info["audio"] else []
-        lo, hi = sorted((settings["min_len"], settings["max_len"]))
-        hi = min(hi, max(lo, info["duration"]))
         sents = sentences(tr["words"])
-        chosen = pick(candidates(sents, rms, settings["keywords"], lo, hi), settings["clips"])
-        if not chosen:
-            chosen = pick(energy_windows(rms, info["duration"], min(hi, info["duration"]), settings["clips"]),
-                          settings["clips"])
+        chosen = choose_parts(sents, rms, info["duration"], settings)
         clips = []
         for n, ch in enumerate(chosen, 1):
             task(f"Schneidet Clip {n}/{len(chosen)}")

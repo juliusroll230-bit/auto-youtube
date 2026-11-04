@@ -2561,7 +2561,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       { k: "auto_start", type: "switch", label: "Ordner-Videos sofort schneiden", hint: "Aus: Du bestätigst bei jedem Ordner-Video zuerst, dass du es verwenden darfst." },
       { type: "sec", label: "Prompt und Schnitt" },
       { k: "keywords", type: "text", max: 200, label: "Prompt: Worauf soll der Clipper achten?", placeholder: "z. B. Geld, Sparen, Aktien", hint: "Stellen mit diesen Wörtern kommen zuerst dran. Leer: Der Clipper nimmt die Stellen mit dem stärksten Einstieg." },
-      { k: "clips", type: "range", min: 1, max: 10, step: 1, label: "Clips pro Video", fmt: function (v) { return v + (v === 1 ? " Clip" : " Clips"); } },
+      { k: "clips", type: "range", min: 1, max: 15, step: 1, label: "Clips pro Video", fmt: function (v) { return v + (v === 1 ? " Clip" : " Clips"); }, hint: "Kurze Videos wie Trailer werden auf kürzere Clips verteilt, damit trotzdem so viele herauskommen." },
       { k: "min_len", type: "range", min: 10, max: 60, step: 5, label: "Kürzester Clip", fmt: function (v) { return v + " s"; }, pair: "max_len" },
       { k: "max_len", type: "range", min: 15, max: 90, step: 5, label: "Längster Clip", fmt: function (v) { return v + " s"; }, pair: "min_len", hint: "Shorts zwischen 20 und 45 Sekunden laufen meistens am besten." },
       { type: "sec", label: "Clipping-Stil" },
@@ -2575,7 +2575,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     ],
     publisher: [
       { k: "on", type: "switch", label: "Uploads an", hint: "Aus: Zu den Sendezeiten wird nichts gepostet. Die Sendezeiten stellst du im Bereich Kanal ein." },
-      { k: "clips_per_day", type: "range", min: 0, max: 6, step: 1, label: "Clips pro Tag", fmt: function (v) { return v ? "bis zu " + v : "keine"; }, hint: "So viele Sendeplätze am Tag bekommen einen freigegebenen Clip statt eines KI-Shorts, gleichmäßig über den Tag verteilt." },
+      { k: "clips_per_day", type: "range", min: 0, max: 10, step: 1, label: "Clips pro Tag", fmt: function (v) { return v ? "bis zu " + v : "keine"; }, hint: "So viele Sendeplätze am Tag bekommen einen freigegebenen Clip statt eines KI-Shorts, gleichmäßig über den Tag verteilt." },
       { type: "info", label: "Ziel-Plattformen", rows: [["YouTube Shorts", "automatisch", true], ["TikTok", "per Download"], ["Instagram Reels", "per Download"]], hint: "TikTok und Instagram erlauben automatisches Posten nur für geprüfte Firmen-Apps. Lade den Clip im Bereich Kampagnen herunter und poste ihn in der App." }
     ],
     analyst: [
@@ -3740,7 +3740,7 @@ dialog.vs[open] { display: grid; place-items: center; }
         actBtn("Ablehnen", "no", function () { return clipAct(c, x, "reject"); }, true)]);
       else if (x.status === "freigegeben") add(acts, [actBtn("Jetzt posten", "", function () { return postClip(c, x); }, true)]);
       else if (x.status === "abgelehnt") add(acts, [actBtn("Zurückholen", "", function () { return clipAct(c, x, "restore"); })]);
-      else if (x.status === "gepostet" && x.video_id) add(acts, [h("a", { cls: "btn sm", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube" })]);
+      else if (x.status === "gepostet" && x.video_id) add(acts, [h("a", { cls: "btn sm", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube" }), crSubmit(c, x, "btn sm")]);
       acts.appendChild(dlLink(c, x));
       g.appendChild(h("div", { cls: "cl st-" + x.status }, [th, h("div", { cls: "t", text: x.title }), add(h("div", { cls: "m" }), [scoreEl(x), "ab " + mmss(x.start)]), acts]));
     });
@@ -3810,6 +3810,20 @@ dialog.vs[open] { display: grid; place-items: center; }
     if (!c.program) return null;
     var w = (d.whop || []).find(function (x) { return x.id === c.program; });
     return h("div", { style: "margin-top:6px" }, [h("span", { cls: "chip wpchip", text: "Whop: " + (w ? w.title : "Kampagne entfernt") })]);
+  }
+  // Gepostete Clips einer Whop-Kampagne: Link kopieren und die Kampagne öffnen (Einreichen geht nur dort, es gibt keine Schnittstelle)
+  function crSubmit(c, x, cls) {
+    if (!c.program || !x.video_id) return null;
+    var w = ((S.d || {}).whop || []).find(function (k) { return k.id === c.program; });
+    if (!w || !w.url) return null;
+    var link = "https://youtube.com/shorts/" + x.video_id;
+    var b = h("button", { cls: cls, type: "button", title: "Kopiert den Link zum Short und öffnet die Kampagne. Dort auf Einreichen klicken und den Link einfügen.", text: "Bei Content Rewards einreichen" });
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      copyText(link, b);
+      window.open(w.url, "_blank", "noopener");
+    });
+    return b;
   }
   function wpCheck() { $("wpGo").disabled = !S.live || !/contentrewards\.com\/(c\/)?(campaigns|discover)\//i.test($("wpUrl").value) || !!S.wpBusy; }
   $("wpUrl").addEventListener("input", wpCheck);
@@ -4094,7 +4108,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       actBtn("Ablehnen", "no", function () { return clipAct(c, x, "reject", "Abgelehnt"); }, true)]);
     else if (x.status === "freigegeben") add(a, [actBtn("Jetzt posten", "primary", function () { return postClip(c, x); }, true)]);
     else if (x.status === "abgelehnt") add(a, [actBtn("Zurückholen", "", function () { return clipAct(c, x, "restore"); })]);
-    else if (x.status === "gepostet" && x.video_id) add(a, [h("a", { cls: "btn", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube ansehen" })]);
+    else if (x.status === "gepostet" && x.video_id) add(a, [h("a", { cls: "btn", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube ansehen" }), crSubmit(c, x, "btn primary")]);
     a.querySelectorAll(".btn.sm").forEach(function (b) { b.classList.remove("sm"); });
     a.appendChild(dlLink(c, x, "btn"));
     $("plNote").textContent = "Für TikTok und Instagram Reels: herunterladen und in der App posten. Dort ist automatisches Posten nur für geprüfte Firmen-Apps erlaubt.";
