@@ -3289,7 +3289,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var running = (d.campaigns || []).find(function (c) { return c.id === d.clips_running; });
     kpi("kvCamp", "Aktive Kampagnen", ct.active || 0,
       [running ? h("span", { cls: "trend", text: "● " + (running.status === "hoert" ? "hört zu" : "schneidet") }) : null,
-        running ? running.name : ct.inbox ? ct.inbox + " im Eingang" : ct.campaigns ? ct.campaigns + " insgesamt" : "Lade ein Video hoch"],
+        running ? running.name : ct.inbox ? ct.inbox + " im Eingang" : ct.active_videos ? ct.active_videos + (ct.active_videos === 1 ? " Video" : " Videos") + " in Arbeit" : ct.campaigns ? ct.campaigns + " Videos insgesamt" : "Lade ein Video hoch"],
       { href: "#kampagnen" });
     kpi("kvClips", "Clips erstellt", ct.clips || 0,
       [ct.clips_today ? h("span", { cls: "trend", text: "+" + nf.format(ct.clips_today) }) : null, ct.clips_today ? "heute" : ct.posted ? nf.format(ct.posted) + " gepostet" : "noch keine"],
