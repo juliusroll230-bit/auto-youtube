@@ -438,6 +438,9 @@ def summary():
     clips = [x for c in camps for x in c["clips"]]
     active = [c for c in camps if c["status"] in ("laedt", "neu", "wartet", "hoert", "schneidet")
               or any(x["status"] in ("neu", "freigegeben") for x in c["clips"])]
+    # Jedes hochgeladene Video ist intern eine "Kampagne". Für die Anzeige zählen echte Whop-Kampagnen:
+    # Videos derselben Whop-Kampagne zusammen, Videos ohne Whop-Kampagne einzeln.
+    groups = {c.get("program") or "video:" + c["id"] for c in active}
     out = []
     for c in camps[:30]:
         out.append({k: c.get(k) for k in ("id", "name", "origin", "credit", "rights", "created_at", "status",
@@ -448,7 +451,7 @@ def summary():
                                 for x in c["clips"]]})
     return {
         "campaigns": out,
-        "totals": {"campaigns": len(camps), "active": len(active), "clips": len(clips),
+        "totals": {"campaigns": len(camps), "active": len(groups), "active_videos": len(active), "clips": len(clips),
                    "clips_today": sum(1 for c in camps if (c.get("finished_at") or "")[:10] == today
                                       for _ in c["clips"]),
                    "waiting": sum(1 for x in clips if x["status"] == "neu"),
