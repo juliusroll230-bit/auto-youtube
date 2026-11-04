@@ -37,10 +37,10 @@ RANGES = {
     ("sprecher", "tempo"): (85, 115, 1),
     ("analyst", "minutes"): (10, 120, 5),
     ("zuschauer", "hours"): (1, 12, 1),
-    ("clipper", "clips"): (1, 10, 1),
+    ("clipper", "clips"): (1, 15, 1),
     ("clipper", "min_len"): (10, 60, 5),
     ("clipper", "max_len"): (15, 90, 5),
-    ("publisher", "clips_per_day"): (0, 6, 1),
+    ("publisher", "clips_per_day"): (0, 10, 1),
 }
 CHOICES = {
     ("studio", "kopfzeile"): ("auto", "mit", "ohne"),
