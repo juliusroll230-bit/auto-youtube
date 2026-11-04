@@ -40,7 +40,11 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
                   "agents": {}, "approval": False,
                   # Schlüssel für den Video-Webhook (POST /webhook/video), wird beim ersten Start erzeugt
-                  "webhook_token": ""}
+                  "webhook_token": "",
+                  # zweiter YouTube-Kanal nur für Clips (leer = Clips laufen auf dem Hauptkanal mit)
+                  "clip_token": "", "clip_expired": False,
+                  # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
+                  "socials": {"tiktok": "", "instagram": ""}}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
@@ -221,13 +225,14 @@ def find_spec(slug):
     return None
 
 
-def due_slot(at=None):
+def due_slot(at=None, done="done_slots"):
+    """Der Sendeplatz, der gerade dran ist. done="clip_slots" für den eigenen Clip-Kanal."""
     at = at or now()
     st, hours = state(), config()["post_hours"]
     for h in hours:
         slot = at.replace(hour=int(h), minute=0, second=0, microsecond=0)
         key = slot.strftime("%Y-%m-%d-%H")
-        if key in st["done_slots"]:
+        if key in st.get(done, []):
             continue
         if slot - dt.timedelta(minutes=EARLY_MIN) <= at <= slot + dt.timedelta(minutes=LATE_MIN):
             return key
@@ -255,12 +260,19 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
         write("state.json", st)
 
 
-def mark_clip_posted(slot, record):
+def mark_slot(slot, done="done_slots"):
+    with LOCK:
+        st = state()
+        st[done] = (st.get(done, []) + [slot])[-90:]
+        write("state.json", st)
+
+
+def mark_clip_posted(slot, record, done="done_slots"):
     """Ein Clip ist online: wie mark_posted, nur ohne Skriptdatei."""
     with LOCK:
         st = state()
         if slot:
-            st["done_slots"] = (st["done_slots"] + [slot])[-90:]
+            st[done] = (st.get(done, []) + [slot])[-90:]
         st["uploads"].append(record)
         write("state.json", st)
 
@@ -386,6 +398,9 @@ def dashboard(extra=None, working=None, repo=True):
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),
+        "clip_channel": {"connected": bool(cfg["clip_token"]), "expired": bool(cfg["clip_expired"]) and not cfg["clip_token"],
+                         "channel": read("clipchannel.json", None) if cfg["clip_token"] else None},
+        "socials": cfg["socials"],
         "queue": queue,
         "approval": bool(cfg["approval"]),
         "rejected": rejected,

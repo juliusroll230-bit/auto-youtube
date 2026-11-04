@@ -324,6 +324,36 @@ def set_clip(cid, n, action, title=None):
     return update(cid, go)
 
 
+PLATFORMS = ("tiktok", "instagram")
+
+
+def set_shared(cid, n, platform, done):
+    """Merkt sich, dass ein Clip von Hand auf TikTok oder Instagram gepostet wurde."""
+    if platform not in PLATFORMS:
+        raise ValueError("Unbekannte Plattform.")
+
+    def go(c):
+        clip = next((x for x in c["clips"] if x["n"] == n), None)
+        if not clip:
+            raise ValueError("Unbekannter Clip.")
+        shared = dict(clip.get("shared") or {})
+        if done:
+            shared[platform] = store.now().isoformat(timespec="seconds")
+        else:
+            shared.pop(platform, None)
+        clip["shared"] = shared
+    return update(cid, go)
+
+
+def caption(c, clip):
+    """Text zum Einfügen bei TikTok oder Instagram: Titel, Quelle, Hashtags."""
+    tags = ["#" + re.sub(r"\W+", "", k) for k in re.split(r"[,;]\s*|\s+", c.get("keywords") or "") if re.sub(r"\W+", "", k)][:5]
+    out = clip.get("title", "")
+    if c.get("credit"):
+        out += f"\n\nOriginal: {c['credit']}"
+    return out + "\n\n" + " ".join(tags + ["#fyp", "#clips"])
+
+
 def approve_waiting():
     """Alle wartenden Clips freigeben (wenn die automatische Freigabe eingeschaltet wird)."""
     def go(c):
@@ -413,7 +443,8 @@ def summary():
         out.append({k: c.get(k) for k in ("id", "name", "origin", "credit", "rights", "created_at", "status",
                                           "progress", "error", "duration", "language", "finished_at", "program")}
                    | {"clips": [{k: x.get(k) for k in ("n", "start", "end", "duration", "title", "hook", "score",
-                                                         "status", "video_id", "posted_at", "text")}
+                                                         "status", "video_id", "posted_at", "text", "shared")}
+                                | {"caption": caption(c, x)}
                                 for x in c["clips"]]})
     return {
         "campaigns": out,

@@ -1248,7 +1248,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     <a href="#zuschauer" data-tab="zuschauer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v15a1 1 0 0 0 1 1h17"/><path d="M7 8c3 0 4 2 6 5s3 3 7 3"/></svg><span>Zuschauer</span></a>
     <a href="#videos" data-tab="videos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><path d="m10 9 5 3-5 3z"/></svg><span>Videos</span></a>
     <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg><span class="l">Sendeplan</span><span class="s" aria-hidden="true">Plan</span></a>
-    <a href="#kanal" data-tab="kanal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg><span>Kanal</span></a>
+    <a href="#kanal" data-tab="kanal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg><span>Kanäle</span></a>
   </nav>
   <div class="who">
     <div class="avatar js-avatar" aria-hidden="true"></div>
@@ -1628,6 +1628,14 @@ dialog.vs[open] { display: grid; place-items: center; }
           <p class="show-note">Der Film ist live mit HyperFrames gebaut und nutzt deinen Kanalnamen und deinen Sendeplan.</p>
         </div>
         <div class="dev-w" id="shFilm"></div>
+      </div>
+      <h2 class="sec-h">Deine Kanäle</h2>
+      <p class="sec-sub">Ein Ort für alle Kanäle. KI-Shorts laufen auf dem Hauptkanal, Clips auf Wunsch auf einem eigenen Kanal.</p>
+      <div class="chg" id="chGrid"></div>
+      <div class="card shc">
+        <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
+          <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
+        <div class="card-b shlist" id="shList"></div>
       </div>
       <h2 class="sec-h">Verbindung und Einstellungen</h2>
       <div class="banner" id="previewNote" hidden>
@@ -2146,6 +2154,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var pub = (d.agents || []).filter(function (a) { return a.id === "publisher"; })[0];
     var per = pub && pub.settings ? Number(pub.settings.clips_per_day) || 0 : 0;
     if (pub && pub.settings && pub.settings.on === false) per = 0;
+    if ((d.clip_channel || {}).connected) per = 0;  // Clips laufen dann auf dem eigenen Kanal
     var hrs = d.slots.map(Number).sort(function (a, b) { return a - b; });
     var ready = per > 0 ? readyClips(d) : [];
     var total = d.queue.length + ready.length, out = [];
@@ -4094,8 +4103,131 @@ dialog.vs[open] { display: grid; place-items: center; }
     showFilm($("shFilm"), "show", "Kanalfilm: " + (ch.title || "60 Sekunden Wissen") + " in elf Sekunden", "Kanalfilm · live mit HyperFrames", vars, null);
   }
 
+
+  // --- Deine Kanäle -------------------------------------------------------------------------
+  var IC = {
+    yt: '<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg>',
+    tt: '<svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg>',
+    ig: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg>'
+  };
+  function chIcon(kind, img) {
+    var e = h("div", { cls: "ic " + kind, "aria-hidden": "true" });
+    if (img) e.appendChild(h("img", { src: img, alt: "" })); else e.innerHTML = IC[kind];
+    return e;
+  }
+  function chTop(kind, img, plat, name) {
+    return h("div", { cls: "top" }, [chIcon(kind, img), h("div", { style: "min-width:0" }, [h("div", { cls: "pl", text: plat }), h("div", { cls: "nm", text: name })])]);
+  }
+  function chNums(list) {
+    return h("div", { cls: "nums" }, list.map(function (x) { return h("div", null, [h("b", { text: x[0] }), h("span", { text: x[1] })]); }));
+  }
+  function shareable(d) {
+    var out = [];
+    (d.campaigns || []).forEach(function (c) {
+      (c.clips || []).forEach(function (x) { if (x.status === "freigegeben" || x.status === "gepostet") out.push([c, x]); });
+    });
+    return out;
+  }
+  function renderChannels(d) {
+    var g = clear($("chGrid")), preview = !S.live;
+    var pub = (agentById("publisher") || {}).settings || {}, per = pub.on === false ? 0 : Number(pub.clips_per_day) || 0;
+    var CC = d.clip_channel || {}, cc = d.connect_clip || { status: "idle" }, so = d.socials || {};
+    var ch = d.channel || {}, list = shareable(d);
+    // Hauptkanal
+    var a = h("div", { cls: "chc" }, [chTop("yt", d.connected && ch.thumbnail, "YouTube · Hauptkanal", d.connected ? (ch.title || "YouTube-Kanal") : "Noch nicht verbunden")]);
+    if (d.connected) a.appendChild(chNums([[nf.format(ch.subscribers || 0), "Abonnenten"], [nf.format(ch.videos || 0), "Videos"]]));
+    a.appendChild(h("span", { cls: "role", text: "KI-Shorts · " + d.slots.length + " pro Tag" + (!CC.connected && per ? " + bis zu " + per + " Clips" : "") }));
+    var go1 = h("button", { cls: "btn sm", type: "button", text: d.connected ? "Verbindung ansehen" : "Jetzt verbinden" });
+    go1.addEventListener("click", function () { $("conBody").scrollIntoView({ behavior: "smooth", block: "center" }); });
+    a.appendChild(h("div", { cls: "acts" }, [go1]));
+    g.appendChild(a);
+    // Clip-Kanal
+    var cch = CC.channel || {};
+    var b = h("div", { cls: "chc" }, [chTop("yt", CC.connected && cch.thumbnail, "YouTube · Clip-Kanal", CC.connected ? (cch.title || "Clip-Kanal") : "Nicht verbunden")]);
+    if (CC.connected) {
+      b.appendChild(chNums([[nf.format(cch.subscribers || 0), "Abonnenten"], [nf.format(cch.videos || 0), "Videos"]]));
+      b.appendChild(h("span", { cls: "role" + (per ? "" : " off"), text: per ? "Clips · bis zu " + per + " pro Tag" : "Clips pro Tag: aus" }));
+      var off = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
+      off.disabled = preview;
+      off.addEventListener("click", function () { if (off.dataset.sure) api("api/clipchannel/disconnect").then(soon); else { off.dataset.sure = "1"; off.textContent = "Wirklich trennen?"; } });
+      b.appendChild(h("div", { cls: "acts" }, [off]));
+    } else if (cc.status === "code") {
+      b.appendChild(h("p", { text: "Öffne google.com/device, melde dich an und wähle bei Google deinen Clip-Kanal. Dann diesen Code eingeben:" }));
+      b.appendChild(h("div", { cls: "code", text: cc.user_code }));
+      b.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: cc.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
+    } else {
+      if (cc.status === "fehler") b.appendChild(h("p", { cls: "msg err", text: cc.message || "Die Verbindung hat nicht geklappt." }));
+      else if (CC.expired) b.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+      b.appendChild(h("p", { text: "Verbinde einen zweiten YouTube-Kanal. Dann postet der Publisher deine Clips dort und nicht mehr zwischen die KI-Shorts." }));
+      var go2 = h("button", { cls: "btn sm primary", type: "button", text: cc.status === "start" ? "Startet …" : "Clip-Kanal verbinden" });
+      go2.disabled = preview || !d.connected || cc.status === "start";
+      go2.addEventListener("click", function () { api("api/clipchannel/connect").then(function () { poll(3000); }, function (e) { toast(e.message); }); });
+      b.appendChild(h("div", { cls: "acts" }, [go2]));
+    }
+    g.appendChild(b);
+    // TikTok und Instagram
+    [["tiktok", "tt", "TikTok", "https://www.tiktok.com/@"], ["instagram", "ig", "Instagram", "https://www.instagram.com/"]].forEach(function (P) {
+      var name = so[P[0]] || "", done = list.filter(function (x) { return (x[1].shared || {})[P[0]]; }).length;
+      var c = h("div", { cls: "chc" }, [chTop(P[1], null, P[2], name ? "@" + name : "Profil eintragen")]);
+      c.appendChild(chNums([[nf.format(list.length - done), "zum Posten"], [nf.format(done), "gepostet"]]));
+      var inp = h("input", { type: "text", autocomplete: "off", placeholder: "@deinname", "aria-label": P[2] + "-Name", value: name ? "@" + name : "" });
+      var sv = h("button", { cls: "btn sm", type: "submit", text: "Speichern" });
+      inp.disabled = sv.disabled = preview;
+      var f = h("form", { cls: "hin" }, [inp, sv]);
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var body = {}; body[P[0]] = inp.value;
+        api("api/socials", body).then(function () { toast(P[2] + " gespeichert"); soon(); }, function (er) { toast(er.message); });
+      });
+      c.appendChild(f);
+      c.appendChild(h("p", { text: "Automatisch posten lässt " + P[2] + " nur geprüfte Firmen-Apps. Du postest die Clips unten mit zwei Klicks selbst." }));
+      if (name) c.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm", href: P[3] + name, target: "_blank", rel: "noopener", text: "Profil öffnen" })]));
+      g.appendChild(c);
+    });
+    renderShareList(d, list);
+  }
+  function renderShareList(d, list) {
+    var box = $("shList"), ae = document.activeElement;
+    clear(box);
+    var open = (S.shf || "offen") === "offen";
+    var rows = list.filter(function (x) { var sh = x[1].shared || {}; return !open || !(sh.tiktok && sh.instagram); });
+    rows.sort(function (p, q) { return (q[0].created_at || "").localeCompare(p[0].created_at || "") || p[1].n - q[1].n; });
+    $("shcSub").textContent = list.length
+      ? "Clip herunterladen, Text kopieren, in der App posten und hier abhaken."
+      : "Sobald der Clipper Clips fertig hat, erscheinen sie hier.";
+    if (!rows.length) { box.appendChild(h("p", { cls: "shempty", text: list.length ? "Alles gepostet. Stark!" : "Noch keine fertigen Clips. Lade im Reiter Clips ein Video hoch." })); return; }
+    rows.slice(0, 20).forEach(function (r) {
+      var c = r[0], x = r[1], sh = x.shared || {};
+      var cp = h("button", { cls: "btn sm", type: "button", text: "Text kopieren" });
+      cp.addEventListener("click", function () { copyText(x.caption || x.title, cp); });
+      var tg = [["tiktok", "TikTok"], ["instagram", "Instagram"]].map(function (P) {
+        var t = h("button", { cls: "tog" + (sh[P[0]] ? " on" : ""), type: "button", "aria-pressed": sh[P[0]] ? "true" : "false", text: P[1] });
+        t.disabled = !S.live;
+        t.addEventListener("click", function () {
+          var on = t.getAttribute("aria-pressed") !== "true";
+          t.classList.toggle("on", on); t.setAttribute("aria-pressed", on ? "true" : "false");
+          api("api/clip/shared", { id: c.id, n: x.n, platform: P[0], done: on }).then(soon, function (er) { toast(er.message); soon(); });
+        });
+        return t;
+      });
+      box.appendChild(h("div", { cls: "shr" }, [
+        h("img", { src: "api/clip/" + c.id + "/" + x.n + ".jpg", alt: "", loading: "lazy" }),
+        h("div", { style: "min-width:0" }, [h("div", { cls: "t", text: x.title || "Clip " + x.n }),
+          h("div", { cls: "m", text: c.name + (x.duration ? " · " + Math.round(x.duration) + " s" : "") + (x.status === "gepostet" ? " · auf YouTube" : "") })]),
+        h("div", { cls: "b" }, [dlLink(c, x), cp].concat(tg))
+      ]));
+    });
+  }
+  document.querySelectorAll("[data-shf]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      S.shf = b.dataset.shf;
+      document.querySelectorAll("[data-shf]").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      if (S.d) renderChannels(S.d);
+    });
+  });
   function renderChannel(d) {
     renderShowroom(d);
+    renderChannels(d);
     var preview = !S.live;
     $("previewNote").hidden = !preview;
     document.querySelectorAll("#v-kanal input, #v-kanal select, #v-kanal button, #aForm input, #aForm button").forEach(function (e) { e.disabled = preview; });
@@ -4301,4 +4433,43 @@ dialog.vs[open] { display: grid; place-items: center; }
   }, 30000);
 })();
 </script>
-<style>@keyframes barIn { from { transform: scaleY(0); } }</style>
+<style>@keyframes barIn { from { transform: scaleY(0); } }
+/* --- Deine Kanäle --- */
+.sec-sub { color: var(--muted); font-size: 14px; margin: -8px 0 2px; }
+.chg { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.chc { padding: 20px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--glow); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.chc .top { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.chc .ic { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; flex: none; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; }
+.chc .ic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.chc .ic img { width: 100%; height: 100%; object-fit: cover; }
+.chc .ic.yt { color: #ff453a; } .chc .ic.tt { color: #64d2ff; } .chc .ic.ig { color: #ff6ab0; }
+.chc .pl { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .01em; }
+.chc .nm { font-weight: 650; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chc .nums { display: flex; gap: 18px; }
+.chc .nums b { display: block; font: 600 20px/1.1 var(--f-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.chc .nums span { font-size: 12px; color: var(--muted); }
+.chc p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+.chc .role { align-self: flex-start; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 980px; background: rgba(10, 132, 255, .14); color: var(--accent-2); }
+.chc .role.off { background: rgba(255, 255, 255, .06); color: var(--muted); }
+.chc .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.chc .hin { display: flex; gap: 8px; }
+.chc .hin input { flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); }
+.chc .code { font: 600 26px/1 var(--f-display); letter-spacing: .12em; padding: 12px; text-align: center; border-radius: 14px; background: var(--surface-2); }
+.shc .seg { flex: none; }
+.shlist { display: flex; flex-direction: column; gap: 10px; }
+.shr { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; align-items: center; padding: 10px; border-radius: 16px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.shr img { width: 54px; height: 96px; object-fit: cover; border-radius: 10px; background: var(--surface-2); }
+.shr .t { font-weight: 600; font-size: 14px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.shr .m { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.shr .b { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.tog { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 980px; border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+.tog::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 1.6px solid currentColor; box-sizing: border-box; }
+.tog.on { background: rgba(48, 209, 88, .16); border-color: rgba(48, 209, 88, .45); color: #30d158; }
+.tog.on::before { background: currentColor; box-shadow: inset 0 0 0 2.5px #1c1c1e; }
+.tog:active { transform: scale(.96); }
+.shempty { color: var(--muted); font-size: 14px; padding: 6px 2px; }
+@media (max-width: 640px) {
+  .shr { grid-template-columns: 54px 1fr; }
+  .shr .b { grid-column: 1 / -1; justify-content: flex-start; }
+}
+</style>

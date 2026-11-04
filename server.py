@@ -52,7 +52,7 @@ OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
-status = {"busy": "", "connect": {"status": "idle"}, "oauth_states": {}}
+status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 _tts_lock = threading.Lock()
 
@@ -139,8 +139,10 @@ def post_next(slot, manual=False):
         with working("planer", task="Wählt das nächste Video"):
             planned = store.planned_queue(ready_only=True)  # Reihenfolge nach Lernmodus
             cfg = store.config()
-            clip = clips.choose_for_slot(slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
-                                         store.state()["uploads"], scripts_left=bool(planned))
+            # Mit eigenem Clip-Kanal laufen Clips getrennt (post_clip_slot), sonst ersetzen sie hier Sendeplätze
+            clip = None if cfg["clip_token"] else clips.choose_for_slot(
+                slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
+                store.state()["uploads"], scripts_left=bool(planned))
         if clip:
             return post_clip(clip, slot, manual)
         if not planned:
@@ -201,20 +203,58 @@ def post_next(slot, manual=False):
         work_lock.release()
 
 
-def post_clip(item, slot, manual=False):
+def clip_target():
+    """Zugang für Clip-Uploads: der eigene Clip-Kanal, wenn verbunden, sonst der Hauptkanal."""
+    cfg = store.config()
+    return ({**cfg, "refresh_token": cfg["clip_token"]}, True) if cfg["clip_token"] else (cfg, False)
+
+
+def post_clip(item, slot, manual=False, done="done_slots"):
     """Lädt einen freigegebenen Clip hoch (läuft innerhalb von post_next bzw. mit work_lock)."""
     c, clip = item
+    cfg, own = clip_target()
     status["busy"] = f"Lade Clip hoch: {clip['title']}"
-    with working("publisher", task="Prüft die YouTube-Verbindung"):
-        yt.check(store.config())
-    with working("publisher", task=f"Lädt Clip „{clip['title'][:28]}“ hoch"):
-        video_id = yt.upload(store.config(), clips.clip_path(c, clip), clips.upload_spec(c, clip))
+    try:
+        with working("publisher", task="Prüft die YouTube-Verbindung"):
+            yt.check(cfg)
+        with working("publisher", task=f"Lädt Clip „{clip['title'][:28]}“ hoch"):
+            video_id = yt.upload(cfg, clips.clip_path(c, clip), clips.upload_spec(c, clip))
+    except Exception as e:
+        if own and yt.is_expired(e):  # nur der Clip-Kanal ist betroffen, der Hauptkanal läuft weiter
+            clip_connection_expired()
+            raise RuntimeError("Die Verbindung zum Clip-Kanal ist abgelaufen.") from e
+        raise
     clips.mark_posted(c["id"], clip["n"], video_id)
-    store.mark_clip_posted(slot, clips.upload_record(c, clip, slot, video_id))
+    record = clips.upload_record(c, clip, slot, video_id)
+    if own:
+        record["channel"] = "clips"
+    store.mark_clip_posted(slot, record, done=done)
     store.agent_done("publisher")
-    store.log("ok", f"Clip gepostet: {clip['title']}" + (" (manuell)" if manual else ""),
+    store.log("ok", f"Clip gepostet{' auf dem Clip-Kanal' if own else ''}: {clip['title']}" + (" (manuell)" if manual else ""),
               agent="publisher", kind="posted", source="youtube")
     refresh_stats()
+
+
+def post_clip_slot(slot):
+    """Sendeplatz des eigenen Clip-Kanals: postet einen freigegebenen Clip, wenn einer dran ist."""
+    if not work_lock.acquire(blocking=False):
+        return
+    try:
+        cfg = store.config()
+        clip = clips.choose_for_slot(slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
+                                     store.state()["uploads"], scripts_left=True)
+        if clip:
+            post_clip(clip, slot, done="clip_slots")
+        else:
+            store.mark_slot(slot, "clip_slots")
+    except Exception as e:
+        traceback.print_exc()
+        store.agent_done("publisher", error=e)
+        store.log("error", f"Clip-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+        store.mark_slot(slot, "clip_slots")
+    finally:
+        status["busy"] = ""
+        work_lock.release()
 
 
 def post_clip_now(cid, n):
@@ -345,10 +385,18 @@ def refresh_stats():
         with working("analyst", task="Holt Aufrufe und Likes"):
             ch = yt.channel(cfg)
             store.write("channel.json", ch)
-            ids = [u["video_id"] for u in store.state()["uploads"]]
+            ups = store.state()["uploads"]
+            ids = [u["video_id"] for u in ups]
             videos = yt.video_stats(cfg, ids) if ids else {}
         store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"), "videos": videos})
-        store.record_history(sum(v["views"] for v in videos.values()), ch.get("subscribers", 0))
+        own = {u["video_id"] for u in ups if u.get("channel") == "clips"}  # Clip-Kanal zählt nicht zum Hauptkanal
+        store.record_history(sum(v["views"] for k, v in videos.items() if k not in own), ch.get("subscribers", 0))
+        if cfg["clip_token"]:
+            try:
+                store.write("clipchannel.json", yt.channel({**cfg, "refresh_token": cfg["clip_token"]}))
+            except Exception as e:
+                if yt.is_expired(e):
+                    clip_connection_expired()
         store.agent_done("analyst")
     except Exception as e:
         store.agent_done("analyst", error=e)
@@ -404,6 +452,33 @@ def refresh_analytics():
         store.log("error", error, agent="zuschauer", kind="error")
     finally:
         stop_work("zuschauer")
+
+
+def clip_connection_expired():
+    store.save_config(clip_token="", clip_expired=True)
+    status["connect_clip"] = {"status": "idle"}
+    store.log("warn", "Die Verbindung zum Clip-Kanal ist abgelaufen. Bitte im Reiter Kanäle neu verbinden.")
+
+
+def connect_clip_channel():
+    cfg = store.config()
+    try:
+        code = yt.device_start(cfg["client_id"])
+        status["connect_clip"] = {"status": "code", "user_code": code["user_code"],
+                                  "verification_url": code.get("verification_url", "https://www.google.com/device"),
+                                  "expires_at": code["expires_at"]}
+        token = yt.device_wait(cfg["client_id"], cfg["client_secret"], code)
+        ch = yt.channel({**cfg, "refresh_token": token})
+        main = store.read("channel.json", {}) or {}
+        if main.get("id") and ch["id"] == main["id"]:
+            raise RuntimeError("Das ist derselbe Kanal wie dein Hauptkanal. Wähle bei Google den anderen Kanal aus.")
+        store.write("clipchannel.json", ch)
+        store.save_config(clip_token=token, clip_expired=False)
+        status["connect_clip"] = {"status": "verbunden"}
+        store.log("ok", f"Clip-Kanal verbunden: {ch.get('title', 'YouTube')}. Clips gehen ab jetzt dorthin.")
+    except Exception as e:
+        status["connect_clip"] = {"status": "fehler", "message": str(e)}
+        store.log("error", f"Clip-Kanal-Verbindung fehlgeschlagen: {e}")
 
 
 def connection_expired():
@@ -529,6 +604,9 @@ def scheduler():
                 slot = store.due_slot() if ag["publisher"]["on"] else None
                 if slot and not status["busy"]:
                     post_next(slot)
+                cslot = store.due_slot(done="clip_slots") if cfg["clip_token"] and ag["publisher"]["on"] else None
+                if cslot and not status["busy"]:
+                    post_clip_slot(cslot)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
                     refresh_stats()
                     if ag["designer"]["on"]:
@@ -639,7 +717,7 @@ class Handler(BaseHTTPRequestHandler):
             if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
-            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"],
+            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
@@ -821,6 +899,37 @@ class Handler(BaseHTTPRequestHandler):
             status["connect"] = {"status": "start"}
             background(connect_channel)
             return self.send(200, {"ok": True})
+        if p == "/api/clipchannel/connect":
+            cfg = store.config()
+            if not (cfg["client_id"] and cfg["client_secret"] and cfg["refresh_token"]):
+                return self.send(400, {"error": "Bitte zuerst deinen Hauptkanal verbinden."})
+            status["connect_clip"] = {"status": "start"}
+            background(connect_clip_channel)
+            return self.send(200, {"ok": True})
+        if p == "/api/clipchannel/disconnect":
+            store.save_config(clip_token="", clip_expired=False)
+            store.write("clipchannel.json", None)
+            status["connect_clip"] = {"status": "idle"}
+            store.log("warn", "Clip-Kanal getrennt. Clips laufen wieder auf dem Hauptkanal mit.")
+            return self.send(200, {"ok": True})
+        if p == "/api/socials":
+            socials = dict(store.config()["socials"])
+            for k in clips.PLATFORMS:
+                if k in data:
+                    v = str(data[k] or "").strip().split("?")[0]
+                    v = re.sub(r"^https?://(www\.)?(tiktok\.com|instagram\.com)/", "", v).strip("/").lstrip("@")
+                    if v and not re.fullmatch(r"[A-Za-z0-9._]{1,30}", v):
+                        return self.send(400, {"error": "Bitte nur den Namen eingeben, zum Beispiel @deinname."})
+                    socials[k] = v
+            store.save_config(socials=socials)
+            return self.send(200, {"ok": True, "socials": socials})
+        if p == "/api/clip/shared":
+            try:
+                clips.set_shared(str(data.get("id", "")), int(data.get("n", 0)), str(data.get("platform", "")),
+                                 bool(data.get("done")))
+            except (OSError, ValueError, TypeError) as e:
+                return self.send(400, {"error": str(e) if isinstance(e, ValueError) else "Unbekannter Clip."})
+            return self.send(200, {"ok": True})
         if p == "/api/analytics/start":
             cfg = store.config()
             if not (cfg["analytics_client_id"] and cfg["analytics_client_secret"]):
@@ -950,7 +1059,7 @@ class Handler(BaseHTTPRequestHandler):
                 store.log("warn", f"Clip abgelehnt: {c['name']} #{data.get('n')}", agent="clipper")
             return self.send(200, {"ok": True})
         if p == "/api/clip/post":
-            if not store.config()["refresh_token"]:
+            if not (store.config()["refresh_token"] or store.config()["clip_token"]):
                 return self.send(400, {"error": "Es ist noch kein Kanal verbunden."})
             if status["busy"]:
                 return self.send(409, {"error": "Es läuft gerade schon ein Upload."})
