@@ -1286,6 +1286,12 @@ dialog.vs[open] { display: grid; place-items: center; }
 
       <div class="kpis" id="kpis"></div>
 
+      <div class="card crc" id="crCard">
+        <div class="card-h"><div><h2><span class="wp-logo" aria-hidden="true">W</span>Content Rewards</h2><div class="sub">Status deiner Kampagnen und das Geld, das deine Clips ungefähr gebracht haben.</div></div>
+          <a class="btn sm" href="#kampagnen">Kampagne hinzufügen</a></div>
+        <div class="card-b" id="crBody"></div>
+      </div>
+
       <div class="card room" id="room">
         <div class="room-h">
           <h2 class="eyebrow" style="color:#fff">Agenten-Dorf</h2>
@@ -3178,6 +3184,48 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   }
 
+
+  // --- Content Rewards: Status und geschätztes Geld in der Zentrale ---------------------------
+  function crMoney(cur, v) { return (cur || "$") + new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v || 0); }
+  function renderRewards(d) {
+    var box = clear($("crBody")), W = d.whop || [];
+    if (!W.length) {
+      box.appendChild(h("div", { cls: "cr-empty" }, [
+        h("span", { text: "Noch keine Kampagne verknüpft. Füge im Reiter Clips den Link einer Kampagne von Content Rewards ein, dann siehst du hier Status und Geld." })]));
+      return;
+    }
+    var cur = W[0].currency || "$", total = 0, views = 0, live = 0, unknown = false;
+    W.forEach(function (w) {
+      if (w.earned == null) unknown = unknown || w.posted > 0; else total += w.earned;
+      views += w.views || 0;
+      if (w.status === "läuft") live++;
+    });
+    box.appendChild(h("div", { cls: "cr-k" }, [
+      h("div", null, [h("b", { cls: "money", text: crMoney(cur, total) }), h("span", { text: "geschätzt verdient" })]),
+      h("div", null, [h("b", { text: nf.format(views) }), h("span", { text: "Aufrufe deiner Clips" })]),
+      h("div", null, [h("b", { text: live + " von " + W.length }), h("span", { text: "Kampagnen laufen" })])
+    ]));
+    var list = h("div", { cls: "cr-list" });
+    W.forEach(function (w) {
+      var st = w.status || "unbekannt", cls = st === "läuft" ? "on" : st === "pausiert" ? "pause" : "end";
+      var meta = [h("span", { cls: "cr-st " + cls, text: st.charAt(0).toUpperCase() + st.slice(1) }),
+        h("span", { text: w.youtube_rate != null ? "YouTube: " + crMoney(w.currency, w.youtube_rate) + " pro 1.000 Aufrufe" : "kein YouTube in dieser Kampagne" }),
+        h("span", { text: nf.format(w.posted || 0) + " von " + nf.format(w.clips || 0) + " Clips gepostet" })];
+      var bud = h("div", { cls: "cr-bud" });
+      if (w.budget_total) {
+        var pct = Math.max(0, Math.min(100, 100 * (w.budget_left || 0) / w.budget_total));
+        bud.appendChild(h("div", { cls: "bar" }, [h("i", { style: "width:" + pct.toFixed(1) + "%" })]));
+        bud.appendChild(h("div", { cls: "l", text: crMoney(w.currency, w.budget_left) + " von " + crMoney(w.currency, w.budget_total) + " Budget übrig" }));
+      } else bud.appendChild(h("div", { cls: "l", text: "Budget unbekannt" }));
+      var e = h("div", { cls: "e" }, w.earned != null
+        ? [h("b", { text: crMoney(w.currency, w.earned) }), h("span", { text: nf.format(w.views || 0) + " Aufrufe" })]
+        : [h("b", { style: "color:var(--muted)", text: "–" }), h("span", { text: w.posted ? "nicht auf YouTube" : "noch nichts gepostet" })]);
+      var title = h("a", { href: w.url, target: "_blank", rel: "noopener", style: "color:inherit;text-decoration:none", text: w.title + (w.brand ? " · " + w.brand : "") });
+      list.appendChild(h("div", { cls: "cr-row" }, [h("div", { style: "min-width:0" }, [h("div", { cls: "t" }, [title]), h("div", { cls: "m" }, meta)]), bud, e]));
+    });
+    box.appendChild(list);
+    box.appendChild(h("p", { cls: "cr-note", text: "Geschätzt aus den YouTube-Aufrufen und der Rate der Kampagne, mit Mindest- und Höchstbetrag pro Clip. Das echte Geld zeigt dir Content Rewards, erst nachdem sie deine Clips geprüft haben." + (unknown ? " Für Kampagnen ohne YouTube-Rate kann die Zentrale nichts schätzen." : "") }));
+  }
   function renderKpis(d, T, sch) {
     var ct = d.clip_totals || {}, box = clear($("kpis"));
     var waitS = d.approval ? d.queue.filter(function (v) { return !v.approved; }).length : 0, waitC = ct.waiting || 0;
@@ -3361,6 +3409,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var T = totals(d);
     $("ccBanner").hidden = d.connected;
     renderKpis(d, T, sch);
+    renderRewards(d);
     updateRoom(d);
     renderApprovals(d, sch);
     renderFeed(d);
@@ -4105,14 +4154,14 @@ dialog.vs[open] { display: grid; place-items: center; }
 
 
   // --- Deine Kanäle -------------------------------------------------------------------------
-  var IC = {
+  var CH_ICONS = {
     yt: '<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg>',
     tt: '<svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg>',
     ig: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg>'
   };
   function chIcon(kind, img) {
     var e = h("div", { cls: "ic " + kind, "aria-hidden": "true" });
-    if (img) e.appendChild(h("img", { src: img, alt: "" })); else e.innerHTML = IC[kind];
+    if (img) e.appendChild(h("img", { src: img, alt: "" })); else e.innerHTML = CH_ICONS[kind];
     return e;
   }
   function chTop(kind, img, plat, name) {
@@ -4471,5 +4520,34 @@ dialog.vs[open] { display: grid; place-items: center; }
 @media (max-width: 640px) {
   .shr { grid-template-columns: 54px 1fr; }
   .shr .b { grid-column: 1 / -1; justify-content: flex-start; }
+}
+
+/* --- Content Rewards in der Zentrale --- */
+.crc .card-h { align-items: flex-start; }
+.cr-k { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.cr-k > div { padding: 14px 16px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); min-width: 0; }
+.cr-k b { display: block; font: 600 26px/1.1 var(--f-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.cr-k b.money { color: #30d158; }
+.cr-k span { font-size: 12px; color: var(--muted); }
+.cr-list { display: flex; flex-direction: column; gap: 10px; }
+.cr-row { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px 14px; border-radius: 16px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.cr-row .t { font-weight: 600; font-size: 14px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cr-row .m { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.cr-st { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; }
+.cr-st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.cr-st.on { color: #30d158; } .cr-st.pause { color: #ffd60a; } .cr-st.end { color: var(--muted); }
+.cr-bud .bar { height: 6px; border-radius: 4px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+.cr-bud .bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.cr-bud .l { font-size: 12px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.cr-row .e { text-align: right; min-width: 90px; }
+.cr-row .e b { display: block; font: 600 18px/1.1 var(--f-display); color: #30d158; font-variant-numeric: tabular-nums; }
+.cr-row .e span { font-size: 12px; color: var(--muted); }
+.cr-note { font-size: 12px; color: var(--muted); margin: 12px 2px 0; }
+.cr-empty { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; color: var(--ink-2); font-size: 14px; }
+@media (max-width: 760px) {
+  .cr-k { grid-template-columns: 1fr 1fr; }
+  .cr-k > div:first-child { grid-column: 1 / -1; }
+  .cr-row { grid-template-columns: 1fr auto; }
+  .cr-bud { grid-column: 1 / -1; grid-row: 2; }
 }
 </style>

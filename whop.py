@@ -163,8 +163,25 @@ def remove(pid):
         _save([x for x in items if x["id"] != pid])
 
 
+def estimate(x, views):
+    """Geschätztes Geld für einen YouTube-Clip: Aufrufe mal Rate, mit Mindest- und Höchstbetrag der Kampagne.
+
+    Nur eine Schätzung: Content Rewards prüft jeden Clip selbst und zahlt erst nach Freigabe.
+    """
+    rate = next((r["rate"] for r in x.get("rates") or [] if r["platform"] == "YouTube"), None)
+    if rate is None:
+        return None
+    money = views / 1000 * rate
+    if x.get("max_payout"):
+        money = min(money, x["max_payout"])
+    if x.get("min_payout") and money < x["min_payout"]:
+        return 0.0
+    return round(money, 2)
+
+
 def summary():
     camps = clips.all_campaigns()
+    stats = (store.read("stats.json", {}) or {}).get("videos") or {}
     out = []
     for x in load():
         mine = [c for c in camps if c.get("program") == x["id"]]
@@ -172,6 +189,12 @@ def summary():
         left = None
         if x.get("budget_total") is not None and x.get("budget_used") is not None:
             left = max(0.0, x["budget_total"] - x["budget_used"])
+        posted = [k for k in cl if k.get("status") == "gepostet" and k.get("video_id")]
+        views = [int((stats.get(k["video_id"]) or {}).get("views") or 0) for k in posted]
+        est = [estimate(x, v) for v in views]
         out.append({**x, "budget_left": left, "videos": len(mine), "clips": len(cl),
-                    "posted": sum(1 for k in cl if k.get("status") == "gepostet")})
+                    "posted": sum(1 for k in cl if k.get("status") == "gepostet"),
+                    "views": sum(views),
+                    "earned": None if any(e is None for e in est) or estimate(x, 0) is None else round(sum(est), 2),
+                    "youtube_rate": next((r["rate"] for r in x.get("rates") or [] if r["platform"] == "YouTube"), None)})
     return out
