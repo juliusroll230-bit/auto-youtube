@@ -997,8 +997,14 @@ class Handler(BaseHTTPRequestHandler):
                 clips.check_url(url)
             except ValueError as e:
                 return self.send(400, {"error": str(e)})
-            store.log("info", "Link verknüpft, das Video wird geladen", agent="clipper", kind="input")
-            background(_download, url, True, str(data.get("credit") or "")[:80], (str(data.get("name") or "").strip()[:80] or None), "link")
+            prog = str(data.get("program") or "")
+            item = whop.find(prog) if prog else None
+            if prog and not item:
+                return self.send(400, {"error": "Unbekannte Kampagne."})
+            store.log("info", "Link verknüpft, das Video wird geladen" + (f" (für „{item['title']}“)" if item else ""),
+                      agent="clipper", kind="input")
+            background(_download, url, True, str(data.get("credit") or (item or {}).get("brand") or "")[:80],
+                       (str(data.get("name") or "").strip()[:80] or None), "whop" if item else "link", item and item["id"])
             return self.send(200, {"ok": True, "text": "Verknüpft. Das Video wird geladen und dann geschnitten."})
         if p == "/api/whop/add":
             try:
@@ -1087,11 +1093,16 @@ class Handler(BaseHTTPRequestHandler):
         one = lambda k: q.get(k, [""])[0]
         if one("rights") != "1":
             return self.send(400, {"error": "Bitte bestätigen, dass du das Video verwenden darfst."})
+        item = whop.find(one("program")) if one("program") else None
+        if one("program") and not item:
+            return self.send(400, {"error": "Unbekannte Kampagne."})
         try:
             c = clips.add_stream(self.rfile, int(self.headers.get("Content-Length") or 0), one("filename"),
-                                 "upload", True, one("credit"), one("name") or None)
+                                 "upload", True, one("credit") or (item or {}).get("brand", ""), one("name") or None)
         except ValueError as e:
             return self.send(400, {"error": str(e)})
+        if item:
+            c = clips.update(c["id"], lambda k: k.__setitem__("program", item["id"]))
         _clip_wake.set()
         return self.send(200, {"ok": True, "campaign": c["id"]})
 

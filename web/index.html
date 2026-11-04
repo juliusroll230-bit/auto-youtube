@@ -1284,6 +1284,11 @@ dialog.vs[open] { display: grid; place-items: center; }
         <span class="pill" id="ccLive"></span>
       </div>
 
+      <div class="card go-c" id="goCard" hidden>
+        <div class="card-h"><div><h2>Loslegen mit Clips</h2><div class="sub" id="goSub"></div></div><div class="go-ring" id="goRing" aria-hidden="true"></div></div>
+        <ol class="card-b go-l" id="goList"></ol>
+      </div>
+
       <div class="kpis" id="kpis"></div>
 
       <div class="card crc" id="crCard">
@@ -1360,7 +1365,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       </div>
 
       <div class="card newc">
-        <div class="card-h"><div><h2>Neues Video</h2><div class="sub">Video wählen, Erlaubnis bestätigen, fertig. Den Rest macht der Clipper.</div></div></div>
+        <div class="card-h"><div><h2>Neues Video</h2><div class="sub">Video oder Kampagnen-Link einfügen, Erlaubnis bestätigen, fertig. Den Rest macht der Clipper.</div></div></div>
         <form class="card-b form nv" id="nvForm" novalidate>
           <ol class="nv-steps" aria-hidden="true"><li class="on" id="nvS1"><i>1</i>Video</li><li id="nvS2"><i>2</i>Erlaubnis</li><li id="nvS3"><i>3</i>Los</li></ol>
           <label class="drop nv-drop" id="drop">
@@ -1370,9 +1375,10 @@ dialog.vs[open] { display: grid; place-items: center; }
             <span class="muted" id="dropS">oder tippen, um eins auszuwählen</span>
           </label>
           <div class="nv-or"><span>oder Link einfügen</span></div>
-          <div class="lnrow"><input id="lnUrl" type="url" inputmode="url" autocomplete="off" placeholder="Link zum Video: Google Drive, Dropbox oder …/video.mp4" aria-label="Link zum Video"></div>
+          <div class="lnrow"><input id="lnUrl" type="url" inputmode="url" autocomplete="off" placeholder="Link: Video (Google Drive, Dropbox …) oder Kampagne von Content Rewards" aria-label="Link zum Video oder zur Kampagne"></div>
           <p class="nv-hint" id="lnHint" hidden></p>
-          <label class="check"><input type="checkbox" id="nvRights"><span><b>Ich darf dieses Video verwenden.</b> <span class="muted">Eigenes Video oder Erlaubnis, zum Beispiel bei einer Clipping-Kampagne des Erstellers.</span></span></label>
+          <div class="field" id="nvProgW" hidden><label for="nvProg">Für welche Kampagne?</label><select id="nvProg"></select></div>
+          <label class="check" id="nvRightsW"><input type="checkbox" id="nvRights"><span><b id="nvRightsT">Ich darf dieses Video verwenden.</b> <span class="muted">Eigenes Video oder Erlaubnis, zum Beispiel bei einer Clipping-Kampagne des Erstellers.</span></span></label>
           <details class="nv-more"><summary>Name und Original angeben (optional)</summary>
             <div class="g2">
               <div class="field"><label for="upName">Name</label><input id="upName" maxlength="80" autocomplete="off" placeholder="z. B. Podcast Folge 12"></div>
@@ -3226,6 +3232,46 @@ dialog.vs[open] { display: grid; place-items: center; }
     box.appendChild(list);
     box.appendChild(h("p", { cls: "cr-note", text: "Geschätzt aus den YouTube-Aufrufen und der Rate der Kampagne, mit Mindest- und Höchstbetrag pro Clip. Das echte Geld zeigt dir Content Rewards, erst nachdem sie deine Clips geprüft haben." + (unknown ? " Für Kampagnen ohne YouTube-Rate kann die Zentrale nichts schätzen." : "") }));
   }
+
+  // --- Loslegen: die Schritte fürs Clippen, der nächste ist hervorgehoben -----------------------
+  function renderGo(d) {
+    var ct = d.clip_totals || {}, cl = (agentById("clipper") || {}).settings || {}, W = d.whop || [];
+    var steps = [
+      [d.connected, "Hauptkanal verbinden", "Dein YouTube-Kanal für die KI-Shorts.", "Verbinden", "#kanal"],
+      [(d.clip_channel || {}).connected, "Clip-Kanal verbinden", "Dein neuer YouTube-Kanal nur für Clips. Bei Google den neuen Kanal wählen.", "Verbinden", "#kanal"],
+      [W.length > 0, "Kampagne verknüpfen", "Link einer Kampagne von Content Rewards in das Link-Feld im Reiter Clips einfügen.", "Link einfügen", "#kampagnen"],
+      [(ct.campaigns || 0) > 0, "Erstes Video einfügen", "Den Video-Link aus der Kampagne in dasselbe Feld einfügen und „Clips erstellen“ drücken.", "Video einfügen", "#kampagnen"],
+      [cl.freigabe === false, "Automatisch posten einschalten", "Fertige Clips gehen dann ohne Nachfragen auf YouTube.", "Einschalten", null]
+    ];
+    var done = steps.filter(function (x) { return x[0]; }).length;
+    $("goCard").hidden = done === steps.length;
+    if (done === steps.length) return;
+    $("goSub").textContent = done + " von " + steps.length + " erledigt. Jeder Schritt dauert nur ein paar Sekunden.";
+    var ring = clear($("goRing")); ring.style.setProperty("--p", Math.round(100 * done / steps.length)); ring.appendChild(h("span", { text: done + "/" + steps.length }));
+    var list = clear($("goList")), next = -1;
+    steps.forEach(function (x, i) {
+      if (!x[0] && next < 0) next = i;
+      var act = null;
+      if (!x[0]) {
+        if (x[4]) act = h("a", { cls: "btn sm" + (i === next ? " primary" : ""), href: x[4], text: x[3] });
+        else {
+          act = h("button", { cls: "btn sm" + (i === next ? " primary" : ""), type: "button", text: x[3] });
+          act.disabled = !S.live;
+          act.addEventListener("click", function () {
+            act.disabled = true;
+            saveAgent("clipper", { freigabe: false }).then(function () {
+              var pb = (agentById("publisher") || {}).settings || {};
+              if (!(Number(pb.clips_per_day) > 0) || pb.on === false) saveAgent("publisher", { on: true, clips_per_day: 2 });
+              soon();
+            });
+          });
+        }
+      }
+      list.appendChild(h("li", { cls: x[0] ? "done" : i === next ? "next" : "" }, [
+        h("span", { cls: "n", text: x[0] ? "✓" : String(i + 1) }),
+        h("div", { style: "min-width:0" }, [h("b", { text: x[1] }), h("small", { text: x[2] })]), act]));
+    });
+  }
   function renderKpis(d, T, sch) {
     var ct = d.clip_totals || {}, box = clear($("kpis"));
     var waitS = d.approval ? d.queue.filter(function (v) { return !v.approved; }).length : 0, waitC = ct.waiting || 0;
@@ -3410,6 +3456,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("ccBanner").hidden = d.connected;
     renderKpis(d, T, sch);
     renderRewards(d);
+    renderGo(d);
     updateRoom(d);
     renderApprovals(d, sch);
     renderFeed(d);
@@ -3738,6 +3785,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       + (cl.on === false ? "Der Ordner wird gerade nicht überwacht (Clipper-Einstellungen)." : cl.auto_start ? "Ordner-Videos werden sofort geschnitten." : "Bei Ordner-Videos bestätigst du zuerst die Rechte.");
     renderHook(d);
     renderWhop(d);
+    renderNvProg(d);
     var pb = (agentById("publisher") || {}).settings || {}, auto = cl.freigabe === false && (Number(pb.clips_per_day) || 0) > 0 && pb.on !== false;
     $("nvAuto").checked = auto;
     $("nvAutoS").textContent = auto ? "An: Der Publisher postet bis zu " + pb.clips_per_day + " Clips pro Tag, ohne dass du fragen musst." : "Aus: Du gibst jeden Clip erst frei.";
@@ -3879,12 +3927,21 @@ dialog.vs[open] { display: grid; place-items: center; }
     if (!lnValid()) return false;
     try { return BAD_HOST.test(new URL(lnValue()).hostname); } catch (er) { return false; }
   }
+  var CR_LINK = /contentrewards\.com\/(c\/)?(campaigns|discover)\/[0-9a-f-]{36}/i;
+  function nvIsCampaign() { return !S.upFile && CR_LINK.test(lnValue()); }
   function nvCheck() {
-    var hasSrc = !!S.upFile || lnValid(), bad = !S.upFile && lnBadHost();
+    var camp = nvIsCampaign();
+    var hasSrc = !!S.upFile || lnValid(), bad = !S.upFile && !camp && lnBadHost();
     var hint = $("lnHint");
-    hint.hidden = !bad;
+    hint.hidden = !bad && !camp;
+    hint.classList.toggle("ok", camp);
     if (bad) hint.textContent = "Von YouTube, TikTok und Instagram lädt die App nichts herunter. Lade das Video als Datei herunter (bei eigenen Videos geht das in YouTube Studio) und zieh die Datei oben hinein, oder nimm einen Drive- oder Dropbox-Link.";
-    var rights = $("nvRights").checked;
+    if (camp) hint.textContent = "Kampagne von Content Rewards erkannt. Klick auf „Kampagne verknüpfen“. Danach fügst du hier den Video-Link aus der Kampagne ein.";
+    $("nvRightsW").hidden = camp;
+    $("nvProgW").hidden = camp || !$("nvProg").options.length;
+    $("nvRightsT").textContent = $("nvProg").value ? "Die Kampagne erlaubt das Schneiden dieses Videos." : "Ich darf dieses Video verwenden.";
+    $("nvGo").textContent = camp ? "Kampagne verknüpfen" : "Clips erstellen";
+    var rights = camp || $("nvRights").checked;
     $("nvGo").disabled = !S.live || !hasSrc || bad || !rights || !!S.upXhr || !!S.lnBusy;
     $("nvS1").className = hasSrc && !bad ? "done" : "on";
     $("nvS2").className = hasSrc && !bad ? (rights ? "done" : "on") : "";
@@ -3916,6 +3973,21 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("lnUrl").addEventListener("input", nvCheck);
   $("nvRights").addEventListener("change", nvCheck);
+  $("nvProg").addEventListener("change", function () { S.nvProgPick = $("nvProg").value || "none"; nvCheck(); });
+  // Auswahl „Für welche Kampagne?“: neueste laufende Kampagne vorauswählen, eigene Wahl bleibt
+  function renderNvProg(d) {
+    var sel = $("nvProg"), W = d.whop || [];
+    if (document.activeElement === sel) return;
+    var want = S.nvProgPick || (W.find(function (w) { return w.status === "läuft"; }) || W[0] || {}).id || "";
+    clear(sel);
+    if (W.length) {
+      sel.appendChild(h("option", { value: "", text: "Keine, eigenes Video" }));
+      W.forEach(function (w) { sel.appendChild(h("option", { value: w.id, text: w.title + (w.status && w.status !== "läuft" ? " (" + w.status + ")" : "") })); });
+      sel.value = want === "none" ? "" : want;
+      if (sel.value !== (want === "none" ? "" : want)) sel.value = "";
+    }
+    nvCheck();
+  }
   $("upFile").addEventListener("change", function () { setUpFile($("upFile").files[0]); });
   ["dragenter", "dragover"].forEach(function (t) { $("drop").addEventListener(t, function (e) { e.preventDefault(); $("drop").classList.add("over"); }); });
   ["dragleave", "drop"].forEach(function (t) { $("drop").addEventListener(t, function (e) { e.preventDefault(); $("drop").classList.remove("over"); }); });
@@ -3923,11 +3995,25 @@ dialog.vs[open] { display: grid; place-items: center; }
   $("nvForm").addEventListener("submit", function (e) {
     e.preventDefault();
     if ($("nvGo").disabled) return;
-    var f = S.upFile, name = $("upName").value.trim(), credit = $("upCredit").value.trim();
+    var f = S.upFile, name = $("upName").value.trim(), credit = $("upCredit").value.trim(), prog = $("nvProg").value;
+    if (nvIsCampaign()) {  // Kampagnen-Link: verknüpfen und gleich als Ziel für das nächste Video wählen
+      S.lnBusy = true;
+      nvCheck();
+      flash("nvMsg", "", "Liest die Kampagne …");
+      api("api/whop/add", { url: lnValue() }).then(function (j) {
+        flash("nvMsg", "ok", "Verknüpft: " + j.item.title + ". Jetzt den Video-Link aus der Kampagne einfügen.");
+        S.nvProgPick = j.item.id;
+        $("lnUrl").value = "";
+        S.lnBusy = false;
+        soon();
+        nvCheck();
+      }, function (er) { flash("nvMsg", "err", er.message); S.lnBusy = false; nvCheck(); });
+      return;
+    }
     if (!f) {  // Link: die App lädt das Video selbst
       S.lnBusy = true;
       nvCheck();
-      api("api/campaign/link", { url: lnValue(), rights: true, name: name, credit: credit }).then(function (j) {
+      api("api/campaign/link", { url: lnValue(), rights: true, name: name, credit: credit, program: prog }).then(function (j) {
         flash("nvMsg", "ok", j.text || "Verknüpft.");
         toast("Verknüpft. Der Clipper holt das Video.");
         nvDone();
@@ -3936,7 +4022,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       return;
     }
     if (f.size > 16e9) { flash("nvMsg", "err", "Die Datei ist größer als 16 GB."); return; }
-    var q = "filename=" + encodeURIComponent(f.name) + "&name=" + encodeURIComponent(name) + "&credit=" + encodeURIComponent(credit) + "&rights=1";
+    var q = "filename=" + encodeURIComponent(f.name) + "&name=" + encodeURIComponent(name) + "&credit=" + encodeURIComponent(credit) + "&rights=1" + (prog ? "&program=" + encodeURIComponent(prog) : "");
     var x = new XMLHttpRequest();
     S.upXhr = x;
     nvCheck();
@@ -4550,4 +4636,23 @@ dialog.vs[open] { display: grid; place-items: center; }
   .cr-row { grid-template-columns: 1fr auto; }
   .cr-bud { grid-column: 1 / -1; grid-row: 2; }
 }
+
+.nv-hint.ok { color: #30d158; background: rgba(48, 209, 88, .1); border-color: rgba(48, 209, 88, .3); }
+
+/* --- Loslegen-Liste in der Zentrale --- */
+.go-c .card-h { align-items: center; }
+.go-ring { width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 600 13px/1 var(--f-display); font-variant-numeric: tabular-nums;
+  background: conic-gradient(var(--accent) calc(var(--p, 0) * 1%), rgba(255, 255, 255, .08) 0); position: relative; }
+.go-ring::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--surface); }
+.go-ring span { position: relative; }
+.go-l { list-style: none; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.go-l li { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.go-l li.done { opacity: .6; }
+.go-l .n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; background: var(--surface-2); color: var(--ink-2); }
+.go-l li.done .n { background: rgba(48, 209, 88, .18); color: #30d158; }
+.go-l li.next { border-color: rgba(10, 132, 255, .5); background: rgba(10, 132, 255, .07); }
+.go-l li.next .n { background: var(--accent); color: #fff; }
+.go-l b { display: block; font-size: 14px; font-weight: 600; }
+.go-l small { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+@media (max-width: 640px) { .go-l li { grid-template-columns: 28px 1fr; } .go-l li > .btn { grid-column: 2; justify-self: start; } }
 </style>
