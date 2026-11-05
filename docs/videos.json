@@ -6,11 +6,74 @@
  },
  "videos": [
   {
+   "id": "oRzf-pvUdg8",
+   "title": "Dieses Autologo zeigt zwei Wappen aus Mailand 🐍",
+   "text": "Schlange und Kreuz im Alfa-Romeo-Logo und was der Name wirklich bedeutet.",
+   "niche": "Autos",
+   "views": 9,
+   "published": "2026-11-05T19:37:12+00:00",
+   "thumb": "thumbs/oRzf-pvUdg8.jpg"
+  },
+  {
+   "id": "5rhlmsXJrDI",
+   "title": "Dieses Autologo ist eigentlich ein Zahnrad ⚙️",
+   "text": "Wie ein Patent aus Polen zum Doppelwinkel-Logo von Citroën wurde.",
+   "niche": "Autos",
+   "views": 2,
+   "published": "2026-11-05T17:36:59+00:00",
+   "thumb": "thumbs/5rhlmsXJrDI.jpg"
+  },
+  {
+   "id": "aA63RwPc1U8",
+   "title": "Dieses Auto wurde plötzlich achtmal schneller gebaut 🏭",
+   "text": "Wie Henry Ford mit dem Fließband den Autobau und den Preis des Modells T veränderte.",
+   "niche": "Autos",
+   "views": 49,
+   "published": "2026-11-05T16:37:14+00:00",
+   "thumb": "thumbs/aA63RwPc1U8.jpg"
+  },
+  {
+   "id": "nlZKg3-QVwM",
+   "title": "Warum auf eine kleine Bitte oft eine große folgt 🚪",
+   "text": "Der Foot-in-the-door-Effekt aus der Studie von Freedman und Fraser.",
+   "niche": "Psychologie",
+   "views": 68,
+   "published": "2026-11-05T15:37:19+00:00",
+   "thumb": "thumbs/nlZKg3-QVwM.jpg"
+  },
+  {
+   "id": "dZ3wqSrcmD4",
+   "title": "Dieser Stein öffnete das Alte Ägypten 🗿",
+   "text": "Der Stein von Rosette und wie Champollion die Hieroglyphen entzifferte.",
+   "niche": "Geschichte",
+   "views": 35,
+   "published": "2026-11-05T13:38:00+00:00",
+   "thumb": "thumbs/dZ3wqSrcmD4.jpg"
+  },
+  {
+   "id": "slOdlU_zUIM",
+   "title": "Diese französische Marke wurde woanders gegründet 🇫🇷",
+   "text": "Ein Italiener, eine Fabrik im Elsass und das Kaiserreich: die Herkunft von Bugatti.",
+   "niche": "Autos",
+   "views": 77,
+   "published": "2026-11-05T12:37:40+00:00",
+   "thumb": "thumbs/slOdlU_zUIM.jpg"
+  },
+  {
+   "id": "g5Ke4Gjn4NE",
+   "title": "Warum du deinen Namen im Lärm sofort hörst 👂",
+   "text": "Der Cocktailparty-Effekt: Wie dein Gehirn im Stimmengewirr deinen Namen erkennt.",
+   "niche": "Psychologie",
+   "views": 2,
+   "published": "2026-11-05T11:37:31+00:00",
+   "thumb": "thumbs/g5Ke4Gjn4NE.jpg"
+  },
+  {
    "id": "cZbMhhMzkZ4",
    "title": "Zwei Männer erfanden das Telefon am selben Tag 📞",
    "text": "Alexander Graham Bell, Elisha Gray und der Streit ums Telefon-Patent am 14. Februar 1876.",
    "niche": "Geschichte",
-   "views": 0,
+   "views": 50,
    "published": "2026-11-05T09:38:07+00:00",
    "thumb": "thumbs/cZbMhhMzkZ4.jpg"
   },
@@ -19,7 +82,7 @@
    "title": "Diese Pizza ist die teuerste der Geschichte 🍕",
    "text": "Der Bitcoin Pizza Day: Wie zwei Pizzen am 22. Mai 2010 mit Bitcoin bezahlt wurden. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 28,
+   "views": 51,
    "published": "2026-11-05T07:37:41+00:00",
    "thumb": "thumbs/pT-tHHYOHVA.jpg"
   },
@@ -28,7 +91,7 @@
    "title": "Diese Stadt liegt auf zwei Kontinenten 🌉",
    "text": "Istanbul zwischen Europa und Asien: der Bosporus und die täglichen Fährfahrten.",
    "niche": "Geografie",
-   "views": 81,
+   "views": 132,
    "published": "2026-11-05T05:37:48+00:00",
    "thumb": "thumbs/R6CXLtT34n8.jpg"
   },
@@ -37,7 +100,7 @@
    "title": "Diese Luxusmarke begann als geheimes Projekt 🤫",
    "text": "Wie Toyota mit einem Geheimprojekt die Marke Lexus erfand.",
    "niche": "Autos",
-   "views": 115,
+   "views": 152,
    "published": "2026-11-04T19:37:35+00:00",
    "thumb": "thumbs/sa9iTgcauyU.jpg"
   },
@@ -46,7 +109,7 @@
    "title": "Hyundai hat gar nicht mit Autos angefangen 🏗️",
    "text": "Hyundai begann als Baufirma, und der Name hat eine einfache Bedeutung.",
    "niche": "Autos",
-   "views": 81,
+   "views": 97,
    "published": "2026-11-04T17:36:44+00:00",
    "thumb": "thumbs/aBsgGw3c1pM.jpg"
   },
@@ -55,7 +118,7 @@
    "title": "Im Porsche-Logo steckt eine ganze Stadt 🐎",
    "text": "Pferd, Geweih und Streifen: woher die Teile des Porsche-Wappens stammen.",
    "niche": "Autos",
-   "views": 135,
+   "views": 139,
    "published": "2026-11-04T16:37:19+00:00",
    "thumb": "thumbs/JoWr2_RYbos.jpg"
   },
@@ -64,7 +127,7 @@
    "title": "Dieses Flugzeug zeigt einen typischen Denkfehler ✈️",
    "text": "Die Sunk-Cost-Falle am Beispiel der Concorde.",
    "niche": "Psychologie",
-   "views": 219,
+   "views": 233,
    "published": "2026-11-04T15:37:47+00:00",
    "thumb": "thumbs/MlMDwprE0Xk.jpg"
   },
@@ -76,69 +139,6 @@
    "views": 226,
    "published": "2026-11-04T13:37:26+00:00",
    "thumb": "thumbs/G_MbOisFjII.jpg"
-  },
-  {
-   "id": "u3-fYuEbIcM",
-   "title": "Dieser Autoname ist über zweitausend Jahre alt 🏛️",
-   "text": "Dacia trägt den Namen einer römischen Provinz.",
-   "niche": "Autos",
-   "views": 384,
-   "published": "2026-11-04T12:37:34+00:00",
-   "thumb": "thumbs/u3-fYuEbIcM.jpg"
-  },
-  {
-   "id": "9nXyUy8lRzo",
-   "title": "Warum bei vielen Zeugen oft keiner hilft 👥",
-   "text": "Der Zuschauereffekt: Warum Menschen in einer Gruppe seltener eingreifen.",
-   "niche": "Psychologie",
-   "views": 232,
-   "published": "2026-11-04T11:37:43+00:00",
-   "thumb": "thumbs/9nXyUy8lRzo.jpg"
-  },
-  {
-   "id": "yBNLaabU5_E",
-   "title": "Dieses Jahr hatte in Europa keinen Sommer 🌋",
-   "text": "Der Ausbruch des Tambora, das Jahr ohne Sommer und die Entstehung von Frankenstein.",
-   "niche": "Geschichte",
-   "views": 144,
-   "published": "2026-11-04T09:37:49+00:00",
-   "thumb": "thumbs/yBNLaabU5_E.jpg"
-  },
-  {
-   "id": "aZs1pl-9naQ",
-   "title": "Dieses Geld wog fast zwanzig Kilogramm 🪙",
-   "text": "Schwedens Kupferplatten und das erste Papiergeld Europas. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 74,
-   "published": "2026-11-04T07:37:40+00:00",
-   "thumb": "thumbs/aZs1pl-9naQ.jpg"
-  },
-  {
-   "id": "FgJJCZylhhs",
-   "title": "Dieser See liegt tiefer als jeder Ort an Land 🌍",
-   "text": "Das Tote Meer: tiefster Punkt an Land, extrem salzig und immer weniger Wasser.",
-   "niche": "Geografie",
-   "views": 426,
-   "published": "2026-11-04T05:37:36+00:00",
-   "thumb": "thumbs/FgJJCZylhhs.jpg"
-  },
-  {
-   "id": "_jRLt8s0SSE",
-   "title": "Dieser Autoname ist eigentlich eine Abkürzung 🚗",
-   "text": "Hinter Fiat steckt mehr als vier Buchstaben.",
-   "niche": "Autos",
-   "views": 447,
-   "published": "2026-11-03T20:33:11+00:00",
-   "thumb": "thumbs/_jRLt8s0SSE.jpg"
-  },
-  {
-   "id": "Care5Wwrk5I",
-   "title": "Dieses Auto wurde von Flugzeugbauern erfunden ✈️",
-   "text": "Saab baute erst Flugzeuge und dann Autos.",
-   "niche": "Autos",
-   "views": 266,
-   "published": "2026-11-03T20:31:02+00:00",
-   "thumb": "thumbs/Care5Wwrk5I.jpg"
   }
  ]
 }
