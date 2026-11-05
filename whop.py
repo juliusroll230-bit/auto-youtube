@@ -7,6 +7,7 @@ Alle paar Stunden wird nachgeschaut. Videos der Kampagne kommen über den Link (
 werden der Kampagne zugeordnet (Feld "program" in der Clipper-Kampagne).
 """
 import html
+import os
 import re
 import urllib.request
 
@@ -155,6 +156,31 @@ def refresh(pid=None, get=fetch):
     return items
 
 
+def set_rules(pid, data):
+    """Vorgaben der Kampagne speichern: Pflicht-Text, Bildtext, Mindestlänge, Sprache."""
+    caption = str(data.get("caption") or "").replace("\r\n", "\n").strip()[:4500]
+    screen = " ".join(str(data.get("screen_text") or "").split())[:80]
+    try:
+        min_len = int(data.get("min_len") or 0)
+    except (TypeError, ValueError):
+        raise ValueError("Die Mindestlänge muss eine Zahl sein.")
+    if not 0 <= min_len <= 60:
+        raise ValueError("Die Mindestlänge darf 0 bis 60 Sekunden sein.")
+    language = str(data.get("language") or "")
+    if language not in ("", "de", "en", "auto"):
+        raise ValueError("Unbekannte Sprache.")
+    rules = {"caption": caption, "screen_text": screen, "min_len": min_len, "language": language,
+             "whole": bool(data.get("whole")), "music": bool(data.get("music"))}
+    with store.LOCK:
+        items = load()
+        item = next((x for x in items if x["id"] == pid), None)
+        if not item:
+            raise ValueError("Unbekannte Whop-Kampagne.")
+        item["rules"] = rules
+        _save(items)
+    return rules
+
+
 def remove(pid):
     with store.LOCK:
         items = load()
@@ -192,7 +218,7 @@ def summary():
         posted = [k for k in cl if k.get("status") == "gepostet" and k.get("video_id")]
         views = [int((stats.get(k["video_id"]) or {}).get("views") or 0) for k in posted]
         est = [estimate(x, v) for v in views]
-        out.append({**x, "budget_left": left, "videos": len(mine), "clips": len(cl),
+        out.append({**x, "has_logo": os.path.exists(clips.logo_path(x["id"])), "budget_left": left, "videos": len(mine), "clips": len(cl),
                     "posted": sum(1 for k in cl if k.get("status") == "gepostet"),
                     "views": sum(views),
                     "earned": None if any(e is None for e in est) or estimate(x, 0) is None else round(sum(est), 2),

@@ -70,6 +70,8 @@ jobs:
         run: docker exec app python tests/clip_smoke.py
       - name: Genug Clips aus kurzen Videos
         run: docker exec app python tests/clip_pick_test.py
+      - name: Vorgaben der Kampagnen (Text, Logo, Musik)
+        run: docker exec app python tests/campaign_rules_test.py
       - name: Whop-Kampagnen lesen
         run: docker exec app python tests/whop_test.py
       - name: Gesichts-Zuschnitt

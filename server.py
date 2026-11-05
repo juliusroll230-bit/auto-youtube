@@ -867,6 +867,8 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/campaign/upload":
             return self.campaign_upload()
+        if path == "/api/whop/logo":
+            return self.whop_logo()
         p, data = self.path, self.body()
         if p == "/api/settings":
             changes = {}
@@ -1015,6 +1017,13 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "item": item})
+        if p == "/api/whop/rules":
+            try:
+                rules = whop.set_rules(str(data.get("id") or ""), data)
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
+            return self.send(200, {"ok": True, "rules": rules})
         if p in ("/api/whop/refresh", "/api/whop/delete"):
             pid = str(data.get("id") or "")
             if not whop.find(pid):
@@ -1086,6 +1095,29 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, {"ok": True})
         self.send(404, {"error": "Nicht gefunden"})
 
+
+    def whop_logo(self):
+        """Logo (PNG) einer Whop-Kampagne als Datei-Body: ?id=…  Ohne Datei (Länge 0) wird das Logo entfernt."""
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        pid = q.get("id", [""])[0]
+        if not whop.find(pid):
+            return self.send(400, {"error": "Unbekannte Whop-Kampagne."})
+        n = int(self.headers.get("Content-Length") or 0)
+        target = clips.logo_path(pid)
+        if n == 0:
+            if os.path.exists(target):
+                os.remove(target)
+            return self.send(200, {"ok": True})
+        if n > 5_000_000:
+            return self.send(400, {"error": "Das Logo ist zu groß (höchstens 5 MB)."})
+        data = self.rfile.read(n)
+        if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+            return self.send(400, {"error": "Bitte eine PNG-Datei nehmen."})
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        with open(target, "wb") as f:
+            f.write(data)
+        store.log("info", "Logo der Whop-Kampagne gespeichert", agent="clipper", kind="input")
+        return self.send(200, {"ok": True})
 
     def campaign_upload(self):
         """Upload eines Videos von der Website, als Datei-Body (?name=…&credit=…&rights=1&filename=…)."""

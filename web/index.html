@@ -1076,6 +1076,7 @@ tr.is-next td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 
 /* Formulare */
 .field input, .field select, .tin, .lnrow input { border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); }
+.field textarea { width: 100%; min-width: 0; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); padding: 10px 12px; font: inherit; resize: vertical; }
 .field input:focus, .field select:focus, .tin:focus, .lnrow input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(10, 132, 255, .25); }
 .copy code { border-radius: 10px; background: rgba(255, 255, 255, .05); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 .code { border-radius: 16px; background: rgba(255, 255, 255, .05); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
@@ -3860,6 +3861,45 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
     return f;
   }
+  function wpRulesForm(w) {
+    var r = w.rules || {};
+    var cap = h("textarea", { rows: "7", placeholder: "Pflicht-Text der Kampagne, Wort für Wort. Er kommt unverändert in die YouTube-Beschreibung, nichts wird angehängt.", "aria-label": "Pflicht-Text" });
+    cap.value = r.caption || "";
+    var scr = h("input", { type: "text", maxlength: "80", placeholder: "Text im Bild, z. B. Lionel Rafale vs Cielo", "aria-label": "Text im Bild" });
+    scr.value = r.screen_text || "";
+    var min = h("input", { type: "number", min: "0", max: "60", step: "1", "aria-label": "Mindestlänge in Sekunden" });
+    min.value = r.min_len || "";
+    var lang = h("select", { "aria-label": "Sprache des Videos" }, [["", "wie im Clipper"], ["en", "Englisch"], ["de", "Deutsch"], ["auto", "automatisch"]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
+    lang.value = r.language || "";
+    var file = h("input", { type: "file", accept: "image/png", "aria-label": "Logo (PNG)" });
+    var whole = h("input", { type: "checkbox" }), music = h("input", { type: "checkbox" });
+    whole.checked = !!r.whole; music.checked = !!r.music;
+    var msg = h("p", { cls: "msg" });
+    var save = h("button", { cls: "btn primary", type: "submit", text: "Vorgaben speichern" });
+    var f = h("form", { cls: "wp-add", novalidate: "" }, [
+      h("p", { cls: "muted", text: "Was die Kampagne verlangt. Gilt für alle Videos dieser Kampagne und wird beim nächsten Schneiden und Posten angewendet." }),
+      h("div", { cls: "field" }, [h("label", { text: "Pflicht-Text (Beschreibung)" }), cap]),
+      h("div", { cls: "field" }, [h("label", { text: "Text im Bild (bleibt den ganzen Clip sichtbar)" }), scr]),
+      h("div", { cls: "field" }, [h("label", { text: "Mindestlänge pro Clip in Sekunden (leer = egal)" }), min]),
+      h("div", { cls: "field" }, [h("label", { text: "Sprache im Video" }), lang]),
+      h("div", { cls: "field" }, [h("label", { text: "Logo (PNG), kommt oben links auf jeden Clip" + (w.has_logo ? " · gespeichert" : "") }), file]),
+      h("label", { cls: "check" }, [whole, h("span", {}, [h("b", { text: "Ganzes Video verwenden, nichts automatisch schneiden." }), " ", h("span", { cls: "muted", text: "Für Kampagnen, die automatische Clip-Tools verbieten. Nur bis 3 Minuten." })])]),
+      h("label", { cls: "check" }, [music, h("span", {}, [h("b", { text: "Hintergrundmusik darunterlegen." }), " ", h("span", { cls: "muted", text: "Eigene, selbst erzeugte Musik ohne Urheberrechte, leise unter dem Originalton." })])]),
+      h("div", { cls: "row" }, [save]), msg
+    ]);
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      save.disabled = true;
+      var done = function () { msg.className = "msg ok"; msg.textContent = "Gespeichert"; save.disabled = false; soon(); };
+      var fail = function (er) { msg.className = "msg err"; msg.textContent = er.message; save.disabled = false; };
+      api("api/whop/rules", { id: w.id, caption: cap.value, screen_text: scr.value, min_len: min.value, language: lang.value, whole: whole.checked, music: music.checked }).then(function () {
+        if (!file.files[0]) return done();
+        return fetch("api/whop/logo?id=" + encodeURIComponent(w.id), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: file.files[0] })
+          .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); done(); }); });
+      }).catch(fail);
+    });
+    return f;
+  }
   function wpItem(w) {
     var st = WPST[w.status] || ["", "Status unbekannt"];
     var rates = (w.rates || []).map(function (r) { return h("div", {}, [h("span", { cls: "label", text: r.platform + " pro 1.000 Aufrufe" }), h("strong", { text: money(r.rate, r.currency, true) })]); });
@@ -3878,6 +3918,8 @@ dialog.vs[open] { display: grid; place-items: center; }
     var btns = h("div", { cls: "row" }, [
       (function () { var b = h("button", { cls: "btn sm" + (open ? "" : " primary"), type: "button", text: open ? "Abbrechen" : "Video hinzufügen" });
         b.disabled = !S.live; b.addEventListener("click", function () { S.wpOpen = open ? null : w.id; renderWhop(S.d, true); }); return b; })(),
+      (function () { var on = S.wpRules === w.id, b = h("button", { cls: "btn sm", type: "button", text: on ? "Vorgaben zuklappen" : (w.rules && (w.rules.caption || w.rules.screen_text || w.has_logo) ? "Vorgaben ändern" : "Vorgaben") });
+        b.disabled = !S.live; b.addEventListener("click", function () { S.wpRules = on ? null : w.id; renderWhop(S.d, true); }); return b; })(),
       h("a", { cls: "btn sm", href: w.url, target: "_blank", rel: "noopener", text: "Auf Whop öffnen" }),
       actBtn("Aktualisieren", "", function () { return api("api/whop/refresh", { id: w.id }).then(function () { toast("Aktualisiert."); soon(); }); }),
       actBtn("Entfernen", "no", function () { return api("api/whop/delete", { id: w.id }).then(function () { toast("Entfernt. Die Clips bleiben."); soon(); }); }, true)
@@ -3888,12 +3930,13 @@ dialog.vs[open] { display: grid; place-items: center; }
       k,
       w.error ? h("div", { cls: "wp-err", text: "Letzte Prüfung ging nicht: " + w.error }) : null,
       open ? wpAddForm(w) : null,
+      S.wpRules === w.id ? wpRulesForm(w) : null,
       h("div", { cls: "wp-f" }, [h("span", { cls: "label", text: stats }), btns])
     ]);
   }
   function renderWhop(d, force) {
     var box = $("wpList"), ae = document.activeElement;
-    if (!force && ae && box.contains(ae) && ae.tagName === "INPUT") return;
+    if (!force && ae && box.contains(ae) && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return;
     clear(box);
     (d.whop || []).forEach(function (w) { box.appendChild(wpItem(w)); });
   }
