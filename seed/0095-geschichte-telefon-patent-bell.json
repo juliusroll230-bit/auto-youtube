@@ -1,0 +1,49 @@
+{
+  "slug": "geschichte-telefon-patent-bell",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a2014",
+    "#8c6a3a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Zwei Männer erfanden das Telefon am selben Tag 📞",
+  "description": "Alexander Graham Bell, Elisha Gray und der Streit ums Telefon-Patent am 14. Februar 1876.\n\n#geschichte #telefon #bell #erfindung #shorts",
+  "tags": [
+    "geschichte",
+    "telefon",
+    "bell",
+    "erfindung",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "📞",
+      "text": "Zwei Männer meldeten das *Telefon* am selben Tag an.",
+      "clip": "vintage telephone"
+    },
+    {
+      "emoji": "🏛️",
+      "text": "Es war der vierzehnte Februar achtzehnhundertsechsundsiebzig. *Alexander Graham Bell* und *Elisha Gray* gingen ins Patentamt. Wer war schneller?",
+      "clip": "government building washington"
+    },
+    {
+      "emoji": "📝",
+      "text": "Bells Anwalt reichte den Antrag ein. Gray reichte nur eine *Vorankündigung* ein.",
+      "clip": "writing letter pen",
+      "visual": {
+        "type": "wort",
+        "text": "Vorankündigung"
+      }
+    },
+    {
+      "emoji": "⚖️",
+      "text": "Bell bekam am siebten März das Patent. Der Streit darüber ging jahrelang vor *Gericht*.",
+      "clip": "courtroom gavel"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Antrag machte ihn zum Erfinder. Folge für mehr.",
+      "clip": "old telephone switchboard"
+    }
+  ]
+}

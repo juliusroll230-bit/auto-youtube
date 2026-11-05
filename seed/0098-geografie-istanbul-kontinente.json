@@ -1,0 +1,53 @@
+{
+  "slug": "geografie-istanbul-kontinente",
+  "niche": "Geografie",
+  "colors": [
+    "#102a2e",
+    "#2f8c9a"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Diese Stadt liegt auf zwei Kontinenten 🌉",
+  "description": "Istanbul zwischen Europa und Asien: der Bosporus und die täglichen Fährfahrten.\n\n#geografie #istanbul #bosporus #wissen #shorts",
+  "tags": [
+    "geografie",
+    "istanbul",
+    "bosporus",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌉",
+      "text": "Diese Stadt liegt auf zwei Kontinenten.",
+      "clip": "istanbul skyline sunset"
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Istanbul zieht sich über *Europa* und *Asien*. Dazwischen liegt eine schmale Meerenge. Doch wie heißt sie?",
+      "clip": "aerial city coastline"
+    },
+    {
+      "emoji": "🌊",
+      "text": "Der *Bosporus* ist an der schmalsten Stelle nur etwa siebenhundert Meter breit.",
+      "clip": "bosphorus bridge water",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Europa",
+          "Bosporus",
+          "Asien"
+        ]
+      }
+    },
+    {
+      "emoji": "⛴️",
+      "text": "Täglich fahren *Fähren* hin und her. Wer morgens zur Arbeit fährt, wechselt manchmal den Kontinent.",
+      "clip": "ferry boat commuters"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Arbeitsweg über zwei Kontinente. Folge für mehr.",
+      "clip": "seagulls over strait"
+    }
+  ]
+}

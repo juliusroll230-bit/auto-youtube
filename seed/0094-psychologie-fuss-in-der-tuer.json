@@ -1,0 +1,52 @@
+{
+  "slug": "psychologie-fuss-in-der-tuer",
+  "niche": "Psychologie",
+  "colors": [
+    "#1c1a3a",
+    "#5a4ea8"
+  ],
+  "accent": "#ffe0a0",
+  "title": "Warum auf eine kleine Bitte oft eine große folgt 🚪",
+  "description": "Der Foot-in-the-door-Effekt aus der Studie von Freedman und Fraser.\n\n#psychologie #wissen #verhalten #shorts",
+  "tags": [
+    "psychologie",
+    "verhalten",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🚪",
+      "text": "Eine kleine Bitte macht große Bitten leichter.",
+      "clip": "open door light"
+    },
+    {
+      "emoji": "🏡",
+      "text": "Neunzehnhundertsechsundsechzig baten Forscher in Kalifornien Hausbesitzer um ein riesiges *Schild* im Vorgarten. Doch wer sagte ja?",
+      "clip": "suburban houses lawn"
+    },
+    {
+      "emoji": "🪧",
+      "text": "Die Gruppe, die vorher um ein winziges Schild gebeten wurde, sagte *viel häufiger* zu.",
+      "clip": "small sign yard",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Kleine Bitte",
+          "Ja gesagt",
+          "Große Bitte"
+        ]
+      }
+    },
+    {
+      "emoji": "🤝",
+      "text": "Wer einmal Ja gesagt hat, sieht sich selbst als hilfsbereit. Psychologen nennen das *Foot-in-the-door-Effekt*.",
+      "clip": "handshake closeup"
+    },
+    {
+      "emoji": "👉",
+      "text": "Kleine Schritte öffnen große Türen. Folge für mehr.",
+      "clip": "walking steps staircase"
+    }
+  ]
+}

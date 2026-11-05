@@ -1,0 +1,55 @@
+{
+  "slug": "business-jaguar-ss",
+  "style": "car",
+  "car_color": "#1f3d2e",
+  "niche": "Business",
+  "accent": "#e8d49a",
+  "title": "Diese Raubkatze trug früher nur zwei Buchstaben 🐆",
+  "description": "Warum die britische Marke Jaguar neunzehnhundertfünfundvierzig ihren Namen SS ablegte.\n\n#business #jaguar #autos #geschichte #shorts",
+  "tags": [
+    "business",
+    "jaguar",
+    "autos",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Die Raubkatze *Jaguar* trug früher nur zwei Buchstaben.",
+      "clip": "jaguar animal jungle"
+    },
+    {
+      "text": "Anfangs hieß sie Swallow Sidecar Company und baute *Beiwagen*. Später nannte sie sich SS. Doch warum ging das nicht mehr?",
+      "clip": "motorcycle sidecar vintage"
+    },
+    {
+      "text": "Neunzehnhundertfünfundvierzig war der Krieg vorbei. Die Buchstaben *SS* erinnerten da an die Verbrechen der Nationalsozialisten.",
+      "clip": "british countryside road",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1922,
+            "Beiwagen"
+          ],
+          [
+            1935,
+            "Erster Jaguar"
+          ],
+          [
+            1945,
+            "Neuer Name"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Die Firma strich *SS* aus dem Namen und hieß nur noch *Jaguar*. So hieß schon ein Modell von neunzehnhundertfünfunddreißig.",
+      "clip": "luxury sedan driving"
+    },
+    {
+      "text": "Aus einer Belastung wurde eine Raubkatze. Folge für mehr.",
+      "clip": "black panther walking"
+    }
+  ]
+}

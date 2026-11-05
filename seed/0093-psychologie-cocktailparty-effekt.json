@@ -1,0 +1,49 @@
+{
+  "slug": "psychologie-cocktailparty-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#102a3a",
+    "#2f7da8"
+  ],
+  "accent": "#ffd7a8",
+  "title": "Warum du deinen Namen im Lärm sofort hörst 👂",
+  "description": "Der Cocktailparty-Effekt: Wie dein Gehirn im Stimmengewirr deinen Namen erkennt.\n\n#psychologie #gehirn #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "cocktailparty",
+    "gehirn",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "👂",
+      "text": "Du hörst deinen *Namen* sogar im lautesten Lärm.",
+      "clip": "noisy crowd party"
+    },
+    {
+      "emoji": "🥂",
+      "text": "Auf einer Party verstehst du nur dein Gespräch. Der Rest rauscht. Doch dann fällt irgendwo dein *Name*.",
+      "clip": "friends talking restaurant"
+    },
+    {
+      "emoji": "🔬",
+      "text": "Das untersuchte der Forscher *Colin Cherry* neunzehnhundertdreiundfünfzig. Er ließ Menschen auf einem Ohr zuhören und das andere ignorieren.",
+      "clip": "headphones listening closeup",
+      "visual": {
+        "type": "wort",
+        "text": "Cocktailparty"
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Spätere Tests zeigten: Viele bemerkten im ignorierten Ohr ihren eigenen *Namen*. Das Gehirn filtert, prüft aber trotzdem mit.",
+      "clip": "brain scan science"
+    },
+    {
+      "emoji": "👉",
+      "text": "Dein Gehirn hört mehr, als du merkst. Folge für mehr.",
+      "clip": "woman turning head"
+    }
+  ]
+}

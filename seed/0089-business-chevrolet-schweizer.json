@@ -1,0 +1,46 @@
+{
+  "slug": "business-chevrolet-schweizer",
+  "style": "car",
+  "car_color": "#1c3a5e",
+  "niche": "Business",
+  "accent": "#ffd88a",
+  "title": "Dieser Autogigant trägt den Namen eines Schweizers 🇨🇭",
+  "description": "Louis Chevrolet, William Durant und die Legende vom Fliegen-Logo der Marke Chevrolet.\n\n#business #chevrolet #autos #logo #shorts",
+  "tags": [
+    "business",
+    "chevrolet",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Der Namensgeber von *Chevrolet* war Schweizer.",
+      "clip": "american muscle car"
+    },
+    {
+      "text": "Louis Chevrolet war Rennfahrer und kam aus der Schweiz. Wie wurde er zum Namen einer Weltmarke?",
+      "clip": "race car track"
+    },
+    {
+      "text": "Neunzehnhundertelf gründete *William Durant* mit ihm die Firma. Durant wollte den berühmten Namen.",
+      "clip": "businessman office suit",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Schweizer",
+          "Rennfahrer",
+          "Namensgeber"
+        ]
+      }
+    },
+    {
+      "text": "Louis verließ die Firma später und verkaufte seine Anteile. Die *Fliege* im Logo ist der Legende nach ein Tapetenmuster aus Paris.",
+      "clip": "paris hotel interior"
+    },
+    {
+      "text": "Der Name blieb, der Mann ging. Folge für mehr.",
+      "clip": "pickup truck driving"
+    }
+  ]
+}

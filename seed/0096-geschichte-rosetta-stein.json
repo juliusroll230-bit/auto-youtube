@@ -1,0 +1,52 @@
+{
+  "slug": "geschichte-rosetta-stein",
+  "niche": "Geschichte",
+  "colors": [
+    "#2e2414",
+    "#a8803c"
+  ],
+  "accent": "#bfe3ff",
+  "title": "Dieser Stein öffnete das Alte Ägypten 🗿",
+  "description": "Der Stein von Rosette und wie Champollion die Hieroglyphen entzifferte.\n\n#geschichte #aegypten #hieroglyphen #shorts",
+  "tags": [
+    "geschichte",
+    "aegypten",
+    "hieroglyphen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🗿",
+      "text": "Ein einziger *Stein* entschlüsselte die Hieroglyphen.",
+      "clip": "egyptian hieroglyphs wall"
+    },
+    {
+      "emoji": "⚔️",
+      "text": "Soldaten von Napoleon fanden ihn achtzehnhundertneunundneunzig bei *Rosette* in Ägypten. Doch warum war er so wertvoll?",
+      "clip": "egypt desert ruins"
+    },
+    {
+      "emoji": "📜",
+      "text": "Derselbe Text stand dreimal darauf: in Hieroglyphen, in Demotisch und auf *Griechisch*.",
+      "clip": "ancient stone inscription",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Hieroglyphen",
+          "Demotisch",
+          "Griechisch"
+        ]
+      }
+    },
+    {
+      "emoji": "🔑",
+      "text": "Achtzehnhundertzweiundzwanzig gelang *Jean-François Champollion* der Durchbruch. Er verglich Königsnamen in beiden Schriften. Daran erkannte er, welche Zeichen welche Laute sind.",
+      "clip": "museum artifact display"
+    },
+    {
+      "emoji": "👉",
+      "text": "Seitdem lesen wir die Pharaonen. Folge für mehr.",
+      "clip": "pyramids giza sunset"
+    }
+  ]
+}

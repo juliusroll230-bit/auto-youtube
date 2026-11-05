@@ -1,0 +1,49 @@
+{
+  "slug": "geld-bitcoin-pizza",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#14282e",
+    "#2f7d8a"
+  ],
+  "accent": "#ffd27a",
+  "title": "Diese Pizza ist die teuerste der Geschichte 🍕",
+  "description": "Der Bitcoin Pizza Day: Wie zwei Pizzen am 22. Mai 2010 mit Bitcoin bezahlt wurden. Keine Anlageberatung.\n\n#geld #bitcoin #pizza #wissen #shorts",
+  "tags": [
+    "geld",
+    "bitcoin",
+    "pizza",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🍕",
+      "text": "Zwei *Pizzen* kosteten zehntausend Bitcoin.",
+      "clip": "pizza oven cooking"
+    },
+    {
+      "emoji": "💻",
+      "text": "Am zweiundzwanzigsten Mai zweitausendzehn bestellte Programmierer *Laszlo Hanyecz* zwei Pizzen. Bezahlt hat er mit einer Internetwährung. Doch wie?",
+      "clip": "programmer laptop night",
+      "visual": {
+        "type": "wort",
+        "text": "Pizza-Tag"
+      }
+    },
+    {
+      "emoji": "💬",
+      "text": "Er bot im Forum zehntausend *Bitcoin* für Pizza. Ein Fremder bestellte sie für ihn.",
+      "clip": "pizza delivery box"
+    },
+    {
+      "emoji": "📉",
+      "text": "Damals waren die zehntausend Bitcoin rund vierzig Dollar wert. Heute ist jeder einzelne *Bitcoin* ein Vielfaches wert.",
+      "clip": "dollar bills counting"
+    },
+    {
+      "emoji": "👉",
+      "text": "Die teuerste Pizza der Welt. Keine Anlageberatung. Folge für mehr.",
+      "clip": "pizza slice cheese"
+    }
+  ]
+}

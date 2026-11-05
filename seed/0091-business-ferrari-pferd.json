@@ -1,0 +1,51 @@
+{
+  "slug": "business-ferrari-pferd",
+  "style": "car",
+  "car_color": "#a3141c",
+  "niche": "Business",
+  "accent": "#ffd34e",
+  "title": "Dieses Pferd gehörte erst jemand ganz anderem 🐎",
+  "description": "Das springende Pferd im Ferrari-Logo und seine Geschichte mit dem Kampfpiloten Francesco Baracca.\n\n#business #ferrari #autos #logo #shorts",
+  "tags": [
+    "business",
+    "ferrari",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Das *Ferrari*-Pferd hat Ferrari gar nicht erfunden.",
+      "clip": "galloping horse"
+    },
+    {
+      "text": "Es war ursprünglich das Zeichen von *Francesco Baracca*, einem italienischen Kampfpiloten im Ersten Weltkrieg. Wie kam es zu Ferrari?",
+      "clip": "vintage fighter plane"
+    },
+    {
+      "text": "Neunzehnhundertdreiundzwanzig gewann Enzo Ferrari ein Rennen in Ravenna. Dort traf er Baraccas Eltern.",
+      "clip": "classic race car",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1918,
+            "Baracca"
+          ],
+          [
+            1923,
+            "Ravenna"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Der Legende nach bat die Mutter ihn, das Wappen für Glück zu nutzen. Der gelbe Hintergrund ist die Farbe von *Modena*.",
+      "clip": "yellow flowers field"
+    },
+    {
+      "text": "Ein Pferd mit Geschichte. Folge für mehr.",
+      "clip": "red sports car road"
+    }
+  ]
+}

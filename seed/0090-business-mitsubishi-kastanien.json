@@ -1,0 +1,51 @@
+{
+  "slug": "business-mitsubishi-kastanien",
+  "style": "car",
+  "car_color": "#8c1d24",
+  "niche": "Business",
+  "accent": "#ffe29a",
+  "title": "Dieses Autologo hat mit Wasserkastanien zu tun 🔺",
+  "description": "Reederei, Familienwappen und das erste Serienauto Japans: die Geschichte hinter Mitsubishi.\n\n#business #mitsubishi #autos #logo #shorts",
+  "tags": [
+    "business",
+    "mitsubishi",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Mitsubishi* bedeutet übersetzt drei Wasserkastanien.",
+      "clip": "japanese city night"
+    },
+    {
+      "text": "Gründer *Iwasaki Yatarō* startete achtzehnhundertsiebzig eine Reederei. Autos kamen viel später. Doch wann?",
+      "clip": "cargo ship harbor"
+    },
+    {
+      "text": "Neunzehnhundertsiebzehn baute Mitsubishi das *Modell A*, das erste in Japan in Serie gebaute Auto.",
+      "clip": "vintage car museum",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1870,
+            "Reederei"
+          ],
+          [
+            1917,
+            "Erstes Auto"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Das Logo verbindet das Wappen der Familie *Iwasaki* mit dem Eichenblatt-Wappen des Tosa-Clans. Daraus entstanden drei rote Rauten.",
+      "clip": "oak leaves closeup"
+    },
+    {
+      "text": "Drei Rauten, eine Weltmarke. Folge für mehr.",
+      "clip": "suv driving mountain road"
+    }
+  ]
+}
