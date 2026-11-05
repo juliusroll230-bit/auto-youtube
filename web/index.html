@@ -1454,6 +1454,23 @@ dialog.vs[open] { display: grid; place-items: center; }
         </div>
       </div>
 
+      <div class="card hero" id="clipHero" hidden>
+        <div class="hero-top">
+          <div class="avatar" id="cAvatar" aria-hidden="true"></div>
+          <div style="min-width:0">
+            <h1 id="cName">Clip-Kanal</h1>
+            <div class="handle" id="cSub">Zweiter Kanal für Clips</div>
+          </div>
+          <span class="pill" id="cStatus"></span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Aufrufe gesamt</div><div class="v" id="cViews">–</div><div class="s" id="cViewsS">Clip-Kanal</div><svg class="spark" id="sparkCViews" aria-hidden="true"></svg></div>
+          <div class="stat"><div class="label">Abonnenten</div><div class="v" id="cSubs">–</div><div class="s" id="cSubsS">Clip-Kanal</div><svg class="spark" id="sparkCSubs" aria-hidden="true"></svg></div>
+          <div class="stat"><div class="label">Videos online</div><div class="v" id="cVideos">–</div><div class="s" id="cVideosS">auf YouTube</div></div>
+          <div class="stat"><div class="label">Clips bereit</div><div class="v" id="cReady">–</div><div class="s" id="cReadyS">zum Posten</div></div>
+        </div>
+      </div>
+
       <div class="grid g-21">
         <div class="card">
           <div class="card-h">
@@ -2214,6 +2231,39 @@ dialog.vs[open] { display: grid; place-items: center; }
     return last[key] - base[key];
   }
 
+  function clipDelta(d, key, hours) {
+    var hst = (d.history || []).filter(function (p) { return p[key] != null; });
+    if (hst.length < 2) return null;
+    var last = hst[hst.length - 1], cut = new Date(new Date(last.at).getTime() - hours * 3600e3), base = null;
+    for (var i = hst.length - 1; i >= 0; i--) { if (new Date(hst[i].at) <= cut) { base = hst[i]; break; } }
+    return last[key] - (base || hst[0])[key];
+  }
+
+  function renderClipHero(d) {
+    var CC = d.clip_channel || {}, cch = CC.channel || {}, box = $("clipHero");
+    box.hidden = !CC.connected;
+    if (!CC.connected) return;
+    var av = clear($("cAvatar"));
+    if (cch.thumbnail) av.appendChild(h("img", { src: cch.thumbnail, alt: "" }));
+    else av.textContent = (cch.title || "C").charAt(0).toUpperCase();
+    $("cName").textContent = cch.title || "Clip-Kanal";
+    $("cSub").textContent = (cch.handle ? cch.handle + " · " : "") + "Zweiter Kanal für Clips";
+    pill($("cStatus"), "live", "Verbunden");
+    var fmt = function (v) { return nf.format(Math.round(v)); };
+    countUp($("cViews"), cch.views || 0, fmt);
+    countUp($("cSubs"), cch.subscribers || 0, fmt);
+    countUp($("cVideos"), cch.videos || 0, fmt);
+    var ready = 0;
+    (d.campaigns || []).forEach(function (c) { (c.clips || []).forEach(function (x) { if (x.status === "freigegeben") ready++; }); });
+    countUp($("cReady"), ready, fmt);
+    var dv = clipDelta(d, "clip_views", 24), ds = clipDelta(d, "clip_subs", 24);
+    clear($("cViewsS")).append(dv != null ? h("span", { cls: "up", text: "+" + nf.format(dv) }) : "", dv != null ? " in 24 Std" : "Clip-Kanal");
+    clear($("cSubsS")).append(ds != null ? h("span", { cls: "up", text: (ds >= 0 ? "+" : "") + nf.format(ds) }) : "", ds != null ? " in 24 Std" : "Clip-Kanal");
+    var hst = (d.history || []).filter(function (p) { return p.clip_views != null; }).slice(-72);
+    spark($("sparkCViews"), hst.map(function (p) { return p.clip_views; }), "#bf5af2");
+    spark($("sparkCSubs"), hst.map(function (p) { return p.clip_subs; }), "#bf5af2");
+  }
+
   function renderHeader(d) {
     var ch = d.channel;
     document.querySelectorAll(".js-avatar").forEach(function (av) {
@@ -2255,6 +2305,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     spark($("sparkViews"), hst.slice(-72).map(function (p) { return p.views; }), "#0a84ff");
     spark($("sparkSubs"), hst.slice(-72).map(function (p) { return p.subs; }), "#0a84ff");
 
+    renderClipHero(d);
     renderGrowth(d);
 
     // Nächster Upload mit Countdown-Ring
@@ -4340,7 +4391,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var cch = CC.channel || {};
     var b = h("div", { cls: "chc" }, [chTop("yt", CC.connected && cch.thumbnail, "YouTube · Clip-Kanal", CC.connected ? (cch.title || "Clip-Kanal") : "Nicht verbunden")]);
     if (CC.connected) {
-      b.appendChild(chNums([[nf.format(cch.subscribers || 0), "Abonnenten"], [nf.format(cch.videos || 0), "Videos"]]));
+      b.appendChild(chNums([[nf.format(cch.subscribers || 0), "Abonnenten"], [nf.format(cch.views || 0), "Aufrufe"], [nf.format(cch.videos || 0), "Videos"]]));
       b.appendChild(h("span", { cls: "role" + (per ? "" : " off"), text: per ? "Clips · bis zu " + per + " pro Tag" : "Clips pro Tag: aus" }));
       var off = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
       off.disabled = preview;

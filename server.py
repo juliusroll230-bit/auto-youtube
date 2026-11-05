@@ -390,13 +390,15 @@ def refresh_stats():
             videos = yt.video_stats(cfg, ids) if ids else {}
         store.write("stats.json", {"updated_at": store.now().isoformat(timespec="seconds"), "videos": videos})
         own = {u["video_id"] for u in ups if u.get("channel") == "clips"}  # Clip-Kanal zählt nicht zum Hauptkanal
-        store.record_history(sum(v["views"] for k, v in videos.items() if k not in own), ch.get("subscribers", 0))
+        cch = None
         if cfg["clip_token"]:
             try:
-                store.write("clipchannel.json", yt.channel({**cfg, "refresh_token": cfg["clip_token"]}))
+                cch = yt.channel({**cfg, "refresh_token": cfg["clip_token"]})
+                store.write("clipchannel.json", cch)
             except Exception as e:
                 if yt.is_expired(e):
                     clip_connection_expired()
+        store.record_history(sum(v["views"] for k, v in videos.items() if k not in own), ch.get("subscribers", 0), clip=cch)
         store.agent_done("analyst")
     except Exception as e:
         store.agent_done("analyst", error=e)
