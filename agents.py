@@ -23,7 +23,7 @@ DEFAULTS = {
     "sprecher": {"tempo": 100},
     "studio": {"kopfzeile": "auto", "untertitel": "auto"},
     "clipper": {"on": True, "auto_start": False, "clips": 5, "min_len": 20, "max_len": 45, "crop": "auto",
-                "untertitel": "pop", "hook": True, "keywords": "", "sprache": "de", "modell": "base",
+                "untertitel": "pop", "hook": True, "keywords": "", "sprache": "auto", "modell": "base",
                 "freigabe": True},
     "publisher": {"on": True, "clips_per_day": 2},
     "analyst": {"minutes": 20},
