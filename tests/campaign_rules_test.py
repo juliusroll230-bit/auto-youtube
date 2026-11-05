@@ -48,4 +48,13 @@ try:
     raise SystemExit("zu lange Mindestlänge wurde nicht abgelehnt")
 except ValueError:
     pass
+# Verbotene Wörter: ganze Wörter, keine Teilstücke
+assert clips.banned_hit("It is so High up!", ["high"]) == "high"
+assert clips.banned_hit("highlight and tripod", ["high", "trip"]) is None
+try:
+    whop.set_rules("k1", {"caption": "This is a buzz story", "banned": "buzz, drug"})
+    raise SystemExit("verbotenes Wort im Pflicht-Text wurde nicht abgelehnt")
+except ValueError as e:
+    assert "buzz" in str(e)
+assert whop.set_rules("k1", {"caption": "mad honey #madhoney", "banned": "High, drug"})["banned"] == ["high", "drug"]
 print("ok")

@@ -3871,6 +3871,8 @@ dialog.vs[open] { display: grid; place-items: center; }
     min.value = r.min_len || "";
     var lang = h("select", { "aria-label": "Sprache des Videos" }, [["", "wie im Clipper"], ["en", "Englisch"], ["de", "Deutsch"], ["auto", "automatisch"]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
     lang.value = r.language || "";
+    var ban = h("input", { type: "text", placeholder: "Verbotene Wörter, mit Komma getrennt, z. B. high, drug, trip", "aria-label": "Verbotene Wörter" });
+    ban.value = (r.banned || []).join(", ");
     var file = h("input", { type: "file", accept: "image/png", "aria-label": "Logo (PNG)" });
     var whole = h("input", { type: "checkbox" }), music = h("input", { type: "checkbox" });
     whole.checked = !!r.whole; music.checked = !!r.music;
@@ -3882,6 +3884,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       h("div", { cls: "field" }, [h("label", { text: "Text im Bild (bleibt den ganzen Clip sichtbar)" }), scr]),
       h("div", { cls: "field" }, [h("label", { text: "Mindestlänge pro Clip in Sekunden (leer = egal)" }), min]),
       h("div", { cls: "field" }, [h("label", { text: "Sprache im Video" }), lang]),
+      h("div", { cls: "field" }, [h("label", { text: "Verbotene Wörter (Clips mit diesen Wörtern in den Untertiteln werden weggelassen)" }), ban]),
       h("div", { cls: "field" }, [h("label", { text: "Logo (PNG), kommt oben links auf jeden Clip" + (w.has_logo ? " · gespeichert" : "") }), file]),
       h("label", { cls: "check" }, [whole, h("span", {}, [h("b", { text: "Ganzes Video verwenden, nichts automatisch schneiden." }), " ", h("span", { cls: "muted", text: "Für Kampagnen, die automatische Clip-Tools verbieten. Nur bis 3 Minuten." })])]),
       h("label", { cls: "check" }, [music, h("span", {}, [h("b", { text: "Hintergrundmusik darunterlegen." }), " ", h("span", { cls: "muted", text: "Eigene, selbst erzeugte Musik ohne Urheberrechte, leise unter dem Originalton." })])]),
@@ -3892,7 +3895,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       save.disabled = true;
       var done = function () { msg.className = "msg ok"; msg.textContent = "Gespeichert"; save.disabled = false; soon(); };
       var fail = function (er) { msg.className = "msg err"; msg.textContent = er.message; save.disabled = false; };
-      api("api/whop/rules", { id: w.id, caption: cap.value, screen_text: scr.value, min_len: min.value, language: lang.value, whole: whole.checked, music: music.checked }).then(function () {
+      api("api/whop/rules", { id: w.id, caption: cap.value, screen_text: scr.value, min_len: min.value, language: lang.value, whole: whole.checked, music: music.checked, banned: ban.value }).then(function () {
         if (!file.files[0]) return done();
         return fetch("api/whop/logo?id=" + encodeURIComponent(w.id), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: file.files[0] })
           .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); done(); }); });

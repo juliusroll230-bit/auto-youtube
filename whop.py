@@ -169,8 +169,14 @@ def set_rules(pid, data):
     language = str(data.get("language") or "")
     if language not in ("", "de", "en", "auto"):
         raise ValueError("Unbekannte Sprache.")
+    banned = [w for w in re.split(r"[,;\n]+", str(data.get("banned") or "")) if w.strip()]
+    banned = [" ".join(w.lower().split())[:30] for w in banned][:40]
+    for field, text in (("Der Pflicht-Text", caption), ("Der Text im Bild", screen)):
+        hit = clips.banned_hit(text, banned)
+        if hit:
+            raise ValueError(f"{field} enthält das verbotene Wort „{hit}“.")
     rules = {"caption": caption, "screen_text": screen, "min_len": min_len, "language": language,
-             "whole": bool(data.get("whole")), "music": bool(data.get("music"))}
+             "whole": bool(data.get("whole")), "music": bool(data.get("music")), "banned": banned}
     with store.LOCK:
         items = load()
         item = next((x for x in items if x["id"] == pid), None)
