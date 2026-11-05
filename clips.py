@@ -683,6 +683,16 @@ def rules_for(c):
     return rules
 
 
+def banned_hit(text, banned):
+    """Erstes verbotenes Wort im Text (ganze Wörter, ohne Groß-/Kleinschreibung), sonst None."""
+    plain = " " + re.sub(r"[^\w\s]", " ", (text or "").lower()) + " "
+    plain = " ".join(plain.split())
+    for w in banned or []:
+        if w and f" {w} " in f" {plain} ":
+            return w
+    return None
+
+
 def apply_rules(settings, rules):
     """Einstellungen des Clippers mit den Vorgaben der Kampagne überschreiben."""
     out = dict(settings)
@@ -944,6 +954,15 @@ def process(cid, settings, task=lambda text: None):
             chosen = [{"start": 0.0, "end": info["duration"], "score": 0, "i": 0, "j": 0}]
         else:
             chosen = choose_parts(sents, rms, info["duration"], settings)
+        banned = settings["_rules"].get("banned") or []
+        if banned:  # Kampagne verbietet Wörter (auch in Untertiteln): solche Stellen weglassen
+            def spoken(ch):
+                return " ".join(w["w"] for w in tr["words"] if ch["start"] - 0.2 <= w["s"] <= ch["end"] + 0.4)
+            kept = [ch for ch in chosen if not banned_hit(spoken(ch), banned)]
+            if len(kept) < len(chosen):
+                store.log("warn", f"{len(chosen) - len(kept)} Clip(s) wegen verbotener Wörter weggelassen: {c['name'][:40]}",
+                          agent="clipper", kind="input")
+            chosen = kept
         clips = []
         for n, ch in enumerate(chosen, 1):
             task(f"Schneidet Clip {n}/{len(chosen)}")
