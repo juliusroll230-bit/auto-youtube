@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import time
 import unicodedata
+import zlib
 import urllib.parse
 
 import numpy as np
@@ -405,12 +406,16 @@ def choose_for_slot(slot, hours, per_day, uploads, scripts_left=True):
 
 def upload_spec(c, clip):
     lang = (c.get("language") or "de")[:2]
+    rules = rules_for(c)
+    tags = ["shorts", "clip"] + [k for k in re.split(r"[,;]\s*|\s+", c.get("keywords") or "") if k][:8]
+    if (rules.get("caption") or "").strip():  # Pflicht-Text der Kampagne, unverändert (nichts anhängen)
+        title = (rules.get("screen_text") or "").strip()[:95] or clip["title"]
+        return {"title": title, "description": rules["caption"].strip(), "tags": tags, "language": lang}
     desc = clip.get("text", "")
     if len(desc) > 280:
         desc = desc[:277].rsplit(" ", 1)[0] + " …"
     if c.get("credit"):
         desc += f"\n\nOriginal: {c['credit']}"
-    tags = ["shorts", "clip"] + [k for k in re.split(r"[,;]\s*|\s+", c.get("keywords") or "") if k][:8]
     return {"title": clip["title"], "description": desc + "\n\n#shorts", "tags": tags, "language": lang}
 
 
@@ -625,14 +630,18 @@ def energy_windows(rms, duration, length, count):
     return wins or [{"start": 0, "end": min(duration, length), "score": 0}]
 
 
-def clip_lengths(duration, count, min_len, max_len):
+def clip_lengths(duration, count, min_len, max_len, hard=0):
     """Clip-Länge passend zum Video: Bei kurzen Videos (z. B. Trailern) werden die Clips kürzer,
     damit trotzdem die eingestellte Zahl herauskommt."""
     lo, hi = sorted((min_len, max_len))
     hi = min(hi, max(lo, duration))
+    floor = max(MIN_CLIP, hard)
     if count > 1 and 0.75 * duration < count * hi:
-        hi = max(MIN_CLIP, min(hi, 0.75 * duration / count))  # Luft lassen, damit alle Clips nebeneinander passen
-        lo = max(MIN_CLIP * 0.75, min(lo, hi * 0.6))
+        hi = max(floor, min(hi, 0.75 * duration / count))  # Luft lassen, damit alle Clips nebeneinander passen
+        lo = max(floor * 0.75, min(lo, hi * 0.6))
+    if hard:  # Vorgabe der Kampagne (z. B. "mindestens 10 Sekunden")
+        hi = max(hi, hard)
+        lo = max(lo, hard)
     return lo, hi
 
 
@@ -640,19 +649,49 @@ def choose_parts(sents, rms, duration, settings):
     """Die besten Stellen. Zuerst ganze Sätze; fehlen dann noch Clips, füllen die lautesten
     Abschnitte auf (wichtig bei Trailern mit wenig Sprache)."""
     count = settings["clips"]
-    lo, hi = clip_lengths(duration, count, settings["min_len"], settings["max_len"])
+    lo, hi = clip_lengths(duration, count, settings["min_len"], settings["max_len"], settings.get("min_clip") or 0)
     chosen = pick(candidates(sents, rms, settings["keywords"], lo, hi), count)
     if len(chosen) < count:
         chosen = pick(energy_windows(rms, duration, min(hi, duration), count), count, taken=chosen)
     while len(chosen) < count:  # notfalls die größte freie Lücke nehmen
         edges = [0.0] + [x for c in sorted(chosen, key=lambda c: c["start"]) for x in (c["start"], c["end"])] + [duration]
         free = max(((edges[k], edges[k + 1]) for k in range(0, len(edges), 2)), key=lambda g: g[1] - g[0])
-        if free[1] - free[0] - 1.0 < MIN_CLIP * 0.75:
+        if free[1] - free[0] - 1.0 < max(MIN_CLIP * 0.75, settings.get("min_clip") or 0):
             break
         a = free[0] + (0.5 if free[0] > 0 else 0)
         b = min(free[1] - (0.5 if free[1] < duration else 0), a + hi)
         chosen = sorted(chosen + [{"start": a, "end": b, "score": 0}], key=lambda c: c["start"])
-    return chosen
+    hard = settings.get("min_clip") or 0
+    return [c for c in chosen if c["end"] - c["start"] >= hard - 0.01] if hard else chosen
+
+
+# --- Vorgaben einer Whop-Kampagne (Text, Logo, Mindestlänge, Sprache) --------------------------
+
+def logo_path(pid):
+    return store.path("whop-logos", f"{pid}.png")
+
+
+def rules_for(c):
+    """Vorgaben der Whop-Kampagne, zu der das Video gehört (leer ohne Kampagne)."""
+    if not c.get("program"):
+        return {}
+    import whop
+    item = whop.find(c["program"]) or {}
+    rules = dict(item.get("rules") or {})
+    if os.path.exists(logo_path(item.get("id", ""))) if item else False:
+        rules["logo_file"] = logo_path(item["id"])
+    return rules
+
+
+def apply_rules(settings, rules):
+    """Einstellungen des Clippers mit den Vorgaben der Kampagne überschreiben."""
+    out = dict(settings)
+    if rules.get("min_len"):
+        out["min_clip"] = int(rules["min_len"])
+    if rules.get("language") in ("de", "en", "auto"):
+        out["sprache"] = rules["language"]
+    out["_rules"] = rules
+    return out
 
 
 def pick(cands, count, gap=1.0, taken=()):
@@ -731,7 +770,7 @@ def caption_groups(words, max_words=3, max_chars=20):
     return groups
 
 
-def ass(words, t0, dur, style="pop", hook=""):
+def ass(words, t0, dur, style="pop", hook="", hold=False):
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -759,7 +798,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                 line = f"{line} {w}".strip()
         wrapped.append(line)
         text = r"\N".join(_ass_escape(x) for x in wrapped)
-        lines.append(f"Dialogue: 1,{_ass_time(0)},{_ass_time(min(3.2, dur))},Hook,,0,0,0,,"
+        lines.append(f"Dialogue: 1,{_ass_time(0)},{_ass_time(dur if hold else min(3.2, dur))},Hook,,0,0,0,,"
                      r"{\fad(120,260)\fscx86\fscy86\t(0,160,\fscx100\fscy100)}" + text)
     cap = "Box" if style == "kasten" else "Cap"
     on = {"pop": r"{\c" + ACCENT + r"\fscx114\fscy114}", "unterstrich": r"{\c" + ACCENT + r"\u1}",
@@ -786,6 +825,21 @@ def _ffmpeg(args, cwd=None, timeout=3600):
         raise RuntimeError("ffmpeg: " + (out.stderr.strip().splitlines() or ["unbekannter Fehler"])[-1][:200])
 
 
+def write_music(path, seconds, seed):
+    """Hintergrundmusik als WAV (mono, 24 kHz) aus audio.py, pro Clip eine eigene Variante."""
+    import wave
+    import audio
+    rate = 24000
+    data = audio.music(seconds + 0.2, rate, zlib.crc32(seed.encode()) % (2 ** 31))
+    pcm = (np.clip(data / max(1.0, float(np.abs(data).max()) / 0.9), -1, 1) * 32767).astype(np.int16)
+    with wave.open(path, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(rate)
+        w.writeframes(pcm.tobytes())
+    return path
+
+
 def render(c, clip, info, words, settings):
     folder = camp_dir(c["id"], "clips")
     start = max(0.0, clip["start"] - 0.15)
@@ -793,7 +847,10 @@ def render(c, clip, info, words, settings):
     dur = end - start
     name = f"{clip['n']:02d}"
     with open(os.path.join(folder, name + ".ass"), "w", encoding="utf-8") as f:
-        f.write(ass(words, start, dur, settings["untertitel"], clip.get("hook") if settings["hook"] else ""))
+        rules = settings.get("_rules") or {}
+        hold = bool((rules.get("screen_text") or "").strip())  # Text im Bild dauerhaft, wenn die Kampagne ihn verlangt
+        f.write(ass(words, start, dur, settings["untertitel"],
+                    clip.get("hook") if (settings["hook"] or hold) else "", hold=hold))
     crop = settings["crop"]
     landscape = info["width"] > info["height"] * 1.05
     face = None
@@ -817,10 +874,28 @@ def render(c, clip, info, words, settings):
         base = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
                 f"gblur=sigma=28,eq=brightness=-0.12:saturation=1.15[bg];"
                 f"[b]scale={W}:{H}:force_original_aspect_ratio=decrease[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2,setsar=1")
-    graph = f"{base},fps=30,subtitles={name}.ass:fontsdir='{FONTS}'[v]"
-    args = ["-ss", f"{start:.2f}", "-i", source_path(c), "-t", f"{dur:.2f}"]
-    if info["audio"]:
+    logo = rules.get("logo_file")
+    if logo:  # Logo der Kampagne oben links, über dem Bildtext (y=60, Text beginnt bei 250)
+        graph = (f"{base},fps=30,subtitles={name}.ass:fontsdir='{FONTS}'[vs];"
+                 f"[1:v]scale=260:-1[lg];[vs][lg]overlay=40:60,format=yuv420p[v]")
+    else:
+        graph = f"{base},fps=30,subtitles={name}.ass:fontsdir='{FONTS}'[v]"
+    args = ["-ss", f"{start:.2f}", "-i", source_path(c)] + (["-i", logo] if logo else [])
+    music = None
+    if rules.get("music"):  # eigene, selbst erzeugte Hintergrundmusik (audio.py), leise unter dem Originalton
+        music = write_music(os.path.join(folder, name + ".music.wav"), dur, seed=c["id"] + name)
+        args += ["-i", music]
+    args += ["-t", f"{dur:.2f}"]
+    if info["audio"] and music:
+        mi = 2 if logo else 1
+        graph += (f";[0:a]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[sp];[{mi}:a]volume=0.16,aresample=48000[mu];"
+                  f"[sp][mu]amix=inputs=2:duration=first:normalize=0[a]")
+    elif info["audio"]:
         graph += ";[0:a]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]"
+    elif music:
+        mi = 2 if logo else 1
+        graph += f";[{mi}:a]volume=0.5,aresample=48000[a]"
+    info = {**info, "audio": info["audio"] or bool(music)}
     args += ["-filter_complex", graph, "-map", "[v]"]
     args += ["-map", "[a]", "-c:a", "aac", "-b:a", "160k"] if info["audio"] else []
     args += ["-c:v", "libx264", "-preset", "fast", "-crf", "20", "-profile:v", "high", "-pix_fmt", "yuv420p",
@@ -836,6 +911,7 @@ def process(cid, settings, task=lambda text: None):
     _running["id"] = cid
     try:
         c = update(cid, lambda c: c.update(status="hoert", progress=1, error=None))
+        settings = apply_rules(settings, rules_for(c))
         info = probe(source_path(c))
         if info["duration"] < 8:
             raise RuntimeError("Das Video ist zu kurz (unter 8 Sekunden).")
@@ -864,12 +940,15 @@ def process(cid, settings, task=lambda text: None):
                                            keywords=settings["keywords"]))
         rms = loudness(source_path(c)) if info["audio"] else []
         sents = sentences(tr["words"])
-        chosen = choose_parts(sents, rms, info["duration"], settings)
+        if settings["_rules"].get("whole") and info["duration"] <= 180:  # Kampagne ohne automatischen Schnitt
+            chosen = [{"start": 0.0, "end": info["duration"], "score": 0, "i": 0, "j": 0}]
+        else:
+            chosen = choose_parts(sents, rms, info["duration"], settings)
         clips = []
         for n, ch in enumerate(chosen, 1):
             task(f"Schneidet Clip {n}/{len(chosen)}")
             part = [s for s in sents if ch["start"] - 0.01 <= s["s"] and s["e"] <= ch["end"] + 0.01]
-            hook = hook_text(part[0]["text"]) if part else ""
+            hook = (settings["_rules"].get("screen_text") or "").strip() or (hook_text(part[0]["text"]) if part else "")
             text = " ".join(s["text"] for s in part)
             clip = {"n": n, "start": round(ch["start"], 2), "end": round(ch["end"], 2), "hook": hook,
                     "title": (title_text(part[0]["text"]) if part else "") or f"{c['name']} (Teil {n})",
