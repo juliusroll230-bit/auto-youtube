@@ -163,6 +163,8 @@ def post_next(slot, manual=False):
         ag = agents.settings(store.config())
         # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
         look = agents.apply_look(store.next_look(), ag)
+        if spec.get("stil") == "cartoon":  # Stimme passend zur Stimmung, gelernt (oder fest im Skript)
+            look["stimme"] = spec.get("stimme") or store.next_voice(spec)
         key = store.config().get("stock_key", "")
         if not key:
             look["hintergrund"] = "animation"

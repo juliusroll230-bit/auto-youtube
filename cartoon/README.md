@@ -42,9 +42,18 @@ Test-Video: `python cartoon.py skript.json ausgabe/`.
 | `horror` | dunkler Raum, Taschenlampe, leuchtende Augen | `ort` (keller, nacht, haus, kinderzimmer …), `gefuehl`, `aktion`, optional `objekt`, `text`, `augen` (#farbe) |
 | `monster` | Hauptfigur und ein Monster, das näher kommt | `monster` (zombie, geist, schatten oder ein Emoji), `anzahl` (Zombies 1 bis 4), `ort`, `gefuehl`, `aktion` (zittert, rennt …), optional `text` |
 | `titel` | Titelkarte einer Serie | `serie`, `teil`, `ort`, optional Figur mit `name` |
+| `akte` | Ermittler-Wand mit roten Fäden und Lupe | `text` (Mitte), `punkte` (2 bis 4, Emoji oder kurzer Text) |
+| `raetsel` | leuchtendes Fragezeichen, Lichtkegel, Nebel | `objekt`, optional `ort`, `text` |
+| `karte` | alte Karte, Route bis zum X, Kompass | optional `objekt` (am X), `text` |
 
 Zusätzlich für jede Szene: `wetter` (regen, nebel, blitz, schnee) und bei figur/zwei/gruppe/horror ein `monster` im Hintergrund.
 Figuren können `name` (Namensschild) und `art` ("zombie", "blass") haben.
+
+**Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery) oder
+`neugierig` (lockere Erklärung). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
+dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere mysteriös. Die Stimme (`klar`,
+`erzaehler`, `unheimlich`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
+mit `"stimme"` im Skript ist sie fest.
 
 **Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene `titel`, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
 

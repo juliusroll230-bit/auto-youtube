@@ -28,27 +28,58 @@ FONT_SEMI = os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf")
 FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 
 
+# Stimmen für Cartoons: (Tonhöhe, langsamer um, Hall). Tiefer und langsamer klingt unheimlicher.
+# Welche am besten ankommt, lernt learn.choose_voice.
+VOICES = {
+    "klar": (1.0, 1.0, 0.0),          # normal, für Erklärungen
+    "erzaehler": (0.94, 1.08, 0.16),  # ruhiger Geschichten-Erzähler
+    "unheimlich": (0.88, 1.16, 0.28), # tief, langsam, mit Hall
+}
+
+
+def voice_color(samples, rate, voice):
+    """Macht die Stimme tiefer (durch Strecken) und legt bei Bedarf etwas Hall darunter."""
+    pitch, _, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    if pitch != 1.0:
+        n = int(len(samples) / pitch)
+        samples = np.interp(np.linspace(0, len(samples) - 1, n), np.arange(len(samples)), samples).astype(np.float32)
+    if echo:
+        out = np.copy(samples)
+        for delay, gain in ((0.09, echo), (0.19, echo * 0.55), (0.31, echo * 0.3)):
+            d = int(delay * rate)
+            out[d:] += gain * samples[:-d]
+        samples = out / max(1.0, np.abs(out).max() / 0.95)
+    return samples.astype(np.float32)
+
+
 def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0, speed=SPEED):
-    """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück."""
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None):
+    """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
+
+    voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix).
+    """
     import audio
 
     chunks, timings, t = [], [], 0.0
     rate = tts.config.sample_rate
     for seg in segments:
-        cfg = SynthesisConfig(length_scale=speed)
+        pitch, slower, _ = VOICES.get(voice or "klar", VOICES["klar"])
+        # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
+        cfg = SynthesisConfig(length_scale=speed * slower * pitch)
         text = seg["text"].replace("*", "")
         samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+        if voice:
+            samples = voice_color(samples, rate, voice)
         dur = len(samples) / rate
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
         t += dur + PAUSE
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
-    voice = np.concatenate(chunks + [tail])
-    track = audio.mix(voice, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings))
+    voice_track = np.concatenate(chunks + [tail])
+    track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood)
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)

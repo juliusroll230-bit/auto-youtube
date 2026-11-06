@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tempfile
 
+import learn
 import make_short
 import numerals
 
@@ -24,7 +25,9 @@ FPS = 30
 CHROME = os.environ.get("CHROME_PATH", "")
 
 
-TYPES = {"figur", "zwei", "gruppe", "objekt", "zahl", "jahr", "liste", "vergleich", "horror", "monster", "titel"}
+TYPES = {"figur", "zwei", "gruppe", "objekt", "zahl", "jahr", "liste", "vergleich", "horror", "monster", "titel",
+         "akte", "raetsel", "karte"}
+MOODS_VIDEO = set(learn.VOICES_FOR_MOOD)  # Stimmung des ganzen Videos: Musik, Licht, Stimme
 PLACES = {"strand", "meer", "stadt", "wald", "feld", "nacht", "haus", "kinderzimmer", "keller", "schule", "buero",
           "labor", "weltall", "wueste", "burg", "dorf", "farbe", "friedhof", "spukhaus", "krankenhaus", "strasse",
           "dunkelwald"}
@@ -53,6 +56,10 @@ def validate(spec):
             errs.append(f"{where}: Hut {f['hut']}")
 
     fig(spec.get("figur"), "figur")
+    if spec.get("stimmung") and spec["stimmung"] not in MOODS_VIDEO:
+        errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
+    if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
+        errs.append(f"Stimme {spec['stimme']}, erlaubt: {', '.join(make_short.VOICES)}")
     for i, seg in enumerate(segs, 1):
         sc = seg.get("szene")
         if not isinstance(sc, dict):
@@ -80,8 +87,11 @@ def validate(spec):
             errs.append(f"Segment {i}: zahl muss eine Zahl sein")
         if typ == "jahr" and not sc.get("jahr"):
             errs.append(f"Segment {i}: jahr fehlt")
-        if typ == "liste" and not 2 <= len(sc.get("punkte") or []) <= 4:
-            errs.append(f"Segment {i}: liste braucht 2 bis 4 punkte")
+        if typ in ("liste", "akte") and not 2 <= len(sc.get("punkte") or []) <= 4:
+            errs.append(f"Segment {i}: {typ} braucht 2 bis 4 punkte")
+        for p in sc.get("punkte") or []:
+            if len(str(p)) > 22:
+                errs.append(f"Segment {i}: Punkt länger als 22 Zeichen")
         if typ == "vergleich" and not (sc.get("links") and sc.get("rechts")):
             errs.append(f"Segment {i}: vergleich braucht links und rechts")
         if typ == "objekt" and not sc.get("objekt"):
@@ -90,6 +100,11 @@ def validate(spec):
             if len(str(sc.get(k) or "")) > 22:
                 errs.append(f"Segment {i}: {k} länger als 22 Zeichen")
     return errs
+
+
+def mood(spec):
+    """Stimmung des Videos: aus dem Skript, sonst nach Thema (Horror ist gruselig, sonst mysteriös)."""
+    return learn.cartoon_mood(spec)
 
 
 def word_times(segments, timings):
@@ -120,7 +135,7 @@ def plan(spec, timings, total):
         scenes.append(sc)
     for sc in scenes:  # gleiche Figur im ganzen Video, wenn die Szene nichts anderes sagt
         sc.setdefault("figur", spec.get("figur") or {"farbe": "rot"})
-    return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3)}
+    return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec)}
 
 
 def stage(p, folder):
@@ -166,7 +181,8 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
-                                           speed=spec.get("voice_speed") or make_short.SPEED)
+                                           speed=spec.get("voice_speed") or make_short.SPEED,
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec))
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []

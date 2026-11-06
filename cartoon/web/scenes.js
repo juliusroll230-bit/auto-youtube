@@ -329,6 +329,62 @@ Object.assign(TYPES, {
     if (sc.figur && sc.figur.name) { applyCam(ctx, cam(lt, d, 1, 1.05, sc.i)); stick(ctx, sc, 540, G, 520, sc.gefuehl || 'cool', sc.aktion || 'steht', lt); }
   },
 });
+// ---------- Rätsel-Szenen: Ermittler-Wand, Fragezeichen, alte Karte ----------
+function lens(ctx, x, y, r, rot = -.6) { ctx.save(); ctx.translate(x, y); ctx.rotate(rot); line(ctx, r * .7, r * .7, r * 1.6, r * 1.6, r * .28, '#5a3a22'); circle(ctx, 0, 0, r); ctx.fillStyle = 'rgba(200,230,255,.22)'; ctx.fill(); ctx.lineWidth = r * .16; ctx.strokeStyle = '#2b2b33'; ctx.stroke(); ctx.beginPath(); ctx.arc(-r * .2, -r * .2, r * .55, 3.6, 4.4); ctx.lineWidth = r * .08; ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.stroke(); ctx.restore(); }
+function isEmoji(str) { return /\p{Extended_Pictographic}/u.test(str) && [...str].length <= 3; }
+Object.assign(TYPES, {
+  akte(ctx, sc, lt, d) {
+    applyCam(ctx, cam(lt, d, 1.04, 1.12, sc.i));
+    ctx.fillStyle = '#7a5434'; ctx.fillRect(-1500, -1500, 4080, 4500);
+    const R = rng(sc.i + 5); for (let k = 0; k < 260; k++) { circle(ctx, R() * 1300 - 110, R() * 2100 - 90, 2 + R() * 4); ctx.fillStyle = 'rgba(40,22,10,.25)'; ctx.fill(); }
+    const pts = (sc.punkte || []).slice(0, 4), spots = [[260, 520], [820, 470], [250, 1120], [830, 1150]];
+    const center = [540, 820], step = Math.max(.3, (d - .8) / Math.max(1, pts.length));
+    // rote Fäden von der Mitte zu jeder Karte, sie spannen sich nacheinander
+    pts.forEach((p, k) => { const a = clamp((lt - .3 - k * step) / .4); if (a <= 0) return; const [x, y] = spots[k]; line(ctx, center[0], center[1], lerp(center[0], x, a), lerp(center[1], y, a), 7, '#c4161c'); });
+    pts.forEach((p, k) => { const a = popIn(lt, .15 + k * step, .3); const [x, y] = spots[k]; ctx.save(); ctx.translate(x, y); ctx.rotate((R() - .5) * .2); ctx.scale(a, a);
+      rrect(ctx, -170, -130, 340, 260, 8); ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fill(); rrect(ctx, -176, -138, 340, 260, 8); fillStroke(ctx, '#f6efdc', 6);
+      if (isEmoji(p)) emoji(ctx, p, -6, -8, 150); else fitText(ctx, String(p), -6, -8, 56, 290, '#2a1d14', null, 0);
+      circle(ctx, -6, -122, 16); ctx.fillStyle = '#d42a2a'; ctx.fill(); ctx.restore(); });
+    const k = popIn(lt, 0, .35); ctx.save(); ctx.translate(center[0], center[1]); ctx.scale(k, k); ctx.rotate(-.04);
+    rrect(ctx, -230, -150, 460, 300, 10); fillStroke(ctx, '#fff8e6', 7);
+    fitText(ctx, (sc.text || '?').toUpperCase(), 0, 0, sc.text ? 66 : 180, 400, '#c4161c', null, 0); ctx.restore();
+    lens(ctx, 540 + Math.sin(lt * .8) * 300, 820 + Math.cos(lt * 1.1) * 330, 110);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); const g = ctx.createRadialGradient(540, 820, 250, 540, 900, 1150); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.65)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  },
+  raetsel(ctx, sc, lt, d) {
+    applyCam(ctx, cam(lt, d, 1.02, 1.1, sc.i)); drawPlace(ctx, sc.ort || 'nacht', lt, sc);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); darkness(ctx, .7, '#05040c'); fog(ctx, lt, .55, 1150);
+    // Lichtkegel von oben auf das Objekt
+    ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createLinearGradient(540, 0, 540, 1150); g.addColorStop(0, 'rgba(180,200,255,.0)'); g.addColorStop(1, 'rgba(180,200,255,.28)');
+    ctx.beginPath(); ctx.moveTo(470, 0); ctx.lineTo(610, 0); ctx.lineTo(860, 1150); ctx.lineTo(220, 1150); ctx.closePath(); ctx.fillStyle = g; ctx.fill(); ctx.restore();
+    const k = popIn(lt, .1, .5), q = clamp((lt - .5) / .6);
+    if (q > 0) { ctx.save(); ctx.globalAlpha = q * (.75 + .25 * Math.sin(lt * 3)); ctx.shadowColor = '#9db7ff'; ctx.shadowBlur = 60; text(ctx, '?', 540, 470 + Math.sin(lt * 1.3) * 16, 420, 'rgba(210,225,255,.9)', null, 0, 'Poppins', 700); ctx.restore(); }
+    emoji(ctx, sc.objekt || '🗝️', 540, 930 + Math.sin(lt * 1.8) * 14, 300 * k, Math.sin(lt * 1.2) * .08);
+    lens(ctx, 540 + Math.cos(lt * 1.2) * 190, 930 + Math.sin(lt * 1.2) * 120, 90);
+    if (sc.text) { ctx.globalAlpha = clamp(lt / .5); fitText(ctx, sc.text.toUpperCase(), 540, 250, 80, 920, '#e8e3f0', '#000', 12); ctx.globalAlpha = 1; }
+  },
+  karte(ctx, sc, lt, d) {
+    applyCam(ctx, cam(lt, d, 1.06, 1.18, sc.i));
+    ctx.fillStyle = '#1c130c'; ctx.fillRect(-1500, -1500, 4080, 4500);
+    ctx.save(); ctx.translate(540, 800); ctx.rotate(-.025);
+    rrect(ctx, -470, -560, 940, 1120, 14); fillStroke(ctx, '#e9d7a8', 8);
+    const R = rng(sc.i + 21); ctx.fillStyle = 'rgba(120,80,30,.12)'; for (let k = 0; k < 40; k++) { circle(ctx, R() * 900 - 450, R() * 1080 - 540, 10 + R() * 50); ctx.fill(); }
+    // Meer und zwei Inseln
+    ctx.strokeStyle = 'rgba(60,90,120,.35)'; ctx.lineWidth = 4; for (let y = -480; y < 520; y += 70) { ctx.beginPath(); for (let x = -430; x <= 430; x += 20) ctx.lineTo(x, y + Math.sin(x * .03 + y) * 8); ctx.stroke(); }
+    const blob = (cx, cy, r, seed) => { const Q = rng(seed); ctx.beginPath(); for (let a = 0; a <= 6.3; a += .35) { const rr = r * (.75 + Q() * .4); ctx.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr * .8); } ctx.closePath(); fillStroke(ctx, '#c9a96a', 6); };
+    blob(-230, -300, 150, sc.i + 3); blob(220, 280, 190, sc.i + 9);
+    // gestrichelte Route bis zum X
+    const pts = [[-230, -300], [-120, -120], [60, -60], [120, 120], [220, 280]], p = clamp((lt - .3) / Math.max(.8, d * .6));
+    ctx.setLineDash([22, 18]); ctx.lineWidth = 9; ctx.strokeStyle = '#a3241c'; ctx.beginPath();
+    const total = pts.length - 1, upto = p * total; pts.forEach(([x, y], k) => { if (k === 0) ctx.moveTo(x, y); else if (k <= upto) ctx.lineTo(x, y); else if (k - 1 < upto) { const f = upto - (k - 1); ctx.lineTo(lerp(pts[k - 1][0], x, f), lerp(pts[k - 1][1], y, f)); } }); ctx.stroke(); ctx.setLineDash([]);
+    if (p >= 1) { const k = popIn(lt, .3 + Math.max(.8, d * .6), .3); ctx.save(); ctx.translate(220, 280); ctx.scale(k, k); line(ctx, -50, -50, 50, 50, 20, '#a3241c'); line(ctx, 50, -50, -50, 50, 20, '#a3241c'); ctx.restore(); if (sc.objekt) emoji(ctx, sc.objekt, 220, 120, 170 * k); }
+    // Kompass
+    ctx.save(); ctx.translate(330, -420); ctx.rotate(Math.sin(lt * .7) * .2); circle(ctx, 0, 0, 70); fillStroke(ctx, '#f3e6c0', 6); path(ctx, [[0, -60], [14, 0], [0, 60], [-14, 0]], true); ctx.fillStyle = '#a3241c'; ctx.fill(); text(ctx, 'N', 0, -88, 40, '#4a2614', null, 0, 'Poppins', 700); ctx.restore();
+    if (sc.text) fitText(ctx, sc.text.toUpperCase(), 0, -480, 70, 820, '#4a2614', null, 0);
+    ctx.restore();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); const g = ctx.createRadialGradient(540, 800, 300, 540, 900, 1200); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.7)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  },
+});
 // Wetter auch über allen anderen Szenen, wenn angegeben
 ['figur', 'zwei', 'gruppe', 'horror', 'objekt'].forEach(k => { const f = TYPES[k]; TYPES[k] = (ctx, sc, lt, d) => { f(ctx, sc, lt, d); if (sc.monster && k !== 'objekt') { applyCam(ctx, cam(lt, d, 1, 1.08, sc.i)); if (sc.monster === 'geist') ghost(ctx, 860, 760, 360, lt); else if (sc.monster === 'schatten') shadowMan(ctx, 900, G, 700, lt, .9); else if (sc.monster === 'zombie') zombie(ctx, sc, 900, G, 520, lt); } weather(ctx, sc, lt); }; });
 

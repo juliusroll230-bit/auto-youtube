@@ -1,0 +1,24 @@
+{
+ "slug": "mystery-mary-celeste",
+ "stil": "cartoon",
+ "niche": "Mystery",
+ "stimmung": "mysterioes",
+ "colors": ["#0d1420", "#3a5a8c"],
+ "accent": "#c4161c",
+ "title": "Das Geisterschiff ohne Crew: Was geschah auf der Mary Celeste? 🚢",
+ "description": "1872 wird die Mary Celeste mitten im Atlantik gefunden. Das Schiff ist intakt, aber alle zehn Menschen an Bord sind verschwunden. Bis heute ist nicht sicher, was passiert ist. Die bekannteste Theorie zeigen wir am Ende, bewiesen ist sie nicht.\n\n#mystery #rätsel #geschichte #wissen #shorts",
+ "tags": ["mystery", "rätsel", "geschichte", "wissen", "shorts"],
+ "figur": {"farbe": "navy", "hut": "kapitaen", "name": "Kapitän Briggs"},
+ "segments": [
+  {"text": "Ein Schiff treibt mitten im Atlantik. Und niemand ist an Bord.", "szene": {"typ": "raetsel", "ort": "meer", "objekt": "🚢", "text": "Mary Celeste"}},
+  {"text": "Es ist der vierte Dezember achtzehnhundertzweiundsiebzig.", "szene": {"typ": "jahr", "jahr": 1872, "text": "4. Dezember", "objekt": "🌊", "stempel": "wahr"}},
+  {"text": "Matrosen der Dei Gratia entdecken die Mary Celeste zwischen den Azoren und Portugal.", "szene": {"typ": "karte", "objekt": "🚢", "text": "Atlantik"}},
+  {"text": "Zehn Menschen waren an Bord. Auch der Kapitän, seine Frau und ihre kleine Tochter.", "szene": {"typ": "zahl", "zahl": 10, "einheit": "Menschen", "objekt": "👨‍👩‍👧", "farbcode": "#1b2a44"}},
+  {"text": "Doch das Schiff ist leer. Essen für Monate ist noch da.", "szene": {"typ": "figur", "ort": "meer", "gefuehl": "staunen", "aktion": "steht", "objekt": "🍞", "wetter": "nebel", "figur": {"farbe": "gelb", "hut": "matrose"}}},
+  {"text": "Nur das Rettungsboot fehlt. Sie sind also freiwillig gegangen.", "szene": {"typ": "objekt", "ort": "meer", "objekt": "🛶", "text": "Boot fehlt"}},
+  {"text": "Die Ermittler sammeln jede Spur.", "szene": {"typ": "akte", "text": "Was geschah?", "punkte": ["🛶", "🛢️", "📖", "🧭"]}},
+  {"text": "An Bord sind über tausendsiebenhundert Fässer Alkohol. Neun davon sind leer.", "szene": {"typ": "zahl", "zahl": 9, "einheit": "leere Fässer", "objekt": "🛢️", "farbcode": "#3a1d24"}},
+  {"text": "Eine Theorie: Die Crew roch Dämpfe und fürchtete eine Explosion.", "szene": {"typ": "zwei", "ort": "meer", "gefuehl": "angst", "aktion": "zeigt", "wetter": "nebel", "zweite": {"farbe": "gelb", "hut": "matrose", "gefuehl": "angst", "aktion": "schockiert"}}},
+  {"text": "Gesehen hat sie danach niemand mehr. Was glaubst du, was passiert ist?", "szene": {"typ": "raetsel", "ort": "meer", "objekt": "❓", "wetter": "nebel", "text": "Ungelöst"}}
+ ]
+}
