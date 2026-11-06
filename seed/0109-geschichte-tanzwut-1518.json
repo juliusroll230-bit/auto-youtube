@@ -1,0 +1,133 @@
+{
+ "slug": "geschichte-tanzwut-1518",
+ "stil": "cartoon",
+ "niche": "Geschichte",
+ "colors": [
+  "#2a1f3d",
+  "#7a4bc4"
+ ],
+ "accent": "#ffe14d",
+ "title": "Die Stadt, die nicht aufhören konnte zu tanzen 💃",
+ "description": "Straßburg 1518: die Tanzwut.\n\n#geschichte #mittelalter #wissen #shorts",
+ "tags": [
+  "geschichte",
+  "mittelalter",
+  "tanzwut",
+  "wissen",
+  "shorts"
+ ],
+ "figur": {
+  "farbe": "lila",
+  "hut": "keiner"
+ },
+ "segments": [
+  {
+   "text": "Was, wenn eine ganze Stadt plötzlich nicht mehr aufhören könnte zu tanzen?",
+   "szene": {
+    "typ": "figur",
+    "ort": "dorf",
+    "gefuehl": "staunen",
+    "aktion": "jubelt"
+   }
+  },
+  {
+   "text": "Straßburg, im Sommer fünfzehnhundertachtzehn.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1518",
+    "text": "Straßburg",
+    "objekt": "🏰"
+   }
+  },
+  {
+   "text": "Eine Frau namens Frau Troffea fängt mitten auf der Straße an zu tanzen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "dorf",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "figur": {
+     "farbe": "rot",
+     "hut": "muetze"
+    }
+   }
+  },
+  {
+   "text": "Sie tanzt tagelang. Und sie hört einfach nicht auf.",
+   "szene": {
+    "typ": "zwei",
+    "ort": "dorf",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "zweite": {
+     "farbe": "blau",
+     "gefuehl": "staunen",
+     "aktion": "schockiert"
+    }
+   }
+  },
+  {
+   "text": "Nach einer Woche tanzen schon über dreißig Menschen mit.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 30,
+    "einheit": "Tänzer",
+    "objekt": "💃",
+    "farbcode": "#7a4bc4"
+   }
+  },
+  {
+   "text": "Am Ende sollen es bis zu vierhundert gewesen sein.",
+   "szene": {
+    "typ": "gruppe",
+    "ort": "dorf",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "anzahl": 7
+   }
+  },
+  {
+   "text": "Viele brechen vor Erschöpfung zusammen.",
+   "szene": {
+    "typ": "horror",
+    "ort": "nacht",
+    "gefuehl": "k_o",
+    "aktion": "faellt",
+    "augen": "#ffd23a"
+   }
+  },
+  {
+   "text": "Die Ärzte glauben: Das ist heißes Blut. Die Lösung: noch mehr tanzen.",
+   "szene": {
+    "typ": "liste",
+    "text": "Rezept der Ärzte",
+    "punkte": [
+     "Heißes Blut",
+     "Bühne bauen",
+     "Weitertanzen"
+    ]
+   }
+  },
+  {
+   "text": "Heute vermuten Forscher eine Massenpanik durch Hunger und Angst.",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "denken",
+    "aktion": "denkt",
+    "figur": {
+     "farbe": "blau"
+    }
+   }
+  },
+  {
+   "text": "Eine ganze Stadt tanzte also nicht aus Freude, sondern aus Verzweiflung.",
+   "szene": {
+    "typ": "objekt",
+    "ort": "nacht",
+    "objekt": "🕯️",
+    "text": "Verzweiflung"
+   }
+  }
+ ]
+}
