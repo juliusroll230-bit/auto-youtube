@@ -129,6 +129,15 @@ def tts():
     return _tts
 
 
+def video_voice():
+    """Stimme für die Videos: Fish Audio, wenn eingerichtet, sonst die eingebaute Piper-Stimme."""
+    cfg = store.config()
+    if cfg.get("fish_key") and cfg.get("fish_voice"):
+        import fishtts
+        return fishtts.Voice(tts(), cfg["fish_key"], cfg["fish_voice"], cfg.get("fish_voice_dark", ""))
+    return tts()
+
+
 # --- Arbeit ------------------------------------------------------------------
 
 def post_next(slot, manual=False):
@@ -169,9 +178,12 @@ def post_next(slot, manual=False):
         if not key:
             look["hintergrund"] = "animation"
         info = {}
+        voice = video_voice()
         with working("sprecher", task=f"Spricht Video #{n}"), working("studio", task=f"Rendert Video #{n}"):
             video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
-                                                store.path("out"), tts(), stock_key=key, info=info)
+                                                store.path("out"), voice, stock_key=key, info=info)
+        if getattr(voice, "error", None):
+            store.log("warn", f"{voice.error}. Dieses Video spricht die eingebaute Stimme.", agent="sprecher")
         if look.get("hintergrund") == "clips" and not info.get("stock"):
             look["hintergrund"] = "animation"  # kein Clip gefunden, das Video ist animiert
         if info.get("stock"):  # Pixabay und Pexels bitten um einen Hinweis auf die Quelle
@@ -790,8 +802,22 @@ class Handler(BaseHTTPRequestHandler):
         voice = tts()
         cfg = SynthesisConfig(length_scale=round(agents.BASE_SPEED * 100 / tempo, 3))
         text = "Hallo! So klingt die Stimme deiner Shorts mit diesem Sprechtempo."
-        with working("sprecher", task="Spricht eine Hörprobe"):
-            audio = np.concatenate([c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)])
+        conf = store.config()
+        which = q.get("fish", [""])[0]
+        if which and conf.get("fish_key"):  # Hörprobe der Fish-Audio-Stimme (normal oder dunkel)
+            import fishtts
+            vid = conf.get("fish_voice_dark") if which == "dark" and conf.get("fish_voice_dark") else conf.get("fish_voice")
+            if not vid:
+                return self.send(400, {"error": "Bitte zuerst eine Stimme eintragen."})
+            try:
+                with working("sprecher", task="Spricht eine Hörprobe mit Fish Audio"):
+                    audio = fishtts.speak("Hallo! So klingt die neue Stimme deiner Shorts.", conf["fish_key"], vid,
+                                          voice.config.sample_rate)
+            except Exception as e:
+                return self.send(502, {"error": str(e)})
+        else:
+            with working("sprecher", task="Spricht eine Hörprobe"):
+                audio = np.concatenate([c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)])
         buf = io.BytesIO()
         with wave.open(buf, "wb") as f:
             f.setnchannels(1)
@@ -878,6 +904,16 @@ class Handler(BaseHTTPRequestHandler):
             changes = {}
             if isinstance(data.get("stock_key"), str):
                 changes["stock_key"] = data["stock_key"].strip()  # leer = Clips ausschalten
+            if isinstance(data.get("fish_key"), str):
+                changes["fish_key"] = data["fish_key"].strip()  # leer = eingebaute Stimme
+            for k in ("fish_voice", "fish_voice_dark"):
+                if isinstance(data.get(k), str):
+                    import fishtts
+                    vid = fishtts.voice_id(data[k])
+                    if data[k].strip() and not vid:
+                        return self.send(400, {"error": "Das ist keine Fish-Audio-Stimme. Bitte den Link der Stimme "
+                                                        "(fish.audio/m/…) oder ihre ID einfügen."})
+                    changes[k] = vid
             for key in ("client_id", "client_secret", "analytics_client_id", "analytics_client_secret"):
                 if isinstance(data.get(key), str) and data[key].strip():
                     changes[key] = data[key].strip()

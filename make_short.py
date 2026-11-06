@@ -38,9 +38,10 @@ VOICES = {
 }
 
 
-def voice_color(samples, rate, voice):
+def voice_color(samples, rate, voice, pitch=None):
     """Macht die Stimme tiefer (durch Strecken) und legt bei Bedarf etwas Hall darunter."""
-    pitch, _, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    p, _, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    pitch = p if pitch is None else pitch
     if pitch != 1.0:
         n = int(len(samples) / pitch)
         samples = np.interp(np.linspace(0, len(samples) - 1, n), np.arange(len(samples)), samples).astype(np.float32)
@@ -64,16 +65,33 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     """
     import audio
 
-    chunks, timings, t = [], [], 0.0
     rate = tts.config.sample_rate
-    for seg in segments:
-        pitch, slower, _ = VOICES.get(voice or "klar", VOICES["klar"])
-        # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
-        cfg = SynthesisConfig(length_scale=speed * slower * pitch)
-        text = seg["text"].replace("*", "")
-        samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
-        if voice:
-            samples = voice_color(samples, rate, voice)
+    pitch, slower, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    spoken = None
+    import fishtts
+    if isinstance(tts, fishtts.Voice):  # Fish Audio ist eingerichtet
+        try:
+            # Fish-Stimmen nicht verstellen, nur Tempo und Hall übernehmen
+            spoken = [fishtts.speak(seg["text"].replace("*", ""), tts.key, tts.pick(mood), rate,
+                                    speed=SPEED / (speed * slower)) for seg in segments]
+            if echo:
+                spoken = [voice_color(x, rate, voice, pitch=1.0) for x in spoken]
+            tts.error = None
+        except Exception as e:  # Schlüssel, Guthaben oder Netz: dann spricht Piper
+            tts.error = str(e)
+            print("Fish Audio nicht erreichbar, nehme Piper:", e)
+            spoken = None
+    if spoken is None:
+        spoken = []
+        for seg in segments:
+            # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
+            cfg = SynthesisConfig(length_scale=speed * slower * pitch)
+            text = seg["text"].replace("*", "")
+            samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+            spoken.append(voice_color(samples, rate, voice) if voice else samples)
+
+    chunks, timings, t = [], [], 0.0
+    for samples in spoken:
         dur = len(samples) / rate
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(pause * rate), dtype=np.float32)]
