@@ -40,9 +40,16 @@ Test-Video: `python cartoon.py skript.json ausgabe/`.
 | `liste` | Checkliste auf Papier | `text` (Überschrift), `punkte` (2 bis 4) |
 | `vergleich` | rot gegen blau | `links: {objekt, text}`, `rechts: {objekt, text}` |
 | `horror` | dunkler Raum, Taschenlampe, leuchtende Augen | `ort` (keller, nacht, haus, kinderzimmer …), `gefuehl`, `aktion`, optional `objekt`, `text`, `augen` (#farbe) |
+| `monster` | Hauptfigur und ein Monster, das näher kommt | `monster` (zombie, geist, schatten oder ein Emoji), `anzahl` (Zombies 1 bis 4), `ort`, `gefuehl`, `aktion` (zittert, rennt …), optional `text` |
+| `titel` | Titelkarte einer Serie | `serie`, `teil`, `ort`, optional Figur mit `name` |
 
-- `ort`: strand, meer, stadt, wald, feld, nacht, haus, kinderzimmer, keller, schule (mit `tafel`: Text an der Tafel), buero, labor, weltall, wueste, burg, dorf, farbe
+Zusätzlich für jede Szene: `wetter` (regen, nebel, blitz, schnee) und bei figur/zwei/gruppe/horror ein `monster` im Hintergrund.
+Figuren können `name` (Namensschild) und `art` ("zombie", "blass") haben.
+
+**Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene `titel`, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
+
+- `ort`: strand, meer, stadt, wald, feld, nacht, haus, kinderzimmer, keller, schule (mit `tafel`: Text an der Tafel), buero, labor, weltall, wueste, burg, dorf, farbe, friedhof, spukhaus, krankenhaus, strasse (nachts), dunkelwald
 - `gefuehl`: freude, angst, staunen, wut, traurig, denken, cool, neutral, k_o
-- `aktion`: steht, zeigt, winkt, jubelt, rennt, zittert, denkt, faellt, schockiert, haende
+- `aktion`: steht, zeigt, winkt, jubelt, rennt, zittert, denkt, faellt, schockiert, haende, schlurft, versteckt
 - `farbe`: rot, blau, gelb, gruen, lila, navy · `hut`: keiner, bandana, matrose, kapitaen, krone, zylinder, helm, muetze, hexe, ritter
 - `text` und `tafel` höchstens 22 Zeichen.

@@ -24,11 +24,15 @@ FPS = 30
 CHROME = os.environ.get("CHROME_PATH", "")
 
 
-TYPES = {"figur", "zwei", "gruppe", "objekt", "zahl", "jahr", "liste", "vergleich", "horror"}
+TYPES = {"figur", "zwei", "gruppe", "objekt", "zahl", "jahr", "liste", "vergleich", "horror", "monster", "titel"}
 PLACES = {"strand", "meer", "stadt", "wald", "feld", "nacht", "haus", "kinderzimmer", "keller", "schule", "buero",
-          "labor", "weltall", "wueste", "burg", "dorf", "farbe"}
+          "labor", "weltall", "wueste", "burg", "dorf", "farbe", "friedhof", "spukhaus", "krankenhaus", "strasse",
+          "dunkelwald"}
 MOODS = {"freude", "angst", "staunen", "wut", "traurig", "denken", "cool", "neutral", "k_o"}
-ACTIONS = {"steht", "zeigt", "winkt", "jubelt", "rennt", "zittert", "denkt", "faellt", "schockiert", "haende"}
+ACTIONS = {"steht", "zeigt", "winkt", "jubelt", "rennt", "zittert", "denkt", "faellt", "schockiert", "haende",
+           "schlurft", "versteckt"}
+WEATHER = {"regen", "nebel", "blitz", "schnee"}
+MONSTERS = {"zombie", "geist", "schatten"}
 COLORS = {"rot", "blau", "gelb", "gruen", "lila", "navy"}
 HATS = {"keiner", "bandana", "matrose", "kapitaen", "krone", "zylinder", "helm", "muetze", "hexe", "ritter"}
 
@@ -63,6 +67,13 @@ def validate(spec):
             errs.append(f"Segment {i}: Gefühl {sc['gefuehl']}")
         if sc.get("aktion") and sc["aktion"] not in ACTIONS:
             errs.append(f"Segment {i}: Aktion {sc['aktion']}")
+        if sc.get("wetter") and sc["wetter"] not in WEATHER:
+            errs.append(f"Segment {i}: Wetter {sc['wetter']}")
+        m = sc.get("monster")
+        if m and m not in MONSTERS and len(m) > 4:  # sonst ein einzelnes Emoji
+            errs.append(f"Segment {i}: Monster {m}")
+        if typ == "titel" and not (sc.get("serie") or sc.get("text")):
+            errs.append(f"Segment {i}: titel braucht serie")
         fig(sc.get("figur"), f"Segment {i}")
         fig(sc.get("zweite"), f"Segment {i} zweite")
         if typ == "zahl" and not isinstance(sc.get("zahl"), (int, float)):

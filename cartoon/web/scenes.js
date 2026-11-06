@@ -86,7 +86,9 @@ function figure(sc, base = {}) {
   const f = sc.figur || {};
   const colName = f.farbe || sc.farbe || 'rot';
   const hat = HATMAP[f.hut || sc.hut || 'keiner'] || 'keiner';
-  return { cols: PAL[COLS[colName] || 'red'], hat, hatCol: HATCOL[colName] || '#d8312b', dotCol: '#fff', ...base };
+  const art = f.art || sc.art;
+  const extra = art === 'zombie' ? { headCol: '#a7c98a', headSh: '#86a96c' } : art === 'blass' ? { headCol: '#e6ecf2', headSh: '#c4ccd6' } : {};
+  return { cols: PAL[COLS[colName] || 'red'], hat, hatCol: HATCOL[colName] || '#d8312b', dotCol: '#fff', ...extra, ...base };
 }
 function face(mood, lt, extra = {}) {
   const m = MOOD[mood] || MOOD.neutral;
@@ -105,6 +107,8 @@ function pose(act, lt) {
     case 'denkt': return { arms: { L: [.3, -.1], R: [.95, -2.55] } };
     case 'faellt': return { arms: { L: [2.2, .4], R: [2.0, .2] }, legs: { L: [.6, -.3], R: [.2, -.2] }, lean: -clamp(lt * .9) * .8 };
     case 'schockiert': return { arms: { L: [2.5, .3], R: [2.5, .3] }, legs: { L: [.2, -.1], R: [.2, -.1] }, jitter: 2 };
+    case 'schlurft': return { arms: { L: [1.55 + Math.sin(lt * 3) * .08, .05], R: [1.6 - Math.sin(lt * 3) * .08, .05] }, legs: { L: [.25 + Math.sin(lt * 3) * .2, -.3], R: [.25 - Math.sin(lt * 3) * .2, -.3] }, lean: .08 + Math.sin(lt * 1.5) * .04 };
+    case 'versteckt': return { arms: { L: [.9, -2.3], R: [.9, -2.3] }, legs: { L: [.9, -1.9], R: [.9, -1.9] }, bob: .16, jitter: 2 };
     case 'haende': return { arms: { L: [.9, -2.2], R: [.9, -2.2] }, legs: { L: [.14, -.04], R: [.14, -.04] } };
     default: return { arms: { L: [.3, -.1], R: [.3, -.1] }, legs: { L: [.1, -.04], R: [.1, -.04] }, bob: Math.sin(lt * 2.2) * .006 };
   }
@@ -115,6 +119,13 @@ function stick(ctx, sc, x, y, s, mood, act, lt, extra = {}) {
   drawStick(ctx, figure(sc, { x: x + jx, y: y + jy, s, face: face(mood, lt), arms: p.arms, legs: p.legs, lean: p.lean || 0, bob: p.bob || 0, ...extra }));
   if (act === 'denkt') { const a = clamp((lt - .3) / .3); ctx.save(); ctx.globalAlpha = a; circle(ctx, x + s * .28, y - s * 1.05, s * .03); fillStroke(ctx, '#fff', 5); circle(ctx, x + s * .38, y - s * 1.2, s * .05); fillStroke(ctx, '#fff', 5); ellipse(ctx, x + s * .5, y - s * 1.42, s * .16, s * .12); fillStroke(ctx, '#fff', 6); text(ctx, '?', x + s * .5, y - s * 1.42, s * .16, INK, null, 0, 'Poppins', 700); ctx.restore(); }
   if (act === 'zittert' || mood === 'angst') sweat(ctx, x + s * .17, y - s * .93, s * .05, .9);
+  const nm = extra.name !== undefined ? extra.name : (sc.figur || {}).name;
+  if (nm && extra.name !== false) nameTag(ctx, nm, x, y - s * 1.18, Math.max(34, s * .07));
+}
+function nameTag(ctx, str, x, y, size) {
+  ctx.font = `700 ${size}px Poppins`; const w = ctx.measureText(str).width + size * .9, h = size * 1.5;
+  rrect(ctx, x - w / 2, y - h / 2, w, h, h / 2); fillStroke(ctx, '#fff', 5);
+  text(ctx, str, x, y + 1, size, INK, null, 0, 'Poppins', 700);
 }
 
 // ---------- Orte (Hintergründe) ----------
@@ -156,6 +167,42 @@ const PLACES = {
   dorf(ctx, t) { drawSky(ctx, '#62bdf0', '#dff4fd', -400, 1100); drawCloud(ctx, 720, 280, 90, 12); [[60, 300, '#e9c69a'], [420, 260, '#f0d9b5'], [760, 320, '#e2b98e']].forEach(([x, w, col], i) => { rrect(ctx, x, G - 360, w, 340, 6); fillStroke(ctx, col, 7); path(ctx, [[x - 30, G - 360], [x + w / 2, G - 560], [x + w + 30, G - 360]]); fillStroke(ctx, '#b3473a', 7); rrect(ctx, x + w / 2 - 40, G - 160, 80, 140, 8); fillStroke(ctx, '#6b4428', 6); }); ground(ctx, '#7cc46a', '#4e9a46'); },
   farbe(ctx, t, sc) { const a = (sc && sc.farbcode) || '#ffcf3f'; ctx.fillStyle = a; ctx.fillRect(-1500, -1500, 4080, 4500); ctx.save(); ctx.translate(540, 760); ctx.rotate(t * .15); for (let i = 0; i < 16; i++) { ctx.rotate(TAU / 16); path(ctx, [[0, 0], [-110, -1700], [110, -1700]]); ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.fill(); } ctx.restore(); },
 };
+// ---------- mehr Orte für Gruseliges ----------
+function grave(ctx, x, y, s, tilt, label) { ctx.save(); ctx.translate(x, y); ctx.rotate(tilt); ctx.beginPath(); ctx.moveTo(-s * .5, 0); ctx.lineTo(-s * .5, -s * .9); ctx.arc(0, -s * .9, s * .5, Math.PI, 0); ctx.lineTo(s * .5, 0); ctx.closePath(); fillStroke(ctx, '#8d8a99', 7); if (label) text(ctx, label, 0, -s * .75, s * .28, '#4d4a58', null, 0, 'Poppins', 700); else { line(ctx, 0, -s * 1.05, 0, -s * .45, 7, '#5d5a68'); line(ctx, -s * .2, -s * .85, s * .2, -s * .85, 7, '#5d5a68'); } ctx.restore(); }
+function deadTree(ctx, x, y, s) { ctx.save(); ctx.translate(x, y); ctx.strokeStyle = '#120d16'; ctx.lineCap = 'round'; const br = (len, w, a, d) => { if (d > 4) return; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -len); ctx.stroke(); ctx.save(); ctx.translate(0, -len); [-.5, .45].forEach((da, k) => { ctx.save(); ctx.rotate(da + (k ? .1 : -.1) * d); br(len * .68, w * .65, a, d + 1); ctx.restore(); }); ctx.restore(); }; br(s * .45, s * .07, 0, 0); ctx.restore(); }
+function fog(ctx, t, a = .5, y = G - 120) { ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); for (let i = 0; i < 7; i++) { const x = ((i * 260 + t * (30 + i * 9)) % 1700) - 300; const g = ctx.createRadialGradient(x, y + (i % 3) * 60, 20, x, y + (i % 3) * 60, 420); g.addColorStop(0, `rgba(210,215,235,${a * .45})`); g.addColorStop(1, 'rgba(210,215,235,0)'); ctx.fillStyle = g; ctx.fillRect(x - 420, y - 400, 840, 900); } ctx.restore(); }
+Object.assign(PLACES, {
+  friedhof(ctx, t) { drawSky(ctx, '#0b0a24', '#3b2f63', -400, 1200); stars(ctx, 50, 21, t); moon(ctx, 800, 300, 110); deadTree(ctx, 140, G - 20, 900); deadTree(ctx, 980, G - 10, 700); ground(ctx, '#2a2c3a', '#11121a'); [[260, G + 10, 150, -.08, 'RIP'], [560, G - 5, 120, .05], [820, G + 25, 160, .1, 'RIP'], [420, G + 140, 110, -.12], [700, G + 160, 100, .06]].forEach(g => grave(ctx, ...g)); fog(ctx, t, .55); },
+  spukhaus(ctx, t) { drawSky(ctx, '#0c0b26', '#40326b', -400, 1200); stars(ctx, 40, 31, t); moon(ctx, 230, 280, 90); const c = '#3a3346'; path(ctx, [[260, 620], [540, 330], [820, 620]]); fillStroke(ctx, '#2a2433', 8); rrect(ctx, 300, 610, 480, 640, 4); fillStroke(ctx, c, 8); rrect(ctx, 720, 380, 60, 160, 4); fillStroke(ctx, c, 7); const flick = Math.sin(t * 9) > .2 ? 1 : .55; [[360, 700], [600, 700], [360, 930], [600, 930]].forEach(([x, y], i) => { rrect(ctx, x, y, 120, 150, 6); ctx.fillStyle = i === 1 ? `rgba(255,214,120,${flick})` : '#141019'; ctx.fill(); ctx.lineWidth = 7; ctx.strokeStyle = INK; ctx.stroke(); line(ctx, x + 60, y, x + 60, y + 150, 6); }); rrect(ctx, 490, 1080, 100, 170, 50); fillStroke(ctx, '#1a1320', 7); deadTree(ctx, 980, G, 820); ground(ctx, '#232030', '#0e0c14'); fog(ctx, t, .4); },
+  krankenhaus(ctx, t) { room(ctx, '#bcd8cc', '#7f9a90', t); for (let y = 0; y < G - 30; y += 70) line(ctx, -600, y, 1700, y, 3, 'rgba(40,70,60,.18)'); for (let x = -600; x < 1700; x += 70) line(ctx, x, 0, x, G - 30, 3, 'rgba(40,70,60,.12)'); rrect(ctx, 600, 1010, 470, 60, 12); fillStroke(ctx, '#eef3f6', 7); rrect(ctx, 600, 960, 130, 60, 20); fillStroke(ctx, '#fff', 6); line(ctx, 620, 1070, 620, 1220, 8); line(ctx, 1050, 1070, 1050, 1220, 8); const on = Math.sin(t * 13) > -.6; line(ctx, 540, -100, 540, 240, 4, '#111'); rrect(ctx, 420, 240, 240, 30, 8); ctx.fillStyle = on ? '#f4ffe9' : '#56605a'; ctx.fill(); },
+  strasse(ctx, t) { drawSky(ctx, '#0a0d24', '#2e3563', -400, 1200); stars(ctx, 30, 41, t); const R = rng(17); let x = -300, i = 0; while (x < 1400) { const w = 180 + R() * 160, h = 380 + R() * 480; building(ctx, x, w, h, ['#252a44', '#2d3150', '#1f2440'][i++ % 3], i, .12); x += w + 10; } ground(ctx, '#2b2b33', '#121218'); line(ctx, 880, G - 30, 880, 560, 14, '#1a1a22'); line(ctx, 880, 560, 800, 540, 12, '#1a1a22'); const on = Math.sin(t * 7) > -.4 ? 1 : .3; ctx.save(); ctx.globalAlpha = on; const g = ctx.createRadialGradient(800, 560, 10, 800, 900, 520); g.addColorStop(0, 'rgba(255,225,150,.6)'); g.addColorStop(1, 'rgba(255,225,150,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(780, 560); ctx.lineTo(520, G); ctx.lineTo(1080, G); ctx.closePath(); ctx.fill(); circle(ctx, 800, 560, 24); ctx.fillStyle = '#ffe9a8'; ctx.fill(); ctx.restore(); },
+  dunkelwald(ctx, t) { drawSky(ctx, '#05060f', '#1b2333', -400, 1200); moon(ctx, 760, 260, 70); [[-80, 1.1], [150, 1.3], [420, .8], [700, 1.2], [950, 1.0], [1150, 1.3]].forEach(([x, s]) => deadTree(ctx, x, G, s * 850)); ground(ctx, '#151a1e', '#07090b'); fog(ctx, t, .45); },
+});
+// ---------- Wetter und Licht (sc.wetter: regen, nebel, blitz, schnee) ----------
+function weather(ctx, sc, lt) {
+  const w = sc.wetter; if (!w) return;
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+  if (w === 'regen' || w === 'blitz') { ctx.strokeStyle = 'rgba(190,210,255,.45)'; ctx.lineWidth = 4; const R = rng(5); ctx.beginPath(); for (let i = 0; i < 140; i++) { const x = R() * 1300 - 100, sp = 1800 + R() * 900, y = ((R() * 2200 + lt * sp) % 2200) - 200; ctx.moveTo(x, y); ctx.lineTo(x - 18, y + 60); } ctx.stroke(); }
+  if (w === 'schnee') { const R = rng(8); ctx.fillStyle = 'rgba(255,255,255,.85)'; for (let i = 0; i < 90; i++) { const x = (R() * 1200 + Math.sin(lt + i) * 30) % 1200, y = ((R() * 2100 + lt * (90 + R() * 80)) % 2100) - 100; circle(ctx, x, y, 4 + R() * 6); ctx.fill(); } }
+  if (w === 'nebel') { ctx.restore(); fog(ctx, lt, .7, 1000); fog(ctx, lt * 1.3, .5, 1300); return; }
+  if (w === 'blitz') { const p = lt % 2.6; if (p < .09 || (p > .16 && p < .21)) { ctx.fillStyle = 'rgba(235,240,255,.55)'; ctx.fillRect(0, 0, W, H); ctx.strokeStyle = '#fff'; ctx.lineWidth = 9; ctx.beginPath(); let x = 760, y = -20; ctx.moveTo(x, y); const R = rng(Math.floor(lt / 2.6) + 3); while (y < 700) { x += (R() - .5) * 160; y += 80 + R() * 60; ctx.lineTo(x, y); } ctx.stroke(); } }
+  ctx.restore();
+}
+// ---------- Monster ----------
+function ghost(ctx, x, y, s, lt, a = 1) {
+  ctx.save(); ctx.globalAlpha = a * (.75 + Math.sin(lt * 3) * .15); ctx.translate(x, y + Math.sin(lt * 2.2) * s * .05);
+  ctx.beginPath(); ctx.moveTo(-s * .35, 0); ctx.lineTo(-s * .35, -s * .55); ctx.arc(0, -s * .55, s * .35, Math.PI, 0); ctx.lineTo(s * .35, 0);
+  for (let k = 0; k < 4; k++) { const xx = s * .35 - (k + .5) * s * .175; ctx.quadraticCurveTo(xx + s * .05, -s * .08 + Math.sin(lt * 6 + k) * s * .03, xx - s * .09, 0); }
+  ctx.closePath(); ctx.shadowColor = 'rgba(200,220,255,.9)'; ctx.shadowBlur = 50; fillStroke(ctx, '#f4f6ff', s * .02);
+  ctx.shadowBlur = 0; ellipse(ctx, -s * .12, -s * .6, s * .06, s * .09); ellipse(ctx, s * .12, -s * .6, s * .06, s * .09); ctx.fillStyle = '#1a1424'; ctx.fill(); ellipse(ctx, 0, -s * .38, s * .07, s * .1); ctx.fill(); ctx.restore();
+}
+function shadowMan(ctx, x, y, s, lt, a = 1) {
+  ctx.save(); ctx.globalAlpha = a; drawStick(ctx, { x, y, s, sil: '#06050a', eyesGlow: true, face: { eyes: 'normal', pupil: .2 }, armLen: 1.5, arms: { L: [.5, -.2], R: [.5, -.2] }, legs: { L: [.1, 0], R: [.1, 0] }, shadow: false, cols: PAL.navy, hat: 'keiner' }); ctx.restore();
+}
+function zombie(ctx, sc, x, y, s, lt, flip = -1, col = 'gruen') {
+  const z = { ...sc, figur: { farbe: col, hut: 'keiner', art: 'zombie' } };
+  stick(ctx, z, x, y, s, 'k_o', 'schlurft', lt, { flip, name: false, face: { eyes: 'normal', pupil: .25, mouth: 'teeth', browAng: .3, t: lt } });
+}
 function drawPlace(ctx, ort, t, sc) { (PLACES[ort] || PLACES.feld)(ctx, t, sc); }
 const DARK_PLACES = { nacht: 1, keller: 1, weltall: 1, kinderzimmer: 1 };
 
@@ -254,6 +301,36 @@ const TYPES = {
     if (sc.text) { ctx.globalAlpha = clamp(lt / .4); fitText(ctx, sc.text.toUpperCase(), 540, 300, 80, 900, '#e8e3f0', '#000', 12); ctx.globalAlpha = 1; }
   },
 };
+
+Object.assign(TYPES, {
+  monster(ctx, sc, lt, d) {
+    const ort = sc.ort || 'friedhof', dark = DARK_PLACES[ort] || ['friedhof', 'spukhaus', 'strasse', 'dunkelwald'].includes(ort);
+    applyCam(ctx, cam(lt, d, 1.02, 1.12, sc.i)); drawPlace(ctx, ort, lt, sc);
+    const m = sc.monster || 'zombie', near = ease(clamp(lt / Math.max(1, d * .9)));
+    const hero = sc.aktion || (lt > d * .5 ? 'rennt' : 'zittert');
+    const hx = hero === 'rennt' ? kf(lt, [[d * .5, 300], [d, -250]], t => t) : 300;
+    stick(ctx, sc, hx, G, 600, sc.gefuehl || 'angst', hero, lt, { flip: hero === 'rennt' ? -1 : 1 });
+    if (m === 'zombie') { const n = clamp(sc.anzahl || 1, 1, 4); for (let k = n - 1; k >= 0; k--) zombie(ctx, sc, lerp(1020, 760, near) + k * 150, G - k * 30, 600 - k * 60, lt + k * .7, -1, ['gruen', 'blau', 'navy', 'lila'][k]); }
+    else if (m === 'geist') ghost(ctx, lerp(1000, 780, near), 980, 520, lt, clamp(lt / .5));
+    else if (m === 'schatten') shadowMan(ctx, lerp(1000, 780, near), G, 820, lt, clamp(lt / .8));
+    else emoji(ctx, m, lerp(1000, 780, near), 900, 380, Math.sin(lt * 3) * .1);
+    if (dark) { ctx.setTransform(1, 0, 0, 1, 0, 0); const g = ctx.createRadialGradient(540, 900, 300, 540, 960, 1300); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.6)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
+    weather(ctx, sc, lt);
+    if (sc.text) { ctx.setTransform(1, 0, 0, 1, 0, 0); fitText(ctx, sc.text.toUpperCase(), 540, 290, 84, 900, '#ffe14d', INK, 14); }
+  },
+  titel(ctx, sc, lt, d) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); drawPlace(ctx, sc.ort || 'spukhaus', lt, sc); darkness(ctx, .45);
+    weather(ctx, sc, lt);
+    const k = popIn(lt, .1, .5), sh = shake(lt, lt < .6 ? 10 : 2, 1, 4);
+    ctx.save(); ctx.translate(540 + sh[0], 380 + sh[1]); ctx.scale(k, k); ctx.rotate(-.04);
+    fitText(ctx, (sc.serie || sc.text || '').toUpperCase(), 0, 0, 120, 960, '#f3eefc', '#000', 20);
+    if (sc.teil) { const k2 = popIn(lt, .45, .3); ctx.save(); ctx.translate(0, 160); ctx.scale(k2, k2); sign(ctx, 'TEIL ' + sc.teil, 0, 0, 80, '#e0392f'); ctx.restore(); }
+    ctx.restore();
+    if (sc.figur && sc.figur.name) { applyCam(ctx, cam(lt, d, 1, 1.05, sc.i)); stick(ctx, sc, 540, G, 520, sc.gefuehl || 'cool', sc.aktion || 'steht', lt); }
+  },
+});
+// Wetter auch über allen anderen Szenen, wenn angegeben
+['figur', 'zwei', 'gruppe', 'horror', 'objekt'].forEach(k => { const f = TYPES[k]; TYPES[k] = (ctx, sc, lt, d) => { f(ctx, sc, lt, d); if (sc.monster && k !== 'objekt') { applyCam(ctx, cam(lt, d, 1, 1.08, sc.i)); if (sc.monster === 'geist') ghost(ctx, 860, 760, 360, lt); else if (sc.monster === 'schatten') shadowMan(ctx, 900, G, 700, lt, .9); else if (sc.monster === 'zombie') zombie(ctx, sc, 900, G, 520, lt); } weather(ctx, sc, lt); }; });
 
 // ---------- Plan -> Einstellungen ----------
 (function build() {
