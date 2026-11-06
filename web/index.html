@@ -1739,6 +1739,22 @@ dialog.vs[open] { display: grid; place-items: center; }
             </form>
           </div>
           <div class="card">
+            <div class="card-h"><div><h2>Stimme von Fish Audio</h2><div class="sub">Echtere Sprecher-Stimme statt der eingebauten</div></div><span class="pill" id="fishStatus"></span></div>
+            <form class="card-b form" id="fishForm">
+              <p class="muted">Ist ein Schlüssel eingetragen, sprechen alle neuen Videos mit der Fish-Audio-Stimme. Klappt es mal nicht (zum Beispiel kein Guthaben), spricht automatisch wieder die eingebaute Stimme.</p>
+              <ol class="steps">
+                <li><div>Auf <a href="https://fish.audio/app/api-keys/" target="_blank" rel="noopener">fish.audio unter API Keys</a> einen Schlüssel erstellen und kopieren.</div></li>
+                <li><div>Auf <a href="https://fish.audio/discovery/" target="_blank" rel="noopener">fish.audio</a> eine deutsche Stimme aussuchen und den Link aus der Adresszeile kopieren (sieht aus wie fish.audio/m/…).</div></li>
+                <li><div>Optional eine zweite, unheimliche Stimme für Horror und Mystery. Leer lassen, dann gilt die erste.</div></li>
+              </ol>
+              <div class="field"><label for="fishKey">API-Schlüssel</label><input id="fishKey" type="password" autocomplete="off" spellcheck="false" placeholder="Schlüssel einfügen (leer lassen = bleibt wie er ist)"></div>
+              <div class="field"><label for="fishVoice">Stimme</label><input id="fishVoice" autocomplete="off" spellcheck="false" placeholder="Link oder ID der Stimme"></div>
+              <div class="field"><label for="fishDark">Stimme für Grusel</label><input id="fishDark" autocomplete="off" spellcheck="false" placeholder="optional"></div>
+              <div class="row"><button class="btn primary" type="submit">Speichern</button><button class="btn" type="button" id="fishTest">Probe hören</button><button class="btn" type="button" id="fishOff">Ausschalten</button><span class="msg" id="fishMsg"></span></div>
+              <div id="fishAudio"></div>
+            </form>
+          </div>
+          <div class="card">
             <div class="card-h"><h2>Aktionen</h2></div>
             <div class="card-b form">
               <div class="row"><button class="btn" type="button" id="postNow">Jetzt ein Video posten</button><span class="label">Nimmt das nächste Video aus dem Sendeplan.</span></div>
@@ -4479,6 +4495,10 @@ dialog.vs[open] { display: grid; place-items: center; }
     document.querySelectorAll("#v-kanal input, #v-kanal select, #v-kanal button, #aForm input, #aForm button").forEach(function (e) { e.disabled = preview; });
     pill($("credStatus"), d.has_client ? "ok" : "warn", d.has_client ? "Gespeichert" : "Fehlt");
     pill($("pxStatus"), d.has_stock ? "ok" : "warn", d.has_stock ? "Aktiv" : "Aus");
+    var fi = d.fish || {}; var fishOn = fi.has_key && fi.voice;
+    pill($("fishStatus"), fishOn ? "ok" : "warn", fishOn ? "Aktiv" : (fi.has_key ? "Stimme fehlt" : "Aus"));
+    if (document.activeElement !== $("fishVoice")) $("fishVoice").value = fi.voice || "";
+    if (document.activeElement !== $("fishDark")) $("fishDark").value = fi.voice_dark || "";
     var c = d.connect || { status: "idle" };
     pill($("conStatus"), d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
     var body = clear($("conBody"));
@@ -4596,6 +4616,25 @@ dialog.vs[open] { display: grid; place-items: center; }
     var v = $("pxKey").value.trim();
     api("api/settings", { stock_key: v })
       .then(function () { $("pxKey").value = ""; flash("pxMsg", "ok", v ? "Gespeichert. Die nächsten Videos testen Clips." : "Clips ausgeschaltet"); load(); }, function (err) { flash("pxMsg", "err", err.message); });
+  });
+  $("fishForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var body = { fish_voice: $("fishVoice").value, fish_voice_dark: $("fishDark").value };
+    if ($("fishKey").value.trim()) body.fish_key = $("fishKey").value.trim();
+    api("api/settings", body)
+      .then(function () { $("fishKey").value = ""; flash("fishMsg", "ok", "Gespeichert. Mit „Probe hören“ testen."); load(); }, function (err) { flash("fishMsg", "err", err.message); });
+  });
+  $("fishOff").addEventListener("click", function () {
+    api("api/settings", { fish_key: "" }).then(function () { flash("fishMsg", "ok", "Ausgeschaltet, es spricht wieder die eingebaute Stimme."); load(); }, function (err) { flash("fishMsg", "err", err.message); });
+  });
+  $("fishTest").addEventListener("click", function () {
+    flash("fishMsg", "ok", "Spricht …");
+    fetch("api/voice-sample.wav?fish=1&t=" + Date.now(), { credentials: "same-origin" }).then(function (r) {
+      if (!r.ok) return r.json().then(function (j) { throw new Error(j.error || "Fehler"); });
+      return r.blob();
+    }).then(function (b) {
+      var box = $("fishAudio"); box.innerHTML = ""; box.appendChild(h("audio", { controls: "", autoplay: "", src: URL.createObjectURL(b) })); flash("fishMsg", "ok", "So klingt die Stimme.");
+    }, function (err) { flash("fishMsg", "err", err.message); });
   });
   $("aConnect").addEventListener("click", startAnalytics);
   $("copyRedir").addEventListener("click", function () {

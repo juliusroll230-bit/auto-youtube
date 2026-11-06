@@ -22,6 +22,7 @@ import numerals
 HERE = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(HERE, "cartoon", "web")
 FPS = 30
+PAUSE = 0.06  # kaum Pause zwischen den Sätzen: der Wisch-Übergang trägt den Schnitt
 CHROME = os.environ.get("CHROME_PATH", "")
 
 
@@ -46,6 +47,9 @@ def validate(spec):
     segs = spec.get("segments") or []
     if not 6 <= len(segs) <= 12:
         errs.append(f"{len(segs)} Segmente, erlaubt sind 6 bis 12")
+    words = sum(len(str(s.get("text", "")).split()) for s in segs)
+    if words > 95:
+        errs.append(f"{words} Wörter, höchstens 95 (kurz halten, sonst springen die Leute ab)")
 
     def fig(f, where):
         if not isinstance(f, dict):
@@ -182,7 +186,7 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
                                            speed=spec.get("voice_speed") or make_short.SPEED,
-                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec))
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE)
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []

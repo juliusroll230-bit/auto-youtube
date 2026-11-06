@@ -23,7 +23,7 @@ Test-Video: `python cartoon.py skript.json ausgabe/`.
 }
 ```
 
-- 6 bis 12 Segmente, **ein Satz pro Segment** (jedes Segment ist eine Einstellung mit Wisch-Übergang).
+- 7 bis 9 Segmente (erlaubt 6 bis 12), **ein Satz pro Segment** (jedes Segment ist eine Einstellung mit Wisch-Übergang), zusammen 60 bis 85 Wörter (höchstens 95). Kurz und schnell: der erste Satz wirft die Zuschauer mitten ins Geschehen, keine Einleitung.
 - `figur` oben ist die Hauptfigur des ganzen Videos; eine Szene kann mit eigenem `figur` eine andere zeigen.
 - Zahlen im Text als Wörter ("fünfzehnhundertachtzehn"), die Untertitel zeigen Ziffern.
 
@@ -55,7 +55,7 @@ dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere m
 `erzaehler`, `unheimlich`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
 mit `"stimme"` im Skript ist sie fest.
 
-**Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene `titel`, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
+**Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene ist schon Action, die `titel`-Szene kommt als zweite, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
 
 - `ort`: strand, meer, stadt, wald, feld, nacht, haus, kinderzimmer, keller, schule (mit `tafel`: Text an der Tafel), buero, labor, weltall, wueste, burg, dorf, farbe, friedhof, spukhaus, krankenhaus, strasse (nachts), dunkelwald
 - `gefuehl`: freude, angst, staunen, wut, traurig, denken, cool, neutral, k_o

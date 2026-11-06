@@ -28,18 +28,20 @@ FONT_SEMI = os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf")
 FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 
 
-# Stimmen für Cartoons: (Tonhöhe, langsamer um, Hall). Tiefer und langsamer klingt unheimlicher.
+# Stimmen für Cartoons: (Tonhöhe, Tempo-Faktor, Hall). Unter 1 heißt schneller: Cartoons sollen zügig erzählen,
+# die tiefere Stimme wirkt von selbst ruhiger.
 # Welche am besten ankommt, lernt learn.choose_voice.
 VOICES = {
-    "klar": (1.0, 1.0, 0.0),          # normal, für Erklärungen
-    "erzaehler": (0.94, 1.08, 0.16),  # ruhiger Geschichten-Erzähler
-    "unheimlich": (0.88, 1.16, 0.28), # tief, langsam, mit Hall
+    "klar": (1.0, 0.9, 0.0),          # normal, für Erklärungen
+    "erzaehler": (0.94, 0.92, 0.14),  # Geschichten-Erzähler
+    "unheimlich": (0.88, 0.96, 0.24), # tief, mit Hall
 }
 
 
-def voice_color(samples, rate, voice):
+def voice_color(samples, rate, voice, pitch=None):
     """Macht die Stimme tiefer (durch Strecken) und legt bei Bedarf etwas Hall darunter."""
-    pitch, _, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    p, _, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    pitch = p if pitch is None else pitch
     if pitch != 1.0:
         n = int(len(samples) / pitch)
         samples = np.interp(np.linspace(0, len(samples) - 1, n), np.arange(len(samples)), samples).astype(np.float32)
@@ -56,27 +58,44 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None):
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix).
     """
     import audio
 
-    chunks, timings, t = [], [], 0.0
     rate = tts.config.sample_rate
-    for seg in segments:
-        pitch, slower, _ = VOICES.get(voice or "klar", VOICES["klar"])
-        # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
-        cfg = SynthesisConfig(length_scale=speed * slower * pitch)
-        text = seg["text"].replace("*", "")
-        samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
-        if voice:
-            samples = voice_color(samples, rate, voice)
+    pitch, slower, echo = VOICES.get(voice or "klar", VOICES["klar"])
+    spoken = None
+    import fishtts
+    if isinstance(tts, fishtts.Voice):  # Fish Audio ist eingerichtet
+        try:
+            # Fish-Stimmen nicht verstellen, nur Tempo und Hall übernehmen
+            spoken = [fishtts.speak(seg["text"].replace("*", ""), tts.key, tts.pick(mood), rate,
+                                    speed=SPEED / (speed * slower)) for seg in segments]
+            if echo:
+                spoken = [voice_color(x, rate, voice, pitch=1.0) for x in spoken]
+            tts.error = None
+        except Exception as e:  # Schlüssel, Guthaben oder Netz: dann spricht Piper
+            tts.error = str(e)
+            print("Fish Audio nicht erreichbar, nehme Piper:", e)
+            spoken = None
+    if spoken is None:
+        spoken = []
+        for seg in segments:
+            # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
+            cfg = SynthesisConfig(length_scale=speed * slower * pitch)
+            text = seg["text"].replace("*", "")
+            samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+            spoken.append(voice_color(samples, rate, voice) if voice else samples)
+
+    chunks, timings, t = [], [], 0.0
+    for samples in spoken:
         dur = len(samples) / rate
         timings.append((t, t + dur))
-        chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
-        t += dur + PAUSE
+        chunks += [samples, np.zeros(int(pause * rate), dtype=np.float32)]
+        t += dur + pause
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood)
