@@ -359,6 +359,12 @@ def next_look(posted=None):
     return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
 
 
+def next_voice(spec, posted=None):
+    """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
+    posted = learnable(posted if posted is not None else posted_items())
+    return learn.choose_voice(learn.feature_scores(posted, now()), len(posted), spec)
+
+
 def next_slot(hours, at=None):
     at = at or now()
     for day in range(2):

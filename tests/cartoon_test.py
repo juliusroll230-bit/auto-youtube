@@ -16,11 +16,15 @@ TYPES = [
     {"typ": "liste", "text": "Plan", "punkte": ["Eins", "Zwei", "Drei"]},
     {"typ": "vergleich", "links": {"objekt": "🐘", "text": "Elefant"}, "rechts": {"objekt": "🐭", "text": "Maus"}},
     {"typ": "horror", "ort": "keller", "aktion": "zittert", "objekt": "👻", "text": "Wer ist da"},
+    {"typ": "akte", "text": "Was geschah?", "punkte": ["🛶", "Brief", "🧭"]},
+    {"typ": "raetsel", "ort": "meer", "objekt": "🚢", "text": "Ungelöst"},
+    {"typ": "karte", "objekt": "💎", "text": "Atlantik"},
 ]
 spec = {
-    "slug": "cartoon-test", "stil": "cartoon", "title": "Test", "figur": {"farbe": "rot", "hut": "zylinder"},
+    "slug": "cartoon-test", "stil": "cartoon", "title": "Test", "stimmung": "mysterioes", "stimme": "unheimlich", "figur": {"farbe": "rot", "hut": "zylinder"},
     "segments": [{"text": f"Das ist Szene Nummer {i + 1}.", "szene": s} for i, s in enumerate(TYPES)],
 }
+assert not cartoon.validate(spec), cartoon.validate(spec)
 out = "/tmp/cartoon-test"
 shots = cartoon.stills(spec, [i * 2.2 + 1 for i in range(len(TYPES))], out)
 assert all(os.path.getsize(p) > 30000 for p in shots), "Einzelbild leer"

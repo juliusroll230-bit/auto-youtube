@@ -4,6 +4,7 @@ const canvas = document.getElementById('c'); canvas.width = W; canvas.height = H
 const out = canvas.getContext('2d');
 const buf = document.createElement('canvas'); buf.width = W; buf.height = H; const bctx = buf.getContext('2d');
 const DUR = PLAN.dur;
+const DARK = PLAN.stimmung === 'gruselig' || PLAN.stimmung === 'mysterioes'; // dunklerer Look mit Nebel
 const TOTAL_FRAMES = Math.round(DUR * FPS);
 const grains = [];
 for (let k = 0; k < 4; k++) { const g = document.createElement('canvas'); g.width = g.height = 256; const gc = g.getContext('2d'); const id = gc.createImageData(256, 256); const R = rng(k + 11); for (let i = 0; i < id.data.length; i += 4) { const v = 128 + (R() - .5) * 120; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; } gc.putImageData(id, 0, 0); grains.push(g); }
@@ -53,7 +54,8 @@ function renderFrame(f) {
   renderShot(bctx, i, t);
   blit(buf, dx, blur);
   out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
-  const g = out.createRadialGradient(540, 900, 500, 540, 960, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(10,5,20,.32)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
+  const g = out.createRadialGradient(540, 900, DARK ? 380 : 500, 540, 960, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, DARK ? 'rgba(4,2,14,.62)' : 'rgba(10,5,20,.32)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
+  if (DARK) { out.globalCompositeOperation = 'multiply'; out.fillStyle = PLAN.stimmung === 'gruselig' ? '#a39fbf' : '#9cadca'; out.fillRect(0, 0, W, H); out.globalCompositeOperation = 'source-over'; fog(out, t, .22, 1500); }
   out.globalCompositeOperation = 'overlay'; out.globalAlpha = .07; const pat = out.createPattern(grains[f % 4], 'repeat'); out.fillStyle = pat; out.translate((f * 37) % 256, (f * 91) % 256); out.fillRect(-256, -256, W + 512, H + 512);
   out.restore();
   drawCaption(out, t);

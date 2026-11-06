@@ -136,14 +136,70 @@ def tick(rate):
     return (np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 60) + 0.5 * np.sin(2 * np.pi * 2700 * t) * np.exp(-t * 80)).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed, pops=()):
+DARK_MOODS = ("gruselig", "mysterioes")
+
+
+def dark_music(seconds, rate, seed):
+    """Unheimliche Musik: tiefes Brummen, langsame Moll-Fläche, leiser Herzschlag und Spieluhr-Töne."""
+    rng = np.random.default_rng(seed)
+    n = int(seconds * rate)
+    t = np.arange(n) / rate
+    root = int(rng.choice([-5, -3, -2, 0, 1]))
+    out = np.zeros(n, dtype=np.float64)
+    # Brummen: Grundton zwei Oktaven tiefer, leicht schwebend
+    f0 = _note_hz(root - 12)
+    lfo = 0.6 + 0.4 * np.sin(2 * np.pi * 0.11 * t)
+    out += 0.35 * lfo * (np.sin(2 * np.pi * f0 * t) + 0.4 * np.sin(2 * np.pi * f0 * 1.007 * t))
+    # Fläche: Moll-Akkorde, die langsam wechseln (je 6 Sekunden)
+    prog = [(0, 3, 7), (-4, 0, 3), (1, 4, 8), (-2, 1, 5)]
+    seg = 6.0
+    for k in range(int(seconds / seg) + 1):
+        m = int(seg * rate)
+        tt = np.arange(m) / rate
+        chord = prog[(k + int(rng.integers(4))) % len(prog)]
+        pad = sum(np.sin(2 * np.pi * _note_hz(root + 12 + iv) * tt + j) for j, iv in enumerate(chord))
+        swell = np.sin(np.pi * np.clip(tt / seg, 0, 1)) ** 2
+        _add(out, k * seg * rate, 0.06 * pad * swell)
+    # Herzschlag: zwei dumpfe Schläge, etwa 70 pro Minute
+    kt = np.arange(int(0.25 * rate)) / rate
+    thump = np.sin(2 * np.pi * np.cumsum(40 + 50 * np.exp(-kt * 25)) / rate) * np.exp(-kt * 14)
+    beat = 60 / 70
+    for b in range(int(seconds / beat) + 1):
+        _add(out, b * beat * rate, 0.5 * thump)
+        _add(out, (b * beat + 0.22) * rate, 0.3 * thump)
+    # Spieluhr: einzelne hohe Töne, selten und unregelmäßig
+    scale = [0, 3, 7, 8, 12, 15]
+    at = 1.5
+    while at < seconds - 1:
+        m = int(1.6 * rate)
+        tt = np.arange(m) / rate
+        f = _note_hz(root + 36 + int(rng.choice(scale)))
+        bell = (np.sin(2 * np.pi * f * tt) + 0.3 * np.sin(2 * np.pi * f * 2.76 * tt)) * np.exp(-tt * 2.2)
+        _add(out, at * rate, 0.09 * bell)
+        at += float(rng.uniform(1.4, 3.2))
+    out /= max(1e-6, np.abs(out).max())
+    fade = int(0.8 * rate)
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out.astype(np.float32)
+
+
+def boom(rate):
+    """Tiefer, dumpfer Schlag für den Einstieg bei Grusel-Videos."""
+    n = int(0.9 * rate)
+    t = np.arange(n) / rate
+    return (np.sin(2 * np.pi * np.cumsum(30 + 60 * np.exp(-t * 8)) / rate) * np.exp(-t * 4)).astype(np.float32)
+
+
+def mix(voice, rate, cuts, seed, pops=(), mood=None):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
-    pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick).
+    pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick),
+    mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat.
     """
     n = len(voice)
-    bed = music(n / rate + 0.1, rate, seed)[:n]
+    dark = mood in DARK_MOODS
+    bed = (dark_music if dark else music)(n / rate + 0.1, rate, seed)[:n]
     if len(bed) < n:
         bed = np.pad(bed, (0, n - len(bed)))
     # Ducking: Musik geht runter, sobald die Stimme spricht
@@ -151,13 +207,13 @@ def mix(voice, rate, cuts, seed, pops=()):
     env = np.convolve(np.abs(voice), np.ones(win) / win, mode="same")
     duck = 1 - 0.55 * np.clip(env / 0.04, 0, 1)
     duck = np.convolve(duck, np.ones(win) / win, mode="same")
-    out = voice * 1.0 + bed * 0.22 * duck
+    out = voice * 1.0 + bed * (0.3 if dark else 0.22) * duck
     sfx = np.zeros(n, dtype=np.float32)
-    _add(sfx, 0, 0.35 * pop(rate))
+    _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
         _add(sfx, p * rate, 0.18 * tick(rate))
     for i, c in enumerate(cuts):
         w = whoosh(rate, seed + i)
-        _add(sfx, max(0, c - 0.2) * rate, 0.22 * w)
+        _add(sfx, max(0, c - 0.2) * rate, (0.12 if dark else 0.22) * w)
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

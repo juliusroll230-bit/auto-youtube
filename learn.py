@@ -104,8 +104,12 @@ CAPTION_STYLES = ("kasten", "unterstrich", "pop")       # wie motion.Caption.STY
 TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TRANSITIONS
 HEADLINES = ("mit", "ohne")                             # Titel als Kopfzeile oben im Bild
 BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (stock.py) oder gezeichnet
+# Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
+VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
+                   "neugierig": ("klar", "erzaehler")}
 FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
-                 "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund"}
+                 "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
+                 "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie"}
 
 
 def default_look(spec):
@@ -115,6 +119,13 @@ def default_look(spec):
     style = rng.choice(CAPTION_STYLES)
     # Videos von vor der Kopfzeile hatten keine
     return {"caption_style": style, "transition": rng.choice(TRANSITIONS), "kopfzeile": "ohne", "hintergrund": "animation"}
+
+
+def cartoon_mood(spec):
+    """Stimmung eines Cartoons: aus dem Skript, sonst Horror gruselig und alles andere mysteriös."""
+    if spec.get("stimmung") in VOICES_FOR_MOOD:
+        return spec["stimmung"]
+    return "gruselig" if str(spec.get("niche", "")).lower() == "horror" else "mysterioes"
 
 
 def features(spec, look):
@@ -130,6 +141,10 @@ def features(spec, look):
         "laenge": "kurz (bis 60 Wörter)" if total <= 60 else "mittel (61 bis 75)" if total <= 75 else "lang (über 75)",
         "einstieg": "kurz (bis 8 Wörter)" if hook <= 8 else "mittel (9 bis 12)" if hook <= 12 else "lang (über 12)",
         "grafik": kinds[0] if kinds else "keine",
+        "stil": "Cartoon" if spec.get("stil") == "cartoon" else "Normal",
+        "stimmung": cartoon_mood(spec) if spec.get("stil") == "cartoon" else None,
+        "stimme": look.get("stimme") if spec.get("stil") == "cartoon" else None,
+        "serie": spec.get("serie") or None,
     }
 
 
@@ -170,6 +185,11 @@ def choose_look(fscores, step):
             "transition": choose(TRANSITIONS, fscores.get("transition", {}), step + 1),
             "kopfzeile": choose(HEADLINES, fscores.get("kopfzeile", {}), step + 2),
             "hintergrund": choose(BACKGROUNDS, fscores.get("hintergrund", {}), step + 3)}
+
+
+def choose_voice(fscores, step, spec):
+    """Stimme für ein Cartoon: die beste passende (3 von 4 Mal) oder ein Test der anderen."""
+    return choose(VOICES_FOR_MOOD[cartoon_mood(spec)], fscores.get("stimme", {}), step)
 
 
 def feature_summary(fscores):
