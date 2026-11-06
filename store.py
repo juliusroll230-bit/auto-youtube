@@ -315,11 +315,16 @@ def posted_items():
     return posted
 
 
-def record_history(views, subs):
-    """Merkt sich Aufrufe und Abonnenten für das Verlaufs-Diagramm, höchstens ein Punkt pro Stunde."""
+def record_history(views, subs, clip=None):
+    """Merkt sich Aufrufe und Abonnenten für das Verlaufs-Diagramm, höchstens ein Punkt pro Stunde.
+
+    clip: Kanaldaten des Clip-Kanals (yt.channel), dann kommen clip_views/clip_subs dazu.
+    """
     with LOCK:
         hist = read("history.json", [])
         point = {"at": now().isoformat(timespec="minutes"), "views": views, "subs": subs}
+        if clip:
+            point.update(clip_views=clip.get("views", 0), clip_subs=clip.get("subscribers", 0))
         if hist and hist[-1]["at"][:13] == point["at"][:13]:
             hist[-1] = point
         else:

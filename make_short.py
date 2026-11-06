@@ -369,6 +369,9 @@ def estimated_timings(spec):
 
 def render_thumbnail(spec, path, width=360):
     """Speichert ein Vorschaubild: der erste Satz, kurz nachdem er eingeblendet wurde."""
+    if spec.get("stil") == "cartoon":
+        import cartoon
+        return cartoon.render_thumbnail(spec, path, width)
     timings, total = estimated_timings(spec)
     scene = Scene(spec, timings, total)
     img = scene.frame(0.9)
@@ -377,6 +380,9 @@ def render_thumbnail(spec, path, width=360):
 
 def build_video(spec, out_dir, tts, stock_key=None, info=None):
     """info (dict, optional) bekommt "stock": die Pexels-Clips, falls welche benutzt wurden."""
+    if spec.get("stil") == "cartoon":  # Strichmännchen-Szenen aus dem Cartoon-Baukasten
+        import cartoon
+        return cartoon.build_video(spec, out_dir, tts, stock_key=stock_key, info=info)
     os.makedirs(out_dir, exist_ok=True)
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")

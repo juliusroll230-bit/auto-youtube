@@ -1,0 +1,25 @@
+{
+ "slug": "horror-station-13-teil-1",
+ "stil": "cartoon",
+ "niche": "Horror",
+ "serie": "Station 13",
+ "teil": 1,
+ "colors": ["#0f1a17", "#3fa35b"],
+ "accent": "#e0392f",
+ "title": "Station 13: Warum ist das Krankenhaus leer? (Teil 1) 🧟",
+ "description": "Station 13, Teil 1. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #zombie #serie #shorts",
+ "tags": ["horror", "gruselgeschichte", "zombie", "serie", "shorts"],
+ "figur": {"farbe": "blau", "hut": "keiner", "name": "Mia"},
+ "segments": [
+  {"text": "Mia wacht auf, und das ganze Krankenhaus ist plötzlich leer.", "szene": {"typ": "titel", "serie": "Station 13", "teil": 1, "ort": "krankenhaus"}},
+  {"text": "Kein Arzt, keine Schwester, nur dieses Flackern an der Decke.", "szene": {"typ": "figur", "ort": "krankenhaus", "gefuehl": "staunen", "aktion": "steht"}},
+  {"text": "Auf ihrem Bett liegt ein Zettel: Bleib in deinem Zimmer.", "szene": {"typ": "objekt", "ort": "krankenhaus", "objekt": "📝", "text": "Bleib im Zimmer"}},
+  {"text": "Doch dann hört sie Schritte. Langsam. Schlurfend.", "szene": {"typ": "horror", "ort": "krankenhaus", "gefuehl": "angst", "aktion": "zittert"}},
+  {"text": "Sie schaut durch das Fenster in der Tür.", "szene": {"typ": "figur", "ort": "krankenhaus", "gefuehl": "angst", "aktion": "versteckt"}},
+  {"text": "Im Flur steht ein Mann. Seine Haut ist grün. Er dreht den Kopf.", "szene": {"typ": "monster", "ort": "krankenhaus", "monster": "zombie", "gefuehl": "angst", "aktion": "zittert"}},
+  {"text": "Mia rennt los, raus auf die Straße.", "szene": {"typ": "monster", "ort": "strasse", "monster": "zombie", "anzahl": 3, "wetter": "regen", "aktion": "rennt"}},
+  {"text": "Aber die Stadt ist genauso leer. Bis auf einen Jungen mit Taschenlampe.", "szene": {"typ": "zwei", "ort": "strasse", "gefuehl": "staunen", "aktion": "zeigt", "wetter": "regen", "zweite": {"farbe": "gelb", "hut": "muetze", "gefuehl": "cool", "aktion": "winkt"}}},
+  {"text": "Er sagt nur: Du bist die Dreizehnte, die heute aufgewacht ist.", "szene": {"typ": "zahl", "zahl": 13, "einheit": "aufgewacht", "objekt": "🏥", "farbcode": "#3a1d24"}},
+  {"text": "Was ist auf Station dreizehn passiert? Teil zwei kommt bald.", "szene": {"typ": "horror", "ort": "spukhaus", "gefuehl": "angst", "aktion": "zittert", "wetter": "blitz", "text": "Teil 2 kommt"}}
+ ]
+}

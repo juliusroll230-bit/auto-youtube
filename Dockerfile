@@ -23,6 +23,11 @@ RUN mkdir -p models \
 RUN python -c "from faster_whisper import download_model; download_model('base', output_dir='/app/models/whisper/base')" \
  || echo "Whisper-Modell kommt beim ersten Clip"
 
+# Browser für die Cartoon-Shorts (zeichnet die Strichmännchen-Szenen, siehe cartoon.py)
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN python -m playwright install --with-deps --only-shell chromium \
+ && rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
 # Version für die Fußzeile der Website (setzt GitHub Actions beim Bauen)
