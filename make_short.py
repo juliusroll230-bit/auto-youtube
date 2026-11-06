@@ -28,12 +28,13 @@ FONT_SEMI = os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf")
 FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 
 
-# Stimmen für Cartoons: (Tonhöhe, langsamer um, Hall). Tiefer und langsamer klingt unheimlicher.
+# Stimmen für Cartoons: (Tonhöhe, Tempo-Faktor, Hall). Unter 1 heißt schneller: Cartoons sollen zügig erzählen,
+# die tiefere Stimme wirkt von selbst ruhiger.
 # Welche am besten ankommt, lernt learn.choose_voice.
 VOICES = {
-    "klar": (1.0, 1.0, 0.0),          # normal, für Erklärungen
-    "erzaehler": (0.94, 1.08, 0.16),  # ruhiger Geschichten-Erzähler
-    "unheimlich": (0.88, 1.16, 0.28), # tief, langsam, mit Hall
+    "klar": (1.0, 0.9, 0.0),          # normal, für Erklärungen
+    "erzaehler": (0.94, 0.92, 0.14),  # Geschichten-Erzähler
+    "unheimlich": (0.88, 0.96, 0.24), # tief, mit Hall
 }
 
 
@@ -56,7 +57,7 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None):
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix).
@@ -75,8 +76,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
             samples = voice_color(samples, rate, voice)
         dur = len(samples) / rate
         timings.append((t, t + dur))
-        chunks += [samples, np.zeros(int(PAUSE * rate), dtype=np.float32)]
-        t += dur + PAUSE
+        chunks += [samples, np.zeros(int(pause * rate), dtype=np.float32)]
+        t += dur + pause
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood)
