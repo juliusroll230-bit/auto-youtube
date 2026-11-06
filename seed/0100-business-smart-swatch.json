@@ -1,0 +1,46 @@
+{
+  "slug": "business-smart-swatch",
+  "style": "car",
+  "car_color": "#d9c8a0",
+  "niche": "Business",
+  "accent": "#2a2a2a",
+  "title": "Der Smart ist eigentlich ein Uhren-Auto ⌚",
+  "description": "Swatch, Mercedes und Art: wie der Smart zu seinem Namen kam.\n\n#business #smart #swatch #autos #shorts",
+  "tags": [
+    "business",
+    "smart",
+    "swatch",
+    "autos",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Der *Smart* ist eigentlich ein Uhren-Auto.",
+      "clip": "small city car parking"
+    },
+    {
+      "text": "Der Swatch-Gründer *Nicolas Hayek* wollte ein winziges Stadtauto. Doch wer sollte es bauen?",
+      "clip": "swiss watch closeup"
+    },
+    {
+      "text": "Mercedes stieg ein. Die Marke hieß zuerst *Swatch Mercedes Art*. Daraus wurde der Name *Smart*.",
+      "clip": "mercedes star logo",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Swatch",
+          "Mercedes",
+          "Art"
+        ]
+      }
+    },
+    {
+      "text": "Neunzehnhundertachtundneunzig kam der Zweisitzer auf den Markt. Er ist nur etwa zweieinhalb Meter lang.",
+      "clip": "narrow european street"
+    },
+    {
+      "text": "Eine Uhrenfirma erfand ein Auto. Folge für mehr.",
+      "clip": "wrist watch ticking"
+    }
+  ]
+}

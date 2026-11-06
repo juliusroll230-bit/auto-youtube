@@ -1,0 +1,53 @@
+{
+  "slug": "geschichte-kartoffel-friedrich",
+  "niche": "Geschichte",
+  "colors": [
+    "#2b2315",
+    "#8c7a3c"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Dieser König ließ Kartoffeln bewachen 🥔",
+  "description": "Friedrich der Große und die Kartoffel: der Kartoffelbefehl von 1756 und eine Legende.\n\n#geschichte #kartoffel #friedrich #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "kartoffel",
+    "friedrich",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🥔",
+      "text": "Ein König ließ *Kartoffeln* bewachen. Aber warum?",
+      "clip": "potato field harvest"
+    },
+    {
+      "emoji": "👑",
+      "text": "Preußen hatte oft *Hunger*. Friedrich der Große wollte, dass die Bauern Kartoffeln anbauen. Die wollten aber nicht.",
+      "clip": "prussian castle potsdam"
+    },
+    {
+      "emoji": "📜",
+      "text": "Er erließ siebzehnhundertsechsundfünfzig einen *Kartoffelbefehl*. Die Bauern sollten die Knollen anpflanzen.",
+      "clip": "old decree document",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Hunger",
+          "Befehl",
+          "Kartoffel"
+        ]
+      }
+    },
+    {
+      "emoji": "🕵️",
+      "text": "Der Legende nach ließ er Felder bewachen. Das machte die Knolle *begehrt*, und Leute stahlen sie.",
+      "clip": "guard standing field"
+    },
+    {
+      "emoji": "👉",
+      "text": "Verbot macht Lust. Folge für mehr.",
+      "clip": "french fries closeup"
+    }
+  ]
+}

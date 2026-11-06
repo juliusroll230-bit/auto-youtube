@@ -1,0 +1,57 @@
+{
+  "slug": "psychologie-peak-end-regel",
+  "niche": "Psychologie",
+  "colors": [
+    "#241638",
+    "#6b4a9c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Warum längeres Leid manchmal besser erscheint 🧊",
+  "description": "Die Peak-End-Regel: Daniel Kahnemans Versuch mit eiskaltem Wasser.\n\n#psychologie #kahneman #erinnerung #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "kahneman",
+    "erinnerung",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🧊",
+      "text": "Mehr Schmerz wurde als weniger Schmerz erinnert.",
+      "clip": "ice cubes water"
+    },
+    {
+      "emoji": "🔬",
+      "text": "Forscher um *Daniel Kahneman* ließen Menschen die Hand in eiskaltes Wasser halten. Zweimal, unterschiedlich lang. Wie wählten sie?",
+      "clip": "scientist laboratory"
+    },
+    {
+      "emoji": "⏱️",
+      "text": "Beim längeren Versuch wurde das Wasser am *Ende* leicht wärmer.",
+      "clip": "stopwatch closeup",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Kurz",
+          60
+        ],
+        "b": [
+          "Lang",
+          90
+        ],
+        "einheit": "Sekunden"
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Viele wollten den *längeren* Versuch wiederholen. Wir erinnern vor allem den Höhepunkt und das *Ende*.",
+      "clip": "brain thinking person"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein gutes Ende rettet vieles. Folge für mehr.",
+      "clip": "sunset beach walk"
+    }
+  ]
+}

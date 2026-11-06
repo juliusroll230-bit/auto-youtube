@@ -1,0 +1,53 @@
+{
+  "slug": "geografie-atacama-regen",
+  "niche": "Geografie",
+  "colors": [
+    "#2e2214",
+    "#b0743a"
+  ],
+  "accent": "#ffe0a0",
+  "title": "Hier regnet es manchmal jahrelang nicht 🏜️",
+  "description": "Die Atacama-Wüste in Chile: einer der trockensten Orte der Erde.\n\n#geografie #atacama #wueste #wissen #shorts",
+  "tags": [
+    "geografie",
+    "atacama",
+    "wueste",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏜️",
+      "text": "In dieser *Wüste* regnet es oft jahrelang nicht.",
+      "clip": "atacama desert landscape"
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Die *Atacama* liegt in Chile an der Pazifikküste. Gleich nebenan liegt der Ozean. Warum ist es dort trotzdem so trocken?",
+      "clip": "pacific coast cliffs"
+    },
+    {
+      "emoji": "⛰️",
+      "text": "Im Osten blockieren die *Anden* den Regen. Im Westen kühlt ein kalter Meeresstrom die Luft.",
+      "clip": "andes mountains snow",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Anden",
+          "Kalter Strom",
+          "Kein Regen"
+        ]
+      }
+    },
+    {
+      "emoji": "🔭",
+      "text": "Wegen des klaren Himmels stehen dort riesige *Teleskope*. Manche Orte bekommen kaum Regen.",
+      "clip": "telescope observatory night"
+    },
+    {
+      "emoji": "👉",
+      "text": "Trockene Wüste, klarer Himmel. Folge für mehr.",
+      "clip": "milky way desert"
+    }
+  ]
+}

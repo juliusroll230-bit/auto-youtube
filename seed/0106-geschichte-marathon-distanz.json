@@ -1,0 +1,58 @@
+{
+  "slug": "geschichte-marathon-distanz",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1a14",
+    "#9c5a3a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Warum ein Marathon so seltsam lang ist 🏃",
+  "description": "Die Marathon-Distanz von zweiundvierzig Kilometern und hundertfünfundneunzig Metern stammt von den Olympischen Spielen 1908 in London.\n\n#geschichte #marathon #olympia #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "marathon",
+    "olympia",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🏃",
+      "text": "Die Marathon-Strecke ist eigentlich *Zufall*.",
+      "clip": "marathon runners street"
+    },
+    {
+      "emoji": "🏛️",
+      "text": "Bei den ersten modernen Spielen achtzehnhundertsechsundneunzig war der Lauf ungefähr vierzig Kilometer lang. Wann wurde es mehr?",
+      "clip": "olympic stadium aerial"
+    },
+    {
+      "emoji": "👑",
+      "text": "Neunzehnhundertacht in London startete der Lauf an einem *Schloss*. Die Strecke endete vor der königlichen Loge im Stadion.",
+      "clip": "windsor castle",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1896,
+            "Erste Spiele"
+          ],
+          [
+            1908,
+            "London"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "📏",
+      "text": "Das ergab zweiundvierzig Kilometer und hundertfünfundneunzig Meter. Seit neunzehnhundertvierundzwanzig ist das die *Norm*.",
+      "clip": "finish line tape"
+    },
+    {
+      "emoji": "👉",
+      "text": "Königlicher Wunsch, bis heute Pflicht. Folge für mehr.",
+      "clip": "runner crossing finish"
+    }
+  ]
+}
