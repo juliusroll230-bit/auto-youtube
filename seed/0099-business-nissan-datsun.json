@@ -1,0 +1,42 @@
+{
+  "slug": "business-nissan-datsun",
+  "style": "car",
+  "car_color": "#2a3f6b",
+  "niche": "Business",
+  "accent": "#ffe08a",
+  "title": "Dieser Autoname bedeutete erst „Sohn“ 🌅",
+  "description": "Datsun, DAT und der Sprung zu Nissan: warum Japans Marke ihren Namen änderte.\n\n#business #nissan #datsun #autos #shorts",
+  "tags": [
+    "business",
+    "nissan",
+    "datsun",
+    "autos",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Ein Buchstabe machte aus *Datsun* ein Glückszeichen.",
+      "clip": "sunrise over city"
+    },
+    {
+      "text": "Der Name stammt von DAT, den Anfangsbuchstaben dreier Geldgeber. Doch was hat die Sonne damit zu tun?",
+      "clip": "japanese street cars"
+    },
+    {
+      "text": "Neunzehnhunderteinunddreißig hieß ein Modell *Datson*, Sohn von DAT. Im Japanischen klingt *son* aber nach Verlust.",
+      "clip": "vintage car dashboard",
+      "visual": {
+        "type": "wort",
+        "text": "Datson"
+      }
+    },
+    {
+      "text": "Also wurde aus *son* das englische *sun*, Sonne. Später ersetzte der Name *Nissan* die Marke Datsun in vielen Ländern.",
+      "clip": "sun rays sky"
+    },
+    {
+      "text": "Ein Buchstabe gegen Pech. Folge für mehr.",
+      "clip": "sports car tunnel"
+    }
+  ]
+}

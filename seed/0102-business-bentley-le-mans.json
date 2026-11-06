@@ -1,0 +1,45 @@
+{
+  "slug": "business-bentley-le-mans",
+  "style": "car",
+  "car_color": "#0f3a2b",
+  "niche": "Business",
+  "accent": "#e8d9a0",
+  "title": "Diese Luxusmarke wurde mit Rennen berühmt 🏁",
+  "description": "Die Bentley Boys und die fünf Siege in Le Mans von 1924 bis 1930.\n\n#business #bentley #lemans #autos #shorts",
+  "tags": [
+    "business",
+    "bentley",
+    "lemans",
+    "autos",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "*Bentley* gewann das härteste Rennen der Welt.",
+      "clip": "vintage race car"
+    },
+    {
+      "text": "Das Rennen heißt *Le Mans* und dauert vierundzwanzig Stunden. Wer Bentley fuhr, galt als Held.",
+      "clip": "night race track lights"
+    },
+    {
+      "text": "Eine Gruppe reicher Fahrer, die *Bentley Boys*, siegte in den Zwanzigern gleich mehrfach hintereinander.",
+      "clip": "gentlemen drivers vintage",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Fünf Siege",
+          "Bis neunzehnhundertdreißig"
+        ]
+      }
+    },
+    {
+      "text": "Doch der Ruhm war teuer. Die Firma verkaufte zu wenig Autos und ging *pleite*.",
+      "clip": "empty factory"
+    },
+    {
+      "text": "Rolls-Royce kaufte sie. Folge für mehr.",
+      "clip": "luxury car grill"
+    }
+  ]
+}

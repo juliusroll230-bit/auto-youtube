@@ -1,0 +1,49 @@
+{
+  "slug": "geld-tulpenmanie",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#14282e",
+    "#3a8a6a"
+  ],
+  "accent": "#ffd27a",
+  "title": "Eine Blume löste angeblich den ersten Börsenrausch aus 🌷",
+  "description": "Die Tulpenmanie in den Niederlanden um sechzehnhundertsiebenunddreißig: Historiker streiten über das Ausmaß. Keine Anlageberatung.\n\n#geld #tulpen #boerse #geschichte #shorts",
+  "tags": [
+    "geld",
+    "tulpen",
+    "boerse",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌷",
+      "text": "Eine *Zwiebel* soll einmal mehr gekostet haben als ein Haus.",
+      "clip": "tulip field"
+    },
+    {
+      "emoji": "🇳🇱",
+      "text": "Das war in den Niederlanden um sechzehnhundertsiebenunddreißig. Seltene *Tulpen* galten als Luxus. Wie weit ging das?",
+      "clip": "amsterdam canal"
+    },
+    {
+      "emoji": "💰",
+      "text": "Händler kauften und verkauften Tulpenzwiebeln auf *Kredit*, noch bevor die Blumen blühten.",
+      "clip": "market traders old",
+      "visual": {
+        "type": "wort",
+        "text": "Zwiebel"
+      }
+    },
+    {
+      "emoji": "💥",
+      "text": "Dann brachen die Preise ein. Historiker streiten, wie groß der Absturz *wirklich* war.",
+      "clip": "falling red stock chart"
+    },
+    {
+      "emoji": "👉",
+      "text": "Hype ist kein Plan. Keine Anlageberatung. Folge für mehr.",
+      "clip": "single tulip closeup"
+    }
+  ]
+}

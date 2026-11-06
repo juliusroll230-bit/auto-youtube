@@ -1,0 +1,48 @@
+{
+  "slug": "psychologie-uebertriebene-belohnung",
+  "niche": "Psychologie",
+  "colors": [
+    "#1c1a3a",
+    "#5a54b0"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Belohnung kann die Freude am Malen töten 🖍️",
+  "description": "Der Überrechtfertigungseffekt: Lepper-Experiment mit Kindergartenkindern von neunzehnhundertdreiundsiebzig.\n\n#psychologie #motivation #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "motivation",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🖍️",
+      "text": "Eine Belohnung machte Kindern das *Malen* madig.",
+      "clip": "children drawing crayons"
+    },
+    {
+      "emoji": "🏫",
+      "text": "Neunzehnhundertdreiundsiebzig beobachtete ein Team in einem Kindergarten Kinder, die gern malten. Dann kam ein *Trick*.",
+      "clip": "kindergarten classroom"
+    },
+    {
+      "emoji": "🏅",
+      "text": "Manche Kinder bekamen vorher einen *Preis* fürs Malen versprochen. Andere nicht.",
+      "clip": "gold medal trophy",
+      "visual": {
+        "type": "wort",
+        "text": "Belohnung"
+      }
+    },
+    {
+      "emoji": "📉",
+      "text": "Danach malten die belohnten Kinder in ihrer freien Zeit *weniger*. Aus Spaß wurde Arbeit für Lohn.",
+      "clip": "child drawing alone"
+    },
+    {
+      "emoji": "👉",
+      "text": "Echter Spaß braucht keinen Preis. Folge für mehr.",
+      "clip": "happy kids playing outside"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "business-mini-suezkrise",
+  "style": "car",
+  "car_color": "#7a1f2b",
+  "niche": "Business",
+  "accent": "#f2e2b0",
+  "title": "Dieses Kultauto entstand wegen einer Krise 🚗",
+  "description": "Wie die Suezkrise den Mini hervorbrachte und Alec Issigonis ein winziges Auto zeichnete.\n\n#business #mini #autos #geschichte #shorts",
+  "tags": [
+    "business",
+    "mini",
+    "autos",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Eine Ölkrise erfand den *Mini*.",
+      "clip": "oil refinery sunset"
+    },
+    {
+      "text": "Neunzehnhundertsechsundfünfzig sperrte die *Suezkrise* den Weg für Öl. Benzin wurde in Großbritannien rationiert. Was tat die Autoindustrie?",
+      "clip": "gas station vintage"
+    },
+    {
+      "text": "Chefkonstrukteur *Alec Issigonis* sollte ein winziges, sparsames Auto bauen. Er zeichnete es angeblich auf einem Block.",
+      "clip": "engineer drawing blueprint",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1956,
+            "Suezkrise"
+          ],
+          [
+            1959,
+            "Erster Mini"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Der Motor lag quer, die Räder saßen ganz außen. So blieb fast der ganze Platz für *Menschen*.",
+      "clip": "car engine closeup"
+    },
+    {
+      "text": "Aus einer Krise wurde eine Ikone. Folge für mehr.",
+      "clip": "london street traffic"
+    }
+  ]
+}
