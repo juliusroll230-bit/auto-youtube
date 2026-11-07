@@ -250,15 +250,18 @@ def sentence_marks(spec):
     return [round(x / t, 4) for x in starts] if t else []
 
 
-def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None):
+def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None, done="done_slots"):
     with LOCK:
         shutil.move(file, path("posted", os.path.basename(file)))
         st = state()
         if slot:
-            st["done_slots"] = (st["done_slots"] + [slot])[-90:]
-        st["uploads"].append({"slot": slot, "slug": spec["slug"], "video_id": video_id, "title": spec["title"],
-                              "posted_at": now().isoformat(timespec="seconds"),
-                              "marks": marks, "duration": duration, "look": look})
+            st[done] = (st.get(done, []) + [slot])[-90:]
+        rec = {"slot": slot, "slug": spec["slug"], "video_id": video_id, "title": spec["title"],
+               "posted_at": now().isoformat(timespec="seconds"),
+               "marks": marks, "duration": duration, "look": look}
+        if is_long(spec):
+            rec["lang"] = True
+        st["uploads"].append(rec)
         write("state.json", st)
 
 
@@ -328,7 +331,7 @@ def mark_clip_posted(slot, record, done="done_slots"):
 
 def learnable(posted):
     """Clips zählen nicht für den Lernmodus (sie haben kein Thema und keinen Look der KI-Shorts)."""
-    return [p for p in posted if p.get("kind") != "clip"]
+    return [p for p in posted if p.get("kind") != "clip" and not p.get("lang")]
 
 
 def card(spec):
@@ -383,7 +386,26 @@ def record_history(views, subs, clip=None):
         write("history.json", hist[-24 * 180:])
 
 
-def planned_queue(posted=None, ready_only=False):
+def is_long(spec):
+    return (spec or {}).get("laenge") == "lang"
+
+
+def long_days(per_week):
+    """Wochentage (0 = Montag) für lange Videos, gleichmäßig verteilt: 4 pro Woche = Mo, Mi, Fr, Sa."""
+    per_week = max(0, min(7, int(per_week or 0)))
+    return sorted({round(i * 7 / per_week) % 7 for i in range(per_week)}) if per_week else []
+
+
+def due_long(per_week, hour=22, at=None):
+    """Schlüssel des Tages, an dem ein langes Video dran ist (ab hour Uhr bis kurz vor Mitternacht), sonst None."""
+    at = at or now()
+    if at.weekday() not in long_days(per_week) or at.hour < hour:
+        return None
+    key = at.strftime("%Y-%m-%d")
+    return None if key in state().get("long_slots", []) else key
+
+
+def planned_queue(posted=None, ready_only=False, long=False):
     """Warteschlange als (datei, skript) in der Reihenfolge, die der Lernmodus vorgibt.
 
     ready_only: mit Freigabe-Pflicht nur freigegebene Skripte (für den Upload).
@@ -393,6 +415,7 @@ def planned_queue(posted=None, ready_only=False):
     posted = posted if posted is not None else posted_items()
     cfg = config()
     queue = [(f, load_spec(f)) for f in queue_files()]
+    queue = [q for q in queue if is_long(q[1]) == long]  # lange Videos haben eine eigene Warteschlange
     if ready_only and cfg["approval"]:
         ok = set(state()["approved"])
         queue = [q for q in queue if os.path.basename(q[0]) in ok]
@@ -437,6 +460,7 @@ def dashboard(extra=None, working=None, repo=True):
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     posted = posted_items()
     planned = planned_queue(posted)
+    long_planned = planned_queue(posted, long=True)
     approved = set(st["approved"])
     scores = learn.niche_scores(learnable(posted), now())
     ag = agents.settings(cfg)
@@ -466,6 +490,7 @@ def dashboard(extra=None, working=None, repo=True):
                          "channel": read("clipchannel.json", None) if cfg["clip_token"] else None},
         "socials": cfg["socials"],
         "queue": queue,
+        "long_queue": [{**card(spec), "file": os.path.basename(f)} for f, spec in long_planned],
         "approval": bool(cfg["approval"]),
         "rejected": rejected,
         "agents": agents.overview(cfg, st["agent_runs"], {

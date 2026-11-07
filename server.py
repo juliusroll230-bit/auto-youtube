@@ -140,27 +140,27 @@ def video_voice():
 
 # --- Arbeit ------------------------------------------------------------------
 
-def post_next(slot, manual=False):
-    """Rendert das nächste Skript und lädt es hoch."""
+def post_next(slot, manual=False, long=False):
+    """Rendert das nächste Skript und lädt es hoch. long: ein langes Video (eigene Warteschlange, eigener Sendeplan)."""
+    done = "long_slots" if long else "done_slots"
     if not work_lock.acquire(blocking=False):
         return
     try:
         with working("planer", task="Wählt das nächste Video"):
-            planned = store.planned_queue(ready_only=True)  # Reihenfolge nach Lernmodus
+            planned = store.planned_queue(ready_only=True, long=long)  # Reihenfolge nach Lernmodus
             cfg = store.config()
             # Mit eigenem Clip-Kanal laufen Clips getrennt (post_clip_slot), sonst ersetzen sie hier Sendeplätze
-            clip = None if cfg["clip_token"] else clips.choose_for_slot(
+            clip = None if (cfg["clip_token"] or long) else clips.choose_for_slot(
                 slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
                 store.state()["uploads"], scripts_left=bool(planned))
         if clip:
             return post_clip(clip, slot, manual)
         if not planned:
-            store.log("warn", "Sendeplatz verpasst: Kein freigegebenes Video in der Warteschlange."
-                      if store.config()["approval"] else "Sendeplatz verpasst: Die Warteschlange ist leer.")
+            store.log("warn", ("Langes Video verpasst: " if long else "Sendeplatz verpasst: ") + (
+                "Kein freigegebenes Video in der Warteschlange." if store.config()["approval"]
+                else "Die Warteschlange ist leer."))
             if slot:
-                st = store.state()
-                st["done_slots"].append(slot)
-                store.write("state.json", st)
+                store.mark_slot(slot, done)
             return
         file, spec = planned[0]
         n = len(store.state()["uploads"]) + 1  # laufende Nummer für die Sprechblasen
@@ -194,13 +194,14 @@ def post_next(slot, manual=False):
         with working("publisher", task=f"Lädt Video #{n} hoch"):
             video_id = yt.upload(store.config(), video, spec)
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
-        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look)
+        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done)
         for a in ("planer", "sprecher", "studio", "publisher"):
             store.agent_done(a)
-        try:
-            store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
-        except OSError as e:
-            store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
+        if not long:
+            try:
+                store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
+            except OSError as e:
+                store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""),
                   agent="publisher", kind="posted", source="youtube")
@@ -213,9 +214,7 @@ def post_next(slot, manual=False):
         store.agent_done("publisher", error=e)
         store.log("error", f"Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
         if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
-            st = store.state()
-            st["done_slots"].append(slot)
-            store.write("state.json", st)
+            store.mark_slot(slot, done)
     finally:
         status["busy"] = ""
         work_lock.release()
@@ -624,6 +623,9 @@ def scheduler():
                 slot = store.due_slot() if ag["publisher"]["on"] else None
                 if slot and not status["busy"]:
                     post_next(slot)
+                lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
+                if lslot and not status["busy"]:
+                    post_next(lslot, long=True)
                 cslot = store.due_slot(done="clip_slots") if cfg["clip_token"] and ag["publisher"]["on"] else None
                 if cslot and not status["busy"]:
                     post_clip_slot(cslot)

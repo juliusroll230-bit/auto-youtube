@@ -25,7 +25,7 @@ DEFAULTS = {
     "clipper": {"on": True, "auto_start": False, "clips": 5, "min_len": 20, "max_len": 45, "crop": "auto",
                 "untertitel": "pop", "hook": True, "keywords": "", "sprache": "auto", "modell": "base",
                 "freigabe": True},
-    "publisher": {"on": True, "clips_per_day": 2},
+    "publisher": {"on": True, "clips_per_day": 2, "long_per_week": 4},
     "analyst": {"minutes": 20},
     "zuschauer": {"hours": 3},
     "designer": {"on": True},
@@ -41,6 +41,7 @@ RANGES = {
     ("clipper", "min_len"): (10, 60, 5),
     ("clipper", "max_len"): (15, 90, 5),
     ("publisher", "clips_per_day"): (0, 10, 1),
+    ("publisher", "long_per_week"): (0, 7, 1),
 }
 CHOICES = {
     ("studio", "kopfzeile"): ("auto", "mit", "ohne"),
@@ -175,7 +176,8 @@ def overview(cfg, runs, ctx):
             nxt = ctx["next_slot"] if on else None
             metrics = [("Sendezeiten", ", ".join(f"{h} Uhr" for h in cfg["post_hours"])),
                        ("Gepostet", f"{ctx['posted']} Videos"),
-                       ("Clips pro Tag", f"bis zu {s['clips_per_day']}" if s["clips_per_day"] else "keine")]
+                       ("Clips pro Tag", f"bis zu {s['clips_per_day']}" if s["clips_per_day"] else "keine"),
+                       ("Lange Videos", f"{s['long_per_week']} pro Woche" if s["long_per_week"] else "keine")]
         elif a == "analyst":
             nxt = last + dt.timedelta(minutes=s["minutes"]) if last else now
             metrics = [("Abfrage", f"alle {s['minutes']} Min.")]

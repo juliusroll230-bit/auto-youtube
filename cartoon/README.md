@@ -62,3 +62,13 @@ mit `"stimme"` im Skript ist sie fest.
 - `aktion`: steht, zeigt, winkt, jubelt, rennt, zittert, denkt, faellt, schockiert, haende, schlurft, versteckt
 - `farbe`: rot, blau, gelb, gruen, lila, navy · `hut`: keiner, bandana, matrose, kapitaen, krone, zylinder, helm, muetze, hexe, ritter
 - `text` und `tafel` höchstens 22 Zeichen.
+
+## Lange Videos (Querformat, 7 bis 12 Minuten)
+
+Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvideo statt eines Shorts. Vorbild:
+`seed/0112-erklaert-kuehlschrank-lang.json`.
+
+- 40 bis 140 Segmente, zusammen 1200 bis 2600 Wörter (ca. 3,7 Wörter pro Sekunde: 1300 Wörter ≈ 6 Minuten, 1800 Wörter ≈ 8 Minuten; für Mid-Roll-Werbung über 8 Minuten zielen). Ein Satz pro Segment, darf bis etwa 25 Wörter haben.
+- Bild: dieselben Szenen, am Ende auf 1920x1080 gesetzt (Hochformat-Bild in der Mitte, unscharfer Hintergrund; Rendern dauert etwa so lang wie das Video, ca. 10 Minuten für 6). Stimme etwas langsamer als bei Shorts.
+- Eigene Warteschlange und eigener Sendeplan: `long_per_week` im Publisher (Standard 4 = Mo, Mi, Fr, Sa um 22 Uhr). Titel ohne `#shorts`. Kein Einfluss auf den Lernmodus der Shorts.
+- Aufbau: Hook in Satz 1, Frage stellen, in Kapiteln erklären, alle paar Sätze ein neuer Fakt oder eine neue Wendung, am Ende Frage an die Zuschauer.

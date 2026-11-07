@@ -1,0 +1,758 @@
+{
+ "slug": "erklaert-kuehlschrank-lang",
+ "stil": "cartoon",
+ "laenge": "lang",
+ "niche": "Erklären",
+ "stimmung": "neugierig",
+ "colors": [
+  "#10243f",
+  "#2c6bd1"
+ ],
+ "accent": "#ffe14d",
+ "title": "Wie funktioniert ein Kühlschrank wirklich? Die überraschende Wahrheit 🧊",
+ "description": "Dein Kühlschrank macht gar keine Kälte. Er ist eine Wärmepumpe. In diesem Video erklären wir Schritt für Schritt, wie Kompressor, Kondensator, Drossel und Verdampfer zusammenarbeiten, wer ihn erfunden hat und warum die Kühlmittel sich geändert haben.\n\n#erklärt #wissen #alltag #technik",
+ "tags": [
+  "erklärt",
+  "wissen",
+  "alltag",
+  "kühlschrank",
+  "technik",
+  "physik"
+ ],
+ "figur": {
+  "farbe": "blau",
+  "hut": "keiner"
+ },
+ "segments": [
+  {
+   "text": "Du machst die Tür auf, es ist kalt, und du denkst nie darüber nach. Heute klären wir, wie dein Kühlschrank das wirklich macht.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "zeigt",
+    "objekt": "🧊"
+   }
+  },
+  {
+   "text": "Und die Wahrheit ist überraschend: Dein Kühlschrank macht gar keine Kälte.",
+   "szene": {
+    "typ": "raetsel",
+    "objekt": "🧊",
+    "text": "Keine Kälte?"
+   }
+  },
+  {
+   "text": "Kälte ist nämlich nur das Fehlen von Wärme. Man kann sie nicht herstellen, man kann nur Wärme wegschaffen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "denken",
+    "aktion": "denkt",
+    "objekt": "🔥",
+    "text": "Wärme weg"
+   }
+  },
+  {
+   "text": "Dein Kühlschrank ist also in Wahrheit eine Wärmepumpe. Er holt Wärme aus dem Innenraum und schiebt sie nach draußen.",
+   "szene": {
+    "typ": "vergleich",
+    "links": {
+     "objekt": "🥛",
+     "text": "Innen: kalt"
+    },
+    "rechts": {
+     "objekt": "🏠",
+     "text": "Außen: warm"
+    }
+   }
+  },
+  {
+   "text": "Aber wie schafft man das, wenn Wärme eigentlich immer von warm nach kalt wandert?",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "denken",
+    "aktion": "haende",
+    "objekt": "❓"
+   }
+  },
+  {
+   "text": "Dafür braucht es einen Trick, und der ist über zweihundert Jahre alt. Fangen wir ganz am Anfang an.",
+   "szene": {
+    "typ": "karte",
+    "objekt": "⏳",
+    "text": "Die Geschichte"
+   }
+  },
+  {
+   "text": "Im Jahr siebzehnhundertachtundvierzig zeigt der Schotte William Cullen etwas Verblüffendes.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1748",
+    "text": "William Cullen",
+    "objekt": "🔬"
+   }
+  },
+  {
+   "text": "Er lässt eine Flüssigkeit in einem luftleeren Gefäß verdampfen, und plötzlich bildet sich Eis.",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "staunen",
+    "aktion": "zeigt",
+    "objekt": "🧪",
+    "figur": {
+     "farbe": "blau",
+     "hut": "zylinder"
+    }
+   }
+  },
+  {
+   "text": "Der Grund: Wenn etwas verdampft, braucht es Energie. Es nimmt die Wärme aus der Umgebung und kühlt sie dadurch ab.",
+   "szene": {
+    "typ": "liste",
+    "text": "Verdampfen",
+    "punkte": [
+     "braucht Energie",
+     "nimmt Wärme auf",
+     "die Umgebung kühlt"
+    ]
+   }
+  },
+  {
+   "text": "Das kennst du: Wenn du aus dem Schwimmbad kommst, frierst du, weil das Wasser auf deiner Haut verdunstet.",
+   "szene": {
+    "typ": "figur",
+    "ort": "strand",
+    "gefuehl": "angst",
+    "aktion": "zittert",
+    "objekt": "💧"
+   }
+  },
+  {
+   "text": "Cullen baute daraus aber noch keine Maschine, die man benutzen konnte. Das dauerte noch fast hundert Jahre.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "⚙️",
+    "text": "Noch keine Maschine"
+   }
+  },
+  {
+   "text": "Achtzehnhundertvierunddreißig baut der Amerikaner Jacob Perkins den ersten Kreislauf, der wirklich funktioniert.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1834",
+    "text": "Jacob Perkins",
+    "objekt": "🔧"
+   }
+  },
+  {
+   "text": "Und achtzehnhundertsechsundsiebzig bringt der Deutsche Carl von Linde die erste richtig gute Kältemaschine auf den Markt.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1876",
+    "text": "Carl von Linde",
+    "objekt": "🏭",
+    "stempel": "Deutschland"
+   }
+  },
+  {
+   "text": "Vor allem Brauereien waren begeistert, denn endlich konnte man Bier auch im Sommer kühl lagern.",
+   "szene": {
+    "typ": "gruppe",
+    "ort": "stadt",
+    "anzahl": 5,
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "text": "Kaltes Bier"
+   }
+  },
+  {
+   "text": "Davor gab es den Eisschrank, einen Holzschrank mit einem großen Eisblock darin. Der Eismann lieferte ihn dir regelmäßig ins Haus.",
+   "szene": {
+    "typ": "figur",
+    "ort": "stadt",
+    "gefuehl": "neutral",
+    "aktion": "winkt",
+    "objekt": "🧊",
+    "text": "Der Eismann"
+   }
+  },
+  {
+   "text": "Dieses Eis wurde im Winter aus gefrorenen Seen gesägt und in dicken Kellern gelagert. Ein ganzer Berufszweig lebte davon.",
+   "szene": {
+    "typ": "gruppe",
+    "ort": "stadt",
+    "anzahl": 4,
+    "gefuehl": "neutral",
+    "aktion": "steht",
+    "text": "Eis aus dem See"
+   }
+  },
+  {
+   "text": "Erst als die Kühlschränke elektrisch wurden, verschwand dieser Beruf. Im Jahr neunzehnhundertsiebenundzwanzig kommt der berühmte Monitor Top von General Electric.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1927",
+    "text": "Monitor Top",
+    "objekt": "📦"
+   }
+  },
+  {
+   "text": "Er hatte den lauten Motor oben auf dem Gerät, wie ein runder Hut. Millionen Familien kauften ihn, und die Küche veränderte sich für immer.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 1000000,
+    "einheit": "verkauft",
+    "objekt": "🏠",
+    "farbcode": "#ffd24a"
+   }
+  },
+  {
+   "text": "Plötzlich konnte man Essen tagelang aufheben, ohne dass es verdarb. Man musste nicht mehr jeden Tag einkaufen gehen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "stadt",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "objekt": "🛒"
+   }
+  },
+  {
+   "text": "Aber wie sieht dieser Kreislauf nun genau aus? Er hat vier Stationen, und die schauen wir uns einzeln an.",
+   "szene": {
+    "typ": "liste",
+    "text": "Vier Stationen",
+    "punkte": [
+     "Kompressor",
+     "Kondensator",
+     "Drossel",
+     "Verdampfer"
+    ]
+   }
+  },
+  {
+   "text": "In diesem Kreislauf fließt ein besonderer Stoff, das Kältemittel. Es siedet schon bei sehr niedrigen Temperaturen.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🧪",
+    "ort": "labor",
+    "text": "Kältemittel"
+   }
+  },
+  {
+   "text": "Station eins ist der Kompressor. Das ist der Motor, der hinten unten im Kühlschrank brummt.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "neutral",
+    "aktion": "zeigt",
+    "objekt": "🔊",
+    "text": "Kompressor"
+   }
+  },
+  {
+   "text": "Er presst das gasförmige Kältemittel zusammen. Und wenn man ein Gas zusammendrückt, wird es heiß, ganz wie bei einer Fahrradpumpe.",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "staunen",
+    "aktion": "haende",
+    "objekt": "🚲",
+    "text": "Druck macht heiß"
+   }
+  },
+  {
+   "text": "Das Gas ist jetzt heißer als deine Küche. Das ist wichtig, denn nur so kann es seine Wärme nach draußen abgeben.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 70,
+    "einheit": "Grad heiß",
+    "objekt": "🌡️",
+    "farbcode": "#ff5a3c"
+   }
+  },
+  {
+   "text": "Station zwei ist der Kondensator, das schwarze Gitter an der Rückseite. Dort strömt die Hitze in den Raum.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "neutral",
+    "aktion": "zeigt",
+    "objekt": "♨️",
+    "text": "Kondensator"
+   }
+  },
+  {
+   "text": "Dabei kühlt das Gas ab und wird flüssig. Du kannst es selbst fühlen: Die Rückwand ist immer etwas warm.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "haende",
+    "objekt": "✋",
+    "text": "Fühl mal hin"
+   }
+  },
+  {
+   "text": "Station drei ist die Drossel, ein hauchdünnes Röhrchen. Die Flüssigkeit muss sich hindurchzwängen.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🧵",
+    "text": "Die Drossel"
+   }
+  },
+  {
+   "text": "Dahinter fällt der Druck plötzlich stark ab. Und jetzt kommt der Trick: Die Flüssigkeit wird eiskalt und beginnt zu verdampfen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "labor",
+    "gefuehl": "staunen",
+    "aktion": "jubelt",
+    "objekt": "❄️",
+    "text": "Druck fällt"
+   }
+  },
+  {
+   "text": "Station vier ist der Verdampfer, die kalte Platte in deinem Innenraum. Hier passiert die eigentliche Arbeit.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "freude",
+    "aktion": "zeigt",
+    "objekt": "🧊",
+    "text": "Verdampfer"
+   }
+  },
+  {
+   "text": "Das Kältemittel verdampft und saugt dabei genau die Wärme aus deinem Joghurt, deiner Milch und deinem Käse.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "objekt": "🧀"
+   }
+  },
+  {
+   "text": "Danach saugt der Kompressor das Gas wieder an, und die Reise beginnt von vorn. Ein Kreis, der nie aufhört.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🔄",
+    "text": "Ein Kreislauf"
+   }
+  },
+  {
+   "text": "Merke dir den Satz: Innen wird verdampft, außen wird verflüssigt. Das ist der ganze Zauber.",
+   "szene": {
+    "typ": "liste",
+    "text": "Der Zauber",
+    "punkte": [
+     "innen verdampfen",
+     "außen verflüssigen",
+     "Wärme wandert raus"
+    ]
+   }
+  },
+  {
+   "text": "Aber warum schaltet sich dein Kühlschrank ständig an und aus? Dafür sorgt ein einfacher Thermostat.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "denken",
+    "aktion": "denkt",
+    "objekt": "🌡️",
+    "text": "Thermostat"
+   }
+  },
+  {
+   "text": "Wird es innen wärmer als etwa sieben Grad, startet der Motor. Ist es kalt genug, hört er wieder auf.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 7,
+    "einheit": "Grad",
+    "objekt": "🥶",
+    "farbcode": "#4ab3ff"
+   }
+  },
+  {
+   "text": "Im Gefrierfach liegt das Ziel bei minus achtzehn Grad. Bei dieser Temperatur wachsen Bakterien praktisch nicht mehr.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 18,
+    "einheit": "Grad minus",
+    "objekt": "❄️",
+    "farbcode": "#9fd8ff"
+   }
+  },
+  {
+   "text": "Wichtig: Bakterien sterben dort nicht, sie schlafen nur. Sobald das Essen auftaut, werden sie wieder munter.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "angst",
+    "aktion": "zeigt",
+    "objekt": "🦠",
+    "text": "Nur eingeschlafen"
+   }
+  },
+  {
+   "text": "Jetzt eine Frage, die viele sich stellen: Warum geht das Licht an, wenn du die Tür öffnest, und wieder aus, wenn du sie schließt?",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "denken",
+    "aktion": "haende",
+    "objekt": "💡"
+   }
+  },
+  {
+   "text": "Dafür sitzt ein kleiner Schalter im Rahmen. Die Tür drückt ihn, und das Licht geht aus. Mehr steckt nicht dahinter.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🔘",
+    "text": "Ein kleiner Schalter"
+   }
+  },
+  {
+   "text": "Und warum hält die Tür so fest zu? Im Gummi der Dichtung stecken kleine Magnete, die an das Metall ziehen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "zeigt",
+    "objekt": "🧲",
+    "text": "Magnet-Dichtung"
+   }
+  },
+  {
+   "text": "Ein Mythos noch: Man kann die Küche kühlen, indem man den Kühlschrank offen lässt. Das ist leider falsch.",
+   "szene": {
+    "typ": "vergleich",
+    "links": {
+     "objekt": "🚪",
+     "text": "Tür offen"
+    },
+    "rechts": {
+     "objekt": "🥵",
+     "text": "Küche wärmer"
+    }
+   }
+  },
+  {
+   "text": "Der Kühlschrank schiebt ja nur Wärme von innen nach draußen. Dazu kommt die Abwärme des Motors, also wird es insgesamt wärmer.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "neutral",
+    "aktion": "zeigt",
+    "objekt": "🔥"
+   }
+  },
+  {
+   "text": "Auch beim Kältemittel gab es eine bittere Lektion. Früher benutzte man dafür FCKW, ein Stoff, der harmlos wirkte.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1930",
+    "text": "FCKW",
+    "objekt": "☠️",
+    "stempel": "giftig fürs Klima"
+   }
+  },
+  {
+   "text": "Später fand man heraus, dass er die Ozonschicht zerstört. Die Welt reagierte schnell und verbot ihn mit einem Abkommen.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🌍",
+    "text": "Ozonschicht in Gefahr"
+   }
+  },
+  {
+   "text": "Heute nutzen die meisten Geräte Isobutan, ein Gas, das die Ozonschicht in Ruhe lässt. Ein Beispiel dafür, dass Probleme lösbar sind.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "objekt": "🌱"
+   }
+  },
+  {
+   "text": "Es gibt aber auch Kühlschränke ganz ohne Motor. Zwei schwedische Studenten erfinden sie neunzehnhundertzweiundzwanzig.",
+   "szene": {
+    "typ": "jahr",
+    "jahr": "1922",
+    "text": "Ohne Motor",
+    "objekt": "🔇"
+   }
+  },
+  {
+   "text": "Dieser Absorber-Kühlschrank braucht nur eine kleine Wärmequelle, zum Beispiel eine Gasflamme. Deshalb steht er oft im Wohnwagen.",
+   "szene": {
+    "typ": "figur",
+    "ort": "wald",
+    "gefuehl": "freude",
+    "aktion": "zeigt",
+    "objekt": "🏕️",
+    "text": "Im Wohnwagen"
+   }
+  },
+  {
+   "text": "Er hat keine beweglichen Teile und ist deshalb lautlos. Dafür kühlt er weniger kräftig als ein normaler Kompressor-Kühlschrank.",
+   "szene": {
+    "typ": "vergleich",
+    "links": {
+     "objekt": "🔇",
+     "text": "Absorber: leise"
+    },
+    "rechts": {
+     "objekt": "💪",
+     "text": "Kompressor: stark"
+    }
+   }
+  },
+  {
+   "text": "Und kennst du das Eis, das sich im Gefrierfach an der Wand bildet? Das ist Feuchtigkeit aus der Luft, die an der kältesten Stelle festfriert.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "denken",
+    "aktion": "zeigt",
+    "objekt": "🧊",
+    "text": "Reif im Eisfach"
+   }
+  },
+  {
+   "text": "Mit der Zeit wird die Eisschicht dick und wirkt wie eine Decke. Sie bremst die Kälte, und das Gerät braucht mehr Strom.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 5,
+    "einheit": "Millimeter Eis",
+    "objekt": "🥶",
+    "farbcode": "#9fd8ff"
+   }
+  },
+  {
+   "text": "Moderne Geräte haben deshalb NoFrost. Ein Gebläse bläst die Kälte herum, und eine kleine Heizung taut den Reif regelmäßig weg.",
+   "szene": {
+    "typ": "liste",
+    "text": "NoFrost",
+    "punkte": [
+     "Gebläse verteilt Kälte",
+     "Heizung taut Reif",
+     "kein Abtauen nötig"
+    ]
+   }
+  },
+  {
+   "text": "Das Tauwasser läuft durch ein Loch in der Rückwand nach hinten. Dort verdunstet es über dem warmen Motor von ganz allein.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "zeigt",
+    "objekt": "💧",
+    "text": "Tauwasser"
+   }
+  },
+  {
+   "text": "Ein Tipp zur Ordnung: Oben im Kühlschrank ist es wärmer, ganz unten am kältesten. Dort gehören Fleisch und Fisch hin.",
+   "szene": {
+    "typ": "liste",
+    "text": "Wohin womit?",
+    "punkte": [
+     "unten: Fleisch, Fisch",
+     "Mitte: Milch, Käse",
+     "oben: Reste, Getränke"
+    ]
+   }
+  },
+  {
+   "text": "Das Gemüsefach ist etwas wärmer und feuchter. Obst und Gemüse bleiben dort länger frisch und werden nicht trocken.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "freude",
+    "aktion": "zeigt",
+    "objekt": "🥬",
+    "text": "Gemüsefach"
+   }
+  },
+  {
+   "text": "Und das Klicken, das du ab und zu hörst? Das ist das Relais, das den Motor an- oder ausschaltet. Völlig normal.",
+   "szene": {
+    "typ": "objekt",
+    "objekt": "🔊",
+    "text": "Klick und Brummen"
+   }
+  },
+  {
+   "text": "Ein alter Kühlschrank kann übrigens deutlich mehr Strom brauchen als ein neues Gerät, denn er läuft das ganze Jahr ohne Pause.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "angst",
+    "aktion": "schockiert",
+    "objekt": "💸",
+    "text": "Rund um die Uhr"
+   }
+  },
+  {
+   "text": "Zum Schluss ein Tipp, der Strom spart: Stell warme Reste nie direkt hinein, sondern lass sie vorher abkühlen.",
+   "szene": {
+    "typ": "liste",
+    "text": "Strom sparen",
+    "punkte": [
+     "Reste erst abkühlen",
+     "Tür nicht offen lassen",
+     "Gitter hinten sauber"
+    ]
+   }
+  },
+  {
+   "text": "Wusstest du, dass dieses Prinzip auch in deinem Haus an anderen Stellen steckt? Eine Klimaanlage funktioniert genau so.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "haende",
+    "objekt": "❄️",
+    "text": "Klimaanlage"
+   }
+  },
+  {
+   "text": "Auch eine Wärmepumpe fürs Heizen ist ein Kühlschrank, nur umgekehrt. Sie holt Wärme aus der Außenluft und pumpt sie ins Haus.",
+   "szene": {
+    "typ": "vergleich",
+    "links": {
+     "objekt": "🧊",
+     "text": "Kühlschrank"
+    },
+    "rechts": {
+     "objekt": "🔥",
+     "text": "Wärmepumpe"
+    }
+   }
+  },
+  {
+   "text": "Ein Kühlschrank ist also in Wahrheit ein kleines Wunder der Physik, das du jeden Tag benutzt, ohne es zu merken.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "staunen",
+    "aktion": "jubelt",
+    "objekt": "✨"
+   }
+  },
+  {
+   "text": "Und jetzt hast du es verstanden: Dein Kühlschrank erzeugt keine Kälte, er schafft einfach nur die Wärme weg.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "freude",
+    "aktion": "jubelt",
+    "objekt": "🧊"
+   }
+  },
+  {
+   "text": "Dazu noch ein paar schnelle Fragen, die uns Leute oft stellen. Die erste: Warum ist der Kühlschrank im Sommer lauter?",
+   "szene": {
+    "typ": "gruppe",
+    "ort": "stadt",
+    "anzahl": 5,
+    "gefuehl": "denken",
+    "aktion": "haende",
+    "text": "Schnelle Fragen"
+   }
+  },
+  {
+   "text": "Weil es draußen wärmer ist, muss der Motor mehr arbeiten. Die Wärme muss ja in eine noch wärmere Küche abgegeben werden.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "neutral",
+    "aktion": "zeigt",
+    "objekt": "☀️",
+    "text": "Heiße Küche"
+   }
+  },
+  {
+   "text": "Frage zwei: Darf man einen Kühlschrank neben den Herd stellen? Besser nicht, denn die Hitze des Herds macht ihm das Leben schwer.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "angst",
+    "aktion": "schockiert",
+    "objekt": "🍳",
+    "text": "Nicht neben den Herd"
+   }
+  },
+  {
+   "text": "Er verbraucht dann viel mehr Strom, weil er gegen diese zusätzliche Wärme anarbeiten muss. Ein Abstand von ein paar Zentimetern hilft schon.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 10,
+    "einheit": "Prozent mehr Strom",
+    "objekt": "⚡",
+    "farbcode": "#ffb02e"
+   }
+  },
+  {
+   "text": "Frage drei: Warum soll man den Kühlschrank nicht ganz vollstopfen? Weil die kalte Luft zirkulieren muss, sonst werden manche Ecken zu warm.",
+   "szene": {
+    "typ": "figur",
+    "ort": "haus",
+    "gefuehl": "denken",
+    "aktion": "haende",
+    "objekt": "📦",
+    "text": "Luft muss strömen"
+   }
+  },
+  {
+   "text": "Beim Gefrierschrank ist es genau umgekehrt: Der darf voll sein. Gefrorenes Essen speichert die Kälte und hält sie länger.",
+   "szene": {
+    "typ": "vergleich",
+    "links": {
+     "objekt": "🥗",
+     "text": "Kühlschrank: Luft lassen"
+    },
+    "rechts": {
+     "objekt": "🧊",
+     "text": "Gefrierer: gern voll"
+    }
+   }
+  },
+  {
+   "text": "Frage vier: Wie lange hält das Essen bei einem Stromausfall? Mit geschlossener Tür bleibt ein Kühlschrank etwa vier Stunden kalt genug.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 4,
+    "einheit": "Stunden",
+    "objekt": "🔌",
+    "farbcode": "#8fd18c"
+   }
+  },
+  {
+   "text": "Ein voller Gefrierschrank schafft es auf bis zu zwei Tage, wenn man ihn nicht öffnet. Das nächste Mal weißt du also, was zu tun ist.",
+   "szene": {
+    "typ": "zahl",
+    "zahl": 48,
+    "einheit": "Stunden",
+    "objekt": "🧊",
+    "farbcode": "#9fd8ff"
+   }
+  },
+  {
+   "text": "Welches Alltagsding sollen wir als Nächstes erklären? Schreib es in die Kommentare, und abonniere für mehr.",
+   "szene": {
+    "typ": "gruppe",
+    "ort": "stadt",
+    "anzahl": 6,
+    "gefuehl": "freude",
+    "aktion": "winkt",
+    "text": "Dein Vorschlag?"
+   }
+  }
+ ]
+}
