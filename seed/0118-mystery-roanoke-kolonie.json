@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-roanoke-kolonie",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1d1a10",
+    "#8c7a3a"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Dorf, aus dem alle Menschen verschwanden 🏚️",
+  "description": "Die verlorene Kolonie von Roanoke (1587 bis 1590): bis heute ungelöst. Theorien nennen wir als Theorien.\n\n#mystery #rätsel #geschichte #roanoke #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "roanoke",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "zylinder",
+    "name": "John White"
+  },
+  "segments": [
+    {
+      "text": "Alle Häuser stehen noch, aber kein Mensch ist mehr da.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "🏚️",
+        "text": "Roanoke",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "John White kehrt nach drei Jahren zurück und findet Leere.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Über hundert Siedler sind spurlos verschwunden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 7,
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "text": "Verschwunden"
+      }
+    },
+    {
+      "text": "In einen Pfosten ist ein Wort geschnitzt: Croatoan.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🪵",
+        "text": "CROATOAN"
+      }
+    },
+    {
+      "text": "So hieß eine nahe Insel und ein Stamm.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Croatoan"
+      }
+    },
+    {
+      "text": "Das vereinbarte Notzeichen, ein Kreuz, fehlt.",
+      "szene": {
+        "typ": "akte",
+        "text": "Kein Kreuz",
+        "punkte": [
+          "✝️",
+          "❌",
+          "🏚️"
+        ]
+      }
+    },
+    {
+      "text": "Eine Theorie: Sie zogen zu Nachbarn. Bewiesen ist das nicht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gruen",
+          "hut": "keiner",
+          "gefuehl": "neutral",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Bis heute fehlt jede Gewissheit. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Ungelöst",
+        "wetter": "nebel"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "horror-poveglia-insel",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10181f",
+    "#4a6a7a"
+  ],
+  "accent": "#e0392f",
+  "title": "Die Insel, die niemand betreten darf 🏝️",
+  "description": "Poveglia vor Venedig: Pestinsel, Anstalt, Legenden. Was belegt ist und was Legende, sagen wir im Video.\n\n#horror #legende #venedig #gruselig #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "venedig",
+    "gruselig",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Leo"
+  },
+  "segments": [
+    {
+      "text": "Nachts fährt ein Boot zur Insel, die niemand betreten darf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "wetter": "nebel",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Poveglia liegt vor Venedig und ist seit Jahrzehnten gesperrt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Poveglia"
+      }
+    },
+    {
+      "text": "Im Mittelalter schickte man dort Pestkranke hin.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "☠️",
+        "text": "Quarantäne"
+      }
+    },
+    {
+      "text": "Später stand dort eine Anstalt für kranke Menschen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "krankenhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Der Legende nach geht dort noch ein Arzt um.",
+      "szene": {
+        "typ": "monster",
+        "ort": "krankenhaus",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Besucher erzählen von Stimmen und Schritten in den Mauern.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Stimmen?"
+      }
+    },
+    {
+      "text": "Belegt ist nur: Die Insel ist verlassen und verfällt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🔒",
+        "text": "Betreten verboten"
+      }
+    },
+    {
+      "text": "Würdest du dort eine Nacht bleiben?",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

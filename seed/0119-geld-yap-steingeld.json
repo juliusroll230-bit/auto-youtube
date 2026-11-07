@@ -1,0 +1,49 @@
+{
+  "slug": "geld-yap-steingeld",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#14282e",
+    "#8a7a3a"
+  ],
+  "accent": "#ffd27a",
+  "title": "Diese Insel zahlte mit tonnenschweren Steinen 🪨",
+  "description": "Das Steingeld der Insel Yap: riesige Kalkstein-Scheiben als Zahlungsmittel. Keine Anlageberatung.\n\n#geld #yap #steingeld #wissen #shorts",
+  "tags": [
+    "geld",
+    "yap",
+    "steingeld",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🪨",
+      "text": "Auf dieser Insel zahlte man mit *tonnenschweren* Steinen.",
+      "clip": "stone disc island"
+    },
+    {
+      "emoji": "🏝️",
+      "text": "Auf *Yap* im Pazifik dienten riesige Kalkstein-Scheiben als Geld. Wie bezahlt man mit einem Stein, den man nicht tragen kann?",
+      "clip": "pacific island aerial"
+    },
+    {
+      "emoji": "🤝",
+      "text": "Man verkaufte den Stein weiter und merkte sich nur den neuen *Besitzer*. Der Stein blieb liegen.",
+      "clip": "villagers talking tropical",
+      "visual": {
+        "type": "wort",
+        "text": "Rai-Stein"
+      }
+    },
+    {
+      "emoji": "🌊",
+      "text": "Der Legende nach galt sogar ein *versunkener* Stein weiter als Geld. Alle wussten, wem er gehörte.",
+      "clip": "ocean waves underwater"
+    },
+    {
+      "emoji": "👉",
+      "text": "Geld ist vor allem Vertrauen. Keine Anlageberatung. Folge für mehr.",
+      "clip": "coins closeup"
+    }
+  ]
+}

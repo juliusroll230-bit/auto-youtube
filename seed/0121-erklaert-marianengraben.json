@@ -1,0 +1,107 @@
+{
+  "slug": "erklaert-marianengraben",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#07141f",
+    "#1f5a8c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Rätsel um den tiefsten Punkt im Meer 🌊",
+  "description": "Der Marianengraben im Pazifik: Tauchgang 1960, enormer Druck und kaum erforschtes Leben.\n\n#tiefsee #marianengraben #wissen #rätsel #shorts",
+  "tags": [
+    "tiefsee",
+    "marianengraben",
+    "wissen",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "helm",
+    "name": "Dr. Piccard"
+  },
+  "segments": [
+    {
+      "text": "Fast elftausend Meter unter dir ist alles stockdunkel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "faellt"
+      }
+    },
+    {
+      "text": "Das ist der Marianengraben, der tiefste bekannte Ort im Meer.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Marianengraben"
+      }
+    },
+    {
+      "text": "Neunzehnhundertsechzig tauchten dort zwei Männer im U-Boot bis ganz nach unten.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1960,
+        "text": "Erster Tauchgang",
+        "objekt": "🚢",
+        "stempel": "wahr"
+      }
+    },
+    {
+      "text": "Der Druck ist mehr als tausendmal höher als oben.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏖️",
+          "text": "Oberfläche: 1"
+        },
+        "rechts": {
+          "objekt": "🌊",
+          "text": "Graben: 1000+"
+        }
+      }
+    },
+    {
+      "text": "Trotzdem leben dort winzige Krebstiere.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🦐",
+        "text": "Leben?"
+      }
+    },
+    {
+      "text": "Forscher fanden dort sogar Plastikmüll.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🛍️",
+        "text": "Plastikmüll"
+      }
+    },
+    {
+      "text": "Große Teile der Tiefsee sind noch kaum erforscht.",
+      "szene": {
+        "typ": "akte",
+        "text": "Unerforscht",
+        "punkte": [
+          "🌊",
+          "🔦",
+          "🗺️"
+        ]
+      }
+    },
+    {
+      "text": "Was lebt noch dort unten? Niemand weiß es.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Unbekannt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

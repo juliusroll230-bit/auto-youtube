@@ -1,0 +1,52 @@
+{
+  "slug": "psychologie-marshmallow-test",
+  "niche": "Psychologie",
+  "colors": [
+    "#241638",
+    "#9c4a8c"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Ein Marshmallow sollte dein Leben vorhersagen 🍡",
+  "description": "Der Marshmallow-Test von Walter Mischel und was spätere Studien dazu fanden.\n\n#psychologie #marshmallow #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "marshmallow",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🍡",
+      "text": "Ein *Marshmallow* sollte dein Leben vorhersagen.",
+      "clip": "marshmallow closeup"
+    },
+    {
+      "emoji": "🧒",
+      "text": "In den Siebzigern ließ *Walter Mischel* Kinder mit einem Marshmallow allein. Wer wartete, bekam einen zweiten. Wer hielt durch?",
+      "clip": "child waiting table"
+    },
+    {
+      "emoji": "📈",
+      "text": "Jahre später schienen die Wartenden erfolgreicher. Das klang nach einem *Charaktertest*.",
+      "clip": "kids school hallway",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Warten",
+          "Zwei Stück",
+          "Erfolg?"
+        ]
+      }
+    },
+    {
+      "emoji": "🔍",
+      "text": "Doch spätere Studien fanden einen viel *kleineren* Effekt. Familie und Umfeld spielen eine große Rolle.",
+      "clip": "family dinner table"
+    },
+    {
+      "emoji": "👉",
+      "text": "Warten ist nicht alles. Folge für mehr.",
+      "clip": "waiting clock closeup"
+    }
+  ]
+}

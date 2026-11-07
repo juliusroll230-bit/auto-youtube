@@ -1,0 +1,55 @@
+{
+  "slug": "business-pagani-fangio",
+  "style": "car",
+  "car_color": "#3a3a46",
+  "niche": "Business",
+  "accent": "#ffd27a",
+  "title": "Dieser Supersportwagen trägt den Namen eines Windes 🌬️",
+  "description": "Horacio Pagani, Juan Manuel Fangio und der Zonda: die Geschichte der Marke Pagani.\n\n#business #pagani #autos #zonda #shorts",
+  "tags": [
+    "business",
+    "pagani",
+    "autos",
+    "zonda",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Dieser *Supersportwagen* ist nach einem Wind benannt.",
+      "clip": "supercar closeup"
+    },
+    {
+      "text": "Horacio Pagani kam aus Argentinien und träumte von eigenen Autos. Doch wer glaubte an ihn?",
+      "clip": "argentina city street"
+    },
+    {
+      "text": "Rennlegende *Fangio* riet ihm, nach Italien zu gehen. Dort arbeitete er bei *Lamborghini*.",
+      "clip": "italian factory workers",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1983,
+            "Lamborghini"
+          ],
+          [
+            1992,
+            "Eigene Firma"
+          ],
+          [
+            1999,
+            "Zonda"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Neunzehnhundertneunundneunzig kam der *Zonda* auf den Markt. Er trägt den Namen eines Fallwinds aus den Anden.",
+      "clip": "andes mountains wind"
+    },
+    {
+      "text": "Ein Wind, ein Traum, ein Auto. Folge für mehr.",
+      "clip": "sports car road"
+    }
+  ]
+}

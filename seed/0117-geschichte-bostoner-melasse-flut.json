@@ -1,0 +1,48 @@
+{
+  "slug": "geschichte-bostoner-melasse-flut",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1c14",
+    "#8c5a2a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Diese Stadt wurde von Sirup überrollt 🍯",
+  "description": "Die Melasse-Flut von Boston am 15. Januar 1919.\n\n#geschichte #boston #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "boston",
+    "melasse",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🍯",
+      "text": "Boston wurde von einer *Sirup*-Welle überrollt.",
+      "clip": "syrup pouring closeup"
+    },
+    {
+      "emoji": "🏙️",
+      "text": "Am fünfzehnten Januar neunzehnhundertneunzehn platzte im Nordviertel ein riesiger *Tank*. Was war darin?",
+      "clip": "old boston street"
+    },
+    {
+      "emoji": "🌊",
+      "text": "Eine mehrere Meter hohe Welle aus *Melasse* rollte durch die Straßen. Sie riss Wagen und Häuser mit.",
+      "clip": "flood street water",
+      "visual": {
+        "type": "wort",
+        "text": "Melasse"
+      }
+    },
+    {
+      "emoji": "😨",
+      "text": "Einundzwanzig Menschen starben. Der Sirup war zäh, klebte *überall* und machte die Rettung sehr schwer.",
+      "clip": "firefighters rescue"
+    },
+    {
+      "emoji": "👉",
+      "text": "Süßes Unglück, bitterer Preis. Folge für mehr.",
+      "clip": "honey dripping spoon"
+    }
+  ]
+}

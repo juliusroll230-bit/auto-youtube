@@ -1,0 +1,117 @@
+{
+  "slug": "horror-station-13-teil-2",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Station 13",
+  "teil": 2,
+  "colors": [
+    "#0f1a17",
+    "#3fa35b"
+  ],
+  "accent": "#e0392f",
+  "title": "Station 13: Wer ist die Zwölfte? (Teil 2) 🛗",
+  "description": "Station 13, Teil 2. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #zombie #serie #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "zombie",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Ben zieht Mia durch die Gasse, hinter ihnen brüllen Zombies.",
+      "szene": {
+        "typ": "monster",
+        "ort": "strasse",
+        "monster": "zombie",
+        "anzahl": 3,
+        "wetter": "regen",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Station dreizehn, Teil zwei: Die Spur führt zurück ins Krankenhaus.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Station 13",
+        "teil": 2,
+        "ort": "krankenhaus"
+      }
+    },
+    {
+      "text": "Ben nennt drei Regeln, um bis zum Morgen zu überleben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Bens Regeln",
+        "punkte": [
+          "Nie allein",
+          "Kein Licht",
+          "Nicht schreien"
+        ]
+      }
+    },
+    {
+      "text": "Regel drei ist schon gebrochen: Mia hat geschrien.",
+      "szene": {
+        "typ": "horror",
+        "ort": "krankenhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Im Keller summt ein Fahrstuhl, den es nicht geben dürfte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🛗",
+        "text": "Fahrstuhl"
+      }
+    },
+    {
+      "text": "Darin steht eine zwölfte Aufwacherin und starrt Mia an.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "neutral",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Sie trägt Mias Namensschild. Und sie lächelt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "krankenhaus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🏷️"
+      }
+    },
+    {
+      "text": "Wer ist die Zwölfte? Teil drei kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Teil 3 kommt"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

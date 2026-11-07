@@ -1,0 +1,108 @@
+{
+  "slug": "mystery-nordwacht-teil-1",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "serie": "Nordwacht",
+  "teil": 1,
+  "colors": [
+    "#0d1a24",
+    "#3a7a9c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Nordwacht: Wer funkt vom leeren Leuchtturm? (Teil 1) 🗼",
+  "description": "Nordwacht, Teil 1. Eine ausgedachte Mystery-Serie.\n\n#mystery #leuchtturm #rätsel #serie #shorts",
+  "tags": [
+    "mystery",
+    "leuchtturm",
+    "rätsel",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "muetze",
+    "name": "Elin"
+  },
+  "segments": [
+    {
+      "text": "Elin rudert durch den Nebel auf einen blinkenden Leuchtturm zu.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "wetter": "nebel",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Nordwacht, Teil eins: Der Turm ist seit Jahren verlassen.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Nordwacht",
+        "teil": 1,
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Sein Licht blinkt in Morsezeichen, immer dieselbe Folge.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🔦",
+        "text": "Morsezeichen",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Elin schreibt mit: kurz, kurz, lang, dann Pause.",
+      "szene": {
+        "typ": "akte",
+        "text": "Das Signal",
+        "punkte": [
+          "⚫",
+          "⚫",
+          "➖",
+          "⏸️"
+        ]
+      }
+    },
+    {
+      "text": "Im Turm steht eine Tasse Tee, noch warm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "☕",
+        "text": "Noch warm"
+      }
+    },
+    {
+      "text": "Hundertzwölf Striche an der Wand, einer für jeden Tag.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 112,
+        "einheit": "Tage",
+        "objekt": "📅",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Oben dreht sich das Licht, und jemand flüstert ihren Namen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Wer ruft sie von dort? Teil zwei kommt bald.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗼",
+        "text": "Nordwacht"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
