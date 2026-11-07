@@ -23,8 +23,8 @@ const capText = s => s.toLowerCase().replace(/[-–—]/g, ' ').replace(/[^\p{L}
 function drawCaption(ctx, t) {
   const c = CHUNKS.find(c => t >= c.s && t < c.e); if (!c) return;
   const k = clamp((t - c.s) / .1); const sc = .82 + .18 * backOut(k);
-  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(540, 1345); ctx.scale(sc, sc);
-  const str = capText(c.text); ctx.font = '700 78px Poppins'; const wd = ctx.measureText(str).width; const fs = wd > 900 ? 78 * 900 / wd : 78;
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(W / 2, WIDE ? H - 130 : 1345); ctx.scale(sc, sc);
+  const str = capText(c.text); const FS = WIDE ? 66 : 78, MW = WIDE ? 1500 : 900; ctx.font = `700 ${FS}px Poppins`; const wd = ctx.measureText(str).width; const fs = wd > MW ? FS * MW / wd : FS;
   ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 5;
   text(ctx, str, 0, 0, fs, '#fff', '#111', 14, 'Poppins', 700);
   ctx.shadowColor = 'transparent'; text(ctx, str, 0, 0, fs, '#fff', '#111', 0, 'Poppins', 700);
@@ -34,7 +34,7 @@ function renderShot(ctx, i, t) {
   const s = SHOTS[i];
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
-  ctx.save(); s.draw(ctx, t - s.start, t); ctx.restore();
+  ctx.save(); base(ctx); s.draw(ctx, t - s.start, t); ctx.restore();
 }
 function blit(src, dx, blur) {
   const n = blur > 2 ? 7 : 1;
@@ -54,8 +54,8 @@ function renderFrame(f) {
   renderShot(bctx, i, t);
   blit(buf, dx, blur);
   out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
-  const g = out.createRadialGradient(540, 900, DARK ? 380 : 500, 540, 960, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, DARK ? 'rgba(4,2,14,.62)' : 'rgba(10,5,20,.32)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
-  if (DARK) { out.globalCompositeOperation = 'multiply'; out.fillStyle = PLAN.stimmung === 'gruselig' ? '#a39fbf' : '#9cadca'; out.fillRect(0, 0, W, H); out.globalCompositeOperation = 'source-over'; fog(out, t, .22, 1500); }
+  const VK = WIDE ? .75 : 1; const g = out.createRadialGradient(W / 2, H * .47, (DARK ? 380 : 500) * VK, W / 2, H / 2, 1250 * VK * (WIDE ? 1.15 : 1)); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, DARK ? 'rgba(4,2,14,.62)' : 'rgba(10,5,20,.32)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
+  if (DARK) { out.globalCompositeOperation = 'multiply'; out.fillStyle = PLAN.stimmung === 'gruselig' ? '#a39fbf' : '#9cadca'; out.fillRect(0, 0, W, H); out.globalCompositeOperation = 'source-over'; fog(out, t, .22, WIDE ? 1250 : 1500); }
   out.globalCompositeOperation = 'overlay'; out.globalAlpha = .07; const pat = out.createPattern(grains[f % 4], 'repeat'); out.fillStyle = pat; out.translate((f * 37) % 256, (f * 91) % 256); out.fillRect(-256, -256, W + 512, H + 512);
   out.restore();
   drawCaption(out, t);
