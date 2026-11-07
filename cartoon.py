@@ -150,7 +150,8 @@ def plan(spec, timings, total):
         scenes.append(sc)
     for sc in scenes:  # gleiche Figur im ganzen Video, wenn die Szene nichts anderes sagt
         sc.setdefault("figur", spec.get("figur") or {"farbe": "rot"})
-    return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec)}
+    return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec),
+            "wide": is_long(spec)}  # lange Videos: Querformat 1920x1080
 
 
 def stage(p, folder):
@@ -162,13 +163,13 @@ def stage(p, folder):
         f.write("const PLAN=" + json.dumps(p, ensure_ascii=False) + ";")
 
 
-def open_page(folder):
+def open_page(folder, wide=False):
     from playwright.sync_api import sync_playwright
 
     pw = sync_playwright().start()
     browser = pw.chromium.launch(**({"executable_path": CHROME} if CHROME else {}),
                                  args=["--allow-file-access-from-files", "--no-sandbox"])
-    page = browser.new_page(viewport={"width": 1080, "height": 1920})
+    page = browser.new_page(viewport={"width": 1920, "height": 1080} if wide else {"width": 1080, "height": 1920})
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
     page.goto("file://" + os.path.join(folder, "index.html"))
@@ -202,16 +203,13 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     if info is not None:
         info["stock"] = []
     with tempfile.TemporaryDirectory(prefix="cartoon-") as tmp:
-        stage(plan(spec, timings, total), tmp)
-        pw, browser, page = open_page(tmp)
+        p = plan(spec, timings, total)
+        stage(p, tmp)
+        pw, browser, page = open_page(tmp, p["wide"])
         try:
-            # Lange Videos: Querformat 1920x1080, das Hochformat-Bild steht in der Mitte vor unscharfem Hintergrund
-            wide = ["-filter_complex", "[0:v]split[a][b];[a]scale=1920:1080:force_original_aspect_ratio=increase,"
-                    "crop=1920:1080,boxblur=40:4[bg];[b]scale=-2:1080[fg];[bg][fg]overlay=(W-w)/2:0,format=yuv420p[v]",
-                    "-map", "[v]", "-map", "1:a"] if is_long(spec) else []
             ff = subprocess.Popen([
                 "ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS), "-c:v", "mjpeg",
-                "-i", "-", "-i", wav, *wide, "-c:v", "libx264", "-preset", "veryfast" if is_long(spec) else "medium",
+                "-i", "-", "-i", wav, "-c:v", "libx264", "-preset", "veryfast" if is_long(spec) else "medium",
                 "-crf", "20" if is_long(spec) else "19", "-profile:v", "high",
                 "-g", str(FPS * 2), "-pix_fmt", "yuv420p", "-af", make_short.AUDIO_FILTER, "-ar", "48000",
                 "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", mp4,
@@ -235,8 +233,9 @@ def render_thumbnail(spec, path, width=360):
 
     timings, total = make_short.estimated_timings(spec)
     with tempfile.TemporaryDirectory(prefix="cartoon-") as tmp:
-        stage(plan(spec, timings, total), tmp)
-        pw, browser, page = open_page(tmp)
+        p = plan(spec, timings, total)
+        stage(p, tmp)
+        pw, browser, page = open_page(tmp, p["wide"])
         try:
             jpg = next(frames(page, [0.9]))
         finally:
@@ -251,8 +250,9 @@ def stills(spec, times, out_dir):
     os.makedirs(out_dir, exist_ok=True)
     timings, total = make_short.estimated_timings(spec)
     with tempfile.TemporaryDirectory(prefix="cartoon-") as tmp:
-        stage(plan(spec, timings, total), tmp)
-        pw, browser, page = open_page(tmp)
+        p = plan(spec, timings, total)
+        stage(p, tmp)
+        pw, browser, page = open_page(tmp, p["wide"])
         try:
             paths = []
             for t, jpg in zip(times, frames(page, times)):

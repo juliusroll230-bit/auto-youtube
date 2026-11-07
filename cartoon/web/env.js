@@ -3,9 +3,9 @@ function hex2rgb(h) { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255,
 function mix(a, b, t) { const A = hex2rgb(a), B = hex2rgb(b); return `rgb(${A.map((v, i) => Math.round(lerp(v, B[i], t))).join(',')})`; }
 
 function applyCam(ctx, cam, depth = 1) {
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  base(ctx);
   const z = 1 + (cam.z - 1) * depth;
-  ctx.translate(W / 2, H / 2); ctx.rotate((cam.r || 0) * depth); ctx.scale(z, z);
+  ctx.translate(540, 960); ctx.rotate((cam.r || 0) * depth); ctx.scale(z, z);
   ctx.translate(-(540 + (cam.x - 540) * depth), -(960 + (cam.y - 960) * depth));
 }
 function drawSky(ctx, top = '#3ea6ee', bot = '#c9ecfb', y0 = -400, y1 = 1100) {
@@ -248,7 +248,7 @@ function drawBelowDeck(ctx, tint = 0, lightX = 540, t = 0) {
   for (let i = 0; i < 30; i++) { const bx = -1600 + i * 170; line(ctx, 540 + (bx - 540) * .3, 1330, bx, 2600, 4, mix('#3e2414', '#000', tint)); }
   ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fillRect(-800, 1330, 2700, 20);
 }
-function darkness(ctx, a, col = '#050407') { if (a <= 0) return; ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = clamp(a); ctx.fillStyle = col; ctx.fillRect(0, 0, W, H); ctx.restore(); }
+function darkness(ctx, a, col = '#050407') { if (a <= 0) return; ctx.save(); base(ctx); ctx.globalAlpha = clamp(a); ctx.fillStyle = col; ctx.fillRect(-1500, -1500, 4080, 4500); ctx.restore(); }
 function lightShaft(ctx, x0, y0, wTop, wBot, len, a) {
   ctx.save(); ctx.globalCompositeOperation = 'lighter';
   const g = ctx.createLinearGradient(0, y0, 0, y0 + len); g.addColorStop(0, `rgba(255,236,190,${.5 * a})`); g.addColorStop(1, 'rgba(255,230,180,0)');

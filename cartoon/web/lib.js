@@ -1,5 +1,11 @@
 // ---------- core helpers ----------
-const W = 1080, H = 1920, FPS = 30;
+// Hochformat (Shorts): 1080x1920. Lange Videos (PLAN.wide): 1920x1080. Die Szenen sind für Hochformat gezeichnet (Entwurfsraum
+// 1080x1920, Hintergründe reichen weit über den Rand). Im Querformat zeigt base() einen Ausschnitt davon, verkleinert auf 0,75.
+const WIDE = PLAN.wide === true;
+const W = WIDE ? 1920 : 1080, H = WIDE ? 1080 : 1920, FPS = 30;
+const WS = .85;
+const BASE = WIDE ? [WS, 0, 0, WS, 960 - 540 * WS, 540 - 860 * WS] : [1, 0, 0, 1, 0, 0];
+const base = ctx => ctx.setTransform(...BASE);
 const INK = '#221c22';
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
