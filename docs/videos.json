@@ -6,11 +6,56 @@
  },
  "videos": [
   {
+   "id": "0uujT_5dmkc",
+   "title": "Was passiert, wenn du in ein Schwarzes Loch fällst? ⚫",
+   "text": "Spaghettisierung und Ereignishorizont: was Physiker berechnen. Was drinnen wirklich passiert, weiß niemand.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-07T09:37:19+00:00",
+   "thumb": "thumbs/0uujT_5dmkc.jpg"
+  },
+  {
+   "id": "UZztI9BQG2M",
+   "title": "Das Geisterschiff ohne Crew: Was geschah auf der Mary Celeste? 🚢",
+   "text": "1872 wird die Mary Celeste mitten im Atlantik gefunden. Das Schiff ist intakt, aber alle zehn Menschen an Bord sind verschwunden. Bis heute ist nicht sicher, was passiert ist. Die bekannteste Theorie zeigen wir am Ende, bewiesen ist sie nicht.",
+   "niche": "Geschichte",
+   "views": 120,
+   "published": "2026-11-07T07:38:42+00:00",
+   "thumb": "thumbs/UZztI9BQG2M.jpg"
+  },
+  {
+   "id": "iH11txB5kEM",
+   "title": "Station 13: Warum ist das Krankenhaus leer? (Teil 1) 🧟",
+   "text": "Station 13, Teil 1. Eine ausgedachte Grusel-Serie.",
+   "niche": "Wissen",
+   "views": 357,
+   "published": "2026-11-07T05:38:14+00:00",
+   "thumb": "thumbs/iH11txB5kEM.jpg"
+  },
+  {
+   "id": "H99mKazl2CE",
+   "title": "Warum tragen piraten augengeklappen  #geschichte #bitcoin #psychologie #fakten #geografie #wissen",
+   "text": "",
+   "niche": "Wissen",
+   "views": 696,
+   "published": "2026-11-06T20:22:46+00:00",
+   "thumb": "thumbs/H99mKazl2CE.jpg"
+  },
+  {
+   "id": "ad4SHN8JKpI",
+   "title": "Dieses Autologo hat mit Wasserkastanien zu tun 🔺",
+   "text": "Reederei, Familienwappen und das erste Serienauto Japans: die Geschichte hinter Mitsubishi.",
+   "niche": "Autos",
+   "views": 183,
+   "published": "2026-11-06T19:37:04+00:00",
+   "thumb": "thumbs/ad4SHN8JKpI.jpg"
+  },
+  {
    "id": "OF187hpA8Y0",
    "title": "Dieser Autogigant trägt den Namen eines Schweizers 🇨🇭",
    "text": "Louis Chevrolet, William Durant und die Legende vom Fliegen-Logo der Marke Chevrolet.",
    "niche": "Autos",
-   "views": 0,
+   "views": 2,
    "published": "2026-11-06T17:37:13+00:00",
    "thumb": "thumbs/OF187hpA8Y0.jpg"
   },
@@ -19,7 +64,7 @@
    "title": "Belohnung kann die Freude am Malen töten 🖍️",
    "text": "Der Überrechtfertigungseffekt: Lepper-Experiment mit Kindergartenkindern von neunzehnhundertdreiundsiebzig.",
    "niche": "Psychologie",
-   "views": 53,
+   "views": 99,
    "published": "2026-11-06T16:36:32+00:00",
    "thumb": "thumbs/TmBqwPNY-3w.jpg"
   },
@@ -28,8 +73,8 @@
    "title": "Warum ein Marathon so seltsam lang ist 🏃",
    "text": "Die Marathon-Distanz von zweiundvierzig Kilometern und hundertfünfundneunzig Metern stammt von den Olympischen Spielen 1908 in London.",
    "niche": "Geschichte",
-   "views": 0,
-   "published": "2026-11-06T15:36:47+00:00",
+   "views": 96,
+   "published": "2026-11-06T15:37:15+00:00",
    "thumb": "thumbs/_IRJJ8UBMMA.jpg"
   },
   {
@@ -37,7 +82,7 @@
    "title": "Dieser Geländewagen gab es erst nur in einer Farbe 🟢",
    "text": "Warum der erste Land Rover grün war und aus Aluminium bestand.",
    "niche": "Autos",
-   "views": 103,
+   "views": 191,
    "published": "2026-11-06T13:36:55+00:00",
    "thumb": "thumbs/MdDLzPYwzdE.jpg"
   },
@@ -46,7 +91,7 @@
    "title": "Warum längeres Leid manchmal besser erscheint 🧊",
    "text": "Die Peak-End-Regel: Daniel Kahnemans Versuch mit eiskaltem Wasser.",
    "niche": "Psychologie",
-   "views": 48,
+   "views": 93,
    "published": "2026-11-06T12:37:16+00:00",
    "thumb": "thumbs/DLrvT_u85Wc.jpg"
   },
@@ -55,7 +100,7 @@
    "title": "Dieser König ließ Kartoffeln bewachen 🥔",
    "text": "Friedrich der Große und die Kartoffel: der Kartoffelbefehl von 1756 und eine Legende.",
    "niche": "Geschichte",
-   "views": 74,
+   "views": 108,
    "published": "2026-11-06T11:37:18+00:00",
    "thumb": "thumbs/KUH9MiI0oD4.jpg"
   },
@@ -64,7 +109,7 @@
    "title": "Eine Blume löste angeblich den ersten Börsenrausch aus 🌷",
    "text": "Die Tulpenmanie in den Niederlanden um sechzehnhundertsiebenunddreißig: Historiker streiten über das Ausmaß. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 37,
+   "views": 39,
    "published": "2026-11-06T07:37:05+00:00",
    "thumb": "thumbs/7xgtyBOMGW4.jpg"
   },
@@ -73,7 +118,7 @@
    "title": "Hier regnet es manchmal jahrelang nicht 🏜️",
    "text": "Die Atacama-Wüste in Chile: einer der trockensten Orte der Erde.",
    "niche": "Geografie",
-   "views": 54,
+   "views": 72,
    "published": "2026-11-06T05:36:45+00:00",
    "thumb": "thumbs/vdfCe-Ivoec.jpg"
   },
@@ -82,7 +127,7 @@
    "title": "Dieses Autologo zeigt zwei Wappen aus Mailand 🐍",
    "text": "Schlange und Kreuz im Alfa-Romeo-Logo und was der Name wirklich bedeutet.",
    "niche": "Autos",
-   "views": 59,
+   "views": 64,
    "published": "2026-11-05T19:37:12+00:00",
    "thumb": "thumbs/oRzf-pvUdg8.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Dieses Autologo ist eigentlich ein Zahnrad ⚙️",
    "text": "Wie ein Patent aus Polen zum Doppelwinkel-Logo von Citroën wurde.",
    "niche": "Autos",
-   "views": 166,
+   "views": 214,
    "published": "2026-11-05T17:36:59+00:00",
    "thumb": "thumbs/5rhlmsXJrDI.jpg"
-  },
-  {
-   "id": "aA63RwPc1U8",
-   "title": "Dieses Auto wurde plötzlich achtmal schneller gebaut 🏭",
-   "text": "Wie Henry Ford mit dem Fließband den Autobau und den Preis des Modells T veränderte.",
-   "niche": "Autos",
-   "views": 123,
-   "published": "2026-11-05T16:37:14+00:00",
-   "thumb": "thumbs/aA63RwPc1U8.jpg"
-  },
-  {
-   "id": "nlZKg3-QVwM",
-   "title": "Warum auf eine kleine Bitte oft eine große folgt 🚪",
-   "text": "Der Foot-in-the-door-Effekt aus der Studie von Freedman und Fraser.",
-   "niche": "Psychologie",
-   "views": 135,
-   "published": "2026-11-05T15:37:19+00:00",
-   "thumb": "thumbs/nlZKg3-QVwM.jpg"
-  },
-  {
-   "id": "dZ3wqSrcmD4",
-   "title": "Dieser Stein öffnete das Alte Ägypten 🗿",
-   "text": "Der Stein von Rosette und wie Champollion die Hieroglyphen entzifferte.",
-   "niche": "Geschichte",
-   "views": 83,
-   "published": "2026-11-05T13:38:00+00:00",
-   "thumb": "thumbs/dZ3wqSrcmD4.jpg"
-  },
-  {
-   "id": "slOdlU_zUIM",
-   "title": "Diese französische Marke wurde woanders gegründet 🇫🇷",
-   "text": "Ein Italiener, eine Fabrik im Elsass und das Kaiserreich: die Herkunft von Bugatti.",
-   "niche": "Autos",
-   "views": 111,
-   "published": "2026-11-05T12:37:40+00:00",
-   "thumb": "thumbs/slOdlU_zUIM.jpg"
-  },
-  {
-   "id": "g5Ke4Gjn4NE",
-   "title": "Warum du deinen Namen im Lärm sofort hörst 👂",
-   "text": "Der Cocktailparty-Effekt: Wie dein Gehirn im Stimmengewirr deinen Namen erkennt.",
-   "niche": "Psychologie",
-   "views": 8,
-   "published": "2026-11-05T11:37:31+00:00",
-   "thumb": "thumbs/g5Ke4Gjn4NE.jpg"
   }
  ]
 }
