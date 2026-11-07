@@ -368,10 +368,22 @@ def approve_waiting():
 
 # --- Posten ------------------------------------------------------------------------------
 
-def ready_clips():
-    """Freigegebene, noch nicht gepostete Clips. Verteilt über die Kampagnen (nicht alle aus einer am Stück)."""
+def auto_allowed(c):
+    """Darf die Zentrale Clips dieser Kampagne selbst posten? Nicht bei Content-Rewards- bzw. Whop-Kampagnen:
+    dort muss Julius den Link innerhalb von 30 Minuten nach dem Posten einreichen, sonst zählt der Clip nicht.
+    Solche Clips postet er mit „Jetzt posten“, wenn er am Rechner ist."""
+    return not c.get("program")
+
+
+def ready_clips(auto=False):
+    """Freigegebene, noch nicht gepostete Clips. Verteilt über die Kampagnen (nicht alle aus einer am Stück).
+
+    auto=True: nur Clips, die automatisch auf einem Sendeplatz laufen dürfen (siehe auto_allowed).
+    """
     out = []
     for c in all_campaigns():
+        if auto and not auto_allowed(c):
+            continue
         posted = sum(1 for x in c["clips"] if x["status"] == "gepostet")
         for clip in c["clips"]:
             if clip["status"] == "freigegeben" and os.path.exists(clip_path(c, clip)):
@@ -389,7 +401,7 @@ def choose_for_slot(slot, hours, per_day, uploads, scripts_left=True):
     """Ob zu diesem Sendeplatz ein Clip statt eines KI-Shorts kommt (gleichmäßig über den Tag verteilt)."""
     if per_day <= 0 or posted_today(uploads) >= per_day:
         return None
-    ready = ready_clips()
+    ready = ready_clips(auto=True)
     if not ready:
         return None
     if not scripts_left:

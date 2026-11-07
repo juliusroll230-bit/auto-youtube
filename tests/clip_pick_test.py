@@ -44,3 +44,14 @@ assert (lo, hi) == (20, 45), (lo, hi)
 lo, hi = clips.clip_lengths(60, 5, 20, 45)
 assert clips.MIN_CLIP <= hi <= 12 and lo <= hi, (lo, hi)
 print("ok")
+
+# Content-Rewards-Clips (Kampagne mit program) dürfen nie automatisch auf einem Sendeplatz laufen,
+# weil der Link 30 Minuten nach dem Posten eingereicht werden muss.
+_camps = [{"id": "cr", "program": "96d61823", "clips": [{"n": 1, "status": "freigegeben"}]},
+          {"id": "frei", "clips": [{"n": 1, "status": "freigegeben"}]}]
+clips.all_campaigns = lambda: _camps
+clips.clip_path = lambda c, clip: os.path.abspath(__file__)
+assert [c["id"] for c, _ in clips.ready_clips(auto=True)] == ["frei"]
+_camps.pop()
+assert clips.choose_for_slot("2026-11-07-9", [9], 2, [], scripts_left=False) is None
+print("ok: Content-Rewards-Clips werden nicht automatisch gepostet")
