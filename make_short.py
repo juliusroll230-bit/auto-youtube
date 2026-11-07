@@ -35,7 +35,7 @@ VOICES = {
     "froehlich": (1.05, 0.94, 0.0),   # heller und etwas flotter, für Erklärungen und Kurioses
     "klar": (1.02, 0.96, 0.0),        # normal, leicht aufgehellt
     "erzaehler": (0.97, 1.0, 0.0),    # Geschichten-Erzähler
-    "unheimlich": (0.95, 1.05, 0.0),  # ernst und ruhig: kaum tiefer, etwas langsamer, ohne Hall und ohne Brummen
+    "unheimlich": (0.97, 1.13, 0.0),  # ernst und gelassen: kaum tiefer, deutlich ruhiger gesprochen, ohne Hall und ohne Brummen
 }
 
 
