@@ -29,12 +29,13 @@ FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 
 
 # Stimmen für Cartoons: (Tonhöhe, Tempo-Faktor, Hall; Hall bleibt aus). Unter 1 heißt schneller: Cartoons sollen zügig erzählen,
-# die tiefere Stimme wirkt von selbst ruhiger.
+# aber fröhliche Stimmen heller, ernste (unheimlich) kaum tiefer und etwas langsamer; zu tief klang wie ein Brummen.
 # Welche am besten ankommt, lernt learn.choose_voice.
 VOICES = {
-    "klar": (1.0, 0.9, 0.0),          # normal, für Erklärungen
-    "erzaehler": (0.94, 0.92, 0.0),   # Geschichten-Erzähler
-    "unheimlich": (0.88, 0.96, 0.0),  # tief (ohne Hall, den mochte Julius nicht)
+    "froehlich": (1.05, 0.94, 0.0),   # heller und etwas flotter, für Erklärungen und Kurioses
+    "klar": (1.02, 0.96, 0.0),        # normal, leicht aufgehellt
+    "erzaehler": (0.97, 1.0, 0.0),    # Geschichten-Erzähler
+    "unheimlich": (0.95, 1.05, 0.0),  # ernst und ruhig: kaum tiefer, etwas langsamer, ohne Hall und ohne Brummen
 }
 
 
