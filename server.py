@@ -197,6 +197,10 @@ def post_next(slot, manual=False):
         store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look)
         for a in ("planer", "sprecher", "studio", "publisher"):
             store.agent_done(a)
+        try:
+            store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
+        except OSError as e:
+            store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
         os.remove(video)
         store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""),
                   agent="publisher", kind="posted", source="youtube")
@@ -753,6 +757,12 @@ class Handler(BaseHTTPRequestHandler):
             return self.preview()
         if p == "/api/analytics/callback":
             return self.analytics_callback()
+        m = re.fullmatch(r"/api/share/([A-Za-z0-9_-]+)\.mp4", p)
+        if m:
+            u = next((x for x in store.state()["uploads"] if x.get("video_id") == m.group(1)), None)
+            if not u or not os.path.exists(store.share_path(m.group(1))):
+                return self.send(404, {"error": "Video nicht mehr gespeichert"})
+            return self.send_file(store.share_path(m.group(1)), "video/mp4", download=u["title"])
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
         if m:
             return self.thumb(m.group(1))
@@ -965,6 +975,12 @@ class Handler(BaseHTTPRequestHandler):
                     socials[k] = v
             store.save_config(socials=socials)
             return self.send(200, {"ok": True, "socials": socials})
+        if p == "/api/short/shared":
+            try:
+                store.set_short_shared(str(data.get("video_id", "")), str(data.get("platform", "")), bool(data.get("done")))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            return self.send(200, {"ok": True})
         if p == "/api/clip/shared":
             try:
                 clips.set_shared(str(data.get("id", "")), int(data.get("n", 0)), str(data.get("platform", "")),

@@ -77,7 +77,7 @@ def now():
 
 
 def init():
-    for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns"):
+    for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns", "share"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
         cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
@@ -262,6 +262,53 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
         write("state.json", st)
 
 
+SHARE_KEEP = 24  # so viele fertige Shorts bleiben zum Weiterposten auf TikTok und Instagram liegen
+
+
+def share_path(video_id):
+    return path("share", video_id + ".mp4")
+
+
+def keep_for_share(video, video_id):
+    """Legt eine Kopie des hochgeladenen Videos ab und räumt alte Kopien auf (Speicher sparen)."""
+    if not re.fullmatch(r"[A-Za-z0-9_-]{6,20}", video_id or ""):
+        return
+    shutil.copyfile(video, share_path(video_id))
+    old = sorted(glob.glob(path("share", "*.mp4")), key=os.path.getmtime, reverse=True)[SHARE_KEEP:]
+    for f in old:
+        try:
+            os.remove(f)
+        except OSError:
+            pass
+
+
+def set_short_shared(video_id, platform, done):
+    """Merkt sich, dass ein KI-Short von Hand auf TikTok oder Instagram gepostet wurde."""
+    if platform not in ("tiktok", "instagram"):
+        raise ValueError("Unbekannte Plattform.")
+    with LOCK:
+        st = state()
+        u = next((x for x in st["uploads"] if x.get("video_id") == video_id), None)
+        if not u:
+            raise ValueError("Unbekanntes Video.")
+        shared = dict(u.get("shared") or {})
+        if done:
+            shared[platform] = now().isoformat(timespec="seconds")
+        else:
+            shared.pop(platform, None)
+        u["shared"] = shared
+        write("state.json", st)
+
+
+def share_caption(spec, u):
+    """Text zum Einfügen bei TikTok und Instagram: Titel und die Hashtags des Videos."""
+    tags = re.findall(r"#\w+", (spec or {}).get("description", ""))
+    if not tags:
+        tags = ["#" + re.sub(r"\W+", "", t) for t in (spec or {}).get("tags", [])[:4]]
+    tags = list(dict.fromkeys(tags + ["#shorts", "#fyp"]))[:6]
+    return (u.get("title", "") + "\n\n" + " ".join(tags)).strip()
+
+
 def mark_slot(slot, done="done_slots"):
     with LOCK:
         st = state()
@@ -311,6 +358,8 @@ def posted_items():
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
+        if u.get("kind") != "clip" and os.path.exists(share_path(u["video_id"])):
+            item["share"] = share_caption(spec, u)  # Kopie liegt bereit: Download und Text für TikTok/Instagram
         if u.get("kind") == "clip" and u.get("campaign"):
             item["thumb"] = f"api/clip/{u['campaign']}/{u['n']}.jpg"
         posted.append(item)
