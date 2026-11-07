@@ -2698,7 +2698,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     publisher: [
       { k: "on", type: "switch", label: "Uploads an", hint: "Aus: Zu den Sendezeiten wird nichts gepostet. Die Sendezeiten stellst du im Bereich Kanal ein." },
       { k: "clips_per_day", type: "range", min: 0, max: 10, step: 1, label: "Clips pro Tag", fmt: function (v) { return v ? "bis zu " + v : "keine"; }, hint: "So viele Sendeplätze am Tag bekommen einen freigegebenen Clip statt eines KI-Shorts, gleichmäßig über den Tag verteilt." },
-      { k: "long_per_week", type: "range", min: 0, max: 7, step: 1, label: "Lange Videos pro Woche", fmt: function (v) { return v ? v + " pro Woche" : "keine"; }, hint: "Querformat-Erklärvideos (7 bis 12 Minuten), abends um 22 Uhr. Sie zählen nicht zu den Shorts am Tag." },
+      { k: "long_per_week", type: "range", min: 0, max: 7, step: 1, label: "Lange Videos pro Woche", fmt: function (v) { return v ? v + " pro Woche" : "keine"; }, hint: "Querformat-Erklärvideos (7 bis 12 Minuten), abends um 19 Uhr. Sie zählen nicht zu den Shorts am Tag." },
       { type: "info", label: "Ziel-Plattformen", rows: [["YouTube Shorts", "automatisch", true], ["TikTok", "per Download"], ["Instagram Reels", "per Download"]], hint: "TikTok und Instagram erlauben automatisches Posten nur für geprüfte Firmen-Apps. Lade den Clip im Bereich Kampagnen herunter und poste ihn in der App." }
     ],
     analyst: [

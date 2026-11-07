@@ -22,12 +22,12 @@ assert any("höchstens 95" in e for e in cartoon.validate({k: v for k, v in spec
 
 assert store.long_days(4) == [0, 2, 4, 5] and store.long_days(0) == [] and len(store.long_days(7)) == 7
 store.init()
-mon = store.TZ.localize(dt.datetime(2026, 11, 9, 21, 0)) if hasattr(store.TZ, "localize") else dt.datetime(2026, 11, 9, 21, 0, tzinfo=store.TZ)
-assert store.due_long(4, at=mon) is None, "vor 22 Uhr noch nicht"
-assert store.due_long(4, at=mon.replace(hour=22)) == "2026-11-09"
-assert store.due_long(4, at=mon.replace(hour=22, day=10)) is None, "Dienstag ist kein Tag für lange Videos"
+mon = store.TZ.localize(dt.datetime(2026, 11, 9, 17, 0)) if hasattr(store.TZ, "localize") else dt.datetime(2026, 11, 9, 17, 0, tzinfo=store.TZ)
+assert store.due_long(4, at=mon) is None, "vor 19 Uhr noch nicht"
+assert store.due_long(4, at=mon.replace(hour=19)) == "2026-11-09"
+assert store.due_long(4, at=mon.replace(hour=19, day=10)) is None, "Dienstag ist kein Tag für lange Videos"
 store.mark_slot("2026-11-09", "long_slots")
-assert store.due_long(4, at=mon.replace(hour=22)) is None, "heute schon gepostet"
+assert store.due_long(4, at=mon.replace(hour=19)) is None, "heute schon gepostet"
 
 short_spec = {"slug": "kurz-test", "title": "t", "niche": "Geld", "segments": [{"text": "Hallo."}]}
 open(store.path("queue", "0001-kurz.json"), "w").write(json.dumps(short_spec))

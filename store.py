@@ -396,7 +396,7 @@ def long_days(per_week):
     return sorted({round(i * 7 / per_week) % 7 for i in range(per_week)}) if per_week else []
 
 
-def due_long(per_week, hour=22, at=None):
+def due_long(per_week, hour=19, at=None):
     """Schlüssel des Tages, an dem ein langes Video dran ist (ab hour Uhr bis kurz vor Mitternacht), sonst None."""
     at = at or now()
     if at.weekday() not in long_days(per_week) or at.hour < hour:
