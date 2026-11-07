@@ -595,6 +595,34 @@ def hook_points(sentence):
     return pts
 
 
+CONNECT = {"und", "aber", "weil", "denn", "also", "oder", "sondern", "dass", "deshalb", "deswegen", "außerdem", "and", "but", "because", "so"}
+STOPWORDS = set("""der die das den dem des ein eine einen einem einer ist sind war waren hat haben wird werden nicht auch noch nur
+schon mal man es sie er wir ich du ihr sich mit von zu im in am an auf für bei aus nach wie was wenn als dann da hier ja nein
+the a an of to is are was in on and for it that this""".split())
+
+
+def completeness_points(part):
+    """Ganzer Gedanke (Idee aus AutoClip: Struktur): beginnt nicht mitten im Satz, endet mit einem Satzzeichen."""
+    pts = 0.0
+    first = _plain(part[0]["words"][0]["w"]) if part[0]["words"] else ""
+    if first in CONNECT:
+        pts -= 1.0  # setzt einen vorigen Satz fort
+    last = part[-1]["text"].rstrip()
+    pts += 1.0 if re.search(r"[.!?…]$", last) else -1.0
+    return pts
+
+
+def density_points(part):
+    """Informationsdichte (Idee aus AutoClip): viele verschiedene Inhaltswörter, wenig Füllwörter."""
+    ws = [_plain(w["w"]) for s in part for w in s["words"]]
+    ws = [w for w in ws if w]
+    if len(ws) < 8:
+        return 0.0
+    content = [w for w in ws if w not in STOPWORDS and w not in FILLER and len(w) > 3]
+    variety = len(set(content)) / len(ws)
+    return max(-1.0, min(1.5, (variety - 0.35) * 5))
+
+
 def candidates(sents, rms, keywords, min_len, max_len):
     target = (min_len + max_len) / 2
     mean = (sum(rms) / len(rms)) if rms else 0
@@ -622,6 +650,7 @@ def candidates(sents, rms, keywords, min_len, max_len):
                 score += 0.5 if max(seg) >= p90 else 0
             if len(part[-1]["words"]) <= 10:
                 score += 0.5  # kurzer letzter Satz: wirkt wie eine Pointe
+            score += completeness_points(part) + density_points(part)
             score -= 1.5 * abs(dur - target) / target
             out.append({"start": first["s"], "end": sents[j]["e"], "score": score, "i": i, "j": j})
     return out
