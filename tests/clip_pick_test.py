@@ -55,3 +55,12 @@ assert [c["id"] for c, _ in clips.ready_clips(auto=True)] == ["frei"]
 _camps.pop()
 assert clips.choose_for_slot("2026-11-07-9", [9], 2, [], scripts_left=False) is None
 print("ok: Content-Rewards-Clips werden nicht automatisch gepostet")
+
+# Bewertung: ganzer Gedanke und Informationsdichte (Ideen aus AutoClip, selbst geschrieben)
+full = clips.sentences(words("Warum scheitern Firmen an Autos? Weil Fabriken Milliarden kosten.", 0))
+cut = clips.sentences(words("und dann haben wir halt so gemacht", 0))
+assert clips.completeness_points(full) > clips.completeness_points(cut)
+rich = clips.sentences(words("Tesla produziert Batterien günstiger durch Gigafabriken in Nevada.", 0))
+thin = clips.sentences(words("ja das ist auch so und das ist dann halt so ja", 0))
+assert clips.density_points(rich) > clips.density_points(thin)
+print("ok: Bewertung")
