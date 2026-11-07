@@ -28,13 +28,13 @@ FONT_SEMI = os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf")
 FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 
 
-# Stimmen für Cartoons: (Tonhöhe, Tempo-Faktor, Hall). Unter 1 heißt schneller: Cartoons sollen zügig erzählen,
+# Stimmen für Cartoons: (Tonhöhe, Tempo-Faktor, Hall; Hall bleibt aus). Unter 1 heißt schneller: Cartoons sollen zügig erzählen,
 # die tiefere Stimme wirkt von selbst ruhiger.
 # Welche am besten ankommt, lernt learn.choose_voice.
 VOICES = {
     "klar": (1.0, 0.9, 0.0),          # normal, für Erklärungen
-    "erzaehler": (0.94, 0.92, 0.14),  # Geschichten-Erzähler
-    "unheimlich": (0.88, 0.96, 0.24), # tief, mit Hall
+    "erzaehler": (0.94, 0.92, 0.0),   # Geschichten-Erzähler
+    "unheimlich": (0.88, 0.96, 0.0),  # tief (ohne Hall, den mochte Julius nicht)
 }
 
 
