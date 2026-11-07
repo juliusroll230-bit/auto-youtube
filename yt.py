@@ -146,7 +146,7 @@ def upload(cfg, video_path, spec):
     description = spec.get("description", "").rstrip()
     if FOOTER.splitlines()[0] not in description:
         description += "\n\n" + FOOTER
-    if "#shorts" not in title.lower() and len(title) <= 90:
+    if "#shorts" not in title.lower() and len(title) <= 90 and spec.get("laenge") != "lang":
         title += " #shorts"
     body = {
         "snippet": {"title": title[:100], "description": description[:4900], "tags": spec.get("tags", []),

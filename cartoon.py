@@ -41,15 +41,26 @@ COLORS = {"rot", "blau", "gelb", "gruen", "lila", "navy"}
 HATS = {"keiner", "bandana", "matrose", "kapitaen", "krone", "zylinder", "helm", "muetze", "hexe", "ritter"}
 
 
+def is_long(spec):
+    """Langes Video (Querformat, ab 8 Minuten) statt Short."""
+    return spec.get("laenge") == "lang"
+
+
 def validate(spec):
     """Liste der Fehler in einem Cartoon-Skript (leer = in Ordnung)."""
     errs = []
     segs = spec.get("segments") or []
-    if not 6 <= len(segs) <= 12:
-        errs.append(f"{len(segs)} Segmente, erlaubt sind 6 bis 12")
     words = sum(len(str(s.get("text", "")).split()) for s in segs)
-    if words > 95:
-        errs.append(f"{words} Wörter, höchstens 95 (kurz halten, sonst springen die Leute ab)")
+    if is_long(spec):
+        if not 40 <= len(segs) <= 140:
+            errs.append(f"{len(segs)} Segmente, erlaubt sind 40 bis 140 (lange Videos)")
+        if not 1200 <= words <= 2600:
+            errs.append(f"{words} Wörter, ein langes Video braucht 1200 bis 2600 (ca. 7 bis 14 Minuten)")
+    else:
+        if not 6 <= len(segs) <= 12:
+            errs.append(f"{len(segs)} Segmente, erlaubt sind 6 bis 12")
+        if words > 95:
+            errs.append(f"{words} Wörter, höchstens 95 (kurz halten, sonst springen die Leute ab)")
 
     def fig(f, where):
         if not isinstance(f, dict):
@@ -185,7 +196,7 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
-                                           speed=spec.get("voice_speed") or make_short.SPEED,
+                                           speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
                                            voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE)
     total += make_short.TAIL
     if info is not None:
@@ -194,9 +205,14 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
         stage(plan(spec, timings, total), tmp)
         pw, browser, page = open_page(tmp)
         try:
+            # Lange Videos: Querformat 1920x1080, das Hochformat-Bild steht in der Mitte vor unscharfem Hintergrund
+            wide = ["-filter_complex", "[0:v]split[a][b];[a]scale=1920:1080:force_original_aspect_ratio=increase,"
+                    "crop=1920:1080,boxblur=40:4[bg];[b]scale=-2:1080[fg];[bg][fg]overlay=(W-w)/2:0,format=yuv420p[v]",
+                    "-map", "[v]", "-map", "1:a"] if is_long(spec) else []
             ff = subprocess.Popen([
                 "ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS), "-c:v", "mjpeg",
-                "-i", "-", "-i", wav, "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-profile:v", "high",
+                "-i", "-", "-i", wav, *wide, "-c:v", "libx264", "-preset", "veryfast" if is_long(spec) else "medium",
+                "-crf", "20" if is_long(spec) else "19", "-profile:v", "high",
                 "-g", str(FPS * 2), "-pix_fmt", "yuv420p", "-af", make_short.AUDIO_FILTER, "-ar", "48000",
                 "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", mp4,
             ], stdin=subprocess.PIPE)
