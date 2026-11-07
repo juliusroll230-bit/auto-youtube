@@ -1471,6 +1471,11 @@ dialog.vs[open] { display: grid; place-items: center; }
         </div>
       </div>
 
+      <div class="card shc" id="ovShare" hidden>
+        <div class="card-h"><div><h2>Auch auf TikTok und Instagram</h2><div class="sub" id="ovShareSub">Video laden, Text kopieren, in der App posten, abhaken. Mehr Reichweite, kein Mehraufwand.</div></div></div>
+        <div class="card-b shlist" id="ovShareList"></div>
+      </div>
+
       <div class="grid g-21">
         <div class="card">
           <div class="card-h">
@@ -2294,6 +2299,54 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   }
 
+  function ovShareRender(d) {
+    var card = $("ovShare"), box = $("ovShareList"), ae = document.activeElement;
+    if (ae && box.contains(ae) && ae.tagName === "INPUT") return;  // nicht beim Tippen neu zeichnen
+    var all = d.posted.filter(function (v) { return v.share; });
+    card.hidden = !all.length;
+    if (!all.length) return;
+    clear(box);
+    var so = d.socials || {};
+    var rows = all.filter(function (v) { var sh = v.shared || {}; return !(sh.tiktok && sh.instagram); })
+      .sort(function (a, b) { return (b.posted_at || "").localeCompare(a.posted_at || ""); }).slice(0, 5);
+    if (!so.tiktok || !so.instagram) {
+      var f = h("form", { cls: "hin" }, [["tiktok", "TikTok-Name"], ["instagram", "Instagram-Name"]].map(function (P) {
+        return h("input", { type: "text", autocomplete: "off", name: P[0], placeholder: P[1] + " (@name)", "aria-label": P[1], value: so[P[0]] ? "@" + so[P[0]] : "" });
+      }).concat([h("button", { cls: "btn sm", type: "submit", text: "Speichern" })]));
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var body = {}; [].forEach.call(f.querySelectorAll("input"), function (i) { body[i.name] = i.value; });
+        api("api/socials", body).then(function () { toast("Gespeichert"); soon(); }, function (er) { toast(er.message); });
+      });
+      f.querySelectorAll("input,button").forEach(function (e) { e.disabled = !S.live; });
+      box.appendChild(f);
+    }
+    $("ovShareSub").textContent = rows.length ? rows.length + " Short" + (rows.length > 1 ? "s" : "") + " warten auf TikTok und Instagram. Video laden, Text kopieren, posten, abhaken."
+      : "Alles gepostet. Stark!";
+    if (!rows.length) box.appendChild(h("p", { cls: "shempty", text: "Neue Shorts erscheinen hier automatisch nach dem Upload." }));
+    rows.forEach(function (v) {
+      var sh = v.shared || {};
+      var dl = h("a", { cls: "btn sm primary", href: "api/share/" + v.video_id + ".mp4", download: "", text: "Video laden" });
+      var cp = h("button", { cls: "btn sm", type: "button", text: "Text kopieren" });
+      cp.addEventListener("click", function () { copyText(v.share, cp); });
+      var tg = [["tiktok", "TikTok"], ["instagram", "Instagram"]].map(function (P) {
+        var t = h("button", { cls: "tog" + (sh[P[0]] ? " on" : ""), type: "button", "aria-pressed": sh[P[0]] ? "true" : "false", text: P[1] });
+        t.disabled = !S.live;
+        t.addEventListener("click", function () {
+          var on = t.getAttribute("aria-pressed") !== "true";
+          t.classList.toggle("on", on); t.setAttribute("aria-pressed", on ? "true" : "false");
+          api("api/short/shared", { video_id: v.video_id, platform: P[0], done: on }).then(soon, function (er) { toast(er.message); soon(); });
+        });
+        return t;
+      });
+      box.appendChild(h("div", { cls: "shr" }, [
+        h("img", { src: "api/thumb/" + v.slug + ".jpg", alt: "", loading: "lazy" }),
+        h("div", { style: "min-width:0" }, [h("div", { cls: "t", text: v.title }),
+          h("div", { cls: "m", text: (v.seconds ? Math.round(v.seconds) + " s · " : "") + (v.views != null ? nf.format(v.views) + " Aufrufe auf YouTube" : "auf YouTube") })]),
+        h("div", { cls: "b" }, [dl, cp].concat(tg))
+      ]));
+    });
+  }
   function renderOverview(d, sch) {
     var ch = d.channel || {}, T = totals(d);
     $("hName").textContent = ch.title || "Shorts-Zentrale";
@@ -2322,6 +2375,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     spark($("sparkSubs"), hst.slice(-72).map(function (p) { return p.subs; }), "#0a84ff");
 
     renderClipHero(d);
+    ovShareRender(d);
     renderGrowth(d);
 
     // Nächster Upload mit Countdown-Ring
@@ -4737,7 +4791,8 @@ dialog.vs[open] { display: grid; place-items: center; }
 .chc .role { align-self: flex-start; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 980px; background: rgba(10, 132, 255, .14); color: var(--accent-2); }
 .chc .role.off { background: rgba(255, 255, 255, .06); color: var(--muted); }
 .chc .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-.chc .hin { display: flex; gap: 8px; }
+.chc .hin, .shlist .hin { display: flex; flex-wrap: wrap; gap: 8px; }
+.shlist .hin input { flex: 1; min-width: 140px; padding: 10px 12px; font: inherit; font-size: 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); }
 .chc .hin input { flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); }
 .chc .code { font: 600 26px/1 var(--f-display); letter-spacing: .12em; padding: 12px; text-align: center; border-radius: 14px; background: var(--surface-2); }
 .shc .seg { flex: none; }
