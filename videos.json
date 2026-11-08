@@ -6,11 +6,56 @@
  },
  "videos": [
   {
+   "id": "XISMfivzl1g",
+   "title": "Das Rätsel um das Signal aus dem All 📡",
+   "text": "Das Wow-Signal von 1977: zweiundsiebzig Sekunden Funk aus dem Sternbild Schütze, nie wieder gehört.",
+   "niche": "Wissen",
+   "views": 2,
+   "published": "2026-11-08T19:37:54+00:00",
+   "thumb": "thumbs/XISMfivzl1g.jpg"
+  },
+  {
+   "id": "yJnqYSaTjVw",
+   "title": "Das Dorf, aus dem alle Menschen verschwanden 🏚️",
+   "text": "Die verlorene Kolonie von Roanoke (1587 bis 1590): bis heute ungelöst. Theorien nennen wir als Theorien.",
+   "niche": "Geschichte",
+   "views": 288,
+   "published": "2026-11-08T17:37:38+00:00",
+   "thumb": "thumbs/yJnqYSaTjVw.jpg"
+  },
+  {
+   "id": "k0AqZDpcqFs",
+   "title": "Diese Raubkatze trug früher nur zwei Buchstaben 🐆",
+   "text": "Warum die britische Marke Jaguar neunzehnhundertfünfundvierzig ihren Namen SS ablegte.",
+   "niche": "Autos",
+   "views": 44,
+   "published": "2026-11-08T16:37:19+00:00",
+   "thumb": "thumbs/k0AqZDpcqFs.jpg"
+  },
+  {
+   "id": "EVhu0dJjsJo",
+   "title": "Dein Gehirn kann dieses Wort nicht ignorieren 🎨",
+   "text": "Der Stroop-Effekt: warum Lesen automatisch abläuft.",
+   "niche": "Psychologie",
+   "views": 394,
+   "published": "2026-11-08T15:37:10+00:00",
+   "thumb": "thumbs/EVhu0dJjsJo.jpg"
+  },
+  {
+   "id": "rFC05Dwz71o",
+   "title": "Diese Stadt wurde von Sirup überrollt 🍯",
+   "text": "Die Melasse-Flut von Boston am 15. Januar 1919.",
+   "niche": "Geschichte",
+   "views": 91,
+   "published": "2026-11-08T13:37:16+00:00",
+   "thumb": "thumbs/rFC05Dwz71o.jpg"
+  },
+  {
    "id": "G-hTxk5_KUM",
    "title": "Hier ist der nächste Mensch oft ein Astronaut 🌊",
    "text": "Point Nemo im Südpazifik: der Ort im Meer, der am weitesten von jedem Land entfernt ist.",
    "niche": "Geografie",
-   "views": 61,
+   "views": 496,
    "published": "2026-11-08T12:36:53+00:00",
    "thumb": "thumbs/G-hTxk5_KUM.jpg"
   },
@@ -19,7 +64,7 @@
    "title": "Der Wald, in dem Menschen sich nicht wohlfühlen 🌲",
    "text": "Der Hoia-Baciu-Wald in Rumänien: Legenden und Berichte, aber keine Beweise für Übernatürliches.",
    "niche": "Wissen",
-   "views": 256,
+   "views": 492,
    "published": "2026-11-08T11:37:47+00:00",
    "thumb": "thumbs/VhznqCvMIe8.jpg"
   },
@@ -28,7 +73,7 @@
    "title": "Station 13: Wer hat die Namen geschrieben? (Teil 3) 📓",
    "text": "Station 13, Teil 3. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 60,
+   "views": 90,
    "published": "2026-11-08T09:37:27+00:00",
    "thumb": "thumbs/xxm7VYe3A8c.jpg"
   },
@@ -37,7 +82,7 @@
    "title": "Die Insel, die niemand betreten darf 🏝️",
    "text": "Poveglia vor Venedig: Pestinsel, Anstalt, Legenden. Was belegt ist und was Legende, sagen wir im Video.",
    "niche": "Wissen",
-   "views": 674,
+   "views": 907,
    "published": "2026-11-08T05:37:51+00:00",
    "thumb": "thumbs/YUiJCV4Sl6g.jpg"
   },
@@ -46,7 +91,7 @@
    "title": "Das Rätsel um den tiefsten Punkt im Meer 🌊",
    "text": "Der Marianengraben im Pazifik: Tauchgang 1960, enormer Druck und kaum erforschtes Leben.",
    "niche": "Wissen",
-   "views": 602,
+   "views": 637,
    "published": "2026-11-07T19:37:41+00:00",
    "thumb": "thumbs/Nr8Iz_jM2j8.jpg"
   },
@@ -64,7 +109,7 @@
    "title": "Nordwacht: Wer funkt vom leeren Leuchtturm? (Teil 1) 🗼",
    "text": "Nordwacht, Teil 1. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 146,
+   "views": 159,
    "published": "2026-11-07T17:38:01+00:00",
    "thumb": "thumbs/bqMBf8ZGKpo.jpg"
   },
@@ -73,7 +118,7 @@
    "title": "Station 13: Wer ist die Zwölfte? (Teil 2) 🛗",
    "text": "Station 13, Teil 2. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 745,
+   "views": 863,
    "published": "2026-11-07T16:38:06+00:00",
    "thumb": "thumbs/z4k8uCf7m88.jpg"
   },
@@ -82,7 +127,7 @@
    "title": "Dieses Pferd gehörte erst jemand ganz anderem 🐎",
    "text": "Das springende Pferd im Ferrari-Logo und seine Geschichte mit dem Kampfpiloten Francesco Baracca.",
    "niche": "Autos",
-   "views": 486,
+   "views": 609,
    "published": "2026-11-07T15:37:58+00:00",
    "thumb": "thumbs/17CVZ9SavgY.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Ein Marshmallow sollte dein Leben vorhersagen 🍡",
    "text": "Der Marshmallow-Test von Walter Mischel und was spätere Studien dazu fanden.",
    "niche": "Psychologie",
-   "views": 322,
+   "views": 357,
    "published": "2026-11-07T13:36:55+00:00",
    "thumb": "thumbs/QsPm7g_2SUA.jpg"
-  },
-  {
-   "id": "SeJngmu5ui0",
-   "title": "Die Stadt, die nicht aufhören konnte zu tanzen 💃",
-   "text": "Straßburg 1518: die Tanzwut.",
-   "niche": "Geschichte",
-   "views": 951,
-   "published": "2026-11-07T12:38:30+00:00",
-   "thumb": "thumbs/SeJngmu5ui0.jpg"
-  },
-  {
-   "id": "NEgHWdGGVOA",
-   "title": "Diese Insel zahlte mit tonnenschweren Steinen 🪨",
-   "text": "Das Steingeld der Insel Yap: riesige Kalkstein-Scheiben als Zahlungsmittel. Keine Anlageberatung.",
-   "niche": "Geld",
-   "views": 174,
-   "published": "2026-11-07T11:37:02+00:00",
-   "thumb": "thumbs/NEgHWdGGVOA.jpg"
-  },
-  {
-   "id": "0uujT_5dmkc",
-   "title": "Was passiert, wenn du in ein Schwarzes Loch fällst? ⚫",
-   "text": "Spaghettisierung und Ereignishorizont: was Physiker berechnen. Was drinnen wirklich passiert, weiß niemand.",
-   "niche": "Wissen",
-   "views": 391,
-   "published": "2026-11-07T09:37:19+00:00",
-   "thumb": "thumbs/0uujT_5dmkc.jpg"
-  },
-  {
-   "id": "UZztI9BQG2M",
-   "title": "Das Geisterschiff ohne Crew: Was geschah auf der Mary Celeste? 🚢",
-   "text": "1872 wird die Mary Celeste mitten im Atlantik gefunden. Das Schiff ist intakt, aber alle zehn Menschen an Bord sind verschwunden. Bis heute ist nicht sicher, was passiert ist. Die bekannteste Theorie zeigen wir am Ende, bewiesen ist sie nicht.",
-   "niche": "Geschichte",
-   "views": 775,
-   "published": "2026-11-07T07:38:42+00:00",
-   "thumb": "thumbs/UZztI9BQG2M.jpg"
-  },
-  {
-   "id": "iH11txB5kEM",
-   "title": "Station 13: Warum ist das Krankenhaus leer? (Teil 1) 🧟",
-   "text": "Station 13, Teil 1. Eine ausgedachte Grusel-Serie.",
-   "niche": "Wissen",
-   "views": 979,
-   "published": "2026-11-07T05:38:14+00:00",
-   "thumb": "thumbs/iH11txB5kEM.jpg"
   }
  ]
 }
