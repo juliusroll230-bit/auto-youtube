@@ -6,11 +6,47 @@
  },
  "videos": [
   {
+   "id": "G-hTxk5_KUM",
+   "title": "Hier ist der nächste Mensch oft ein Astronaut 🌊",
+   "text": "Point Nemo im Südpazifik: der Ort im Meer, der am weitesten von jedem Land entfernt ist.",
+   "niche": "Geografie",
+   "views": 61,
+   "published": "2026-11-08T12:36:53+00:00",
+   "thumb": "thumbs/G-hTxk5_KUM.jpg"
+  },
+  {
+   "id": "VhznqCvMIe8",
+   "title": "Der Wald, in dem Menschen sich nicht wohlfühlen 🌲",
+   "text": "Der Hoia-Baciu-Wald in Rumänien: Legenden und Berichte, aber keine Beweise für Übernatürliches.",
+   "niche": "Wissen",
+   "views": 256,
+   "published": "2026-11-08T11:37:47+00:00",
+   "thumb": "thumbs/VhznqCvMIe8.jpg"
+  },
+  {
+   "id": "xxm7VYe3A8c",
+   "title": "Station 13: Wer hat die Namen geschrieben? (Teil 3) 📓",
+   "text": "Station 13, Teil 3. Eine ausgedachte Grusel-Serie.",
+   "niche": "Wissen",
+   "views": 60,
+   "published": "2026-11-08T09:37:27+00:00",
+   "thumb": "thumbs/xxm7VYe3A8c.jpg"
+  },
+  {
+   "id": "YUiJCV4Sl6g",
+   "title": "Die Insel, die niemand betreten darf 🏝️",
+   "text": "Poveglia vor Venedig: Pestinsel, Anstalt, Legenden. Was belegt ist und was Legende, sagen wir im Video.",
+   "niche": "Wissen",
+   "views": 674,
+   "published": "2026-11-08T05:37:51+00:00",
+   "thumb": "thumbs/YUiJCV4Sl6g.jpg"
+  },
+  {
    "id": "Nr8Iz_jM2j8",
    "title": "Das Rätsel um den tiefsten Punkt im Meer 🌊",
    "text": "Der Marianengraben im Pazifik: Tauchgang 1960, enormer Druck und kaum erforschtes Leben.",
    "niche": "Wissen",
-   "views": 246,
+   "views": 602,
    "published": "2026-11-07T19:37:41+00:00",
    "thumb": "thumbs/Nr8Iz_jM2j8.jpg"
   },
@@ -19,7 +55,7 @@
    "title": "Wie funktioniert ein Kühlschrank wirklich? Die überraschende Wahrheit 🧊",
    "text": "Dein Kühlschrank macht gar keine Kälte. Er ist eine Wärmepumpe. In diesem Video erklären wir Schritt für Schritt, wie Kompressor, Kondensator, Drossel und Verdampfer zusammenarbeiten, wer ihn erfunden hat und warum die Kühlmittel sich geändert haben.",
    "niche": "Wissen",
-   "views": 5,
+   "views": 13,
    "published": "2026-11-07T18:20:16+00:00",
    "thumb": "thumbs/ztEtWL5o7iQ.jpg"
   },
@@ -28,7 +64,7 @@
    "title": "Nordwacht: Wer funkt vom leeren Leuchtturm? (Teil 1) 🗼",
    "text": "Nordwacht, Teil 1. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 62,
+   "views": 146,
    "published": "2026-11-07T17:38:01+00:00",
    "thumb": "thumbs/bqMBf8ZGKpo.jpg"
   },
@@ -37,7 +73,7 @@
    "title": "Station 13: Wer ist die Zwölfte? (Teil 2) 🛗",
    "text": "Station 13, Teil 2. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 403,
+   "views": 745,
    "published": "2026-11-07T16:38:06+00:00",
    "thumb": "thumbs/z4k8uCf7m88.jpg"
   },
@@ -46,7 +82,7 @@
    "title": "Dieses Pferd gehörte erst jemand ganz anderem 🐎",
    "text": "Das springende Pferd im Ferrari-Logo und seine Geschichte mit dem Kampfpiloten Francesco Baracca.",
    "niche": "Autos",
-   "views": 235,
+   "views": 486,
    "published": "2026-11-07T15:37:58+00:00",
    "thumb": "thumbs/17CVZ9SavgY.jpg"
   },
@@ -55,7 +91,7 @@
    "title": "Ein Marshmallow sollte dein Leben vorhersagen 🍡",
    "text": "Der Marshmallow-Test von Walter Mischel und was spätere Studien dazu fanden.",
    "niche": "Psychologie",
-   "views": 212,
+   "views": 322,
    "published": "2026-11-07T13:36:55+00:00",
    "thumb": "thumbs/QsPm7g_2SUA.jpg"
   },
@@ -64,7 +100,7 @@
    "title": "Die Stadt, die nicht aufhören konnte zu tanzen 💃",
    "text": "Straßburg 1518: die Tanzwut.",
    "niche": "Geschichte",
-   "views": 802,
+   "views": 951,
    "published": "2026-11-07T12:38:30+00:00",
    "thumb": "thumbs/SeJngmu5ui0.jpg"
   },
@@ -73,7 +109,7 @@
    "title": "Diese Insel zahlte mit tonnenschweren Steinen 🪨",
    "text": "Das Steingeld der Insel Yap: riesige Kalkstein-Scheiben als Zahlungsmittel. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 96,
+   "views": 174,
    "published": "2026-11-07T11:37:02+00:00",
    "thumb": "thumbs/NEgHWdGGVOA.jpg"
   },
@@ -82,7 +118,7 @@
    "title": "Was passiert, wenn du in ein Schwarzes Loch fällst? ⚫",
    "text": "Spaghettisierung und Ereignishorizont: was Physiker berechnen. Was drinnen wirklich passiert, weiß niemand.",
    "niche": "Wissen",
-   "views": 334,
+   "views": 391,
    "published": "2026-11-07T09:37:19+00:00",
    "thumb": "thumbs/0uujT_5dmkc.jpg"
   },
@@ -91,7 +127,7 @@
    "title": "Das Geisterschiff ohne Crew: Was geschah auf der Mary Celeste? 🚢",
    "text": "1872 wird die Mary Celeste mitten im Atlantik gefunden. Das Schiff ist intakt, aber alle zehn Menschen an Bord sind verschwunden. Bis heute ist nicht sicher, was passiert ist. Die bekannteste Theorie zeigen wir am Ende, bewiesen ist sie nicht.",
    "niche": "Geschichte",
-   "views": 550,
+   "views": 775,
    "published": "2026-11-07T07:38:42+00:00",
    "thumb": "thumbs/UZztI9BQG2M.jpg"
   },
@@ -100,45 +136,9 @@
    "title": "Station 13: Warum ist das Krankenhaus leer? (Teil 1) 🧟",
    "text": "Station 13, Teil 1. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 826,
+   "views": 979,
    "published": "2026-11-07T05:38:14+00:00",
    "thumb": "thumbs/iH11txB5kEM.jpg"
-  },
-  {
-   "id": "H99mKazl2CE",
-   "title": "Warum tragen piraten augengeklappen  #geschichte #bitcoin #psychologie #fakten #geografie #wissen",
-   "text": "",
-   "niche": "Wissen",
-   "views": 1066,
-   "published": "2026-11-06T20:22:46+00:00",
-   "thumb": "thumbs/H99mKazl2CE.jpg"
-  },
-  {
-   "id": "ad4SHN8JKpI",
-   "title": "Dieses Autologo hat mit Wasserkastanien zu tun 🔺",
-   "text": "Reederei, Familienwappen und das erste Serienauto Japans: die Geschichte hinter Mitsubishi.",
-   "niche": "Autos",
-   "views": 264,
-   "published": "2026-11-06T19:37:04+00:00",
-   "thumb": "thumbs/ad4SHN8JKpI.jpg"
-  },
-  {
-   "id": "OF187hpA8Y0",
-   "title": "Dieser Autogigant trägt den Namen eines Schweizers 🇨🇭",
-   "text": "Louis Chevrolet, William Durant und die Legende vom Fliegen-Logo der Marke Chevrolet.",
-   "niche": "Autos",
-   "views": 7,
-   "published": "2026-11-06T17:37:13+00:00",
-   "thumb": "thumbs/OF187hpA8Y0.jpg"
-  },
-  {
-   "id": "TmBqwPNY-3w",
-   "title": "Belohnung kann die Freude am Malen töten 🖍️",
-   "text": "Der Überrechtfertigungseffekt: Lepper-Experiment mit Kindergartenkindern von neunzehnhundertdreiundsiebzig.",
-   "niche": "Psychologie",
-   "views": 122,
-   "published": "2026-11-06T16:36:32+00:00",
-   "thumb": "thumbs/TmBqwPNY-3w.jpg"
   }
  ]
 }
