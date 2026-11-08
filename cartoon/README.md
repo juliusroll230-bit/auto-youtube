@@ -51,7 +51,7 @@ Figuren können `name` (Namensschild) und `art` ("zombie", "blass") haben.
 
 **Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery) oder
 `neugierig` (lockere Erklärung). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
-dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere mysteriös. Die Stimme (`klar`,
+dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere mysteriös. Die Stimme (`froehlich`, `klar`,
 `erzaehler`, `unheimlich`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
 mit `"stimme"` im Skript ist sie fest.
 
