@@ -1,0 +1,58 @@
+{
+  "slug": "geschichte-quarantaene-vierzig",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a1c1c",
+    "#8c4a3a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Dieses Wort bedeutet eigentlich vierzig Tage ⏳",
+  "description": "Woher das Wort Quarantäne kommt: Hafenstädte und die Pest im Mittelalter.\n\n#geschichte #quarantäne #pest #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "quarantäne",
+    "pest",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "⏳",
+      "text": "Dieses Wort bedeutet eigentlich *vierzig* Tage, und jeder kennt es.",
+      "clip": "hourglass sand closeup"
+    },
+    {
+      "emoji": "🇮🇹",
+      "text": "Quarantäne kommt vom italienischen *quaranta*, vierzig. Doch warum wartete man so lange?",
+      "clip": "venice canal boats"
+    },
+    {
+      "emoji": "⚓",
+      "text": "Hafenstädte hielten im Mittelalter Schiffe fest, um die *Pest* fernzuhalten.",
+      "clip": "old ship harbor",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1377,
+            "Ragusa"
+          ],
+          [
+            1423,
+            "Venedig"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "📜",
+      "text": "Zuerst waren es dreißig Tage, später *vierzig*. Wohl auch, weil diese Zahl in der Bibel wichtig war.",
+      "clip": "ancient manuscript pages"
+    },
+    {
+      "emoji": "👉",
+      "text": "Aus vierzig Tagen wurde ein Wort. Folge für mehr.",
+      "clip": "calendar flipping pages"
+    }
+  ]
+}

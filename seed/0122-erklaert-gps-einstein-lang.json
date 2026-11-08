@@ -1,0 +1,758 @@
+{
+  "slug": "erklaert-gps-einstein-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Erklären",
+  "stimmung": "neugierig",
+  "colors": [
+    "#0e2230",
+    "#2c8fd1"
+  ],
+  "accent": "#ffe14d",
+  "title": "Wie funktioniert GPS wirklich? Ohne Einstein ginge es nicht 🛰️",
+  "description": "Dein Handy sendet nichts ins All und weiß trotzdem, wo du bist. Wir erklären Schritt für Schritt, wie GPS funktioniert, warum vier Satelliten nötig sind und warum Einsteins Relativitätstheorie das System erst möglich macht.\n\n#erklärt #wissen #gps #technik #alltag",
+  "tags": [
+    "erklärt",
+    "wissen",
+    "gps",
+    "technik",
+    "einstein",
+    "alltag"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner"
+  },
+  "segments": [
+    {
+      "text": "Dein Handy weiß auf wenige Meter genau, wo du bist, und schickt dafür kein einziges Signal ins Weltall.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📱"
+      }
+    },
+    {
+      "text": "Wie macht es das? Und warum wäre GPS ohne Einsteins Relativitätstheorie schon nach einem einzigen Tag völlig nutzlos?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🛰️",
+        "text": "Wie?",
+        "ort": "weltall"
+      }
+    },
+    {
+      "text": "Genau das klären wir in diesem Video, und am Ende kennst du einen der klügsten Tricks der modernen Technik.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛰️",
+        "text": "GPS erklärt"
+      }
+    },
+    {
+      "text": "Zuerst kommt die Geschichte, dann die Funktionsweise, dann die verrückten Korrekturen, und zum Schluss räumen wir mit Mythen auf.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertdreiundsiebzig beginnt das US-Verteidigungsministerium, ein Navigationssystem aus dem All zu planen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1973",
+        "text": "Das Projekt",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Die Idee dahinter ist noch älter: Forscher merkten nach dem Start des ersten Satelliten, dass man Orte aus Funksignalen berechnen kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Neunzehnhundertachtundsiebzig startet der erste GPS-Satellit, und die Geschichte der Satellitennavigation nimmt richtig Fahrt auf.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1978",
+        "text": "Erster Satellit",
+        "objekt": "🚀"
+      }
+    },
+    {
+      "text": "Bis das System komplett war, vergingen noch fast zwanzig Jahre, und in dieser Zeit wurden Dutzende Satelliten gebaut und ins All geschossen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "🏗️"
+      }
+    },
+    {
+      "text": "Seine Aufgabe war zunächst rein militärisch: Schiffe, Flugzeuge und Soldaten sollten ihre Position jederzeit genau kennen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Zuerst nur Militär",
+        "punkte": [
+          "Schiffe",
+          "Flugzeuge",
+          "Soldaten"
+        ]
+      }
+    },
+    {
+      "text": "Doch dann passiert im Jahr neunzehnhundertdreiundachtzig ein schreckliches Unglück, das alles verändert.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Ein südkoreanisches Passagierflugzeug verirrt sich und wird über sowjetischem Gebiet abgeschossen. Alle Menschen an Bord sterben.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "✈️",
+        "text": "Flug 007",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Danach kündigt US-Präsident Reagan an, das System später auch für zivile Flugzeuge freizugeben, damit so etwas nicht mehr passiert.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "neutral",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Ab diesem Moment sollten Piloten, Kapitäne und später auch ganz normale Menschen von den Satelliten profitieren, kostenlos und weltweit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌐",
+        "text": "Für alle"
+      }
+    },
+    {
+      "text": "Neunzehnhundertfünfundneunzig gilt das System als voll einsatzbereit, und zwar mit vierundzwanzig Satelliten im Orbit.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "Satelliten",
+        "objekt": "🛰️",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Soweit die Geschichte. Jetzt zur eigentlichen Frage: Wie finden Satelliten eigentlich deinen Standort? Die erste Überraschung ist: Sie finden dich gar nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Sie wissen nicht einmal, dass es dich gibt. Dein Handy ist nur ein Empfänger, wie ein ganz normales Radio.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📻",
+        "text": "Nur Empfang"
+      }
+    },
+    {
+      "text": "Es hört nur zu, so wie dein Radio nur zuhört, und deshalb können Milliarden Geräte das System gleichzeitig nutzen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📻",
+          "text": "Radio: hört zu"
+        },
+        "rechts": {
+          "objekt": "📱",
+          "text": "Handy: hört zu"
+        }
+      }
+    },
+    {
+      "text": "Die Satelliten kreisen in rund zwanzigtausend Kilometern Höhe um die Erde, also viel höher als die Raumstation.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 20200,
+        "einheit": "Kilometer Höhe",
+        "objekt": "🌍",
+        "farbcode": "#142a3a"
+      }
+    },
+    {
+      "text": "Zum Vergleich: Die Internationale Raumstation fliegt nur in etwa vierhundert Kilometern Höhe, also in einem Fünfzigstel dieser Entfernung.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛰️",
+        "text": "Viel höher"
+      }
+    },
+    {
+      "text": "Für eine Runde brauchen sie fast genau zwölf Stunden, also schaffen sie zwei Umläufe pro Tag.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Jeder Satellit sendet ununterbrochen ein winziges Signal, und darin steckt vor allem eine Information: die genaue Uhrzeit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🕰️",
+        "text": "Die Uhrzeit"
+      }
+    },
+    {
+      "text": "Dieses Signal ist ein langer Code aus Nullen und Einsen, der sich ständig wiederholt, damit dein Handy die Satelliten sicher auseinanderhalten kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💾"
+      }
+    },
+    {
+      "text": "Genauer gesagt enthält das Signal drei Dinge, die dein Handy für seine Rechnung unbedingt braucht.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Signal",
+        "punkte": [
+          "Genaue Uhrzeit",
+          "Wer sendet",
+          "Wo er fliegt"
+        ]
+      }
+    },
+    {
+      "text": "Das Handy vergleicht, wann das Signal gesendet wurde und wann es ankommt, und aus dem Unterschied berechnet es die Laufzeit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "⏱️"
+      }
+    },
+    {
+      "text": "Das Signal reist mit Lichtgeschwindigkeit, also mit fast dreihunderttausend Kilometern pro Sekunde durch das All.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 300000,
+        "einheit": "Kilometer pro Sekunde",
+        "objekt": "⚡",
+        "farbcode": "#2a2a1d"
+      }
+    },
+    {
+      "text": "Laufzeit mal Geschwindigkeit ergibt die Entfernung. Braucht das Signal etwa siebzig Millisekunden, ist der Satellit ungefähr zwanzigtausend Kilometer entfernt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📐"
+      }
+    },
+    {
+      "text": "Dafür muss die Zeitmessung unglaublich genau sein, denn selbst ein Fehler von einer Milliardstel Sekunde macht schon dreißig Zentimeter aus.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⏱️",
+        "text": "Sehr genau"
+      }
+    },
+    {
+      "text": "Aber eine Entfernung allein verrät dir noch nicht, wo du bist. Du weißt nur: irgendwo auf einer riesigen Kugel um den Satelliten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🛰️",
+        "text": "Eine Kugel"
+      }
+    },
+    {
+      "text": "Mit zwei Satelliten schneiden sich zwei Kugeln in einem Kreis, und auf diesem Kreis gibt es immer noch unendlich viele mögliche Orte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⭕"
+      }
+    },
+    {
+      "text": "Mit drei Satelliten bleiben nur noch zwei Punkte übrig, und einer davon liegt meistens weit draußen im Weltall.",
+      "szene": {
+        "typ": "akte",
+        "text": "Drei Kugeln",
+        "punkte": [
+          "🛰️",
+          "🛰️",
+          "🛰️",
+          "📍"
+        ]
+      }
+    },
+    {
+      "text": "Warum braucht dein Handy dann vier Satelliten? Die Antwort hat mit einem winzigen Fehler zu tun, der alles verderben würde.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Warum vier?"
+      }
+    },
+    {
+      "text": "Die Antwort liegt in der Uhr. Und um sie zu verstehen, müssen wir kurz anschauen, wie unterschiedlich zwei Uhren sein können.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "⏲️"
+      }
+    },
+    {
+      "text": "Dein Handy hat nur eine billige Uhr, die sich schnell verstellt. Die Satelliten dagegen haben an Bord hochgenaue Atomuhren.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⌚",
+        "text": "Billige Uhr"
+      }
+    },
+    {
+      "text": "Schon eine Abweichung von einer einzigen Millionstel Sekunde macht rund dreihundert Meter Positionsfehler.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 300,
+        "einheit": "Meter Fehler",
+        "objekt": "📏",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Zum Glück gibt es einen cleveren Trick: Dein Handy behandelt seinen eigenen Uhrenfehler einfach als eine weitere Unbekannte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Es hat dann vier Unbekannte: Länge, Breite, Höhe und den Uhrenfehler. Dafür braucht es genau vier Satelliten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Vier Unbekannte",
+        "punkte": [
+          "Länge",
+          "Breite",
+          "Höhe",
+          "Uhrenfehler"
+        ]
+      }
+    },
+    {
+      "text": "Meistens sieht dein Handy sogar acht oder mehr Satelliten gleichzeitig, auch von anderen Systemen wie Galileo, GLONASS und BeiDou.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "weltall",
+        "anzahl": 7,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Viele Systeme"
+      }
+    },
+    {
+      "text": "Je mehr Satelliten der Chip empfängt, desto besser kann er Fehler herausrechnen, vor allem zwischen hohen Häusern und in engen Tälern.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📡",
+        "text": "Mehr Satelliten"
+      }
+    },
+    {
+      "text": "Im Jahr zweitausend passiert etwas Erstaunliches: Die USA schalten eine absichtliche Störung ihres Signals ab.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2000",
+        "text": "Störung aus",
+        "objekt": "📶"
+      }
+    },
+    {
+      "text": "Vorher wurde das Signal für Zivilisten künstlich verschlechtert. Über Nacht schrumpfte der Fehler von rund hundert Metern auf einen Bruchteil davon.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎉"
+      }
+    },
+    {
+      "text": "Für die Navigation im Auto reicht das völlig aus, und deshalb hat plötzlich fast niemand mehr eine Papierkarte gebraucht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🗺️",
+        "text": "Papierkarte ade"
+      }
+    },
+    {
+      "text": "Heute liegt die Genauigkeit eines Handys unter freiem Himmel meist bei rund fünf Metern.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 5,
+        "einheit": "Meter Genauigkeit",
+        "objekt": "📍",
+        "farbcode": "#1d3a2a"
+      }
+    },
+    {
+      "text": "Fünf Meter klingen vielleicht nach viel, aber das System ist trotzdem eine Meisterleistung, denn die Satelliten sind zwanzigtausend Kilometer weit weg.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📍"
+      }
+    },
+    {
+      "text": "Jetzt kommt der Teil, der GPS wirklich besonders macht: Ohne Albert Einstein würde das ganze System nicht funktionieren.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Einstein?",
+        "ort": "weltall"
+      }
+    },
+    {
+      "text": "Die Atomuhren in den Satelliten gehen nämlich anders als Uhren auf der Erde, und das hat gleich zwei Gründe.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Erstens sind die Satelliten sehr schnell unterwegs, mit rund vierzehntausend Kilometern pro Stunde.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 14000,
+        "einheit": "Kilometer pro Stunde",
+        "objekt": "🚀",
+        "farbcode": "#2a1d3a"
+      }
+    },
+    {
+      "text": "Nach Einsteins spezieller Relativitätstheorie vergeht für schnelle Objekte die Zeit langsamer, und die Satellitenuhren gehen dadurch etwas nach.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🕰️"
+      }
+    },
+    {
+      "text": "Das sind etwa sieben Millionstel Sekunden pro Tag, die die Uhren an Bord zurückbleiben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 7,
+        "einheit": "Mikrosekunden pro Tag",
+        "objekt": "⏪",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Zweitens sind die Satelliten weit von der Erde entfernt, wo die Schwerkraft schwächer ist. Nach der allgemeinen Relativitätstheorie geht die Zeit dort schneller.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌍"
+      }
+    },
+    {
+      "text": "Dieser zweite Effekt ist stärker: etwa fünfundvierzig Millionstel Sekunden pro Tag gehen die Uhren dadurch vor.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 45,
+        "einheit": "Mikrosekunden pro Tag",
+        "objekt": "⏩",
+        "farbcode": "#1d3a2a"
+      }
+    },
+    {
+      "text": "Unterm Strich gehen die Satellitenuhren also vor, und zwar um rund achtunddreißig Millionstel Sekunden am Tag.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🚀",
+          "text": "Tempo: -7"
+        },
+        "rechts": {
+          "objekt": "🌍",
+          "text": "Höhe: +45"
+        }
+      }
+    },
+    {
+      "text": "Das klingt winzig, aber rechne mit: Dreihundert Meter pro Millionstel Sekunde mal achtunddreißig ergibt weit mehr als elf Kilometer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🧮"
+      }
+    },
+    {
+      "text": "Ohne Korrektur würde dein Standort also jeden Tag um mehr als zehn Kilometer abdriften.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Kilometer pro Tag",
+        "objekt": "🧭",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Jeder Fehler würde sich außerdem aufsummieren, und nach einer Woche wärst du mit deinem Handy in einem ganz anderen Ort gelandet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌀"
+      }
+    },
+    {
+      "text": "Die Ingenieure lösten das, indem sie die Uhren schon vor dem Start absichtlich ein klein wenig langsamer einstellten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔧",
+        "text": "Vorab korrigiert"
+      }
+    },
+    {
+      "text": "Der Legende nach bauten manche Ingenieure damals noch einen Schalter ein, falls Einstein sich irrt. Er hat sich nicht geirrt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🔘"
+      }
+    },
+    {
+      "text": "Jetzt wird es Zeit für Mythen. Gleich kommen drei Irrtümer, die fast jeder über GPS glaubt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Drei Mythen"
+      }
+    },
+    {
+      "text": "Mythos eins: Dein Handy braucht Internet für GPS. Das stimmt nicht, den Standort rechnet es ganz ohne Netz aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌐"
+      }
+    },
+    {
+      "text": "Die Signale empfängt der Chip direkt aus dem All, und das Internet hilft nur dabei, die Satelliten schneller zu finden.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📡",
+          "text": "GPS: Satellit"
+        },
+        "rechts": {
+          "objekt": "🌐",
+          "text": "Netz: nur Hilfe"
+        }
+      }
+    },
+    {
+      "text": "Mythos zwei: Das Handy verrät den Satelliten, wo du bist. Auch das ist falsch, denn es hört nur zu.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "cool",
+        "aktion": "winkt",
+        "objekt": "🙈"
+      }
+    },
+    {
+      "text": "Dein Handy ist also ein Zuhörer und kein Sender, und genau das macht GPS so sparsam und so privat.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👂",
+          "text": "Handy: zuhören"
+        },
+        "rechts": {
+          "objekt": "📣",
+          "text": "Sender: rufen"
+        }
+      }
+    },
+    {
+      "text": "Mythos drei: GPS gehört einer Firma. Tatsächlich betreibt die US-Weltraumstreitkraft die Satelliten, und die Nutzung ist kostenlos.",
+      "szene": {
+        "typ": "liste",
+        "text": "Wem gehört GPS?",
+        "punkte": [
+          "US Space Force",
+          "Kostenlos",
+          "Weltweit"
+        ]
+      }
+    },
+    {
+      "text": "Und woher weiß dein Handy, in welcher Straße du bist? Der Chip liefert nur Koordinaten, die Karte kommt aus dem Speicher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🗺️"
+      }
+    },
+    {
+      "text": "In Städten helfen WLAN-Netze und Mobilfunkmasten aus, wenn zwischen Hochhäusern der freie Himmel fehlt.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 5,
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "text": "Hilfe in der Stadt"
+      }
+    },
+    {
+      "text": "In Tunneln klappt GPS meistens nicht, weil die Signale sehr schwach ankommen und von Beton und Stahl geschluckt werden.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚇",
+        "text": "Kein Signal"
+      }
+    },
+    {
+      "text": "Heute sind einunddreißig GPS-Satelliten aktiv, und es werden bei Bedarf immer wieder neue ins All geschossen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 31,
+        "einheit": "GPS-Satelliten",
+        "objekt": "🛰️",
+        "farbcode": "#142a3a"
+      }
+    },
+    {
+      "text": "Für Flugzeuge und Schiffe liefert das System seit Jahrzehnten die wichtigste Orientierung, selbst mitten über dem Ozean ohne jede Straße.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⛵",
+        "text": "Mitten im Ozean"
+      }
+    },
+    {
+      "text": "Zusammen mit Galileo, GLONASS und BeiDou sind inzwischen weit über hundert Navigationssatelliten im Einsatz.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Auch Banken, Stromnetze, Traktoren und Flugzeuge verlassen sich auf die Satelliten, vor allem auf deren genaue Uhrzeit.",
+      "szene": {
+        "typ": "liste",
+        "text": "GPS nutzt auch",
+        "punkte": [
+          "Banken",
+          "Stromnetze",
+          "Traktoren",
+          "Flugzeuge"
+        ]
+      }
+    },
+    {
+      "text": "Fassen wir zusammen: Satelliten senden die Zeit, dein Handy misst Laufzeiten und rechnet daraus vier Unbekannte aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✅"
+      }
+    },
+    {
+      "text": "Die wichtigsten Punkte noch einmal im Überblick, falls du sie dir merken willst, und danach gibt es eine letzte Frage.",
+      "szene": {
+        "typ": "liste",
+        "text": "Merk dir",
+        "punkte": [
+          "Vier Satelliten",
+          "Atomuhren",
+          "Relativität"
+        ]
+      }
+    },
+    {
+      "text": "Und weil Einsteins Relativität eingebaut ist, bleibt der Fehler winzig, obwohl alles mit Lichtgeschwindigkeit passiert.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧠",
+        "text": "Eingebaut"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Hättest du gedacht, dass dein Handy sich auf Einstein verlässt? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

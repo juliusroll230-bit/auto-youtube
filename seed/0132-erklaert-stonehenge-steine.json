@@ -1,0 +1,105 @@
+{
+  "slug": "erklaert-stonehenge-steine",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0f1a14",
+    "#6a8c4a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Warum wurden diese Steine so weit geschleppt? 🗿",
+  "description": "Stonehenge: Woher kamen die Steine und wie kamen sie dorthin? Manches ist belegt, vieles bleibt Theorie.\n\n#stonehenge #geschichte #wissen #rätsel #shorts",
+  "tags": [
+    "stonehenge",
+    "geschichte",
+    "wissen",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "keiner",
+    "name": "Alba"
+  },
+  "segments": [
+    {
+      "text": "Diese Steine wurden über zweihundert Kilometer hierher gebracht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🗿",
+        "text": "Stonehenge"
+      }
+    },
+    {
+      "text": "Stonehenge in England ist rund viereinhalbtausend Jahre alt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 4500,
+        "einheit": "Jahre alt",
+        "objekt": "🗿",
+        "farbcode": "#1d3a2a"
+      }
+    },
+    {
+      "text": "Die kleineren Steine stammen aus den Preseli-Bergen in Wales.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⛰️",
+        "text": "Wales"
+      }
+    },
+    {
+      "text": "Das sind mehr als zweihundert Kilometer ohne Räder und Lastwagen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 7,
+        "gefuehl": "wut",
+        "aktion": "zeigt",
+        "text": "Kein Lkw"
+      }
+    },
+    {
+      "text": "Wie sie dorthin kamen, ist eine Theorie: Schlitten, Boote, Gletscher.",
+      "szene": {
+        "typ": "akte",
+        "text": "Theorien",
+        "punkte": [
+          "🛶",
+          "🛷",
+          "🧊"
+        ]
+      }
+    },
+    {
+      "text": "Der größte Stein, der Altarstein, kam laut Studie aus Schottland.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🗿",
+        "text": "Altarstein"
+      }
+    },
+    {
+      "text": "Das sind rund siebenhundert Kilometer, ein unglaublicher Weg.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 700,
+        "einheit": "Kilometer Weg",
+        "objekt": "🥾",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Warum bauten sie das? Niemand weiß es sicher. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

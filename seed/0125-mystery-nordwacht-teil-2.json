@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-nordwacht-teil-2",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "serie": "Nordwacht",
+  "teil": 2,
+  "colors": [
+    "#0d1a24",
+    "#3a7a9c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Nordwacht: Wessen Name steht im Logbuch? (Teil 2) 📖",
+  "description": "Nordwacht, Teil 2. Eine ausgedachte Mystery-Serie.\n\n#mystery #leuchtturm #rätsel #serie #shorts",
+  "tags": [
+    "mystery",
+    "leuchtturm",
+    "rätsel",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "muetze",
+    "name": "Elin"
+  },
+  "segments": [
+    {
+      "text": "Elin rennt die Wendeltreppe hoch, hinter ihr schlägt die Tür zu.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Nordwacht, Teil zwei: Das Funkgerät im Turm antwortet.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Nordwacht",
+        "teil": 2,
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Eine fremde Stimme sagt nur: Komm nicht allein.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "📻",
+        "text": "Funkgerät"
+      }
+    },
+    {
+      "text": "Elin entziffert das Morsesignal: Es wiederholt seit Jahren denselben Satz.",
+      "szene": {
+        "typ": "akte",
+        "text": "Der Satz",
+        "punkte": [
+          "⚫",
+          "➖",
+          "⚫",
+          "⏸️"
+        ]
+      }
+    },
+    {
+      "text": "Im Logbuch steht ihr Name, geschrieben vor zwanzig Jahren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "📖",
+        "text": "Ihr Name"
+      }
+    },
+    {
+      "text": "Das letzte Datum im Buch liegt in der Zukunft.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2031,
+        "text": "Letzter Eintrag",
+        "objekt": "📖",
+        "stempel": "geheim"
+      }
+    },
+    {
+      "text": "Unten im Nebel taucht ein zweites Boot mit einer Gestalt auf.",
+      "szene": {
+        "typ": "monster",
+        "ort": "meer",
+        "monster": "schatten",
+        "wetter": "nebel",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Wer kommt auf die Insel? Teil drei kommt bald.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗼",
+        "text": "Teil 3 kommt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

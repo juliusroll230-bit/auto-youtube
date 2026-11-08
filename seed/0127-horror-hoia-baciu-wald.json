@@ -1,0 +1,104 @@
+{
+  "slug": "horror-hoia-baciu-wald",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0f1c14",
+    "#3a7a4a"
+  ],
+  "accent": "#e0392f",
+  "title": "Der Wald, in dem Menschen sich nicht wohlfühlen 🌲",
+  "description": "Der Hoia-Baciu-Wald in Rumänien: Legenden und Berichte, aber keine Beweise für Übernatürliches.\n\n#horror #legende #rumänien #gruselig #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "rumänien",
+    "gruselig",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "muetze",
+    "name": "Tom"
+  },
+  "segments": [
+    {
+      "text": "Nachts im Wald: Die Bäume sind verdreht, und etwas flüstert.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Der Hoia-Baciu-Wald liegt in Rumänien, nahe der Stadt Cluj-Napoca.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌲",
+        "text": "Hoia Baciu"
+      }
+    },
+    {
+      "text": "Viele Bäume dort wachsen schief und gebogen, niemand weiß genau, warum.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "🌲",
+        "text": "Krumme Bäume"
+      }
+    },
+    {
+      "text": "Mitten im Wald liegt eine runde Lichtung, auf der fast nichts wächst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "⭕",
+        "text": "Die Lichtung",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Der Legende nach verschwand dort einst ein Hirte mit zweihundert Schafen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Besucher berichten von Lichtern und dem Gefühl, beobachtet zu werden.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Beweise für Übernatürliches gibt es bis heute keine.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dunkelwald",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Keine Beweise"
+      }
+    },
+    {
+      "text": "Würdest du dort nachts zelten?",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

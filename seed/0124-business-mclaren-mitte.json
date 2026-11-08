@@ -1,0 +1,55 @@
+{
+  "slug": "business-mclaren-mitte",
+  "style": "car",
+  "car_color": "#e8741c",
+  "niche": "Business",
+  "accent": "#ffa04d",
+  "title": "Dieses Auto hatte den Fahrer genau in der Mitte 🧡",
+  "description": "Bruce McLaren, der McLaren F1 und sein Geschwindigkeitsrekord.\n\n#business #mclaren #autos #rekord #shorts",
+  "tags": [
+    "business",
+    "mclaren",
+    "autos",
+    "rekord",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Dieses *Auto* hatte den Fahrer genau in der Mitte.",
+      "clip": "supercar interior steering"
+    },
+    {
+      "text": "Der *McLaren F1* setzte den Fahrer in die Mitte. Der Motorraum war mit Blattgold ausgekleidet. Doch wer stand dahinter?",
+      "clip": "gold foil sheets"
+    },
+    {
+      "text": "Es war der Neuseeländer *Bruce McLaren*, der neunzehnhundertdreiundsechzig sein Rennteam gründete.",
+      "clip": "formula one pit crew",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1963,
+            "Rennteam"
+          ],
+          [
+            1992,
+            "McLaren F1"
+          ],
+          [
+            1998,
+            "Rekord"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Neunzehnhundertachtundneunzig stellte der F1 mit dreihundertsechsundachtzig Kilometern pro Stunde einen *Rekord* für Serienautos auf.",
+      "clip": "speedometer fast driving"
+    },
+    {
+      "text": "Eine Mitte, ein Rekord. Folge für mehr.",
+      "clip": "orange sports car track"
+    }
+  ]
+}

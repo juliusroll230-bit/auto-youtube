@@ -1,0 +1,116 @@
+{
+  "slug": "horror-station-13-teil-3",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Station 13",
+  "teil": 3,
+  "colors": [
+    "#0f1a17",
+    "#3fa35b"
+  ],
+  "accent": "#e0392f",
+  "title": "Station 13: Wer hat die Namen geschrieben? (Teil 3) 📓",
+  "description": "Station 13, Teil 3. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #zombie #serie #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "zombie",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Die Zwölfte greift nach Mia, hinter ihnen schließt sich der Fahrstuhl.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "neutral",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Station dreizehn, Teil drei: Die Zwölfte kennt Mias Namen.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Station 13",
+        "teil": 3,
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Sie flüstert: Ich bin du, nur einen Tag früher.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Ben schreit, der Fahrstuhl bleibt zwischen zwei Stockwerken stecken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🛗",
+        "text": "Steckt fest"
+      }
+    },
+    {
+      "text": "Über ihnen kratzen Zombies am Schacht und wollen hinein.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "zombie",
+        "anzahl": 4,
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Die Zwölfte zeigt auf ein Notizbuch voller Namen und Daten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Notizbuch",
+        "punkte": [
+          "Mia",
+          "Ben",
+          "Die Zwölfte"
+        ]
+      }
+    },
+    {
+      "text": "Jeden Tag wacht eine neue auf, und keine sieht den Morgen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📓"
+      }
+    },
+    {
+      "text": "Wer hat die Namen aufgeschrieben? Teil vier kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Teil 4 kommt"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

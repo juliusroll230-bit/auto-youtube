@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-wow-signal",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0a0f24",
+    "#3a4a9c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Rätsel um das Signal aus dem All 📡",
+  "description": "Das Wow-Signal von 1977: zweiundsiebzig Sekunden Funk aus dem Sternbild Schütze, nie wieder gehört.\n\n#weltall #wowsignal #wissen #rätsel #shorts",
+  "tags": [
+    "weltall",
+    "wowsignal",
+    "wissen",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Jerry"
+  },
+  "segments": [
+    {
+      "text": "Zweiundsiebzig Sekunden lang kam ein Signal aus dem All.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "📡",
+        "text": "Wow-Signal"
+      }
+    },
+    {
+      "text": "Am fünfzehnten August neunzehnhundertsiebenundsiebzig hörte ein Radioteleskop in Ohio es.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1977,
+        "text": "Radioteleskop Ohio",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Astronom Jerry Ehman schrieb begeistert Wow neben den Ausdruck.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📄",
+        "text": "Wow!"
+      }
+    },
+    {
+      "text": "Es war etwa dreißigmal stärker als das Rauschen im All.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "mal stärker",
+        "objekt": "📈",
+        "farbcode": "#1d2a3a"
+      }
+    },
+    {
+      "text": "Es kam aus dem Sternbild Schütze und wurde nie wieder gehört.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⭐",
+        "text": "Schütze"
+      }
+    },
+    {
+      "text": "Eine Theorie: Außerirdische. Andere vermuten eine Störung von der Erde.",
+      "szene": {
+        "typ": "akte",
+        "text": "Theorien",
+        "punkte": [
+          "👽",
+          "☄️",
+          "🛰️"
+        ]
+      }
+    },
+    {
+      "text": "Bewiesen ist nichts, und spätere Suchen blieben ohne Ergebnis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt"
+      }
+    },
+    {
+      "text": "Was war das Signal? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "❓",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

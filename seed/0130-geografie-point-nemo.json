@@ -1,0 +1,65 @@
+{
+  "slug": "geografie-point-nemo",
+  "niche": "Geografie",
+  "colors": [
+    "#08202e",
+    "#1f6a9c"
+  ],
+  "accent": "#ffe0a0",
+  "title": "Hier ist der nächste Mensch oft ein Astronaut 🌊",
+  "description": "Point Nemo im Südpazifik: der Ort im Meer, der am weitesten von jedem Land entfernt ist.\n\n#geografie #pointnemo #meer #wissen #shorts",
+  "tags": [
+    "geografie",
+    "pointnemo",
+    "meer",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌊",
+      "text": "Hier ist der nächste *Mensch* oft ein Astronaut.",
+      "clip": "open ocean waves"
+    },
+    {
+      "emoji": "🗺️",
+      "text": "Der *Point Nemo* im Südpazifik liegt am weitesten von jedem Land entfernt. Wie weit ist das?",
+      "clip": "world map globe"
+    },
+    {
+      "emoji": "🚀",
+      "text": "Bis zur nächsten Küste sind es mehr als zweitausendsechshundert Kilometer. Die *Raumstation* ist viel näher.",
+      "clip": "space station earth",
+      "visual": {
+        "type": "vergleich",
+        "a": [
+          "Raumstation",
+          400
+        ],
+        "b": [
+          "Nächstes Land",
+          2688
+        ],
+        "einheit": "Kilometer"
+      }
+    },
+    {
+      "emoji": "🛰️",
+      "text": "Deshalb versenken Raumfahrtagenturen dort alte Raumfahrzeuge, den *Raumschiff-Friedhof*.",
+      "clip": "rocket launch smoke",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Alte Satelliten",
+          "Raumfrachter",
+          "Raumstationen"
+        ]
+      }
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Friedhof für Raumschiffe mitten im Meer. Folge für mehr.",
+      "clip": "sea horizon sunset"
+    }
+  ]
+}

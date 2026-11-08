@@ -1,0 +1,49 @@
+{
+  "slug": "psychologie-stroop-effekt",
+  "niche": "Psychologie",
+  "colors": [
+    "#241638",
+    "#4a7a9c"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Dein Gehirn kann dieses Wort nicht ignorieren 🎨",
+  "description": "Der Stroop-Effekt: warum Lesen automatisch abläuft.\n\n#psychologie #stroop #gehirn #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "stroop",
+    "gehirn",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🎨",
+      "text": "Dein *Gehirn* kann dieses Wort nicht ignorieren.",
+      "clip": "colorful paint closeup"
+    },
+    {
+      "emoji": "🧪",
+      "text": "Neunzehnhundertfünfunddreißig ließ *John Ridley Stroop* Menschen Farben benennen. Das Wort Rot war in blauer Farbe gedruckt. Wer war schneller?",
+      "clip": "psychologist experiment"
+    },
+    {
+      "emoji": "🐢",
+      "text": "Die Teilnehmer wurden *langsamer* und machten Fehler, obwohl sie nur die Farbe sagen sollten.",
+      "clip": "person thinking confused",
+      "visual": {
+        "type": "wort",
+        "text": "Rot in Blau"
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Lesen läuft automatisch ab und stört das bewusste Benennen. Das heißt *Stroop-Effekt*.",
+      "clip": "brain scan monitor"
+    },
+    {
+      "emoji": "👉",
+      "text": "Dein Gehirn liest immer mit. Folge für mehr.",
+      "clip": "reading book closeup"
+    }
+  ]
+}

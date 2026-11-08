@@ -1,0 +1,116 @@
+{
+  "slug": "mystery-voynich-manuskript",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1a1410",
+    "#8c6a3a"
+  ],
+  "accent": "#c4161c",
+  "title": "Dieses Buch kann seit Jahrhunderten niemand lesen 📖",
+  "description": "Das Voynich-Manuskript: ein Buch in unbekannter Schrift, bis heute ungelöst. Theorien nennen wir Theorien.\n\n#mystery #rätsel #geschichte #voynich #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "voynich",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner"
+  },
+  "segments": [
+    {
+      "text": "Dieses Buch kann seit sechshundert Jahren niemand lesen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "📖",
+        "text": "Voynich"
+      }
+    },
+    {
+      "text": "Das Voynich-Manuskript ist voller Pflanzen, Sterne und fremder Schrift.",
+      "szene": {
+        "typ": "akte",
+        "text": "Voynich",
+        "punkte": [
+          "🌿",
+          "⭐",
+          "🔤",
+          "👩"
+        ]
+      }
+    },
+    {
+      "text": "Das Pergament wurde auf das fünfzehnte Jahrhundert datiert, das ist belegt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1404,
+        "text": "Frühestens",
+        "objekt": "📜",
+        "stempel": "belegt"
+      }
+    },
+    {
+      "text": "Die Schrift gleicht keiner bekannten Sprache der Welt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔤",
+        "text": "Fremde Schrift"
+      }
+    },
+    {
+      "text": "Forscher und sogar Codeknacker des Zweiten Weltkriegs scheiterten daran.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 5,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Alle scheitern"
+      }
+    },
+    {
+      "text": "Eine Theorie: ein Code. Eine andere: ein alter Scherz.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "zylinder",
+          "gefuehl": "staunen",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Viele Pflanzen im Buch lassen sich keiner echten Art zuordnen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌿",
+          "text": "Im Buch"
+        },
+        "rechts": {
+          "objekt": "🌱",
+          "text": "In echt"
+        }
+      }
+    },
+    {
+      "text": "Heute liegt es in einer Bibliothek. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
