@@ -1,0 +1,62 @@
+{
+  "slug": "geschichte-konserve-napoleon",
+  "niche": "Geschichte",
+  "colors": [
+    "#2a2214",
+    "#8c6a3a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Napoleon brachte uns das Dosenfutter 🥫",
+  "description": "Wie ein Preis von Napoleon die Konserve möglich machte. Der Dosenöffner kam erst viel später.\n\n#geschichte #napoleon #konserve #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "napoleon",
+    "konserve",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🥫",
+      "text": "Napoleon schrieb einen *Preis* für Dosenfutter aus.",
+      "clip": "canned food shelf"
+    },
+    {
+      "emoji": "⚔️",
+      "text": "Seine Soldaten hungerten. Im Jahr siebzehnhundertfünfundneunzig bot er zwölftausend Franc für eine Methode, Essen *haltbar* zu machen.",
+      "clip": "old army soldiers"
+    },
+    {
+      "emoji": "🍯",
+      "text": "Den Preis gewann achtzehnhundertzehn der Konditor *Nicolas Appert*. Er kochte Essen in verschlossenen Gläsern.",
+      "clip": "glass jars preserved",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1795,
+            "Preis"
+          ],
+          [
+            1810,
+            "Appert"
+          ],
+          [
+            1858,
+            "Dosenöffner"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "🔨",
+      "text": "Auch die Blechdose kam in diesen Jahren auf. Den *Dosenöffner* gab es erst Jahrzehnte später, davor half Hammer und Meißel.",
+      "clip": "hammer chisel metal"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein Preis, ein Glas, kein Öffner. Folge für mehr.",
+      "clip": "can opener kitchen"
+    }
+  ]
+}

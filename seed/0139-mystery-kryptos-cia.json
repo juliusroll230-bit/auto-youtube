@@ -1,0 +1,103 @@
+{
+  "slug": "mystery-kryptos-cia",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10161c",
+    "#5a7a8c"
+  ],
+  "accent": "#c4161c",
+  "title": "Der Code vor dem CIA-Gebäude, den niemand knackt 🔐",
+  "description": "Kryptos: die verschlüsselte Skulptur am CIA-Hauptquartier. Drei Texte sind gelöst, der vierte bis heute nicht.\n\n#mystery #rätsel #kryptos #cia #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "kryptos",
+    "cia",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Agent Cole"
+  },
+  "segments": [
+    {
+      "text": "Mitten im CIA-Hauptquartier steht ein Code, den niemand knackt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔐",
+        "text": "Kryptos"
+      }
+    },
+    {
+      "text": "Die Skulptur Kryptos steht seit neunzehnhundertneunzig in Langley, Virginia.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1990,
+        "text": "Kryptos",
+        "objekt": "🗿"
+      }
+    },
+    {
+      "text": "Auf dem Kupfer stehen vier verschlüsselte Texte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🔤",
+        "text": "Vier Texte"
+      }
+    },
+    {
+      "text": "Drei Texte wurden geknackt, der erste schon in den Neunzigern.",
+      "szene": {
+        "typ": "akte",
+        "text": "Gelöst?",
+        "punkte": [
+          "✅",
+          "✅",
+          "✅",
+          "❌"
+        ]
+      }
+    },
+    {
+      "text": "Der vierte Text hat nur siebenundneunzig Buchstaben und widersteht allen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 97,
+        "einheit": "Buchstaben",
+        "objekt": "🔠",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Der Künstler Jim Sanborn verriet später einzelne Hinweise, mehr nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "haende"
+      }
+    },
+    {
+      "text": "Eine Theorie: Ohne weitere Hinweise ist er gar nicht lösbar.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗿",
+        "text": "Langley"
+      }
+    },
+    {
+      "text": "Wer knackt Kryptos zuerst? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

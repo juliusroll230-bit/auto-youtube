@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-selbst-kitzeln",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1c1030",
+    "#8c4ac4"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Rätsel: Warum kannst du dich nicht selbst kitzeln? 🤭",
+  "description": "Warum Selbstkitzeln nicht funktioniert: Vorhersagen im Gehirn und ein Roboter-Experiment. Warum wir überhaupt kitzlig sind, bleibt eine Theorie.\n\n#wissen #gehirn #rätsel #körper #shorts",
+  "tags": [
+    "wissen",
+    "gehirn",
+    "rätsel",
+    "körper",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Kim"
+  },
+  "segments": [
+    {
+      "text": "Du kannst jeden anderen kitzeln, aber dich selbst nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt"
+      }
+    },
+    {
+      "text": "Ein Forscherteam in London untersuchte das Rätsel neunzehnhundertachtundneunzig.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1998,
+        "text": "Experiment London",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Dein Kleinhirn sagt voraus, was deine Hand gleich fühlen wird.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🧠",
+        "text": "Vorhersage"
+      }
+    },
+    {
+      "text": "Was vorhergesagt wird, kitzelt nicht, das Gehirn schaltet es leiser.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🙋",
+          "text": "Selbst: leise"
+        },
+        "rechts": {
+          "objekt": "🤗",
+          "text": "Fremd: laut"
+        }
+      }
+    },
+    {
+      "text": "Kitzelt dich ein Roboter mit Verzögerung, kitzelt es plötzlich wieder.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🤖",
+        "text": "Mit Verzögerung"
+      }
+    },
+    {
+      "text": "Die Verzögerung macht die Vorhersage falsch, und das Gehirn ist überrascht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Warum es Kitzeln gibt, ist eine Theorie: Schutz oder Bindung.",
+      "szene": {
+        "typ": "akte",
+        "text": "Theorien",
+        "punkte": [
+          "🛡️",
+          "🤝",
+          "🎮"
+        ]
+      }
+    },
+    {
+      "text": "Probier es selbst aus. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Probier es"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

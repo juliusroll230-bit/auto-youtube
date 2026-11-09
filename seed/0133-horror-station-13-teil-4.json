@@ -1,0 +1,117 @@
+{
+  "slug": "horror-station-13-teil-4",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Station 13",
+  "teil": 4,
+  "colors": [
+    "#0f1a17",
+    "#3fa35b"
+  ],
+  "accent": "#e0392f",
+  "title": "Station 13: Die Handschrift im Notizbuch (Teil 4) ⏳",
+  "description": "Station 13, Teil 4. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #zombie #serie #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "zombie",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Der Fahrstuhl stürzt ab, Zombies stürzen hinterher.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "zombie",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "faellt"
+      }
+    },
+    {
+      "text": "Station dreizehn, Teil vier: Die Handschrift im Notizbuch ist Mias.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Station 13",
+        "teil": 4,
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Mia erkennt ihre eigene Schrift, aber sie hat das nie geschrieben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📓"
+      }
+    },
+    {
+      "text": "Ben nimmt ihr das Buch weg: Du hast es morgen geschrieben.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "muetze",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Das Licht geht aus, ein Flüstern kommt aus dem Notizbuch.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Auf der letzten Seite steht: Du hast noch vierundzwanzig Stunden.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "Stunden",
+        "objekt": "⏳",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Darunter steht der Fluchtplan in drei Schritten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Fluchtplan",
+        "punkte": [
+          "Aufs Dach",
+          "Schlüssel finden",
+          "Hubschrauber"
+        ]
+      }
+    },
+    {
+      "text": "Auf dem Dach wartet jemand. Teil fünf kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Teil 5 kommt"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

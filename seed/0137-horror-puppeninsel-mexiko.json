@@ -1,0 +1,104 @@
+{
+  "slug": "horror-puppeninsel-mexiko",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#161a10",
+    "#7a6a3a"
+  ],
+  "accent": "#e0392f",
+  "title": "Die Insel, auf der Hunderte Puppen hängen 🎎",
+  "description": "Die Puppeninsel bei Xochimilco in Mexiko: Legende, Berichte und was belegt ist.\n\n#horror #legende #mexiko #gruselig #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "mexiko",
+    "gruselig",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "keiner",
+    "name": "Luz"
+  },
+  "segments": [
+    {
+      "text": "Hunderte Puppen hängen an Bäumen und starren dich an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "steht",
+        "objekt": "🎎"
+      }
+    },
+    {
+      "text": "Die Insel liegt bei Xochimilco in Mexiko, südlich von Mexiko-Stadt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Xochimilco"
+      }
+    },
+    {
+      "text": "Der Legende nach ertrank dort ein kleines Mädchen im Kanal.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌊",
+        "text": "Der Kanal"
+      }
+    },
+    {
+      "text": "Don Julián hängte Puppen auf, um den Geist zu besänftigen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Besucher sagen, die Puppen flüstern und bewegen manchmal die Augen.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Er starb zweitausendeins, laut Berichten genau dort im Wasser.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2001,
+        "text": "Don Julián",
+        "objekt": "🌊",
+        "stempel": "Bericht"
+      }
+    },
+    {
+      "text": "Belegt ist nur: Die Insel ist heute ein Touristenziel.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 4,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Touristen"
+      }
+    },
+    {
+      "text": "Würdest du dort eine Nacht verbringen?",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

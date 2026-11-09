@@ -1,0 +1,52 @@
+{
+  "slug": "psychologie-frequenzillusion",
+  "niche": "Psychologie",
+  "colors": [
+    "#241638",
+    "#4a9c8c"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Dieses Wort verfolgt dich plötzlich überall 👀",
+  "description": "Die Frequenzillusion (Baader-Meinhof-Phänomen): warum wir Neues plötzlich überall sehen.\n\n#psychologie #gehirn #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "gehirn",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "👀",
+      "text": "Dieses *Wort* verfolgt dich plötzlich überall.",
+      "clip": "crowd busy street"
+    },
+    {
+      "emoji": "🚗",
+      "text": "Du lernst ein neues Wort oder eine Automarke kennen. Am nächsten Tag taucht sie überall auf. Warum?",
+      "clip": "cars parking lot row"
+    },
+    {
+      "emoji": "🔦",
+      "text": "Sie war schon immer da. Dein Gehirn hat sie nur nie *beachtet*.",
+      "clip": "flashlight dark closeup",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Neu gelernt",
+          "Aufmerksam",
+          "Überall"
+        ]
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Psychologen nennen das *Frequenzillusion*, im Netz auch Baader-Meinhof-Phänomen. Aufmerksamkeit und Bestätigung verstärken den Eindruck.",
+      "clip": "brain illustration glowing"
+    },
+    {
+      "emoji": "👉",
+      "text": "Du siehst es jetzt überall. Folge für mehr.",
+      "clip": "street signs city"
+    }
+  ]
+}

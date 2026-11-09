@@ -1,0 +1,114 @@
+{
+  "slug": "mystery-nordwacht-teil-3",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "serie": "Nordwacht",
+  "teil": 3,
+  "colors": [
+    "#0d1a24",
+    "#3a7a9c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Nordwacht: Das Gesicht unter der Kapuze (Teil 3) 🗼",
+  "description": "Nordwacht, Teil 3. Eine ausgedachte Mystery-Serie.\n\n#mystery #leuchtturm #rätsel #serie #shorts",
+  "tags": [
+    "mystery",
+    "leuchtturm",
+    "rätsel",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "muetze",
+    "name": "Elin"
+  },
+  "segments": [
+    {
+      "text": "Die Gestalt klettert aus dem Boot und kommt die Stufen hoch.",
+      "szene": {
+        "typ": "monster",
+        "ort": "meer",
+        "monster": "schatten",
+        "wetter": "nebel",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Nordwacht, Teil drei: Das Gesicht unter der Kapuze.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Nordwacht",
+        "teil": 3,
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Elin erstarrt: Es ist ihr eigenes Gesicht, nur älter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    },
+    {
+      "text": "Die ältere Elin flüstert: Ich komme aus dem Jahr zweitausendeinunddreißig.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2031,
+        "text": "Aus der Zukunft",
+        "objekt": "⏳",
+        "stempel": "geheim"
+      }
+    },
+    {
+      "text": "Sie hat das Funkgerät benutzt, um Elin zu warnen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "lila",
+          "hut": "keiner",
+          "gefuehl": "traurig",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Der Satz im Morsecode lautet: Geh nicht nach oben.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Warnung",
+        "punkte": [
+          "⚫",
+          "⚫",
+          "➖",
+          "🚫"
+        ]
+      }
+    },
+    {
+      "text": "Oben dreht sich das Licht schneller und schneller.",
+      "szene": {
+        "typ": "horror",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Was wartet im Lichtraum? Teil vier kommt bald.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗼",
+        "text": "Teil 4 kommt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "business-suzuki-webstuehle",
+  "style": "car",
+  "car_color": "#c8322c",
+  "niche": "Business",
+  "accent": "#ff6a6a",
+  "title": "Dieser Autobauer startete mit Webstühlen 🧵",
+  "description": "Michio Suzuki, Webstühle und der Weg zu Autos und Motorrädern: die Geschichte von Suzuki.\n\n#business #suzuki #autos #geschichte #shorts",
+  "tags": [
+    "business",
+    "suzuki",
+    "autos",
+    "geschichte",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Dieser *Autobauer* baute erst Webstühle.",
+      "clip": "weaving loom factory"
+    },
+    {
+      "text": "Michio Suzuki gründete neunzehnhundertneun in Japan eine Firma für *Webstühle*. Wie kam er zu Autos?",
+      "clip": "textile machine thread"
+    },
+    {
+      "text": "Seine Webstühle waren so gut, dass die Firma wuchs. Neunzehnhundertsiebenunddreißig entstanden die ersten *Autoprototypen*.",
+      "clip": "vintage small car",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1909,
+            "Webstühle"
+          ],
+          [
+            1937,
+            "Erste Autos"
+          ],
+          [
+            1952,
+            "Motorräder"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Neunzehnhundertzweiundfünfzig kam das erste *Motorrad*. Heute baut Suzuki weltweit Autos und Motorräder.",
+      "clip": "motorcycle riding road"
+    },
+    {
+      "text": "Vom Faden zum Fahrzeug, von Japan in die Welt. Folge für mehr.",
+      "clip": "red thread spool closeup"
+    }
+  ]
+}

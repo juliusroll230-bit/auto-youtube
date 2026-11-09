@@ -1,0 +1,53 @@
+{
+  "slug": "geografie-sahara-amazonas",
+  "niche": "Geografie",
+  "colors": [
+    "#2e2214",
+    "#b08a3a"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Dieser Regenwald wird mit Wüstensand gedüngt 🌴",
+  "description": "Wie Staub aus der Sahara den Amazonas-Regenwald mit Nährstoffen versorgt.\n\n#geografie #sahara #amazonas #wissen #shorts",
+  "tags": [
+    "geografie",
+    "sahara",
+    "amazonas",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🌴",
+      "text": "Der *Amazonas* wird mit Sand aus der Sahara gedüngt.",
+      "clip": "amazon rainforest aerial"
+    },
+    {
+      "emoji": "💨",
+      "text": "Wind trägt jedes Jahr rund achtundzwanzig Millionen Tonnen Staub über den Atlantik. Doch warum braucht der Regenwald ihn?",
+      "clip": "desert dust storm"
+    },
+    {
+      "emoji": "🌧️",
+      "text": "Der Boden dort ist arm an *Phosphor*, weil der Regen ihn ständig auswäscht.",
+      "clip": "tropical rain forest",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Sahara",
+          "Wind",
+          "Amazonas"
+        ]
+      }
+    },
+    {
+      "emoji": "🏜️",
+      "text": "Der Staub stammt aus einem alten Seebett. Er bringt genau diesen *Nährstoff* mit.",
+      "clip": "sahara dunes sand"
+    },
+    {
+      "emoji": "👉",
+      "text": "Wüste düngt Wald. Folge für mehr.",
+      "clip": "ocean clouds sky"
+    }
+  ]
+}

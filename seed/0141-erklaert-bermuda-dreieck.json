@@ -1,0 +1,107 @@
+{
+  "slug": "erklaert-bermuda-dreieck",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#08202e",
+    "#2a7a8c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Rätsel um das Bermuda-Dreieck 🔺",
+  "description": "Flug 19 und der Mythos vom Bermuda-Dreieck: was belegt ist und was nicht.\n\n#bermudadreieck #rätsel #wissen #geschichte #shorts",
+  "tags": [
+    "bermudadreieck",
+    "rätsel",
+    "wissen",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Käpt'n Ray"
+  },
+  "segments": [
+    {
+      "text": "Fünf Flugzeuge starten und kehren nie wieder zurück.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "✈️",
+        "text": "Flug 19"
+      }
+    },
+    {
+      "text": "Am fünften Dezember neunzehnhundertfünfundvierzig verschwand ein Trainingsverband der US-Marine.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1945,
+        "text": "Flug 19",
+        "objekt": "✈️"
+      }
+    },
+    {
+      "text": "Der Anführer hatte sich verflogen und fand den Weg nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Ein Suchflugzeug mit dreizehn Mann startete und verschwand ebenfalls.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 13,
+        "einheit": "Mann Besatzung",
+        "objekt": "✈️",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Daraus wurde der Mythos vom Bermuda-Dreieck. Aber stimmt er?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔺",
+        "text": "Bermuda-Dreieck"
+      }
+    },
+    {
+      "text": "Lloyd's of London und die US-Küstenwache sahen dort keine auffällige Häufung.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔺",
+          "text": "Bermuda: normal"
+        },
+        "rechts": {
+          "objekt": "🌊",
+          "text": "Anderswo: normal"
+        }
+      }
+    },
+    {
+      "text": "Stürme, Strömungen und menschliche Fehler erklären die meisten Fälle.",
+      "szene": {
+        "typ": "akte",
+        "text": "Erklärungen",
+        "punkte": [
+          "⛈️",
+          "🌊",
+          "🧭"
+        ]
+      }
+    },
+    {
+      "text": "Ein Rätsel bleibt: Warum glauben wir trotzdem daran?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
