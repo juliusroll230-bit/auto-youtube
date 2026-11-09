@@ -6,11 +6,74 @@
  },
  "videos": [
   {
+   "id": "9Rlqpcf5ZM4",
+   "title": "Dieses Wort verfolgt dich plötzlich überall 👀",
+   "text": "Die Frequenzillusion (Baader-Meinhof-Phänomen): warum wir Neues plötzlich überall sehen.",
+   "niche": "Psychologie",
+   "views": 119,
+   "published": "2026-11-09T19:36:51+00:00",
+   "thumb": "thumbs/9Rlqpcf5ZM4.jpg"
+  },
+  {
+   "id": "z22zm0-x34E",
+   "title": "Wie funktioniert GPS wirklich? Ohne Einstein ginge es nicht 🛰️",
+   "text": "Dein Handy sendet nichts ins All und weiß trotzdem, wo du bist. Wir erklären Schritt für Schritt, wie GPS funktioniert, warum vier Satelliten nötig sind und warum Einsteins Relativitätstheorie das System erst möglich macht.",
+   "niche": "Wissen",
+   "views": 12,
+   "published": "2026-11-09T18:21:20+00:00",
+   "thumb": "thumbs/z22zm0-x34E.jpg"
+  },
+  {
+   "id": "oUqYsNLVCEc",
+   "title": "Der Code vor dem CIA-Gebäude, den niemand knackt 🔐",
+   "text": "Kryptos: die verschlüsselte Skulptur am CIA-Hauptquartier. Drei Texte sind gelöst, der vierte bis heute nicht.",
+   "niche": "Wissen",
+   "views": 50,
+   "published": "2026-11-09T17:37:56+00:00",
+   "thumb": "thumbs/oUqYsNLVCEc.jpg"
+  },
+  {
+   "id": "DgUH307W-54",
+   "title": "Dieses Wort bedeutet eigentlich vierzig Tage ⏳",
+   "text": "Woher das Wort Quarantäne kommt: Hafenstädte und die Pest im Mittelalter.",
+   "niche": "Geschichte",
+   "views": 227,
+   "published": "2026-11-09T16:36:46+00:00",
+   "thumb": "thumbs/DgUH307W-54.jpg"
+  },
+  {
+   "id": "-tx7RGyHJrE",
+   "title": "Nordwacht: Das Gesicht unter der Kapuze (Teil 3) 🗼",
+   "text": "Nordwacht, Teil 3. Eine ausgedachte Mystery-Serie.",
+   "niche": "Wissen",
+   "views": 203,
+   "published": "2026-11-09T15:37:39+00:00",
+   "thumb": "thumbs/-tx7RGyHJrE.jpg"
+  },
+  {
+   "id": "eYEOSY3qyoU",
+   "title": "Dieses Buch kann seit Jahrhunderten niemand lesen 📖",
+   "text": "Das Voynich-Manuskript: ein Buch in unbekannter Schrift, bis heute ungelöst. Theorien nennen wir Theorien.",
+   "niche": "Geschichte",
+   "views": 182,
+   "published": "2026-11-09T13:37:57+00:00",
+   "thumb": "thumbs/eYEOSY3qyoU.jpg"
+  },
+  {
+   "id": "JwzNKmydwrY",
+   "title": "Nordwacht: Wessen Name steht im Logbuch? (Teil 2) 📖",
+   "text": "Nordwacht, Teil 2. Eine ausgedachte Mystery-Serie.",
+   "niche": "Wissen",
+   "views": 439,
+   "published": "2026-11-09T12:37:41+00:00",
+   "thumb": "thumbs/JwzNKmydwrY.jpg"
+  },
+  {
    "id": "tQXKcnn7hl0",
    "title": "Dieser Regenwald wird mit Wüstensand gedüngt 🌴",
    "text": "Wie Staub aus der Sahara den Amazonas-Regenwald mit Nährstoffen versorgt.",
    "niche": "Geografie",
-   "views": 0,
+   "views": 105,
    "published": "2026-11-09T11:36:46+00:00",
    "thumb": "thumbs/tQXKcnn7hl0.jpg"
   },
@@ -19,7 +82,7 @@
    "title": "Die Insel, auf der Hunderte Puppen hängen 🎎",
    "text": "Die Puppeninsel bei Xochimilco in Mexiko: Legende, Berichte und was belegt ist.",
    "niche": "Wissen",
-   "views": 47,
+   "views": 378,
    "published": "2026-11-09T07:37:45+00:00",
    "thumb": "thumbs/yNRG1hkpMFQ.jpg"
   },
@@ -28,7 +91,7 @@
    "title": "Station 13: Die Handschrift im Notizbuch (Teil 4) ⏳",
    "text": "Station 13, Teil 4. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 45,
+   "views": 85,
    "published": "2026-11-09T05:37:33+00:00",
    "thumb": "thumbs/NowwCHZsIlU.jpg"
   },
@@ -37,7 +100,7 @@
    "title": "Das Rätsel um das Signal aus dem All 📡",
    "text": "Das Wow-Signal von 1977: zweiundsiebzig Sekunden Funk aus dem Sternbild Schütze, nie wieder gehört.",
    "niche": "Wissen",
-   "views": 361,
+   "views": 422,
    "published": "2026-11-08T19:37:54+00:00",
    "thumb": "thumbs/XISMfivzl1g.jpg"
   },
@@ -46,7 +109,7 @@
    "title": "Das Dorf, aus dem alle Menschen verschwanden 🏚️",
    "text": "Die verlorene Kolonie von Roanoke (1587 bis 1590): bis heute ungelöst. Theorien nennen wir als Theorien.",
    "niche": "Geschichte",
-   "views": 923,
+   "views": 909,
    "published": "2026-11-08T17:37:38+00:00",
    "thumb": "thumbs/yJnqYSaTjVw.jpg"
   },
@@ -55,7 +118,7 @@
    "title": "Diese Raubkatze trug früher nur zwei Buchstaben 🐆",
    "text": "Warum die britische Marke Jaguar neunzehnhundertfünfundvierzig ihren Namen SS ablegte.",
    "niche": "Autos",
-   "views": 128,
+   "views": 145,
    "published": "2026-11-08T16:37:19+00:00",
    "thumb": "thumbs/k0AqZDpcqFs.jpg"
   },
@@ -64,7 +127,7 @@
    "title": "Dein Gehirn kann dieses Wort nicht ignorieren 🎨",
    "text": "Der Stroop-Effekt: warum Lesen automatisch abläuft.",
    "niche": "Psychologie",
-   "views": 692,
+   "views": 735,
    "published": "2026-11-08T15:37:10+00:00",
    "thumb": "thumbs/EVhu0dJjsJo.jpg"
   },
@@ -73,72 +136,9 @@
    "title": "Diese Stadt wurde von Sirup überrollt 🍯",
    "text": "Die Melasse-Flut von Boston am 15. Januar 1919.",
    "niche": "Geschichte",
-   "views": 92,
+   "views": 90,
    "published": "2026-11-08T13:37:16+00:00",
    "thumb": "thumbs/rFC05Dwz71o.jpg"
-  },
-  {
-   "id": "G-hTxk5_KUM",
-   "title": "Hier ist der nächste Mensch oft ein Astronaut 🌊",
-   "text": "Point Nemo im Südpazifik: der Ort im Meer, der am weitesten von jedem Land entfernt ist.",
-   "niche": "Geografie",
-   "views": 864,
-   "published": "2026-11-08T12:36:53+00:00",
-   "thumb": "thumbs/G-hTxk5_KUM.jpg"
-  },
-  {
-   "id": "VhznqCvMIe8",
-   "title": "Der Wald, in dem Menschen sich nicht wohlfühlen 🌲",
-   "text": "Der Hoia-Baciu-Wald in Rumänien: Legenden und Berichte, aber keine Beweise für Übernatürliches.",
-   "niche": "Wissen",
-   "views": 559,
-   "published": "2026-11-08T11:37:47+00:00",
-   "thumb": "thumbs/VhznqCvMIe8.jpg"
-  },
-  {
-   "id": "xxm7VYe3A8c",
-   "title": "Station 13: Wer hat die Namen geschrieben? (Teil 3) 📓",
-   "text": "Station 13, Teil 3. Eine ausgedachte Grusel-Serie.",
-   "niche": "Wissen",
-   "views": 152,
-   "published": "2026-11-08T09:37:27+00:00",
-   "thumb": "thumbs/xxm7VYe3A8c.jpg"
-  },
-  {
-   "id": "YUiJCV4Sl6g",
-   "title": "Die Insel, die niemand betreten darf 🏝️",
-   "text": "Poveglia vor Venedig: Pestinsel, Anstalt, Legenden. Was belegt ist und was Legende, sagen wir im Video.",
-   "niche": "Wissen",
-   "views": 918,
-   "published": "2026-11-08T05:37:51+00:00",
-   "thumb": "thumbs/YUiJCV4Sl6g.jpg"
-  },
-  {
-   "id": "Nr8Iz_jM2j8",
-   "title": "Das Rätsel um den tiefsten Punkt im Meer 🌊",
-   "text": "Der Marianengraben im Pazifik: Tauchgang 1960, enormer Druck und kaum erforschtes Leben.",
-   "niche": "Wissen",
-   "views": 709,
-   "published": "2026-11-07T19:37:41+00:00",
-   "thumb": "thumbs/Nr8Iz_jM2j8.jpg"
-  },
-  {
-   "id": "ztEtWL5o7iQ",
-   "title": "Wie funktioniert ein Kühlschrank wirklich? Die überraschende Wahrheit 🧊",
-   "text": "Dein Kühlschrank macht gar keine Kälte. Er ist eine Wärmepumpe. In diesem Video erklären wir Schritt für Schritt, wie Kompressor, Kondensator, Drossel und Verdampfer zusammenarbeiten, wer ihn erfunden hat und warum die Kühlmittel sich geändert haben.",
-   "niche": "Wissen",
-   "views": 13,
-   "published": "2026-11-07T18:20:16+00:00",
-   "thumb": "thumbs/ztEtWL5o7iQ.jpg"
-  },
-  {
-   "id": "bqMBf8ZGKpo",
-   "title": "Nordwacht: Wer funkt vom leeren Leuchtturm? (Teil 1) 🗼",
-   "text": "Nordwacht, Teil 1. Eine ausgedachte Mystery-Serie.",
-   "niche": "Wissen",
-   "views": 165,
-   "published": "2026-11-07T17:38:01+00:00",
-   "thumb": "thumbs/bqMBf8ZGKpo.jpg"
   }
  ]
 }
