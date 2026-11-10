@@ -56,6 +56,7 @@ dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere m
 mit `"stimme"` im Skript ist sie fest.
 
 **Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene ist schon Action, die `titel`-Szene kommt als zweite, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
+Eine Serie hat höchstens 3 Teile (Stand 10.11.: Teil 1 und 2 liefen gut, ab Teil 3 kaum noch Aufrufe). Jeder Teil muss auch allein verständlich sein: Satz 1 zeigt die Lage, der Titel ist eine eigene Rätselfrage.
 
 - `ort`: strand, meer, stadt, wald, feld, nacht, haus, kinderzimmer, keller, schule (mit `tafel`: Text an der Tafel), buero, labor, weltall, wueste, burg, dorf, farbe, friedhof, spukhaus, krankenhaus, strasse (nachts), dunkelwald
 - `gefuehl`: freude, angst, staunen, wut, traurig, denken, cool, neutral, k_o
