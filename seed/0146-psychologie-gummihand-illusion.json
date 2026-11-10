@@ -1,0 +1,53 @@
+{
+  "slug": "psychologie-gummihand-illusion",
+  "niche": "Psychologie",
+  "colors": [
+    "#2a1638",
+    "#a85a8c"
+  ],
+  "accent": "#ffd9a0",
+  "title": "Deine Hand gehört plötzlich einer Gummihand 🖐️",
+  "description": "Die Gummihand-Illusion von Botvinick und Cohen aus neunzehnhundertachtundneunzig.\n\n#psychologie #gehirn #illusion #wissen #shorts",
+  "tags": [
+    "psychologie",
+    "gehirn",
+    "illusion",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🖐️",
+      "text": "Dein Gehirn hält eine *Gummihand* für deine.",
+      "clip": "rubber hand mannequin"
+    },
+    {
+      "emoji": "🔬",
+      "text": "Neunzehnhundertachtundneunzig zeigten Forscher einen simplen Versuch. Deine echte Hand ist verdeckt, die falsche liegt sichtbar daneben. Was passiert?",
+      "clip": "psychology experiment table"
+    },
+    {
+      "emoji": "🖌️",
+      "text": "Beide Hände werden gleichzeitig *gestreichelt*. Nach kurzer Zeit fühlt sich die Gummihand wie die eigene an.",
+      "clip": "paintbrush stroking hand",
+      "visual": {
+        "type": "liste",
+        "punkte": [
+          "Echte Hand versteckt",
+          "Gummihand sichtbar",
+          "Gleich gestreichelt"
+        ]
+      }
+    },
+    {
+      "emoji": "🧠",
+      "text": "Das Gehirn verbindet *Sehen* und *Fühlen* und entscheidet selbst, was zu deinem Körper gehört.",
+      "clip": "brain scan monitor"
+    },
+    {
+      "emoji": "👉",
+      "text": "Dein Körper ist eine Vermutung. Folge für mehr.",
+      "clip": "hands closeup moving"
+    }
+  ]
+}

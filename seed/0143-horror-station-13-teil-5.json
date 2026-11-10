@@ -1,0 +1,119 @@
+{
+  "slug": "horror-station-13-teil-5",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Station 13",
+  "teil": 5,
+  "colors": [
+    "#0f1a17",
+    "#3fa35b"
+  ],
+  "accent": "#e0392f",
+  "title": "Station 13: Das Finale auf dem Dach (Teil 5) 🚁",
+  "description": "Station 13, Teil 5, das Finale. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #zombie #serie #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "zombie",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Mia stürmt aufs Dach, hinter ihr drängen Zombies durch die Tür.",
+      "szene": {
+        "typ": "monster",
+        "ort": "nacht",
+        "monster": "zombie",
+        "anzahl": 4,
+        "wetter": "regen",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Station dreizehn, Teil fünf: Das Finale auf dem Dach.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Station 13",
+        "teil": 5,
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Auf dem Dach wartet die Ärztin mit dem Schlüssel in der Hand.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "nacht",
+        "wetter": "regen",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "lila",
+          "hut": "keiner",
+          "gefuehl": "cool",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Sie sagt: Jeder Tag war ein Test. Du kommst am weitesten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🔑",
+        "text": "Der Schlüssel",
+        "wetter": "regen"
+      }
+    },
+    {
+      "text": "Ben wirft das Notizbuch ins Feuer, und die Zombies erstarren.",
+      "szene": {
+        "typ": "monster",
+        "ort": "nacht",
+        "monster": "zombie",
+        "anzahl": 3,
+        "wetter": "blitz",
+        "gefuehl": "neutral",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Mia und Ben steigen ein, die Zwölfte winkt ihnen nach.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "cool",
+        "aktion": "winkt",
+        "objekt": "🚁"
+      }
+    },
+    {
+      "text": "Auf Mias Hand steht plötzlich eine neue Zahl: Dreizehn.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 13,
+        "einheit": "Dreizehnte",
+        "objekt": "🏷️",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Ist es vorbei? Eine neue Gruselserie kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Neue Serie"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

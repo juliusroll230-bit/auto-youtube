@@ -1,0 +1,115 @@
+{
+  "slug": "horror-unterm-bett-teil-1",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Unterm Bett",
+  "teil": 1,
+  "colors": [
+    "#14102a",
+    "#6a4aa8"
+  ],
+  "accent": "#ffd24d",
+  "title": "Unterm Bett: Was kratzt da im Dunkeln? (Teil 1) 🛏️",
+  "description": "Unterm Bett, Teil 1. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #unterm #serie #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "serie",
+    "kinderzimmer",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Finn"
+  },
+  "segments": [
+    {
+      "text": "Unterm Bett kratzt etwas, und Finn kann sich nicht bewegen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Unterm Bett, Teil eins: Das Kratzen hört nicht auf.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Unterm Bett",
+        "teil": 1,
+        "ort": "kinderzimmer"
+      }
+    },
+    {
+      "text": "Finn leuchtet mit der Taschenlampe, aber unterm Bett ist nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔦"
+      }
+    },
+    {
+      "text": "Am Morgen liegen frische Kratzspuren im Holzboden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🪵",
+        "text": "Kratzspuren"
+      }
+    },
+    {
+      "text": "In der zweiten Nacht leuchten zwei gelbe Augen unterm Bett.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Finns Schwester Lea lacht, doch plötzlich wird sie ganz still.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "angst",
+          "aktion": "versteckt"
+        }
+      }
+    },
+    {
+      "text": "Lea nennt die drei Regeln, die ihr Opa früher aufgestellt hat.",
+      "szene": {
+        "typ": "liste",
+        "text": "Opas Regeln",
+        "punkte": [
+          "Licht an",
+          "Füße oben",
+          "Nicht antworten"
+        ]
+      }
+    },
+    {
+      "text": "Was will es von Finn? Teil zwei kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Teil 2 kommt"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

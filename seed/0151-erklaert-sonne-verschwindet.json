@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-sonne-verschwindet",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a0f08",
+    "#d8841c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Was passiert, wenn die Sonne plötzlich verschwindet? ☀️",
+  "description": "Ein Gedankenexperiment: acht Minuten Licht, dann Dunkelheit und Kälte. Vieles davon sind Berechnungen und Theorien.\n\n#weltall #sonne #wissen #rätsel #shorts",
+  "tags": [
+    "weltall",
+    "sonne",
+    "wissen",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Sunny"
+  },
+  "segments": [
+    {
+      "text": "Die Sonne verschwindet, und du merkst es acht Minuten nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "☀️"
+      }
+    },
+    {
+      "text": "So lange brauchen ihr Licht und ihre Schwerkraft bis zu uns.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 8,
+        "einheit": "Minuten",
+        "objekt": "☀️",
+        "farbcode": "#3a2a1d"
+      }
+    },
+    {
+      "text": "Dann wird es stockdunkel, und die Erde fliegt geradeaus ins All.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🌍",
+        "text": "Geradeaus"
+      }
+    },
+    {
+      "text": "Nach Berechnungen fällt die Temperatur schon in Tagen stark.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☀️",
+          "text": "Heute: warm"
+        },
+        "rechts": {
+          "objekt": "🌑",
+          "text": "Danach: eisig"
+        }
+      }
+    },
+    {
+      "text": "Pflanzen sterben, doch die Tiefsee bliebe lange flüssig.",
+      "szene": {
+        "typ": "akte",
+        "text": "Überleben?",
+        "punkte": [
+          "🌱",
+          "🌊",
+          "🔥"
+        ]
+      }
+    },
+    {
+      "text": "Eine Theorie: Vulkane und Erdwärme halten kleine Orte warm.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌋",
+        "text": "Warme Orte"
+      }
+    },
+    {
+      "text": "Menschen müssten wohl tief unter die Erde, nah an die Wärme.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "keller",
+        "anzahl": 5,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Unter der Erde"
+      }
+    },
+    {
+      "text": "Wie lange würdest du durchhalten? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "❓",
+        "text": "Was glaubst du?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

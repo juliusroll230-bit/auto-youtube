@@ -1,0 +1,112 @@
+{
+  "slug": "mystery-nordwacht-teil-4",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "serie": "Nordwacht",
+  "teil": 4,
+  "colors": [
+    "#0d1a24",
+    "#3a7a9c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Nordwacht: Das Licht, das die Zeit verbiegt (Teil 4) 🕰️",
+  "description": "Nordwacht, Teil 4. Eine ausgedachte Mystery-Serie.\n\n#mystery #leuchtturm #rätsel #serie #shorts",
+  "tags": [
+    "mystery",
+    "leuchtturm",
+    "rätsel",
+    "serie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "muetze",
+    "name": "Elin"
+  },
+  "segments": [
+    {
+      "text": "Elin stürmt trotzdem nach oben, das Licht blendet sie.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Nordwacht, Teil vier: Das Licht, das die Zeit verbiegt.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Nordwacht",
+        "teil": 4,
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Im Lichtraum hängen Hunderte Uhren, alle zeigen eine andere Zeit.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🕰️",
+        "text": "Alle Zeiten"
+      }
+    },
+    {
+      "text": "Eine Uhr zeigt zweitausendeinunddreißig, ihre Zeiger laufen rückwärts.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2031,
+        "text": "Rückwärts",
+        "objekt": "🕰️",
+        "stempel": "geheim"
+      }
+    },
+    {
+      "text": "Die ältere Elin ruft von unten: Zerstör die Linse!",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "lila",
+          "hut": "keiner",
+          "gefuehl": "angst",
+          "aktion": "rennt"
+        }
+      }
+    },
+    {
+      "text": "Doch die Linse ist der einzige Weg zurück in Elins Zeit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔍",
+        "text": "Die Linse"
+      }
+    },
+    {
+      "text": "Schatten tauchen auf, sie tragen alle Elins Gesicht.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Zerstört sie die Linse oder bleibt sie? Teil fünf kommt bald.",
+      "szene": {
+        "typ": "akte",
+        "text": "Entscheide",
+        "punkte": [
+          "🔍",
+          "💥",
+          "⏳"
+        ]
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

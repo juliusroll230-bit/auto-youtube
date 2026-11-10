@@ -1,0 +1,58 @@
+{
+  "slug": "geschichte-bluetooth-blauzahn",
+  "niche": "Geschichte",
+  "colors": [
+    "#14223a",
+    "#3a6ac4"
+  ],
+  "accent": "#cfe8ff",
+  "title": "Dieser König steckt in deinem Handy 👑",
+  "description": "Harald Blauzahn und der Name Bluetooth: Wikinger-König, Runen und ein Technik-Logo.\n\n#geschichte #bluetooth #wikinger #wissen #shorts",
+  "tags": [
+    "geschichte",
+    "bluetooth",
+    "wikinger",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "👑",
+      "text": "Ein *Wikingerkönig* steckt im Namen deiner Kopfhörer.",
+      "clip": "wireless earbuds closeup"
+    },
+    {
+      "emoji": "🦷",
+      "text": "Bluetooth heißt auf Deutsch Blauzahn. So hieß der dänische König *Harald*. Doch warum?",
+      "clip": "viking ship sea"
+    },
+    {
+      "emoji": "🤝",
+      "text": "Er einte im zehnten Jahrhundert Teile von Dänemark und Norwegen. Die Technik sollte ebenfalls *verbinden*.",
+      "clip": "viking helmet museum",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            958,
+            "Harald"
+          ],
+          [
+            1997,
+            "Namensidee"
+          ]
+        ]
+      }
+    },
+    {
+      "emoji": "ᚼ",
+      "text": "Das Logo vereint die zwei *Runen* für H und B zu einem Zeichen.",
+      "clip": "rune stone carving"
+    },
+    {
+      "emoji": "👉",
+      "text": "Ein König verbindet bis heute. Folge für mehr.",
+      "clip": "phone connecting wireless"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "business-abarth-skorpion",
+  "style": "car",
+  "car_color": "#d8a41c",
+  "niche": "Business",
+  "accent": "#ffd04d",
+  "title": "Dieser Skorpion steckt im Logo einer Tuning-Legende 🦂",
+  "description": "Carlo Abarth, sein Sternzeichen und die Marke Abarth.\n\n#business #abarth #autos #logo #shorts",
+  "tags": [
+    "business",
+    "abarth",
+    "autos",
+    "logo",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "text": "Dieses Logo verrät das *Sternzeichen* seines Gründers.",
+      "clip": "scorpion closeup sand"
+    },
+    {
+      "text": "Carlo Abarth wurde im November neunzehnhundertacht geboren. Sein *Sternzeichen* war der Skorpion. Doch wie wurde daraus eine Marke?",
+      "clip": "zodiac stars night sky"
+    },
+    {
+      "text": "Neunzehnhundertneunundvierzig gründete er in Turin seine Firma und baute *Auspuffanlagen* und Tuningteile für Fiat.",
+      "clip": "exhaust pipe workshop",
+      "visual": {
+        "type": "zeitstrahl",
+        "punkte": [
+          [
+            1908,
+            "Geburt"
+          ],
+          [
+            1949,
+            "Firma in Turin"
+          ]
+        ]
+      }
+    },
+    {
+      "text": "Seine kleinen Sportwagen holten schnell viele Rekorde und Siege. Das *Skorpion-Logo* wurde zum Zeichen für Tempo.",
+      "clip": "small sports car racing"
+    },
+    {
+      "text": "Ein Sternzeichen als Markenzeichen. Folge für mehr.",
+      "clip": "turin city street"
+    }
+  ]
+}

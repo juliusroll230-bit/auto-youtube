@@ -1,0 +1,102 @@
+{
+  "slug": "mystery-somerton-mann",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1a1a22",
+    "#6a7a9c"
+  ],
+  "accent": "#c4161c",
+  "title": "Der Mann am Strand, den niemand kannte 🏖️",
+  "description": "Der Somerton-Mann aus Adelaide (1948): ein Toter ohne Namen und ein Code, der bis heute nicht geknackt ist.\n\n#mystery #rätsel #geschichte #kriminalfall #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "kriminalfall",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Inspektor"
+  },
+  "segments": [
+    {
+      "text": "Ein Mann liegt tot am Strand, und niemand kennt ihn.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "❓",
+        "text": "Unbekannt"
+      }
+    },
+    {
+      "text": "Adelaide, Australien, Dezember neunzehnhundertachtundvierzig.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1948,
+        "text": "Somerton",
+        "objekt": "🏖️"
+      }
+    },
+    {
+      "text": "Alle Etiketten waren aus seiner Kleidung herausgeschnitten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "✂️",
+        "text": "Keine Etiketten"
+      }
+    },
+    {
+      "text": "In einer Tasche steckte ein Zettel mit den Worten Tamám Shud.",
+      "szene": {
+        "typ": "akte",
+        "text": "Tamám Shud",
+        "punkte": [
+          "📜",
+          "📖",
+          "🔤"
+        ]
+      }
+    },
+    {
+      "text": "Es bedeutet Ende und stammt aus einem persischen Gedichtbuch.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📖",
+        "text": "Persien"
+      }
+    },
+    {
+      "text": "Im Buch stand ein Code aus vier Zeilen, bis heute ungelöst.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 4,
+        "einheit": "Zeilen Code",
+        "objekt": "🔤",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Erst zweitausendzweiundzwanzig gelang es, den Mann per DNA zu identifizieren.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2022,
+        "text": "DNA-Spur",
+        "objekt": "🧬",
+        "stempel": "belegt"
+      }
+    },
+    {
+      "text": "Wie starb er wirklich? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "❓",
+        "text": "Todesursache"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

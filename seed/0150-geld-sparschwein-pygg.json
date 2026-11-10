@@ -1,0 +1,48 @@
+{
+  "slug": "geld-sparschwein-pygg",
+  "niche": "Geld & Finanzen",
+  "colors": [
+    "#14282e",
+    "#d8749a"
+  ],
+  "accent": "#ffd27a",
+  "title": "Dieses Sparschwein hieß ursprünglich anders 🐷",
+  "description": "Warum das Sparschwein ein Schwein ist: Ton, Pygg und ein Sprachspiel. Keine Anlageberatung.\n\n#geld #sparschwein #wissen #shorts",
+  "tags": [
+    "geld",
+    "sparschwein",
+    "wissen",
+    "shorts"
+  ],
+  "segments": [
+    {
+      "emoji": "🐷",
+      "text": "Das *Sparschwein* hat eigentlich gar nichts mit Schweinen zu tun.",
+      "clip": "piggy bank pink"
+    },
+    {
+      "emoji": "🏺",
+      "text": "Im Mittelalter sparte man in Dosen aus Ton, den man im Englischen *Pygg* nannte. Doch wie wurde daraus ein Schwein?",
+      "clip": "clay pot pottery"
+    },
+    {
+      "emoji": "🗣️",
+      "text": "Der Legende nach klang das alte Wort für Ton fast wie *Schwein*.",
+      "clip": "pig farm closeup",
+      "visual": {
+        "type": "wort",
+        "text": "Pygg"
+      }
+    },
+    {
+      "emoji": "🔨",
+      "text": "Töpfer formten die Tongefäße daraufhin als Schweinchen. Zum *Leeren* musste man sie zerschlagen.",
+      "clip": "hammer breaking pottery"
+    },
+    {
+      "emoji": "👉",
+      "text": "Aus Ton wurde ein Schwein. Keine Anlageberatung. Folge für mehr.",
+      "clip": "coins falling jar"
+    }
+  ]
+}

@@ -1,0 +1,738 @@
+{
+  "slug": "erklaert-wlan-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Erklären",
+  "stimmung": "neugierig",
+  "colors": [
+    "#10243a",
+    "#2cbfd1"
+  ],
+  "accent": "#ffe14d",
+  "title": "Wie funktioniert WLAN wirklich? Das steckt hinter dem Funk 📶",
+  "description": "Dein WLAN ist unsichtbar und trägt trotzdem alles, was du online machst. Wir erklären, wie Funkwellen Daten transportieren, warum die Mikrowelle stört, wie die Verschlüsselung schützt und welche Tipps wirklich helfen.\n\n#erklärt #wissen #wlan #technik #alltag",
+  "tags": [
+    "erklärt",
+    "wissen",
+    "wlan",
+    "technik",
+    "internet",
+    "alltag"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner"
+  },
+  "segments": [
+    {
+      "text": "Dein WLAN ist unsichtbar, geht durch Wände und trägt Filme, Spiele und Nachrichten, und trotzdem ist es im Kern nur Funk wie beim alten Radio.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📶"
+      }
+    },
+    {
+      "text": "Wie passen Millionen Bits pro Sekunde in eine Welle, die du nicht siehst? Und warum ruckelt dein Video ausgerechnet dann, wenn die Mikrowelle läuft?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Wie?",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Das klären wir jetzt Schritt für Schritt, mit Geschichte, Technik, ein paar Mythen und Tipps, die dein Netz wirklich schneller machen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📶",
+        "text": "WLAN erklärt"
+      }
+    },
+    {
+      "text": "Zuerst geht es um die Erfindung, dann um die Funkwellen, dann um den Router, und zum Schluss um die Sicherheit und deine Fragen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertfünfundachtzig gibt die US-Behörde FCC einige Funkbänder frei, die jeder ohne Lizenz nutzen darf.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1985",
+        "text": "Freie Funkbänder",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Dafür mussten Geräte nur eine Bedingung erfüllen: Sie durften nicht zu stark senden, damit sie andere Funkdienste in Ruhe lassen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📻",
+        "text": "Nicht zu laut"
+      }
+    },
+    {
+      "text": "Eigentlich waren diese Bänder für Geräte wie Mikrowellenöfen gedacht, und genau deshalb wurden sie später zum Spielplatz für das WLAN.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔧"
+      }
+    },
+    {
+      "text": "Neunzehnhundertsiebenundneunzig erscheint der erste Standard, er heißt acht null zwei Punkt elf und schafft gerade mal zwei Megabit pro Sekunde.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1997",
+        "text": "Erster Standard",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Zwei Megabit pro Sekunde sind heute nicht einmal genug für ein einziges Video in guter Qualität.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2,
+        "einheit": "Megabit pro Sekunde",
+        "objekt": "🐌",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Anfangs war WLAN also eher ein Spielzeug für Firmen, die Kassensysteme und Lagergeräte kabellos verbinden wollten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏭",
+        "text": "Erst für Firmen"
+      }
+    },
+    {
+      "text": "Der Durchbruch kam aus Australien. Forscher der Behörde CSIRO entwickelten ein Verfahren, das Funksignale auch bei Echos in Räumen sauber überträgt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Dieses Echo-Problem war entscheidend, denn in Zimmern prallen Funkwellen von Wänden ab und überlagern sich, bis das Signal verrauscht ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔊",
+        "text": "Das Echo-Problem"
+      }
+    },
+    {
+      "text": "Die Lösung teilt die Daten auf viele kleine Frequenzen auf, so ähnlich, wie man ein Paket auf viele Boten verteilt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "📦"
+      }
+    },
+    {
+      "text": "Jeder Bote trägt nur einen kleinen Teil, und selbst wenn einer unterwegs verloren geht, kommt das meiste trotzdem an.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 6,
+        "gefuehl": "freude",
+        "aktion": "rennt",
+        "text": "Viele Boten"
+      }
+    },
+    {
+      "text": "Dieses Verfahren heißt OFDM, und es steckt bis heute in fast jedem WLAN, aber auch in Fernsehen und Mobilfunk.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧩",
+        "text": "OFDM"
+      }
+    },
+    {
+      "text": "Neunzehnhundertneunundneunzig bekommt die Technik den Namen Wi-Fi, ausgedacht von einer Marketingfirma und nicht von Ingenieuren.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1999",
+        "text": "Name Wi-Fi",
+        "objekt": "🏷️"
+      }
+    },
+    {
+      "text": "Viele glauben, Wi-Fi heißt Wireless Fidelity. Das war aber nur ein später Werbespruch, der Name selbst bedeutet gar nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🤔"
+      }
+    },
+    {
+      "text": "Für ihr Patent erhielt die australische Behörde später über vierhundert Millionen Dollar von großen Technikfirmen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 430,
+        "einheit": "Millionen Dollar",
+        "objekt": "💰",
+        "farbcode": "#1d3a2a"
+      }
+    },
+    {
+      "text": "Viele Hersteller zahlten erst nach langen Gerichtsverfahren, in denen die Forscher ihre Erfindung Schritt für Schritt belegen mussten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "⚖️"
+      }
+    },
+    {
+      "text": "Jetzt wird es technisch. Was ist eine Funkwelle überhaupt, und warum sieht man sie nicht?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📡",
+        "text": "Funkwellen"
+      }
+    },
+    {
+      "text": "Es ist dieselbe Art von Welle wie Licht, nur mit viel niedrigerer Frequenz, und genau deshalb sehen wir sie nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌈"
+      }
+    },
+    {
+      "text": "Auf der Skala der Wellen liegen Radio, WLAN und sichtbares Licht ganz nacheinander, von langsam bis schnell.",
+      "szene": {
+        "typ": "liste",
+        "text": "Langsam bis schnell",
+        "punkte": [
+          "Radio",
+          "WLAN",
+          "Licht"
+        ]
+      }
+    },
+    {
+      "text": "Klassisches WLAN funkt bei zwei Komma vier Gigahertz, das sind zweieinhalb Milliarden Schwingungen pro Sekunde.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2400,
+        "einheit": "Megahertz",
+        "objekt": "〰️",
+        "farbcode": "#142a3a"
+      }
+    },
+    {
+      "text": "Dazu kommt das Fünf-Gigahertz-Band, und neuere Geräte nutzen sogar sechs Gigahertz, wo besonders viel Platz ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📶",
+        "text": "Mehr Bänder"
+      }
+    },
+    {
+      "text": "Niedrige Frequenzen kommen weiter und durch Wände, hohe Frequenzen sind schneller, aber hinter Beton viel schwächer.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🐢",
+          "text": "2,4 GHz: weit"
+        },
+        "rechts": {
+          "objekt": "🐇",
+          "text": "5 GHz: schnell"
+        }
+      }
+    },
+    {
+      "text": "Wie kommt eine Information in die Welle? Der Sender verändert sie im Takt der Daten, ein bisschen stärker, ein bisschen verschoben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🎚️"
+      }
+    },
+    {
+      "text": "Das nennt man Modulation, und der Empfänger muss genau diese winzigen Änderungen wieder auslesen, millionenfach pro Sekunde.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🎚️",
+        "text": "Modulation"
+      }
+    },
+    {
+      "text": "Je cleverer die Modulation, desto mehr Bits passen in jede Schwingung, und deshalb wird WLAN von Generation zu Generation schneller.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⚡",
+        "text": "Mehr Bits"
+      }
+    },
+    {
+      "text": "Dazu kommen mehrere Antennen, die gleichzeitig senden und empfangen, sodass ein Router mehrere Datenströme parallel schicken kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Dann zum Router. Was tut dieser Kasten in der Ecke eigentlich genau?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📦",
+        "text": "Der Router"
+      }
+    },
+    {
+      "text": "Seine Aufgabe klingt einfach: Er verbindet deine Geräte untereinander und mit dem Internet, und er teilt dort alles gerecht auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🌐"
+      }
+    },
+    {
+      "text": "Meistens steckt in dem Kasten gleich mehr als ein Gerät, nämlich ein Modem, ein Router und eine Funkstation.",
+      "szene": {
+        "typ": "liste",
+        "text": "Drei Geräte in einem",
+        "punkte": [
+          "Modem",
+          "Router",
+          "Funkstation"
+        ]
+      }
+    },
+    {
+      "text": "Das Modem übersetzt zwischen Telefon-, Kabel- oder Glasfasersignal und dem Netzwerk, während der Router entscheidet, welches Gerät welche Daten bekommt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔀",
+        "text": "Wer bekommt was?"
+      }
+    },
+    {
+      "text": "Deine Anfrage geht per Funk zum Router, dann per Kabel ins Internet, und die Antwort nimmt denselben Weg wieder zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🔁"
+      }
+    },
+    {
+      "text": "Moderne Router schaffen im Labor fast zehn Gigabit pro Sekunde, aber das erreichst du zu Hause nie.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Gigabit pro Sekunde",
+        "objekt": "🚀",
+        "farbcode": "#2a1d3a"
+      }
+    },
+    {
+      "text": "Der Grund: Alle Geräte teilen sich denselben Kanal. Es kann immer nur eines gleichzeitig senden, alle anderen müssen warten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Stell dir einen Raum vor, in dem alle durcheinanderreden. Wenn zwei gleichzeitig sprechen, versteht niemand etwas davon.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 6,
+        "gefuehl": "wut",
+        "aktion": "zeigt",
+        "text": "Alle reden"
+      }
+    },
+    {
+      "text": "WLAN löst das, indem jedes Gerät erst lauscht, ob der Kanal frei ist, und sonst eine zufällige Zeit wartet.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👂",
+        "text": "Erst lauschen"
+      }
+    },
+    {
+      "text": "Das passiert tausendfach pro Sekunde, und du merkst nichts davon, solange nur wenige Geräte gleichzeitig aktiv sind.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "winkt",
+        "objekt": "📱"
+      }
+    },
+    {
+      "text": "Jedes Gerät hat außerdem eine eigene Adresse, die MAC-Adresse, damit der Router weiß, für wen ein Datenpaket bestimmt ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏷️",
+        "text": "Eigene Adresse"
+      }
+    },
+    {
+      "text": "Und jetzt zur Frage vom Anfang: Warum stört ausgerechnet die Mikrowelle dein WLAN?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🍲",
+        "text": "Mikrowelle?"
+      }
+    },
+    {
+      "text": "Ein Mikrowellenherd arbeitet bei zwei Komma vier fünf Gigahertz, fast genau auf dem Band des klassischen WLANs.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2450,
+        "einheit": "Megahertz",
+        "objekt": "🍲",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Gut abgeschirmt ist er trotzdem nicht perfekt. Ein kleiner Teil entweicht, und das genügt für kurze Aussetzer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📉"
+      }
+    },
+    {
+      "text": "Ein einfacher Test: Wenn dein WLAN beim Aufwärmen von Essen kurz hakt, weißt du, dass es auf dem klassischen Band funkt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧪",
+        "text": "Der Test"
+      }
+    },
+    {
+      "text": "Auch andere Dinge funken im selben Bereich und können deine Verbindung stören.",
+      "szene": {
+        "typ": "liste",
+        "text": "Weitere Störquellen",
+        "punkte": [
+          "Nachbar-Router",
+          "Bluetooth",
+          "Babyfon"
+        ]
+      }
+    },
+    {
+      "text": "Auch Bluetooth-Kopfhörer, Funkmäuse und schnurlose Telefone funken im selben Bereich und teilen sich dort den knappen Platz.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎧",
+        "text": "Alle im Band"
+      }
+    },
+    {
+      "text": "In Mehrfamilienhäusern senden Dutzende Router gleichzeitig. Auf dem klassischen Band gibt es nur drei Kanäle, die sich nicht überlappen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🏢"
+      }
+    },
+    {
+      "text": "Das Fünf-Gigahertz-Band hat viel mehr freie Kanäle, aber dafür eine kürzere Reichweite durch Wände und Decken.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧱",
+          "text": "Mehr Kanäle"
+        },
+        "rechts": {
+          "objekt": "📏",
+          "text": "Kurze Reichweite"
+        }
+      }
+    },
+    {
+      "text": "Wände schlucken Signale unterschiedlich: Holz kaum, Beton und Metall dafür stark, und Wasser, etwa in Aquarien, besonders gut.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧱",
+        "text": "Wände schlucken"
+      }
+    },
+    {
+      "text": "Gleich kommt der wichtigste Teil für deine Sicherheit: die Verschlüsselung deines Netzes.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔐",
+        "text": "Sicherheit"
+      }
+    },
+    {
+      "text": "Jeder in Reichweite kann deine Funkwellen mitschneiden, denn Funk lässt sich nicht einsperren. Deshalb verschlüsselt WLAN alles, was es sendet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Der erste Schutz hieß WEP, und er war so schwach, dass Angreifer ihn nach wenigen Minuten knackten.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2001",
+        "text": "WEP geknackt",
+        "objekt": "🔓"
+      }
+    },
+    {
+      "text": "Heute gelten WPA2 und vor allem WPA3 als Standard, und WEP sollte niemand mehr verwenden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Verschlüsselung heute",
+        "punkte": [
+          "WEP: unsicher",
+          "WPA2: gut",
+          "WPA3: besser"
+        ]
+      }
+    },
+    {
+      "text": "Wichtig ist ein langes Passwort, denn bei einem kurzen Passwort kann jemand einfach alle Möglichkeiten durchprobieren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🔑"
+      }
+    },
+    {
+      "text": "Ein gutes Passwort ist lang, besteht aus mehreren Wörtern und taucht nirgendwo anders auf.",
+      "szene": {
+        "typ": "liste",
+        "text": "Gutes Passwort",
+        "punkte": [
+          "Lang",
+          "Einzigartig",
+          "Nicht erraten"
+        ]
+      }
+    },
+    {
+      "text": "Den Netzwerknamen zu verstecken bringt kaum Sicherheit. Ein starkes Passwort bringt dagegen sehr viel mehr.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🙈",
+        "text": "Mythos: Verstecken"
+      }
+    },
+    {
+      "text": "Zeit für Mythen. Hier kommen drei Irrtümer über WLAN, die fast jeder glaubt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Drei Mythen"
+      }
+    },
+    {
+      "text": "Mythos eins: Mehr Antennen am Router heißen automatisch mehr Reichweite. Oft bringen sie nur mehr gleichzeitige Datenströme.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Mehr Datenströme brauchen aber auch Geräte, die sie nutzen können, und viele ältere Handys unterstützen das nur eingeschränkt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📱",
+        "text": "Altes Handy"
+      }
+    },
+    {
+      "text": "Mythos zwei: Das Signal endet wie ein Lichtstrahl an einer scharfen Kante. Tatsächlich wird es einfach mit der Entfernung allmählich schwächer.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💡",
+          "text": "Licht: scharf"
+        },
+        "rechts": {
+          "objekt": "📶",
+          "text": "WLAN: weich"
+        }
+      }
+    },
+    {
+      "text": "Hinter einer Wand ist das Signal oft nur noch ein Bruchteil so stark, aber es verschwindet nie ganz, es wird nur leiser.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧱",
+        "text": "Es wird leiser"
+      }
+    },
+    {
+      "text": "Mythos drei: WLAN-Wellen sind dasselbe wie Röntgenstrahlen. Falsch, ihre Energie ist unvorstellbar viel kleiner und nicht ionisierend.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "☢️"
+      }
+    },
+    {
+      "text": "Jetzt die Tipps, die wirklich helfen, ohne dass du neue Geräte kaufen oder ein Netzwerkprofi sein musst.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔧",
+        "text": "Echte Tipps"
+      }
+    },
+    {
+      "text": "Viele Probleme lösen sich schon mit einfachen Mitteln, weil sie meistens am Standort oder an einer Störung liegen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🛠️"
+      }
+    },
+    {
+      "text": "Fünf einfache Tipps, die dein WLAN sofort verbessern können, ganz ohne teure Technik.",
+      "szene": {
+        "typ": "liste",
+        "text": "Einfache Tipps",
+        "punkte": [
+          "In die Mitte",
+          "Hoch stellen",
+          "5 GHz nutzen",
+          "Neu starten"
+        ]
+      }
+    },
+    {
+      "text": "Stell den Router möglichst zentral und etwas erhöht auf, nicht im Schrank und nicht hinter dem Fernseher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "📍"
+      }
+    },
+    {
+      "text": "Für Geräte mit viel Datenverkehr lohnt sich ein Kabel, denn ein Netzwerkkabel ist stabiler als jede Funkverbindung.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔌",
+        "text": "Kabel schlägt Funk"
+      }
+    },
+    {
+      "text": "Wer ein großes Haus hat, nutzt ein Mesh-System, bei dem mehrere Stationen ein gemeinsames Netz bilden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "winkt",
+        "objekt": "🕸️"
+      }
+    },
+    {
+      "text": "Wi-Fi 7 verspricht auf dem Papier über dreißig Gigabit pro Sekunde, im Alltag zählt aber vor allem die Stabilität.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "Gigabit pro Sekunde",
+        "objekt": "📶",
+        "farbcode": "#142a3a"
+      }
+    },
+    {
+      "text": "Auch dein Handy hilft: Viele Telefone zeigen dir die Signalstärke, damit du den besten Platz im Haus findest.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📍",
+        "text": "Beste Stelle"
+      }
+    },
+    {
+      "text": "Fassen wir zusammen: WLAN sind Funkwellen mit Daten, die der Router sendet und empfängt, und alle Geräte teilen sich den Platz.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✅"
+      }
+    },
+    {
+      "text": "Die wichtigsten Punkte zum Merken, falls du später jemandem dein neues Wissen erklären willst.",
+      "szene": {
+        "typ": "liste",
+        "text": "Merk dir",
+        "punkte": [
+          "Funk, kein Zauber",
+          "Kanäle teilen",
+          "Starkes Passwort"
+        ]
+      }
+    },
+    {
+      "text": "Die größte Überraschung zum Schluss: Ohne die Lösung für das Echo-Problem gäbe es WLAN, wie wir es kennen, vielleicht gar nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧠",
+        "text": "Das Echo"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Wo steht dein Router, und welche Wand schluckt dein Signal am meisten? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

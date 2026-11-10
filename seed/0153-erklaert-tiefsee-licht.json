@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-tiefsee-licht",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#050d1c",
+    "#1f4aa8"
+  ],
+  "accent": "#5ae0ff",
+  "title": "Das Rätsel: Warum leuchten Tiere in der Tiefsee? 💡",
+  "description": "Biolumineszenz: Wie und warum Tiefseetiere ihr eigenes Licht erzeugen. Manche Erklärungen sind nur Theorien.\n\n#tiefsee #biolumineszenz #wissen #rätsel #shorts",
+  "tags": [
+    "tiefsee",
+    "biolumineszenz",
+    "wissen",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "helm",
+    "name": "Dr. Mara"
+  },
+  "segments": [
+    {
+      "text": "Tief im Meer leuchten die Fische von selbst.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "🐟"
+      }
+    },
+    {
+      "text": "Biolumineszenz heißt das, und sehr viele Tiefseetiere beherrschen sie.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "💡",
+        "text": "Eigenes Licht"
+      }
+    },
+    {
+      "text": "Das Licht entsteht durch eine chemische Reaktion im Körper.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🧪",
+        "text": "Chemie"
+      }
+    },
+    {
+      "text": "Fast immer ist es blau, denn Blau reicht im Wasser am weitesten.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔵",
+          "text": "Blau: weit"
+        },
+        "rechts": {
+          "objekt": "🔴",
+          "text": "Rot: kurz"
+        }
+      }
+    },
+    {
+      "text": "Der Anglerfisch lockt Beute mit einer leuchtenden Angel an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🎣"
+      }
+    },
+    {
+      "text": "Andere leuchten, um sich im Licht von oben zu verstecken.",
+      "szene": {
+        "typ": "akte",
+        "text": "Wozu Licht?",
+        "punkte": [
+          "🎣",
+          "🫥",
+          "⚠️"
+        ]
+      }
+    },
+    {
+      "text": "Eine Theorie: Manche rufen mit Licht Hilfe, wenn Räuber kommen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Was leuchtet noch unentdeckt da unten? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Unentdeckt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
