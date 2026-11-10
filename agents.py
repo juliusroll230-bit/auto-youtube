@@ -25,7 +25,7 @@ DEFAULTS = {
     "clipper": {"on": True, "auto_start": False, "clips": 5, "min_len": 20, "max_len": 45, "crop": "auto",
                 "untertitel": "pop", "hook": True, "keywords": "", "sprache": "auto", "modell": "base",
                 "freigabe": True},
-    "publisher": {"on": True, "clips_per_day": 2, "long_per_week": 4},
+    "publisher": {"on": True, "clips_per_day": 2, "long_per_week": 7},
     "analyst": {"minutes": 20},
     "zuschauer": {"hours": 3},
     "designer": {"on": True},
