@@ -6,11 +6,83 @@
  },
  "videos": [
   {
+   "id": "2mkP8wcyG1s",
+   "title": "Deine Hand gehört plötzlich einer Gummihand 🖐️",
+   "text": "Die Gummihand-Illusion von Botvinick und Cohen aus neunzehnhundertachtundneunzig.",
+   "niche": "Psychologie",
+   "views": 75,
+   "published": "2026-11-10T16:36:55+00:00",
+   "thumb": "thumbs/2mkP8wcyG1s.jpg"
+  },
+  {
+   "id": "Ql42vWw-kjE",
+   "title": "Napoleon brachte uns das Dosenfutter 🥫",
+   "text": "Wie ein Preis von Napoleon die Konserve möglich machte. Der Dosenöffner kam erst viel später.",
+   "niche": "Geschichte",
+   "views": 109,
+   "published": "2026-11-10T15:37:57+00:00",
+   "thumb": "thumbs/Ql42vWw-kjE.jpg"
+  },
+  {
+   "id": "T5-lI87dmVo",
+   "title": "Station 13: Das Finale auf dem Dach (Teil 5) 🚁",
+   "text": "Station 13, Teil 5, das Finale. Eine ausgedachte Grusel-Serie.",
+   "niche": "Wissen",
+   "views": 120,
+   "published": "2026-11-10T13:37:36+00:00",
+   "thumb": "thumbs/T5-lI87dmVo.jpg"
+  },
+  {
+   "id": "_PiWa-wYacQ",
+   "title": "Warum wurden diese Steine so weit geschleppt? 🗿",
+   "text": "Stonehenge: Woher kamen die Steine und wie kamen sie dorthin? Manches ist belegt, vieles bleibt Theorie.",
+   "niche": "Geschichte",
+   "views": 1,
+   "published": "2026-11-10T12:37:57+00:00",
+   "thumb": "thumbs/_PiWa-wYacQ.jpg"
+  },
+  {
+   "id": "MxAKaOpcwlQ",
+   "title": "Dieser Autoname bedeutete erst „Sohn“ 🌅",
+   "text": "Datsun, DAT und der Sprung zu Nissan: warum Japans Marke ihren Namen änderte.",
+   "niche": "Autos",
+   "views": 72,
+   "published": "2026-11-10T11:37:04+00:00",
+   "thumb": "thumbs/MxAKaOpcwlQ.jpg"
+  },
+  {
+   "id": "wjroTMXnPko",
+   "title": "Der Mann am Strand, den niemand kannte 🏖️",
+   "text": "Der Somerton-Mann aus Adelaide (1948): ein Toter ohne Namen und ein Code, der bis heute nicht geknackt ist.",
+   "niche": "Geschichte",
+   "views": 95,
+   "published": "2026-11-10T09:37:34+00:00",
+   "thumb": "thumbs/wjroTMXnPko.jpg"
+  },
+  {
+   "id": "rMHcx6yGX4I",
+   "title": "Dieses Sparschwein hieß ursprünglich anders 🐷",
+   "text": "Warum das Sparschwein ein Schwein ist: Ton, Pygg und ein Sprachspiel. Keine Anlageberatung.",
+   "niche": "Geld",
+   "views": 92,
+   "published": "2026-11-10T07:36:52+00:00",
+   "thumb": "thumbs/rMHcx6yGX4I.jpg"
+  },
+  {
+   "id": "RQhOo7hX2eI",
+   "title": "Nordwacht: Das Licht, das die Zeit verbiegt (Teil 4) 🕰️",
+   "text": "Nordwacht, Teil 4. Eine ausgedachte Mystery-Serie.",
+   "niche": "Wissen",
+   "views": 59,
+   "published": "2026-11-10T05:38:16+00:00",
+   "thumb": "thumbs/RQhOo7hX2eI.jpg"
+  },
+  {
    "id": "9Rlqpcf5ZM4",
    "title": "Dieses Wort verfolgt dich plötzlich überall 👀",
    "text": "Die Frequenzillusion (Baader-Meinhof-Phänomen): warum wir Neues plötzlich überall sehen.",
    "niche": "Psychologie",
-   "views": 119,
+   "views": 188,
    "published": "2026-11-09T19:36:51+00:00",
    "thumb": "thumbs/9Rlqpcf5ZM4.jpg"
   },
@@ -19,7 +91,7 @@
    "title": "Wie funktioniert GPS wirklich? Ohne Einstein ginge es nicht 🛰️",
    "text": "Dein Handy sendet nichts ins All und weiß trotzdem, wo du bist. Wir erklären Schritt für Schritt, wie GPS funktioniert, warum vier Satelliten nötig sind und warum Einsteins Relativitätstheorie das System erst möglich macht.",
    "niche": "Wissen",
-   "views": 12,
+   "views": 51,
    "published": "2026-11-09T18:21:20+00:00",
    "thumb": "thumbs/z22zm0-x34E.jpg"
   },
@@ -28,7 +100,7 @@
    "title": "Der Code vor dem CIA-Gebäude, den niemand knackt 🔐",
    "text": "Kryptos: die verschlüsselte Skulptur am CIA-Hauptquartier. Drei Texte sind gelöst, der vierte bis heute nicht.",
    "niche": "Wissen",
-   "views": 50,
+   "views": 51,
    "published": "2026-11-09T17:37:56+00:00",
    "thumb": "thumbs/oUqYsNLVCEc.jpg"
   },
@@ -37,7 +109,7 @@
    "title": "Dieses Wort bedeutet eigentlich vierzig Tage ⏳",
    "text": "Woher das Wort Quarantäne kommt: Hafenstädte und die Pest im Mittelalter.",
    "niche": "Geschichte",
-   "views": 227,
+   "views": 287,
    "published": "2026-11-09T16:36:46+00:00",
    "thumb": "thumbs/DgUH307W-54.jpg"
   },
@@ -46,7 +118,7 @@
    "title": "Nordwacht: Das Gesicht unter der Kapuze (Teil 3) 🗼",
    "text": "Nordwacht, Teil 3. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 203,
+   "views": 380,
    "published": "2026-11-09T15:37:39+00:00",
    "thumb": "thumbs/-tx7RGyHJrE.jpg"
   },
@@ -55,7 +127,7 @@
    "title": "Dieses Buch kann seit Jahrhunderten niemand lesen 📖",
    "text": "Das Voynich-Manuskript: ein Buch in unbekannter Schrift, bis heute ungelöst. Theorien nennen wir Theorien.",
    "niche": "Geschichte",
-   "views": 182,
+   "views": 315,
    "published": "2026-11-09T13:37:57+00:00",
    "thumb": "thumbs/eYEOSY3qyoU.jpg"
   },
@@ -64,81 +136,9 @@
    "title": "Nordwacht: Wessen Name steht im Logbuch? (Teil 2) 📖",
    "text": "Nordwacht, Teil 2. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 439,
+   "views": 515,
    "published": "2026-11-09T12:37:41+00:00",
    "thumb": "thumbs/JwzNKmydwrY.jpg"
-  },
-  {
-   "id": "tQXKcnn7hl0",
-   "title": "Dieser Regenwald wird mit Wüstensand gedüngt 🌴",
-   "text": "Wie Staub aus der Sahara den Amazonas-Regenwald mit Nährstoffen versorgt.",
-   "niche": "Geografie",
-   "views": 105,
-   "published": "2026-11-09T11:36:46+00:00",
-   "thumb": "thumbs/tQXKcnn7hl0.jpg"
-  },
-  {
-   "id": "yNRG1hkpMFQ",
-   "title": "Die Insel, auf der Hunderte Puppen hängen 🎎",
-   "text": "Die Puppeninsel bei Xochimilco in Mexiko: Legende, Berichte und was belegt ist.",
-   "niche": "Wissen",
-   "views": 378,
-   "published": "2026-11-09T07:37:45+00:00",
-   "thumb": "thumbs/yNRG1hkpMFQ.jpg"
-  },
-  {
-   "id": "NowwCHZsIlU",
-   "title": "Station 13: Die Handschrift im Notizbuch (Teil 4) ⏳",
-   "text": "Station 13, Teil 4. Eine ausgedachte Grusel-Serie.",
-   "niche": "Wissen",
-   "views": 85,
-   "published": "2026-11-09T05:37:33+00:00",
-   "thumb": "thumbs/NowwCHZsIlU.jpg"
-  },
-  {
-   "id": "XISMfivzl1g",
-   "title": "Das Rätsel um das Signal aus dem All 📡",
-   "text": "Das Wow-Signal von 1977: zweiundsiebzig Sekunden Funk aus dem Sternbild Schütze, nie wieder gehört.",
-   "niche": "Wissen",
-   "views": 422,
-   "published": "2026-11-08T19:37:54+00:00",
-   "thumb": "thumbs/XISMfivzl1g.jpg"
-  },
-  {
-   "id": "yJnqYSaTjVw",
-   "title": "Das Dorf, aus dem alle Menschen verschwanden 🏚️",
-   "text": "Die verlorene Kolonie von Roanoke (1587 bis 1590): bis heute ungelöst. Theorien nennen wir als Theorien.",
-   "niche": "Geschichte",
-   "views": 909,
-   "published": "2026-11-08T17:37:38+00:00",
-   "thumb": "thumbs/yJnqYSaTjVw.jpg"
-  },
-  {
-   "id": "k0AqZDpcqFs",
-   "title": "Diese Raubkatze trug früher nur zwei Buchstaben 🐆",
-   "text": "Warum die britische Marke Jaguar neunzehnhundertfünfundvierzig ihren Namen SS ablegte.",
-   "niche": "Autos",
-   "views": 145,
-   "published": "2026-11-08T16:37:19+00:00",
-   "thumb": "thumbs/k0AqZDpcqFs.jpg"
-  },
-  {
-   "id": "EVhu0dJjsJo",
-   "title": "Dein Gehirn kann dieses Wort nicht ignorieren 🎨",
-   "text": "Der Stroop-Effekt: warum Lesen automatisch abläuft.",
-   "niche": "Psychologie",
-   "views": 735,
-   "published": "2026-11-08T15:37:10+00:00",
-   "thumb": "thumbs/EVhu0dJjsJo.jpg"
-  },
-  {
-   "id": "rFC05Dwz71o",
-   "title": "Diese Stadt wurde von Sirup überrollt 🍯",
-   "text": "Die Melasse-Flut von Boston am 15. Januar 1919.",
-   "niche": "Geschichte",
-   "views": 90,
-   "published": "2026-11-08T13:37:16+00:00",
-   "thumb": "thumbs/rFC05Dwz71o.jpg"
   }
  ]
 }
