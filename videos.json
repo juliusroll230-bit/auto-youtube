@@ -6,11 +6,38 @@
  },
  "videos": [
   {
+   "id": "FUm4gpqBvso",
+   "title": "Das Rätsel um das Bermuda-Dreieck 🔺",
+   "text": "Flug 19 und der Mythos vom Bermuda-Dreieck: was belegt ist und was nicht.",
+   "niche": "Geschichte",
+   "views": 77,
+   "published": "2026-11-10T19:38:05+00:00",
+   "thumb": "thumbs/FUm4gpqBvso.jpg"
+  },
+  {
+   "id": "2HDgttNj2V4",
+   "title": "Wie funktioniert WLAN wirklich? Das steckt hinter dem Funk 📶",
+   "text": "Dein WLAN ist unsichtbar und trägt trotzdem alles, was du online machst. Wir erklären, wie Funkwellen Daten transportieren, warum die Mikrowelle stört, wie die Verschlüsselung schützt und welche Tipps wirklich helfen.",
+   "niche": "Wissen",
+   "views": 14,
+   "published": "2026-11-10T18:30:16+00:00",
+   "thumb": "thumbs/2HDgttNj2V4.jpg"
+  },
+  {
+   "id": "Z4BS7N6kUVg",
+   "title": "Der Smart ist eigentlich ein Uhren-Auto ⌚",
+   "text": "Swatch, Mercedes und Art: wie der Smart zu seinem Namen kam.",
+   "niche": "Autos",
+   "views": 86,
+   "published": "2026-11-10T17:36:33+00:00",
+   "thumb": "thumbs/Z4BS7N6kUVg.jpg"
+  },
+  {
    "id": "2mkP8wcyG1s",
    "title": "Deine Hand gehört plötzlich einer Gummihand 🖐️",
    "text": "Die Gummihand-Illusion von Botvinick und Cohen aus neunzehnhundertachtundneunzig.",
    "niche": "Psychologie",
-   "views": 75,
+   "views": 243,
    "published": "2026-11-10T16:36:55+00:00",
    "thumb": "thumbs/2mkP8wcyG1s.jpg"
   },
@@ -19,7 +46,7 @@
    "title": "Napoleon brachte uns das Dosenfutter 🥫",
    "text": "Wie ein Preis von Napoleon die Konserve möglich machte. Der Dosenöffner kam erst viel später.",
    "niche": "Geschichte",
-   "views": 109,
+   "views": 153,
    "published": "2026-11-10T15:37:57+00:00",
    "thumb": "thumbs/Ql42vWw-kjE.jpg"
   },
@@ -28,7 +55,7 @@
    "title": "Station 13: Das Finale auf dem Dach (Teil 5) 🚁",
    "text": "Station 13, Teil 5, das Finale. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 120,
+   "views": 176,
    "published": "2026-11-10T13:37:36+00:00",
    "thumb": "thumbs/T5-lI87dmVo.jpg"
   },
@@ -37,7 +64,7 @@
    "title": "Warum wurden diese Steine so weit geschleppt? 🗿",
    "text": "Stonehenge: Woher kamen die Steine und wie kamen sie dorthin? Manches ist belegt, vieles bleibt Theorie.",
    "niche": "Geschichte",
-   "views": 1,
+   "views": 9,
    "published": "2026-11-10T12:37:57+00:00",
    "thumb": "thumbs/_PiWa-wYacQ.jpg"
   },
@@ -46,7 +73,7 @@
    "title": "Dieser Autoname bedeutete erst „Sohn“ 🌅",
    "text": "Datsun, DAT und der Sprung zu Nissan: warum Japans Marke ihren Namen änderte.",
    "niche": "Autos",
-   "views": 72,
+   "views": 108,
    "published": "2026-11-10T11:37:04+00:00",
    "thumb": "thumbs/MxAKaOpcwlQ.jpg"
   },
@@ -55,7 +82,7 @@
    "title": "Der Mann am Strand, den niemand kannte 🏖️",
    "text": "Der Somerton-Mann aus Adelaide (1948): ein Toter ohne Namen und ein Code, der bis heute nicht geknackt ist.",
    "niche": "Geschichte",
-   "views": 95,
+   "views": 163,
    "published": "2026-11-10T09:37:34+00:00",
    "thumb": "thumbs/wjroTMXnPko.jpg"
   },
@@ -64,7 +91,7 @@
    "title": "Dieses Sparschwein hieß ursprünglich anders 🐷",
    "text": "Warum das Sparschwein ein Schwein ist: Ton, Pygg und ein Sprachspiel. Keine Anlageberatung.",
    "niche": "Geld",
-   "views": 92,
+   "views": 143,
    "published": "2026-11-10T07:36:52+00:00",
    "thumb": "thumbs/rMHcx6yGX4I.jpg"
   },
@@ -73,7 +100,7 @@
    "title": "Nordwacht: Das Licht, das die Zeit verbiegt (Teil 4) 🕰️",
    "text": "Nordwacht, Teil 4. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 59,
+   "views": 83,
    "published": "2026-11-10T05:38:16+00:00",
    "thumb": "thumbs/RQhOo7hX2eI.jpg"
   },
@@ -82,7 +109,7 @@
    "title": "Dieses Wort verfolgt dich plötzlich überall 👀",
    "text": "Die Frequenzillusion (Baader-Meinhof-Phänomen): warum wir Neues plötzlich überall sehen.",
    "niche": "Psychologie",
-   "views": 188,
+   "views": 214,
    "published": "2026-11-09T19:36:51+00:00",
    "thumb": "thumbs/9Rlqpcf5ZM4.jpg"
   },
@@ -91,7 +118,7 @@
    "title": "Wie funktioniert GPS wirklich? Ohne Einstein ginge es nicht 🛰️",
    "text": "Dein Handy sendet nichts ins All und weiß trotzdem, wo du bist. Wir erklären Schritt für Schritt, wie GPS funktioniert, warum vier Satelliten nötig sind und warum Einsteins Relativitätstheorie das System erst möglich macht.",
    "niche": "Wissen",
-   "views": 51,
+   "views": 71,
    "published": "2026-11-09T18:21:20+00:00",
    "thumb": "thumbs/z22zm0-x34E.jpg"
   },
@@ -109,36 +136,9 @@
    "title": "Dieses Wort bedeutet eigentlich vierzig Tage ⏳",
    "text": "Woher das Wort Quarantäne kommt: Hafenstädte und die Pest im Mittelalter.",
    "niche": "Geschichte",
-   "views": 287,
+   "views": 293,
    "published": "2026-11-09T16:36:46+00:00",
    "thumb": "thumbs/DgUH307W-54.jpg"
-  },
-  {
-   "id": "-tx7RGyHJrE",
-   "title": "Nordwacht: Das Gesicht unter der Kapuze (Teil 3) 🗼",
-   "text": "Nordwacht, Teil 3. Eine ausgedachte Mystery-Serie.",
-   "niche": "Wissen",
-   "views": 380,
-   "published": "2026-11-09T15:37:39+00:00",
-   "thumb": "thumbs/-tx7RGyHJrE.jpg"
-  },
-  {
-   "id": "eYEOSY3qyoU",
-   "title": "Dieses Buch kann seit Jahrhunderten niemand lesen 📖",
-   "text": "Das Voynich-Manuskript: ein Buch in unbekannter Schrift, bis heute ungelöst. Theorien nennen wir Theorien.",
-   "niche": "Geschichte",
-   "views": 315,
-   "published": "2026-11-09T13:37:57+00:00",
-   "thumb": "thumbs/eYEOSY3qyoU.jpg"
-  },
-  {
-   "id": "JwzNKmydwrY",
-   "title": "Nordwacht: Wessen Name steht im Logbuch? (Teil 2) 📖",
-   "text": "Nordwacht, Teil 2. Eine ausgedachte Mystery-Serie.",
-   "niche": "Wissen",
-   "views": 515,
-   "published": "2026-11-09T12:37:41+00:00",
-   "thumb": "thumbs/JwzNKmydwrY.jpg"
   }
  ]
 }
