@@ -1,0 +1,108 @@
+{
+  "slug": "erklaert-woche-wach",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#14142a",
+    "#c4841c"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du tagelang nicht schläfst? 😵",
+  "description": "Was Schlafmangel mit Körper und Gehirn macht und der Rekord von Randy Gardner (1964). Nicht nachmachen.\n\n#wissen #schlaf #gehirn #körper #shorts",
+  "tags": [
+    "wissen",
+    "schlaf",
+    "gehirn",
+    "körper",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Max"
+  },
+  "segments": [
+    {
+      "text": "Tag vier ohne Schlaf: Du siehst Dinge, die nicht da sind.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👁️"
+      }
+    },
+    {
+      "text": "Schon nach einem Tag ohne Schlaf sinkt deine Konzentration spürbar.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "Stunden wach",
+        "objekt": "⏰",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Nach zwei Tagen schläft dein Gehirn kurz ein, ohne Warnung.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "😴",
+        "text": "Mikroschlaf"
+      }
+    },
+    {
+      "text": "Nach drei Tagen kommen Halluzinationen, Schatten wirken wie Gestalten.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Der Schüler Randy Gardner blieb neunzehnhundertvierundsechzig elf Tage wach.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1964,
+        "text": "Rekord",
+        "objekt": "🏆",
+        "stempel": "belegt"
+      }
+    },
+    {
+      "text": "Er wurde launisch, vergesslich und sah zeitweise Dinge, die nicht da waren.",
+      "szene": {
+        "typ": "akte",
+        "text": "Folgen",
+        "punkte": [
+          "😵",
+          "🫥",
+          "😡",
+          "🧠"
+        ]
+      }
+    },
+    {
+      "text": "Danach schlief er knapp vierzehn Stunden und wirkte bald wieder fit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "k_o",
+        "aktion": "faellt",
+        "objekt": "🛏️"
+      }
+    },
+    {
+      "text": "Warum brauchen wir Schlaf eigentlich? Das weiß niemand genau.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Warum Schlaf?"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

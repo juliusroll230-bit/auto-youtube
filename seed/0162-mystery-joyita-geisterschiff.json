@@ -1,0 +1,109 @@
+{
+  "slug": "mystery-joyita-geisterschiff",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0a1f2e",
+    "#2a8cc4"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Schiff, das mit fünfundzwanzig Menschen verschwand 🚢",
+  "description": "Die Joyita im Südpazifik, 1955: ein treibendes Schiff ohne Besatzung und ein bis heute ungeklärtes Schicksal.\n\n#mystery #rätsel #geisterschiff #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geisterschiff",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Käpt'n Miller"
+  },
+  "segments": [
+    {
+      "text": "Ein Schiff treibt halb unter Wasser, und niemand ist an Bord.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "wetter": "nebel",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Die Joyita verließ im Oktober neunzehnhundertfünfundfünfzig Samoa mit fünfundzwanzig Menschen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1955,
+        "text": "Joyita",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Fünf Wochen später fand ein Frachter sie, aber alle Menschen fehlten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 25,
+        "einheit": "Menschen vermisst",
+        "objekt": "🚢",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Das Schiff war schief, der Funk stand auf Notruf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "📻",
+        "text": "Notruf-Frequenz"
+      }
+    },
+    {
+      "text": "Eine Arzttasche und blutige Verbände lagen an Bord.",
+      "szene": {
+        "typ": "akte",
+        "text": "Fundstücke",
+        "punkte": [
+          "🩹",
+          "💼",
+          "📻",
+          "🧭"
+        ]
+      }
+    },
+    {
+      "text": "Das Schiff war leck, aber durch Kork im Rumpf unsinkbar.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🛟",
+        "text": "Unsinkbar"
+      }
+    },
+    {
+      "text": "Keiner der fünfundzwanzig wurde je gefunden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "meer",
+        "anzahl": 7,
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "text": "Nie gefunden"
+      }
+    },
+    {
+      "text": "Was geschah an Bord? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Ungelöst",
+        "wetter": "nebel"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-north-sentinel",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0a2a2e",
+    "#2a8c7a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Menschen, die seit Jahrtausenden niemand besuchen darf 🏝️",
+  "description": "North Sentinel im Indischen Ozean: abgeschottetes Volk, Besuchsverbot und viele offene Fragen.\n\n#mystery #rätsel #northsentinel #insel #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "insel",
+    "northsentinel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Käpt'n Rao"
+  },
+  "segments": [
+    {
+      "text": "Ein Boot nähert sich der Insel, und Pfeile fliegen zum Strand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🏹"
+      }
+    },
+    {
+      "text": "Das ist North Sentinel im Indischen Ozean, Heimat eines abgeschotteten Volkes.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "North Sentinel"
+      }
+    },
+    {
+      "text": "Forscher vermuten: Sie leben dort seit Zehntausenden Jahren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🌴",
+        "text": "Abgeschottet"
+      }
+    },
+    {
+      "text": "Indien verbietet jeden Besuch, Schiffe müssen weit Abstand halten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Verboten",
+        "punkte": [
+          "Landen",
+          "Fotos",
+          "Besuche"
+        ]
+      }
+    },
+    {
+      "text": "Niemand spricht ihre Sprache, niemand weiß, wie sie wirklich leben.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "❓",
+        "text": "Unbekannt"
+      }
+    },
+    {
+      "text": "Zweitausendachtzehn starb ein Missionar beim Versuch, sie zu besuchen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2018,
+        "text": "Besuchsversuch",
+        "objekt": "🛶",
+        "stempel": "belegt"
+      }
+    },
+    {
+      "text": "Wie viele Menschen dort leben, ist nur eine Schätzung.",
+      "szene": {
+        "typ": "akte",
+        "text": "Schätzung",
+        "punkte": [
+          "👥",
+          "❓",
+          "🏝️"
+        ]
+      }
+    },
+    {
+      "text": "Sollte man sie in Ruhe lassen? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "❓",
+        "text": "Was glaubst du?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

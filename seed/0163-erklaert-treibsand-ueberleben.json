@@ -1,0 +1,109 @@
+{
+  "slug": "erklaert-treibsand-ueberleben",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2e2210",
+    "#c48c2a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Wie überlebt man in Treibsand? 🏜️",
+  "description": "Was Treibsand wirklich ist und warum man darin nicht komplett versinkt. Der Mythos und die Physik dahinter.\n\n#wissen #treibsand #natur #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "treibsand",
+    "natur",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Tom"
+  },
+  "segments": [
+    {
+      "text": "Du steckst bis zu den Knien in Treibsand fest.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Aber du kannst darin gar nicht komplett versinken.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "❓",
+        "text": "Versinken?"
+      }
+    },
+    {
+      "text": "Treibsand ist Sand mit Wasser und wird plötzlich flüssig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "💧",
+        "text": "Sand und Wasser"
+      }
+    },
+    {
+      "text": "Dein Körper schwimmt darin eher, als dass er versinkt.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧍",
+          "text": "Mensch: leichter"
+        },
+        "rechts": {
+          "objekt": "🏜️",
+          "text": "Sand: dichter"
+        }
+      }
+    },
+    {
+      "text": "Das Problem: Dein Fuß sitzt fest wie in nassem Beton.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🦶"
+      }
+    },
+    {
+      "text": "Ein Fuß herauszuziehen ist so schwer, wie ein Auto zu heben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1,
+        "einheit": "Auto heben",
+        "objekt": "🚗",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Besser: Lehn dich zurück, bewege die Beine langsam und warte auf Hilfe.",
+      "szene": {
+        "typ": "liste",
+        "text": "Besser so",
+        "punkte": [
+          "Zurücklehnen",
+          "Langsam bewegen",
+          "Hilfe rufen"
+        ]
+      }
+    },
+    {
+      "text": "Gefährlich wird es meist durch die Flut, nicht durch den Sand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🌊",
+        "text": "Die Flut"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

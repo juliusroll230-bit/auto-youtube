@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-aufzug-seil-reisst",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#10202a",
+    "#4a8cc4"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn das Seil deines Aufzugs reißt? 🛗",
+  "description": "Warum ein Aufzug nicht einfach abstürzt: mehrere Seile, Fangbremse und die Show von Elisha Otis.\n\n#wissen #aufzug #technik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "aufzug",
+    "technik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Lena"
+  },
+  "segments": [
+    {
+      "text": "Das Seil reißt, und dein Aufzug stürzt in die Tiefe.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "angst",
+        "aktion": "faellt",
+        "objekt": "🛗"
+      }
+    },
+    {
+      "text": "Doch keine Panik: Er hängt an mehreren Seilen, nicht an einem.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mehrere Sicherungen",
+        "punkte": [
+          "Viele Seile",
+          "Fangbremse",
+          "Gegengewicht"
+        ]
+      }
+    },
+    {
+      "text": "Achtzehnhundertvierundfünfzig zeigte Elisha Otis die Fangbremse live.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1854,
+        "text": "Elisha Otis",
+        "objekt": "🛗"
+      }
+    },
+    {
+      "text": "Er ließ das Seil kappen, und die Bremse hielt den Aufzug.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 6,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Alles sicher?"
+      }
+    },
+    {
+      "text": "Der Legende nach rief er: Alles sicher, meine Herren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🎩",
+        "text": "Alles sicher"
+      }
+    },
+    {
+      "text": "Fällt dein Aufzug, klemmen Bremsen an den Schienen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🪢",
+          "text": "Seil reißt"
+        },
+        "rechts": {
+          "objekt": "🛑",
+          "text": "Bremse greift"
+        }
+      }
+    },
+    {
+      "text": "Springen im Fall hilft übrigens nicht, das ist nur ein Mythos.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🚫",
+        "text": "Springen: sinnlos"
+      }
+    },
+    {
+      "text": "Du fährst sicherer, als du denkst. Was glaubst du?",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "jubelt"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

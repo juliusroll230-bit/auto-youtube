@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-djatlow-pass",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10202a",
+    "#5a8cc4"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Zelt, das neun Wanderer in der Nacht verließen 🏔️",
+  "description": "Der Djatlow-Pass im Ural (1959): neun Wanderer sterben, die Ursache ist umstritten. Russische Ermittler nannten 2019 eine Lawine als wahrscheinlichste Erklärung.\n\n#mystery #rätsel #djatlow #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "djatlow",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "muetze",
+    "name": "Igor"
+  },
+  "segments": [
+    {
+      "text": "Neun Wanderer fliehen mitten in der Nacht aus ihrem Zelt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "wetter": "schnee",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Ural, Februar neunzehnhundertneunundfünfzig: Eine Studentengruppe kehrt nie zurück.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1959,
+        "text": "Djatlow-Pass",
+        "objekt": "⛰️"
+      }
+    },
+    {
+      "text": "Das Zelt wurde von innen aufgeschnitten gefunden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "⛺",
+        "text": "Von innen"
+      }
+    },
+    {
+      "text": "Einige Spuren führten in Socken oder barfuß in den Wald.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "👣",
+        "text": "Spuren"
+      }
+    },
+    {
+      "text": "Manche hatten schwere Verletzungen, doch es gab keine Kampfspuren.",
+      "szene": {
+        "typ": "akte",
+        "text": "Rätsel",
+        "punkte": [
+          "🏔️",
+          "⛺",
+          "🥶",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Theorien gibt es viele: Lawine, Sturm, Militärtests.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Lawine",
+          "Sturm",
+          "Militär"
+        ]
+      }
+    },
+    {
+      "text": "Russische Ermittler nannten zweitausendneunzehn eine Lawine als wahrscheinlichste Ursache.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2019,
+        "text": "Lawine?",
+        "objekt": "❄️"
+      }
+    },
+    {
+      "text": "Doch Fragen bleiben offen. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Ungelöst",
+        "wetter": "schnee"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

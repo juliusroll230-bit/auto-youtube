@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-kaugummi-verschluckt",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1430",
+    "#d84a8c"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du einen Kaugummi verschluckst? 🫧",
+  "description": "Bleibt ein Kaugummi sieben Jahre im Körper? Der Mythos und was wirklich passiert.\n\n#wissen #kaugummi #mythos #körper #shorts",
+  "tags": [
+    "wissen",
+    "kaugummi",
+    "mythos",
+    "körper",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Ben"
+  },
+  "segments": [
+    {
+      "text": "Du verschluckst einen Kaugummi, und er rutscht in deinen Magen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🫧"
+      }
+    },
+    {
+      "text": "Der Mythos sagt: Er bleibt sieben Jahre in dir. Stimmt das?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Sieben Jahre?"
+      }
+    },
+    {
+      "text": "Falsch. Der Körper kann ihn nicht verdauen, aber er wandert weiter.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍬",
+          "text": "Zucker: verdaut"
+        },
+        "rechts": {
+          "objekt": "🧱",
+          "text": "Gummi: wandert"
+        }
+      }
+    },
+    {
+      "text": "Magen und Darm schieben ihn in Tagen einfach mit nach draußen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Der Weg",
+        "punkte": [
+          "Magen",
+          "Darm",
+          "Ausgang"
+        ]
+      }
+    },
+    {
+      "text": "Auch ein Kaugummi folgt dem normalen Weg wie anderes Essen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🍽️",
+        "text": "Wie Essen"
+      }
+    },
+    {
+      "text": "Kaugummi besteht aus Gummibasis, Süßstoff und Aromen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Zutaten",
+        "punkte": [
+          "🌿",
+          "🍬",
+          "🧪"
+        ]
+      }
+    },
+    {
+      "text": "Der Mythos ist alt und hält sich hartnäckig, vor allem bei Kindern.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 5,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Kinderglaube"
+      }
+    },
+    {
+      "text": "Dein Kaugummi bleibt nicht sieben Jahre. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Mythos"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

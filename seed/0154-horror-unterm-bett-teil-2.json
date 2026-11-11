@@ -1,0 +1,115 @@
+{
+  "slug": "horror-unterm-bett-teil-2",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Unterm Bett",
+  "teil": 2,
+  "colors": [
+    "#14102a",
+    "#6a4aa8"
+  ],
+  "accent": "#ffd24d",
+  "title": "Unterm Bett: Wer flüstert Finns Namen? (Teil 2) 🛏️",
+  "description": "Unterm Bett, Teil 2. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #serie #kinderzimmer #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "serie",
+    "kinderzimmer",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Finn"
+  },
+  "segments": [
+    {
+      "text": "Finn zieht die Füße hoch, unterm Bett flüstert eine Stimme.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Unterm Bett, Teil zwei: Wer flüstert Finns Namen?",
+      "szene": {
+        "typ": "titel",
+        "serie": "Unterm Bett",
+        "teil": 2,
+        "ort": "kinderzimmer"
+      }
+    },
+    {
+      "text": "Regel zwei: Füße oben, damit nichts nach ihnen greifen kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🦶"
+      }
+    },
+    {
+      "text": "Regel drei: Nicht antworten. Doch Lea ruft laut Ja.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "angst",
+          "aktion": "schockiert"
+        }
+      }
+    },
+    {
+      "text": "Das Licht flackert, und die Augen kommen näher.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Eine kalte Hand schiebt einen Zettel unter dem Bett hervor.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "📝",
+        "text": "Der Zettel"
+      }
+    },
+    {
+      "text": "Darauf steht in Opas Schrift: Ich passe auf euch auf.",
+      "szene": {
+        "typ": "akte",
+        "text": "Opas Schrift",
+        "punkte": [
+          "📝",
+          "👴",
+          "🛏️"
+        ]
+      }
+    },
+    {
+      "text": "Ist es Opa oder etwas, das ihn nachmacht? Teil drei kommt bald.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz",
+        "text": "Teil 3 kommt"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

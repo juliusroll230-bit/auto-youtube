@@ -1,0 +1,105 @@
+{
+  "slug": "horror-stanley-hotel-shining",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1410",
+    "#8c4a2a"
+  ],
+  "accent": "#e0392f",
+  "title": "Das Hotel, das Stephen King einen Albtraum bescherte 🏨",
+  "description": "Das Stanley Hotel in Colorado: Zimmer 217, ein Albtraum und die Legenden dazu. Belegt und Legende trennen wir im Video.\n\n#horror #legende #shining #hotel #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "shining",
+    "hotel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "keiner",
+    "name": "Anna"
+  },
+  "segments": [
+    {
+      "text": "Ein Schriftsteller und seine Frau sind allein in einem riesigen Hotel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "steht",
+        "objekt": "🏨"
+      }
+    },
+    {
+      "text": "Das Stanley Hotel in Colorado öffnete neunzehnhundertneun und gilt als Spukhotel.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏨",
+        "text": "Colorado"
+      }
+    },
+    {
+      "text": "Im Herbst neunzehnhundertvierundsiebzig mietete Stephen King Zimmer zwei eins sieben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1974,
+        "text": "Zimmer 217",
+        "objekt": "🔑",
+        "stempel": "belegt"
+      }
+    },
+    {
+      "text": "Nachts träumte er, wie jemand seinen kleinen Sohn jagte.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Daraus entstand sein Roman Shining, später ein berühmter Film.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "spukhaus",
+        "objekt": "📖",
+        "text": "The Shining"
+      }
+    },
+    {
+      "text": "Der Legende nach geistert dort noch ein altes Hausmädchen.",
+      "szene": {
+        "typ": "monster",
+        "ort": "spukhaus",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Gäste hören nachts Klavier, aber der Saal ist leer, sagen sie.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "spukhaus",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Klavier?"
+      }
+    },
+    {
+      "text": "Würdest du dort in Zimmer zwei eins sieben schlafen?",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "blitz"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

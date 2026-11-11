@@ -1,0 +1,735 @@
+{
+  "slug": "mystery-mary-celeste-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0d1420",
+    "#3a5a8c"
+  ],
+  "accent": "#c4161c",
+  "title": "Was geschah wirklich auf der Mary Celeste? Das Geisterschiff 🚢",
+  "description": "Dezember 1872: Ein Segelschiff treibt im Atlantik, alle zehn Menschen an Bord sind verschwunden. Wir erzählen die ganze Geschichte der Mary Celeste, zeigen die Spuren und prüfen jede Theorie.\n\n#mystery #rätsel #geisterschiff #maryceleste #geschichte",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geisterschiff",
+    "maryceleste",
+    "geschichte"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Kapitän Briggs"
+  },
+  "segments": [
+    {
+      "text": "Dezember achtzehnhundertzweiundsiebzig, mitten im Atlantik: Ein Segelschiff treibt allein auf den Wellen, und an Deck ist kein einziger Mensch zu sehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "🚢",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Das Essen ist da, die Kajüten sind unversehrt, das Schiff schwimmt, aber zehn Menschen sind verschwunden, als hätte sie jemand in Luft aufgelöst.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🚢",
+        "text": "Zehn weg",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "In diesem Video erzählen wir die wahre Geschichte der Mary Celeste, zeigen die Spuren und prüfen jede Theorie, die bis heute diskutiert wird.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚢",
+        "text": "Mary Celeste",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Zuerst reisen wir zurück zum Start, dann an Bord des Geisterschiffs, dann zu den Theorien, und zum Schluss zu dem, was man heute wirklich weiß.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Die Mary Celeste ist ein Zweimaster von gut dreißig Metern Länge, gebaut achtzehnhunderteinundsechzig in Kanada und ursprünglich unter dem Namen Amazon.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Schon kurz nach dem Stapellauf trifft das Schiff das Pech: Sein erster Kapitän stirbt wenige Tage nach dem Start der ersten Reise.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1861",
+        "text": "Stapellauf",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Das Schiff wurde danach mehrfach verkauft und umgebaut, und achtzehnhundertsiebenundsechzig strandete es sogar vor der Küste Kanadas.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🏖️"
+      }
+    },
+    {
+      "text": "Danach verliert das Schiff mehrmals seine Besitzer, wird beschädigt und gestrandet, und so bekommt es früh den Ruf, ein Pechschiff zu sein.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🍀",
+        "text": "Pechschiff",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Achtzehnhundertzweiundsiebzig kauft Kapitän Benjamin Briggs mit zwei Geschäftspartnern einen Anteil und lässt das Schiff gründlich reparieren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🔧"
+      }
+    },
+    {
+      "text": "Briggs gilt als erfahren und streng religiös. Seine Frau Sarah und seine zweijährige Tochter Sophia fahren auf dieser Reise mit.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Auch der erste Maat Albert Richardson gilt als sehr erfahren, und Briggs vertraut ihm voll und ganz.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧭",
+        "text": "Erster Maat",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Dazu kommen noch vier Seeleute, und so sind es insgesamt zehn Menschen an Bord, wenn das Schiff ablegt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Menschen an Bord",
+        "objekt": "👥",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Am siebten November achtzehnhundertzweiundsiebzig läuft das Schiff in New York aus, und sein Ziel ist der Hafen von Genua in Italien.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1872",
+        "text": "Abfahrt New York",
+        "objekt": "🗽"
+      }
+    },
+    {
+      "text": "Briggs hat sich gut vorbereitet: Das Schiff wurde frisch repariert, und es gibt Proviant für ein halbes Jahr für alle Menschen an Bord.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🥫"
+      }
+    },
+    {
+      "text": "Briggs stammt aus einer Seefahrerfamilie, und auch sein Bruder fährt als Kapitän zur See, was ihm viel Erfahrung gibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "👨‍✈️"
+      }
+    },
+    {
+      "text": "An Bord sind fast siebzehnhundert Fässer mit Industriealkohol, eine gefährliche Fracht, aber ein Geschäft, das gut bezahlt wird.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛢️",
+        "text": "Alkohol-Fracht",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "In Genua soll der Alkohol an Hersteller gehen, die damit Wein verstärken, denn Industriealkohol wurde damals für vieles gebraucht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🍷"
+      }
+    },
+    {
+      "text": "Jetzt kommt der wichtigste Teil: der Fund. Gleich erfährst du, was die Retter an Bord des Geisterschiffs entdeckten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔍",
+        "text": "Der Fund"
+      }
+    },
+    {
+      "text": "Am vierten Dezember sieht die Besatzung des Schiffes Dei Gratia ein Segelschiff, das merkwürdig hin und her schwankt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔭",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Kapitän Morehouse kennt Briggs gut, denn die beiden haben in New York noch zusammen zu Abend gegessen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🍽️",
+        "text": "Alte Bekannte",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Er schickt drei Männer hinüber, und sie rufen vergeblich. Niemand antwortet, nur der Wind pfeift durch das Tauwerk.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📢"
+      }
+    },
+    {
+      "text": "Was haben die drei Männer in diesem Moment gespürt? Sie betreten ein Schiff, auf dem scheinbar nur die Menschen fehlen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "👣",
+        "text": "Leer",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Als sie an Bord gehen, ist das Wetter ruhig. Es gibt keinen Sturm, der die Besatzung vertrieben haben könnte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "☀️",
+        "text": "Ruhiges Wetter",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Die Retter finden das Schiff in einem merkwürdigen Zustand, und diese Details sind bis heute rätselhaft.",
+      "szene": {
+        "typ": "liste",
+        "text": "Was sie fanden",
+        "punkte": [
+          "Segel zerrissen",
+          "Pumpe offen",
+          "Boot fehlt"
+        ]
+      }
+    },
+    {
+      "text": "Im Laderaum steht über einen Meter Wasser, aber das Schiff ist keineswegs am Sinken.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1,
+        "einheit": "Meter Wasser",
+        "objekt": "💧",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Eine Pumpe ist zerlegt, die Teile liegen daneben, und eine Peilstange liegt auf dem Deck, als hätte jemand den Wasserstand messen wollen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📏"
+      }
+    },
+    {
+      "text": "Es fehlen das Beiboot, der Sextant, der Chronometer und die Schiffspapiere, nur das Logbuch ist noch da.",
+      "szene": {
+        "typ": "akte",
+        "text": "Was fehlt?",
+        "punkte": [
+          "🛶",
+          "🧭",
+          "📜",
+          "⏱️"
+        ]
+      }
+    },
+    {
+      "text": "Das Logbuch erzählt nur von der gewöhnlichen Fahrt, ohne ein Wort über Gefahr, Streit oder Schäden an Bord.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Die Männer finden kaum Anzeichen für Gewalt: keine Kampfspuren, keine Blutflecken und kein Chaos an Deck.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🕊️",
+        "text": "Keine Gewalt",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Die letzte Eintragung im Logbuch stammt vom fünfundzwanzigsten November, also neun Tage vor dem Fund.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 9,
+        "einheit": "Tage treibend",
+        "objekt": "📖",
+        "farbcode": "#142a3a"
+      }
+    },
+    {
+      "text": "Seit dem letzten Eintrag hat sich das Schiff vermutlich weit von seinem Kurs entfernt, ganz ohne Steuermann auf dem offenen Meer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧭",
+        "text": "Vom Kurs ab",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Berichten zufolge lagen sogar die Spielsachen der kleinen Sophia noch dort, wo das Kind sie zurückgelassen hatte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🧸"
+      }
+    },
+    {
+      "text": "Aber wer verlässt ein Schiff, das nicht sinkt und auf dem noch alles an seinem Platz ist? Genau das ist die große Frage.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Warum?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Gleich kommt eine überraschende Wendung: Die Retter selbst gerieten danach unter Verdacht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⚖️",
+        "text": "Die Wendung"
+      }
+    },
+    {
+      "text": "Kapitän Morehouse bringt das Schiff mit der Dei Gratia nach Gibraltar, denn für die Rettung eines herrenlosen Schiffes gibt es eine Prämie.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "💰"
+      }
+    },
+    {
+      "text": "Doch ausgerechnet diese Prämie macht die Retter verdächtig: Wollten sie etwa nur das Geld und haben dafür gelogen?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "💰",
+        "text": "Prämie?",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Dort leitet der Staatsanwalt Frederick Solly-Flood eine lange Untersuchung, und er glaubt nicht an einen einfachen Unfall.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏛️",
+        "text": "Untersuchung",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Er prüft drei schlimme Möglichkeiten und sucht für jede davon Beweise an Bord des Schiffes.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sein Verdacht",
+        "punkte": [
+          "Meuterei",
+          "Mord",
+          "Piraterie"
+        ]
+      }
+    },
+    {
+      "text": "Er findet Kratzer am Bug und dunkle Flecken an einem Schwert, doch Gutachter weisen später nach, dass es nur Rost war.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🗡️"
+      }
+    },
+    {
+      "text": "Die Retter erhalten am Ende nur etwa ein Fünftel des Schiffswertes als Belohnung, also deutlich weniger als erhofft.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 20,
+        "einheit": "Prozent Prämie",
+        "objekt": "💵",
+        "farbcode": "#1d3a2a"
+      }
+    },
+    {
+      "text": "Jetzt zu den Theorien. Wir prüfen sie nacheinander und sagen jeweils, was dafür und was dagegen spricht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Theorien"
+      }
+    },
+    {
+      "text": "Theorie eins: Piraten überfielen das Schiff. Aber es fehlen Kampfspuren, und die wertvolle Fracht war noch an Bord.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🏴‍☠️"
+      }
+    },
+    {
+      "text": "Theorie zwei: Eine Meuterei der Mannschaft. Doch Briggs hatte erfahrene Männer ausgesucht, und es gibt keine Hinweise auf Streit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⚔️",
+        "text": "Meuterei?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Theorie drei: Ein Seeungeheuer. Das klingt spannend, passt aber nicht zu einem ruhigen, unbeschädigten Schiff.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🦑",
+          "text": "Spannend"
+        },
+        "rechts": {
+          "objekt": "🚢",
+          "text": "Passt nicht"
+        }
+      }
+    },
+    {
+      "text": "Auch Seebeben, Wasserhosen und andere Naturgewalten wurden genannt, aber für keine davon fand man Belege an Bord oder im Meer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌊",
+        "text": "Naturgewalten",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Theorie vier: Eine Wasserhose überraschte das Schiff. Aber dann wäre an Bord wohl viel mehr Chaos zu erwarten gewesen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌪️",
+        "wetter": "blitz"
+      }
+    },
+    {
+      "text": "Theorie fünf: Das Wasser im Laderaum machte Briggs Sorgen, und er ließ das Schiff vorsichtshalber verlassen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌊",
+        "text": "Vorsicht?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Und dann gibt es die Theorie, die Fachleute heute am meisten diskutieren: giftige und explosive Alkoholdämpfe in den Fässern.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🛢️",
+        "text": "Dämpfe?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Neun Fässer waren leer, und vielleicht war Alkohol ausgelaufen. Er verdunstet schnell und kann explosive Dämpfe bilden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "⚗️"
+      }
+    },
+    {
+      "text": "Mögliche Folge davon: Dämpfe sammeln sich im Laderaum, der Druck steigt, und schließlich gibt es einen plötzlichen Knall.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Kette",
+        "punkte": [
+          "Dämpfe",
+          "Druck",
+          "Knall"
+        ]
+      }
+    },
+    {
+      "text": "Die Luken waren geöffnet, vielleicht, um Dämpfe abziehen zu lassen. Briggs hätte das für eine drohende Explosion halten können.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚪",
+        "text": "Luken offen",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Ein britischer Chemiker zeigte später im Versuch, dass Alkoholdämpfe mit einem lauten Knall zünden können, ohne dass viel verbrennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💥"
+      }
+    },
+    {
+      "text": "Dafür spricht einiges, auch wenn niemand es beweisen kann, und die wichtigsten Punkte sind schnell zusammengefasst.",
+      "szene": {
+        "typ": "liste",
+        "text": "Dafür spricht",
+        "punkte": [
+          "Keine Brandspuren",
+          "Luken offen",
+          "Leere Fässer"
+        ]
+      }
+    },
+    {
+      "text": "Ein abgerissenes Tau am Heck deutet darauf hin, dass das Beiboot vielleicht angebunden war und später abriss.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🪢"
+      }
+    },
+    {
+      "text": "Auch die Peilstange auf dem Deck passt dazu, denn Briggs wollte wohl noch einmal prüfen, wie viel Wasser im Schiff stand.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📏",
+        "text": "Peilstange",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Eine Theorie bleibt aber eine Theorie: Bewiesen ist nichts, doch diese Erklärung passt zu den meisten Spuren.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧪",
+        "text": "Nur Theorie",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Gleich kommt ein Teil, den fast niemand kennt: Wie die Geschichte nach dem Fund weiterging.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🧭",
+        "text": "Das Nachspiel"
+      }
+    },
+    {
+      "text": "Die Mary Celeste segelte weiter, doch sie galt als verflucht, und kein Besitzer behielt sie lange.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Achtzehnhundertfünfundachtzig lässt Kapitän Gilman Parker das Schiff vor Haiti absichtlich auf ein Riff laufen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1885",
+        "text": "Versicherungsbetrug",
+        "objekt": "🪸"
+      }
+    },
+    {
+      "text": "Er wollte die Versicherung kassieren, doch der Betrug flog auf, und Parker starb kurz danach.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📄",
+        "text": "Betrug",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Zweitausendeins erklärte der Autor Clive Cussler, sein Team habe das Wrack vor Haiti gefunden.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2001",
+        "text": "Wrack entdeckt",
+        "objekt": "🔎"
+      }
+    },
+    {
+      "text": "Ob es wirklich die Mary Celeste ist, wird bis heute diskutiert, denn Wracks sehen nach über hundert Jahren im Meer sehr ähnlich aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🔎"
+      }
+    },
+    {
+      "text": "Der Schriftsteller Arthur Conan Doyle machte das Rätsel bekannt, mit einer Erzählung von achtzehnhundertvierundachtzig, die erfunden war.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📖",
+        "text": "Conan Doyle",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Dabei änderte er den Namen in Marie Celeste, und deshalb wird das Schiff bis heute oft falsch geschrieben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✍️"
+      }
+    },
+    {
+      "text": "Seitdem erscheinen Bücher, Filme und Dokumentationen, und die Mary Celeste wurde zum Inbegriff aller Geisterschiffe.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👻",
+        "text": "Geisterschiff",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Auch Seeleute erzählen die Geschichte immer wieder, als Warnung davor, wie schnell eine Entscheidung in Panik ein ganzes Schiff verlieren kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⚠️"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt eine Vermutung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Das Schiff wurde ohne Menschen gefunden, es war intakt, und das Beiboot fehlte.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Schiff intakt",
+          "Beiboot fehlt",
+          "Crew weg"
+        ]
+      }
+    },
+    {
+      "text": "Unklar bleibt: Warum gingen sie, wie lange waren sie unterwegs, und was wurde aus ihnen?",
+      "szene": {
+        "typ": "akte",
+        "text": "Unklar",
+        "punkte": [
+          "⏱️",
+          "🌊",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Wahrscheinlich ist die Geschichte banaler als jede Gespenstergeschichte: eine Fehlentscheidung in einer Notlage, die tödlich endete.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Und doch lässt sie uns nicht los, denn ein verlassenes Schiff mit gedecktem Tisch ist ein sehr starkes Bild.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🚢",
+        "text": "Das Bild",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Welche Theorie überzeugt dich, und was hättest du an Briggs Stelle getan? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

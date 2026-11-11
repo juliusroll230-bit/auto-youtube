@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-flannan-leuchtturm",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0d1a24",
+    "#4a6a8c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Der Leuchtturm, aus dem drei Männer verschwanden 🗼",
+  "description": "Die Flannan-Inseln in Schottland, Dezember 1900: drei Leuchtturmwärter verschwinden spurlos. Spätere Ausschmückungen trennen wir von dem, was belegt ist.\n\n#mystery #rätsel #leuchtturm #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "leuchtturm",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "matrose",
+    "name": "Joseph"
+  },
+  "segments": [
+    {
+      "text": "Ein Rettungsschiff legt an, doch der Leuchtturm ist leer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "wetter": "nebel",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Flannan-Inseln, Schottland, Dezember neunzehnhundert: Drei Leuchtturmwärter sind verschwunden.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1900,
+        "text": "Flannan-Inseln",
+        "objekt": "🗼"
+      }
+    },
+    {
+      "text": "Die Tür war zu, die Betten waren leer, die Wärter weg.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🚪",
+        "text": "Alles leer"
+      }
+    },
+    {
+      "text": "Ein Regenmantel fehlte, der zweite hing noch am Haken.",
+      "szene": {
+        "typ": "akte",
+        "text": "Spuren",
+        "punkte": [
+          "🧥",
+          "🚪",
+          "🌊",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Drei Männer: Thomas Marshall, James Ducat und Donald MacArthur.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 3,
+        "einheit": "Wärter vermisst",
+        "objekt": "🗼",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "Eine Theorie: Eine riesige Welle spülte sie von der Landungsstelle.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Riesenwelle"
+      }
+    },
+    {
+      "text": "Spätere Berichte erfanden Details, belegt ist nur das Verschwinden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "wetter": "blitz",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Was geschah in jener Nacht? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Ungelöst",
+        "wetter": "nebel"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
