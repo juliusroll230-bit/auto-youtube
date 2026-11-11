@@ -27,7 +27,7 @@ CHROME = os.environ.get("CHROME_PATH", "")
 
 
 TYPES = {"figur", "zwei", "gruppe", "objekt", "zahl", "jahr", "liste", "vergleich", "horror", "monster", "titel",
-         "akte", "raetsel", "karte"}
+         "akte", "raetsel", "karte", "firma"}
 MOODS_VIDEO = set(learn.VOICES_FOR_MOOD)  # Stimmung des ganzen Videos: Musik, Licht, Stimme
 PLACES = {"strand", "meer", "stadt", "wald", "feld", "nacht", "haus", "kinderzimmer", "keller", "schule", "buero",
           "labor", "weltall", "wueste", "burg", "dorf", "farbe", "friedhof", "spukhaus", "krankenhaus", "strasse",

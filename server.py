@@ -155,6 +155,10 @@ def post_next(slot, manual=False, long=False):
                 store.state()["uploads"], scripts_left=bool(planned))
         if clip:
             return post_clip(clip, slot, manual)
+        if not long and slot:
+            extra = firma_episode(slot)  # Firmen-Spiel: einmal am Tag, vor allen anderen Skripten
+            if extra:
+                planned = [extra] + planned
         if not planned:
             store.log("warn", ("Langes Video verpasst: " if long else "Sendeplatz verpasst: ") + (
                 "Kein freigegebenes Video in der Warteschlange." if store.config()["approval"]
@@ -195,6 +199,8 @@ def post_next(slot, manual=False, long=False):
             video_id = yt.upload(store.config(), video, spec)
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
         store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done)
+        if spec.get("format") == "firma" and spec.get("firma_state"):
+            store.write("firma.json", spec["firma_state"])  # Spielstand erst nach dem Upload weiterzählen
         for a in ("planer", "sprecher", "studio", "publisher"):
             store.agent_done(a)
         if not long:
@@ -218,6 +224,47 @@ def post_next(slot, manual=False, long=False):
     finally:
         status["busy"] = ""
         work_lock.release()
+
+
+def firma_episode(slot):
+    """Firmen-Spiel "Abo Motors": baut zur Firmen-Sendezeit die Folge des Tages mit der echten Abozahl.
+
+    Gibt (datei, skript) für die Warteschlange zurück, sonst None. Namen kommen von Abonnenten mit öffentlichen
+    Abos und aus Kommentaren mit Wunschjob (siehe firma.py).
+    """
+    import firma
+
+    cfg = store.config()
+    hour = cfg.get("firma_hour")
+    if hour is None or int(slot[-2:]) != int(hour):
+        return None
+    st = store.read("firma.json", {})
+    today = store.now().date()
+    if st.get("last_day") == today.isoformat():
+        return None
+    ch = store.read("channel.json", {})
+    if not ch.get("id"):
+        return None
+    comments, subs = [], []
+    try:
+        comments = yt.recent_comments(cfg, ch["id"])
+    except Exception as e:
+        store.log("warn", f"Firmen-Spiel: Kommentare nicht geladen ({e})", agent="planer")
+    try:
+        subs = yt.public_subscribers(cfg)
+    except Exception as e:
+        store.log("warn", f"Firmen-Spiel: Abonnenten-Namen nicht geladen ({e})", agent="planer")
+    for old in glob.glob(store.path("queue", "0000-firma-*.json")):  # alte, nicht gesendete Folge: Zahlen veraltet
+        os.remove(old)
+    spec, new_state = firma.episode(ch.get("subscribers", 0), st, comments, subs, today=today, own_channel=ch["id"])
+    spec["firma_state"] = new_state
+    file = store.path("queue", f"0000-{spec['slug']}.json")
+    os.makedirs(os.path.dirname(file), exist_ok=True)
+    with open(file, "w", encoding="utf-8") as f:
+        json.dump(spec, f, ensure_ascii=False, indent=1)
+    store.log("info", f"Firmen-Spiel: Tag {new_state['tag']} mit {new_state['mitarbeiter']} Mitarbeitern",
+              agent="planer")
+    return file, spec
 
 
 def clip_target():
