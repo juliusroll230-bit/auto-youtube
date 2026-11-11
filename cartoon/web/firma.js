@@ -185,8 +185,23 @@ function firmaHud(ctx, sc, lt, d) {
   ctx.restore();
 }
 
+// 3D-Fassung (firma3d.js), wenn der Browser WebGL kann
+function firma3d(ctx, sc, lt, d) {
+  const n = Math.max(0, Math.round(Number(sc.mitarbeiter) || 0)), nNew = Math.min(n, Math.max(0, Math.round(Number(sc.neu) || 0)));
+  const MAX = { garage: 8, werkstatt: 16 }[sc.stufe] || 32, drawn = Math.min(n, MAX);
+  const newFrom = drawn - Math.min(nNew, drawn);
+  const step = Math.min(.22, (d * .55) / Math.max(1, drawn - newFrom));
+  F3.draw(ctx, { ...sc, stufe: FIRMA_STUFEN[sc.stufe] ? sc.stufe : 'fabrik' }, lt, d, { drawn, newFrom, step, names: sc.namen || [] });
+  if (n > drawn) { const k = popIn(lt, .5); ctx.save(); ctx.translate(800, 1560); ctx.scale(k, k); sign(ctx, '+' + (n - drawn).toLocaleString('de-DE') + ' weitere', 0, 0, 56, '#7cf08a'); ctx.restore(); }
+  if (n === 0) { const k = popIn(lt, .2); ctx.save(); ctx.translate(540, 900); ctx.scale(k, k); sign(ctx, 'NOCH LEER', 0, 0, 90); ctx.restore(); }
+  if (sc.objekt) { const k = popIn(lt, .1, .4); ctx.save(); ctx.translate(540, 760 + Math.sin(lt * 2.4) * 16); ctx.scale(k, k); ctx.rotate(lt * .3); burst(ctx, 0, 0, 190, 14, '#fff3b0', 4, .78); ctx.restore(); emoji(ctx, sc.objekt, 540, 760 + Math.sin(lt * 2.4) * 16, 210 * k, Math.sin(lt * 1.6) * .08); }
+  if (sc.text) { const k = popIn(lt, .25); ctx.save(); ctx.translate(540, 480); ctx.scale(k, k); sign(ctx, sc.text, 0, 0, 60); ctx.restore(); }
+  firmaHud(ctx, sc, lt, d);
+}
+
 window.EXTRA_TYPES = {
   firma(ctx, sc, lt, d) {
+    if (window.F3) return firma3d(ctx, sc, lt, d);
     const st = FIRMA_STUFEN[sc.stufe] ? sc.stufe : 'fabrik';
     applyCam(ctx, cam(lt, d, 1.0, 1.05, sc.i)); firmaBackground(ctx, st, lt, sc.name);
     const n = Math.max(0, Math.round(Number(sc.mitarbeiter) || 0)), nNew = Math.min(n, Math.max(0, Math.round(Number(sc.neu) || 0)));

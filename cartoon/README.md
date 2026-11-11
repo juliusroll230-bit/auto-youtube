@@ -86,5 +86,7 @@ Standard 17 Uhr, `null` = aus) baut die Zentrale die Folge selbst, die tägliche
 - Ausbaustufen: garage (ab 0), werkstatt (10), fabrik (40), grossfabrik (200), konzern (1000).
 - Jeden Tag ein Ereignis aus `firma.EVENTS` (Auto verkauft, Reifen platzt …).
 
-Szene `firma`: `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
+Szene `firma` ist ein 3D-Diorama (three.js r149 in `cartoon/web/vendor`, MIT; `firma3d.js`), Chromium rendert WebGL
+mit SwiftShader (ca. 8 Minuten für 30 Sekunden). Ohne WebGL zeichnet `firma.js` die 2D-Fabrik.
+Felder: `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
 Test: `python firma.py 41 ausgabe/` (Beispielvideo) und `python tests/firma_test.py`.
