@@ -76,8 +76,8 @@ Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvid
 
 ## Firmen-Spiel „Abo Motors“ (`firma.py`, Szene `firma`)
 
-„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein.“ Einmal am Tag (Sendeplatz `firma_hour`,
-Standard 17 Uhr, `null` = aus) baut die Zentrale die Folge selbst, die tägliche Aufgabe muss dafür nichts schreiben:
+„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein.“ Einmal am Tag zusätzlich zu den normalen
+Shorts (ab `firma_hour`, Standard 20 Uhr, `null` = aus; Stand in state `firma_slots`) baut die Zentrale die Folge selbst, die tägliche Aufgabe muss dafür nichts schreiben:
 
 - Mitarbeiter = echte Abozahl (`channel.json`), 100 € Spielgeld pro Mitarbeiter und Tag, Spielstand in `firma.json`
   (wird erst nach dem Upload weitergezählt).

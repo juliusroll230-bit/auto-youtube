@@ -47,8 +47,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "clip_token": "", "clip_expired": False,
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
-                  # Firmen-Spiel (firma.py): eine Folge "Abo Motors" pro Tag zu dieser Sendezeit, None = aus
-                  "firma_hour": 17}
+                  # Firmen-Spiel (firma.py): eine Folge "Abo Motors" pro Tag zusätzlich, ab dieser Uhrzeit, None = aus
+                  "firma_hour": 20}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
@@ -405,6 +405,17 @@ def due_long(per_week, hour=19, at=None):
         return None
     key = at.strftime("%Y-%m-%d")
     return None if key in state().get("long_slots", []) else key
+
+
+def due_firma(hour, at=None):
+    """Schlüssel des Tages, wenn die Folge des Firmen-Spiels dran ist (ab hour Uhr bis Mitternacht), sonst None."""
+    if hour is None:
+        return None
+    at = at or now()
+    if at.hour < int(hour):
+        return None
+    key = at.strftime("%Y-%m-%d")
+    return None if key in state().get("firma_slots", []) else key
 
 
 def planned_queue(posted=None, ready_only=False, long=False):

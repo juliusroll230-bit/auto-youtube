@@ -1,6 +1,6 @@
 """Firmen-Spiel: "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein".
 
-Einmal am Tag (Sendeplatz firma_hour, Standard 17 Uhr) baut die Zentrale daraus einen Cartoon-Short:
+Einmal am Tag zusätzlich zu den normalen Shorts (ab firma_hour, Standard 20 Uhr) baut die Zentrale einen Cartoon-Short:
 - Mitarbeiter = echte Abozahl des Kanals (aus channel.json, alle 20 Minuten aktualisiert)
 - jeder Mitarbeiter bringt 100 € am Tag, das Spielgeld landet auf dem Firmenkonto (firma.json)
 - Zuschauer schreiben ihren Wunschjob in die Kommentare ("Ich will Zeichner sein"), die Firma stellt
