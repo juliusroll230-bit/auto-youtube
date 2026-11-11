@@ -3,6 +3,7 @@
 // Autos entstehen am Fließband, Kontostand oben zählt hoch, neue Leute fallen ins Bild.
 // Felder: mitarbeiter (Zahl), neu (wie viele davon neu sind), geld / geld_neu (Kontostand vorher/nachher),
 // pro_tag (Einnahmen am Tag), stufe (garage, werkstatt, fabrik, grossfabrik, konzern), name (Firmenname),
+// thema (autos, burger, rakete, games), level (0-4), stufe_label (Text oben rechts), icon (Emoji im Kopf),
 // namen (Liste, neueste zuerst; gehören den Arbeitern vorne), text (Schild), chef (true: Chef steht vorne).
 // scenes.js übernimmt window.EXTRA_TYPES in TYPES; Helfer (stick, emoji, sign, popIn, cam ...) kommen von dort.
 const FIRMA_STUFEN = {
@@ -165,10 +166,10 @@ function firmaHud(ctx, sc, lt, d) {
   const g = ctx.createLinearGradient(0, 104, 0, 404); g.addColorStop(0, '#2a3160'); g.addColorStop(1, '#161a33');
   rrect(ctx, 40, 104, 1000, 300, 44); ctx.fillStyle = g; ctx.fill(); ctx.lineWidth = 10; ctx.strokeStyle = INK; ctx.stroke();
   const S = FIRMA_STUFEN[sc.stufe] || FIRMA_STUFEN.fabrik;
-  emoji(ctx, '🚗', 100, 168, 56);
+  emoji(ctx, sc.icon || '🚗', 100, 168, 56);
   fitText(ctx, (sc.name || 'MEINE AUTOFIRMA').toUpperCase(), 330, 168, 48, 400, '#fff', INK, 0);
   rrect(ctx, 590, 138, 410, 62, 31); ctx.fillStyle = '#ffe14d'; ctx.fill();
-  fitText(ctx, S.label, 795, 170, 36, 380, INK, null, 0);
+  fitText(ctx, sc.stufe_label || S.label, 795, 170, 36, 380, INK, null, 0);
   const g0 = Number(sc.geld) || 0, g1 = sc.geld_neu != null ? Number(sc.geld_neu) : g0;
   const money = lerp(g0, g1, easeOut(clamp((lt - .2) / Math.max(.6, d * .65))));
   const n = Math.round(Number(sc.mitarbeiter) || 0), nNew = Math.round(Number(sc.neu) || 0);
@@ -188,10 +189,11 @@ function firmaHud(ctx, sc, lt, d) {
 // 3D-Fassung (firma3d.js), wenn der Browser WebGL kann
 function firma3d(ctx, sc, lt, d) {
   const n = Math.max(0, Math.round(Number(sc.mitarbeiter) || 0)), nNew = Math.min(n, Math.max(0, Math.round(Number(sc.neu) || 0)));
-  const MAX = { garage: 8, werkstatt: 16 }[sc.stufe] || 32, drawn = Math.min(n, MAX);
-  const newFrom = drawn - Math.min(nNew, drawn);
-  const step = Math.min(.22, (d * .55) / Math.max(1, drawn - newFrom));
-  F3.draw(ctx, { ...sc, stufe: FIRMA_STUFEN[sc.stufe] ? sc.stufe : 'fabrik' }, lt, d, { drawn, newFrom, step, names: sc.namen || [] });
+  const lv = sc.level != null ? Number(sc.level) : ['garage', 'werkstatt'].indexOf(sc.stufe);
+  const MAX = lv === 0 ? 8 : lv === 1 ? 16 : 32, want = Math.min(n, MAX);
+  const newFrom = want - Math.min(nNew, want);
+  const step = Math.min(.22, (d * .55) / Math.max(1, want - newFrom));
+  const drawn = F3.draw(ctx, { ...sc, stufe: FIRMA_STUFEN[sc.stufe] ? sc.stufe : 'fabrik' }, lt, d, { drawn: want, newFrom, step, names: sc.namen || [] });
   if (n > drawn) { const k = popIn(lt, .5); ctx.save(); ctx.translate(800, 1560); ctx.scale(k, k); sign(ctx, '+' + (n - drawn).toLocaleString('de-DE') + ' weitere', 0, 0, 56, '#7cf08a'); ctx.restore(); }
   if (n === 0) { const k = popIn(lt, .2); ctx.save(); ctx.translate(540, 900); ctx.scale(k, k); sign(ctx, 'NOCH LEER', 0, 0, 90); ctx.restore(); }
   if (sc.objekt) { const k = popIn(lt, .1, .4); ctx.save(); ctx.translate(540, 760 + Math.sin(lt * 2.4) * 16); ctx.scale(k, k); ctx.rotate(lt * .3); burst(ctx, 0, 0, 190, 14, '#fff3b0', 4, .78); ctx.restore(); emoji(ctx, sc.objekt, 540, 760 + Math.sin(lt * 2.4) * 16, 210 * k, Math.sin(lt * 1.6) * .08); }

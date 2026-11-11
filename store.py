@@ -47,7 +47,7 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "clip_token": "", "clip_expired": False,
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
-                  # Firmen-Spiel (firma.py): eine Folge "Abo Motors" pro Tag zusätzlich, ab dieser Uhrzeit, None = aus
+                  # Firmen-Spiel (firma.py): eine Folge pro Tag zusätzlich (vier Firmen reihum), ab dieser Uhrzeit, None = aus
                   "firma_hour": 20}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
