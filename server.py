@@ -140,25 +140,31 @@ def video_voice():
 
 # --- Arbeit ------------------------------------------------------------------
 
-def post_next(slot, manual=False, long=False):
-    """Rendert das nächste Skript und lädt es hoch. long: ein langes Video (eigene Warteschlange, eigener Sendeplan)."""
-    done = "long_slots" if long else "done_slots"
+def post_next(slot, manual=False, long=False, firma=False):
+    """Rendert das nächste Skript und lädt es hoch. long: ein langes Video (eigene Warteschlange, eigener Sendeplan).
+
+    firma: die tägliche Folge des Firmen-Spiels, zusätzlich zu den normalen Sendeplätzen (eigener Sendeplan).
+    """
+    done = "long_slots" if long else "firma_slots" if firma else "done_slots"
     if not work_lock.acquire(blocking=False):
         return
     try:
         with working("planer", task="Wählt das nächste Video"):
-            planned = store.planned_queue(ready_only=True, long=long)  # Reihenfolge nach Lernmodus
+            if firma:
+                extra = firma_episode()
+                if not extra:
+                    store.mark_slot(slot, done)
+                    return
+                planned = [extra]
+            else:
+                planned = store.planned_queue(ready_only=True, long=long)  # Reihenfolge nach Lernmodus
             cfg = store.config()
             # Mit eigenem Clip-Kanal laufen Clips getrennt (post_clip_slot), sonst ersetzen sie hier Sendeplätze
-            clip = None if (cfg["clip_token"] or long) else clips.choose_for_slot(
+            clip = None if (cfg["clip_token"] or long or firma) else clips.choose_for_slot(
                 slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
                 store.state()["uploads"], scripts_left=bool(planned))
         if clip:
             return post_clip(clip, slot, manual)
-        if not long and slot:
-            extra = firma_episode(slot)  # Firmen-Spiel: einmal am Tag, vor allen anderen Skripten
-            if extra:
-                planned = [extra] + planned
         if not planned:
             store.log("warn", ("Langes Video verpasst: " if long else "Sendeplatz verpasst: ") + (
                 "Kein freigegebenes Video in der Warteschlange." if store.config()["approval"]
@@ -226,8 +232,8 @@ def post_next(slot, manual=False, long=False):
         work_lock.release()
 
 
-def firma_episode(slot):
-    """Firmen-Spiel "Abo Motors": baut zur Firmen-Sendezeit die Folge des Tages mit der echten Abozahl.
+def firma_episode():
+    """Firmen-Spiel "Abo Motors": baut die Folge des Tages mit der echten Abozahl (Sendezeit: store.due_firma).
 
     Gibt (datei, skript) für die Warteschlange zurück, sonst None. Namen kommen von Abonnenten mit öffentlichen
     Abos und aus Kommentaren mit Wunschjob (siehe firma.py).
@@ -235,9 +241,6 @@ def firma_episode(slot):
     import firma
 
     cfg = store.config()
-    hour = cfg.get("firma_hour")
-    if hour is None or int(slot[-2:]) != int(hour):
-        return None
     st = store.read("firma.json", {})
     today = store.now().date()
     if st.get("last_day") == today.isoformat():
@@ -254,11 +257,11 @@ def firma_episode(slot):
         subs = yt.public_subscribers(cfg)
     except Exception as e:
         store.log("warn", f"Firmen-Spiel: Abonnenten-Namen nicht geladen ({e})", agent="planer")
-    for old in glob.glob(store.path("queue", "0000-firma-*.json")):  # alte, nicht gesendete Folge: Zahlen veraltet
+    for old in glob.glob(store.path("firma", "*.json")):  # alte, nicht gesendete Folge: Zahlen veraltet
         os.remove(old)
     spec, new_state = firma.episode(ch.get("subscribers", 0), st, comments, subs, today=today, own_channel=ch["id"])
     spec["firma_state"] = new_state
-    file = store.path("queue", f"0000-{spec['slug']}.json")
+    file = store.path("firma", f"0000-{spec['slug']}.json")  # eigener Ordner, nicht in der normalen Warteschlange
     os.makedirs(os.path.dirname(file), exist_ok=True)
     with open(file, "w", encoding="utf-8") as f:
         json.dump(spec, f, ensure_ascii=False, indent=1)
@@ -670,6 +673,9 @@ def scheduler():
                 slot = store.due_slot() if ag["publisher"]["on"] else None
                 if slot and not status["busy"]:
                     post_next(slot)
+                fslot = store.due_firma(cfg.get("firma_hour")) if ag["publisher"]["on"] else None
+                if fslot and not status["busy"]:
+                    post_next(fslot, firma=True)  # Abo Motors: zusätzlich zu den normalen Videos
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
                 if lslot and not status["busy"]:
                     post_next(lslot, long=True)

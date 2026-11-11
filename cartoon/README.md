@@ -76,8 +76,8 @@ Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvid
 
 ## Firmen-Spiel „Abo Motors“ (`firma.py`, Szene `firma`)
 
-„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein.“ Einmal am Tag (Sendeplatz `firma_hour`,
-Standard 17 Uhr, `null` = aus) baut die Zentrale die Folge selbst, die tägliche Aufgabe muss dafür nichts schreiben:
+„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein.“ Einmal am Tag zusätzlich zu den normalen
+Shorts (ab `firma_hour`, Standard 20 Uhr, `null` = aus; Stand in state `firma_slots`) baut die Zentrale die Folge selbst, die tägliche Aufgabe muss dafür nichts schreiben:
 
 - Mitarbeiter = echte Abozahl (`channel.json`), 100 € Spielgeld pro Mitarbeiter und Tag, Spielstand in `firma.json`
   (wird erst nach dem Upload weitergezählt).
@@ -86,5 +86,7 @@ Standard 17 Uhr, `null` = aus) baut die Zentrale die Folge selbst, die tägliche
 - Ausbaustufen: garage (ab 0), werkstatt (10), fabrik (40), grossfabrik (200), konzern (1000).
 - Jeden Tag ein Ereignis aus `firma.EVENTS` (Auto verkauft, Reifen platzt …).
 
-Szene `firma`: `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
+Szene `firma` ist ein 3D-Diorama (three.js r149 in `cartoon/web/vendor`, MIT; `firma3d.js`), Chromium rendert WebGL
+mit SwiftShader (ca. 8 Minuten für 30 Sekunden). Ohne WebGL zeichnet `firma.js` die 2D-Fabrik.
+Felder: `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
 Test: `python firma.py 41 ausgabe/` (Beispielvideo) und `python tests/firma_test.py`.

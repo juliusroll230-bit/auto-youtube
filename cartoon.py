@@ -168,7 +168,8 @@ def open_page(folder, wide=False):
 
     pw = sync_playwright().start()
     browser = pw.chromium.launch(**({"executable_path": CHROME} if CHROME else {}),
-                                 args=["--allow-file-access-from-files", "--no-sandbox"])
+                                 args=["--allow-file-access-from-files", "--no-sandbox", "--use-angle=swiftshader",
+                                       "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"])  # WebGL für 3D-Szenen
     page = browser.new_page(viewport={"width": 1920, "height": 1080} if wide else {"width": 1080, "height": 1920})
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))

@@ -52,12 +52,16 @@ import store  # noqa: E402
 store.write("channel.json", {"id": "own", "subscribers": 41})
 server.yt.recent_comments = lambda cfg, cid: comments
 server.yt.public_subscribers = lambda cfg: subs
-day = store.now().strftime("%Y-%m-%d")
-assert server.firma_episode(day + "-09") is None
-file, sp = server.firma_episode(day + "-17")
+assert store.due_firma(None) is None and store.due_firma(20, store.now().replace(hour=19)) is None
+key = store.due_firma(20, store.now().replace(hour=21))
+assert key
+file, sp = server.firma_episode()
 assert os.path.basename(file).startswith("0000-firma-tag-1") and sp["firma_state"]["mitarbeiter"] == 41
-server.firma_episode(day + "-17")
-assert len(glob.glob(store.path("queue", "0000-firma-*.json"))) == 1, "alte Folge wird ersetzt"
+assert not store.queue_files(), "Firmen-Folge liegt nicht in der normalen Warteschlange"
+server.firma_episode()
+assert len(glob.glob(store.path("firma", "*.json"))) == 1, "alte Folge wird ersetzt"
 store.write("firma.json", sp["firma_state"])
-assert server.firma_episode(day + "-17") is None, "nur eine Folge pro Tag"
+assert server.firma_episode() is None, "nur eine Folge pro Tag"
+store.mark_slot(key, "firma_slots")
+assert store.due_firma(20, store.now().replace(hour=21)) is None
 print("ok")

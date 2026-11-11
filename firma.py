@@ -1,6 +1,6 @@
 """Firmen-Spiel: "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein".
 
-Einmal am Tag (Sendeplatz firma_hour, Standard 17 Uhr) baut die Zentrale daraus einen Cartoon-Short:
+Einmal am Tag zusätzlich zu den normalen Shorts (ab firma_hour, Standard 20 Uhr) baut die Zentrale einen Cartoon-Short:
 - Mitarbeiter = echte Abozahl des Kanals (aus channel.json, alle 20 Minuten aktualisiert)
 - jeder Mitarbeiter bringt 100 € am Tag, das Spielgeld landet auf dem Firmenkonto (firma.json)
 - Zuschauer schreiben ihren Wunschjob in die Kommentare ("Ich will Zeichner sein"), die Firma stellt
@@ -191,16 +191,15 @@ def episode(subs, state=None, comments=(), subscribers=(), today=None, own_chann
                      "szene": _hud(n, min(n, len(fresh)), geld, geld, cur, names, {"text": "Willkommen!"})})
     for p in new_people:
         segs.append({"text": f"{p['name']} wollte {p['job']} werden, und ab heute ist {p['name']} unser {p['job']}!",
-                     "szene": {"typ": "figur", "ort": "stadt", "gefuehl": "freude", "aktion": "jubelt", "objekt": p["emoji"],
-                               "text": f"{p['name']}: {p['job']}"[:22], "figur": {"farbe": "gruen", "hut": "helm"},
-                               "neuling": p["name"]}})
+                     "szene": _hud(n, 0, geld, geld, cur, names, {"objekt": p["emoji"], "text": f"{p['name']}: {p['job']}"[:22],
+                                                                  "neuling": p["name"]})})
     if not first and cur != old_cur:
         segs.append({"text": f"Und wir ziehen um: Ab heute sind wir {cur[2]}!",
                      "szene": _hud(n, 0, geld, geld, cur, names, {"text": "Umzug!"})})
     segs.append({"text": f"Jeder baut Autos für hundert Euro am Tag, das sind {words(umsatz)} Euro.",
                  "szene": {"typ": "zahl", "zahl": umsatz, "einheit": "Euro am Tag", "objekt": "💶", "farbcode": "#2fbf6a"}})
     segs.append({"text": ev[0].format(b=words(bonus)),
-                 "szene": {"typ": "figur", "ort": "stadt", "gefuehl": ev[3], "aktion": ev[4], "objekt": ev[1], "text": ev[5]}})
+                 "szene": _hud(n, 0, geld, geld, cur, names, {"objekt": ev[1], "text": ev[5]})})
     segs.append({"text": f"Auf dem Firmenkonto sind jetzt {words(geld_neu)} Euro.",
                  "szene": _hud(n, 0, geld, geld_neu, cur, names, {"text": "Kontostand"})})
     if nxt:
