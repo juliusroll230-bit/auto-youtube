@@ -74,19 +74,23 @@ Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvid
 - Eigene Warteschlange und eigener Sendeplan: `long_per_week` im Publisher (Standard 4 = Mo, Mi, Fr, Sa um 19 Uhr). Titel ohne `#shorts`. Kein Einfluss auf den Lernmodus der Shorts.
 - Aufbau: Hook in Satz 1, Frage stellen, in Kapiteln erklären, alle paar Sätze ein neuer Fakt oder eine neue Wendung, am Ende Frage an die Zuschauer.
 
-## Firmen-Spiel „Abo Motors“ (`firma.py`, Szene `firma`)
+## Firmen-Spiel: vier Firmen (`firma.py`, Szene `firma`)
 
-„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma ein.“ Einmal am Tag zusätzlich zu den normalen
+„Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Firma ein.“ Einmal am Tag zusätzlich zu den normalen
 Shorts (ab `firma_hour`, Standard 20 Uhr, `null` = aus; Stand in state `firma_slots`) baut die Zentrale die Folge selbst, die tägliche Aufgabe muss dafür nichts schreiben:
 
+- Vier ganz verschiedene Firmen wechseln sich jeden Abend ab (`firma.THEME_ORDER`): Autofirma „Abo Motors“,
+  Burgerladen „Abo Burger“, Raketenfirma „Abo Space“, Spielestudio „Abo Games“. Jede hat eigene Ausbaustufen, Jobs,
+  Ereignisse und einen eigenen Spielstand (`firma.json` → `themen`); das Team (Namen) gilt für alle. Der Slug
+  `firma-<thema>-tag-N` zeigt später, welche Firma die meisten Aufrufe holt.
 - Mitarbeiter = echte Abozahl (`channel.json`), 100 € Spielgeld pro Mitarbeiter und Tag, Spielstand in `firma.json`
   (wird erst nach dem Upload weitergezählt).
 - Namen über den Köpfen: Abonnenten mit öffentlichen Abos (`yt.public_subscribers`) und Kommentare mit Wunschjob
-  („Ich will Testfahrer sein“, `yt.recent_comments`). Nur Jobs aus `firma.JOBS`, Namen ohne Zahlen und Schimpfwörter.
-- Ausbaustufen: garage (ab 0), werkstatt (10), fabrik (40), grossfabrik (200), konzern (1000).
-- Jeden Tag ein Ereignis aus `firma.EVENTS` (Auto verkauft, Reifen platzt …).
+  („Ich will Testfahrer sein“, `yt.recent_comments`). Nur Jobs aus der Jobliste der Firma (`THEMES[...]["jobs"]`), Namen ohne Zahlen und Schimpfwörter.
+- Ausbaustufen ab 0, 10, 40, 200 und 1000 Abos (Level 0 bis 4).
+- Jede Folge ein Ereignis aus der Liste der Firma (Auto verkauft, Fritteuse qualmt, Bug lässt alle fliegen …).
 
 Szene `firma` ist ein 3D-Diorama (three.js r149 in `cartoon/web/vendor`, MIT; `firma3d.js`), Chromium rendert WebGL
 mit SwiftShader (ca. 8 Minuten für 30 Sekunden). Ohne WebGL zeichnet `firma.js` die 2D-Fabrik.
-Felder: `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
-Test: `python firma.py 41 ausgabe/` (Beispielvideo) und `python tests/firma_test.py`.
+Felder: `thema`, `level`, `stufe_label`, `icon`, `mitarbeiter`, `neu`, `geld`, `geld_neu`, `pro_tag`, `stufe`, `name`, `namen` (neueste zuerst), `text`, `chef`.
+Test: `python firma.py 41 ausgabe/ '{}' burger` (Beispielvideo) und `python tests/firma_test.py`.

@@ -233,7 +233,10 @@ def post_next(slot, manual=False, long=False, firma=False):
 
 
 def firma_episode():
-    """Firmen-Spiel "Abo Motors": baut die Folge des Tages mit der echten Abozahl (Sendezeit: store.due_firma).
+    """Firmen-Spiel: baut die Folge des Tages mit der echten Abozahl (Sendezeit: store.due_firma).
+
+    Jeden Abend ist eine andere Firma dran (Autofirma, Burgerladen, Raketenfirma, Spielestudio, siehe firma.THEMES),
+    jede mit eigenem Spielstand, damit man an den Aufrufen sieht, welche am besten ankommt.
 
     Gibt (datei, skript) für die Warteschlange zurück, sonst None. Namen kommen von Abonnenten mit öffentlichen
     Abos und aus Kommentaren mit Wunschjob (siehe firma.py).
@@ -265,7 +268,9 @@ def firma_episode():
     os.makedirs(os.path.dirname(file), exist_ok=True)
     with open(file, "w", encoding="utf-8") as f:
         json.dump(spec, f, ensure_ascii=False, indent=1)
-    store.log("info", f"Firmen-Spiel: Tag {new_state['tag']} mit {new_state['mitarbeiter']} Mitarbeitern",
+    th = spec["firma_thema"]
+    store.log("info", f"Firmen-Spiel ({firma.THEMES[th]['firma']}): Tag {new_state['themen'][th]['tag']} "
+              f"mit {new_state['themen'][th]['mitarbeiter']} Mitarbeitern",
               agent="planer")
     return file, spec
 
@@ -675,7 +680,7 @@ def scheduler():
                     post_next(slot)
                 fslot = store.due_firma(cfg.get("firma_hour")) if ag["publisher"]["on"] else None
                 if fslot and not status["busy"]:
-                    post_next(fslot, firma=True)  # Abo Motors: zusätzlich zu den normalen Videos
+                    post_next(fslot, firma=True)  # Firmen-Spiel: zusätzlich zu den normalen Videos
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
                 if lslot and not status["busy"]:
                     post_next(lslot, long=True)
