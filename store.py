@@ -46,7 +46,9 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # zweiter YouTube-Kanal nur für Clips (leer = Clips laufen auf dem Hauptkanal mit)
                   "clip_token": "", "clip_expired": False,
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
-                  "socials": {"tiktok": "", "instagram": ""}}
+                  "socials": {"tiktok": "", "instagram": ""},
+                  # Firmen-Spiel (firma.py): eine Folge "Abo Motors" pro Tag zu dieser Sendezeit, None = aus
+                  "firma_hour": 17}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos

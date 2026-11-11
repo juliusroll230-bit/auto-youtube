@@ -388,6 +388,8 @@ Object.assign(TYPES, {
 // Wetter auch über allen anderen Szenen, wenn angegeben
 ['figur', 'zwei', 'gruppe', 'horror', 'objekt'].forEach(k => { const f = TYPES[k]; TYPES[k] = (ctx, sc, lt, d) => { f(ctx, sc, lt, d); if (sc.monster && k !== 'objekt') { applyCam(ctx, cam(lt, d, 1, 1.08, sc.i)); if (sc.monster === 'geist') ghost(ctx, 860, 760, 360, lt); else if (sc.monster === 'schatten') shadowMan(ctx, 900, G, 700, lt, .9); else if (sc.monster === 'zombie') zombie(ctx, sc, 900, G, 520, lt); } weather(ctx, sc, lt); }; });
 
+Object.assign(TYPES, window.EXTRA_TYPES || {}); // z. B. firma.js (Firmen-Spiel)
+
 // ---------- Plan -> Einstellungen ----------
 (function build() {
   const list = PLAN.scenes;

@@ -207,3 +207,35 @@ def set_branding(cfg, banner_path, description, keywords):
     body = {"id": ch["id"], "brandingSettings": {"channel": channel_settings,
                                                  "image": {"bannerExternalUrl": banner_url}}}
     yt.channels().update(part="brandingSettings", body=body).execute()
+
+
+def recent_comments(cfg, channel_id, pages=3):
+    """Neueste Kommentare unter allen Videos des Kanals: Liste von {id, name, text, at} (für das Firmen-Spiel)."""
+    yt, out, token = client(cfg), [], None
+    for _ in range(pages):
+        res = yt.commentThreads().list(part="snippet", allThreadsRelatedToChannelId=channel_id, maxResults=100,
+                                       order="time", textFormat="plainText", pageToken=token).execute()
+        for it in res.get("items", []):
+            top = it["snippet"]["topLevelComment"]
+            s = top["snippet"]
+            out.append({"id": top["id"], "name": s.get("authorDisplayName", ""), "text": s.get("textDisplay", ""),
+                        "at": s.get("publishedAt", ""), "channel": (s.get("authorChannelId") or {}).get("value", "")})
+        token = res.get("nextPageToken")
+        if not token:
+            break
+    return out
+
+
+def public_subscribers(cfg, pages=10):
+    """Namen der Abonnenten, die ihre Abos öffentlich zeigen (YouTube gibt die anderen nicht heraus)."""
+    yt, out, token = client(cfg), [], None
+    for _ in range(pages):
+        res = yt.subscriptions().list(part="subscriberSnippet", mySubscribers=True, maxResults=50,
+                                      pageToken=token).execute()
+        for it in res.get("items", []):
+            s = it.get("subscriberSnippet", {})
+            out.append({"name": s.get("title", ""), "channel": s.get("channelId", "")})
+        token = res.get("nextPageToken")
+        if not token:
+            break
+    return out
