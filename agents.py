@@ -25,7 +25,7 @@ DEFAULTS = {
     "clipper": {"on": True, "auto_start": False, "clips": 5, "min_len": 20, "max_len": 45, "crop": "auto",
                 "untertitel": "pop", "hook": True, "keywords": "", "sprache": "auto", "modell": "base",
                 "freigabe": True},
-    "publisher": {"on": True, "clips_per_day": 2, "long_per_week": 7},
+    "publisher": {"on": True, "clips_per_day": 2, "long_per_week": 7, "clipi_per_day": 10},
     "analyst": {"minutes": 20},
     "zuschauer": {"hours": 3},
     "designer": {"on": True},
@@ -42,6 +42,7 @@ RANGES = {
     ("clipper", "max_len"): (15, 90, 5),
     ("publisher", "clips_per_day"): (0, 10, 1),
     ("publisher", "long_per_week"): (0, 7, 1),
+    ("publisher", "clipi_per_day"): (1, 30, 1),  # eigener Clip-Kanal (Clipi), 7 bis 23 Uhr verteilt
 }
 CHOICES = {
     ("studio", "kopfzeile"): ("auto", "mit", "ohne"),

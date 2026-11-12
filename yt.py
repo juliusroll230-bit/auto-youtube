@@ -15,6 +15,12 @@ def is_expired(error):
     return isinstance(error, RefreshError) and "invalid_grant" in str(error)
 
 
+def is_limit(error):
+    """True, wenn YouTube für heute keine Uploads mehr annimmt (Tageslimit des Kanals oder der API)."""
+    text = str(error)
+    return any(k in text for k in ("uploadLimitExceeded", "quotaExceeded", "dailyLimitExceeded"))
+
+
 def _post(url, data):
     req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode())
     try:

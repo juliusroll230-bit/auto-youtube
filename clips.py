@@ -129,14 +129,22 @@ def _clean_text(value, limit):
     return " ".join(str(value or "").split())[:limit]
 
 
-def create(name, origin, rights=False, credit="", ext=".mp4"):
-    """Legt eine leere Kampagne an. Danach die Quelldatei nach camp_dir(id, file) schreiben und attach() aufrufen."""
+def create(name, origin, rights=False, credit="", ext=".mp4", ready=False, quick=False):
+    """Legt eine leere Kampagne an. Danach die Quelldatei nach camp_dir(id, file) schreiben und attach() aufrufen.
+
+    ready=True: fertiges Video für den Clip-Kanal (Clipi). Es wird nicht geschnitten, sondern so wie es ist
+    in die Warteschlange gelegt und automatisch gepostet.
+    quick=True: für Clipi in viele kurze Clips (~20 s) mit Hook und Untertiteln schneiden, gleich freigegeben."""
     name = _clean_text(name, 80) or "Video"
     cid = _new_id(name)
     os.makedirs(store.path("campaigns", cid, "clips"), exist_ok=True)
     c = {"id": cid, "name": name, "origin": origin, "credit": _clean_text(credit, 80), "rights": bool(rights),
          "created_at": store.now().isoformat(timespec="seconds"), "file": "source" + ext.lower(),
          "status": "laedt", "progress": 0, "error": None, "duration": None, "clips": []}
+    if ready:
+        c["ready"] = True
+    elif quick:
+        c["quick"] = True
     save(c)
     return c
 
@@ -156,14 +164,14 @@ def add_file(path, origin, rights=False, credit="", name=None, move=True):
     return attach(c["id"])
 
 
-def add_stream(rfile, length, filename, origin, rights=False, credit="", name=None):
+def add_stream(rfile, length, filename, origin, rights=False, credit="", name=None, ready=False, quick=False):
     """Speichert einen Upload direkt in eine neue Kampagne, Stück für Stück (auch mehrere GB)."""
     if not 0 < length <= MAX_UPLOAD:
         raise ValueError("Die Datei ist leer oder größer als 16 GB.")
     ext = os.path.splitext(filename or "")[1].lower()
     if ext not in VIDEO_EXT:
         raise ValueError("Bitte ein Video hochladen (mp4, mov, mkv, webm).")
-    c = create(name or _nice_name(filename), origin, rights, credit, ext)
+    c = create(name or _nice_name(filename), origin, rights, credit, ext, ready=ready, quick=quick)
     target, left = source_path(c), length
     try:
         with open(target + ".part", "wb") as f:
@@ -375,14 +383,22 @@ def auto_allowed(c):
     return not c.get("program")
 
 
-def ready_clips(auto=False):
+def is_clipi(c):
+    """Video aus der Clipi-Warteschlange (fertig oder Schnellschnitt): läuft nur auf dem Clip-Kanal."""
+    return bool(c.get("ready") or c.get("quick"))
+
+
+def ready_clips(auto=False, main=False):
     """Freigegebene, noch nicht gepostete Clips. Verteilt über die Kampagnen (nicht alle aus einer am Stück).
 
     auto=True: nur Clips, die automatisch auf einem Sendeplatz laufen dürfen (siehe auto_allowed).
+    main=True: für den Hauptkanal, also ohne die Clipi-Warteschlange.
     """
     out = []
     for c in all_campaigns():
         if auto and not auto_allowed(c):
+            continue
+        if main and is_clipi(c):
             continue
         posted = sum(1 for x in c["clips"] if x["status"] == "gepostet")
         for clip in c["clips"]:
@@ -401,7 +417,7 @@ def choose_for_slot(slot, hours, per_day, uploads, scripts_left=True):
     """Ob zu diesem Sendeplatz ein Clip statt eines KI-Shorts kommt (gleichmäßig über den Tag verteilt)."""
     if per_day <= 0 or posted_today(uploads) >= per_day:
         return None
-    ready = ready_clips(auto=True)
+    ready = ready_clips(auto=True, main=True)
     if not ready:
         return None
     if not scripts_left:
@@ -453,13 +469,13 @@ def summary():
     camps = all_campaigns()
     today = store.now().date().isoformat()
     clips = [x for c in camps for x in c["clips"]]
-    active = [c for c in camps if c["status"] in ("laedt", "neu", "wartet", "hoert", "schneidet")
-              or any(x["status"] in ("neu", "freigegeben") for x in c["clips"])]
+    active = [c for c in camps if not c.get("ready") and (c["status"] in ("laedt", "neu", "wartet", "hoert", "schneidet")
+              or any(x["status"] in ("neu", "freigegeben") for x in c["clips"]))]
     # Jedes hochgeladene Video ist intern eine "Kampagne". Für die Anzeige zählen echte Whop-Kampagnen:
     # Videos derselben Whop-Kampagne zusammen, Videos ohne Whop-Kampagne einzeln.
     groups = {c.get("program") or "video:" + c["id"] for c in active}
     out = []
-    for c in camps[:30]:
+    for c in [c for c in camps if not c.get("ready")][:30]:  # fertige Clipi-Videos stehen in der eigenen Warteschlange
         out.append({k: c.get(k) for k in ("id", "name", "origin", "credit", "rights", "created_at", "status",
                                           "progress", "error", "duration", "language", "finished_at", "program")}
                    | {"clips": [{k: x.get(k) for k in ("n", "start", "end", "duration", "title", "hook", "score",
@@ -961,9 +977,13 @@ def process(cid, settings, task=lambda text: None):
     """Schneidet eine Kampagne. task(text) meldet den Fortschritt für die Sprechblase."""
     _running["id"] = cid
     try:
+        if load(cid).get("ready"):
+            return process_ready(cid, task)
         c = update(cid, lambda c: c.update(status="hoert", progress=1, error=None))
         settings = apply_rules(settings, rules_for(c))
         info = probe(source_path(c))
+        if c.get("quick"):
+            settings = quick_settings(settings, info["duration"])
         if info["duration"] < 8:
             raise RuntimeError("Das Video ist zu kurz (unter 8 Sekunden).")
         update(cid, lambda c: c.update(duration=round(info["duration"], 1)))
@@ -1028,6 +1048,69 @@ def process(cid, settings, task=lambda text: None):
         raise
     finally:
         _running.pop("id", None)
+
+
+def process_ready(cid, task=lambda text: None):
+    """Fertiges Video (Clipi-Warteschlange): nicht schneiden, nur sauber als MP4 ablegen und freigeben.
+
+    Kein neues Rendern: Bild und Ton bleiben, wie sie sind (geht schnell, auch bei vielen Videos)."""
+    c = update(cid, lambda c: c.update(status="schneidet", progress=10, error=None))
+    task(f"Legt „{c['name'][:24]}“ in die Warteschlange")
+    src = source_path(c)
+    folder = camp_dir(cid, "clips")
+    out = os.path.join(folder, "01.mp4")
+    if not os.path.exists(src) and os.path.exists(out):  # Neustart mitten drin: Datei liegt schon fertig da
+        src = out
+    info = probe(src)
+    if info["duration"] < 1:
+        raise RuntimeError("Das Video ist leer oder kaputt.")
+    clip = {"n": 1, "start": 0.0, "end": round(info["duration"], 2), "hook": "", "title": c["name"][:90] or "Video",
+            "text": "", "score": None, "status": "freigegeben", "sentences": [], "marks": None,
+            "duration": round(info["duration"], 2), "ready": True}
+    os.makedirs(folder, exist_ok=True)
+    if src != out:
+        try:  # nur umverpacken (MP4, Metadaten weg aus Datenschutzgründen)
+            _ffmpeg(["-i", src, "-map", "0:v:0", "-map", "0:a:0?", "-c", "copy", "-map_metadata", "-1",
+                     "-movflags", "+faststart", out], timeout=900)
+        except Exception:  # Format passt nicht in MP4: dann doch umwandeln
+            _ffmpeg(["-i", src, "-map", "0:v:0", "-map", "0:a:0?", "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+                     "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-map_metadata", "-1",
+                     "-movflags", "+faststart", out])
+    _ffmpeg(["-ss", f"{min(0.8, info['duration'] / 2):.2f}", "-i", out, "-frames:v", "1", "-vf", "scale=540:-2",
+             "-q:v", "3", os.path.join(folder, "01.jpg")], timeout=120)
+    try:
+        if src != out:
+            os.remove(src)  # die Kopie in clips/ reicht, spart Speicher
+    except OSError:
+        pass
+    return update(cid, lambda c: c.update(status="fertig", progress=100, clips=[clip], duration=clip["duration"],
+                                          finished_at=store.now().isoformat(timespec="seconds")))
+
+
+QUICK_LEN = (15, 25)  # Clipi-Schnellschnitt: kurze Clips um 20 Sekunden
+
+
+def quick_settings(settings, duration):
+    """Clipper-Einstellungen für den Schnellschnitt: kurz (15–25 s), Hook oben, Untertitel, sofort freigegeben.
+    Pro angefangene halbe Minute Video ein Clip (mind. 1, höchstens 15)."""
+    out = dict(settings)
+    out.update(min_len=QUICK_LEN[0], max_len=QUICK_LEN[1], hook=True, freigabe=False,
+               clips=max(1, min(15, int(duration // 30) or 1)))
+    return out
+
+
+def queue_info(per_day):
+    """Kurzinfo für die Website: wie viele fertige Videos auf Clipi warten und wie lange sie reichen."""
+    ready = ready_clips(auto=True)
+    camps = all_campaigns()
+    mine = [c for c in camps if c.get("ready") or c.get("quick")]
+    busy = sum(1 for c in mine if c["status"] in ("laedt", "wartet", "hoert", "schneidet"))
+    failed = [{"id": c["id"], "name": c["name"], "error": c.get("error")}
+              for c in mine if c["status"] == "fehler"]
+    days = -(-len(ready) // per_day) if per_day else None
+    return {"waiting": len(ready), "busy": busy, "failed": failed, "days": days,
+            "items": [{"id": c["id"], "n": clip["n"], "title": clip["title"], "ready": bool(c.get("ready"))}
+                      for c, clip in ready[:100]]}
 
 
 def thumb_file(slug):
