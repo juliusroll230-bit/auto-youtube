@@ -53,6 +53,7 @@ OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
+clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
 status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 _tts_lock = threading.Lock()
@@ -282,11 +283,13 @@ def clip_target():
     return ({**cfg, "refresh_token": cfg["clip_token"]}, True) if cfg["clip_token"] else (cfg, False)
 
 
-def post_clip(item, slot, manual=False, done="done_slots"):
-    """Lädt einen freigegebenen Clip hoch (läuft innerhalb von post_next bzw. mit work_lock)."""
+def post_clip(item, slot, manual=False, done="done_slots", busy=True):
+    """Lädt einen freigegebenen Clip hoch (läuft innerhalb von post_next bzw. mit work_lock).
+    busy=False: Clipi-Upload nebenher, die Anzeige „beschäftigt“ des Hauptkanals bleibt unberührt."""
     c, clip = item
     cfg, own = clip_target()
-    status["busy"] = f"Lade Clip hoch: {clip['title']}"
+    if busy:
+        status["busy"] = f"Lade Clip hoch: {clip['title']}"
     try:
         with working("publisher", task="Prüft die YouTube-Verbindung"):
             yt.check(cfg)
@@ -308,38 +311,63 @@ def post_clip(item, slot, manual=False, done="done_slots"):
     refresh_stats()
 
 
-def post_clip_slot(slot):
+def post_clip_slot(slot, manual=False):
     """Sendeplatz des eigenen Clip-Kanals (Clipi): postet das nächste Video aus der Warteschlange.
 
-    Tageslimit: Einstellung „Clipi pro Tag“ (Publisher). Content-Rewards-Clips sind nie dabei (clips.auto_allowed)."""
-    if not work_lock.acquire(blocking=False):
-        return
+    Läuft im eigenen Faden (clipi_worker) mit eigenem Lock, damit Clipi nicht wartet, während der
+    Hauptkanal ein Video baut. Tageslimit: Einstellung „Clipi pro Tag“. Content-Rewards-Clips sind nie dabei.
+    Ist die Warteschlange leer, bleibt der Platz offen und wird nachgeholt, sobald ein Video da ist."""
+    if not clipi_lock.acquire(blocking=False):
+        return False
     try:
         cfg = store.config()
         per = agents.settings(cfg)["publisher"]["clipi_per_day"]
         today = store.now().date().isoformat()
         done_today = sum(1 for u in store.state()["uploads"]
                          if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)
-        ready = clips.ready_clips(auto=True) if done_today < per else []
-        if ready:
-            post_clip(ready[0], slot, done="clipi_slots")
-        else:
-            store.mark_slot(slot, "clipi_slots")
+        if done_today >= per and not manual:
+            if slot:
+                store.mark_slot(slot, "clipi_slots")
+            return False
+        ready = clips.ready_clips(auto=True)
+        if not ready:
+            return False
+        store.clipi_posted()
+        post_clip(ready[0], slot, done="clipi_slots", busy=False, manual=manual)
+        if slot is None:
+            store.agent_done("publisher")
+        return True
     except Exception as e:
-        store.mark_slot(slot, "clipi_slots")
+        if slot:
+            store.mark_slot(slot, "clipi_slots")
         if yt.is_limit(e):  # YouTube nimmt heute nichts mehr an: morgen weiter, das Video bleibt in der Warteschlange
             until = (store.now() + dt.timedelta(days=1)).replace(hour=9, minute=30, second=0, microsecond=0)
             store.pause_clipi(until)
             store.agent_done("publisher")
-            store.log("warn", "YouTube nimmt heute keine weiteren Clipi-Uploads an (Tageslimit). "
+            store.log("warn", "YouTube nimmt heute keine weiteren Clipi-Uploads an (Tageslimit des Kanals). "
                       "Es geht morgen um 9:30 Uhr weiter, nichts geht verloren.", agent="publisher", kind="error")
-            return
+            return False
         traceback.print_exc()
         store.agent_done("publisher", error=e)
-        store.log("error", f"Clip-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+        store.log("error", f"Clipi-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+        return False
     finally:
-        status["busy"] = ""
-        work_lock.release()
+        clipi_lock.release()
+
+
+def clipi_worker():
+    """Eigener Faden für Clipi: schaut jede Minute, ob ein Clipi-Platz dran ist."""
+    while True:
+        try:
+            cfg = store.config()
+            ag = agents.settings(cfg)
+            if cfg["clip_token"] and ag["publisher"]["on"]:
+                slot = store.due_clipi(ag["publisher"]["clipi_per_day"])
+                if slot:
+                    post_clip_slot(slot)
+        except Exception:
+            traceback.print_exc()
+        time.sleep(60)
 
 
 def post_clip_now(cid, n):
@@ -697,9 +725,6 @@ def scheduler():
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
                 if lslot and not status["busy"]:
                     post_next(lslot, long=True)
-                cslot = store.due_clipi(ag["publisher"]["clipi_per_day"]) if cfg["clip_token"] and ag["publisher"]["on"] else None
-                if cslot and not status["busy"]:
-                    post_clip_slot(cslot)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
                     refresh_stats()
                     if ag["designer"]["on"]:
@@ -1153,6 +1178,15 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "rules": rules})
+        if p == "/api/clipi/now":
+            if not store.config()["clip_token"]:
+                return self.send(400, {"error": "Der Clip-Kanal ist nicht verbunden."})
+            if not clips.ready_clips(auto=True):
+                return self.send(400, {"error": "Es wartet gerade kein fertiger Clip."})
+            if clipi_lock.locked():
+                return self.send(400, {"error": "Clipi lädt gerade schon einen Clip hoch."})
+            background(post_clip_slot, None, True)
+            return self.send(200, {"ok": True})
         if p == "/api/money/add":
             try:
                 item = money.add(data.get("amount"), data.get("currency") or "€", data.get("source") or "Content Rewards",
@@ -1330,6 +1364,7 @@ def main():
     clips.stale_cleanup()
     threading.Thread(target=scheduler, daemon=True).start()
     threading.Thread(target=clip_worker, daemon=True).start()
+    threading.Thread(target=clipi_worker, daemon=True).start()
     background(warm_thumbs)
     print(f"Shorts-Zentrale läuft auf Port {PORT}", flush=True)
     ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()

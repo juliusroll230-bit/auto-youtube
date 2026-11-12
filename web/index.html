@@ -1427,6 +1427,7 @@ dialog.vs[open] { display: grid; place-items: center; }
             <li><b id="cqDays">–</b><span>reicht für</span></li>
           </ul>
           <p class="msg err" id="cqWarn" hidden></p>
+          <div class="row cq-now"><button class="btn sm" type="button" id="cqNowBtn" disabled>Nächsten Clip jetzt posten</button><span class="label">Postet sofort den nächsten Clip aus der Warteschlange. Zählt zum Tageslimit.</span></div>
           <label class="drop" id="cqDrop">
             <input type="file" id="cqFiles" multiple accept="video/*,.mkv,.mov,.m4v">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
@@ -4856,6 +4857,11 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("cqPer").addEventListener("input", function () { $("cqPerV").textContent = $("cqPer").value; });
   $("cqPer").addEventListener("change", function () { saveAgent("publisher", { clipi_per_day: Number($("cqPer").value) }); });
+  $("cqNowBtn").addEventListener("click", function () {
+    var b = $("cqNowBtn"); b.disabled = true;
+    api("api/clipi/now", {}).then(function () { toast("Clipi lädt den nächsten Clip hoch. Das dauert etwa eine Minute."); },
+      function (er) { toast(er.message); b.disabled = false; });
+  });
   function renderClipi(d) {
     var q = d.clipi || {}, CC = d.clip_channel || {}, pub = (agentById("publisher") || {}).settings || {};
     var per = q.per_day || 10;
@@ -4867,8 +4873,9 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("cqDays").textContent = q.days ? q.days + (q.days === 1 ? " Tag" : " Tage") : "–";
     var paused = q.pause && new Date(q.pause) > new Date();
     pill($("cqPill"), !CC.connected ? "warn" : pub.on === false ? "warn" : paused ? "warn" : "live",
-      !CC.connected ? "Clip-Kanal fehlt" : pub.on === false ? "Publisher aus" : paused ? "Pause bis morgen" : "Läuft");
-    var warn = !CC.connected ? "Verbinde oben zuerst deinen Clip-Kanal (Clipi). Bis dahin warten die Videos nur." : (q.failed || []).length ? (q.failed.length + " Video(s) gingen nicht: " + q.failed.map(function (f) { return f.name + " (" + (f.error || "Fehler") + ")"; }).join(", ")) : "";
+      !CC.connected ? "Clip-Kanal fehlt" : pub.on === false ? "Publisher aus" : paused ? "Pause bis morgen" : (q.today || 0) >= per ? "Heute voll" : "Läuft");
+    var warn = !CC.connected ? "Verbinde oben zuerst deinen Clip-Kanal (Clipi). Bis dahin warten die Videos nur." : (q.failed || []).length ? (q.failed.length + " Video(s) gingen nicht: " + q.failed.map(function (f) { return f.name + " (" + (f.error || "Fehler") + ")"; }).join(", ")) : (q.waiting && q.why) ? q.why : "";
+    $("cqNowBtn").disabled = !S.live || !CC.connected || !q.waiting;
     $("cqWarn").hidden = !warn;
     $("cqWarn").textContent = warn;
     if (document.activeElement !== $("cqPer")) { $("cqPer").value = per; $("cqPerV").textContent = per; }
@@ -5173,6 +5180,7 @@ dialog.vs[open] { display: grid; place-items: center; }
 /* --- Deine Kanäle --- */
 .sec-sub { color: var(--muted); font-size: 14px; margin: -8px 0 2px; }
 .cq .cq-st { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.cq .cq-now { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
 .cq .cq-st li { padding: 12px; border-radius: 14px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); min-width: 0; }
 .cq .cq-st b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cq .cq-st span { font-size: 12px; color: var(--muted); }

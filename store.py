@@ -256,24 +256,49 @@ def clipi_times(per_day):
     return sorted({int(round((a + i * step) / 5) * 5) for i in range(per_day)})
 
 
+CLIPI_GAP_MIN = 10   # mindestens so viele Minuten zwischen zwei Clipi-Posts, auch beim Nachholen
+
+
+def _clipi_open(per_day, at, st):
+    """Heutige Clipi-Plätze (datetime, Schlüssel), die noch frei sind. Plätze vor dem Ende einer Pause zählen nicht."""
+    pause = st.get("clipi_pause") or ""
+    start = at.replace(hour=0, minute=0, second=0, microsecond=0)
+    if pause and pause[:10] == at.date().isoformat():
+        start = max(start, dt.datetime.fromisoformat(pause))
+    done = set(st.get("clipi_slots", []))
+    out = []
+    for m in clipi_times(per_day):
+        slot = at.replace(hour=m // 60, minute=m % 60, second=0, microsecond=0)
+        key = slot.strftime("%Y-%m-%d-%H-%M")
+        if slot >= start and key not in done:
+            out.append((slot, key))
+    return out
+
+
 def due_clipi(per_day, at=None):
-    """Der Clipi-Sendeplatz, der gerade dran ist (Schlüssel JJJJ-MM-TT-HH-MM), sonst None.
-    Verpasste Plätze werden nur kurz nachgeholt, damit nach einer Pause nicht alles auf einmal hochgeht."""
+    """Der Clipi-Sendeplatz, der jetzt gepostet werden soll (Schlüssel JJJJ-MM-TT-HH-MM), sonst None.
+
+    Verpasste Plätze von heute werden nachgeholt (z. B. wenn der Server gerade ein Video gebaut hat),
+    aber höchstens einer alle CLIPI_GAP_MIN Minuten, damit nicht alles auf einmal hochgeht."""
     at = at or now()
     st = state()
     if (st.get("clipi_pause") or "") > at.isoformat(timespec="seconds"):
         return None
-    times = clipi_times(per_day)
-    gap = (times[1] - times[0]) if len(times) > 1 else 24 * 60
-    late = max(10, min(LATE_MIN, gap - 5))
-    for m in times:
-        slot = at.replace(hour=m // 60, minute=m % 60, second=0, microsecond=0)
-        key = slot.strftime("%Y-%m-%d-%H-%M")
-        if key in st.get("clipi_slots", []):
-            continue
-        if slot - dt.timedelta(minutes=5) <= at <= slot + dt.timedelta(minutes=late):
+    last = st.get("clipi_last") or ""
+    if last and dt.datetime.fromisoformat(last) > at - dt.timedelta(minutes=CLIPI_GAP_MIN):
+        return None
+    for slot, key in _clipi_open(per_day, at, st):
+        if slot - dt.timedelta(minutes=5) <= at:
             return key
     return None
+
+
+def clipi_posted(at=None):
+    """Merkt sich die Zeit des letzten Clipi-Posts (für den Abstand beim Nachholen)."""
+    with LOCK:
+        st = state()
+        st["clipi_last"] = (at or now()).isoformat(timespec="seconds")
+        write("state.json", st)
 
 
 def next_clipi(per_day, at=None):
@@ -283,13 +308,16 @@ def next_clipi(per_day, at=None):
     pause = st.get("clipi_pause") or ""
     if pause > at.isoformat(timespec="seconds"):
         at = dt.datetime.fromisoformat(pause)
-    for day in range(2):
-        base = (at + dt.timedelta(days=day)).replace(second=0, microsecond=0)
-        for m in clipi_times(per_day):
-            slot = base.replace(hour=m // 60, minute=m % 60)
-            if slot >= at - dt.timedelta(minutes=5) and slot.strftime("%Y-%m-%d-%H-%M") not in st.get("clipi_slots", []):
-                return slot.isoformat(timespec="minutes")
-    return None
+    soon = at
+    last = st.get("clipi_last") or ""
+    if last:
+        soon = max(soon, dt.datetime.fromisoformat(last) + dt.timedelta(minutes=CLIPI_GAP_MIN))
+    open_today = _clipi_open(per_day, at, st)
+    if open_today:
+        return max(open_today[0][0], soon).replace(second=0, microsecond=0).isoformat(timespec="minutes")
+    tomorrow = (at + dt.timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    m = clipi_times(per_day)[0]
+    return tomorrow.replace(hour=m // 60, minute=m % 60).isoformat(timespec="minutes")
 
 
 def clipi_overview(cfg, st):
@@ -299,10 +327,22 @@ def clipi_overview(cfg, st):
     per = agents.settings(cfg)["publisher"]["clipi_per_day"]
     today = now().date().isoformat()
     info = clips.queue_info(per)
-    return {**info, "per_day": per, "times": ["%02d:%02d" % (m // 60, m % 60) for m in clipi_times(per)],
+    done = sum(1 for u in st["uploads"] if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)
+    pause = st.get("clipi_pause") or ""
+    why = None  # Warum gerade nichts gepostet wird (für die Website)
+    if not cfg["clip_token"]:
+        why = "Der Clip-Kanal ist nicht verbunden. Verbinde ihn im Reiter Kanäle."
+    elif not agents.settings(cfg)["publisher"]["on"]:
+        why = "Der Publisher ist ausgeschaltet. Schalte ihn bei den Agenten wieder ein."
+    elif pause > now().isoformat(timespec="seconds"):
+        why = "YouTube nimmt auf dem Clip-Kanal heute nichts mehr an (Tageslimit). Weiter am %s um %s Uhr." % (
+            pause[8:10] + "." + pause[5:7] + ".", pause[11:16])
+    elif done >= per:
+        why = "Heute sind schon %d von %d Clips online. Morgen ab 7 Uhr geht es weiter." % (done, per)
+    return {**info, "per_day": per, "why": why, "times": ["%02d:%02d" % (m // 60, m % 60) for m in clipi_times(per)],
             "next": next_clipi(per) if cfg["clip_token"] else None, "pause": st.get("clipi_pause"),
             "learn": clips.learn_summary(),
-            "today": sum(1 for u in st["uploads"] if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)}
+            "today": done}
 
 
 def pause_clipi(until):
