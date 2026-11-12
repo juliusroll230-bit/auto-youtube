@@ -59,8 +59,35 @@ assert store.dashboard()["clipi"]["waiting"] == 1
 
 # Schnellschnitt: kurze Clips (15-25 s), sofort freigegeben, etwa einer pro halbe Minute
 q = clips.quick_settings(agents.settings({})["clipper"], 300)
-assert (q["min_len"], q["max_len"], q["clips"], q["freigabe"], q["hook"]) == (15, 25, 10, False, True), q
+assert (q["min_len"], q["max_len"], q["clips"], q["freigabe"], q["hook"]) == (16, 25, 10, False, True), q
 assert clips.quick_settings({}, 12)["clips"] == 1
 parts = clips.choose_parts([], [0.5] * 600, 300, {**q, "keywords": ""})
 assert len(parts) == 10 and all(14 <= p["end"] - p["start"] <= 25.5 for p in parts), parts
+
+# Lernen: Hook-Arten, Längen, und dass die beste Variante bevorzugt wird
+part = [{"text": "Also das hier ist ein ziemlich langer erster Satz über Autos", "s": 0, "e": 3},
+        {"text": "Weißt du warum das so ist?", "s": 3, "e": 5}]
+assert clips.quick_hook(part, "frage") == ("Weißt du warum das so ist?", "frage")
+assert clips.quick_hook(part, "ohne") == ("", "ohne")
+assert clips.quick_hook(part, "kurz")[0].endswith("…")
+assert clips.quick_hook(part[:1], "frage")[1] == "satz"   # keine Frage da: normaler Satz
+assert clips.quick_hook([], "satz") == ("", None)
+assert clips.quick_settings({}, 120, "lang")["min_len"] == 25
+now = store.now()
+ups, stats = [], {}
+for i, (hook, views) in enumerate([("satz", 100), ("satz", 120), ("kurz", 900), ("kurz", 1100),
+                                   ("frage", 50), ("frage", 60), ("ohne", 10), ("ohne", 20)]):
+    vid = f"vid{i}"
+    ups.append({"kind": "clip", "video_id": vid, "posted_at": (now - dt.timedelta(days=3)).isoformat(timespec="seconds"),
+                "features": {"hook": hook, "untertitel": "pop", "laenge": "mittel"}, "channel": "clips"})
+    stats[vid] = {"views": views}
+st = store.state()
+st["uploads"] = ups
+store.write("state.json", st)
+store.write("stats.json", {"videos": stats})
+sc = clips.learn_scores()
+assert sc["hook"]["kurz"]["videos"] == 2
+assert [clips.learn_choice("hook", k) for k in range(3)] == ["kurz"] * 3
+row = next(r for r in clips.learn_summary() if r["key"] == "hook")
+assert row["values"][0]["value"] == "Kurz mit „…“" and row["values"][0]["best"], row
 print("Clipi-Warteschlange ok")

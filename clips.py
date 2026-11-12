@@ -460,7 +460,7 @@ def upload_record(c, clip, slot, video_id):
     return {"slot": slot, "slug": f"clip-{c['id']}-{clip['n']}", "video_id": video_id, "title": clip["title"],
             "posted_at": store.now().isoformat(timespec="seconds"), "marks": clip.get("marks"),
             "duration": clip.get("duration"), "kind": "clip", "campaign": c["id"], "n": clip["n"],
-            "niche": "Clip", "sentences": clip.get("sentences")}
+            "niche": "Clip", "sentences": clip.get("sentences"), "features": clip.get("variant")}
 
 
 # --- Übersicht für die Website -------------------------------------------------------------
@@ -982,8 +982,12 @@ def process(cid, settings, task=lambda text: None):
         c = update(cid, lambda c: c.update(status="hoert", progress=1, error=None))
         settings = apply_rules(settings, rules_for(c))
         info = probe(source_path(c))
+        variant_step = None
         if c.get("quick"):
-            settings = quick_settings(settings, info["duration"])
+            variant_step = learn_step()
+            laenge = learn_choice("laenge", variant_step)
+            settings = quick_settings(settings, info["duration"], laenge)
+            update(cid, lambda c: c.update(laenge=laenge))
         if info["duration"] < 8:
             raise RuntimeError("Das Video ist zu kurz (unter 8 Sekunden).")
         update(cid, lambda c: c.update(duration=round(info["duration"], 1)))
@@ -1029,13 +1033,21 @@ def process(cid, settings, task=lambda text: None):
             task(f"Schneidet Clip {n}/{len(chosen)}")
             part = [s for s in sents if ch["start"] - 0.01 <= s["s"] and s["e"] <= ch["end"] + 0.01]
             hook = (settings["_rules"].get("screen_text") or "").strip() or (hook_text(part[0]["text"]) if part else "")
+            clip_settings, variant = settings, None
+            if variant_step is not None:  # Clipi-Schnellschnitt: Hook-Art und Untertitel testen und lernen
+                hook, used = quick_hook(part, learn_choice("hook", variant_step + n))
+                sub = learn_choice("untertitel", variant_step + n + 1)
+                clip_settings = {**settings, "untertitel": sub}
+                variant = {"hook": used, "untertitel": sub, "laenge": settings.get("_laenge")}
             text = " ".join(s["text"] for s in part)
             clip = {"n": n, "start": round(ch["start"], 2), "end": round(ch["end"], 2), "hook": hook,
                     "title": (title_text(part[0]["text"]) if part else "") or f"{c['name']} (Teil {n})",
                     "text": text, "score": score_label(ch["score"]) if part else None,
                     "status": "neu" if settings["freigabe"] else "freigegeben",
                     "sentences": [s["text"] for s in part]}
-            clip["duration"] = render(c, clip, info, tr["words"], settings)
+            if variant:
+                clip["variant"] = variant
+            clip["duration"] = render(c, clip, info, tr["words"], clip_settings)
             t0 = max(0.0, clip["start"] - 0.15)
             clip["marks"] = [round(max(0.0, s["s"] - t0) / clip["duration"], 4) for s in part] or None
             clips.append(clip)
@@ -1090,13 +1102,91 @@ def process_ready(cid, task=lambda text: None):
 QUICK_LEN = (15, 25)  # Clipi-Schnellschnitt: kurze Clips um 20 Sekunden
 
 
-def quick_settings(settings, duration):
-    """Clipper-Einstellungen für den Schnellschnitt: kurz (15–25 s), Hook oben, Untertitel, sofort freigegeben.
+def quick_settings(settings, duration, laenge="mittel"):
+    """Clipper-Einstellungen für den Schnellschnitt: kurz (Standard 15–25 s), Hook oben, Untertitel, sofort frei.
     Pro angefangene halbe Minute Video ein Clip (mind. 1, höchstens 15)."""
+    lo, hi = LENGTHS.get(laenge, QUICK_LEN)
     out = dict(settings)
-    out.update(min_len=QUICK_LEN[0], max_len=QUICK_LEN[1], hook=True, freigabe=False,
+    out.update(min_len=lo, max_len=hi, hook=True, freigabe=False, _laenge=laenge,
                clips=max(1, min(15, int(duration // 30) or 1)))
     return out
+
+
+# --- Clipi lernt: welche Hook-Art, Länge und Untertitel bringen die meisten Aufrufe ---------------
+# Wie der Lernmodus der KI-Shorts (learn.py): 3 von 4 Clips nehmen das Beste, jeder 4. testet etwas anderes.
+
+LENGTHS = {"kurz": (12, 18), "mittel": (16, 25), "lang": (25, 35)}
+LEARN_OPTIONS = {
+    "hook": ["satz", "kurz", "frage", "ohne"],
+    "laenge": ["mittel", "kurz", "lang"],
+    "untertitel": ["pop", "kasten", "unterstrich"],
+}
+LEARN_LABELS = {
+    "hook": ("Hook oben", {"satz": "Starker Satz", "kurz": "Kurz mit „…“", "frage": "Frage", "ohne": "Ohne Hook"}),
+    "laenge": ("Länge", {"kurz": "12–18 s", "mittel": "16–25 s", "lang": "25–35 s"}),
+    "untertitel": ("Untertitel", {"pop": "Pop", "kasten": "Kasten", "unterstrich": "Unterstrich"}),
+}
+
+
+def quick_hook(part, kind):
+    """Text oben im Bild nach Hook-Art. Gibt (Text, tatsächlich genutzte Art) zurück; ohne Sprache (None)."""
+    if not part:
+        return "", None
+    if kind == "ohne":
+        return "", "ohne"
+    if kind == "kurz":
+        return hook_text(part[0]["text"], max_words=5), "kurz"
+    if kind == "frage":
+        q = next((s for s in part[:3] if s["text"].rstrip().endswith("?")), None)
+        if q:
+            return hook_text(q["text"]), "frage"
+    return hook_text(part[0]["text"]), "satz"
+
+
+def learn_step():
+    """Zähler für den Wechsel zwischen „Bestes nehmen“ und „Testen“: alle bisher geschnittenen Lern-Clips."""
+    return sum(len(c["clips"]) for c in all_campaigns() if c.get("quick"))
+
+
+def learn_scores(now=None):
+    """Je Merkmal und Wert: Ø Wert der geposteten Clipi-Clips (Aufrufe hochgerechnet auf 3 Tage)."""
+    import learn
+    now = now or store.now()
+    stats = store.read("stats.json", {"videos": {}}).get("videos") or {}
+    posted = []
+    for u in store.state()["uploads"]:
+        if u.get("kind") != "clip" or not u.get("features") or u.get("video_id") not in stats:
+            continue
+        posted.append({"features": u["features"], "posted_at": u["posted_at"],
+                       "views": stats[u["video_id"]].get("views")})
+    return learn.feature_scores(posted, now)
+
+
+def learn_choice(name, step, scores=None):
+    """Bester Wert (3 von 4 Mal), sobald alle Werte bewertet sind; sonst reihum testen (am wenigsten Bewertete zuerst)."""
+    import learn
+    scores = (learn_scores() if scores is None else scores).get(name, {})
+    options = LEARN_OPTIONS[name]
+    rated = {o: scores[o]["score"] for o in options if o in scores and scores[o]["videos"] >= learn.MIN_VIDEOS}
+    if len(rated) == len(options) and step % learn.EXPLORE_EVERY != learn.EXPLORE_EVERY - 1:
+        return max(rated, key=rated.get)
+    fewest = min(scores.get(o, {}).get("videos", 0) for o in options)
+    pool = [o for o in options if scores.get(o, {}).get("videos", 0) == fewest]
+    return pool[step % len(pool)]
+
+
+def learn_summary():
+    """Für die Website: je Merkmal die Werte nach Ø Aufrufen sortiert, das Beste zuerst."""
+    import learn
+    scores = learn_scores()
+    rows = []
+    for name, (label, names) in LEARN_LABELS.items():
+        vals = scores.get(name, {})
+        ranked = sorted(vals.items(), key=lambda kv: kv[1]["score"], reverse=True)
+        rows.append({"key": name, "label": label,
+                     "values": [{"value": names.get(v, v), "score": round(x["score"]), "videos": x["videos"],
+                                 "best": i == 0 and x["videos"] >= learn.MIN_VIDEOS} for i, (v, x) in enumerate(ranked)]})
+    return rows
 
 
 def queue_info(per_day):

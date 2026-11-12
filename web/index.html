@@ -1691,6 +1691,7 @@ dialog.vs[open] { display: grid; place-items: center; }
           <div class="field cq-per"><label for="cqPer">Videos pro Tag auf Clipi: <b id="cqPerV">10</b></label><input type="range" id="cqPer" min="1" max="30" step="1" value="10"><span class="label" id="cqTimes"></span></div>
           <div class="row"><button class="btn primary" type="submit" id="cqGo" disabled>Videos auswählen</button><span class="msg" id="cqMsg"></span></div>
           <div class="cq-list" id="cqList"></div>
+          <div class="cq-learn"><b>Was Clipi lernt</b><span class="label">Clipi testet bei geschnittenen Clips verschiedene Hooks, Längen und Untertitel. Nach ein paar Tagen nimmt er 3 von 4 Mal das, was die meisten Aufrufe bringt, und testet weiter.</span><div id="cqLearn"></div></div>
           <details class="cq-q" id="cqQ"><summary id="cqQSum">Warteschlange ansehen</summary><div class="cq-list" id="cqQueue"></div></details>
           <p class="label">Warum nicht unbegrenzt? YouTube erlaubt pro Kanal nur eine bestimmte Zahl Uploads am Tag. Wird es zu viel, stuft YouTube den Kanal als Spam ein und zeigt die Videos kaum noch. 10 bis 15 am Tag ist ein guter Wert. Sagt YouTube „Limit erreicht“, wartet Clipi einfach bis zum nächsten Morgen. Clips aus Content-Rewards-Kampagnen postet Clipi nie von selbst.</p>
         </form>
@@ -4637,6 +4638,16 @@ dialog.vs[open] { display: grid; place-items: center; }
     if (document.activeElement !== $("cqPer")) { $("cqPer").value = per; $("cqPerV").textContent = per; }
     $("cqTimes").textContent = "Sendezeiten: " + (q.times || []).join(", ") + " Uhr";
     $("cqQSum").textContent = "Warteschlange ansehen (" + nf.format(q.waiting || 0) + ")";
+    var lb = clear($("cqLearn"));
+    (q.learn || []).forEach(function (r) {
+      var card = h("div", { cls: "cq-lr" }, [h("div", { cls: "k", text: r.label })]);
+      if (!r.values.length) card.appendChild(h("div", { cls: "v" }, [h("span", { text: "Sammelt noch Daten" }), h("span", { text: "" })]));
+      r.values.forEach(function (v) {
+        card.appendChild(h("div", { cls: "v" + (v.best ? " best" : "") }, [h("span", { text: (v.best ? "★ " : "") + v.value }),
+          h("span", { text: "Ø " + nf.format(v.score) + " · " + v.videos + " Clips" })]));
+      });
+      lb.appendChild(card);
+    });
     var box = clear($("cqQueue"));
     (q.items || []).forEach(function (it, i) {
       var del = h("button", { type: "button", text: "Raus", "aria-label": it.title + " aus der Warteschlange nehmen" });
@@ -4945,6 +4956,14 @@ dialog.vs[open] { display: grid; place-items: center; }
 .cq-row .bar { grid-column: 1 / -1; height: 5px; }
 .cq-row button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 12px; cursor: pointer; padding: 4px 6px; border-radius: 8px; }
 .cq-row button:hover { color: var(--ink); background: rgba(255, 255, 255, .06); }
+.cq-learn { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.cq-learn > b { font-size: 14px; }
+#cqLearn { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 4px; }
+.cq-lr { padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.cq-lr .k { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.cq-lr .v { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; padding: 2px 0; }
+.cq-lr .v span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cq-lr .v.best span:first-child { color: var(--accent); font-weight: 700; }
 .cq-q summary { cursor: pointer; font-size: 13px; font-weight: 600; padding: 4px 0; }
 .cq-q .cq-list { margin-top: 8px; max-height: 360px; overflow: auto; }
 .chg { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }

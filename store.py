@@ -301,6 +301,7 @@ def clipi_overview(cfg, st):
     info = clips.queue_info(per)
     return {**info, "per_day": per, "times": ["%02d:%02d" % (m // 60, m % 60) for m in clipi_times(per)],
             "next": next_clipi(per) if cfg["clip_token"] else None, "pause": st.get("clipi_pause"),
+            "learn": clips.learn_summary(),
             "today": sum(1 for u in st["uploads"] if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)}
 
 
