@@ -1,0 +1,104 @@
+{
+  "slug": "horror-winchester-haus",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1018",
+    "#8c3a6a"
+  ],
+  "accent": "#e0392f",
+  "title": "Das Haus, das nie fertig werden durfte 🏚️",
+  "description": "Das Winchester House in Kalifornien: hunderte Räume, Treppen ins Nichts und eine Legende über Geister. Belegt ist der Bau, die Geister sind nur Legende.\n\n#horror #legende #winchester #spukhaus #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "winchester",
+    "spukhaus",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Sarah"
+  },
+  "segments": [
+    {
+      "text": "Eine Tür im ersten Stock öffnet sich, dahinter gähnt nur Leere.",
+      "szene": {
+        "typ": "horror",
+        "ort": "spukhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Das ist das Winchester House in Kalifornien mit vielen Zimmern.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏚️",
+        "text": "Kalifornien"
+      }
+    },
+    {
+      "text": "Ab achtzehnhundertvierundachtzig ließ Sarah Winchester dort fast ununterbrochen bauen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1884,
+        "text": "Baubeginn",
+        "objekt": "🔨"
+      }
+    },
+    {
+      "text": "Sie war die Witwe des Erben eines berühmten Gewehrherstellers.",
+      "szene": {
+        "typ": "figur",
+        "ort": "spukhaus",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Die Legende sagt: Ein Medium warnte sie vor Geistern.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "spukhaus",
+        "objekt": "👻",
+        "text": "Legende"
+      }
+    },
+    {
+      "text": "Solange sie baute, blieben die Geister angeblich ruhig.",
+      "szene": {
+        "typ": "monster",
+        "ort": "spukhaus",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Treppen ohne Ziel, Türen ins Leere: ein Labyrinth.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Labyrinth",
+        "punkte": [
+          "Treppen ins Nichts",
+          "Türen ins Leere",
+          "Sackgassen"
+        ]
+      }
+    },
+    {
+      "text": "Belege für Geister gibt es nicht. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "spukhaus",
+        "objekt": "👻",
+        "text": "Nur Legende"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

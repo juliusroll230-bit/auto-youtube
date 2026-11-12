@@ -1,0 +1,96 @@
+{
+  "slug": "mystery-hessdalen-lichter",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#08201c",
+    "#2a9c7a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Lichter, die seit Jahrzehnten ein Tal heimsuchen 💡",
+  "description": "Das Hessdalen-Tal in Norwegen: Seit Jahrzehnten tauchen dort rätselhafte Lichter auf. Die Ursache ist nicht geklärt, es gibt nur Theorien.\n\n#mystery #rätsel #hessdalen #norwegen #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "hessdalen",
+    "norwegen",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "muetze",
+    "name": "Erik"
+  },
+  "segments": [
+    {
+      "text": "Über dem norwegischen Tal schwebt ein Licht, und es bewegt sich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Das ist das Hessdalen-Tal mitten in Norwegen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Hessdalen"
+      }
+    },
+    {
+      "text": "Neunzehnhunderteinundachtzig häufen sich dort die Sichtungen deutlich.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1981,
+        "text": "Viele Sichtungen",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Die Lichter schweben, leuchten weiß oder gelb und verschwinden wieder.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "💡",
+        "text": "Lichter"
+      }
+    },
+    {
+      "text": "Seit neunzehnhundertachtundneunzig messen Forscher dort mit einer Station.",
+      "szene": {
+        "typ": "akte",
+        "text": "Messstation",
+        "punkte": [
+          "📡",
+          "💡",
+          "📊"
+        ]
+      }
+    },
+    {
+      "text": "Erklärungen gibt es viele, doch keine ist sicher bewiesen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Staub",
+          "Mineralien",
+          "Plasma"
+        ]
+      }
+    },
+    {
+      "text": "Bis heute ungeklärt. Was glaubst du, was dort leuchtet?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "mystery-tunguska-explosion",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1d1208",
+    "#c4702a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Explosion, die einen Wald flachlegte, aber keinen Krater ließ 💥",
+  "description": "Tunguska, Sibirien, 1908: Eine gewaltige Explosion legt Millionen Bäume um. Eine Theorie nennt einen Asteroiden oder Kometen. Bewiesen ist die Ursache nicht.\n\n#mystery #rätsel #tunguska #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "tunguska",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Leonid"
+  },
+  "segments": [
+    {
+      "text": "Ein Feuerball explodiert über Sibirien, und der Wald fällt um.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "wetter": "blitz"
+      }
+    },
+    {
+      "text": "Am dreißigsten Juni neunzehnhundertacht erschüttert eine Explosion die Tunguska-Region.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1908,
+        "text": "Tunguska",
+        "objekt": "💥"
+      }
+    },
+    {
+      "text": "Sie ereignet sich weit weg von jeder Stadt, mitten in Sibirien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Sibirien"
+      }
+    },
+    {
+      "text": "Rund zweitausend Quadratkilometer Wald liegen flach am Boden.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2000,
+        "einheit": "km² Wald",
+        "objekt": "🌲",
+        "farbcode": "#2a1a10"
+      }
+    },
+    {
+      "text": "Doch es gibt keinen Krater, nur gefällte Bäume im Kreis.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Kein Krater"
+      }
+    },
+    {
+      "text": "Eine Theorie: Ein Asteroid oder Komet explodierte hoch in der Luft.",
+      "szene": {
+        "typ": "akte",
+        "text": "Theorie",
+        "punkte": [
+          "☄️",
+          "💥",
+          "🌲"
+        ]
+      }
+    },
+    {
+      "text": "Erst neunzehnhundertsiebenundzwanzig erreicht Leonid Kulik den Ort.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Eine endgültige Antwort fehlt bis heute. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

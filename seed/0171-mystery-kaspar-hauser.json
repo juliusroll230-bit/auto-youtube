@@ -1,0 +1,105 @@
+{
+  "slug": "mystery-kaspar-hauser",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1a1410",
+    "#8c7a5a"
+  ],
+  "accent": "#c4161c",
+  "title": "Der Junge, der aus dem Nichts in Nürnberg auftauchte 🏙️",
+  "description": "Kaspar Hauser tauchte 1828 in Nürnberg auf, kaum fähig zu sprechen. Wer er war, ist bis heute ungeklärt.\n\n#mystery #rätsel #kasparhauser #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "kasparhauser",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Kaspar"
+  },
+  "segments": [
+    {
+      "text": "Ein Junge steht auf einem Platz und kann kaum sprechen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "traurig",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Nürnberg, achtzehnhundertachtundzwanzig: Kaspar Hauser taucht aus dem Nichts auf.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1828,
+        "text": "Nürnberg",
+        "objekt": "🏙️"
+      }
+    },
+    {
+      "text": "Er hält einen Brief in der Hand und nennt nur seinen Namen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "✉️",
+        "text": "Der Brief"
+      }
+    },
+    {
+      "text": "Er sagt, er lebte jahrelang allein in einem dunklen Raum.",
+      "szene": {
+        "typ": "akte",
+        "text": "Dunkler Raum",
+        "punkte": [
+          "🕯️",
+          "🧱",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Wer war er wirklich? Das weiß bis heute niemand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Wer war er?"
+      }
+    },
+    {
+      "text": "Gerüchte sprachen von einem Prinzen, doch beweisen konnte es keiner.",
+      "szene": {
+        "typ": "liste",
+        "text": "Gerüchte",
+        "punkte": [
+          "Prinz",
+          "Täuschung",
+          "Unbekannt"
+        ]
+      }
+    },
+    {
+      "text": "Achtzehnhundertdreiunddreißig wird er niedergestochen und stirbt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1833,
+        "text": "Sein Tod",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Bis heute ungeklärt. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Ungeklärt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

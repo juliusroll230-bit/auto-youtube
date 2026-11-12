@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-gaensehaut",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1018",
+    "#d84a5a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum bekommst du eigentlich Gänsehaut? 🥶",
+  "description": "Warum stellen sich bei Kälte und Gefühlen die Haare auf? Ein Überbleibsel aus der Zeit unserer fellbedeckten Vorfahren.\n\n#wissen #körper #gänsehaut #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "gänsehaut",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Lena"
+  },
+  "segments": [
+    {
+      "text": "Du hörst dein Lieblingslied, und plötzlich stehen deine Haare ab.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🎵"
+      }
+    },
+    {
+      "text": "Gänsehaut: Warum macht dein Körper das?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Gänsehaut"
+      }
+    },
+    {
+      "text": "An jedem Haar sitzt ein winziger Muskel.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Winziger Muskel"
+      }
+    },
+    {
+      "text": "Er zieht das Haar hoch, und die Haut wirft kleine Hügel.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧍",
+          "text": "Normal"
+        },
+        "rechts": {
+          "objekt": "🐓",
+          "text": "Gänsehaut"
+        }
+      }
+    },
+    {
+      "text": "Bei Kälte hilft das, denn aufgestellte Haare halten Wärme.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🥶",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Auch Schreck und Gefühle lösen sie aus, vom Lied bis zur Angst.",
+      "szene": {
+        "typ": "liste",
+        "text": "Auslöser",
+        "punkte": [
+          "Kälte",
+          "Angst",
+          "Musik"
+        ]
+      }
+    },
+    {
+      "text": "Ein Überbleibsel aus der Zeit, als unsere Vorfahren noch Fell hatten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🐒",
+        "text": "Altes Erbe"
+      }
+    },
+    {
+      "text": "Wann hast du zuletzt Gänsehaut bekommen?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 5,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Gänsehaut"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

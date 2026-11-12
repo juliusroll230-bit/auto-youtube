@@ -1,0 +1,111 @@
+{
+  "slug": "horror-unterm-bett-teil-3",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "serie": "Unterm Bett",
+  "teil": 3,
+  "colors": [
+    "#14102a",
+    "#6a4aa8"
+  ],
+  "accent": "#ffd24d",
+  "title": "Unterm Bett: Das Geheimnis hinter Opas Zettel (Teil 3) 🛏️",
+  "description": "Unterm Bett, Teil 3, das Finale. Eine ausgedachte Grusel-Serie.\n\n#horror #gruselgeschichte #serie #kinderzimmer #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "serie",
+    "kinderzimmer",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Finn"
+  },
+  "segments": [
+    {
+      "text": "Finn hält Opas Zettel fest, und unterm Bett knurrt es.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Unterm Bett, Teil drei: Das Finale um Opas Zettel.",
+      "szene": {
+        "typ": "titel",
+        "serie": "Unterm Bett",
+        "teil": 3,
+        "ort": "kinderzimmer"
+      }
+    },
+    {
+      "text": "Auf der Rückseite klebt ein Schlüssel für Opas alten Koffer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔑"
+      }
+    },
+    {
+      "text": "Lea öffnet den Koffer, darin liegt eine verstaubte Spieluhr.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "rot",
+          "hut": "keiner",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Sie spielt Opas Schlaflied, und das Flüstern wird leiser.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🎶",
+        "text": "Opas Lied"
+      }
+    },
+    {
+      "text": "Ein Schatten kriecht hervor und sieht aus wie Opa.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Finn singt das Lied zu Ende, und der Schatten verschwindet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎵"
+      }
+    },
+    {
+      "text": "Morgens ist alles still. Aber wer hat die Spieluhr aufgezogen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "🎶",
+        "text": "Wer war es?"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

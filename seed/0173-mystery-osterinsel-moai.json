@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-osterinsel-moai",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10242a",
+    "#c4903a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Insel, auf der hunderte Steinriesen stehen 🗿",
+  "description": "Die Osterinsel im Pazifik: Rund neunhundert Moai-Statuen und viele offene Fragen. Wie sie bewegt wurden und warum die Kultur litt, ist umstritten.\n\n#mystery #rätsel #osterinsel #moai #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "osterinsel",
+    "moai",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Roggeveen"
+  },
+  "segments": [
+    {
+      "text": "Ein Kapitän entdeckt eine Insel voller riesiger Steingesichter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🗿"
+      }
+    },
+    {
+      "text": "Das war am Ostersonntag siebzehnhundertzweiundzwanzig, daher der Name.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1722,
+        "text": "Ostersonntag",
+        "objekt": "🐣"
+      }
+    },
+    {
+      "text": "Die Osterinsel liegt mitten im Pazifik, tausende Kilometer vom Festland.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Osterinsel"
+      }
+    },
+    {
+      "text": "Rund neunhundert Statuen stehen dort, Moai genannt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 900,
+        "einheit": "Moai",
+        "objekt": "🗿",
+        "farbcode": "#2a2a1d"
+      }
+    },
+    {
+      "text": "Wie bewegten die Bewohner Statuen von mehreren Tonnen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "❓",
+        "text": "Wie bewegt?"
+      }
+    },
+    {
+      "text": "Theorien: Seile, Baumstämme oder die Statuen liefen aufrecht.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Seile",
+          "Baumstämme",
+          "Aufrecht geschaukelt"
+        ]
+      }
+    },
+    {
+      "text": "Auch ihr Niedergang ist umstritten: Rodung, Ratten oder Krankheiten.",
+      "szene": {
+        "typ": "akte",
+        "text": "Niedergang",
+        "punkte": [
+          "🌳",
+          "🐀",
+          "🦠"
+        ]
+      }
+    },
+    {
+      "text": "Wer sie baute, ist klar, doch warum so viele? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🗿",
+        "text": "Warum so viele?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

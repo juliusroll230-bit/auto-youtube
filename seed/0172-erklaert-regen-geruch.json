@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-regen-geruch",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#10202e",
+    "#4a7ca8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Das Rätsel um den Geruch von Regen 🌧️",
+  "description": "Warum riecht Regen auf trockenem Boden so besonders? Das steckt dahinter: Petrichor und Geosmin.\n\n#wissen #regen #natur #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "regen",
+    "natur",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Jonas"
+  },
+  "segments": [
+    {
+      "text": "Der erste Tropfen trifft trockenen Boden, und es duftet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "wetter": "regen"
+      }
+    },
+    {
+      "text": "Woher kommt dieser besondere Geruch?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌧️",
+        "text": "Regenduft"
+      }
+    },
+    {
+      "text": "Der Fachbegriff dafür heißt Petrichor.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "📖",
+        "text": "Petrichor"
+      }
+    },
+    {
+      "text": "Dazu gehören Geosmin von Bodenbakterien und Öle aus Pflanzen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Zutaten",
+        "punkte": [
+          "Geosmin",
+          "Pflanzenöle",
+          "Ozon"
+        ]
+      }
+    },
+    {
+      "text": "Tropfen auf trockenem Boden schleudern winzige Duftteilchen in die Luft.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏜️",
+          "text": "Trocken: kaum Duft"
+        },
+        "rechts": {
+          "objekt": "🌧️",
+          "text": "Nass: Duft"
+        }
+      }
+    },
+    {
+      "text": "Menschen riechen Geosmin schon in winzigsten Mengen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "👃"
+      }
+    },
+    {
+      "text": "Warum wir so empfindlich sind, dafür gibt es nur Theorien.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Nur Theorien"
+      }
+    },
+    {
+      "text": "Riechst du den Regen schon, bevor er fällt?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "wetter": "regen",
+        "text": "Regenduft"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

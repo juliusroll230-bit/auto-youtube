@@ -1,0 +1,693 @@
+{
+  "slug": "mystery-roanoke-kolonie-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#1d1a10",
+    "#8c7a3a"
+  ],
+  "accent": "#c4161c",
+  "title": "Die verlorene Kolonie von Roanoke: Wohin verschwanden 115 Menschen? 🏚️",
+  "description": "1590 findet John White seine Siedlung leer vor, nur ein Wort ist in einen Pfosten geschnitzt: Croatoan. Wir erzählen die ganze Geschichte der verlorenen Kolonie von Roanoke, zeigen die Spuren und prüfen jede Theorie.\n\n#mystery #rätsel #roanoke #geschichte #verlorenekolonie",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "roanoke",
+    "geschichte",
+    "verlorenekolonie"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "zylinder",
+    "name": "John White"
+  },
+  "segments": [
+    {
+      "text": "August fünfzehnhundertneunzig: Ein Mann kämpft sich durch den Wald zu einer Siedlung, doch kein einziger Mensch kommt ihm entgegen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🏚️",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Die Häuser sind abgebaut, der Zaun steht noch, und auf einem Pfosten steht ein einziges geheimnisvolles Wort, in die Rinde geschnitzt.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🪵",
+        "text": "CROATOAN",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Mehr als hundert Männer, Frauen und Kinder sind spurlos verschwunden, und bis heute weiß niemand mit Sicherheit, was mit ihnen geschah.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👥",
+        "text": "Über 100 weg",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "In diesem Video erzählen wir die ganze Geschichte der verlorenen Kolonie von Roanoke, folgen den Spuren und prüfen jede Theorie, die es gibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Zuerst reisen wir an den Anfang, dann in die Siedlung, dann zur Suche nach den Menschen und zum Schluss zu den Theorien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Alles beginnt in England: Königin Elisabeth die Erste will auch in Amerika Land besitzen, so wie es Spanien schon tut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Fünfzehnhundertvierundachtzig schickt Walter Raleigh im Auftrag der Königin zwei Schiffe los, um die Küste Nordamerikas zu erkunden.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1584",
+        "text": "Erste Reise",
+        "objekt": "⛵"
+      }
+    },
+    {
+      "text": "Die Männer landen auf der Insel Roanoke vor der heutigen Küste von North Carolina und werden freundlich von den Ureinwohnern empfangen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Roanoke liegt auf den Outer Banks, einer Kette schmaler Sandinseln vor der Küste, umgeben von Untiefen und gefürchteten Stürmen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Outer Banks"
+      }
+    },
+    {
+      "text": "Zwei Einheimische, Manteo und Wanchese, reisen mit nach England und lernen dort Englisch, während die Engländer von ihrer Welt erfahren.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "burg",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Fünfzehnhundertfünfundachtzig folgt die erste Siedlergruppe unter Ralph Lane, doch es sind fast nur Soldaten und Männer, die auf Reichtum hoffen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1585",
+        "text": "Erste Kolonie",
+        "objekt": "⚔️"
+      }
+    },
+    {
+      "text": "Die Vorräte sind knapp, die Ernte fällt schlecht aus, und der Streit mit den Einheimischen wird bald immer gefährlicher.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌽",
+        "text": "Hunger",
+        "ort": "strand"
+      }
+    },
+    {
+      "text": "Im Sommer fünfzehnhundertsechsundachtzig kommt der Seeheld Francis Drake vorbei, und die müden Siedler beschließen, mit ihm nach Hause zu segeln.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "⛵"
+      }
+    },
+    {
+      "text": "Die erste Kolonie ist also gescheitert. Aber Walter Raleigh gibt nicht auf und plant einen neuen Anfang, diesmal mit ganzen Familien.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧭",
+        "text": "Neuer Plan",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Als Anführer wählt er den Maler und Zeichner John White, der schon bei der ersten Siedlung dabei war und die Gegend kennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🎨"
+      }
+    },
+    {
+      "text": "White hat in Amerika Pflanzen, Tiere und Menschen gemalt, und seine Bilder gehören noch heute zu den wichtigsten Quellen jener Zeit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎨",
+        "text": "Whites Bilder",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Im Sommer fünfzehnhundertsiebenundachtzig segeln etwa hundertfünfzehn Menschen los, darunter Frauen und Kinder, um dauerhaft in Amerika zu leben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 115,
+        "einheit": "Siedler",
+        "objekt": "👥",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Eigentlich will die Gruppe an die Chesapeake-Bucht weiter nördlich, doch der Kapitän des Schiffes setzt sie auf Roanoke ab.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1587",
+        "text": "Falscher Ort",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Er weigert sich weiterzufahren, und so müssen die Siedler dort anfangen, wo schon die Reste der ersten Siedlung stehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "wut",
+        "aktion": "schockiert",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Dort finden sie die Knochen eines Mannes aus der ersten Gruppe, den die Engländer zurückgelassen hatten. Ein ungutes Zeichen am Anfang.",
+      "szene": {
+        "typ": "akte",
+        "text": "Ein Skelett",
+        "punkte": [
+          "💀",
+          "🏚️",
+          "⚠️"
+        ]
+      }
+    },
+    {
+      "text": "Doch das Leben beginnt: Manteo, der Freund aus England, wird getauft und zum Lord der Insel ernannt, ein Zeichen des Friedens.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "dorf",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Nur wenige Tage später geschieht etwas Besonderes, das später zum berühmtesten Detail der ganzen Geschichte wird.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🍼",
+        "text": "Ein Baby",
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Am achtzehnten August fünfzehnhundertsiebenundachtzig wird Virginia Dare geboren, das erste englische Kind, das in Amerika zur Welt kommt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1587",
+        "text": "Virginia Dare",
+        "objekt": "👶"
+      }
+    },
+    {
+      "text": "Ihre Mutter ist Eleanor Dare, die Tochter von John White, und ihr Großvater gehört zu den Anführern der ganzen Kolonie.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "👶"
+      }
+    },
+    {
+      "text": "Doch die Lage ist schwierig: Die Vorräte reichen nicht lange, der Winter naht, und die Beziehung zu manchen Stämmen ist angespannt.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 7,
+        "gefuehl": "angst",
+        "aktion": "steht",
+        "text": "Angst"
+      }
+    },
+    {
+      "text": "Ein Siedler wird von Einheimischen getötet, und die Gruppe beschließt, dass jemand nach England zurückreisen und Hilfe holen muss.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚢",
+        "text": "Hilfe holen",
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Die Wahl fällt auf John White selbst, obwohl er seine Tochter und sein kleines Enkelkind nur ungern zurücklässt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "traurig",
+        "aktion": "winkt",
+        "objekt": "👋"
+      }
+    },
+    {
+      "text": "Vor der Abfahrt vereinbart man ein Notzeichen, falls die Siedler fliehen müssen, und die Regeln sind einfach.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Notzeichen",
+        "punkte": [
+          "Ziel einritzen",
+          "Kreuz bei Not",
+          "Haus abbauen"
+        ]
+      }
+    },
+    {
+      "text": "Ende August fünfzehnhundertsiebenundachtzig segelt White ab, mit dem Plan, so schnell wie möglich mit Vorräten wiederzukommen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1587",
+        "text": "Abreise",
+        "objekt": "⛵"
+      }
+    },
+    {
+      "text": "Die Überfahrt dauert Monate, und als er in England ankommt, ist das Land mitten in einem Krieg mit Spanien.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "⚔️"
+      }
+    },
+    {
+      "text": "Königin Elisabeth braucht jedes Schiff, um sich gegen die berühmte spanische Armada zu verteidigen, die im Anmarsch ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⚔️",
+        "text": "Spanische Armada",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Drei Jahre vergehen, bevor White endlich ein Schiff zurück nach Amerika bekommt. Drei Jahre ohne jede Nachricht von seiner Familie.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 3,
+        "einheit": "Jahre Wartezeit",
+        "objekt": "⏳",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Er wartet, bittet, schreibt Briefe, und endlich, mitten im Sommer fünfzehnhundertneunzig, darf er auf einem Schiff mitfahren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Die Reise führt ihn die Küste entlang, und als er sich der Insel Roanoke nähert, sieht er schon von weitem eine dicke Rauchsäule aufsteigen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔥",
+        "text": "Rauchsäule"
+      }
+    },
+    {
+      "text": "Sie rufen laut und singen englische Lieder, doch niemand antwortet, und als die Nacht kommt, ist der Strand ganz still.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🎶"
+      }
+    },
+    {
+      "text": "Am nächsten Tag geht White an Land. Hinter dem Zaun herrscht Totenstille, die Häuser sind abgebaut, nur Gras und ein paar Kisten sind übrig.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "schlurft",
+        "text": "Totenstille"
+      }
+    },
+    {
+      "text": "Und dann sieht er das Wort: Croatoan, in einen Pfosten geritzt, in großen Buchstaben, genau so, wie sie es vereinbart hatten.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🪵",
+        "text": "CROATOAN",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Auf einem Baum steht außerdem CRO, und es ist weder ein Kreuz noch ein Zeichen von Gewalt zu sehen, nur diese Buchstaben.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "keiner",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Das bedeutete für White: Kein Kreuz heißt keine Gefahr, also ein geordneter Umzug und keine überstürzte Flucht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "✝️",
+          "text": "Kein Kreuz"
+        },
+        "rechts": {
+          "objekt": "🏃",
+          "text": "Geordnet?"
+        }
+      }
+    },
+    {
+      "text": "Croatoan war der Name eines Küstenstamms und einer Insel, auf der Manteos Familie lebte, ein gutes Stück weiter südlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "White findet außerdem Kisten, die er selbst vergraben hatte. Sie sind aufgebrochen, und seine Bücher und Bilder liegen im Dreck.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📦",
+        "text": "Geplünderte Kisten",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Wer hat die Kisten geöffnet? Spuren von Gewalt fehlen, doch auch von den Siedlern gibt es kein Lebenszeichen, nur Fragen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Kisten",
+        "punkte": [
+          "📦",
+          "🔓",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "White will sofort nach Croatoan, doch ein Sturm zieht auf, Anker gehen verloren, und das Schiff droht auf die Sandbänke zu treiben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "⚓",
+        "wetter": "blitz"
+      }
+    },
+    {
+      "text": "Der Kapitän entscheidet, die Suche abzubrechen. Ein Sturm treibt das Schiff weit weg, und White kommt nie wieder zurück.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "⛵",
+        "text": "Nie wieder",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Fünfzehnhundertneunzig war White zum letzten Mal in Amerika. Er stirbt später vermutlich in Irland, ohne je zu erfahren, was aus seiner Familie wurde.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1590",
+        "text": "Letzte Reise",
+        "objekt": "☘️"
+      }
+    },
+    {
+      "text": "Jetzt zu den Theorien. Wir stellen sie der Reihe nach vor und sagen, was dafür und was dagegen spricht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Die Theorien"
+      }
+    },
+    {
+      "text": "Theorie eins: Die Siedler zogen nach Croatoan und lebten dort bei den Einheimischen. Dafür spricht der Hinweis, den sie selbst hinterließen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Auch spätere Berichte sprechen davon, dass Einheimische Häuser und Kleidung nach englischer Art hatten, doch gesichert ist das nicht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏠",
+        "text": "Berichte",
+        "ort": "strand"
+      }
+    },
+    {
+      "text": "Theorie zwei: Sie zogen tiefer ins Festland und suchten dort eigenes Land. Das würde erklären, warum man sie auf Croatoan nie fand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌲"
+      }
+    },
+    {
+      "text": "Dazu passt eine Entdeckung: Zweitausendzwölf fanden Forscher auf einer alten Karte von White unter einem Flicken das Zeichen eines kleinen Forts.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🗺️",
+        "text": "Flicken",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Theorie drei: ein Angriff. Aber es gab keine Kampfspuren, und mit einem Kreuz hätten die Siedler genau dies angezeigt.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 5,
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "text": "Angriff?"
+      }
+    },
+    {
+      "text": "Die Spanier suchten damals selbst nach der englischen Kolonie, fanden sie aber nicht, und das spricht eher gegen einen spanischen Überfall.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏴",
+          "text": "Spanier"
+        },
+        "rechts": {
+          "objekt": "🔎",
+          "text": "Nichts gefunden"
+        }
+      }
+    },
+    {
+      "text": "Theorie vier: eine Dürre. Baumringe zeigen, dass die Jahre fünfzehnhundertsiebenundachtzig bis fünfzehnhundertneunundachtzig die schlimmste Trockenzeit seit achthundert Jahren brachten.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "☀️",
+        "text": "Dürre?",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Ohne Ernte und mit wenig Wasser hätten die Siedler kaum eine Wahl gehabt, als zu ihren Nachbarn zu ziehen und zu hoffen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🌾"
+      }
+    },
+    {
+      "text": "Auch jüngere Funde nähren die Hoffnung, dass sich das Rätsel eines Tages lösen lässt, und die wichtigsten Spuren sind schnell erklärt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Neue Spuren",
+        "punkte": [
+          "Karte mit Fort",
+          "Funde auf Hatteras",
+          "Grabungen"
+        ]
+      }
+    },
+    {
+      "text": "Auf Hatteras Island, dem früheren Croatoan, fanden Archäologen englische Alltagsgegenstände aus dieser Zeit. Doch sie könnten auch aus Handel stammen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔎"
+      }
+    },
+    {
+      "text": "Gleich kommt noch etwas, das die Geschichte bis heute berühmt macht: eine Legende über das Schicksal von Virginia Dare.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🦌",
+        "text": "Die Legende"
+      }
+    },
+    {
+      "text": "Der Legende nach wurde Virginia Dare als Mädchen in eine weiße Hirschkuh verwandelt. Das ist eine spätere Sage und kein Beweis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "🦌"
+      }
+    },
+    {
+      "text": "Als Jamestown sechzehnhundertsieben gegründet wurde, fragten die Siedler dort die Stämme nach den Verlorenen, doch keine Antwort war eindeutig.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏰",
+        "text": "Jamestown",
+        "ort": "strand"
+      }
+    },
+    {
+      "text": "Seitdem wurde gesucht, gegraben und geschrieben. Heute steht auf Roanoke ein Nationalpark, in dem man die Reste des Forts besuchen und die Geschichte nacherleben kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🏞️"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir nach all den Spuren sicher, und was bleibt am Ende nur eine Vermutung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Über hundert Menschen siedelten dort, sie verschwanden, und ihr Hinweis lautete Croatoan.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Über 100 Siedler",
+          "Wort Croatoan",
+          "Kein Kreuz"
+        ]
+      }
+    },
+    {
+      "text": "Unklar bleibt: Wohin sie gingen, wie viele überlebten und ob sie sich anderen Gruppen anschlossen oder weiterzogen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Unklar",
+        "punkte": [
+          "🧭",
+          "👥",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist, dass sie sich aufteilten und bei befreundeten Gruppen Zuflucht suchten, doch das ist nur eine Einschätzung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🤝"
+      }
+    },
+    {
+      "text": "Und trotzdem lässt uns das Rätsel nicht los: ein Dorf ohne Menschen, ein Wort im Holz und ein Großvater, der zu spät kam.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🪵",
+        "text": "Ein Wort",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran, und wir sind gespannt: Was glaubst du, was mit der verlorenen Kolonie geschah? Schreib deine Theorie in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

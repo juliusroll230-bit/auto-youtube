@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-mond-verschwindet",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c1030",
+    "#5a6ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn der Mond plötzlich verschwindet? 🌑",
+  "description": "Der Mond ist weg. Was ändert sich auf der Erde? Gezeiten, Nächte und vielleicht sogar das Klima.\n\n#wissen #mond #weltall #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "mond",
+    "weltall",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "keiner",
+    "name": "Mila"
+  },
+  "segments": [
+    {
+      "text": "Du schaust nachts hoch, und der Mond ist plötzlich weg.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🌑"
+      }
+    },
+    {
+      "text": "Was passiert jetzt mit der Erde?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🌍",
+        "text": "Ohne Mond?"
+      }
+    },
+    {
+      "text": "Die Nächte werden viel dunkler, nur die Sterne bleiben.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌕",
+          "text": "Mit Mond"
+        },
+        "rechts": {
+          "objekt": "🌑",
+          "text": "Ohne Mond"
+        }
+      }
+    },
+    {
+      "text": "Die Gezeiten werden schwächer, denn nur die Sonne zieht am Meer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🌊",
+        "text": "Schwächere Gezeiten"
+      }
+    },
+    {
+      "text": "Manche Tiere, die sich nach dem Mond richten, wären verwirrt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Betroffen",
+        "punkte": [
+          "Korallen",
+          "Nachttiere",
+          "Meerestiere"
+        ]
+      }
+    },
+    {
+      "text": "Forscher vermuten: Der Mond hält die Erdachse lange stabil.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🌍"
+      }
+    },
+    {
+      "text": "Ohne ihn könnte das Klima langfristig stärker schwanken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🌡️",
+        "text": "Klima?"
+      }
+    },
+    {
+      "text": "Zum Glück ist er da. Schaust du heute nach oben?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 5,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Mondnacht"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

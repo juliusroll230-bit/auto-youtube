@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-alle-springen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#101e34",
+    "#4a8ce0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn alle Menschen gleichzeitig springen? 🦘",
+  "description": "Alle Menschen der Erde springen im selben Moment. Bewegt sich die Erde? Die Physik hat eine klare Antwort.\n\n#wissen #physik #erde #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "erde",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Alle Menschen der Welt springen im selben Moment.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 7,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Alle springen"
+      }
+    },
+    {
+      "text": "Bebt die Erde? Rutscht sie aus der Bahn?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🌍",
+        "text": "Erdbeben?"
+      }
+    },
+    {
+      "text": "Zusammen wiegen wir ungefähr vierhundert Millionen Tonnen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 400,
+        "einheit": "Mio. Tonnen",
+        "objekt": "👥",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Die Erde wiegt aber unfassbar viel mehr als wir alle.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👥",
+          "text": "Wir: winzig"
+        },
+        "rechts": {
+          "objekt": "🌍",
+          "text": "Erde: riesig"
+        }
+      }
+    },
+    {
+      "text": "Beim Absprung drückst du die Erde kurz nach unten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🦶"
+      }
+    },
+    {
+      "text": "Diese Bewegung ist viel zu klein, um sie zu messen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🔬",
+        "text": "Nicht messbar"
+      }
+    },
+    {
+      "text": "Nach der Landung passiert nur eins: Alle stehen wieder.",
+      "szene": {
+        "typ": "liste",
+        "text": "Ergebnis",
+        "punkte": [
+          "Hoch",
+          "Runter",
+          "Nichts"
+        ]
+      }
+    },
+    {
+      "text": "Ein bisschen enttäuschend, oder? Würdest du trotzdem mitspringen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🦘",
+        "text": "Mitspringen?"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}
