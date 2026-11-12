@@ -308,22 +308,34 @@ def post_clip(item, slot, manual=False, done="done_slots"):
 
 
 def post_clip_slot(slot):
-    """Sendeplatz des eigenen Clip-Kanals: postet einen freigegebenen Clip, wenn einer dran ist."""
+    """Sendeplatz des eigenen Clip-Kanals (Clipi): postet das nächste Video aus der Warteschlange.
+
+    Tageslimit: Einstellung „Clipi pro Tag“ (Publisher). Content-Rewards-Clips sind nie dabei (clips.auto_allowed)."""
     if not work_lock.acquire(blocking=False):
         return
     try:
         cfg = store.config()
-        clip = clips.choose_for_slot(slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
-                                     store.state()["uploads"], scripts_left=True)
-        if clip:
-            post_clip(clip, slot, done="clip_slots")
+        per = agents.settings(cfg)["publisher"]["clipi_per_day"]
+        today = store.now().date().isoformat()
+        done_today = sum(1 for u in store.state()["uploads"]
+                         if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)
+        ready = clips.ready_clips(auto=True) if done_today < per else []
+        if ready:
+            post_clip(ready[0], slot, done="clipi_slots")
         else:
-            store.mark_slot(slot, "clip_slots")
+            store.mark_slot(slot, "clipi_slots")
     except Exception as e:
+        store.mark_slot(slot, "clipi_slots")
+        if yt.is_limit(e):  # YouTube nimmt heute nichts mehr an: morgen weiter, das Video bleibt in der Warteschlange
+            until = (store.now() + dt.timedelta(days=1)).replace(hour=9, minute=30, second=0, microsecond=0)
+            store.pause_clipi(until)
+            store.agent_done("publisher")
+            store.log("warn", "YouTube nimmt heute keine weiteren Clipi-Uploads an (Tageslimit). "
+                      "Es geht morgen um 9:30 Uhr weiter, nichts geht verloren.", agent="publisher", kind="error")
+            return
         traceback.print_exc()
         store.agent_done("publisher", error=e)
         store.log("error", f"Clip-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
-        store.mark_slot(slot, "clip_slots")
     finally:
         status["busy"] = ""
         work_lock.release()
@@ -684,7 +696,7 @@ def scheduler():
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
                 if lslot and not status["busy"]:
                     post_next(lslot, long=True)
-                cslot = store.due_slot(done="clip_slots") if cfg["clip_token"] and ag["publisher"]["on"] else None
+                cslot = store.due_clipi(ag["publisher"]["clipi_per_day"]) if cfg["clip_token"] and ag["publisher"]["on"] else None
                 if cslot and not status["busy"]:
                     post_clip_slot(cslot)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
@@ -1245,8 +1257,10 @@ class Handler(BaseHTTPRequestHandler):
         if one("program") and not item:
             return self.send(400, {"error": "Unbekannte Kampagne."})
         try:
+            mode = "" if item else one("clipi")  # Clipi-Warteschlange: "ganz" (so posten) oder "kurz" (~20-s-Clips)
             c = clips.add_stream(self.rfile, int(self.headers.get("Content-Length") or 0), one("filename"),
-                                 "upload", True, one("credit") or (item or {}).get("brand", ""), one("name") or None)
+                                 "clipi" if mode else "upload", True, one("credit") or (item or {}).get("brand", ""),
+                                 one("name") or None, ready=mode == "ganz", quick=mode == "kurz")
         except ValueError as e:
             return self.send(400, {"error": str(e)})
         if item:

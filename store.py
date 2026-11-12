@@ -243,6 +243,74 @@ def due_slot(at=None, done="done_slots"):
     return None
 
 
+CLIPI_WINDOW = (7 * 60, 23 * 60)  # Clipi postet zwischen 7 und 23 Uhr
+
+
+def clipi_times(per_day):
+    """Sendezeiten des Clip-Kanals (Minuten nach Mitternacht), gleichmäßig zwischen 7 und 23 Uhr, auf 5 Min gerundet."""
+    per_day = max(1, int(per_day))
+    a, b = CLIPI_WINDOW
+    if per_day == 1:
+        return [13 * 60]
+    step = (b - a) / (per_day - 1)
+    return sorted({int(round((a + i * step) / 5) * 5) for i in range(per_day)})
+
+
+def due_clipi(per_day, at=None):
+    """Der Clipi-Sendeplatz, der gerade dran ist (Schlüssel JJJJ-MM-TT-HH-MM), sonst None.
+    Verpasste Plätze werden nur kurz nachgeholt, damit nach einer Pause nicht alles auf einmal hochgeht."""
+    at = at or now()
+    st = state()
+    if (st.get("clipi_pause") or "") > at.isoformat(timespec="seconds"):
+        return None
+    times = clipi_times(per_day)
+    gap = (times[1] - times[0]) if len(times) > 1 else 24 * 60
+    late = max(10, min(LATE_MIN, gap - 5))
+    for m in times:
+        slot = at.replace(hour=m // 60, minute=m % 60, second=0, microsecond=0)
+        key = slot.strftime("%Y-%m-%d-%H-%M")
+        if key in st.get("clipi_slots", []):
+            continue
+        if slot - dt.timedelta(minutes=5) <= at <= slot + dt.timedelta(minutes=late):
+            return key
+    return None
+
+
+def next_clipi(per_day, at=None):
+    """Nächste Clipi-Sendezeit als ISO-Text (für die Anzeige)."""
+    at = at or now()
+    st = state()
+    pause = st.get("clipi_pause") or ""
+    if pause > at.isoformat(timespec="seconds"):
+        at = dt.datetime.fromisoformat(pause)
+    for day in range(2):
+        base = (at + dt.timedelta(days=day)).replace(second=0, microsecond=0)
+        for m in clipi_times(per_day):
+            slot = base.replace(hour=m // 60, minute=m % 60)
+            if slot >= at - dt.timedelta(minutes=5) and slot.strftime("%Y-%m-%d-%H-%M") not in st.get("clipi_slots", []):
+                return slot.isoformat(timespec="minutes")
+    return None
+
+
+def clipi_overview(cfg, st):
+    """Clipi-Warteschlange für die Website: wartende Videos, Tageslimit, nächste Sendezeit, heute gepostet."""
+    import agents
+    import clips
+    per = agents.settings(cfg)["publisher"]["clipi_per_day"]
+    today = now().date().isoformat()
+    info = clips.queue_info(per)
+    return {**info, "per_day": per, "times": ["%02d:%02d" % (m // 60, m % 60) for m in clipi_times(per)],
+            "next": next_clipi(per) if cfg["clip_token"] else None, "pause": st.get("clipi_pause"),
+            "today": sum(1 for u in st["uploads"] if u.get("channel") == "clips" and (u.get("posted_at") or "")[:10] == today)}
+
+
+def pause_clipi(until):
+    with LOCK:
+        st = state()
+        st["clipi_pause"] = until.isoformat(timespec="seconds")
+        write("state.json", st)
+
+
 def sentence_marks(spec):
     """Geschätzte Satzanfänge als Anteil der Videolänge (0..1), wenn die echten Zeiten fehlen."""
     t, starts = 0.0, []
@@ -317,7 +385,7 @@ def share_caption(spec, u):
 def mark_slot(slot, done="done_slots"):
     with LOCK:
         st = state()
-        st[done] = (st.get(done, []) + [slot])[-90:]
+        st[done] = (st.get(done, []) + [slot])[-120:]
         write("state.json", st)
 
 
@@ -326,7 +394,7 @@ def mark_clip_posted(slot, record, done="done_slots"):
     with LOCK:
         st = state()
         if slot:
-            st[done] = (st.get(done, []) + [slot])[-90:]
+            st[done] = (st.get(done, []) + [slot])[-120:]
         st["uploads"].append(record)
         write("state.json", st)
 
@@ -512,6 +580,7 @@ def dashboard(extra=None, working=None, repo=True):
             "favorite": learn.favorite(scores), "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
+        "clipi": clipi_overview(cfg, st),
         "clip_totals": camp["totals"],
         "clips_running": camp["running"],
         "webhook_token": cfg["webhook_token"],
