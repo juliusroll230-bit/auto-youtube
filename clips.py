@@ -1215,9 +1215,16 @@ def thumb_file(slug):
 def stale_cleanup():
     """Nach einem Neustart: Kampagnen, die mitten im Schneiden waren, starten neu; halbe Uploads fliegen raus."""
     for c in all_campaigns():
-        if c["status"] in ("hoert", "schneidet"):
-            update(c["id"], lambda c: c.update(status="wartet", progress=0))
-        elif c["status"] == "laedt":
-            age = store.now() - dt.datetime.fromisoformat(c["created_at"])
-            if age.total_seconds() > 3600:
-                shutil.rmtree(store.path("campaigns", c["id"]), ignore_errors=True)
+        try:
+            _stale_one(c)
+        except Exception as e:  # noqa: BLE001  (eine kaputte Kampagne darf den Start nicht verhindern)
+            print("Aufräumen übersprungen:", c.get("id"), repr(e), flush=True)
+
+
+def _stale_one(c):
+    if c.get("status") in ("hoert", "schneidet"):
+        update(c["id"], lambda c: c.update(status="wartet", progress=0))
+    elif c.get("status") == "laedt":
+        age = store.now() - dt.datetime.fromisoformat(c["created_at"])
+        if age.total_seconds() > 3600:
+            shutil.rmtree(store.path("campaigns", c["id"]), ignore_errors=True)

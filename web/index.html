@@ -1245,6 +1245,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   <nav class="nav" aria-label="Bereiche">
     <a href="#zentrale" data-tab="zentrale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 7 18a2.5 2.5 0 0 0 5 .5V5.6A2.5 2.5 0 0 0 9 4.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 17 18a2.5 2.5 0 0 1-5 .5"/><path d="M12 9h2.5M12 13.5h3"/></svg><span>Zentrale</span></a>
     <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
+    <a href="#geld" data-tab="geld"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M6.5 10.5h6M6.5 13.5h6"/></svg><span>Geld</span></a>
     <a href="#kampagnen" data-tab="kampagnen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><span class="l">Kampagnen</span><span class="s" aria-hidden="true">Clips</span></a>
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
     <a href="#zuschauer" data-tab="zuschauer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v15a1 1 0 0 0 1 1h17"/><path d="M7 8c3 0 4 2 6 5s3 3 7 3"/></svg><span>Zuschauer</span></a>
@@ -1361,6 +1362,53 @@ dialog.vs[open] { display: grid; place-items: center; }
     </section>
 
     <!-- CLIPI -->
+    <section class="view" id="v-geld" hidden>
+      <div class="head">
+        <div>
+          <h1>Geld</h1>
+          <p>Was schon reingekommen ist, was ungefähr unterwegs ist und wie weit es noch bis zum YouTube-Werbegeld ist.</p>
+        </div>
+      </div>
+      <div class="mg-k" id="mgK"></div>
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Auszahlung eintragen</h2><div class="sub">Sobald Geld bei dir ankommt, hier eintragen. Dann siehst du immer, was ihr schon verdient habt.</div></div></div>
+          <form class="card-b form mg-f" id="mgForm" novalidate>
+            <div class="mg-r">
+              <div class="field"><label for="mgAmt">Betrag</label><input id="mgAmt" inputmode="decimal" autocomplete="off" placeholder="z. B. 12,50"></div>
+              <div class="field"><label for="mgCur">Währung</label><select id="mgCur"><option value="€">€ Euro</option><option value="$">$ Dollar</option></select></div>
+            </div>
+            <div class="mg-r">
+              <div class="field"><label for="mgSrc">Woher?</label><select id="mgSrc"><option>Content Rewards</option><option>YouTube</option><option>TikTok</option><option>Instagram</option><option>Sonstiges</option></select></div>
+              <div class="field"><label for="mgDate">Datum</label><input id="mgDate" type="date"></div>
+            </div>
+            <div class="field"><label for="mgNote">Notiz (freiwillig)</label><input id="mgNote" maxlength="80" autocomplete="off" placeholder="z. B. WoW-Kampagne Oktober"></div>
+            <div class="row"><button class="btn primary" type="submit" id="mgGo">Eintragen</button><span class="msg" id="mgMsg"></span></div>
+          </form>
+          <div class="mg-list" id="mgList"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><h2>Pro Monat</h2><div class="sub">Echt bekommen, nach Monaten</div></div></div>
+          <div class="card-b"><div class="mg-bars" id="mgBars"></div></div>
+        </div>
+      </div>
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Prüfpunkt 30. November</h2><div class="sub" id="mgCheckSub">Weitermachen oder Themen ändern?</div></div></div>
+          <div class="card-b" id="mgCheck"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><h2>Ziel: Geld mit YouTube</h2><div class="sub">YouTube-Partnerprogramm, ungefährer Stand</div></div></div>
+          <div class="card-b" id="mgGoals"></div>
+        </div>
+      </div>
+      <div class="card crc">
+        <div class="card-h"><div><h2><span class="wp-logo" aria-hidden="true">W</span>Content Rewards</h2><div class="sub">Geschätztes Geld pro Kampagne</div></div>
+          <a class="btn sm" href="#kampagnen">Kampagne hinzufügen</a></div>
+        <div class="card-b" id="mgCr"></div>
+      </div>
+    </section>
+
     <section class="view" id="v-clipi" hidden>
       <div class="head">
         <div>
@@ -2546,7 +2594,9 @@ dialog.vs[open] { display: grid; place-items: center; }
       { name: "Werbegeld: 1.000 Abonnenten", now: subs, goal: 1000, unit: "Abos" },
       { name: "Werbegeld: 10 Mio. Shorts-Aufrufe in 90 Tagen", now: v90, goal: 1e7, unit: "Aufrufe" }
     ];
-    var box = clear($("goals"));
+    ["goals", "mgGoals"].forEach(function (id) { if ($(id)) fillGoals(clear($(id)), goals); });
+  }
+  function fillGoals(box, goals) {
     goals.forEach(function (g) {
       var p = Math.min(100, 100 * g.now / g.goal);
       box.appendChild(h("div", { cls: "goal" }, [
@@ -3361,8 +3411,8 @@ dialog.vs[open] { display: grid; place-items: center; }
 
   // --- Content Rewards: Status und geschätztes Geld in der Zentrale ---------------------------
   function crMoney(cur, v) { return (cur || "$") + new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v || 0); }
-  function renderRewards(d) {
-    var box = clear($("crBody")), W = d.whop || [];
+  function renderRewards(d, boxId) {
+    var box = clear($(boxId || "crBody")), W = d.whop || [];
     if (!W.length) {
       box.appendChild(h("div", { cls: "cr-empty" }, [
         h("span", { text: "Noch keine Kampagne verknüpft. Füge im Reiter Clips den Link einer Kampagne von Content Rewards ein, dann siehst du hier Status und Geld." })]));
@@ -3400,6 +3450,109 @@ dialog.vs[open] { display: grid; place-items: center; }
     box.appendChild(list);
     box.appendChild(h("p", { cls: "cr-note", text: "Geschätzt aus den YouTube-Aufrufen und der Rate der Kampagne, mit Mindest- und Höchstbetrag pro Clip. Das echte Geld zeigt dir Content Rewards, erst nachdem sie deine Clips geprüft haben." + (unknown ? " Für Kampagnen ohne YouTube-Rate kann die Zentrale nichts schätzen." : "") }));
   }
+
+  // --- Geld: echte Auszahlungen, Schätzungen, Prüfpunkt -----------------------------------------
+  var MG_RPM = [0.03, 0.07];  // ungefähres YouTube-Werbegeld für Shorts in Deutschland, € pro 1.000 Aufrufe
+  function mgSum(list) {
+    var by = {};
+    list.forEach(function (x) { by[x.currency] = (by[x.currency] || 0) + x.amount; });
+    var keys = Object.keys(by);
+    return keys.length ? keys.map(function (c) { return crMoney(c, by[c]); }).join(" + ") : crMoney("€", 0);
+  }
+  function mgRange(lo, hi) {
+    var f = new Intl.NumberFormat("de-DE", { maximumFractionDigits: hi < 10 ? 2 : 0, minimumFractionDigits: hi < 10 ? 2 : 0 });
+    return f.format(lo) + "–" + f.format(hi) + " €";
+  }
+  function renderMoney(d) {
+    var P = (d.money || {}).payouts || [], W = d.whop || [], T = totals(d), ch = d.channel || {};
+    // Content Rewards geschätzt
+    var crBy = {}, crKnown = false;
+    W.forEach(function (w) { if (w.earned != null) { crKnown = true; crBy[w.currency || "$"] = (crBy[w.currency || "$"] || 0) + w.earned; } });
+    var crTxt = crKnown ? Object.keys(crBy).map(function (c) { return crMoney(c, crBy[c]); }).join(" + ") : "–";
+    // YouTube-Werbegeld: Aufrufe der letzten 30 Tage (Hauptkanal + Clipi) mal ungefähre Rate
+    var v30 = Math.max(0, histDelta(d, "views", 720) || 0) + Math.max(0, clipDelta(d, "clip_views", 720) || 0);
+    var lo = v30 / 1000 * MG_RPM[0], hi = v30 / 1000 * MG_RPM[1];
+    var subs = ch.subscribers || 0, ypp = subs >= 1000;
+    var k = clear($("mgK"));
+    [
+      ["money", mgSum(P), P.length ? "echt bekommen (" + P.length + (P.length === 1 ? " Auszahlung)" : " Auszahlungen)") : "echt bekommen, noch nichts eingetragen"],
+      ["", crTxt, W.length ? "Content Rewards, geschätzt" : "Content Rewards: keine Kampagne"],
+      ["", mgRange(lo, hi), ypp ? "YouTube-Werbegeld im Monat, ungefähr" : "wäre YouTube-Werbegeld im Monat (ab 1.000 Abos)"],
+      ["", nf.format(v30), "Aufrufe in 30 Tagen (beide Kanäle)"]
+    ].forEach(function (x) { k.appendChild(h("div", null, [h("b", { cls: x[0], text: x[1] }), h("span", { text: x[2] })])); });
+
+    // Liste der Auszahlungen
+    var list = clear($("mgList"));
+    if (!P.length) list.appendChild(h("p", { cls: "label", text: "Noch keine Auszahlung eingetragen." }));
+    P.slice(0, 30).forEach(function (x) {
+      var del = h("button", { cls: "btn sm no", type: "button", text: "Löschen", "aria-label": "Auszahlung löschen" });
+      del.disabled = !S.live;
+      del.addEventListener("click", function () {
+        if (!confirm("Diese Auszahlung löschen?")) return;
+        api("api/money/delete", { id: x.id }).then(function () { toast("Gelöscht."); }, function (e) { toast(e.message); });
+      });
+      list.appendChild(h("div", { cls: "mg-i" }, [
+        h("div", { style: "min-width:0" }, [h("b", { text: crMoney(x.currency, x.amount) }), h("span", { text: fDayS.format(new Date(x.date + "T12:00:00")) + " · " + x.source + (x.note ? " · " + x.note : "") })]),
+        del]));
+    });
+
+    // Balken pro Monat (letzte 6 Monate)
+    var bars = clear($("mgBars")), months = [], now = new Date();
+    for (var i = 5; i >= 0; i--) {
+      var m = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      var key = m.getFullYear() + "-" + String(m.getMonth() + 1).padStart(2, "0");
+      var sum = P.filter(function (x) { return x.date.slice(0, 7) === key; }).reduce(function (a, x) { return a + x.amount; }, 0);
+      months.push([m, sum]);
+    }
+    var max = Math.max.apply(null, months.map(function (x) { return x[1]; })) || 1;
+    months.forEach(function (x) {
+      bars.appendChild(h("div", { cls: "mg-b" }, [
+        h("span", { cls: "v", text: x[1] ? nf.format(Math.round(x[1])) : "" }),
+        h("div", { cls: "c" }, [h("i", { style: "height:" + Math.max(x[1] ? 4 : 0, 100 * x[1] / max).toFixed(1) + "%" })]),
+        h("span", { cls: "m", text: x[0].toLocaleString("de-DE", { month: "short" }) })]));
+    });
+    if (P.some(function (x) { return x.currency !== P[0].currency; }))
+      bars.appendChild(h("p", { cls: "label mg-n", text: "€ und $ sind hier zusammengezählt." }));
+
+    // Prüfpunkt 30. November
+    var top = (d.posted || []).reduce(function (a, v) { return Math.max(a, v.views || 0); }, 0);
+    var v30main = Math.max(0, histDelta(d, "views", 720) || 0);
+    var checks = [
+      ["Aufrufe im Monat (Hauptkanal)", v30main, 50000, nf.format(v30main) + " von 50.000"],
+      ["Abonnenten", subs, 100, nf.format(subs) + " von 100"],
+      ["Ein Short mit über 10.000 Aufrufen", top, 10000, "bester: " + nf.format(top)],
+      ["Ø angesehen über 70 %", T.avgPct || 0, 70, T.avgPct != null ? Math.round(T.avgPct) + " %" : "noch keine Daten"]
+    ];
+    var ok = 0, cb = clear($("mgCheck"));
+    checks.forEach(function (c) {
+      var p = Math.min(100, 100 * c[1] / c[2]), done = c[1] >= c[2];
+      if (done) ok++;
+      cb.appendChild(h("div", { cls: "goal" + (done ? " ok" : "") }, [
+        h("div", { cls: "top" }, [h("b", { text: (done ? "✓ " : "") + c[0] }), h("span", { cls: "pct", text: c[3] })]),
+        h("div", { cls: "track" }, [h("i", { style: "width:" + p + "%" })])]));
+    });
+    var end = new Date(now.getFullYear(), 10, 30, 23, 59), left = Math.ceil((end - now) / 864e5);
+    $("mgCheckSub").textContent = (left > 0 ? "Noch " + left + (left === 1 ? " Tag" : " Tage") + " · " : "") + ok + " von 4 geschafft";
+    cb.appendChild(h("p", { cls: "label", style: "margin-top:14px", text: v30main < 10000 && subs < 50
+      ? "Stand jetzt: unter 10.000 Aufrufen und 50 Abos. Wenn das am 30. November noch so ist, ändern wir die Themen."
+      : ok >= 3 ? "Läuft gut. So weitermachen." : "Zwischen den Grenzen: Wir schauen Anfang Dezember auf die echten Zahlen." }));
+
+    renderRewards(d, "mgCr");
+  }
+  (function () {
+    var f = $("mgForm");
+    if (!f) return;
+    $("mgDate").value = new Date().toISOString().slice(0, 10);
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!S.live) return flash("mgMsg", "err", "Nur auf dem Server möglich.");
+      $("mgGo").disabled = true;
+      api("api/money/add", { amount: $("mgAmt").value, currency: $("mgCur").value, source: $("mgSrc").value, date: $("mgDate").value, note: $("mgNote").value })
+        .then(function () { $("mgAmt").value = ""; $("mgNote").value = ""; flash("mgMsg", "ok", "Eingetragen."); },
+          function (err) { flash("mgMsg", "err", err.message); })
+        .then(function () { $("mgGo").disabled = false; });
+    });
+  })();
 
   // --- Loslegen: die Schritte fürs Clippen, der nächste ist hervorgehoben -----------------------
   function renderGo(d) {
@@ -3649,6 +3802,8 @@ dialog.vs[open] { display: grid; place-items: center; }
         [[nf.format(ch.subscribers || 0), "Abos"], [nf.format(T.views || 0), "Aufrufe"]], nx ? "Nächster Short " + whenTxt(nx.at) : "Nichts geplant", d.connected ? "ok" : "warn"],
       ["#clipi", "clipi", "Clipi", CC.connected ? (cch.title || "Clip-Kanal") : "Clip-Kanal verbinden",
         [[nf.format(q.waiting || 0), "warten"], [nf.format(q.today || 0) + "/" + (q.per_day || 0), "heute"]], q.next && q.waiting ? "Nächster Post " + whenTxt(new Date(q.next)) : q.waiting ? "Wartet auf den Clip-Kanal" : "Videos reinziehen", CC.connected ? "ok" : "warn"],
+      ["#geld", "geld", "Geld", (d.money || {}).payouts && d.money.payouts.length ? "Echt bekommen" : "Noch nichts eingetragen",
+        [[mgSum((d.money || {}).payouts || []), "bekommen"]], "Auszahlungen und Schätzungen", "ok"],
       ["#kampagnen", "camp", "Kampagnen", W.length ? W.length + (W.length === 1 ? " Kampagne" : " Kampagnen") : "Clipper",
         [[nf.format(ct.active || 0), "aktiv"], [nf.format(ct.approved || 0), "bereit"]], ct.waiting ? ct.waiting + " Clips warten auf dich" : "Alles entschieden", ct.waiting ? "warn" : "ok"],
       ["#kanal", "tt", "TikTok & Instagram", "Von Hand posten",
@@ -3674,6 +3829,8 @@ dialog.vs[open] { display: grid; place-items: center; }
     if (q.days) items1.push(["#clipi", "⏳", "Vorrat reicht für " + q.days + (q.days === 1 ? " Tag" : " Tage")]);
     (q.learn || []).forEach(function (r) { var b = (r.values || [])[0]; if (b && b.best) items1.push(["#clipi", "★", "Clipi lernt: " + r.label + " → " + b.value]); });
     if (ct.waiting) items1.push(["#zentrale", "!", ct.waiting + " Clips warten auf Freigabe"]);
+    var pay = (d.money || {}).payouts || [];
+    if (pay.length) items2.push(["#geld", "€", "Schon verdient: " + mgSum(pay)]);
     var top = (d.posted || []).filter(function (v) { return v.views != null; }).sort(function (a, b) { return b.views - a.views; }).slice(0, 4);
     top.forEach(function (v) { items2.push(["#videos", "🔥", nf.format(v.views) + " Aufrufe: " + v.title]); });
     var dv = histDelta(d, "views", 24);
@@ -4866,6 +5023,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     S.sch = sch;
     renderHeader(d);
     renderCenter(d, sch);
+    renderMoney(d);
     renderCampaigns(d);
     renderOverview(d, sch);
     renderViewers(d);
@@ -4952,7 +5110,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
+  var TABS = ["zentrale", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -5155,6 +5313,29 @@ dialog.vs[open] { display: grid; place-items: center; }
 .aptl.tt { --ac: #30d158; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M12 4v11M7.5 10.5 12 15l4.5-4.5M4 19h16'/%3E%3C/svg%3E"); }
 .aptl.plan { --ac: #0a84ff; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Crect x='3' y='5' width='18' height='16' rx='2.5'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E"); }
 .aptl.eye { --ac: #64d2ff; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M3 20h18M6 16V9M11 16V5M16 16v-5'/%3E%3C/svg%3E"); }
+.aptl.geld { --ac: #30d158; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M17.5 6.5a6.5 6.5 0 1 0 0 11M4 10.5h9M4 13.5h9'/%3E%3C/svg%3E"); }
+.mg-k { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.mg-k > div { padding: 16px 18px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); min-width: 0; }
+.mg-k b { display: block; font: 650 28px/1.1 var(--f-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.mg-k b.money { color: #30d158; }
+.mg-k span { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
+.mg-f { display: grid; gap: 12px; }
+.mg-r { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.mg-list { display: flex; flex-direction: column; gap: 8px; padding: 0 20px 20px; }
+.mg-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.mg-i b { display: block; font-variant-numeric: tabular-nums; color: #30d158; }
+.mg-i span { font-size: 12px; color: var(--muted); }
+.mg-bars { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; align-items: end; height: 220px; }
+.mg-b { display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
+.mg-b .c { flex: 1; width: 100%; max-width: 46px; display: flex; align-items: flex-end; border-radius: 10px; background: rgba(255, 255, 255, .04); overflow: hidden; }
+.mg-b .c i { display: block; width: 100%; border-radius: 10px; background: linear-gradient(180deg, #30d158, rgba(48, 209, 88, .55)); }
+.mg-b .v { font-size: 12px; font-weight: 650; font-variant-numeric: tabular-nums; min-height: 16px; }
+.mg-b .m { font-size: 12px; color: var(--muted); }
+.mg-n { position: absolute; left: 0; bottom: -26px; margin: 0; }
+.mg-bars { position: relative; margin-bottom: 26px; }
+.goal.ok .track i { background: #30d158; }
+@media (max-width: 860px) { .mg-k { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .mg-r { grid-template-columns: minmax(0, 1fr); } .mg-k b { font-size: 22px; } }
 .app-n { display: flex; gap: 22px; }
 .app-n b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
 .app-n span { font-size: 12px; color: var(--muted); }

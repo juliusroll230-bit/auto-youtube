@@ -84,6 +84,8 @@ jobs:
         run: docker exec app python tests/long_test.py
       - name: Clipi-Warteschlange (fertige Videos, Schnellschnitt, Sendezeiten)
         run: docker exec app python tests/clipi_test.py
+      - name: Geld-Konto testen
+        run: docker exec app python tests/money_test.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app
