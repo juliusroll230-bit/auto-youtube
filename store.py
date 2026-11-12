@@ -531,6 +531,15 @@ def next_slot(hours, at=None):
     return None
 
 
+def _safe(fn, default):
+    """Ein kaputter Zusatz-Teil soll nie die ganze Zentrale lahmlegen."""
+    try:
+        return fn()
+    except Exception as e:  # noqa: BLE001
+        print("Dashboard-Teil fehlgeschlagen:", repr(e), flush=True)
+        return default
+
+
 def dashboard(extra=None, working=None, repo=True):
     """working: {agent: was er gerade tut} für alle Agenten, die gerade arbeiten."""
     import agents
@@ -581,7 +590,8 @@ def dashboard(extra=None, working=None, repo=True):
             "favorite": learn.favorite(scores), "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
-        "clipi": clipi_overview(cfg, st),
+        "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
+        "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
         "clip_totals": camp["totals"],
         "clips_running": camp["running"],
         "webhook_token": cfg["webhook_token"],

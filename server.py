@@ -31,6 +31,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
 import clips
+import money
 import store
 import whop
 import yt
@@ -1152,6 +1153,18 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "rules": rules})
+        if p == "/api/money/add":
+            try:
+                item = money.add(data.get("amount"), data.get("currency") or "€", data.get("source") or "Content Rewards",
+                                 data.get("date"), data.get("note"))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            store.log("info", "Auszahlung eingetragen: %s %s (%s)" % (item["currency"], ("%.2f" % item["amount"]).replace(".", ","), item["source"]))
+            return self.send(200, {"ok": True, "item": item})
+        if p == "/api/money/delete":
+            if not money.remove(str(data.get("id") or "")):
+                return self.send(400, {"error": "Diese Auszahlung gibt es nicht."})
+            return self.send(200, {"ok": True})
         if p in ("/api/whop/refresh", "/api/whop/delete"):
             pid = str(data.get("id") or "")
             if not whop.find(pid):
