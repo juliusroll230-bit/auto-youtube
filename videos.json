@@ -6,11 +6,74 @@
  },
  "videos": [
   {
+   "id": "fg2X7BI9fgM",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 1) 🚗",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 41 Mitarbeiter und 5.600 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-12T19:33:46+00:00",
+   "thumb": "thumbs/fg2X7BI9fgM.jpg"
+  },
+  {
+   "id": "n8V-xWu8GEU",
+   "title": "Dieses Auto hatte den Fahrer genau in der Mitte 🧡",
+   "text": "Bruce McLaren, der McLaren F1 und sein Geschwindigkeitsrekord.",
+   "niche": "Autos",
+   "views": 1,
+   "published": "2026-11-12T17:37:56+00:00",
+   "thumb": "thumbs/n8V-xWu8GEU.jpg"
+  },
+  {
+   "id": "JIqlkAxooso",
+   "title": "Die Explosion, die einen Wald flachlegte, aber keinen Krater ließ 💥",
+   "text": "Tunguska, Sibirien, 1908: Eine gewaltige Explosion legt Millionen Bäume um. Eine Theorie nennt einen Asteroiden oder Kometen. Bewiesen ist die Ursache nicht.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-12T16:42:29+00:00",
+   "thumb": "thumbs/JIqlkAxooso.jpg"
+  },
+  {
+   "id": "wSoW-YWCEXw",
+   "title": "Unterm Bett: Das Geheimnis hinter Opas Zettel (Teil 3) 🛏️",
+   "text": "Unterm Bett, Teil 3, das Finale. Eine ausgedachte Grusel-Serie.",
+   "niche": "Wissen",
+   "views": 59,
+   "published": "2026-11-12T15:41:31+00:00",
+   "thumb": "thumbs/wSoW-YWCEXw.jpg"
+  },
+  {
+   "id": "4OsUERUyGuI",
+   "title": "Das Rätsel: Warum leuchten Tiere in der Tiefsee? 💡",
+   "text": "Biolumineszenz: Wie und warum Tiefseetiere ihr eigenes Licht erzeugen. Manche Erklärungen sind nur Theorien.",
+   "niche": "Wissen",
+   "views": 2,
+   "published": "2026-11-12T13:42:22+00:00",
+   "thumb": "thumbs/4OsUERUyGuI.jpg"
+  },
+  {
+   "id": "EJJb6q2WeoQ",
+   "title": "Dieser Supersportwagen trägt den Namen eines Windes 🌬️",
+   "text": "Horacio Pagani, Juan Manuel Fangio und der Zonda: die Geschichte der Marke Pagani.",
+   "niche": "Autos",
+   "views": 19,
+   "published": "2026-11-12T12:37:52+00:00",
+   "thumb": "thumbs/EJJb6q2WeoQ.jpg"
+  },
+  {
+   "id": "-175LhS3mGw",
+   "title": "Das Schiff, das mit fünfundzwanzig Menschen verschwand 🚢",
+   "text": "Die Joyita im Südpazifik, 1955: ein treibendes Schiff ohne Besatzung und ein bis heute ungeklärtes Schicksal.",
+   "niche": "Geschichte",
+   "views": 1,
+   "published": "2026-11-12T11:41:55+00:00",
+   "thumb": "thumbs/-175LhS3mGw.jpg"
+  },
+  {
    "id": "KNV9vMfj4NQ",
    "title": "Das Hotel, das Stephen King einen Albtraum bescherte 🏨",
    "text": "Das Stanley Hotel in Colorado: Zimmer 217, ein Albtraum und die Legenden dazu. Belegt und Legende trennen wir im Video.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 24,
    "published": "2026-11-12T09:43:11+00:00",
    "thumb": "thumbs/KNV9vMfj4NQ.jpg"
   },
@@ -37,7 +100,7 @@
    "title": "Was geschah wirklich auf der Mary Celeste? Das Geisterschiff 🚢",
    "text": "Dezember 1872: Ein Segelschiff treibt im Atlantik, alle zehn Menschen an Bord sind verschwunden. Wir erzählen die ganze Geschichte der Mary Celeste, zeigen die Spuren und prüfen jede Theorie.",
    "niche": "Geschichte",
-   "views": 34,
+   "views": 53,
    "published": "2026-11-11T18:30:58+00:00",
    "thumb": "thumbs/uf70foPYNew.jpg"
   },
@@ -55,7 +118,7 @@
    "title": "Unterm Bett: Wer flüstert Finns Namen? (Teil 2) 🛏️",
    "text": "Unterm Bett, Teil 2. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 554,
+   "views": 602,
    "published": "2026-11-11T16:38:03+00:00",
    "thumb": "thumbs/09ARfzdozwQ.jpg"
   },
@@ -64,7 +127,7 @@
    "title": "Das Rätsel: Warum kannst du dich nicht selbst kitzeln? 🤭",
    "text": "Warum Selbstkitzeln nicht funktioniert: Vorhersagen im Gehirn und ein Roboter-Experiment. Warum wir überhaupt kitzlig sind, bleibt eine Theorie.",
    "niche": "Wissen",
-   "views": 386,
+   "views": 391,
    "published": "2026-11-11T15:38:32+00:00",
    "thumb": "thumbs/8BIlbGouOR0.jpg"
   },
@@ -73,72 +136,9 @@
    "title": "Dieses Kultauto entstand wegen einer Krise 🚗",
    "text": "Wie die Suezkrise den Mini hervorbrachte und Alec Issigonis ein winziges Auto zeichnete.",
    "niche": "Autos",
-   "views": 58,
+   "views": 59,
    "published": "2026-11-11T13:37:39+00:00",
    "thumb": "thumbs/7-PV1a2NNFw.jpg"
-  },
-  {
-   "id": "bfHIfRtSjEw",
-   "title": "Dieser König steckt in deinem Handy 👑",
-   "text": "Harald Blauzahn und der Name Bluetooth: Wikinger-König, Runen und ein Technik-Logo.",
-   "niche": "Geschichte",
-   "views": 358,
-   "published": "2026-11-11T12:37:17+00:00",
-   "thumb": "thumbs/bfHIfRtSjEw.jpg"
-  },
-  {
-   "id": "_HCfMYvTb_k",
-   "title": "Das Zelt, das neun Wanderer in der Nacht verließen 🏔️",
-   "text": "Der Djatlow-Pass im Ural (1959): neun Wanderer sterben, die Ursache ist umstritten. Russische Ermittler nannten 2019 eine Lawine als wahrscheinlichste Erklärung.",
-   "niche": "Geschichte",
-   "views": 40,
-   "published": "2026-11-11T11:38:07+00:00",
-   "thumb": "thumbs/_HCfMYvTb_k.jpg"
-  },
-  {
-   "id": "Ve5uHKse0LU",
-   "title": "Die Menschen, die seit Jahrtausenden niemand besuchen darf 🏝️",
-   "text": "North Sentinel im Indischen Ozean: abgeschottetes Volk, Besuchsverbot und viele offene Fragen.",
-   "niche": "Wissen",
-   "views": 128,
-   "published": "2026-11-11T09:38:28+00:00",
-   "thumb": "thumbs/Ve5uHKse0LU.jpg"
-  },
-  {
-   "id": "TK2e3H3Y8OE",
-   "title": "Unterm Bett: Was kratzt da im Dunkeln? (Teil 1) 🛏️",
-   "text": "Unterm Bett, Teil 1. Eine ausgedachte Grusel-Serie.",
-   "niche": "Wissen",
-   "views": 125,
-   "published": "2026-11-11T05:37:59+00:00",
-   "thumb": "thumbs/TK2e3H3Y8OE.jpg"
-  },
-  {
-   "id": "FUm4gpqBvso",
-   "title": "Das Rätsel um das Bermuda-Dreieck 🔺",
-   "text": "Flug 19 und der Mythos vom Bermuda-Dreieck: was belegt ist und was nicht.",
-   "niche": "Geschichte",
-   "views": 192,
-   "published": "2026-11-10T19:38:05+00:00",
-   "thumb": "thumbs/FUm4gpqBvso.jpg"
-  },
-  {
-   "id": "2HDgttNj2V4",
-   "title": "Wie funktioniert WLAN wirklich? Das steckt hinter dem Funk 📶",
-   "text": "Dein WLAN ist unsichtbar und trägt trotzdem alles, was du online machst. Wir erklären, wie Funkwellen Daten transportieren, warum die Mikrowelle stört, wie die Verschlüsselung schützt und welche Tipps wirklich helfen.",
-   "niche": "Wissen",
-   "views": 58,
-   "published": "2026-11-10T18:30:16+00:00",
-   "thumb": "thumbs/2HDgttNj2V4.jpg"
-  },
-  {
-   "id": "Z4BS7N6kUVg",
-   "title": "Der Smart ist eigentlich ein Uhren-Auto ⌚",
-   "text": "Swatch, Mercedes und Art: wie der Smart zu seinem Namen kam.",
-   "niche": "Autos",
-   "views": 146,
-   "published": "2026-11-10T17:36:33+00:00",
-   "thumb": "thumbs/Z4BS7N6kUVg.jpg"
   }
  ]
 }
