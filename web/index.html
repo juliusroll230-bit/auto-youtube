@@ -1304,6 +1304,11 @@ dialog.vs[open] { display: grid; place-items: center; }
         <div class="card-b" id="crBody"></div>
       </div>
 
+      <div class="card" id="cmCard2">
+        <div class="card-h"><div><h2>Clipi: Weg zum Werbegeld</h2><div class="sub" id="cmSub2">Was der Clip-Kanal für die Monetarisierung braucht</div></div><a class="btn sm" href="#clipi">Zu Clipi</a></div>
+        <div class="card-b" id="cmGoals2"></div>
+      </div>
+
       <div class="card room" id="room">
         <div class="room-h">
           <h2>Deine Agenten</h2>
@@ -1416,6 +1421,10 @@ dialog.vs[open] { display: grid; place-items: center; }
           <p>Videos reinziehen, fertig. Clipi schneidet sie kurz, postet sie über den Tag verteilt und lernt, was am besten läuft.</p>
         </div>
         <a class="btn primary" href="#kanal" id="cqConnect">Clip-Kanal verbinden</a>
+      </div>
+      <div class="card" id="cmCard">
+        <div class="card-h"><div><h2>Clipi: Weg zum Werbegeld</h2><div class="sub" id="cmSub">Was der Clip-Kanal für die Monetarisierung braucht</div></div><span class="pill" id="cmPill"></span></div>
+        <div class="card-b"><div class="mg-k" id="cmK"></div><div id="cmGoals"></div></div>
       </div>
       <div class="card cq" id="cqCard">
         <div class="card-h"><div><h2>Clipi-Warteschlange</h2><div class="sub">Viele Videos auf einmal reinziehen. Clipi postet sie von selbst, über den Tag verteilt.</div></div><span class="pill" id="cqPill"></span></div>
@@ -2597,7 +2606,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     ];
     ["goals", "mgGoals"].forEach(function (id) { if ($(id)) fillGoals(clear($(id)), goals); });
   }
-  function fillGoals(box, goals) {
+  function fillGoals(box, goals, note) {
     goals.forEach(function (g) {
       var p = Math.min(100, 100 * g.now / g.goal);
       box.appendChild(h("div", { cls: "goal" }, [
@@ -2605,7 +2614,7 @@ dialog.vs[open] { display: grid; place-items: center; }
         h("div", { cls: "track" }, [h("i", { style: "width:" + p + "%" })])
       ]));
     });
-    box.appendChild(h("p", { cls: "label", style: "margin-top:14px", text: "Die Aufrufe zählen hier alle Shorts der letzten 90 Tage. YouTube rechnet eigene und verdächtige Aufrufe heraus, darum ist die Zahl in YouTube Studio etwas kleiner." }));
+    box.appendChild(h("p", { cls: "label", style: "margin-top:14px", text: note || "Die Aufrufe zählen hier alle Shorts der letzten 90 Tage. YouTube rechnet eigene und verdächtige Aufrufe heraus, darum ist die Zahl in YouTube Studio etwas kleiner." }));
   }
 
   // --- Zuschauer ---------------------------------------------------------------
@@ -3554,6 +3563,41 @@ dialog.vs[open] { display: grid; place-items: center; }
         .then(function () { $("mgGo").disabled = false; });
     });
   })();
+
+  // --- Clipi: Weg zum Werbegeld (Monetarisierung des Clip-Kanals) ---------------------------------
+  function renderClipiMoney(d) {
+    var CC = d.clip_channel || {}, ch = CC.channel || {}, subs = ch.subscribers || 0;
+    var cut = Date.now() - 90 * 864e5, cut30 = Date.now() - 30 * 864e5, v90 = 0, v30 = 0, n90 = 0;
+    (d.posted || []).forEach(function (v) {
+      if (v.channel !== "clips" || !v.posted_at) return;
+      var t = new Date(v.posted_at).getTime();
+      if (t >= cut) { v90 += v.views || 0; n90++; }
+      if (t >= cut30) v30 += v.views || 0;
+    });
+    var goals = [
+      { name: "Erste Stufe: 500 Abonnenten", now: subs, goal: 500 },
+      { name: "Erste Stufe: 3 Mio. Shorts-Aufrufe in 90 Tagen", now: v90, goal: 3e6 },
+      { name: "Werbegeld: 1.000 Abonnenten", now: subs, goal: 1000 },
+      { name: "Werbegeld: 10 Mio. Shorts-Aufrufe in 90 Tagen", now: v90, goal: 1e7 }
+    ];
+    var note = "Gezählt werden nur Videos, die Clipi in den letzten 90 Tagen gepostet hat. Zusätzlich verlangt YouTube mindestens 3 öffentliche Uploads in 90 Tagen und, dass der Kanal keine Verstöße hat. Bei Clips mit fremdem Inhalt (Kampagnen) bekommt Clipi oft kein Werbegeld, weil nur eigene Inhalte zählen. Wer den Antrag stellen darf, sagt dir YouTube Studio unter „Verdienen“.";
+    var lo = v30 / 1000 * MG_RPM[0], hi = v30 / 1000 * MG_RPM[1];
+    var ok = subs >= 500 && v90 >= 3e6;
+    if ($("cmGoals2")) {
+      fillGoals(clear($("cmGoals2")), goals, note);
+      $("cmSub2").textContent = CC.connected ? (ch.title || "Clip-Kanal") + " · " + nf.format(subs) + " Abos · " + nf.format(v90) + " Aufrufe in 90 Tagen" : "Clip-Kanal noch nicht verbunden";
+    }
+    if ($("cmGoals")) {
+      var k = clear($("cmK"));
+      [["", nf.format(subs), "Abonnenten"], ["", nf.format(v30), "Aufrufe in 30 Tagen"], ["", nf.format(n90), "Videos in 90 Tagen"],
+       ["money", v30 ? mgRange(lo, hi) : "–", "Werbegeld im Monat, ungefähr (erst ab Freigabe)"]].forEach(function (x) {
+        k.appendChild(h("div", null, [h("b", { cls: x[0], text: x[1] }), h("span", { text: x[2] })]));
+      });
+      fillGoals(clear($("cmGoals")), goals, note);
+      $("cmSub").textContent = CC.connected ? (ch.title || "Clip-Kanal") + (ok ? " · Antrag auf Werbegeld möglich" : " · noch nicht so weit") : "Clip-Kanal noch nicht verbunden";
+      pill($("cmPill"), CC.connected && ok ? "live" : "warn", !CC.connected ? "Nicht verbunden" : ok ? "Bereit" : "Auf dem Weg");
+    }
+  }
 
   // --- Loslegen: die Schritte fürs Clippen, der nächste ist hervorgehoben -----------------------
   function renderGo(d) {
@@ -5031,6 +5075,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderHeader(d);
     renderCenter(d, sch);
     renderMoney(d);
+    renderClipiMoney(d);
     renderCampaigns(d);
     renderOverview(d, sch);
     renderViewers(d);
