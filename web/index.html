@@ -1244,6 +1244,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   <div class="mark"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="#1f2b23" stroke="rgba(154, 212, 166,.45)" stroke-width="2.5"/><path d="M16 3a13 13 0 1 1-12.4 9" fill="none" stroke="#e9b872" stroke-width="2.5" stroke-linecap="round"/><text x="16" y="20.2" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Inter, system-ui">60</text></svg><span>Shorts-Zentrale</span></div>
   <nav class="nav" aria-label="Bereiche">
     <a href="#zentrale" data-tab="zentrale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 7 18a2.5 2.5 0 0 0 5 .5V5.6A2.5 2.5 0 0 0 9 4.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 17 18a2.5 2.5 0 0 1-5 .5"/><path d="M12 9h2.5M12 13.5h3"/></svg><span>Zentrale</span></a>
+    <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
     <a href="#kampagnen" data-tab="kampagnen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><span class="l">Kampagnen</span><span class="s" aria-hidden="true">Clips</span></a>
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
     <a href="#zuschauer" data-tab="zuschauer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v15a1 1 0 0 0 1 1h17"/><path d="M7 8c3 0 4 2 6 5s3 3 7 3"/></svg><span>Zuschauer</span></a>
@@ -1290,6 +1291,10 @@ dialog.vs[open] { display: grid; place-items: center; }
         <ol class="card-b go-l" id="goList"></ol>
       </div>
 
+      <div class="tick" id="tick" aria-label="Was gerade passiert"></div>
+
+      <div class="apps" id="apps"></div>
+
       <div class="kpis" id="kpis"></div>
 
       <div class="card crc" id="crCard">
@@ -1300,7 +1305,7 @@ dialog.vs[open] { display: grid; place-items: center; }
 
       <div class="card room" id="room">
         <div class="room-h">
-          <h2 class="eyebrow" style="color:#fff">Agenten-Dorf</h2>
+          <h2>Deine Agenten</h2>
           <p id="roomSub">Die Agenten werden geladen …</p>
         </div>
         <div class="room-tr">
@@ -1352,6 +1357,46 @@ dialog.vs[open] { display: grid; place-items: center; }
           <div class="card-h"><div><h2>Live-Feed</h2><div class="sub">Was die Agenten gerade tun</div></div><span class="pill"><span class="dot live"></span>Live</span></div>
           <ul class="feed" id="feed" style="margin-top:8px"></ul>
         </div>
+      </div>
+    </section>
+
+    <!-- CLIPI -->
+    <section class="view" id="v-clipi" hidden>
+      <div class="head">
+        <div>
+          <h1>Clipi</h1>
+          <p>Videos reinziehen, fertig. Clipi schneidet sie kurz, postet sie über den Tag verteilt und lernt, was am besten läuft.</p>
+        </div>
+        <a class="btn primary" href="#kanal" id="cqConnect">Clip-Kanal verbinden</a>
+      </div>
+      <div class="card cq" id="cqCard">
+        <div class="card-h"><div><h2>Clipi-Warteschlange</h2><div class="sub">Viele Videos auf einmal reinziehen. Clipi postet sie von selbst, über den Tag verteilt.</div></div><span class="pill" id="cqPill"></span></div>
+        <form class="card-b form" id="cqForm" novalidate>
+          <ul class="cq-st">
+            <li><b id="cqWait">0</b><span>warten</span></li>
+            <li><b id="cqToday">0</b><span>heute gepostet</span></li>
+            <li><b id="cqNext">–</b><span>nächster Post</span></li>
+            <li><b id="cqDays">–</b><span>reicht für</span></li>
+          </ul>
+          <p class="msg err" id="cqWarn" hidden></p>
+          <label class="drop" id="cqDrop">
+            <input type="file" id="cqFiles" multiple accept="video/*,.mkv,.mov,.m4v">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
+            <b id="cqDropT">Videos hierher ziehen</b>
+            <span class="muted" id="cqDropS">oder tippen und gleich mehrere auswählen</span>
+          </label>
+          <div class="cq-mode" role="radiogroup" aria-label="Was soll mit den Videos passieren?">
+            <label><input type="radio" name="cqMode" value="kurz" checked><span><b>Kurz und viral schneiden</b><span class="muted">Der Clipper sucht die stärksten Stellen und macht daraus Clips mit ca. 20 Sekunden, Hook oben und Untertiteln. Aus 5 Minuten werden etwa 10 Clips.</span></span></label>
+            <label><input type="radio" name="cqMode" value="ganz"><span><b>Ganz posten, wie es ist</b><span class="muted">Für Videos, die schon fertig sind. Nichts wird verändert.</span></span></label>
+          </div>
+          <label class="check"><input type="checkbox" id="cqRights"><span><b>Ich darf diese Videos posten.</b> <span class="muted">Eigene Videos oder mit Erlaubnis. Fremde Videos ohne Erlaubnis bringen Strikes und können den Kanal kosten.</span></span></label>
+          <div class="field cq-per"><label for="cqPer">Videos pro Tag auf Clipi: <b id="cqPerV">10</b></label><input type="range" id="cqPer" min="1" max="30" step="1" value="10"><span class="label" id="cqTimes"></span></div>
+          <div class="row"><button class="btn primary" type="submit" id="cqGo" disabled>Videos auswählen</button><span class="msg" id="cqMsg"></span></div>
+          <div class="cq-list" id="cqList"></div>
+          <div class="cq-learn"><b>Was Clipi lernt</b><span class="label">Clipi testet bei geschnittenen Clips verschiedene Hooks, Längen und Untertitel. Nach ein paar Tagen nimmt er 3 von 4 Mal das, was die meisten Aufrufe bringt, und testet weiter.</span><div id="cqLearn"></div></div>
+          <details class="cq-q" id="cqQ"><summary id="cqQSum">Warteschlange ansehen</summary><div class="cq-list" id="cqQueue"></div></details>
+          <p class="label">Warum nicht unbegrenzt? YouTube erlaubt pro Kanal nur eine bestimmte Zahl Uploads am Tag. Wird es zu viel, stuft YouTube den Kanal als Spam ein und zeigt die Videos kaum noch. 10 bis 15 am Tag ist ein guter Wert. Sagt YouTube „Limit erreicht“, wartet Clipi einfach bis zum nächsten Morgen. Clips aus Content-Rewards-Kampagnen postet Clipi nie von selbst.</p>
+        </form>
       </div>
     </section>
 
@@ -1667,35 +1712,6 @@ dialog.vs[open] { display: grid; place-items: center; }
       <h2 class="sec-h">Deine Kanäle</h2>
       <p class="sec-sub">Ein Ort für alle Kanäle. KI-Shorts laufen auf dem Hauptkanal, Clips auf Wunsch auf einem eigenen Kanal.</p>
       <div class="chg" id="chGrid"></div>
-      <div class="card cq" id="cqCard">
-        <div class="card-h"><div><h2>Clipi-Warteschlange</h2><div class="sub">Viele Videos auf einmal reinziehen. Clipi postet sie von selbst, über den Tag verteilt.</div></div><span class="pill" id="cqPill"></span></div>
-        <form class="card-b form" id="cqForm" novalidate>
-          <ul class="cq-st">
-            <li><b id="cqWait">0</b><span>warten</span></li>
-            <li><b id="cqToday">0</b><span>heute gepostet</span></li>
-            <li><b id="cqNext">–</b><span>nächster Post</span></li>
-            <li><b id="cqDays">–</b><span>reicht für</span></li>
-          </ul>
-          <p class="msg err" id="cqWarn" hidden></p>
-          <label class="drop" id="cqDrop">
-            <input type="file" id="cqFiles" multiple accept="video/*,.mkv,.mov,.m4v">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
-            <b id="cqDropT">Videos hierher ziehen</b>
-            <span class="muted" id="cqDropS">oder tippen und gleich mehrere auswählen</span>
-          </label>
-          <div class="cq-mode" role="radiogroup" aria-label="Was soll mit den Videos passieren?">
-            <label><input type="radio" name="cqMode" value="kurz" checked><span><b>Kurz und viral schneiden</b><span class="muted">Der Clipper sucht die stärksten Stellen und macht daraus Clips mit ca. 20 Sekunden, Hook oben und Untertiteln. Aus 5 Minuten werden etwa 10 Clips.</span></span></label>
-            <label><input type="radio" name="cqMode" value="ganz"><span><b>Ganz posten, wie es ist</b><span class="muted">Für Videos, die schon fertig sind. Nichts wird verändert.</span></span></label>
-          </div>
-          <label class="check"><input type="checkbox" id="cqRights"><span><b>Ich darf diese Videos posten.</b> <span class="muted">Eigene Videos oder mit Erlaubnis. Fremde Videos ohne Erlaubnis bringen Strikes und können den Kanal kosten.</span></span></label>
-          <div class="field cq-per"><label for="cqPer">Videos pro Tag auf Clipi: <b id="cqPerV">10</b></label><input type="range" id="cqPer" min="1" max="30" step="1" value="10"><span class="label" id="cqTimes"></span></div>
-          <div class="row"><button class="btn primary" type="submit" id="cqGo" disabled>Videos auswählen</button><span class="msg" id="cqMsg"></span></div>
-          <div class="cq-list" id="cqList"></div>
-          <div class="cq-learn"><b>Was Clipi lernt</b><span class="label">Clipi testet bei geschnittenen Clips verschiedene Hooks, Längen und Untertitel. Nach ein paar Tagen nimmt er 3 von 4 Mal das, was die meisten Aufrufe bringt, und testet weiter.</span><div id="cqLearn"></div></div>
-          <details class="cq-q" id="cqQ"><summary id="cqQSum">Warteschlange ansehen</summary><div class="cq-list" id="cqQueue"></div></details>
-          <p class="label">Warum nicht unbegrenzt? YouTube erlaubt pro Kanal nur eine bestimmte Zahl Uploads am Tag. Wird es zu viel, stuft YouTube den Kanal als Spam ein und zeigt die Videos kaum noch. 10 bis 15 am Tag ist ein guter Wert. Sagt YouTube „Limit erreicht“, wartet Clipi einfach bis zum nächsten Morgen. Clips aus Content-Rewards-Kampagnen postet Clipi nie von selbst.</p>
-        </form>
-      </div>
       <div class="card shc">
         <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
           <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
@@ -3607,12 +3623,74 @@ dialog.vs[open] { display: grid; place-items: center; }
     var T = totals(d);
     $("ccBanner").hidden = d.connected;
     renderKpis(d, T, sch);
+    renderApps(d, T, sch);
+    renderTicker(d, T, sch);
     renderRewards(d);
     renderGo(d);
     updateRoom(d);
     renderApprovals(d, sch);
     renderFeed(d);
     if (S.agent) updateDrawer();
+  }
+
+
+  // --- Startseite: alle Apps auf einen Blick und Laufbänder mit dem, was gerade passiert -----------
+  function whenTxt(dt) {
+    if (!dt) return "–";
+    var b = berlin(dt), today = berlin(new Date()).day;
+    return (b.day === today ? "heute " : fDayS.format(dt) + " ") + fTime.format(dt) + " Uhr";
+  }
+  function renderApps(d, T, sch) {
+    var box = clear($("apps")), ch = d.channel || {}, CC = d.clip_channel || {}, cch = CC.channel || {}, q = d.clipi || {};
+    var ct = d.clip_totals || {}, W = d.whop || [], share = shareable(d).filter(function (x) { var sh = x[1].shared || {}; return !(sh.tiktok && sh.instagram); }).length;
+    var nx = sch[0];
+    var tiles = [
+      ["#uebersicht", "yt", "Hauptkanal", d.connected ? (ch.title || "YouTube") : "Nicht verbunden",
+        [[nf.format(ch.subscribers || 0), "Abos"], [nf.format(T.views || 0), "Aufrufe"]], nx ? "Nächster Short " + whenTxt(nx.at) : "Nichts geplant", d.connected ? "ok" : "warn"],
+      ["#clipi", "clipi", "Clipi", CC.connected ? (cch.title || "Clip-Kanal") : "Clip-Kanal verbinden",
+        [[nf.format(q.waiting || 0), "warten"], [nf.format(q.today || 0) + "/" + (q.per_day || 0), "heute"]], q.next && q.waiting ? "Nächster Post " + whenTxt(new Date(q.next)) : q.waiting ? "Wartet auf den Clip-Kanal" : "Videos reinziehen", CC.connected ? "ok" : "warn"],
+      ["#kampagnen", "camp", "Kampagnen", W.length ? W.length + (W.length === 1 ? " Kampagne" : " Kampagnen") : "Clipper",
+        [[nf.format(ct.active || 0), "aktiv"], [nf.format(ct.approved || 0), "bereit"]], ct.waiting ? ct.waiting + " Clips warten auf dich" : "Alles entschieden", ct.waiting ? "warn" : "ok"],
+      ["#kanal", "tt", "TikTok & Instagram", "Von Hand posten",
+        [[nf.format(share), "offen"]], share ? "Herunterladen und posten" : "Alles gepostet", share ? "warn" : "ok"],
+      ["#plan", "plan", "Sendeplan", sch.length + " geplant",
+        [[nf.format(d.slots.length), "pro Tag"]], nx ? whenTxt(nx.at) : "–", sch.length ? "ok" : "warn"],
+      ["#zuschauer", "eye", "Zuschauer", d.analytics_connected === false ? "Nicht verbunden" : "Wer dranbleibt",
+        [[T.avgPct != null ? Math.round(T.avgPct) + " %" : "–", "Ø angesehen"]], "Wo Leute abspringen", "ok"]
+    ];
+    tiles.forEach(function (t) {
+      box.appendChild(h("a", { cls: "aptl " + t[1], href: t[0] }, [
+        h("div", { cls: "app-t" }, [h("span", { cls: "app-i", "aria-hidden": "true" }), h("div", { style: "min-width:0" }, [h("b", { text: t[2] }), h("span", { text: t[3] })]),
+          h("span", { cls: "dot " + (t[6] === "ok" ? "live" : "warn"), "aria-hidden": "true" })]),
+        h("div", { cls: "app-n" }, t[4].map(function (n) { return h("div", {}, [h("b", { text: n[0] }), h("span", { text: n[1] })]); })),
+        h("div", { cls: "app-f", text: t[5] })
+      ]));
+    });
+  }
+  function renderTicker(d, T, sch) {
+    var q = d.clipi || {}, ct = d.clip_totals || {}, items1 = [], items2 = [];
+    sch.slice(0, 4).forEach(function (s) { items1.push(["#plan", "▶", whenTxt(s.at) + ": " + ((s.v && s.v.title) || "Short")]); });
+    if (q.waiting) items1.push(["#clipi", "✂", "Clipi: " + nf.format(q.waiting) + " Clips warten" + (q.next ? ", nächster " + whenTxt(new Date(q.next)) : "")]);
+    if (q.days) items1.push(["#clipi", "⏳", "Vorrat reicht für " + q.days + (q.days === 1 ? " Tag" : " Tage")]);
+    (q.learn || []).forEach(function (r) { var b = (r.values || [])[0]; if (b && b.best) items1.push(["#clipi", "★", "Clipi lernt: " + r.label + " → " + b.value]); });
+    if (ct.waiting) items1.push(["#zentrale", "!", ct.waiting + " Clips warten auf Freigabe"]);
+    var top = (d.posted || []).filter(function (v) { return v.views != null; }).sort(function (a, b) { return b.views - a.views; }).slice(0, 4);
+    top.forEach(function (v) { items2.push(["#videos", "🔥", nf.format(v.views) + " Aufrufe: " + v.title]); });
+    var dv = histDelta(d, "views", 24);
+    if (dv != null) items2.push(["#uebersicht", "↗", "+" + nf.format(dv) + " Aufrufe in 24 Std"]);
+    (d.events || []).slice(0, 6).forEach(function (e) { items2.push(["#zentrale", e.level === "error" ? "✕" : "›", fTime.format(new Date(e.at)) + " " + e.text]); });
+    if (!items1.length) items1.push(["#clipi", "✂", "Zieh Videos in Clipi, dann läuft alles von selbst"]);
+    if (!items2.length) items2.push(["#uebersicht", "›", "Aufrufe kommen, sobald die ersten Videos online sind"]);
+    var box = $("tick"), key = JSON.stringify([items1, items2]);
+    if (box.dataset.k === key) return;  // nur neu bauen, wenn sich etwas ändert (sonst springt das Band)
+    box.dataset.k = key;
+    clear(box);
+    [[items1, "l"], [items2, "r"]].forEach(function (row) {
+      var run = function () { return row[0].map(function (it) { return h("a", { cls: "ti", href: it[0] }, [h("i", { text: it[1] }), it[2]]); }); };
+      var track = h("div", { cls: "tr-in" }, run().concat(run()));
+      track.style.animationDuration = Math.max(25, row[0].length * 9) + "s";
+      box.appendChild(h("div", { cls: "trk " + row[1] }, [track]));
+    });
   }
 
   // --- Live: alle 2,5 Sekunden fragen, wer arbeitet und was passiert ist ----------------------------
@@ -4624,6 +4702,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderClipi(d) {
     var q = d.clipi || {}, CC = d.clip_channel || {}, pub = (agentById("publisher") || {}).settings || {};
     var per = q.per_day || 10;
+    $("cqConnect").hidden = !!CC.connected;
     $("cqWait").textContent = nf.format(q.waiting || 0) + (q.busy ? " +" + q.busy : "");
     $("cqToday").textContent = nf.format(q.today || 0) + " / " + per;
     var nx = q.next ? new Date(q.next) : null;
@@ -4873,7 +4952,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
+  var TABS = ["zentrale", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -5051,4 +5130,44 @@ dialog.vs[open] { display: grid; place-items: center; }
 .go-l b { display: block; font-size: 14px; font-weight: 600; }
 .go-l small { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
 @media (max-width: 640px) { .go-l li { grid-template-columns: 28px 1fr; } .go-l li > .btn { grid-column: 2; justify-self: start; } }
+
+/* Startseite ohne Dorf: Agenten als Liste, Apps-Kacheln, Laufbänder */
+.room .bw, .room .room-bl, .room .room-br, #demoBtn { display: none !important; }
+.room { background: var(--surface) !important; padding: 0; }
+.room .room-h, .room .room-tr { position: static !important; max-width: none; padding: 20px 20px 0; text-align: left; }
+.room .room-tr { display: flex; gap: 8px; align-items: center; padding-top: 10px; }
+.room .alist { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); padding: 16px 20px 20px; }
+.room .arow { background: rgba(255, 255, 255, .04); border-color: var(--line); }
+.apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 1100px) { .apps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .apps { grid-template-columns: 1fr; } }
+.aptl { display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: transform .15s ease, border-color .15s ease; min-width: 0; }
+.aptl:hover { border-color: var(--accent); transform: translateY(-2px); }
+.aptl:active { transform: scale(.98); }
+.app-t { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.app-t b { display: block; font-size: 15px; }
+.app-t span:not(.app-i):not(.dot) { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-i { width: 38px; height: 38px; border-radius: 11px; background: var(--ac, #0a84ff); display: grid; place-items: center; }
+.app-i::after { content: ""; width: 18px; height: 18px; background: #fff; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+.aptl.yt { --ac: #ff3b30; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E"); }
+.aptl.clipi { --ac: #bf5af2; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cpath d='M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12'/%3E%3C/svg%3E"); }
+.aptl.camp { --ac: #ff9f0a; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 15 9h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z'/%3E%3C/svg%3E"); }
+.aptl.tt { --ac: #30d158; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M12 4v11M7.5 10.5 12 15l4.5-4.5M4 19h16'/%3E%3C/svg%3E"); }
+.aptl.plan { --ac: #0a84ff; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Crect x='3' y='5' width='18' height='16' rx='2.5'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E"); }
+.aptl.eye { --ac: #64d2ff; --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M3 20h18M6 16V9M11 16V5M16 16v-5'/%3E%3C/svg%3E"); }
+.app-n { display: flex; gap: 22px; }
+.app-n b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.app-n span { font-size: 12px; color: var(--muted); }
+.app-f { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tick { display: flex; flex-direction: column; gap: 8px; margin: 0 -2px; }
+.trk { overflow: hidden; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); -webkit-mask: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.tr-in { display: flex; width: max-content; gap: 10px; padding: 9px 10px; animation: tickL 40s linear infinite; }
+.trk.r .tr-in { animation-name: tickR; }
+.trk:hover .tr-in, .trk:focus-within .tr-in { animation-play-state: paused; }
+.ti { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, .05); color: var(--ink); text-decoration: none; font-size: 13px; }
+.ti:hover { background: rgba(10, 132, 255, .18); }
+.ti i { font-style: normal; color: var(--accent); }
+@keyframes tickL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes tickR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .tr-in { animation: none; } .trk { overflow-x: auto; } }
 </style>

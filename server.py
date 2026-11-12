@@ -394,7 +394,7 @@ def run_clip_job(cid, settings):
         store.agent_done("clipper")
         wait = ", er wartet auf deine Freigabe." if n == 1 else ", sie warten auf deine Freigabe."
         store.log("ok", f"{n} Clip{'s' if n != 1 else ''} aus „{c['name']}“ fertig"
-                  + (wait if settings["freigabe"] else " und freigegeben."),
+                  + (" und in der Clipi-Warteschlange." if clips.is_clipi(c) else wait if settings["freigabe"] else " und freigegeben."),
                   agent="clipper", kind="clips", source="clipper")
     except Exception as e:
         traceback.print_exc()
