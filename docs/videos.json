@@ -6,11 +6,29 @@
  },
  "videos": [
   {
+   "id": "KNV9vMfj4NQ",
+   "title": "Das Hotel, das Stephen King einen Albtraum bescherte 🏨",
+   "text": "Das Stanley Hotel in Colorado: Zimmer 217, ein Albtraum und die Legenden dazu. Belegt und Legende trennen wir im Video.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-12T09:43:11+00:00",
+   "thumb": "thumbs/KNV9vMfj4NQ.jpg"
+  },
+  {
+   "id": "RRq5S_Ta3Uo",
+   "title": "Was passiert, wenn die Sonne plötzlich verschwindet? ☀️",
+   "text": "Ein Gedankenexperiment: acht Minuten Licht, dann Dunkelheit und Kälte. Vieles davon sind Berechnungen und Theorien.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-12T05:41:09+00:00",
+   "thumb": "thumbs/RRq5S_Ta3Uo.jpg"
+  },
+  {
    "id": "naStvEO4qfk",
    "title": "Diese Luxusmarke wurde mit Rennen berühmt 🏁",
    "text": "Die Bentley Boys und die fünf Siege in Le Mans von 1924 bis 1930.",
    "niche": "Autos",
-   "views": 149,
+   "views": 181,
    "published": "2026-11-11T19:36:58+00:00",
    "thumb": "thumbs/naStvEO4qfk.jpg"
   },
@@ -19,7 +37,7 @@
    "title": "Was geschah wirklich auf der Mary Celeste? Das Geisterschiff 🚢",
    "text": "Dezember 1872: Ein Segelschiff treibt im Atlantik, alle zehn Menschen an Bord sind verschwunden. Wir erzählen die ganze Geschichte der Mary Celeste, zeigen die Spuren und prüfen jede Theorie.",
    "niche": "Geschichte",
-   "views": 5,
+   "views": 34,
    "published": "2026-11-11T18:30:58+00:00",
    "thumb": "thumbs/uf70foPYNew.jpg"
   },
@@ -28,7 +46,7 @@
    "title": "Der Leuchtturm, aus dem drei Männer verschwanden 🗼",
    "text": "Die Flannan-Inseln in Schottland, Dezember 1900: drei Leuchtturmwärter verschwinden spurlos. Spätere Ausschmückungen trennen wir von dem, was belegt ist.",
    "niche": "Geschichte",
-   "views": 92,
+   "views": 112,
    "published": "2026-11-11T17:38:38+00:00",
    "thumb": "thumbs/f492JVM5ZuI.jpg"
   },
@@ -37,7 +55,7 @@
    "title": "Unterm Bett: Wer flüstert Finns Namen? (Teil 2) 🛏️",
    "text": "Unterm Bett, Teil 2. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 540,
+   "views": 554,
    "published": "2026-11-11T16:38:03+00:00",
    "thumb": "thumbs/09ARfzdozwQ.jpg"
   },
@@ -46,7 +64,7 @@
    "title": "Das Rätsel: Warum kannst du dich nicht selbst kitzeln? 🤭",
    "text": "Warum Selbstkitzeln nicht funktioniert: Vorhersagen im Gehirn und ein Roboter-Experiment. Warum wir überhaupt kitzlig sind, bleibt eine Theorie.",
    "niche": "Wissen",
-   "views": 370,
+   "views": 386,
    "published": "2026-11-11T15:38:32+00:00",
    "thumb": "thumbs/8BIlbGouOR0.jpg"
   },
@@ -55,7 +73,7 @@
    "title": "Dieses Kultauto entstand wegen einer Krise 🚗",
    "text": "Wie die Suezkrise den Mini hervorbrachte und Alec Issigonis ein winziges Auto zeichnete.",
    "niche": "Autos",
-   "views": 57,
+   "views": 58,
    "published": "2026-11-11T13:37:39+00:00",
    "thumb": "thumbs/7-PV1a2NNFw.jpg"
   },
@@ -64,7 +82,7 @@
    "title": "Dieser König steckt in deinem Handy 👑",
    "text": "Harald Blauzahn und der Name Bluetooth: Wikinger-König, Runen und ein Technik-Logo.",
    "niche": "Geschichte",
-   "views": 352,
+   "views": 358,
    "published": "2026-11-11T12:37:17+00:00",
    "thumb": "thumbs/bfHIfRtSjEw.jpg"
   },
@@ -73,7 +91,7 @@
    "title": "Das Zelt, das neun Wanderer in der Nacht verließen 🏔️",
    "text": "Der Djatlow-Pass im Ural (1959): neun Wanderer sterben, die Ursache ist umstritten. Russische Ermittler nannten 2019 eine Lawine als wahrscheinlichste Erklärung.",
    "niche": "Geschichte",
-   "views": 39,
+   "views": 40,
    "published": "2026-11-11T11:38:07+00:00",
    "thumb": "thumbs/_HCfMYvTb_k.jpg"
   },
@@ -82,7 +100,7 @@
    "title": "Die Menschen, die seit Jahrtausenden niemand besuchen darf 🏝️",
    "text": "North Sentinel im Indischen Ozean: abgeschottetes Volk, Besuchsverbot und viele offene Fragen.",
    "niche": "Wissen",
-   "views": 127,
+   "views": 128,
    "published": "2026-11-11T09:38:28+00:00",
    "thumb": "thumbs/Ve5uHKse0LU.jpg"
   },
@@ -91,7 +109,7 @@
    "title": "Unterm Bett: Was kratzt da im Dunkeln? (Teil 1) 🛏️",
    "text": "Unterm Bett, Teil 1. Eine ausgedachte Grusel-Serie.",
    "niche": "Wissen",
-   "views": 121,
+   "views": 125,
    "published": "2026-11-11T05:37:59+00:00",
    "thumb": "thumbs/TK2e3H3Y8OE.jpg"
   },
@@ -100,7 +118,7 @@
    "title": "Das Rätsel um das Bermuda-Dreieck 🔺",
    "text": "Flug 19 und der Mythos vom Bermuda-Dreieck: was belegt ist und was nicht.",
    "niche": "Geschichte",
-   "views": 191,
+   "views": 192,
    "published": "2026-11-10T19:38:05+00:00",
    "thumb": "thumbs/FUm4gpqBvso.jpg"
   },
@@ -118,27 +136,9 @@
    "title": "Der Smart ist eigentlich ein Uhren-Auto ⌚",
    "text": "Swatch, Mercedes und Art: wie der Smart zu seinem Namen kam.",
    "niche": "Autos",
-   "views": 143,
+   "views": 146,
    "published": "2026-11-10T17:36:33+00:00",
    "thumb": "thumbs/Z4BS7N6kUVg.jpg"
-  },
-  {
-   "id": "2mkP8wcyG1s",
-   "title": "Deine Hand gehört plötzlich einer Gummihand 🖐️",
-   "text": "Die Gummihand-Illusion von Botvinick und Cohen aus neunzehnhundertachtundneunzig.",
-   "niche": "Psychologie",
-   "views": 395,
-   "published": "2026-11-10T16:36:55+00:00",
-   "thumb": "thumbs/2mkP8wcyG1s.jpg"
-  },
-  {
-   "id": "Ql42vWw-kjE",
-   "title": "Napoleon brachte uns das Dosenfutter 🥫",
-   "text": "Wie ein Preis von Napoleon die Konserve möglich machte. Der Dosenöffner kam erst viel später.",
-   "niche": "Geschichte",
-   "views": 221,
-   "published": "2026-11-10T15:37:57+00:00",
-   "thumb": "thumbs/Ql42vWw-kjE.jpg"
   }
  ]
 }
