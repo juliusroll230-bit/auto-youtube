@@ -6,11 +6,92 @@
  },
  "videos": [
   {
+   "id": "0Rih6w1Vrb4",
+   "title": "Was passiert, wenn das Seil deines Aufzugs reißt? 🛗",
+   "text": "Warum ein Aufzug nicht einfach abstürzt: mehrere Seile, Fangbremse und die Show von Elisha Otis.",
+   "niche": "Wissen",
+   "views": 23,
+   "published": "2026-11-13T19:40:02+00:00",
+   "thumb": "thumbs/0Rih6w1Vrb4.jpg"
+  },
+  {
+   "id": "3sHmtho9l2s",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Burgerladen (Tag 1) 🍔",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Burgerladen „Abo Burger“ ein. Heute: 44 Mitarbeiter und 6.400 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 231,
+   "published": "2026-11-13T19:23:05+00:00",
+   "thumb": "thumbs/3sHmtho9l2s.jpg"
+  },
+  {
+   "id": "E8v3vNn-XOc",
+   "title": "Die Tanzwut von 1518: Eine Stadt, die nicht aufhören konnte 💃",
+   "text": "Im Juli 1518 beginnt in Straßburg eine Frau zu tanzen und hört nicht mehr auf. Bald tanzen Hunderte. Wir erzählen die ganze Geschichte der Tanzwut, zeigen die Quellen und prüfen jede Theorie.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-13T19:13:26+00:00",
+   "thumb": "thumbs/E8v3vNn-XOc.jpg"
+  },
+  {
+   "id": "eqdgw0osytg",
+   "title": "Dieser Skorpion steckt im Logo einer Tuning-Legende 🦂",
+   "text": "Carlo Abarth, sein Sternzeichen und die Marke Abarth.",
+   "niche": "Autos",
+   "views": 286,
+   "published": "2026-11-13T17:36:58+00:00",
+   "thumb": "thumbs/eqdgw0osytg.jpg"
+  },
+  {
+   "id": "d7lZRBmjXu8",
+   "title": "Der Junge, der aus dem Nichts in Nürnberg auftauchte 🏙️",
+   "text": "Kaspar Hauser tauchte 1828 in Nürnberg auf, kaum fähig zu sprechen. Wer er war, ist bis heute ungeklärt.",
+   "niche": "Geschichte",
+   "views": 265,
+   "published": "2026-11-13T16:40:17+00:00",
+   "thumb": "thumbs/d7lZRBmjXu8.jpg"
+  },
+  {
+   "id": "iX3odFGAouQ",
+   "title": "Der Ort unter Paris, an dem Millionen Tote liegen 💀",
+   "text": "Die Katakomben von Paris: ein riesiges Tunnelnetz mit den Gebeinen von rund sechs Millionen Menschen. Was belegt ist und was Legende ist, trennen wir im Video.",
+   "niche": "Wissen",
+   "views": 234,
+   "published": "2026-11-13T15:40:39+00:00",
+   "thumb": "thumbs/iX3odFGAouQ.jpg"
+  },
+  {
+   "id": "dCSM_tiynm4",
+   "title": "Was passiert, wenn du tagelang nicht schläfst? 😵",
+   "text": "Was Schlafmangel mit Körper und Gehirn macht und der Rekord von Randy Gardner (1964). Nicht nachmachen.",
+   "niche": "Wissen",
+   "views": 1291,
+   "published": "2026-11-13T13:43:49+00:00",
+   "thumb": "thumbs/dCSM_tiynm4.jpg"
+  },
+  {
+   "id": "WVdK42uN6-s",
+   "title": "Dieser Autobauer startete mit Webstühlen 🧵",
+   "text": "Michio Suzuki, Webstühle und der Weg zu Autos und Motorrädern: die Geschichte von Suzuki.",
+   "niche": "Autos",
+   "views": 136,
+   "published": "2026-11-13T12:37:18+00:00",
+   "thumb": "thumbs/WVdK42uN6-s.jpg"
+  },
+  {
+   "id": "fyS2V5EKvpw",
+   "title": "Die Lichter, die seit Jahrzehnten ein Tal heimsuchen 💡",
+   "text": "Das Hessdalen-Tal in Norwegen: Seit Jahrzehnten tauchen dort rätselhafte Lichter auf. Die Ursache ist nicht geklärt, es gibt nur Theorien.",
+   "niche": "Wissen",
+   "views": 128,
+   "published": "2026-11-13T11:40:06+00:00",
+   "thumb": "thumbs/fyS2V5EKvpw.jpg"
+  },
+  {
    "id": "rmdgNwVokVI",
    "title": "Das Haus, das nie fertig werden durfte 🏚️",
    "text": "Das Winchester House in Kalifornien: hunderte Räume, Treppen ins Nichts und eine Legende über Geister. Belegt ist der Bau, die Geister sind nur Legende.",
    "niche": "Wissen",
-   "views": 3,
+   "views": 247,
    "published": "2026-11-13T09:41:07+00:00",
    "thumb": "thumbs/rmdgNwVokVI.jpg"
   },
@@ -19,7 +100,7 @@
    "title": "Was passiert, wenn du einen Kaugummi verschluckst? 🫧",
    "text": "Bleibt ein Kaugummi sieben Jahre im Körper? Der Mythos und was wirklich passiert.",
    "niche": "Wissen",
-   "views": 368,
+   "views": 373,
    "published": "2026-11-12T20:50:03+00:00",
    "thumb": "thumbs/fKMewsh7AKk.jpg"
   },
@@ -28,7 +109,7 @@
    "title": "Die verlorene Kolonie von Roanoke: Wohin verschwanden 115 Menschen? 🏚️",
    "text": "1590 findet John White seine Siedlung leer vor, nur ein Wort ist in einen Pfosten geschnitzt: Croatoan. Wir erzählen die ganze Geschichte der verlorenen Kolonie von Roanoke, zeigen die Spuren und prüfen jede Theorie.",
    "niche": "Geschichte",
-   "views": 76,
+   "views": 82,
    "published": "2026-11-12T20:44:39+00:00",
    "thumb": "thumbs/PeZ27gm7Les.jpg"
   },
@@ -37,7 +118,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 1) 🚗",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 41 Mitarbeiter und 5.600 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 0,
+   "views": 1,
    "published": "2026-11-12T19:33:46+00:00",
    "thumb": "thumbs/fg2X7BI9fgM.jpg"
   },
@@ -55,90 +136,9 @@
    "title": "Die Explosion, die einen Wald flachlegte, aber keinen Krater ließ 💥",
    "text": "Tunguska, Sibirien, 1908: Eine gewaltige Explosion legt Millionen Bäume um. Eine Theorie nennt einen Asteroiden oder Kometen. Bewiesen ist die Ursache nicht.",
    "niche": "Geschichte",
-   "views": 0,
+   "views": 1,
    "published": "2026-11-12T16:42:29+00:00",
    "thumb": "thumbs/JIqlkAxooso.jpg"
-  },
-  {
-   "id": "wSoW-YWCEXw",
-   "title": "Unterm Bett: Das Geheimnis hinter Opas Zettel (Teil 3) 🛏️",
-   "text": "Unterm Bett, Teil 3, das Finale. Eine ausgedachte Grusel-Serie.",
-   "niche": "Wissen",
-   "views": 67,
-   "published": "2026-11-12T15:41:31+00:00",
-   "thumb": "thumbs/wSoW-YWCEXw.jpg"
-  },
-  {
-   "id": "4OsUERUyGuI",
-   "title": "Das Rätsel: Warum leuchten Tiere in der Tiefsee? 💡",
-   "text": "Biolumineszenz: Wie und warum Tiefseetiere ihr eigenes Licht erzeugen. Manche Erklärungen sind nur Theorien.",
-   "niche": "Wissen",
-   "views": 3,
-   "published": "2026-11-12T13:42:22+00:00",
-   "thumb": "thumbs/4OsUERUyGuI.jpg"
-  },
-  {
-   "id": "EJJb6q2WeoQ",
-   "title": "Dieser Supersportwagen trägt den Namen eines Windes 🌬️",
-   "text": "Horacio Pagani, Juan Manuel Fangio und der Zonda: die Geschichte der Marke Pagani.",
-   "niche": "Autos",
-   "views": 22,
-   "published": "2026-11-12T12:37:52+00:00",
-   "thumb": "thumbs/EJJb6q2WeoQ.jpg"
-  },
-  {
-   "id": "-175LhS3mGw",
-   "title": "Das Schiff, das mit fünfundzwanzig Menschen verschwand 🚢",
-   "text": "Die Joyita im Südpazifik, 1955: ein treibendes Schiff ohne Besatzung und ein bis heute ungeklärtes Schicksal.",
-   "niche": "Geschichte",
-   "views": 1,
-   "published": "2026-11-12T11:41:55+00:00",
-   "thumb": "thumbs/-175LhS3mGw.jpg"
-  },
-  {
-   "id": "KNV9vMfj4NQ",
-   "title": "Das Hotel, das Stephen King einen Albtraum bescherte 🏨",
-   "text": "Das Stanley Hotel in Colorado: Zimmer 217, ein Albtraum und die Legenden dazu. Belegt und Legende trennen wir im Video.",
-   "niche": "Wissen",
-   "views": 25,
-   "published": "2026-11-12T09:43:11+00:00",
-   "thumb": "thumbs/KNV9vMfj4NQ.jpg"
-  },
-  {
-   "id": "RRq5S_Ta3Uo",
-   "title": "Was passiert, wenn die Sonne plötzlich verschwindet? ☀️",
-   "text": "Ein Gedankenexperiment: acht Minuten Licht, dann Dunkelheit und Kälte. Vieles davon sind Berechnungen und Theorien.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-12T05:41:09+00:00",
-   "thumb": "thumbs/RRq5S_Ta3Uo.jpg"
-  },
-  {
-   "id": "naStvEO4qfk",
-   "title": "Diese Luxusmarke wurde mit Rennen berühmt 🏁",
-   "text": "Die Bentley Boys und die fünf Siege in Le Mans von 1924 bis 1930.",
-   "niche": "Autos",
-   "views": 181,
-   "published": "2026-11-11T19:36:58+00:00",
-   "thumb": "thumbs/naStvEO4qfk.jpg"
-  },
-  {
-   "id": "uf70foPYNew",
-   "title": "Was geschah wirklich auf der Mary Celeste? Das Geisterschiff 🚢",
-   "text": "Dezember 1872: Ein Segelschiff treibt im Atlantik, alle zehn Menschen an Bord sind verschwunden. Wir erzählen die ganze Geschichte der Mary Celeste, zeigen die Spuren und prüfen jede Theorie.",
-   "niche": "Geschichte",
-   "views": 68,
-   "published": "2026-11-11T18:30:58+00:00",
-   "thumb": "thumbs/uf70foPYNew.jpg"
-  },
-  {
-   "id": "f492JVM5ZuI",
-   "title": "Der Leuchtturm, aus dem drei Männer verschwanden 🗼",
-   "text": "Die Flannan-Inseln in Schottland, Dezember 1900: drei Leuchtturmwärter verschwinden spurlos. Spätere Ausschmückungen trennen wir von dem, was belegt ist.",
-   "niche": "Geschichte",
-   "views": 112,
-   "published": "2026-11-11T17:38:38+00:00",
-   "thumb": "thumbs/f492JVM5ZuI.jpg"
   }
  ]
 }
