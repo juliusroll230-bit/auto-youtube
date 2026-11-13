@@ -253,10 +253,17 @@ def clipi_times(per_day):
     if per_day == 1:
         return [13 * 60]
     step = (b - a) / (per_day - 1)
-    return sorted({int(round((a + i * step) / 5) * 5) for i in range(per_day)})
+    grid = 5 if step >= 10 else 1  # bei sehr vielen Posts pro Tag minutengenau, sonst fallen Zeiten zusammen
+    return sorted({int(round((a + i * step) / grid) * grid) for i in range(per_day)})
 
 
 CLIPI_GAP_MIN = 10   # mindestens so viele Minuten zwischen zwei Clipi-Posts, auch beim Nachholen
+
+
+def clipi_gap(per_day):
+    """Mindestabstand zwischen zwei Clipi-Posts: 10 Minuten, bei sehr vielen Posts pro Tag etwas weniger."""
+    a, b = CLIPI_WINDOW
+    return max(3, min(CLIPI_GAP_MIN, int((b - a) / max(1, per_day) * 0.8)))
 
 
 def _clipi_open(per_day, at, st):
@@ -285,7 +292,7 @@ def due_clipi(per_day, at=None):
     if (st.get("clipi_pause") or "") > at.isoformat(timespec="seconds"):
         return None
     last = st.get("clipi_last") or ""
-    if last and dt.datetime.fromisoformat(last) > at - dt.timedelta(minutes=CLIPI_GAP_MIN):
+    if last and dt.datetime.fromisoformat(last) > at - dt.timedelta(minutes=clipi_gap(per_day)):
         return None
     for slot, key in _clipi_open(per_day, at, st):
         if slot - dt.timedelta(minutes=5) <= at:
@@ -311,7 +318,7 @@ def next_clipi(per_day, at=None):
     soon = at
     last = st.get("clipi_last") or ""
     if last:
-        soon = max(soon, dt.datetime.fromisoformat(last) + dt.timedelta(minutes=CLIPI_GAP_MIN))
+        soon = max(soon, dt.datetime.fromisoformat(last) + dt.timedelta(minutes=clipi_gap(per_day)))
     open_today = _clipi_open(per_day, at, st)
     if open_today:
         return max(open_today[0][0], soon).replace(second=0, microsecond=0).isoformat(timespec="minutes")

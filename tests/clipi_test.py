@@ -42,9 +42,10 @@ assert store.due_clipi(10, noon + dt.timedelta(minutes=11)) == "2026-11-14-08-45
 assert store.next_clipi(10, noon + dt.timedelta(minutes=3)).startswith("2026-11-14T12:10")
 assert store.due_clipi(10, dt.datetime(2026, 11, 14, 6, 0, tzinfo=tz)) is None
 
-# Einstellung "Clipi pro Tag": Standard 10, höchstens 30
+# Einstellung "Clipi pro Tag": Standard 10, höchstens 100
 assert agents.settings({})["publisher"]["clipi_per_day"] == 10
-assert agents.validate("publisher", {"clipi_per_day": 99})["clipi_per_day"] == 30
+assert agents.validate("publisher", {"clipi_per_day": 999})["clipi_per_day"] == 100
+assert len(store.clipi_times(100)) == 100 and store.clipi_gap(100) < 10
 
 # Fertiges Video: wird nicht geschnitten, sondern nur umverpackt und gleich freigegeben
 src = os.path.join(tempfile.mkdtemp(), "mein_video.mp4")

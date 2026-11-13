@@ -42,7 +42,7 @@ RANGES = {
     ("clipper", "max_len"): (15, 90, 5),
     ("publisher", "clips_per_day"): (0, 10, 1),
     ("publisher", "long_per_week"): (0, 7, 1),
-    ("publisher", "clipi_per_day"): (1, 30, 1),  # eigener Clip-Kanal (Clipi), 7 bis 23 Uhr verteilt
+    ("publisher", "clipi_per_day"): (1, 100, 1),  # eigener Clip-Kanal (Clipi), 7 bis 23 Uhr verteilt
 }
 CHOICES = {
     ("studio", "kopfzeile"): ("auto", "mit", "ohne"),
