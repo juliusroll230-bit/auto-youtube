@@ -327,6 +327,23 @@ def next_clipi(per_day, at=None):
     return tomorrow.replace(hour=m // 60, minute=m % 60).isoformat(timespec="minutes")
 
 
+PROJECT_DAILY = 100   # YouTube-Upload-Topf pro Google-Projekt und Tag, Hauptkanal und Clipi teilen ihn
+
+
+def clipi_room(cfg, st, at=None):
+    """Wie viele Clipi-Uploads heute noch Platz haben, ohne dem Hauptkanal den Tagestopf wegzunehmen.
+
+    Der Hauptkanal (KI-Shorts, langes Video, Firmen-Folge) behält seine Plätze für heute reserviert."""
+    at = at or now()
+    today = at.date().isoformat()
+    ups = [u for u in st.get("uploads", []) if (u.get("posted_at") or "")[:10] == today]
+    clip_done = sum(1 for u in ups if u.get("channel") == "clips")
+    main_done = len(ups) - clip_done
+    main_total = len(cfg.get("post_hours") or []) + 2  # + langes Video + Firmen-Folge
+    main_left = max(0, main_total - main_done)
+    return max(0, PROJECT_DAILY - main_done - main_left - clip_done)
+
+
 def clipi_overview(cfg, st):
     """Clipi-Warteschlange für die Website: wartende Videos, Tageslimit, nächste Sendezeit, heute gepostet."""
     import agents
@@ -344,6 +361,8 @@ def clipi_overview(cfg, st):
     elif pause > now().isoformat(timespec="seconds"):
         why = "YouTube nimmt auf dem Clip-Kanal heute nichts mehr an (Tageslimit). Weiter am %s um %s Uhr." % (
             pause[8:10] + "." + pause[5:7] + ".", pause[11:16])
+    elif clipi_room(cfg, st) <= 0:
+        why = "Heute ist der YouTube-Tagestopf fast voll (100 Uploads für beide Kanäle). Der Rest ist für den Hauptkanal reserviert. Morgen geht es weiter."
     elif done >= per:
         why = "Heute sind schon %d von %d Clips online. Morgen ab 7 Uhr geht es weiter." % (done, per)
     return {**info, "per_day": per, "why": why, "times": ["%02d:%02d" % (m // 60, m % 60) for m in clipi_times(per)],

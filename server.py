@@ -329,6 +329,10 @@ def post_clip_slot(slot, manual=False):
             if slot:
                 store.mark_slot(slot, "clipi_slots")
             return False
+        if not manual and store.clipi_room(cfg, store.state()) <= 0:
+            if slot:  # Tagestopf von YouTube (100 pro Projekt) gehört auch dem Hauptkanal, darum hier stoppen
+                store.mark_slot(slot, "clipi_slots")
+            return False
         ready = clips.ready_clips(auto=True)
         if not ready:
             return False

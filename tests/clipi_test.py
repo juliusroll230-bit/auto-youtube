@@ -103,3 +103,15 @@ assert [clips.learn_choice("hook", k) for k in range(3)] == ["kurz"] * 3
 row = next(r for r in clips.learn_summary() if r["key"] == "hook")
 assert row["values"][0]["value"] == "Kurz mit „…“" and row["values"][0]["best"], row
 print("Clipi-Warteschlange ok")
+
+# Tagestopf: Clipi lässt dem Hauptkanal seine Plätze frei
+import datetime as _dt
+cfg_t = {"post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]}
+now_t = store.now()
+st_t = {"uploads": [{"channel": "clips", "posted_at": now_t.isoformat(timespec="seconds")} for _ in range(50)]}
+assert store.clipi_room(cfg_t, st_t, now_t) == 100 - 12 - 50
+st_t["uploads"] += [{"channel": "clips", "posted_at": now_t.isoformat(timespec="seconds")} for _ in range(38)]
+assert store.clipi_room(cfg_t, st_t, now_t) == 0
+st_t["uploads"] = [{"posted_at": now_t.isoformat(timespec="seconds")} for _ in range(12)]  # Hauptkanal hat alles gepostet
+assert store.clipi_room(cfg_t, st_t, now_t) == 88
+print("Tagestopf ok")
