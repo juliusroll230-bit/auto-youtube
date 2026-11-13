@@ -1448,12 +1448,12 @@ dialog.vs[open] { display: grid; place-items: center; }
             <label><input type="radio" name="cqMode" value="ganz"><span><b>Ganz posten, wie es ist</b><span class="muted">Für Videos, die schon fertig sind. Nichts wird verändert.</span></span></label>
           </div>
           <label class="check"><input type="checkbox" id="cqRights"><span><b>Ich darf diese Videos posten.</b> <span class="muted">Eigene Videos oder mit Erlaubnis. Fremde Videos ohne Erlaubnis bringen Strikes und können den Kanal kosten.</span></span></label>
-          <div class="field cq-per"><label for="cqPer">Videos pro Tag auf Clipi: <b id="cqPerV">10</b></label><input type="range" id="cqPer" min="1" max="30" step="1" value="10"><span class="label" id="cqTimes"></span></div>
+          <div class="field cq-per"><label for="cqPer">Videos pro Tag auf Clipi: <b id="cqPerV">10</b></label><input type="range" id="cqPer" min="1" max="100" step="1" value="10"><span class="label" id="cqTimes"></span></div>
           <div class="row"><button class="btn primary" type="submit" id="cqGo" disabled>Videos auswählen</button><span class="msg" id="cqMsg"></span></div>
           <div class="cq-list" id="cqList"></div>
           <div class="cq-learn"><b>Was Clipi lernt</b><span class="label">Clipi testet bei geschnittenen Clips verschiedene Hooks, Längen und Untertitel. Nach ein paar Tagen nimmt er 3 von 4 Mal das, was die meisten Aufrufe bringt, und testet weiter.</span><div id="cqLearn"></div></div>
           <details class="cq-q" id="cqQ"><summary id="cqQSum">Warteschlange ansehen</summary><div class="cq-list" id="cqQueue"></div></details>
-          <p class="label">Warum nicht unbegrenzt? YouTube erlaubt pro Kanal nur eine bestimmte Zahl Uploads am Tag. Wird es zu viel, stuft YouTube den Kanal als Spam ein und zeigt die Videos kaum noch. 10 bis 15 am Tag ist ein guter Wert. Sagt YouTube „Limit erreicht“, wartet Clipi einfach bis zum nächsten Morgen. Clips aus Content-Rewards-Kampagnen postet Clipi nie von selbst.</p>
+          <p class="label">Warum nicht unbegrenzt? YouTube erlaubt pro Kanal nur eine bestimmte Zahl Uploads am Tag. Wird es zu viel, stuft YouTube den Kanal als Spam ein und zeigt die Videos kaum noch. 10 bis 15 am Tag ist ein guter Wert. Der Regler geht bis 100, aber so viel lässt YouTube einem neuen Kanal meist nicht zu. Sagt YouTube „Limit erreicht“, wartet Clipi einfach bis zum nächsten Morgen. Clips aus Content-Rewards-Kampagnen postet Clipi nie von selbst.</p>
         </form>
       </div>
     </section>
