@@ -32,7 +32,7 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21], "privacy": "public", "expired": False,
+                  "post_hours": [8, 11, 13, 16, 18], "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
                   # Pixabay- oder Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
@@ -93,6 +93,11 @@ def init():
             if cfg["post_hours"] in ([8, 11, 13, 16, 18, 20], [7, 11, 13, 15, 17, 19, 21]):
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
             cfg["hours_v4"] = True
+        # 13.11.: weniger, dafür bessere Videos (5 statt 10 pro Tag), eigene Zeiten bleiben
+        if not cfg.get("hours_v5"):
+            if cfg["post_hours"] == [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]:
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+            cfg["hours_v5"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)

@@ -115,3 +115,15 @@ assert store.clipi_room(cfg_t, st_t, now_t) == 0
 st_t["uploads"] = [{"posted_at": now_t.isoformat(timespec="seconds")} for _ in range(12)]  # Hauptkanal hat alles gepostet
 assert store.clipi_room(cfg_t, st_t, now_t) == 88
 print("Tagestopf ok")
+
+# Neue Standardzeiten (5 pro Tag): alte 10 Zeiten werden einmal umgestellt, eigene bleiben
+import json as _json
+_d = tempfile.mkdtemp()
+store.DATA = _d
+store.write("config.json", {"post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]})
+store.init()
+assert store.config()["post_hours"] == [8, 11, 13, 16, 18]
+store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True})
+store.init()
+assert store.config()["post_hours"] == [9, 12]
+print("Zeiten ok")
