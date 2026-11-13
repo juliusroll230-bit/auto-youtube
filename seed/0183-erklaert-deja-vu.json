@@ -1,0 +1,98 @@
+{
+  "slug": "erklaert-deja-vu",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1030",
+    "#8a5ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Das Rätsel um Déjà-vu: Hast du das schon erlebt? 🔁",
+  "description": "Das Gefühl, etwas schon erlebt zu haben: Was steckt hinter Déjà-vu? Es gibt Theorien, aber keine endgültige Antwort.\n\n#wissen #dejavu #gehirn #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "dejavu",
+    "gehirn",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Leo"
+  },
+  "segments": [
+    {
+      "text": "Du betrittst einen Raum und weißt genau: Das hast du schon erlebt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "schockiert"
+      }
+    },
+    {
+      "text": "Das nennt man Déjà-vu. Aber was steckt dahinter?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔁",
+        "text": "Déjà-vu"
+      }
+    },
+    {
+      "text": "Mehr als die Hälfte aller Menschen kennt dieses Gefühl.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 7,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Viele kennen es"
+      }
+    },
+    {
+      "text": "Eine Theorie: Dein Gehirn speichert die Szene zu schnell doppelt ab.",
+      "szene": {
+        "typ": "akte",
+        "text": "Theorie",
+        "punkte": [
+          "🧠",
+          "⏱️",
+          "🔁"
+        ]
+      }
+    },
+    {
+      "text": "Andere Theorie: Ein Detail wirkt vertraut, doch die Erinnerung fehlt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Doppelt gespeichert",
+          "Vertrautes Detail",
+          "Kurzer Fehler"
+        ]
+      }
+    },
+    {
+      "text": "Meist dauert es nur wenige Sekunden und ist normalerweise harmlos.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "⏱️",
+        "text": "Nur Sekunden"
+      }
+    },
+    {
+      "text": "Bis heute nicht genau erklärt. Hattest du schon mal eins?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Du auch?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

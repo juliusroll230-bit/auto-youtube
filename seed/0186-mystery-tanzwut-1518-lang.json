@@ -1,0 +1,688 @@
+{
+  "slug": "mystery-tanzwut-1518-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#1d1210",
+    "#8c3a3a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Tanzwut von 1518: Eine Stadt, die nicht aufhören konnte 💃",
+  "description": "Im Juli 1518 beginnt in Straßburg eine Frau zu tanzen und hört nicht mehr auf. Bald tanzen Hunderte. Wir erzählen die ganze Geschichte der Tanzwut, zeigen die Quellen und prüfen jede Theorie.\n\n#mystery #rätsel #tanzwut #geschichte #straßburg",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "tanzwut",
+    "geschichte",
+    "straßburg"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Troffea"
+  },
+  "segments": [
+    {
+      "text": "Straßburg, Juli fünfzehnhundertachtzehn: Eine Frau tanzt mitten auf der Straße, ohne Pause, und sie hört einfach nicht mehr auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💃"
+      }
+    },
+    {
+      "text": "Tag und Nacht tanzt sie weiter, und innerhalb weniger Wochen tanzen Hunderte Menschen mit, bis sie vor Erschöpfung umfallen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "💃",
+        "text": "Sie tanzen",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Niemand weiß bis heute sicher, warum. In diesem Video erzählen wir die Geschichte der Tanzwut von fünfzehnhundertachtzehn und prüfen jede Theorie.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Tanzwut 1518",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Zuerst die Stadt und die Zeit, dann der Ausbruch, dann der Versuch, ihn zu stoppen, und zum Schluss die Theorien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Straßburg gehört damals zum Heiligen Römischen Reich und ist eine der wichtigsten Städte am Oberrhein, reich, belebt und stolz.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🏙️"
+      }
+    },
+    {
+      "text": "Doch die Menschen leiden: Missernten haben das Essen teuer gemacht, und der Hunger ist in den Straßen zu sehen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌾",
+        "text": "Hunger",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Wer dort lebt, kennt Prozessionen, Wallfahrten und Predigten, und der Glaube bestimmt den Alltag viel stärker, als wir es heute kennen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "⛪"
+      }
+    },
+    {
+      "text": "Dazu kommen Krankheiten, die Angst machen, und die Chroniken nennen immer wieder dieselben Sorgen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Not",
+        "punkte": [
+          "Hunger",
+          "Krankheiten",
+          "Angst"
+        ]
+      }
+    },
+    {
+      "text": "Die Menschen glauben fest, dass Heilige Krankheiten schicken können. Besonders gefürchtet ist der heilige Veit, dem man den Fluch des Tanzens zuschreibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "⛪"
+      }
+    },
+    {
+      "text": "Mitte Juli fünfzehnhundertachtzehn beginnt eine Frau namens Troffea in einer engen Gasse zu tanzen, und sie wirkt wie in Trance.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1518",
+        "text": "Frau Troffea",
+        "objekt": "💃"
+      }
+    },
+    {
+      "text": "Sie tanzt stundenlang bis zur völligen Erschöpfung, und am nächsten Tag macht sie weiter, ohne richtig zu essen und kaum zu schlafen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "k_o",
+        "aktion": "jubelt",
+        "objekt": "😵"
+      }
+    },
+    {
+      "text": "Bald bleiben Nachbarn stehen und schauen zu, einige lachen, andere haben Angst, und manche fangen selbst an, sich zu bewegen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 7,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Zuschauer"
+      }
+    },
+    {
+      "text": "Innerhalb einer Woche tanzen schon etwa dreißig Menschen mit, Männer wie Frauen, Junge wie Alte.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "Tänzer",
+        "objekt": "💃",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Nach einem Monat sollen es bis zu vierhundert gewesen sein. Die genaue Zahl ist unsicher, denn alte Quellen übertreiben manchmal.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👥",
+        "text": "400 Tänzer?",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Sie tanzen nicht aus Freude. Zeugen berichten, dass viele weinen, um Hilfe rufen und trotzdem nicht aufhören können.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "😢",
+        "text": "Kein Vergnügen",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Manche tanzen, bis sie zusammenbrechen, schlafen kurz ein und stehen sofort wieder auf, um weiterzumachen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛌",
+        "text": "Ohne Pause",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Gleich kommt der Teil, der heute am meisten überrascht: Wie die Stadt auf die Krise reagierte.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏛️",
+        "text": "Der Stadtrat"
+      }
+    },
+    {
+      "text": "Der Stadtrat holt Ärzte, und die sagen, die Tänzer litten an einer natürlichen Krankheit, verursacht durch überhitztes Blut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🩺"
+      }
+    },
+    {
+      "text": "Die Ärzte raten zu einem Mittel, das uns heute seltsam vorkommt: Die Tänzer sollen einfach weitertanzen, bis das Blut abgekühlt ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💃",
+        "text": "Weitertanzen",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Der Rat öffnet sogar Zunfthäuser und Marktplätze, baut Bühnen und bestellt Musiker, damit die Kranken Platz und Takt haben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🥁"
+      }
+    },
+    {
+      "text": "Die Idee ist klar: Wer sich austanzt, wird gesund. Doch es kommt ganz anders.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💃",
+          "text": "Austanzen"
+        },
+        "rechts": {
+          "objekt": "😰",
+          "text": "Wird schlimmer"
+        }
+      }
+    },
+    {
+      "text": "Die Musik lockt noch mehr Menschen an, und aus einer einzigen Frau werden Dutzende, dann Hunderte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🥁",
+        "text": "Mehr Tänzer",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Die Straßen sind erfüllt von Trommeln, Flöten und erschöpften Menschen, und selbst gesunde Bürger trauen sich kaum noch hinaus.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 7,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Chaos"
+      }
+    },
+    {
+      "text": "Wer kann, schließt Türen und Fenster, doch der Klang der Trommeln dringt durch jede Ritze, Tag und Nacht, und ist kaum zu ertragen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🥁",
+        "text": "Tag und Nacht",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Berichte sprechen von Menschen, die an Herzschwäche und Erschöpfung starben. Chroniken nennen bis zu fünfzehn Tote pro Tag, doch das ist umstritten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 15,
+        "einheit": "Tote pro Tag?",
+        "objekt": "💀",
+        "farbcode": "#2a1a1a"
+      }
+    },
+    {
+      "text": "Genau weiß es niemand, denn die Quellen sind Ratsprotokolle, Predigten und Chroniken, und sie stimmen nicht in allen Punkten überein.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Quellen",
+        "punkte": [
+          "📜",
+          "⛪",
+          "🏛️"
+        ]
+      }
+    },
+    {
+      "text": "Jetzt wird der Rat nervös und ändert seinen Plan: Das Tanzen wird verboten, und Musik darf auf den Plätzen nicht mehr gespielt werden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "wut",
+        "aktion": "zeigt",
+        "objekt": "🚫"
+      }
+    },
+    {
+      "text": "Die Behörden suchen nun nach einer anderen Lösung und fragen sich: Hat vielleicht eine Strafe des heiligen Veit die Stadt getroffen?",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⛪",
+        "text": "Heiliger Veit",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Priester und Ratsherren beschließen, die Tänzer zum Heiligtum des heiligen Veit in Zabern zu bringen, einem Ort etwa vierzig Kilometer entfernt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🛤️"
+      }
+    },
+    {
+      "text": "Zabern liegt im Elsass, am Fuß der Vogesen, und dorthin brechen die Kranken auf Wagen, in Gruppen und mit Begleitung auf.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Zabern"
+      }
+    },
+    {
+      "text": "Die Reise dauert viele Stunden, und die Begleiter müssen die Erschöpften stützen, tragen und immer wieder zum Weitergehen antreiben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "schlurft",
+        "objekt": "🛤️"
+      }
+    },
+    {
+      "text": "Dort sollen sie Rituale erleben: Gebete, Opfer und besondere Zeichen, von denen man sich Heilung versprach.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🕯️",
+        "text": "Rituale",
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Die Chroniken nennen mehrere Bestandteile der Heilung, und die wichtigsten sind schnell erklärt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Ritual",
+        "punkte": [
+          "Gebete",
+          "Rote Schuhe",
+          "Kreuze"
+        ]
+      }
+    },
+    {
+      "text": "Die Tänzer bekamen rote Schuhe, auf denen kleine Kreuze waren, die man mit heiligem Öl bestrich, und sie liefen damit zum Altar.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👠",
+        "text": "Rote Schuhe",
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Nach etwa ein bis zwei Monaten, im Spätsommer fünfzehnhundertachtzehn, endet die Plage so plötzlich, wie sie begann.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1518",
+        "text": "Das Ende",
+        "objekt": "🍂"
+      }
+    },
+    {
+      "text": "Warum sie aufhörte, weiß niemand. Vielleicht wirkte das Ritual, vielleicht schwand die Erschöpfung, vielleicht ließ die Panik einfach nach.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Warum Ende?",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Das Ende kam also ohne Sieger: Kein Arzt, kein Priester und kein Ratsherr konnte später sagen, was die Tänzer wirklich geheilt hatte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "⚖️"
+      }
+    },
+    {
+      "text": "Jetzt zu den Theorien. Wir stellen sie der Reihe nach vor und sagen, was dafür und was dagegen spricht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Die Theorien"
+      }
+    },
+    {
+      "text": "Theorie eins: Mutterkorn. Ein Pilz, der auf feuchtem Roggen wächst, kann Brot vergiften und Wahnvorstellungen auslösen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌾"
+      }
+    },
+    {
+      "text": "Dafür spricht, dass es damals Hunger gab und Roggenbrot oft verdorben war, und deshalb galt Mutterkorn lange als Hauptverdächtiger.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🍞",
+        "text": "Verdorbenes Brot",
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Dagegen spricht viel: Der Pilz verengt die Blutgefäße und führt zu Krämpfen, aber damit kann niemand tagelang rhythmisch tanzen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍞",
+          "text": "Krämpfe"
+        },
+        "rechts": {
+          "objekt": "💃",
+          "text": "Tagelang tanzen"
+        }
+      }
+    },
+    {
+      "text": "Theorie zwei: Eine Sekte oder religiöse Bewegung, die in Trance tanzte. Doch für einen Kult passen die Berichte über Leiden und Angst nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "⛪"
+      }
+    },
+    {
+      "text": "Auch die Behörden hielten das Tanzen nicht für Absicht, sondern für eine Krankheit, die sie mit Geld und Zeit zu stoppen versuchten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Keine Absicht",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Theorie drei, die heute viele Historiker bevorzugen: eine Massenpsychose, ausgelöst durch extremen Stress, Hunger und tiefen Glauben an Flüche.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧠",
+        "text": "Massenpsychose?",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Wer fest glaubt, dass der heilige Veit ihn zum Tanzen zwingen kann, und dazu Angst und Not erlebt, kann in einen Zustand wie Trance geraten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "😰"
+      }
+    },
+    {
+      "text": "Die Hinweise darauf sind einfach zusammengefasst, und sie passen zu vielen ähnlichen Fällen in dieser Zeit.",
+      "szene": {
+        "typ": "liste",
+        "text": "Hinweise",
+        "punkte": [
+          "Hunger und Not",
+          "Glaube an Flüche",
+          "Ähnliche Fälle"
+        ]
+      }
+    },
+    {
+      "text": "Schon dreizehnhundertvierundsiebzig gab es Tanzepidemien im Rheinland, bei denen Menschen in Aachen, Köln und weiteren Städten stundenlang tanzten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Rheinland 1374",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Von dort zogen solche Ausbrüche entlang des Rheins weiter, bis nach Straßburg, und es gab immer wieder neue Wellen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Entlang des Rheins"
+      }
+    },
+    {
+      "text": "In Italien gab es einen ähnlichen Glauben: Wer von einer Spinne gebissen wurde, sollte tanzen, und daraus entstand der Tanz Tarantella.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🕷️"
+      }
+    },
+    {
+      "text": "Solche Ausbrüche zeigen, dass ein Gedanke ansteckend sein kann, wenn viele Menschen verängstigt sind und einander beobachten.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 7,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Ansteckend"
+      }
+    },
+    {
+      "text": "Viele Historiker halten es für unwahrscheinlich, dass die Tänzer schauspielerten, denn ihre Leiden waren zu groß und zu lang.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "💔"
+      }
+    },
+    {
+      "text": "Heute nennt man das eine psychogene Erkrankung. Dabei gibt es echte Beschwerden, aber keine körperliche Ursache wie einen Erreger.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧠",
+          "text": "Psyche"
+        },
+        "rechts": {
+          "objekt": "🦠",
+          "text": "Kein Erreger"
+        }
+      }
+    },
+    {
+      "text": "Eine ähnliche Wirkung kennt man bis heute: Wer fest an einen Fluch glaubt, spürt Angst, Herzklopfen und Schwäche, ohne dass etwas Körperliches vorliegt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💔",
+        "text": "Starker Glaube",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Auch ein modernes Beispiel gibt es: Im Jahr neunzehnhundertzweiundsechzig lachten in Tansania Schulkinder wochenlang, und Schulen wurden geschlossen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😂"
+      }
+    },
+    {
+      "text": "Gleich kommt noch ein Punkt, der die Geschichte besonders unheimlich macht: der Begriff Veitstanz.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🧠",
+        "text": "Veitstanz"
+      }
+    },
+    {
+      "text": "Später nannte man bestimmte Krankheiten mit unwillkürlichen Bewegungen Veitstanz, benannt nach dem Heiligen, den man damals fürchtete.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🩺",
+        "text": "Veitstanz",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Medizinisch hat das mit Straßburg nichts zu tun, doch der Name zeigt, wie tief die Angst vor dem Tanzen in den Köpfen saß.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💭"
+      }
+    },
+    {
+      "text": "Im Archiv von Straßburg liegen noch heute Ratsprotokolle aus dem Jahr fünfzehnhundertachtzehn, und Forscher lesen sie immer wieder neu.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Ratsprotokolle",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Der Historiker John Waller hat die Quellen ausgewertet und hält Stress und Glauben für die beste Erklärung, betont aber, dass sich vieles nicht beweisen lässt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Das alles liegt über fünfhundert Jahre zurück, und doch streiten Forscher bis heute darüber, was in Straßburg genau geschah.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 500,
+        "einheit": "Jahre her",
+        "objekt": "⏳",
+        "farbcode": "#2a1a24"
+      }
+    },
+    {
+      "text": "Er beschreibt, wie ein Gerücht in einer verängstigten Stadt zur Gewissheit werden kann, und wie aus Gewissheit Handeln wird, selbst gegen den eigenen Willen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir nach all den Spuren sicher, und was bleibt am Ende nur eine Vermutung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Im Sommer fünfzehnhundertachtzehn tanzten in Straßburg viele Menschen tagelang, es gab wohl auch Tote, und die Stadt reagierte mit Ärzten und Ritualen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Viele Tänzer",
+          "Ärzte und Rat",
+          "Ritual in Zabern"
+        ]
+      }
+    },
+    {
+      "text": "Unklar bleibt: Wie viele es wirklich waren, wie viele starben und was genau im Kopf der Tänzer vorging.",
+      "szene": {
+        "typ": "akte",
+        "text": "Unklar",
+        "punkte": [
+          "👥",
+          "💀",
+          "🧠"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist, dass Not, Angst und Glaube zusammen eine Art Massenpanik auslösten, doch das bleibt eine Einschätzung und kein Beweis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Und trotzdem lässt uns das Bild nicht los: eine ganze Stadt, die nicht aufhören kann zu tanzen, bis die Füße nicht mehr tragen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "💃",
+        "text": "Das Bild",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran, und wir sind gespannt: Was glaubst du, was in Straßburg wirklich geschah? Schreib deine Theorie in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

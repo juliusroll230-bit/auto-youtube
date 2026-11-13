@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-nazca-linien",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#2e2210",
+    "#c4903a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Riesenbilder im Sand, die man nur von oben sieht 🛩️",
+  "description": "Die Nazca-Linien in Peru: riesige Figuren im Wüstenboden, vor etwa zweitausend Jahren entstanden. Wozu sie dienten, ist bis heute unklar.\n\n#mystery #rätsel #nazca #peru #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "nazca",
+    "peru",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Maria"
+  },
+  "segments": [
+    {
+      "text": "Maria blickt aus dem Flugzeug und sieht riesige Tiere im Sand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🛩️"
+      }
+    },
+    {
+      "text": "Das ist die Wüste von Nazca in Peru.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Nazca"
+      }
+    },
+    {
+      "text": "Hunderte Linien und Figuren, teils mehrere hundert Meter groß.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🐒",
+        "text": "Riesige Figuren"
+      }
+    },
+    {
+      "text": "Sie entstanden vor ungefähr zweitausend Jahren, ohne Flugzeuge.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2000,
+        "einheit": "Jahre alt",
+        "objekt": "⏳",
+        "farbcode": "#2a2a1d"
+      }
+    },
+    {
+      "text": "Warum zeichneten Menschen Bilder, die man nur von oben sieht?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    },
+    {
+      "text": "Theorien: Kultwege, ein Kalender oder Rituale für Wasser.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Kultwege",
+          "Kalender",
+          "Wasserkult"
+        ]
+      }
+    },
+    {
+      "text": "Mit Schnüren und Pfählen konnte man die Figuren abstecken.",
+      "szene": {
+        "typ": "akte",
+        "text": "Wie gebaut?",
+        "punkte": [
+          "📏",
+          "🪵",
+          "🐒"
+        ]
+      }
+    },
+    {
+      "text": "Bis heute sind nicht alle Fragen gelöst. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "🐒",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

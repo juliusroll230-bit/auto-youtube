@@ -1,0 +1,108 @@
+{
+  "slug": "mystery-nebelbach-teil-1",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "serie": "Nebelbach",
+  "teil": 1,
+  "colors": [
+    "#101c24",
+    "#6a8ca0"
+  ],
+  "accent": "#ffd24d",
+  "title": "Nebelbach: Wohin sind alle verschwunden? (Teil 1) 🌫️",
+  "description": "Nebelbach, Teil 1. Eine ausgedachte Mystery-Serie.\n\n#mystery #rätsel #serie #nebelbach #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "serie",
+    "nebelbach",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "muetze",
+    "name": "Ida"
+  },
+  "segments": [
+    {
+      "text": "Ida rennt durch den Nebel, hinter ihr läutet eine Glocke.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Nebelbach, Teil eins: Wohin sind alle verschwunden?",
+      "szene": {
+        "typ": "titel",
+        "serie": "Nebelbach",
+        "teil": 1,
+        "ort": "dorf"
+      }
+    },
+    {
+      "text": "Alle Türen stehen offen, aber im Dorf ist niemand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "🚪",
+        "text": "Alle weg"
+      }
+    },
+    {
+      "text": "Auf jedem Tisch steht Essen, und es ist noch warm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🍲",
+        "text": "Noch warm"
+      }
+    },
+    {
+      "text": "Alle Uhren zeigen drei Uhr sieben und ticken nicht.",
+      "szene": {
+        "typ": "akte",
+        "text": "Drei Uhr sieben",
+        "punkte": [
+          "🕰️",
+          "3:07",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Im Nebel bewegt sich ein Schatten zwischen den Häusern.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dorf",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Idas Taschenlampe flackert, und jemand flüstert ihren Namen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#c4a8ff"
+      }
+    },
+    {
+      "text": "Die Kirchenglocke läutet von allein. Teil zwei kommt bald.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "🔔",
+        "text": "Teil 2 kommt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

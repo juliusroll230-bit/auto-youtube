@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-amelia-earhart",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0c1e34",
+    "#4a8cc4"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Pilotin, die mitten im Pazifik spurlos verschwand ✈️",
+  "description": "Amelia Earhart verschwand 1937 bei einem Weltumrundungsflug über dem Pazifik. Trotz großer Suche fand man sie nie. Es gibt nur Theorien.\n\n#mystery #rätsel #ameliaearhart #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "ameliaearhart",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "helm",
+    "name": "Amelia"
+  },
+  "segments": [
+    {
+      "text": "Ein Flugzeug fliegt allein über den Pazifik, und der Treibstoff wird knapp.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "✈️"
+      }
+    },
+    {
+      "text": "Am zweiten Juli neunzehnhundertsiebenunddreißig verschwindet Amelia Earhart spurlos.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1937,
+        "text": "Amelia Earhart",
+        "objekt": "✈️"
+      }
+    },
+    {
+      "text": "Sie wollte die kleine Insel Howland im Pazifik erreichen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Howland"
+      }
+    },
+    {
+      "text": "Der letzte Funkspruch klang besorgt, dann kam nichts mehr.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "📻",
+        "text": "Letzter Funk"
+      }
+    },
+    {
+      "text": "Schiffe und Flugzeuge suchten tagelang und fanden keine Spur.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 5,
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "text": "Die Suche"
+      }
+    },
+    {
+      "text": "Theorien: Absturz im Meer oder Notlandung auf einer einsamen Insel.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Absturz",
+          "Notlandung",
+          "Unbekannt"
+        ]
+      }
+    },
+    {
+      "text": "Eine Insel namens Nikumaroro bleibt eine Spur, doch nichts ist bewiesen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Nikumaroro",
+        "punkte": [
+          "🏝️",
+          "🔎",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Bis heute ungelöst. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "✈️",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

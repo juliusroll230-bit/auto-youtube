@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-antikythera-maschine",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0a2430",
+    "#2a8caa"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Gerät im Schiffswrack, das nicht dort sein dürfte ⚙️",
+  "description": "Die Antikythera-Maschine: ein rund zweitausend Jahre altes Zahnradgerät aus einem griechischen Wrack. Es zeigt, wie weit antike Technik schon war.\n\n#mystery #rätsel #antikythera #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "antikythera",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "matrose",
+    "name": "Dimitri"
+  },
+  "segments": [
+    {
+      "text": "Taucher holen ein verrostetes Metallstück aus einem Schiffswrack.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⚙️"
+      }
+    },
+    {
+      "text": "Neunzehnhunderteins finden Schwammtaucher bei der Insel Antikythera ein altes Wrack.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1901,
+        "text": "Wrack",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Darin steckt ein Gewirr aus Zahnrädern, gut zweitausend Jahre alt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "⚙️",
+        "text": "Zahnräder"
+      }
+    },
+    {
+      "text": "Wozu diente dieses Gerät? Niemand ahnte es zunächst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Wozu?"
+      }
+    },
+    {
+      "text": "Forscher erkannten: Es berechnete den Lauf von Sonne und Mond.",
+      "szene": {
+        "typ": "akte",
+        "text": "Himmelsrechner",
+        "punkte": [
+          "☀️",
+          "🌙",
+          "⚙️"
+        ]
+      }
+    },
+    {
+      "text": "So feine Technik kennt man erst Jahrhunderte später wieder.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⚙️",
+          "text": "Antikythera"
+        },
+        "rechts": {
+          "objekt": "⌚",
+          "text": "Mechanische Uhren"
+        }
+      }
+    },
+    {
+      "text": "Es stammt wohl aus dem antiken Griechenland, mehr wissen wir nicht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏛️",
+        "text": "Griechenland"
+      }
+    },
+    {
+      "text": "Gab es noch mehr davon? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "⚙️",
+        "text": "Noch mehr?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

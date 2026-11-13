@@ -1,0 +1,101 @@
+{
+  "slug": "erklaert-himmel-blau",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c2a4a",
+    "#4aa8e8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum ist der Himmel eigentlich blau? ☁️",
+  "description": "Sonnenlicht ist weiß, doch der Himmel blau: Das Zusammenspiel aus Streuung und Augen erklärt es. Und warum der Abend rot ist.\n\n#wissen #himmel #physik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "himmel",
+    "physik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Nora"
+  },
+  "segments": [
+    {
+      "text": "Du schaust nach oben und fragst: Warum ist der Himmel blau?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "☁️"
+      }
+    },
+    {
+      "text": "Sonnenlicht sieht weiß aus, steckt aber voller Farben.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "☀️",
+        "text": "Alle Farben"
+      }
+    },
+    {
+      "text": "Blaues Licht wird in der Luft viel stärker gestreut als rotes.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔵",
+          "text": "Blau: streut stark"
+        },
+        "rechts": {
+          "objekt": "🔴",
+          "text": "Rot: kaum"
+        }
+      }
+    },
+    {
+      "text": "Dadurch erreicht dich das gestreute Blau aus allen Richtungen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Streuung",
+        "punkte": [
+          "☀️",
+          "🔵",
+          "👁️"
+        ]
+      }
+    },
+    {
+      "text": "Und Violett? Wird noch stärker gestreut, aber unsere Augen sehen es kaum.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Und Violett?"
+      }
+    },
+    {
+      "text": "Am Abend ist der Weg des Lichts länger, und Rot bleibt übrig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🌅",
+        "text": "Abendrot"
+      }
+    },
+    {
+      "text": "Beim nächsten Sonnenuntergang weißt du jetzt Bescheid. Schaust du hin?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Abendrot"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

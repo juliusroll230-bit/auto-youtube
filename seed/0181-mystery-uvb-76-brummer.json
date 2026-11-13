@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-uvb-76-brummer",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#102018",
+    "#3a8c5a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Der Sender, der seit Jahrzehnten nur brummt 📻",
+  "description": "UVB-76: ein Kurzwellensender, der seit Jahrzehnten einen Brummton sendet, gelegentlich unterbrochen von Stimmen. Wer ihn betreibt, ist nicht offiziell bestätigt.\n\n#mystery #rätsel #uvb76 #funk #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "uvb76",
+    "funk",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "keiner",
+    "name": "Boris"
+  },
+  "segments": [
+    {
+      "text": "Nachts brummt das Radio, und plötzlich spricht eine Stimme.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📻"
+      }
+    },
+    {
+      "text": "Seit Jahrzehnten sendet derselbe Kanal fast nur einen Brummton.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "📻",
+        "text": "Brummton"
+      }
+    },
+    {
+      "text": "Er läuft auf viertausendsechshundertfünfundzwanzig Kilohertz, rund um die Uhr.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 4625,
+        "einheit": "Kilohertz",
+        "objekt": "📡",
+        "farbcode": "#102018"
+      }
+    },
+    {
+      "text": "Manchmal liest eine Stimme Zahlen und Namen vor, doch wozu?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Wozu?"
+      }
+    },
+    {
+      "text": "Der Sender steht vermutlich in Russland, bestätigt ist das nicht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Russland?"
+      }
+    },
+    {
+      "text": "Theorien: Militärsignal, Test oder ein Alarmsystem.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Militär",
+          "Test",
+          "Alarmsystem"
+        ]
+      }
+    },
+    {
+      "text": "Viele Funkamateure hören mit und führen genau Protokoll.",
+      "szene": {
+        "typ": "akte",
+        "text": "Mithörer",
+        "punkte": [
+          "📻",
+          "📝",
+          "👂"
+        ]
+      }
+    },
+    {
+      "text": "Bis heute weiß es niemand genau. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "📻",
+        "text": "Ungeklärt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

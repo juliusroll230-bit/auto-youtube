@@ -1,0 +1,101 @@
+{
+  "slug": "erklaert-flugzeugessen-fad",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2a3a",
+    "#8ac8f0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum schmeckt Essen im Flugzeug so fade? ✈️",
+  "description": "Trockene Luft, Lärm und niedriger Druck: Warum Süßes und Salziges in der Luft schwächer schmecken, und was dagegen hilft.\n\n#wissen #flugzeug #geschmack #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "flugzeug",
+    "geschmack",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Sven"
+  },
+  "segments": [
+    {
+      "text": "Du beißt im Flugzeug in dein Essen, und es schmeckt nach nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🍽️"
+      }
+    },
+    {
+      "text": "Liegt es am Koch? Nein, an der Höhe.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Warum fade?"
+      }
+    },
+    {
+      "text": "Die Kabinenluft ist sehr trocken, und die Nase riecht weniger.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "👃",
+        "text": "Trockene Luft"
+      }
+    },
+    {
+      "text": "Süß und salzig schmecken in der Luft deutlich schwächer als am Boden.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏠",
+          "text": "Am Boden: normal"
+        },
+        "rechts": {
+          "objekt": "✈️",
+          "text": "In der Luft: schwach"
+        }
+      }
+    },
+    {
+      "text": "Auch der laute Lärm der Triebwerke dämpft den Geschmack.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🔊",
+        "text": "Lärm"
+      }
+    },
+    {
+      "text": "Darum würzen Köche Flugessen stärker, und Tomatensaft schmeckt plötzlich gut.",
+      "szene": {
+        "typ": "liste",
+        "text": "Gegenmittel",
+        "punkte": [
+          "Mehr Würze",
+          "Starke Aromen",
+          "Tomatensaft"
+        ]
+      }
+    },
+    {
+      "text": "Beim nächsten Flug weißt du jetzt Bescheid. Bestellst du Tomatensaft?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "nacht",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Guten Appetit"
+      }
+    }
+  ],
+  "stimmung": "neugierig"
+}

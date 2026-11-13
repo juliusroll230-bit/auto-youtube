@@ -1,0 +1,104 @@
+{
+  "slug": "horror-katakomben-paris",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1410",
+    "#8c6a3a"
+  ],
+  "accent": "#e0392f",
+  "title": "Der Ort unter Paris, an dem Millionen Tote liegen 💀",
+  "description": "Die Katakomben von Paris: ein riesiges Tunnelnetz mit den Gebeinen von rund sechs Millionen Menschen. Was belegt ist und was Legende ist, trennen wir im Video.\n\n#horror #legende #paris #katakomben #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "paris",
+    "katakomben",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "hut": "helm",
+    "name": "Luc"
+  },
+  "segments": [
+    {
+      "text": "Luc leuchtet in den Tunnel, und überall starren Totenköpfe zurück.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Das sind die Katakomben unter Paris, ein riesiges Tunnelnetz.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Paris"
+      }
+    },
+    {
+      "text": "Dort liegen die Gebeine von rund sechs Millionen Menschen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 6,
+        "einheit": "Millionen Tote",
+        "objekt": "💀",
+        "farbcode": "#2a1a1a"
+      }
+    },
+    {
+      "text": "Siebzehnhundertsechsundachtzig begann man, überfüllte Friedhöfe dorthin zu räumen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1786,
+        "text": "Umbettung",
+        "objekt": "⚰️"
+      }
+    },
+    {
+      "text": "Über dem Eingang steht: Halt! Hier beginnt das Reich des Todes.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🚪",
+        "text": "Reich des Todes"
+      }
+    },
+    {
+      "text": "Der Legende nach verirrten sich dort immer wieder Besucher.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Heute darf man nur einen kleinen Teil offiziell besuchen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Erlaubt",
+        "punkte": [
+          "Nur ein Teil offen",
+          "Rest gesperrt",
+          "Streng kontrolliert"
+        ]
+      }
+    },
+    {
+      "text": "Würdest du dich da hinuntertrauen? Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "💀",
+        "text": "Hinuntertrauen?"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

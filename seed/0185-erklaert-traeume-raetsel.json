@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-traeume-raetsel",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#12102a",
+    "#5a4ab8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Das Rätsel um Träume: Warum träumen wir überhaupt? 🌙",
+  "description": "Warum träumen wir? Die Forschung hat Theorien, aber keine sichere Antwort. Was wir über REM-Schlaf und Träume wissen.\n\n#wissen #träume #schlaf #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "träume",
+    "schlaf",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Nina"
+  },
+  "segments": [
+    {
+      "text": "Du fällst in einem Traum, doch dein Körper liegt ganz still.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "faellt"
+      }
+    },
+    {
+      "text": "Warum träumen wir überhaupt? Niemand weiß es sicher.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    },
+    {
+      "text": "Du träumst mehrmals pro Nacht, und die meisten Träume vergisst du.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🌙",
+        "text": "Jede Nacht"
+      }
+    },
+    {
+      "text": "Theorien: Das Gehirn sortiert Erinnerungen, übt Gefühle oder feuert zufällig.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Erinnerungen",
+          "Gefühle üben",
+          "Zufall"
+        ]
+      }
+    },
+    {
+      "text": "Besonders lebhafte Träume entstehen meist in der REM-Phase des Schlafs.",
+      "szene": {
+        "typ": "akte",
+        "text": "REM-Schlaf",
+        "punkte": [
+          "😴",
+          "👁️",
+          "🧠"
+        ]
+      }
+    },
+    {
+      "text": "Im Traum sind Logik und Zeitgefühl oft völlig durcheinander.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧠",
+          "text": "Wach: Logik"
+        },
+        "rechts": {
+          "objekt": "🌙",
+          "text": "Traum: Chaos"
+        }
+      }
+    },
+    {
+      "text": "Auch Tiere scheinen zu träumen, vermuten Forscher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐶"
+      }
+    },
+    {
+      "text": "Was hast du heute Nacht geträumt?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "🌙",
+        "text": "Dein Traum?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
