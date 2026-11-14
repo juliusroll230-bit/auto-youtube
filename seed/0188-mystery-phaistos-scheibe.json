@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-phaistos-scheibe",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#2e1a10",
+    "#c47a3a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Scheibe, die seit über hundert Jahren niemand lesen kann 💿",
+  "description": "Die Scheibe von Phaistos: ein Tonfund aus Kreta mit rätselhaften Zeichen in einer Spirale. Bis heute ist sie unentziffert.\n\n#mystery #rätsel #phaistos #kreta #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "phaistos",
+    "kreta",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Luigi"
+  },
+  "segments": [
+    {
+      "text": "Ein Forscher gräbt in der Erde und hält plötzlich eine Tonscheibe hoch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💿"
+      }
+    },
+    {
+      "text": "Neunzehnhundertacht findet man sie im Palast von Phaistos auf Kreta.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1908,
+        "text": "Phaistos",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Die Scheibe ist aus Ton und etwa so groß wie ein Teller.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💿",
+        "text": "Tonscheibe"
+      }
+    },
+    {
+      "text": "Auf beiden Seiten laufen Zeichen in einer Spirale, insgesamt zweihunderteinundvierzig.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 241,
+        "einheit": "Zeichen",
+        "objekt": "🔣",
+        "farbcode": "#2a1a10"
+      }
+    },
+    {
+      "text": "Was bedeuten sie? Bis heute kann sie niemand lesen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Was steht da?"
+      }
+    },
+    {
+      "text": "Theorien: ein Lied, ein Gebet, ein Spiel oder eine Liste.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Lied",
+          "Gebet",
+          "Spiel"
+        ]
+      }
+    },
+    {
+      "text": "Es gibt nur diese eine Scheibe, deshalb fehlt Vergleichsmaterial zum Entziffern.",
+      "szene": {
+        "typ": "akte",
+        "text": "Nur ein Fund",
+        "punkte": [
+          "💿",
+          "☝️",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Fast alle Fachleute halten sie für echt. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "💿",
+        "text": "Echt?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
