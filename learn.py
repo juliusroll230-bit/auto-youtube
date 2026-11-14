@@ -107,7 +107,7 @@ BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (sto
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
                    "neugierig": ("froehlich", "klar")}
-FEATURE_NAMES = {"caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
+FEATURE_NAMES = {"typ": "Video-Typ", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie"}
 
@@ -128,12 +128,30 @@ def cartoon_mood(spec):
     return "gruselig" if str(spec.get("niche", "")).lower() == "horror" else "mysterioes"
 
 
+def video_type(spec):
+    """Grobe Art des Videos, damit die Zentrale Erklärvideos, Mystery, Horror, Serien und normale Shorts vergleicht."""
+    niche = str(spec.get("niche", "")).lower()
+    title = str(spec.get("title", "")).lower()
+    if spec.get("serie") or "(teil " in title:
+        return "Serie"
+    if niche.startswith("erkl"):
+        return "Erklärvideo: Was passiert, wenn" if title.startswith("was passiert") else "Erklärvideo: Warum/Rätsel"
+    if niche == "mystery":
+        return "Mystery"
+    if niche == "horror":
+        return "Horror"
+    if spec.get("stil") == "cartoon":
+        return "Mystery"  # alte Cartoons wie die Tanzwut
+    return "Normal (Fakten)"
+
+
 def features(spec, look):
     words = [len(s["text"].split()) for s in spec.get("segments", [])]
     total, hook = sum(words), (words[0] if words else 0)
     kinds = [str((s.get("visual") or {}).get("type", "")).lower() for s in spec.get("segments", [])]
     kinds = [k for k in kinds if k]
     return {
+        "typ": video_type(spec),
         "caption_style": look.get("caption_style"),
         "transition": look.get("transition"),
         "kopfzeile": look.get("kopfzeile") or "ohne",
