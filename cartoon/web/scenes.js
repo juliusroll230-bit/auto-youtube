@@ -396,6 +396,7 @@ Object.assign(TYPES, window.EXTRA_TYPES || {}); // z. B. firma.js (Firmen-Spiel)
   list.forEach((sc, i) => {
     sc.i = i;
     const typ = TYPES[sc.typ] ? sc.typ : 'figur';
-    SHOTS.push({ start: sc.start, end: sc.end, tr: i < list.length - 1 ? 'whip' : 'cut', draw(ctx, lt) { TYPES[typ](ctx, sc, lt, sc.end - sc.start); } });
+    const block = window.B3 && B3.types.has(typ); // Blockwelt in 3D ("welt": "block"), sonst Strichmännchen
+    SHOTS.push({ start: sc.start, end: sc.end, tr: i < list.length - 1 ? 'whip' : 'cut', draw(ctx, lt) { (block ? B3.draw : TYPES[typ])(ctx, sc, lt, sc.end - sc.start); } });
   });
 })();
