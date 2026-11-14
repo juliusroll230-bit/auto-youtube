@@ -135,6 +135,7 @@ const B3 = (() => {
       const cord = box(.08, 1.2, .08, '#111'); at(cord, 0, 10.3, -2); scene.add(cord);
       const lamp = new THREE.PointLight('#ffd89a', dark ? 1.1 : 1.6, 28, 1.6); at(lamp, 0, 9, -2); lamp.castShadow = true; lamp.shadow.mapSize.set(512, 512); scene.add(lamp);
       world.flicker = { lamp, bulb, base: lamp.intensity };
+      world.indoor = true;
       return { sky: dark ? '#05040a' : '#2a2630', far: 34 };
     }
     // draußen
@@ -217,9 +218,9 @@ const B3 = (() => {
     const hx = world.figs[0] ? world.figs[0].obj.position.x : 0, hz = world.figs[0] ? world.figs[0].obj.position.z : 0;
     if (world.monsters) world.monsters.forEach(m => {
       const o = m.obj, near = ease(prog), off = (m.k - (world.monsters.length - 1) / 2) * 3.2;
-      const startZ = hz - 18 - m.k * 2, endZ = hz - (world.act === 'rennt' ? 7 : 5) - m.k * 1.5;
+      const startZ = world.indoor ? -8.5 + m.k * .4 : hz - 18 - m.k * 2, endZ = hz - (world.act === 'rennt' ? 7 : 5) - m.k * 1.5; // drinnen steht die Rückwand bei z -10
       o.position.set(hx + off + (m.kind === 'schatten' ? 2.5 * (1 - near) : 0), m.kind === 'geist' ? 1.2 + Math.sin(lt * 2 + m.k) * .3 : 0, lerp(startZ, endZ, near));
-      if (world.act === 'rennt') o.position.z = hz - 9 + Math.sin(lt * 1.5) * .6 - m.k * 2;
+      if (world.act === 'rennt') o.position.z = hz - (world.indoor ? 6 : 9) + Math.sin(lt * 1.5) * .6 - m.k * (world.indoor ? .8 : 2);
       animate(o, m.kind === 'zombie' ? 'schlurft' : m.kind === 'geist' ? 'haende' : (lt % 3 < .1 ? 'zeigt' : 'steht'), lt, m.k + 3);
       if (m.kind === 'schatten') { o.userData.armL.rotation.x = o.userData.armR.rotation.x = -.15; o.userData.head.rotation.z = Math.sin(lt * .7) * .25; }
       o.rotation.y = 0;

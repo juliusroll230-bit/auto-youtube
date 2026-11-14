@@ -64,6 +64,18 @@ Eine Serie hat höchstens 3 Teile (Stand 10.11.: Teil 1 und 2 liefen gut, ab Tei
 - `farbe`: rot, blau, gelb, gruen, lila, navy · `hut`: keiner, bandana, matrose, kapitaen, krone, zylinder, helm, muetze, hexe, ritter
 - `text` und `tafel` höchstens 22 Zeichen.
 
+## Blockwelt (3D-Blockfiguren, `"welt": "block"`)
+
+Mit `"welt": "block"` oben im Skript spielen `figur`, `zwei`, `gruppe`, `horror`, `monster`, `objekt` und `raetsel`
+in einer 3D-Spielwelt aus Klötzen (`block3d.js`, three.js): eigene Blockfiguren mit Würfelkopf (Farbe aus `figur.farbe`,
+Gesicht nach `gefuehl`), Nacht, Taschenlampe, Nebel, flackernde Lampe. Monster: `schatten` (groß, schwarz, rote Augen),
+`zombie` (bis 4), `geist`. Alle anderen Szenentypen bleiben 2D. Keine Marken, Logos oder Figuren anderer Spiele.
+Zusatzfelder je Szene: `chat` (Spiel-Chat oben links, „Name: Nachricht“, höchstens 40 Zeichen, tippt sich Buchstabe
+für Buchstabe), `kamera` (`vorne`, `nah`, `weit`, `schulter` = über die Schulter auf die Gefahr), `tuer` (true: Tür
+geht langsam auf). Gut wirkende Orte: strasse, haus, keller, kinderzimmer, krankenhaus, dunkelwald, friedhof, spukhaus.
+Rendern dauert etwa 6 bis 7 Minuten für 22 Sekunden (WebGL mit SwiftShader). Vorbilder: `seed/0193` bis `0195`.
+Der Lernmodus vergleicht das Merkmal „Look 2D/3D“ (`learn.world`).
+
 ## Lange Videos (Querformat, 7 bis 12 Minuten)
 
 Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvideo statt eines Shorts. Vorbild:

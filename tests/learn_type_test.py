@@ -15,4 +15,8 @@ assert t(niche="Geschichte", stil="cartoon", title="Tanzwut") == "Mystery"
 assert t(niche="Business", title="Autologo") == "Normal (Fakten)"
 f = learn.features({"niche": "Erklären", "title": "Was passiert, wenn X", "segments": [{"text": "a b"}]}, {})
 assert f["typ"] == "Erklärvideo: Was passiert, wenn"
+assert learn.world({"stil": "cartoon", "welt": "block"}) == "Blockwelt 3D"
+assert learn.world({"stil": "cartoon"}) == "Strichmännchen 2D"
+assert learn.world({"niche": "Geld"}) is None
+assert learn.features({"stil": "cartoon", "welt": "block", "niche": "Horror", "segments": [{"text": "a"}]}, {})["welt"] == "Blockwelt 3D"
 print("ok")

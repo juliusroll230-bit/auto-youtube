@@ -1,0 +1,109 @@
+{
+  "slug": "horror-block-etage-null",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a14",
+    "#4a2a6c"
+  ],
+  "accent": "#ff3b2f",
+  "stimmung": "gruselig",
+  "title": "Die Etage, die es im Spiel nicht gibt 🛗",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Der Aufzug hält in einer Etage, die es nicht geben dürfte.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "gaming",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "segments": [
+    {
+      "text": "Der Aufzug fährt plötzlich in eine Etage, die es nicht gibt.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "text": "Etage 0",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Die Türen gehen auf, und alles ist still.",
+      "szene": {
+        "typ": "figur",
+        "ort": "krankenhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "kamera": "weit"
+      }
+    },
+    {
+      "text": "Am Ende des Flurs stehen Spieler, die sich nicht bewegen.",
+      "szene": {
+        "typ": "monster",
+        "ort": "krankenhaus",
+        "monster": "zombie",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "kamera": "schulter"
+      }
+    },
+    {
+      "text": "Alle tragen genau dein Outfit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "krankenhaus",
+        "objekt": "👕",
+        "text": "Dein Outfit"
+      }
+    },
+    {
+      "text": "Dann drehen sie gleichzeitig den Kopf zu dir.",
+      "szene": {
+        "typ": "monster",
+        "ort": "krankenhaus",
+        "monster": "zombie",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "kamera": "vorne"
+      }
+    },
+    {
+      "text": "Du rennst zurück, aber der Aufzug ist verschwunden.",
+      "szene": {
+        "typ": "monster",
+        "ort": "krankenhaus",
+        "monster": "zombie",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Im Chat steht nur: Willkommen zuhause.",
+      "szene": {
+        "typ": "horror",
+        "ort": "krankenhaus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "chat": "???: willkommen zuhause"
+      }
+    },
+    {
+      "text": "Wärst du ausgestiegen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "krankenhaus",
+        "objekt": "🛗"
+      }
+    }
+  ]
+}
