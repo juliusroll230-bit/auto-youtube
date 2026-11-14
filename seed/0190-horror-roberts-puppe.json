@@ -1,0 +1,104 @@
+{
+  "slug": "horror-roberts-puppe",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1018",
+    "#6a4a8c"
+  ],
+  "accent": "#e0392f",
+  "title": "Die Puppe, die niemand ohne Erlaubnis fotografieren darf 🧸",
+  "description": "Roberts Puppe aus Key West: Die Legende sagt, sie kichert und bringt Pech. Belegt ist nur die Puppe im Museum, der Rest ist Legende.\n\n#horror #legende #puppe #keywest #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "puppe",
+    "keywest",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "matrose",
+    "name": "Robert"
+  },
+  "segments": [
+    {
+      "text": "Nachts kichert etwas im Kinderzimmer, und die Puppe sitzt woanders.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Das ist Key West in Florida, wo die Puppe heute lebt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Key West"
+      }
+    },
+    {
+      "text": "Der Junge Robert bekam sie vor über hundert Jahren geschenkt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🧸"
+      }
+    },
+    {
+      "text": "Die Legende sagt: Sie kicherte nachts und rückte von allein.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🧸",
+        "text": "Legende"
+      }
+    },
+    {
+      "text": "Ging etwas kaputt, sagte Robert: Das war die Puppe.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Heute steht sie in einem Museum, hinter Glas.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🏛️",
+        "text": "Museum"
+      }
+    },
+    {
+      "text": "Besucher sollen vorher höflich um Erlaubnis für ein Foto bitten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Regel",
+        "punkte": [
+          "Höflich fragen",
+          "Dann Foto",
+          "Sonst Pech"
+        ]
+      }
+    },
+    {
+      "text": "Alles nur Legende? Würdest du fragen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "🧸",
+        "text": "Würdest du?"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}

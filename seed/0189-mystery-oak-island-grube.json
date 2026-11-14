@@ -1,0 +1,103 @@
+{
+  "slug": "mystery-oak-island-grube",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10201a",
+    "#4a8c5a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Grube, die niemand zu Ende graben konnte ⛏️",
+  "description": "Oak Island in Kanada: Seit 1795 suchen Menschen in einer Grube nach einem Schatz. Gefunden wurde bis heute nichts Eindeutiges.\n\n#mystery #rätsel #oakisland #schatz #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "oakisland",
+    "schatz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Daniel"
+  },
+  "segments": [
+    {
+      "text": "Ein Junge entdeckt unter einem Baum eine seltsame Mulde im Boden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Das war siebzehnhundertfünfundneunzig auf Oak Island in Kanada.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1795,
+        "text": "Oak Island",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Wer dort gräbt, findet Holzlagen und Steine, aber nie den Grund.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🪵",
+        "text": "Holzlagen"
+      }
+    },
+    {
+      "text": "Sobald man tiefer kommt, läuft die Grube voll Wasser.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "💧",
+        "text": "Wasser!"
+      }
+    },
+    {
+      "text": "Sechs Menschen starben bei den Suchen, so wird berichtet.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 6,
+        "einheit": "Tote",
+        "objekt": "💀",
+        "farbcode": "#2a1a1a"
+      }
+    },
+    {
+      "text": "Theorien: Piratenschatz, Kronjuwelen oder nur ein natürliches Loch.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Piratenschatz",
+          "Kronjuwelen",
+          "Natur"
+        ]
+      }
+    },
+    {
+      "text": "Oak Island liegt vor Neuschottland, und gegraben wird bis heute.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Neuschottland"
+      }
+    },
+    {
+      "text": "Einen sicheren Schatz fand man nie. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "⛏️",
+        "text": "Schatz?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

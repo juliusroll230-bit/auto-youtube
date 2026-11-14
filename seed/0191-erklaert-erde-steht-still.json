@@ -1,0 +1,100 @@
+{
+  "slug": "erklaert-erde-steht-still",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c1030",
+    "#3a6ac8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn sich die Erde plötzlich nicht mehr dreht? 🌍",
+  "description": "Die Erde dreht sich nicht mehr: Was passiert mit Luft, Meeren und Häusern? Ein Gedankenexperiment, das zum Glück praktisch unmöglich ist.\n\n#wissen #erde #physik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "erde",
+    "physik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "keiner",
+    "name": "Max"
+  },
+  "segments": [
+    {
+      "text": "Du stehst auf der Straße, und plötzlich bleibt die Erde stehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    },
+    {
+      "text": "Am Äquator rast der Boden mit tausendsechshundertsiebzig Kilometern pro Stunde.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1670,
+        "einheit": "km/h",
+        "objekt": "🌍",
+        "farbcode": "#101a38"
+      }
+    },
+    {
+      "text": "Alles, was nicht festgebunden ist, fliegt nach Osten weiter.",
+      "szene": {
+        "typ": "akte",
+        "text": "Alles fliegt",
+        "punkte": [
+          "🏠",
+          "🚗",
+          "💨"
+        ]
+      }
+    },
+    {
+      "text": "Die Luft rast als Orkan über das Land.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🌪️",
+        "text": "Orkan"
+      }
+    },
+    {
+      "text": "Das Meer schwappt als riesige Welle über die Küsten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🌊",
+        "text": "Riesenwelle"
+      }
+    },
+    {
+      "text": "Ein Tag würde ein ganzes Jahr dauern, mit Licht und Dunkel.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☀️",
+          "text": "Halbes Jahr hell"
+        },
+        "rechts": {
+          "objekt": "🌑",
+          "text": "Halbes Jahr dunkel"
+        }
+      }
+    },
+    {
+      "text": "Zum Glück praktisch unmöglich. Würdest du es überleben?",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🌍"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

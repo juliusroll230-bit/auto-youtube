@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-carroll-deering",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0c1a28",
+    "#3a6a8c"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Schiff, dessen Crew niemand je wiederfand 🚢",
+  "description": "Die Carroll A. Deering strandete 1921 bei Cape Hatteras, ohne Besatzung. Bis heute ist ungeklärt, was geschah.\n\n#mystery #rätsel #geisterschiff #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geisterschiff",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "kapitaen",
+    "name": "Wormell"
+  },
+  "segments": [
+    {
+      "text": "Ein Fünfmaster liegt gestrandet vor der Küste, und niemand ist an Deck.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "objekt": "🚢",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Am einunddreißigsten Januar neunzehnhunderteinundzwanzig sichtet man die Carroll A. Deering.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1921,
+        "text": "Gestrandet",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Die Segel sind gesetzt, doch die Rettungsboote fehlen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "⛵",
+        "text": "Boote fehlen"
+      }
+    },
+    {
+      "text": "Die Mannschaft ist weg, nur eine Katze lebt noch an Bord.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🐈",
+        "text": "Crew weg"
+      }
+    },
+    {
+      "text": "Auch Papiere und Navigationsgeräte fehlen, als hätte jemand sie mitgenommen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Das fehlt",
+        "punkte": [
+          "📜",
+          "🧭",
+          "🛟"
+        ]
+      }
+    },
+    {
+      "text": "Theorien: Piraten, Meuterei, Schmuggler oder ein Sturm.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Piraten",
+          "Meuterei",
+          "Sturm"
+        ]
+      }
+    },
+    {
+      "text": "Das war bei Cape Hatteras, wo viele Schiffe strandeten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Cape Hatteras"
+      }
+    },
+    {
+      "text": "Bis heute ungeklärt. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🚢",
+        "text": "Ungeklärt"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
