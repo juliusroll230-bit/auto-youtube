@@ -107,7 +107,7 @@ BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (sto
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
                    "neugierig": ("froehlich", "klar")}
-FEATURE_NAMES = {"typ": "Video-Typ", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
+FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie"}
 
@@ -145,6 +145,15 @@ def video_type(spec):
     return "Normal (Fakten)"
 
 
+def _hook_bucket(spec):
+    """Note der Hook-Prüfliste als Gruppe (stark/gut/schwach), damit man sieht, ob die Prüfung trifft."""
+    try:
+        import hookcheck
+        return hookcheck.bucket(hookcheck.check(spec)["score"])
+    except Exception:  # noqa: BLE001  ein seltsames altes Skript soll das Lernen nicht stoppen
+        return None
+
+
 def features(spec, look):
     words = [len(s["text"].split()) for s in spec.get("segments", [])]
     total, hook = sum(words), (words[0] if words else 0)
@@ -152,6 +161,7 @@ def features(spec, look):
     kinds = [k for k in kinds if k]
     return {
         "typ": video_type(spec),
+        "hook": _hook_bucket(spec),
         "caption_style": look.get("caption_style"),
         "transition": look.get("transition"),
         "kopfzeile": look.get("kopfzeile") or "ohne",

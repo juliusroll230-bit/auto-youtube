@@ -21,6 +21,7 @@ import shutil
 import threading
 from zoneinfo import ZoneInfo
 
+import hookcheck
 import learn
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -209,6 +210,9 @@ def add_scripts(files):
             spec = json.loads(text)
             if not spec.get("segments"):
                 continue
+            spec, changed = hookcheck.clean(spec)  # Humanizer: Gedankenstriche und leere Floskeln raus
+            if changed:
+                text = json.dumps(spec, ensure_ascii=False, indent=2)
             with open(path("queue", name), "w", encoding="utf-8") as f:
                 f.write(text)
             known.add(name)
@@ -484,6 +488,7 @@ def card(spec):
         "car_color": spec.get("car_color", ""), "accent": spec.get("accent", ""),
         "emoji": spec["segments"][0].get("emoji", ""), "hook": spec["segments"][0]["text"].replace("*", ""),
         "seconds": round(words / 2.5 + 0.3 * len(spec["segments"])),
+        "hook_check": _safe(lambda: hookcheck.check(spec), None),
     }
 
 
