@@ -22,3 +22,32 @@ Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 
 Die Zentrale vergleicht unter „Was am besten funktioniert“ den **Video-Typ**
 (`learn.video_type`). Wenn Mystery dort wieder klar vorne liegt, den Mix zurückdrehen.
+
+## Hook-Prüfliste und Humanizer (seit 14.11.2026)
+
+Aus dem Skill-Paket „claude-content-skills“ (virality + humanizer) übernommen.
+Für jedes neue Skript in `seed/` gilt vor dem Commit:
+
+1. `python3 hookcheck.py seed/NEUE-DATEIEN.json --fix` ausführen.
+   `--fix` entfernt Gedankenstriche, Begrüßungen und leere Ankündigungen.
+2. Jeder Short soll **8/8** schaffen, mindestens 7/8. Was fehlt, steht als Tipp darunter.
+   Die acht Punkte für die ersten 3 Sekunden:
+   - startet sofort (kein „Hallo“, „Heute“, „In diesem Video“, „Wusstest du“),
+   - erster Satz höchstens 12 Wörter (lange Videos 25),
+   - Erklärvideo: „du“ oder die Frage im ersten Satz; sonst kein „Ich/Wir“ am Anfang,
+   - Spannung im ersten Satz (plötzlich, niemand, verschwunden, eine Frage …),
+   - erste Szene bewegt sich (`aktion` rennt/zittert/zeigt/schockiert, nicht „steht“),
+   - erste Szene hat ein erkennbares Bild (`objekt`-Emoji oder `text`),
+   - keine KI-Floskeln (siehe unten),
+   - 40 bis 85 Wörter (ca. 22 s).
+3. Humanizer beim Schreiben: Dinge direkt sagen. Nicht „nicht nur … sondern auch“,
+   kein „faszinierend“, „spannend“, „unglaublich“, „atemberaubend“, „eintauchen“,
+   „Reise durch“, „in der Welt der“, „es ist wichtig zu“, „letztendlich“,
+   keine Gedankenstriche, keine Schlusszeile, die nur wiederholt. Keine erfundenen Zahlen.
+
+Die App bereinigt neue Skripte beim Einlesen selbst noch einmal und zeigt die Note
+in der Zentrale (Sendeplan und Zuschauer > „Hook-Prüfung“). Unter „Was am besten
+funktioniert“ vergleicht sie „Hook-Prüfung“ stark / gut / schwach mit echten Aufrufen.
+
+Nicht übernommen: `agent-reach` und `reel-analyzer` (laden fremde Videos), alles zu
+Instagram-DMs, Leads und Werbung.

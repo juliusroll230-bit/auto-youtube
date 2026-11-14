@@ -172,6 +172,10 @@ main { padding-block: 28px 72px; }
 .donut-wrap #donut { width: 150px; flex: none; }
 .donut-wrap .rows { flex: 1 1 210px; min-width: 0; }
 .rows { display: grid; gap: 9px; }
+.hk { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 99px; font-size: 11.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; background: rgba(52, 211, 153, .14); color: var(--ok); }
+.hk.mid { background: rgba(242, 196, 109, .16); color: var(--warn); }
+.hk.low { background: rgba(255, 99, 99, .14); color: var(--err, #ff6b6b); }
+.hk-tips { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
 .looks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 22px; }
 .looks h3 { font-size: 12px; font-weight: 650; color: var(--muted); letter-spacing: .01em; margin-bottom: 8px; }
 .looks .lr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 8px; font-size: 13px; margin-bottom: 8px; }
@@ -1713,6 +1717,14 @@ dialog.vs[open] { display: grid; place-items: center; }
         <div class="card-h"><div><h2>Was am besten funktioniert</h2><div class="sub">Wert je Merkmal (Aufrufe hochgerechnet, mit Dranbleiben gewichtet). Untertitel und Übergang wählt die App danach selbst, 3 von 4 Videos bekommen den besten.</div></div></div>
         <div class="card-b"><div class="looks" id="looks"></div></div>
       </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-h"><div><h2>Hook-Prüfung</h2><div class="sub">Jeder Short wird vor dem Upload nach 8 Punkten für die ersten 3 Sekunden geprüft: sofort starten, kurzer erster Satz, Bewegung im Bild, Spannung, keine KI-Floskeln. Gedankenstriche und Begrüßungen entfernt die App selbst.</div></div><span class="pill" id="hookAvg"></span></div>
+        <div class="scroll" style="margin-top:8px"><table>
+          <thead><tr><th>Als Nächstes</th><th class="r">Note</th><th class="hide-sm">Was fehlt</th></tr></thead>
+          <tbody id="hookBody"></tbody>
+        </table></div>
+      </div>
     </section>
 
     <!-- VIDEOS -->
@@ -2738,6 +2750,28 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderLearning(d);
   }
 
+  function hookPill(v) {
+    var c = v && v.hook_check;
+    if (!c) return null;
+    var cls = c.score >= c.max ? "hk" : c.score >= 6 ? "hk mid" : "hk low";
+    return h("span", { cls: cls, title: c.tips.length ? c.tips.join("\n") : "Alle Punkte erfüllt", text: "Hook " + c.score + "/" + c.max });
+  }
+
+  function renderHooks(d) {
+    var body = clear($("hookBody")), list = (d.queue || []).filter(function (v) { return v.hook_check; }).slice(0, 12);
+    var sum = list.reduce(function (a, v) { return a + v.hook_check.score; }, 0);
+    $("hookAvg").textContent = list.length ? "Ø " + nf1.format(sum / list.length) + " von 8" : "Keine Skripte";
+    list.forEach(function (v) {
+      var tips = v.hook_check.tips;
+      body.appendChild(h("tr", null, [
+        h("td", null, [vidCell(v, v.hook)]),
+        h("td", { cls: "r" }, [hookPill(v)]),
+        h("td", { cls: "hide-sm" }, [tips.length ? h("ul", { cls: "hk-tips" }, tips.map(function (t) { return h("li", { text: t }); })) : h("span", { cls: "label", text: "Alles erfüllt" })])
+      ]));
+    });
+    if (!list.length) body.appendChild(h("tr", null, [h("td", { colspan: "3" }, [h("div", { cls: "empty" }, [h("b", { text: "Nichts in der Warteschlange" }), "Neue Skripte kommen jeden Morgen."])])]));
+  }
+
   function renderLooks(d) {
     var box = clear($("looks")), groups = d.looks || [];
     var nice = function (v) { return v.charAt(0).toUpperCase() + v.slice(1); };
@@ -2759,6 +2793,7 @@ dialog.vs[open] { display: grid; place-items: center; }
 
   function renderLearning(d) {
     renderLooks(d);
+    renderHooks(d);
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite
@@ -4725,6 +4760,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("nxHook").textContent = hook ? "„" + hook + "“" : "";
     $("nxHook").hidden = !hook;
     clear($("nxMeta")).append(chip(x.v.niche), h("span", { cls: "pill", text: (x.v.seconds || "–") + " s" }));
+    var hp = hookPill(x.v); if (hp) $("nxMeta").append(hp);
     showFilm($("nxFilm"), "next", "Vorschau: so startet der nächste Short", "Erste Sekunden als Vorschau",
       { hook: hook || "Ein Fakt.", claim: dayTxt + " um " + fTime.format(x.at) + " Uhr." }, (x.v.niche || "Neuer Short") + ".");
   }
@@ -4749,7 +4785,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       body.appendChild(h("tr", { cls: x.i === 0 ? "is-next" : "" }, [
         h("td", { cls: "num", style: "font-weight:650", text: fTime.format(x.at) }),
         h("td", null, [vidCell(x.v, x.v.hook)]),
-        h("td", { cls: "hide-sm" }, [chip(x.v.niche)]),
+        h("td", { cls: "hide-sm" }, [chip(x.v.niche), " ", hookPill(x.v)]),
         h("td", { cls: "r num hide-sm", text: x.v.seconds + " s" })
       ]));
     });
