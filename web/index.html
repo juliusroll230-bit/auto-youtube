@@ -1254,6 +1254,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
     <a href="#zuschauer" data-tab="zuschauer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4v15a1 1 0 0 0 1 1h17"/><path d="M7 8c3 0 4 2 6 5s3 3 7 3"/></svg><span>Zuschauer</span></a>
     <a href="#videos" data-tab="videos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5"/><path d="m10 9 5 3-5 3z"/></svg><span>Videos</span></a>
+    <a href="#community" data-tab="community"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 12.5v-2M12 12.5V7.5M15.5 12.5V9.5"/></svg><span class="l">Community</span><span class="s" aria-hidden="true">Posts</span></a>
     <a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></svg><span class="l">Sendeplan</span><span class="s" aria-hidden="true">Plan</span></a>
     <a href="#kanal" data-tab="kanal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1.5 14h5M9.5 8h5M17.5 16h5"/></svg><span>Kanäle</span></a>
   </nav>
@@ -1432,6 +1433,54 @@ dialog.vs[open] { display: grid; place-items: center; }
         <div class="card-h"><div><h2><span class="wp-logo" aria-hidden="true">W</span>Content Rewards</h2><div class="sub">Geschätztes Geld pro Kampagne</div></div>
           <a class="btn sm" href="#kampagnen">Kampagne hinzufügen</a></div>
         <div class="card-b" id="mgCr"></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-community" hidden>
+      <div class="head">
+        <div>
+          <h1>Community-Posts</h1>
+          <p>Jeden Tag neue Vorschläge: Umfragen, Bilder und normale Beiträge. Ein Post am Tag hält den Kanal lebendig, auch zwischen den Videos.</p>
+        </div>
+        <div class="cm-head-a">
+          <div class="seg" id="cmPer" role="group" aria-label="Posts pro Tag"><span class="cm-per-l">Pro Tag</span><button type="button" data-n="1">1</button><button type="button" data-n="2">2</button><button type="button" data-n="3">3</button><button type="button" data-n="4">4</button><button type="button" data-n="5">5</button></div>
+          <button class="btn" type="button" id="cmShuffle">Andere Vorschläge</button>
+        </div>
+      </div>
+      <div class="card cm-how">
+        <div class="card-b">
+          <ol>
+            <li><b>Text kopieren</b> und bei Bild-Posts das <b>Bild laden</b>.</li>
+            <li>YouTube Studio öffnen, oben rechts <b>Erstellen</b> und dann <b>Beitrag erstellen</b>. In der YouTube-App: <b>+</b> und <b>Beitrag</b>.</li>
+            <li>Text einfügen. Bei einer Umfrage <b>Umfrage</b> wählen und die Antworten einzeln kopieren. Beim Bild-Post <b>Bild</b> wählen. Ein Beitrag ist nur Text.</li>
+            <li>Posten und hier <b>Gepostet</b> antippen.</li>
+          </ol>
+          <p class="label" id="cmInfo">YouTube lässt Apps keine Beiträge posten. Darum bereitet die Zentrale alles vor, und du postest mit zwei Klicks.</p>
+          <div class="row" style="margin-top:12px"><a class="btn sm" href="https://studio.youtube.com" target="_blank" rel="noopener">YouTube Studio öffnen</a></div>
+        </div>
+      </div>
+      <div class="card cm-plan">
+        <div class="card-h"><div><h2>Sendeplan für Posts</h2><div class="sub" id="cmPlanSub"></div></div></div>
+        <div class="card-b"><ol class="cm-tl" id="cmTl"></ol></div>
+      </div>
+      <h2 class="cm-sec" id="cmPlanH">Heute posten</h2>
+      <div class="cm-grid" id="cmGrid"></div>
+      <h2 class="cm-sec" id="cmMoreH">Weitere Ideen</h2>
+      <div class="cm-grid" id="cmMore"></div>
+      <div class="card cm-wm">
+        <div class="card-b cm-wm-b">
+          <img src="api/watermark.png" alt="Wasserzeichen: roter Timer-Ring mit der 60" width="96" height="96">
+          <div>
+            <h2>Wasserzeichen für lange Videos</h2>
+            <p class="label">Erscheint unten rechts in deinen langen Videos. Wer darauf klickt, kann direkt abonnieren. In Shorts zeigt YouTube es nicht.</p>
+            <div class="row" style="margin-top:12px">
+              <a class="btn sm primary" href="api/watermark.png" download>Wasserzeichen laden</a>
+              <button class="btn sm" type="button" id="wmSet">Auf YouTube setzen</button>
+              <span class="msg" id="wmMsg"></span>
+            </div>
+            <p class="label" id="wmWhen" style="margin-top:8px">Von Hand: YouTube Studio > Anpassung > Branding > Video-Wasserzeichen > Hochladen, Anzeigezeit „Ganzes Video“.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1768,6 +1817,10 @@ dialog.vs[open] { display: grid; place-items: center; }
           <thead><tr><th>Zeit</th><th>Video</th><th class="hide-sm">Thema</th><th class="r hide-sm">Länge</th></tr></thead>
           <tbody id="planBody"></tbody>
         </table>
+      </div>
+      <div class="card cm-plan">
+        <div class="card-h"><div><h2>Community-Posts heute</h2><div class="sub" id="cmPlanSub2"></div></div><a class="link" href="#community">Alle Posts</a></div>
+        <div class="card-b"><ol class="cm-tl" id="cmTl2"></ol></div>
       </div>
     </section>
 
@@ -3616,6 +3669,96 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   })();
 
+  // --- Community-Posts: Vorschläge zum Kopieren und Herunterladen ------------------------------
+  function renderCommunity(d) {
+    var C = d.community || {}, P = C.posts || [], box = $("cmGrid"), more = $("cmMore");
+    if (!box) return;
+    renderPostPlan(C, P);
+    var key = JSON.stringify(P) + S.live;
+    if (box.dataset.k === key) return;
+    box.dataset.k = key;
+    clear(box); clear(more);
+    document.querySelectorAll("#cmPer button").forEach(function (b) { b.setAttribute("aria-pressed", +b.dataset.n === (C.per_day || 3) ? "true" : "false"); b.disabled = !S.live; });
+    var plan = P.filter(function (p) { return p.hour; });
+    $("cmPlanH").textContent = "Heute posten" + (plan.length ? ": " + plan.length + (plan.length === 1 ? " Post" : " Posts") : "");
+    $("cmMoreH").hidden = P.length === plan.length;
+    if (!P.length) box.appendChild(h("p", { cls: "label", text: "Noch keine Vorschläge. Sobald Shorts geplant sind, erscheinen sie hier." }));
+    P.forEach(function (p) {
+      var kids = [h("div", { cls: "cm-top" }, [h("span", { cls: "pill cm-" + p.type, text: p.label }), p.done ? h("span", { cls: "cm-ok", text: "✓ Gepostet" }) : p.hour ? h("span", { cls: "cm-at", text: "um " + p.hour + " Uhr" }) : null]),
+        h("h3", { text: p.title }), h("p", { cls: "label", text: p.why })];
+      if (p.type === "bild") kids.push(h("img", { cls: "cm-img", src: "api/community/" + p.id + ".png", alt: "Bild für den Post: " + p.title, loading: "lazy" }));
+      kids.push(h("pre", { cls: "cm-txt", text: p.text }));
+      if (p.options) {
+        var ol = h("ol", { cls: "cm-opts" });
+        p.options.forEach(function (o) {
+          var b = h("button", { cls: "cm-opt", type: "button", title: "Antwort kopieren" }, [h("span", { text: o }), h("small", { text: "Kopieren" })]);
+          b.addEventListener("click", function () { copyText(o, b.querySelector("small")); });
+          ol.appendChild(h("li", null, [b]));
+        });
+        kids.push(ol);
+      }
+      var cp = h("button", { cls: "btn sm primary", type: "button", text: "Text kopieren" });
+      cp.addEventListener("click", function () { copyText(p.text, cp); });
+      var acts = [cp];
+      if (p.type === "bild") acts.push(h("a", { cls: "btn sm", href: "api/community/" + p.id + ".png", download: "", text: "Bild laden" }));
+      var t = h("button", { cls: "tog" + (p.done ? " on" : ""), type: "button", "aria-pressed": p.done ? "true" : "false", text: "Gepostet" });
+      t.disabled = !S.live;
+      t.addEventListener("click", function () {
+        var on = t.getAttribute("aria-pressed") !== "true";
+        t.classList.toggle("on", on); t.setAttribute("aria-pressed", on ? "true" : "false");
+        api("api/community/done", { id: p.id, done: on }).then(null, function (er) { toast(er.message); });
+      });
+      acts.push(t);
+      kids.push(h("div", { cls: "cm-acts" }, acts));
+      (p.hour ? box : more).appendChild(h("article", { cls: "card cm-card" + (p.done ? " done" : "") }, [h("div", { cls: "card-b" }, kids.filter(Boolean))]));
+    });
+    $("cmInfo").textContent = "YouTube lässt Apps keine Beiträge posten. Darum bereitet die Zentrale alles vor, und du postest mit zwei Klicks. Oben stehen die Posts für heute mit Uhrzeit, darunter weitere Ideen. Mehr als 3 am Tag lieber nicht, sonst wirkt es wie Spam." + (C.week ? " Diese Woche gepostet: " + C.week + "." : "");
+    $("wmSet").disabled = !S.live || !d.connected;
+    $("wmWhen").textContent = d.watermark_at ? "Auf YouTube gesetzt am " + fDayS.format(new Date(d.watermark_at)) + ". Ändern kannst du es in YouTube Studio > Anpassung > Branding."
+      : "Von Hand: YouTube Studio > Anpassung > Branding > Video-Wasserzeichen > Hochladen, Anzeigezeit „Ganzes Video“.";
+  }
+  function renderPostPlan(C, P) {
+    var plan = P.filter(function (p) { return p.hour; }), nowH = new Date().getHours();
+    var done = plan.filter(function (p) { return p.done; }).length;
+    var sub = (C.per_day || 3) + " Posts am Tag um " + (C.times || []).join(", ") + " Uhr, nicht zur gleichen Zeit wie die Shorts. Heute " + done + " von " + plan.length + " gepostet.";
+    [["cmTl", "cmPlanSub"], ["cmTl2", "cmPlanSub2"]].forEach(function (ids) {
+      var ol = $(ids[0]);
+      if (!ol) return;
+      clear(ol);
+      $(ids[1]).textContent = sub;
+      plan.forEach(function (p) {
+        var st = p.done ? ["ok", "Gepostet"] : p.hour <= nowH ? ["due", "Jetzt posten"] : ["wait", "Offen"];
+        var t = h("button", { cls: "tog" + (p.done ? " on" : ""), type: "button", "aria-pressed": p.done ? "true" : "false", text: p.done ? "✓ Gepostet" : "Abhaken" });
+        t.disabled = !S.live;
+        t.addEventListener("click", function () {
+          api("api/community/done", { id: p.id, done: !p.done }).then(null, function (er) { toast(er.message); });
+        });
+        ol.appendChild(h("li", { cls: "cm-tr " + st[0] }, [
+          h("b", { cls: "cm-h", text: p.hour + ":00" }),
+          h("span", { cls: "pill cm-" + p.type, text: p.label }),
+          h("a", { cls: "cm-tt", href: "#community", text: p.text.split("\n")[0] }),
+          h("span", { cls: "cm-st", text: st[1] }), t]));
+      });
+    });
+  }
+  (function () {
+    var sh = $("cmShuffle"), ws = $("wmSet");
+    document.querySelectorAll("#cmPer button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        api("api/community/per-day", { n: +b.dataset.n }).then(function () { toast(b.dataset.n + (b.dataset.n === "1" ? " Post" : " Posts") + " pro Tag."); }, function (e) { toast(e.message); });
+      });
+    });
+    if (sh) sh.addEventListener("click", function () {
+      if (!S.live) return toast("Nur auf dem Server möglich.");
+      api("api/community/shuffle").then(function () { toast("Neue Vorschläge."); }, function (e) { toast(e.message); });
+    });
+    if (ws) ws.addEventListener("click", function () {
+      ws.disabled = true;
+      api("api/watermark/set").then(function () { flash("wmMsg", "ok", "Gesetzt. Es erscheint in langen Videos."); },
+        function (e) { flash("wmMsg", "err", e.message); }).then(function () { ws.disabled = false; });
+    });
+  })();
+
   // --- Clipi: Weg zum Werbegeld (Monetarisierung des Clip-Kanals) ---------------------------------
   function renderClipiMoney(d) {
     var CC = d.clip_channel || {}, ch = CC.channel || {}, subs = ch.subscribers || 0;
@@ -3933,6 +4076,9 @@ dialog.vs[open] { display: grid; place-items: center; }
       ["#kanal", "tt", "TikTok & Instagram", share ? "Herunterladen und von Hand posten" : "Alles gepostet", nf.format(share), "offen", !share],
       ["#geld", "geld", "Geld", "Auszahlungen und Schätzungen", mgSum((d.money || {}).payouts || []), "bekommen", true]
     ];
+    var cmP = ((d.community || {}).posts || []).filter(function (p) { return p.hour; }), cmD = cmP.filter(function (p) { return p.done; }).length;
+    var cmN = cmP.filter(function (p) { return !p.done; })[0];
+    rows.splice(3, 0, ["#community", "plan", "Community-Posts", cmN ? "Nächster um " + cmN.hour + " Uhr: " + cmN.label : "Heute alles gepostet", cmD + "/" + cmP.length, "heute", !cmN]);
     if (wait) rows.unshift(["#zentrale", "warn", "Wartet auf dich", [ct.waiting ? ct.waiting + (ct.waiting === 1 ? " Clip" : " Clips") : null, waitS ? waitS + (waitS === 1 ? " Skript" : " Skripte") : null].filter(Boolean).join(" und ") + " freigeben", nf.format(wait), "offen", false, true]);
     rows.forEach(function (r) {
       var a = h("a", { cls: "row-a " + r[1], href: r[0] }, [
@@ -5159,6 +5305,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderHeader(d);
     renderCenter(d, sch);
     renderMoney(d);
+    renderCommunity(d);
     renderClipiMoney(d);
     renderCampaigns(d);
     renderOverview(d, sch);
@@ -5246,7 +5393,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
+  var TABS = ["zentrale", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "community", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -5362,6 +5509,45 @@ dialog.vs[open] { display: grid; place-items: center; }
 .chc .code { font: 600 26px/1 var(--f-display); letter-spacing: .12em; padding: 12px; text-align: center; border-radius: 14px; background: var(--surface-2); }
 .shc .seg { flex: none; }
 .shlist { display: flex; flex-direction: column; gap: 10px; }
+/* Community-Posts */
+.cm-how ol { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); font-size: 14px; }
+.cm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; margin: 16px 0; }
+.cm-card .card-b { display: grid; gap: 10px; align-content: start; }
+.cm-card.done { opacity: .62; }
+.cm-card h3 { margin: 0; font-size: 17px; }
+.cm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cm-head-a { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cm-per-l { align-self: center; padding: 0 8px 0 6px; font-size: 12.5px; color: var(--muted); }
+.cm-plan { margin-top: 16px; }
+.cm-tl { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.cm-tr { display: grid; grid-template-columns: 56px auto minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
+.cm-h { font-variant-numeric: tabular-nums; font-size: 15px; }
+.cm-tt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); font-size: 14px; }
+.cm-st { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.cm-tr.ok { opacity: .6; } .cm-tr.ok .cm-st { color: #30d158; } .cm-tr.due .cm-st { color: #ff9f0a; }
+@media (max-width: 560px) { .cm-tr { grid-template-columns: 48px minmax(0, 1fr) auto; } .cm-tr .pill, .cm-tr .cm-st { display: none; } }
+.cm-sec { font-size: 20px; margin: 26px 0 0; }
+.cm-at { font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.cm-ok { font-size: 12.5px; font-weight: 600; color: #30d158; }
+.pill.cm-umfrage { color: #64d2ff; }
+.pill.cm-bild { color: #ffd166; }
+.pill.cm-text { color: #bf5af2; }
+.cm-img { width: 100%; aspect-ratio: 1; border-radius: 14px; object-fit: cover; background: var(--surface); }
+.cm-txt { margin: 0; white-space: pre-wrap; font: inherit; font-size: 14px; line-height: 1.45; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .035); border: 1px solid var(--line); color: var(--ink); }
+.cm-opts { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.cm-opt { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255, 255, 255, .05); color: var(--ink); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.cm-opt:hover { background: rgba(255, 255, 255, .09); }
+.cm-opt small { color: var(--muted); font-size: 12px; flex: none; }
+.cm-acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.cm-wm-b { display: flex; gap: 18px; align-items: flex-start; }
+.cm-wm-b img { width: 96px; height: 96px; flex: none; }
+.cm-wm-b h2 { margin: 0 0 4px; font-size: 18px; }
+@media (max-width: 560px) { .cm-wm-b { flex-direction: column; } }
+@media (max-width: 860px) {  /* elf Reiter: unten seitlich wischbar statt abgeschnitten */
+  .nav { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 1 0 auto; min-width: 62px; }
+}
 .shr { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; align-items: center; padding: 10px; border-radius: 16px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
 .shr img { width: 54px; height: 96px; object-fit: cover; border-radius: 10px; background: var(--surface-2); }
 .shr .t { font-weight: 600; font-size: 14px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

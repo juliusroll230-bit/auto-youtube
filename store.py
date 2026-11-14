@@ -16,6 +16,7 @@ import datetime as dt
 import glob
 import json
 import os
+import sys
 import re
 import shutil
 import threading
@@ -668,6 +669,10 @@ def dashboard(extra=None, working=None, repo=True):
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
+        "community": _safe(lambda: __import__("community").overview(
+            sys.modules[__name__], posted, [sp for _, sp in planned], read("channel.json", None) or {},
+            cfg["post_hours"], firma=cfg.get("firma_hour") is not None), {"posts": []}),
+        "watermark_at": st.get("watermark_at"),
         "clip_totals": camp["totals"],
         "clips_running": camp["running"],
         "webhook_token": cfg["webhook_token"],

@@ -86,6 +86,8 @@ jobs:
         run: docker exec app python tests/clipi_test.py
       - name: Geld-Konto testen
         run: docker exec app python tests/money_test.py
+      - name: Community-Posts und Wasserzeichen testen
+        run: docker exec app python tests/community_test.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app
