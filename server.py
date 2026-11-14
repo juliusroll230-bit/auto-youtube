@@ -25,6 +25,7 @@ import secrets
 import threading
 import time
 import traceback
+import urllib.error
 import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -616,8 +617,18 @@ def sync_scripts():
         headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
     def get(url):
-        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
-            return json.load(r)
+        # GitHub antwortet manchmal kurz mit 5xx: mehrmals mit Pause versuchen
+        for wait in (3, 8, 20, None):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
+                    return json.load(r)
+            except urllib.error.HTTPError as e:
+                if e.code < 500 or wait is None:
+                    raise
+            except (urllib.error.URLError, TimeoutError, ConnectionError):
+                if wait is None:
+                    raise
+            time.sleep(wait)
 
     start_work("autor", task="Holt neue Skripte")
     try:
