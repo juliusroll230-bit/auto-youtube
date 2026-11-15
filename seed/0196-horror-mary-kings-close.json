@@ -1,0 +1,103 @@
+{
+  "slug": "horror-mary-kings-close",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1410",
+    "#6a4a3a"
+  ],
+  "accent": "#e0392f",
+  "title": "Die Gasse unter Edinburgh, in der Besucher Spielzeug lassen 🧸",
+  "description": "Mary King's Close in Edinburgh: Eine überbaute Gasse, Pestgeschichten und ein Geistermädchen. Belegt ist die Gasse, der Rest ist Legende.\n\n#horror #legende #edinburgh #spuk #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "edinburgh",
+    "spuk",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Nell"
+  },
+  "segments": [
+    {
+      "text": "Im Dunkeln unter der Straße tappt jemand mit Kinderfüßen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#e0392f"
+      }
+    },
+    {
+      "text": "Das ist Edinburgh in Schottland, mit einer Gasse unter der Stadt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏰",
+        "text": "Edinburgh"
+      }
+    },
+    {
+      "text": "Siebzehnhundertfünfzig baute man eine Halle darüber, die Gasse verschwand im Untergrund.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1750,
+        "text": "Überbaut",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Die Legende sagt: Hier starben Pestkranke, vergessen und eingeschlossen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🕯️",
+        "text": "Legende"
+      }
+    },
+    {
+      "text": "Ein kleines Mädchen soll dort noch heute spuken, so die Legende.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Besucher legen Puppen und Spielzeug als Geschenk für sie ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🧸",
+        "text": "Geschenke"
+      }
+    },
+    {
+      "text": "Belegt ist die Gasse. Die Geistergeschichten sind nur Überlieferung.",
+      "szene": {
+        "typ": "liste",
+        "text": "Belegt?",
+        "punkte": [
+          "Gasse: echt",
+          "Pest: Legende",
+          "Geist: Sage"
+        ]
+      }
+    },
+    {
+      "text": "Würdest du ihr Spielzeug mitbringen?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "🧸",
+        "text": "Würdest du?"
+      }
+    }
+  ],
+  "stimmung": "gruselig"
+}
