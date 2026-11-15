@@ -396,7 +396,7 @@ def sentence_marks(spec):
     return [round(x / t, 4) for x in starts] if t else []
 
 
-def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None, done="done_slots"):
+def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None, done="done_slots", thumb=None):
     with LOCK:
         shutil.move(file, path("posted", os.path.basename(file)))
         st = state()
@@ -407,6 +407,8 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
                "marks": marks, "duration": duration, "look": look}
         if is_long(spec):
             rec["lang"] = True
+        if thumb:
+            rec["thumb"] = thumb   # eigenes Thumbnail: {"set": "A"/"B"/None, "error": ...}
         st["uploads"].append(rec)
         write("state.json", st)
 
@@ -591,6 +593,50 @@ def next_look(posted=None):
     return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
 
 
+def next_thumb(long, posted=None):
+    """Thumbnail-Variante für das nächste Video. Lange Videos lernen getrennt von den Shorts."""
+    posted = posted if posted is not None else posted_items()
+    pool = [p for p in posted if p.get("lang")] if long else learnable(posted)
+    return learn.choose_thumb(learn.feature_scores(pool, now()), len(pool))
+
+
+def thumb_path(slug, variant):
+    return path("thumbs", "custom", f"{slug}-{variant}.jpg")
+
+
+def set_thumb_status(ok, reason=""):
+    """Merkt sich, ob YouTube eigene Thumbnails annimmt (für den Hinweis in der Zentrale)."""
+    with LOCK:
+        st = state()
+        st["thumb_status"] = {"ok": bool(ok), "reason": reason, "at": now().isoformat(timespec="seconds")}
+        write("state.json", st)
+
+
+def set_upload_thumb(video_id, variant):
+    """Nach einem Wechsel von Hand: Variante beim Upload eintragen (zählt dann fürs Lernen)."""
+    import thumbnail
+    with LOCK:
+        st = state()
+        for u in st["uploads"]:
+            if u.get("video_id") == video_id:
+                u["thumb"] = {"set": variant}
+                u["look"] = {**(u.get("look") or {}), "thumbnail": thumbnail.VARIANTS["AB".index(variant)]}
+        write("state.json", st)
+
+
+def thumbs_overview(posted, long_queue):
+    """Für die Karte „Thumbnails“: Status, nächstes langes Video und die letzten Uploads."""
+    recent = [p for p in posted if p.get("kind") != "clip" and p.get("video_id")]
+    longs = [p for p in recent if p.get("lang")][-6:]
+    shorts = [p for p in recent if not p.get("lang")][-4:]
+    pick = lambda p: {"slug": p["slug"], "title": p.get("title", ""), "video_id": p["video_id"],  # noqa: E731
+                      "lang": bool(p.get("lang")), "set": (p.get("thumb") or {}).get("set"),
+                      "posted_at": p.get("posted_at")}
+    return {"status": state().get("thumb_status"),
+            "next_long": {"slug": long_queue[0]["slug"], "title": long_queue[0]["title"]} if long_queue else None,
+            "recent": [pick(p) for p in reversed(longs + shorts)]}
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())
@@ -675,7 +721,10 @@ def dashboard(extra=None, working=None, repo=True):
         "branding_at": st.get("branding_at"),
         "learning": learn.summary(scores, ag["planer"]["explore_every"]) if ag["planer"]["on"]
         else {**learn.summary(scores, ag["planer"]["explore_every"]), "favorite": None, "off": True},
-        "looks": learn.feature_summary(learn.feature_scores(learnable(posted), now())),
+        "looks": learn.feature_summary(learn.feature_scores(learnable(posted), now())) + [
+            {**row, "key": "thumbnail_lang", "label": "Thumbnail (lange Videos)"} for row in learn.feature_summary(
+                learn.feature_scores([p for p in posted if p.get("lang")], now())) if row["key"] == "thumbnail"],
+        "thumbs": _safe(lambda: thumbs_overview(posted, [card(s) for _, s in long_planned]), {}),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),

@@ -31,6 +31,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
 import clips
+import learn
 import money
 import store
 import whop
@@ -53,6 +54,7 @@ OAUTH_PAGE = os.environ.get("OAUTH_PAGE", "").strip() or (
 VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.get("APP_BUILT", "")}
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
+thumb_lock = threading.Lock()  # Thumbnails nacheinander bauen (Chromium)
 clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
 status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "oauth_states": {}}
 _tts = None
@@ -202,11 +204,21 @@ def post_next(slot, manual=False, long=False, firma=False):
             import stock
             src = stock.CREDIT.get(info["stock"][0].get("provider"), "Pixabay (pixabay.com)")
             spec = {**spec, "description": spec.get("description", "") + f"\n\nHintergrundvideos: {src}"}
+        status["busy"] = f"Baut das Thumbnail: {spec['title']}"
+        with working("studio", task=f"Baut das Thumbnail für Video #{n}"):
+            thumb_files = make_thumbs(spec)
         status["busy"] = f"Lade hoch: {spec['title']}"
         with working("publisher", task=f"Lädt Video #{n} hoch"):
             video_id = yt.upload(store.config(), video, spec)
+        thumb = None
+        if thumb_files:
+            choice = _safe_variant(long)
+            thumb = {"set": apply_thumb(video_id, thumb_files, choice[:1])}
+            if thumb["set"]:
+                look["thumbnail"] = choice  # Lern-Merkmal nur, wenn YouTube das Bild angenommen hat
         marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
-        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done)
+        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done,
+                          thumb=thumb)
         if spec.get("format") == "firma" and spec.get("firma_state"):
             store.write("firma.json", spec["firma_state"])  # Spielstand erst nach dem Upload weiterzählen
         for a in ("planer", "sprecher", "studio", "publisher"):
@@ -232,6 +244,46 @@ def post_next(slot, manual=False, long=False, firma=False):
     finally:
         status["busy"] = ""
         work_lock.release()
+
+
+def make_thumbs(spec):
+    """Baut beide Thumbnail-Varianten (thumbnail.py). Ein Fehler hier stoppt nie den Upload."""
+    try:
+        import thumbnail
+        return thumbnail.build(spec, store.path("thumbs", "custom"))
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        store.log("warn", f"Thumbnail nicht erstellt, YouTube nimmt ein Bild aus dem Video: {e}", agent="studio")
+        return None
+
+
+def _safe_variant(long):
+    try:
+        return store.next_thumb(long)
+    except Exception:  # noqa: BLE001
+        return learn.THUMBS[0]
+
+
+def apply_thumb(video_id, files, variant):
+    """Setzt das Thumbnail auf YouTube. Gibt die Variante zurück, oder None, wenn YouTube es ablehnt."""
+    try:
+        yt.set_thumbnail(store.config(), video_id, files[variant])
+    except Exception as e:  # noqa: BLE001
+        if yt.is_limit(e):
+            store.set_thumb_status(False, "limit")
+            store.log("warn", "Thumbnail nicht gesetzt: YouTube-Tageslimit erreicht.", agent="publisher")
+        elif yt.thumb_not_allowed(e):
+            first = (store.state().get("thumb_status") or {}).get("reason") != "verify"
+            store.set_thumb_status(False, "verify")
+            if first:
+                store.log("warn", "Eigene Thumbnails gehen erst, wenn dein Kanal bestätigt ist: youtube.com/verify "
+                                  "öffnen und mit Handynummer bestätigen.", agent="publisher")
+        else:
+            store.set_thumb_status(False, str(e)[:200])
+            store.log("warn", f"Thumbnail nicht gesetzt: {e}", agent="publisher")
+        return None
+    store.set_thumb_status(True)
+    return variant
 
 
 def firma_episode():
@@ -865,6 +917,9 @@ class Handler(BaseHTTPRequestHandler):
             if not u or not os.path.exists(store.share_path(m.group(1))):
                 return self.send(404, {"error": "Video nicht mehr gespeichert"})
             return self.send_file(store.share_path(m.group(1)), "video/mp4", download=u["title"])
+        m = re.fullmatch(r"/api/thumbx/([a-z0-9-]+)-([AB])\.jpg", p)
+        if m:
+            return self.custom_thumb(m.group(1), m.group(2))
         m = re.fullmatch(r"/api/thumb/([a-z0-9-]+)\.jpg", p)
         if m:
             return self.thumb(m.group(1))
@@ -1000,6 +1055,19 @@ class Handler(BaseHTTPRequestHandler):
             from make_short import render_thumbnail
             render_thumbnail(spec, file)
         self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=86400")
+
+    def custom_thumb(self, slug, variant):
+        """Eigenes Thumbnail (Variante A oder B). Fehlt es, baut die App es jetzt (dauert ein paar Sekunden)."""
+        file = store.thumb_path(slug, variant)
+        if not os.path.exists(file):
+            spec = store.find_spec(slug)
+            if not spec:
+                return self.send(404, {"error": "Unbekanntes Video"})
+            with thumb_lock:
+                if not os.path.exists(file):
+                    import thumbnail
+                    thumbnail.build(spec, os.path.dirname(file))
+        self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=600")
 
     def do_POST(self):
         path = self.path.split("?")[0]
@@ -1182,6 +1250,30 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "rules": rules})
+        if p == "/api/thumb/set":  # andere Thumbnail-Variante für ein hochgeladenes Video setzen
+            vid, variant = str(data.get("video_id") or ""), str(data.get("variant") or "")
+            u = next((x for x in store.state()["uploads"] if x.get("video_id") == vid and x.get("kind") != "clip"), None)
+            if not u or variant not in ("A", "B"):
+                return self.send(400, {"error": "Unbekanntes Video oder Variante."})
+            spec = store.find_spec(u["slug"])
+            file = store.thumb_path(u["slug"], variant)
+            try:
+                if not os.path.exists(file):
+                    if not spec:
+                        return self.send(400, {"error": "Das Skript zu diesem Video gibt es nicht mehr."})
+                    import thumbnail
+                    with thumb_lock:
+                        thumbnail.build(spec, os.path.dirname(file))
+            except Exception as e:  # noqa: BLE001
+                return self.send(500, {"error": f"Thumbnail nicht erstellt: {e}"})
+            if not apply_thumb(vid, {variant: file}, variant):
+                st = store.state().get("thumb_status") or {}
+                msg = ("YouTube nimmt eigene Thumbnails erst, wenn dein Kanal bestätigt ist (youtube.com/verify)."
+                       if st.get("reason") == "verify" else "YouTube hat das Thumbnail abgelehnt: " + st.get("reason", ""))
+                return self.send(400, {"error": msg})
+            store.set_upload_thumb(vid, variant)
+            store.log("ok", f"Thumbnail {variant} gesetzt: {u['title']}", agent="publisher", kind="input")
+            return self.send(200, {"ok": True})
         if p == "/api/clipi/now":
             if not store.config()["clip_token"]:
                 return self.send(400, {"error": "Der Clip-Kanal ist nicht verbunden."})
