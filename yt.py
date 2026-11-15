@@ -168,6 +168,21 @@ def upload(cfg, video_path, spec):
     return response["id"]
 
 
+def set_thumbnail(cfg, video_id, path):
+    """Setzt ein eigenes Thumbnail (JPEG, höchstens 2 MB). Geht nur bei bestätigten Kanälen (youtube.com/verify)."""
+    from googleapiclient.http import MediaFileUpload
+
+    media = MediaFileUpload(path, mimetype="image/jpeg", resumable=False)
+    client(cfg).thumbnails().set(videoId=video_id, media_body=media).execute()
+
+
+def thumb_not_allowed(error):
+    """True, wenn YouTube eigene Thumbnails ablehnt, weil der Kanal noch nicht bestätigt ist."""
+    status = getattr(getattr(error, "resp", None), "status", None)
+    text = str(error).lower()
+    return status == 403 or "forbidden" in text or "permission" in text and "thumbnail" in text
+
+
 def channel(cfg):
     items = client(cfg).channels().list(part="snippet,statistics", mine=True).execute().get("items", [])
     if not items:

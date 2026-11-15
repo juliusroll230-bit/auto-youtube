@@ -109,7 +109,9 @@ VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erza
                    "neugierig": ("froehlich", "klar")}
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
-                 "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie", "welt": "Look 2D/3D"}
+                 "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
+                 "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D"}
+THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
 def default_look(spec):
@@ -180,6 +182,7 @@ def features(spec, look):
         "stimmung": cartoon_mood(spec) if spec.get("stil") == "cartoon" else None,
         "stimme": look.get("stimme") if spec.get("stil") == "cartoon" else None,
         "serie": spec.get("serie") or None,
+        "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
         "welt": world(spec),
     }
 
@@ -226,6 +229,11 @@ def choose_look(fscores, step):
 def choose_voice(fscores, step, spec):
     """Stimme für ein Cartoon: die beste passende (3 von 4 Mal) oder ein Test der anderen."""
     return choose(VOICES_FOR_MOOD[cartoon_mood(spec)], fscores.get("stimme", {}), step)
+
+
+def choose_thumb(fscores, step):
+    """Thumbnail-Variante: die bessere (3 von 4 Mal) oder ein Test der anderen."""
+    return choose(THUMBS, fscores.get("thumbnail", {}), step)
 
 
 def feature_summary(fscores):

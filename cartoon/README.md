@@ -73,7 +73,7 @@ Gesicht nach `gefuehl`), Nacht, Taschenlampe, Nebel, flackernde Lampe. Monster: 
 Zusatzfelder je Szene: `chat` (Spiel-Chat oben links, „Name: Nachricht“, höchstens 40 Zeichen, tippt sich Buchstabe
 für Buchstabe), `kamera` (`vorne`, `nah`, `weit`, `schulter` = über die Schulter auf die Gefahr), `tuer` (true: Tür
 geht langsam auf). Gut wirkende Orte: strasse, haus, keller, kinderzimmer, krankenhaus, dunkelwald, friedhof, spukhaus.
-Rendern dauert etwa 6 bis 7 Minuten für 22 Sekunden (WebGL mit SwiftShader). Vorbilder: `seed/0193` bis `0195`.
+Rendern dauert etwa 6 bis 7 Minuten für 22 Sekunden (WebGL mit SwiftShader). Vorbilder: `seed/0199` bis `0201`.
 Der Lernmodus vergleicht das Merkmal „Look 2D/3D“ (`learn.world`).
 
 ## Lange Videos (Querformat, 7 bis 12 Minuten)
@@ -85,6 +85,7 @@ Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvid
 - Bild: echtes Querformat 1920x1080 (16:9). Dieselben Szenen, `lib.js` zeigt im Querformat (`PLAN.wide`) einen Ausschnitt des Hochformat-Entwurfsraums (Faktor 0,85), die Hintergründe reichen weit über den Rand. Neue Szenen: Hintergründe breit zeichnen (x von -740 bis 1820) und Vollflächen-Effekte mit `fillRect(-1500, -1500, 4080, 4500)`, Transform mit `base(ctx)` statt `setTransform(1, 0, 0, 1, 0, 0)`. Rendern dauert etwa so lang wie das Video. Stimme etwas langsamer als bei Shorts.
 - Eigene Warteschlange und eigener Sendeplan: `long_per_week` im Publisher (Standard 4 = Mo, Mi, Fr, Sa um 19 Uhr). Titel ohne `#shorts`. Kein Einfluss auf den Lernmodus der Shorts.
 - Aufbau: Hook in Satz 1, Frage stellen, in Kapiteln erklären, alle paar Sätze ein neuer Fakt oder eine neue Wendung, am Ende Frage an die Zuschauer.
+- Thumbnail: `"thumb_text": ["THEMA | Neugier-Zeile", "Satz für B"]` (je höchstens 4 Wörter), siehe `thumbnail.py` und CLAUDE.md. Die App baut zwei Varianten und setzt eine beim Upload.
 
 ## Firmen-Spiel: vier Firmen (`firma.py`, Szene `firma`)
 
