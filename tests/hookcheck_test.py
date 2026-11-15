@@ -48,3 +48,27 @@ q = store.load_spec(store.path("queue", "9999-test-hook.json"))
 assert q["segments"][0]["text"] == "Du bleibst wach, und plötzlich siehst du Dinge.", q["segments"][0]["text"]
 assert store.card(q)["hook_check"]["score"] == 8
 print("ok")
+
+# --- unslop: Titel, Beschreibung, Thumbnail-Text -------------------------------------
+P = hookcheck.polish
+assert P("Hallo Leute!! Das Rätsel vom Pass 😱🔥👀.", "title") == "Das Rätsel vom Pass 😱"
+assert P("Dieser Autogigant trägt den Namen eines Schweizers 🇨🇭", "title") == "Dieser Autogigant trägt den Namen eines Schweizers 🇨🇭"
+assert P("Was geschah 1959–1960 wirklich?", "title") == "Was geschah 1959–1960 wirklich?"
+assert P("Er lügt dich an — wirklich", "line") == "Er lügt dich an wirklich"
+assert P("Willkommen zurück! Ein Zelt im Schnee – von innen aufgeschnitten.\n\n#mystery #shorts", "description") \
+    == "Ein Zelt im Schnee, von innen aufgeschnitten.\n\n#mystery #shorts"
+tips = hookcheck.text_tips({"title": "Du wirst nicht glauben, was 99 % der Menschen falsch machen!!! 😱🔥",
+                            "description": "Hallo Leute, hier ist es", "thumb_text": ["Menschen | falsch machen"]})
+assert len(tips) == 6, tips
+assert hookcheck.text_tips(good) == []
+assert "Füllwort" in hookcheck.tells({"segments": [{"text": "Heutzutage spielt das darüber hinaus keine Rolle."}]})
+s2, ch = hookcheck.clean({"title": "Das Rätsel — gelöst!!", "description": "Hey Leute! Ein Schiff treibt leer.",
+                          "thumb_text": ["Schiff | treibt leer.", "Niemand an Bord!!"], "segments": [{"text": "Ein Schiff."}]})
+assert ch and s2["title"] == "Das Rätsel, gelöst!" and s2["description"] == "Ein Schiff treibt leer."
+assert s2["thumb_text"] == ["Schiff | treibt leer", "Niemand an Bord!"], s2["thumb_text"]
+# alle echten Skripte: Titel bleiben gleich, keine Text-Tipps
+for f in glob.glob(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "seed", "*.json")):
+    s = json.load(open(f, encoding="utf-8"))
+    c, _ = hookcheck.clean(copy.deepcopy(s))
+    assert c.get("title") == s.get("title"), (f, c.get("title"))
+print("unslop ok")
