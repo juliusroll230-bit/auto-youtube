@@ -49,6 +49,21 @@ Die App bereinigt neue Skripte beim Einlesen selbst noch einmal und zeigt die No
 in der Zentrale (Sendeplan und Zuschauer > „Hook-Prüfung“). Unter „Was am besten
 funktioniert“ vergleicht sie „Hook-Prüfung“ stark / gut / schwach mit echten Aufrufen.
 
+### Unslop-Regeln für Titel, Beschreibung und Thumbnail-Text (seit 15.11.2026)
+
+Aus „unslop“ (Damir Sokolovsky, CC BY 4.0) die Text-Regeln übernommen und auf Deutsch umgebaut.
+`hookcheck.py --fix` bereinigt jetzt auch `title`, `description` und `thumb_text`; Tipps dazu
+stehen mit „·“ unter der Note (sie zählen nicht zur 8er-Note).
+
+- Keine Hype-Wörter: „revolutionär“, „bahnbrechend“, „ultimativ“, „Game-Changer“, „unfassbar“,
+  „du wirst nicht glauben“, „absoluter Wahnsinn“, „Gänsehaut garantiert“. Lieber sagen, was passiert.
+- Kein KI-Deutsch: „heutzutage“, „spielt eine wichtige Rolle“, „von entscheidender Bedeutung“,
+  „darüber hinaus“, „nicht zuletzt“, „zweifellos“, „Tatsächlich …“ am Satzanfang, „mehr als nur“, „Fakt ist:“.
+- Keine unbelegten Behauptungen („99 % der Menschen …“, „die meisten wissen das nicht“,
+  „wissenschaftlich bewiesen“ ohne Quelle).
+- Titel: höchstens 1 Emoji, kein „!!“, nicht mehrere GROSSBUCHSTABEN-Wörter, kein Schlusspunkt,
+  besser unter 60 Zeichen. Beschreibung ohne Begrüßung. Thumbnail-Text wiederholt nicht den Titel.
+
 Nicht übernommen: `agent-reach` und `reel-analyzer` (laden fremde Videos), alles zu
 Instagram-DMs, Leads und Werbung.
 

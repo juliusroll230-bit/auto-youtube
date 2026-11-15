@@ -794,7 +794,8 @@ def hook_text(sentence_text, max_words=9):
 
 
 def title_text(sentence_text, limit=90):
-    text = " ".join(_trim_filler(sentence_text))
+    import hookcheck  # unslop: Gedankenstriche, „!!“, Begrüßung und Schlusspunkt raus
+    text = hookcheck.polish(" ".join(_trim_filler(sentence_text)), "title")
     if len(text) > limit:
         text = text[:limit - 2].rsplit(" ", 1)[0].rstrip(",;:") + " …"
     return text
