@@ -6,11 +6,56 @@
  },
  "videos": [
   {
+   "id": "GkAEqa6R2yA",
+   "title": "Der Sender, der seit Jahrzehnten nur brummt 📻",
+   "text": "UVB-76: ein Kurzwellensender, der seit Jahrzehnten einen Brummton sendet, gelegentlich unterbrochen von Stimmen. Wer ihn betreibt, ist nicht offiziell bestätigt.",
+   "niche": "Wissen",
+   "views": 473,
+   "published": "2026-11-15T19:41:27+00:00",
+   "thumb": "thumbs/GkAEqa6R2yA.jpg"
+  },
+  {
+   "id": "sJ1PBhadNcI",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 1) 🎮",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 87 Mitarbeiter und 10.700 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 360,
+   "published": "2026-11-15T19:32:46+00:00",
+   "thumb": "thumbs/sJ1PBhadNcI.jpg"
+  },
+  {
+   "id": "XZMKR9AcQaw",
+   "title": "Was passiert, wenn der Mond plötzlich verschwindet? 🌑",
+   "text": "Der Mond ist weg. Was ändert sich auf der Erde? Gezeiten, Nächte und vielleicht sogar das Klima.",
+   "niche": "Wissen",
+   "views": 464,
+   "published": "2026-11-15T19:23:39+00:00",
+   "thumb": "thumbs/XZMKR9AcQaw.jpg"
+  },
+  {
+   "id": "3kD5IBnKA-w",
+   "title": "Das Rätsel vom Djatlow-Pass: Was geschah in jener Nacht? ⛺",
+   "text": "Februar 1959: Im Nordural wird ein Zelt gefunden, von innen aufgeschnitten, neun Wanderer sind tot. Wir erzählen die ganze Geschichte des Djatlow-Passes, zeigen die Spuren und prüfen jede Theorie.",
+   "niche": "Geschichte",
+   "views": 12,
+   "published": "2026-11-15T19:18:35+00:00",
+   "thumb": "thumbs/3kD5IBnKA-w.jpg"
+  },
+  {
+   "id": "J8qYlbkPXWo",
+   "title": "Die Pilotin, die mitten im Pazifik spurlos verschwand ✈️",
+   "text": "Amelia Earhart verschwand 1937 bei einem Weltumrundungsflug über dem Pazifik. Trotz großer Suche fand man sie nie. Es gibt nur Theorien.",
+   "niche": "Geschichte",
+   "views": 835,
+   "published": "2026-11-15T16:40:48+00:00",
+   "thumb": "thumbs/J8qYlbkPXWo.jpg"
+  },
+  {
    "id": "_KKF1PnlZJ0",
    "title": "Das Rätsel um den Geruch von Regen 🌧️",
    "text": "Warum riecht Regen auf trockenem Boden so besonders? Das steckt dahinter: Petrichor und Geosmin.",
    "niche": "Wissen",
-   "views": 258,
+   "views": 940,
    "published": "2026-11-15T15:40:21+00:00",
    "thumb": "thumbs/_KKF1PnlZJ0.jpg"
   },
@@ -19,7 +64,7 @@
    "title": "Das Gerät im Schiffswrack, das nicht dort sein dürfte ⚙️",
    "text": "Die Antikythera-Maschine: ein rund zweitausend Jahre altes Zahnradgerät aus einem griechischen Wrack. Es zeigt, wie weit antike Technik schon war.",
    "niche": "Geschichte",
-   "views": 375,
+   "views": 840,
    "published": "2026-11-15T14:46:17+00:00",
    "thumb": "thumbs/li-hukepg84.jpg"
   },
@@ -28,7 +73,7 @@
    "title": "Warum bekommst du eigentlich Gänsehaut? 🥶",
    "text": "Warum stellen sich bei Kälte und Gefühlen die Haare auf? Ein Überbleibsel aus der Zeit unserer fellbedeckten Vorfahren.",
    "niche": "Wissen",
-   "views": 571,
+   "views": 1284,
    "published": "2026-11-15T14:40:24+00:00",
    "thumb": "thumbs/FwUS0tZsk2Q.jpg"
   },
@@ -37,7 +82,7 @@
    "title": "Die Riesenbilder im Sand, die man nur von oben sieht 🛩️",
    "text": "Die Nazca-Linien in Peru: riesige Figuren im Wüstenboden, vor etwa zweitausend Jahren entstanden. Wozu sie dienten, ist bis heute unklar.",
    "niche": "Wissen",
-   "views": 590,
+   "views": 885,
    "published": "2026-11-15T11:40:38+00:00",
    "thumb": "thumbs/XV0fpGAJjvU.jpg"
   },
@@ -46,7 +91,7 @@
    "title": "Was passiert, wenn alle Menschen gleichzeitig springen? 🦘",
    "text": "Alle Menschen der Erde springen im selben Moment. Bewegt sich die Erde? Die Physik hat eine klare Antwort.",
    "niche": "Wissen",
-   "views": 943,
+   "views": 969,
    "published": "2026-11-15T09:39:24+00:00",
    "thumb": "thumbs/9IY18ivs_Nk.jpg"
   },
@@ -55,7 +100,7 @@
    "title": "Die Gasse unter Edinburgh, in der Besucher Spielzeug lassen 🧸",
    "text": "Mary King's Close in Edinburgh: Eine überbaute Gasse, Pestgeschichten und ein Geistermädchen. Belegt ist die Gasse, der Rest ist Legende.",
    "niche": "Wissen",
-   "views": 499,
+   "views": 598,
    "published": "2026-11-15T06:40:40+00:00",
    "thumb": "thumbs/9dmpBcv6EJc.jpg"
   },
@@ -82,7 +127,7 @@
    "title": "Nebelbach: Wohin sind alle verschwunden? (Teil 1) 🌫️",
    "text": "Nebelbach, Teil 1. Eine ausgedachte Mystery-Serie.",
    "niche": "Wissen",
-   "views": 892,
+   "views": 895,
    "published": "2026-11-14T16:40:55+00:00",
    "thumb": "thumbs/pVPieJz-K78.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Wie überlebt man in Treibsand? 🏜️",
    "text": "Was Treibsand wirklich ist und warum man darin nicht komplett versinkt. Der Mythos und die Physik dahinter.",
    "niche": "Wissen",
-   "views": 924,
+   "views": 925,
    "published": "2026-11-14T14:40:28+00:00",
    "thumb": "thumbs/fAlhZBbNY5M.jpg"
-  },
-  {
-   "id": "ZvUGC0OGGiU",
-   "title": "Die Insel, auf der hunderte Steinriesen stehen 🗿",
-   "text": "Die Osterinsel im Pazifik: Rund neunhundert Moai-Statuen und viele offene Fragen. Wie sie bewegt wurden und warum die Kultur litt, ist umstritten.",
-   "niche": "Wissen",
-   "views": 861,
-   "published": "2026-11-14T11:40:54+00:00",
-   "thumb": "thumbs/ZvUGC0OGGiU.jpg"
-  },
-  {
-   "id": "QzV8lHZZOLc",
-   "title": "Die Puppe, die niemand ohne Erlaubnis fotografieren darf 🧸",
-   "text": "Roberts Puppe aus Key West: Die Legende sagt, sie kichert und bringt Pech. Belegt ist nur die Puppe im Museum, der Rest ist Legende.",
-   "niche": "Wissen",
-   "views": 1321,
-   "published": "2026-11-14T09:40:34+00:00",
-   "thumb": "thumbs/QzV8lHZZOLc.jpg"
-  },
-  {
-   "id": "0Rih6w1Vrb4",
-   "title": "Was passiert, wenn das Seil deines Aufzugs reißt? 🛗",
-   "text": "Warum ein Aufzug nicht einfach abstürzt: mehrere Seile, Fangbremse und die Show von Elisha Otis.",
-   "niche": "Wissen",
-   "views": 1012,
-   "published": "2026-11-13T19:40:02+00:00",
-   "thumb": "thumbs/0Rih6w1Vrb4.jpg"
-  },
-  {
-   "id": "3sHmtho9l2s",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Burgerladen (Tag 1) 🍔",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Burgerladen „Abo Burger“ ein. Heute: 44 Mitarbeiter und 6.400 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 992,
-   "published": "2026-11-13T19:23:05+00:00",
-   "thumb": "thumbs/3sHmtho9l2s.jpg"
-  },
-  {
-   "id": "E8v3vNn-XOc",
-   "title": "Die Tanzwut von 1518: Eine Stadt, die nicht aufhören konnte 💃",
-   "text": "Im Juli 1518 beginnt in Straßburg eine Frau zu tanzen und hört nicht mehr auf. Bald tanzen Hunderte. Wir erzählen die ganze Geschichte der Tanzwut, zeigen die Quellen und prüfen jede Theorie.",
-   "niche": "Geschichte",
-   "views": 150,
-   "published": "2026-11-13T19:13:26+00:00",
-   "thumb": "thumbs/E8v3vNn-XOc.jpg"
   }
  ]
 }
