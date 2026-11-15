@@ -1,0 +1,630 @@
+{
+  "slug": "mystery-djatlow-pass-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#10202a",
+    "#5a8cc4"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Rätsel vom Djatlow-Pass: Was geschah in jener Nacht? ⛺",
+  "description": "Februar 1959: Im Nordural wird ein Zelt gefunden, von innen aufgeschnitten, neun Wanderer sind tot. Wir erzählen die ganze Geschichte des Djatlow-Passes, zeigen die Spuren und prüfen jede Theorie.\n\n#mystery #rätsel #djatlow #geschichte #ural",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "djatlow",
+    "geschichte",
+    "ural"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "muetze",
+    "name": "Igor"
+  },
+  "segments": [
+    {
+      "text": "Februar neunzehnhundertneunundfünfzig, Nordural: Ein Suchtrupp findet im Schnee ein Zelt, das von innen aufgeschnitten wurde, und von den Menschen darin fehlt jede Spur.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "steht",
+        "objekt": "⛺",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Neun junge Wanderer sind in dieser eisigen Nacht aus ihrem Zelt geflohen, teils ohne Schuhe, und keiner von ihnen kam lebend zurück.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "⛺",
+        "text": "Neun weg",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "In diesem Video erzählen wir die Geschichte vom Djatlow-Pass, zeigen die Spuren und prüfen jede Theorie, die in über sechzig Jahren aufgestellt wurde.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Djatlow-Pass",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Zuerst die Gruppe, dann der Berg, dann der Fund und die Rätsel, und zum Schluss das, was die Forschung heute sagt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Der Ural ist ein langes Gebirge in Russland, und die Gruppe plant eine Skitour im Norden, wo im Winter kaum jemand unterwegs ist.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏔️",
+        "text": "Der Ural",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Die Gruppe besteht aus zehn Studenten und Absolventen der Technischen Hochschule von Swerdlowsk, geführt von dem erfahrenen Wanderer Igor Djatlow.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎿"
+      }
+    },
+    {
+      "text": "Auf der Liste stehen acht Männer und zwei Frauen, alle jung und sportlich, die meisten zwischen zwanzig und vierundzwanzig Jahre alt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Wanderer",
+        "objekt": "🥾",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Sie sind erfahren, haben viele schwere Touren hinter sich, und Djatlow hat die Reise sorgfältig geplant, mit Karte, Ausrüstung und genauem Zeitplan.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧭",
+        "text": "Gut geplant",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Ende Januar neunzehnhundertneunundfünfzig beginnt die Wanderung, und schon nach einem Tag muss Juri Judin wegen starker Schmerzen umkehren.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1959",
+        "text": "Start der Tour",
+        "objekt": "🚂"
+      }
+    },
+    {
+      "text": "Judin winkt zum Abschied und sieht seine Freunde nie wieder. Er wird als Einziger überleben und sein Leben lang nach Antworten suchen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "winkt",
+        "objekt": "👋"
+      }
+    },
+    {
+      "text": "Die Gruppe führt Tagebücher und macht Fotos, und ihre letzten Aufnahmen zeigen fröhliche junge Menschen beim Skifahren, beim Kochen und beim Scherzen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📷",
+        "text": "Letzte Fotos",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Am ersten Februar erreicht die Gruppe die Hänge des Berges Cholat Sjachl, was oft mit Toter Berg übersetzt wird.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "⛰️"
+      }
+    },
+    {
+      "text": "Der Berg gilt bei den Mansen, den Ureinwohnern der Gegend, als besonderer Ort, doch nichts deutet darauf hin, dass sie der Gruppe etwas antaten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏔️",
+        "text": "Die Mansen",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Sie bauen ihr Zelt am Hang auf, auf dem offenen Gelände, statt im schützenden Wald zu bleiben. Das wird später viele Fragen aufwerfen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏔️",
+        "text": "Am Hang"
+      }
+    },
+    {
+      "text": "In der Nacht auf den zweiten Februar geschieht es: Etwas zwingt alle neun, ihr Zelt fluchtartig zu verlassen, mitten im Schneesturm.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1959",
+        "text": "Die Nacht",
+        "objekt": "🌨️"
+      }
+    },
+    {
+      "text": "Das Zelt wird von innen aufgeschnitten, so sah es später aus, und die Gruppe lässt Schuhe, Mäntel und Ausrüstung zurück.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⛺",
+        "text": "Von innen",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Warum verlassen erfahrene Wanderer bei minus zwanzig Grad fluchtartig ihr warmes Zelt, ohne richtige Kleidung?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🥶",
+        "text": "Warum?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Gleich kommt der Teil, den die Retter fanden: Die Spuren im Schnee und die Entdeckung der Gruppe.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Die Suche"
+      }
+    },
+    {
+      "text": "Als die Gruppe nicht zurückkehrt, schlagen Familien Alarm, und Ende Februar beginnt die Suche mit Freiwilligen, Soldaten und Hubschraubern.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🚁"
+      }
+    },
+    {
+      "text": "Am sechsundzwanzigsten Februar entdecken Suchende das Zelt. Es steht halb verschneit am Hang, ist leer, und alle Sachen liegen noch darin.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1959",
+        "text": "Das Zelt",
+        "objekt": "⛺"
+      }
+    },
+    {
+      "text": "Im Zelt finden die Retter warme Kleidung, Essen, Schuhe und Wertsachen. Alles liegt dort, als wären die Wanderer nur kurz hinausgegangen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Im Zelt",
+        "punkte": [
+          "🧥",
+          "🥫",
+          "🥾"
+        ]
+      }
+    },
+    {
+      "text": "Vom Zelt führen Fußspuren Richtung Wald, einige Paare davon barfuß oder nur in Socken, und sie führen hinunter zum Waldrand.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👣",
+        "text": "Spuren",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Am Waldrand, unter einer großen Zeder, finden die Retter die ersten zwei Toten und die Reste eines Feuers, das sie offenbar angezündet hatten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🌲"
+      }
+    },
+    {
+      "text": "Auf dem Weg zurück zum Zelt finden sie nach und nach drei weitere Körper im Schnee, als hätten sie versucht, zum Zelt zurückzukehren.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "❄️",
+        "text": "Drei weitere",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Fünf der neun Wanderer sind damit gefunden. Die anderen vier bleiben noch monatelang verschwunden, verborgen unter vielen Metern Schnee.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 5,
+        "einheit": "von neun gefunden",
+        "objekt": "🔎",
+        "farbcode": "#1d2f3a"
+      }
+    },
+    {
+      "text": "Die ersten Untersuchungen ergeben: Die fünf starben an Unterkühlung, und bei einem von ihnen gibt es eine Kopfverletzung, die aber nicht tödlich war.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🩺",
+        "text": "Unterkühlung",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Erst im Mai, als der Schnee schmilzt, finden Suchende die letzten vier Wanderer in einer Schlucht, unter mehreren Metern Schnee, weiter unten am Hang.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1959",
+        "text": "Die letzten Vier",
+        "objekt": "🏞️"
+      }
+    },
+    {
+      "text": "Diese vier hatten schwerere Verletzungen, etwa Rippenbrüche und Schädelverletzungen, die an starke Kräfte erinnerten, aber ohne äußere Wunden.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🩺",
+        "text": "Schwere Verletzungen",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Was kann solche Verletzungen verursachen, ohne Spuren am Körper zu hinterlassen? Auch das gehört zu den größten Rätseln dieses Falls.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Welche Kraft?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Hinzu kommen Berichte über seltsame Funde: Spuren von Strahlung auf einigen Kleidungsstücken und eine orange Färbung bei einigen Körpern.",
+      "szene": {
+        "typ": "akte",
+        "text": "Seltsame Funde",
+        "punkte": [
+          "☢️",
+          "👕",
+          "🟠"
+        ]
+      }
+    },
+    {
+      "text": "Doch gerade diese Details sind umstritten, denn die Untersuchungen waren damals knapp, und manche Dokumente sind unvollständig oder schwer überprüfbar.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📄",
+        "text": "Umstritten",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Der Fall wird abgeschlossen mit dem Satz, eine unbekannte zwingende Naturgewalt habe die Gruppe getötet. Das Gebiet wird für Wanderer gesperrt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Jahrzehntelang bleibt der Fall in der Sowjetunion ein Tabu, und die Angehörigen erhalten kaum Auskunft, was Gerüchte und Verdächtigungen nur anheizt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📁",
+        "text": "Tabu",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Jetzt zu den Theorien. Wir stellen sie der Reihe nach vor und sagen, was dafür und was dagegen spricht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Die Theorien"
+      }
+    },
+    {
+      "text": "Theorie eins: ein Angriff durch Menschen, zum Beispiel durch Einheimische. Doch es gab keine fremden Spuren, und die Verletzungen passen nicht zu Kämpfen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Theorie zwei: Militärtests. Manche sehen darin einen Grund für Strahlung und für das Sperrgebiet, doch handfeste Beweise dafür gibt es nicht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🪖",
+          "text": "Militär?"
+        },
+        "rechts": {
+          "objekt": "❌",
+          "text": "Kein Beweis"
+        }
+      }
+    },
+    {
+      "text": "Theorie drei: der Yeti. Diese Idee ist beliebt in Filmen und Büchern, doch ernsthafte Belege gibt es nicht, und Fachleute lehnen sie ab.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🦶",
+        "text": "Yeti?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Theorie vier: starke Fallwinde. Der Wind könnte das Zelt beschädigt haben, aber das erklärt nicht, warum alle gleichzeitig fliehen mussten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💨"
+      }
+    },
+    {
+      "text": "Theorie fünf: Infraschall. Wind, der über den Berg weht, könnte tiefe Töne erzeugen, die Angst und Panik auslösen. Das ist eine reine Hypothese.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌬️",
+        "text": "Infraschall?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Die wichtigste Theorie heute lautet: eine Lawine. Aber genau die klingt anfangs unwahrscheinlich, denn der Hang ist nicht besonders steil.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏔️"
+      }
+    },
+    {
+      "text": "Neunzehnhundertneunzehn nehmen russische Ermittler den Fall wieder auf und kommen zu dem Schluss: Wahrscheinlich war es eine Lawine.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2019",
+        "text": "Neue Ermittlung",
+        "objekt": "⚖️"
+      }
+    },
+    {
+      "text": "Sie erklären, dass ein Schneebrett abgegangen sein könnte, das die Wanderer überraschte und ihr Zelt beschädigte, sodass sie fliehen mussten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "❄️",
+        "text": "Schneebrett",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Zweitausendeinundzwanzig veröffentlichten Forscher aus der Schweiz eine Studie, die mit Computermodellen zeigt, wie ein kleines Schneebrett das Zelt hätte treffen können.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💻"
+      }
+    },
+    {
+      "text": "Ihre Erklärung beruht auf mehreren Punkten, und die wichtigsten sind schnell zusammengefasst.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Lawinen-Idee",
+        "punkte": [
+          "Schneebrett",
+          "Starke Winde",
+          "Zelt am Hang"
+        ]
+      }
+    },
+    {
+      "text": "Dadurch ließen sich auch die schweren Verletzungen erklären, denn Schneelast kann Rippen und Schädel verletzen, ohne äußere Wunden zu hinterlassen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🩺",
+        "text": "Schneelast",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Kritiker widersprechen: Der Hang ist flach, und es gibt keine typischen Lawinenspuren. Andere Forscher meinen, die Spuren wären schnell verweht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "✅",
+          "text": "Lawine möglich"
+        },
+        "rechts": {
+          "objekt": "❓",
+          "text": "Kritik bleibt"
+        }
+      }
+    },
+    {
+      "text": "Wichtig ist: Selbst wenn eine Lawine die Ursache war, bleiben viele Details offen, zum Beispiel, warum die Gruppe so weit vom Zelt entfernt gefunden wurde und was genau sie in den Stunden danach tat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧩"
+      }
+    },
+    {
+      "text": "Gleich kommt noch ein Punkt, der den Fall so unheimlich macht: das, was wir über die letzten Stunden wissen und was nicht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Letzte Stunden"
+      }
+    },
+    {
+      "text": "Wir wissen nicht genau, wann sie aufbrachen, wie lange sie draußen waren, was sie sahen und warum sie nicht zum Zelt zurückkehrten.",
+      "szene": {
+        "typ": "akte",
+        "text": "Offene Fragen",
+        "punkte": [
+          "⏰",
+          "👀",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Das Feuer unter der Zeder zeigt, dass sie sich zu helfen wussten. Vielleicht versuchten sie, sich aufzuwärmen und auf besseres Wetter zu warten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Einige schnitten Äste ab, um eine Art Unterstand zu bauen. Das zeigt: Sie dachten klar, auch wenn sie in großer Gefahr waren.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌲",
+        "text": "Unterstand",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Und dann kommt der Moment, in dem sie wohl versuchten, zum Zelt zurückzukehren, um Kleidung und Hilfe zu holen. Keiner von ihnen schaffte es.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "faellt",
+        "objekt": "🏕️"
+      }
+    },
+    {
+      "text": "Man kann nur ahnen, wie die Nacht für sie war: Kälte, Dunkelheit, Sturm und die Angst vor dem, was sie aus dem Zelt getrieben hatte.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 7,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Die Nacht"
+      }
+    },
+    {
+      "text": "Bis heute besuchen Wanderer den Ort, und ein Gedenkstein erinnert an die neun Menschen, die dort starben, fast alle noch nicht dreißig.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🪦",
+        "text": "Gedenkstein",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Der Fall hat Bücher, Filme und Dokumentationen inspiriert und bringt jedes Jahr neue Theorien hervor, doch ein endgültiger Beweis fehlt weiterhin.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🎬"
+      }
+    },
+    {
+      "text": "Auch Fotografen und Hobbyforscher reisen immer wieder zum Pass und suchen nach Spuren, und jede neue Studie wird weltweit diskutiert.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📷",
+        "text": "Neue Studien",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir nach über sechzig Jahren sicher, und was bleibt eine Vermutung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Neun Wanderer verließen ihr Zelt überstürzt, alle starben in der Kälte, und der Fall wurde neunzehnhundertneunundfünfzig offiziell abgeschlossen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Zelt von innen offen",
+          "Neun Tote",
+          "Fall abgeschlossen"
+        ]
+      }
+    },
+    {
+      "text": "Unklar bleibt: Was genau den Aufbruch auslöste, woher die Verletzungen kamen und wie zuverlässig die alten Untersuchungen waren.",
+      "szene": {
+        "typ": "akte",
+        "text": "Unklar",
+        "punkte": [
+          "⚡",
+          "🩺",
+          "📄"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist heute, dass eine natürliche Ursache wie ein Schneebrett die Gruppe überraschte, doch auch das ist nur die beste Erklärung, kein Beweis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❄️"
+      }
+    },
+    {
+      "text": "Und trotzdem lässt uns der Fall nicht los: ein Zelt, von innen aufgeschnitten, und Spuren, die in die Dunkelheit führen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "⛺",
+        "text": "Das Zelt",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Was glaubst du, was in dieser Nacht am Djatlow-Pass geschah? Schreib deine Theorie in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

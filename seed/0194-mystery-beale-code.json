@@ -1,0 +1,105 @@
+{
+  "slug": "mystery-beale-code",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#1a1a10",
+    "#8c8a3a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Der Schatz, dessen Code seit über hundert Jahren niemand knackt 🔐",
+  "description": "Die Beale-Papiere von 1885: drei Geheimcodes, ein angeblicher Schatz in Virginia. Zwei Codes sind bis heute ungelöst, viele halten alles für einen Schwindel.\n\n#mystery #rätsel #schatz #code #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "schatz",
+    "code",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "zylinder",
+    "name": "Beale"
+  },
+  "segments": [
+    {
+      "text": "Ein Mann gräbt im Wald nach Gold, doch er findet nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "zeigt",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Achtzehnhundertfünfundachtzig erscheint in Virginia eine Broschüre mit drei Geheimcodes.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1885,
+        "text": "Beale-Papiere",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Sie erzählt von einem vergrabenen Schatz aus Gold und Silber.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "💰",
+        "text": "Vergrabener Schatz"
+      }
+    },
+    {
+      "text": "Ein Code wurde entschlüsselt, mit der Unabhängigkeitserklärung als Schlüssel.",
+      "szene": {
+        "typ": "akte",
+        "text": "Code Nummer zwei",
+        "punkte": [
+          "📜",
+          "🔑",
+          "💰"
+        ]
+      }
+    },
+    {
+      "text": "Die anderen beiden Codes, mit dem Versteck, sind bis heute ungelöst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Wo liegt er?"
+      }
+    },
+    {
+      "text": "Theorien: echter Schatz, Schwindel oder Halbwahrheit.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Echt",
+          "Schwindel",
+          "Halb wahr"
+        ]
+      }
+    },
+    {
+      "text": "Gesucht wurde vor allem in der Gegend von Bedford in Virginia.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Virginia"
+      }
+    },
+    {
+      "text": "Kein Schatz wurde je gefunden. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "🔐",
+        "text": "Schatz?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

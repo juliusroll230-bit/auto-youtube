@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-mh370-verschwunden",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0a1a2c",
+    "#3a7ac4"
+  ],
+  "accent": "#ffd24d",
+  "title": "Das Flugzeug, das mitten in der Nacht vom Radar verschwand ✈️",
+  "description": "Flug MH370 verschwand 2014 mit 239 Menschen an Bord. Wrackteile wurden gefunden, das Flugzeug nie. Was geschah, ist ungeklärt.\n\n#mystery #rätsel #mh370 #flugzeug #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "mh370",
+    "flugzeug",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "kapitaen",
+    "name": "Pilot"
+  },
+  "segments": [
+    {
+      "text": "Mitten in der Nacht dreht ein Flugzeug plötzlich vom Kurs ab.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "✈️"
+      }
+    },
+    {
+      "text": "Am achten März zweitausendvierzehn startet Flug MH370 in Kuala Lumpur.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2014,
+        "text": "Flug MH370",
+        "objekt": "✈️"
+      }
+    },
+    {
+      "text": "An Bord sind zweihundertneununddreißig Menschen, Ziel ist Peking.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 239,
+        "einheit": "Menschen",
+        "objekt": "👥",
+        "farbcode": "#0a1a2c"
+      }
+    },
+    {
+      "text": "Dann bricht der Funkkontakt ab, das Signal verschwindet vom Radar.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "📡",
+        "text": "Kein Signal"
+      }
+    },
+    {
+      "text": "Satellitendaten deuten auf den südlichen Indischen Ozean.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Indischer Ozean"
+      }
+    },
+    {
+      "text": "Wrackteile wurden angespült, doch das Flugzeug selbst blieb unauffindbar.",
+      "szene": {
+        "typ": "akte",
+        "text": "Wrackteile",
+        "punkte": [
+          "✈️",
+          "🌊",
+          "❓"
+        ]
+      }
+    },
+    {
+      "text": "Theorien: ein technischer Defekt oder ein Notfall an Bord.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Defekt",
+          "Notfall",
+          "Unbekannt"
+        ]
+      }
+    },
+    {
+      "text": "Die Suche ging weiter, die Antwort fehlt. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "✈️",
+        "text": "Ungelöst"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}
