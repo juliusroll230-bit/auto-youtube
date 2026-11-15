@@ -163,7 +163,7 @@ def post_next(slot, manual=False, long=False, firma=False):
             cfg = store.config()
             # Mit eigenem Clip-Kanal laufen Clips getrennt (post_clip_slot), sonst ersetzen sie hier Sendeplätze
             clip = None if (cfg["clip_token"] or long or firma) else clips.choose_for_slot(
-                slot, cfg["post_hours"], agents.settings(cfg)["publisher"]["clips_per_day"],
+                slot, store.hours_for(cfg, store.now()), agents.settings(cfg)["publisher"]["clips_per_day"],
                 store.state()["uploads"], scripts_left=bool(planned))
         if clip:
             return post_clip(clip, slot, manual)
@@ -667,14 +667,15 @@ def apply_branding(force=False):
     import branding
 
     cfg, st = store.config(), store.state()
-    version = f"{branding.VERSION}|{','.join(map(str, cfg['post_hours']))}"  # neue Sendezeiten = neues Banner
+    wk = cfg.get("post_hours_weekend") or cfg["post_hours"]
+    version = f"{branding.VERSION}|{','.join(map(str, cfg['post_hours']))}|{','.join(map(str, wk))}"  # neue Sendezeiten = neues Banner
     if not cfg["refresh_token"] or (not force and st.get("branding_version") == version):
         return
     start_work("designer", task="Setzt Banner und Beschreibung")
     try:
         title = (store.read("channel.json", {}) or {}).get("title") or "60 Sekunden Wissen"
         banner, profile = branding.render_all(title, cfg["post_hours"], store.path("branding"))
-        yt.set_branding(cfg, banner, branding.description(title, cfg["post_hours"]), branding.KEYWORDS)
+        yt.set_branding(cfg, banner, branding.description(title, cfg["post_hours"], wk), branding.KEYWORDS)
         with store.LOCK:
             st = store.state()
             st["branding_version"] = version
@@ -1037,11 +1038,12 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": "Die Client-ID endet auf .apps.googleusercontent.com. Bitte prüfen."})
             if changes.get("client_id") and changes["client_id"] != store.config()["client_id"]:
                 changes["refresh_token"] = ""  # die alte Verbindung gehört zum alten Client
-            if "post_hours" in data:
-                hours = sorted({int(h) for h in data["post_hours"] if 0 <= int(h) <= 23})
-                if not 1 <= len(hours) <= 10:
-                    return self.send(400, {"error": "Bitte 1 bis 10 Sendezeiten wählen."})
-                changes["post_hours"] = hours
+            for key, label in (("post_hours", ""), ("post_hours_weekend", " fürs Wochenende")):
+                if key in data:
+                    hours = sorted({int(h) for h in data[key] if 0 <= int(h) <= 23})
+                    if not 1 <= len(hours) <= 10:
+                        return self.send(400, {"error": f"Bitte 1 bis 10 Sendezeiten{label} wählen."})
+                    changes[key] = hours
             if data.get("privacy") in ("public", "unlisted", "private"):
                 changes["privacy"] = data["privacy"]
             store.save_config(**changes)

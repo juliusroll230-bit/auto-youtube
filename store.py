@@ -33,7 +33,11 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [8, 11, 13, 16, 18], "privacy": "public", "expired": False,
+                  # Sendezeiten (volle Stunden, deutsche Zeit): Mo bis Fr und Sa/So getrennt.
+                  # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
+                  # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
+                  "post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18],
+                  "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
                   # Pixabay- oder Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
@@ -83,7 +87,8 @@ def init():
     for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns", "share"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
-        cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
+        raw = read("config.json", {})
+        cfg = {**DEFAULT_CONFIG, **raw}
         # Alte Standardzeiten (3 pro Tag) einmalig auf 6 pro Tag umstellen, eigene Zeiten bleiben
         if not cfg.get("hours_v2"):
             if cfg["post_hours"] == [12, 17, 20]:
@@ -99,6 +104,15 @@ def init():
             if cfg["post_hours"] == [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]:
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
             cfg["hours_v5"] = True
+        # 15.11.: Zeiten nach Zuschauer-Aktivität, am Wochenende eigene Zeiten. Eigene Zeiten bleiben,
+        # dann gelten sie auch am Wochenende (wie bisher).
+        if not cfg.get("hours_v6"):
+            if cfg["post_hours"] in ([8, 11, 13, 16, 18], DEFAULT_CONFIG["post_hours"]):
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+                cfg["post_hours_weekend"] = DEFAULT_CONFIG["post_hours_weekend"]
+            elif "post_hours" in raw and "post_hours_weekend" not in raw:
+                cfg["post_hours_weekend"] = list(cfg["post_hours"])
+            cfg["hours_v6"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
@@ -238,10 +252,21 @@ def find_spec(slug):
     return None
 
 
+def is_weekend(day):
+    return day.weekday() >= 5
+
+
+def hours_for(cfg, day):
+    """Sendezeiten (volle Stunden) für diesen Tag: Sa/So eigene Zeiten, sonst die normalen."""
+    if is_weekend(day) and cfg.get("post_hours_weekend"):
+        return cfg["post_hours_weekend"]
+    return cfg["post_hours"]
+
+
 def due_slot(at=None, done="done_slots"):
     """Der Sendeplatz, der gerade dran ist. done="clip_slots" für den eigenen Clip-Kanal."""
     at = at or now()
-    st, hours = state(), config()["post_hours"]
+    st, hours = state(), hours_for(config(), at)
     for h in hours:
         slot = at.replace(hour=int(h), minute=0, second=0, microsecond=0)
         key = slot.strftime("%Y-%m-%d-%H")
@@ -348,7 +373,7 @@ def clipi_room(cfg, st, at=None):
     ups = [u for u in st.get("uploads", []) if (u.get("posted_at") or "")[:10] == today]
     clip_done = sum(1 for u in ups if u.get("channel") == "clips")
     main_done = len(ups) - clip_done
-    main_total = len(cfg.get("post_hours") or []) + 2  # + langes Video + Firmen-Folge
+    main_total = len(hours_for(cfg, at) or []) + 2  # + langes Video + Firmen-Folge
     main_left = max(0, main_total - main_done)
     return max(0, PROJECT_DAILY - main_done - main_left - clip_done)
 
@@ -597,11 +622,12 @@ def next_voice(spec, posted=None):
     return learn.choose_voice(learn.feature_scores(posted, now()), len(posted), spec)
 
 
-def next_slot(hours, at=None):
+def next_slot(cfg, at=None):
     at = at or now()
     for day in range(2):
-        for h in sorted(hours):
-            slot = (at + dt.timedelta(days=day)).replace(hour=int(h), minute=0, second=0, microsecond=0)
+        d = at + dt.timedelta(days=day)
+        for h in sorted(int(x) for x in hours_for(cfg, d)):
+            slot = d.replace(hour=h, minute=0, second=0, microsecond=0)
             if slot > at:
                 return slot
     return None
@@ -644,7 +670,8 @@ def dashboard(extra=None, working=None, repo=True):
         "source": "server",
         "updated_at": now().isoformat(timespec="seconds"),
         "stats_updated_at": stats.get("updated_at"),
-        "slots": cfg["post_hours"],
+        "slots": hours_for(cfg, now()),  # heutige Zeiten
+        "slots_weekday": cfg["post_hours"], "slots_weekend": cfg.get("post_hours_weekend") or cfg["post_hours"],
         "privacy": cfg["privacy"],
         "has_client": bool(cfg["client_id"] and cfg["client_secret"]),
         "has_stock": bool(cfg.get("stock_key")),
@@ -663,7 +690,7 @@ def dashboard(extra=None, working=None, repo=True):
         "agents": agents.overview(cfg, st["agent_runs"], {
             "connected": bool(cfg["refresh_token"]), "analytics": bool(cfg["analytics_token"]),
             "working": set(working), "tasks": working, "queue": len(queue), "posted": len(posted),
-            "favorite": learn.favorite(scores), "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
+            "favorite": learn.favorite(scores), "next_slot": next_slot(cfg), "now": now(), "repo": repo,
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),

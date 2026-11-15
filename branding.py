@@ -22,8 +22,14 @@ NICHES = [("🏎️", "Business"), ("🧠", "Psychologie"), ("🏛️", "Geschic
 VERSION = 2
 
 
-def description(channel_title, hours):
-    times = ", ".join(str(h) for h in hours[:-1]) + (f" und {hours[-1]}" if len(hours) > 1 else str(hours[0]))
+def _times(hours):
+    return ", ".join(str(h) for h in hours[:-1]) + (f" und {hours[-1]}" if len(hours) > 1 else str(hours[0]))
+
+
+def description(channel_title, hours, weekend=None):
+    times = _times(hours)
+    if weekend and list(weekend) != list(hours):
+        times = f"{times} Uhr (Mo bis Fr), am Wochenende um {_times(weekend)}"
     return (
         f"{channel_title}: Jeden Tag Fakten, die du in unter einer Minute verstehst.\n\n"
         "🏎️ Business & Autos\n🧠 Psychologie\n🏛️ Geschichte\n💸 Geld & Finanzen\n🌍 Geografie\n\n"
