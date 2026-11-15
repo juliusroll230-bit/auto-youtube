@@ -51,3 +51,20 @@ funktioniert“ vergleicht sie „Hook-Prüfung“ stark / gut / schwach mit ech
 
 Nicht übernommen: `agent-reach` und `reel-analyzer` (laden fremde Videos), alles zu
 Instagram-DMs, Leads und Werbung.
+
+## Thumbnails (seit 15.11.2026)
+
+Die App baut für jedes Video zwei eigene Thumbnails (`thumbnail.py`) und setzt eins beim Upload per API
+(lange Videos 1280x720, Shorts 1080x1920). Welche Variante besser läuft, lernt sie unter „Was am besten funktioniert“
+(„Thumbnail (lange Videos)“ / „Thumbnail (Shorts)“).
+
+Jedes neue Skript in `seed/` (vor allem das lange Video) bekommt dafür das Feld
+`"thumb_text": ["THEMA | Neugier-Zeile", "Satz für Variante B"]`:
+
+- je Variante höchstens 4 Wörter, kurz und knallig, keine Wiederholung des Titels,
+- A: links vom `|` das Thema in 1 bis 2 Wörtern (wird riesig), rechts die Neugier-Lücke
+  (z. B. `"Kühlschrank | macht keine Kälte"`, `"Djatlow-Pass | bis heute ungelöst"`),
+- B: eine Behauptung oder Frage, die man klären will (z. B. `"Er lügt dich an"`),
+- keine Marken- oder Firmennamen, keine erfundenen Zahlen.
+
+Fehlt das Feld, baut die App den Text aus dem Titel (Thema + Neugier-Zeile je Video-Typ).

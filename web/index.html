@@ -175,6 +175,17 @@ main { padding-block: 28px 72px; }
 .hk { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 99px; font-size: 11.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; background: rgba(52, 211, 153, .14); color: var(--ok); }
 .hk.mid { background: rgba(242, 196, 109, .16); color: var(--warn); }
 .hk.low { background: rgba(255, 99, 99, .14); color: var(--err, #ff6b6b); }
+.tb-note { margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; background: rgba(251, 191, 36, .12); color: var(--ink); font-size: 14px; line-height: 1.45; }
+.tb-note a { color: var(--accent); }
+.tb-grid { display: grid; gap: 18px; }
+.tb-row h3 { margin: 0 0 8px; font-size: 14px; font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tb-pair.short { grid-template-columns: repeat(2, minmax(0, 150px)); }
+.tb-opt { position: relative; border-radius: 12px; overflow: hidden; border: 2px solid transparent; background: var(--surface-2); }
+.tb-opt.on { border-color: var(--accent); }
+.tb-opt img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.tb-pair.short .tb-opt img { aspect-ratio: 9 / 16; }
+.tb-opt .tb-bar { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; font-size: 12px; color: var(--muted); }
 .hk-tips { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
 .looks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 22px; }
 .looks h3 { font-size: 12px; font-weight: 650; color: var(--muted); letter-spacing: .01em; margin-bottom: 8px; }
@@ -1725,6 +1736,11 @@ dialog.vs[open] { display: grid; place-items: center; }
           <tbody id="hookBody"></tbody>
         </table></div>
       </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-h"><div><h2>Thumbnails</h2><div class="sub">Für jedes Video baut die App zwei Thumbnails: A (großes Thema, Neugier-Zeile, Emoji im Kreis) und B (Satz im gelben Kasten). Eine davon setzt sie beim Upload, welche besser läuft, lernt sie unter „Was am besten funktioniert“. Du kannst jederzeit wechseln.</div></div><span class="pill" id="tbStatus"></span></div>
+        <div class="card-b"><p class="tb-note" id="tbNote" hidden></p><div class="tb-grid" id="tbGrid"></div></div>
+      </div>
     </section>
 
     <!-- VIDEOS -->
@@ -2791,9 +2807,53 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   }
 
+  function renderThumbs(d) {
+    var T = d.thumbs || {}, st = T.status || null, grid = clear($("tbGrid")), note = $("tbNote");
+    pill($("tbStatus"), !st ? "warn" : st.ok ? "live" : "warn", !st ? "Noch nicht benutzt" : st.ok ? "Aktiv" : "Gesperrt");
+    note.hidden = !(st && !st.ok);
+    if (st && !st.ok) {
+      clear(note);
+      if (st.reason === "verify") {
+        note.append("YouTube lässt eigene Thumbnails erst zu, wenn dein Kanal bestätigt ist. Öffne ",
+          h("a", { href: "https://www.youtube.com/verify", target: "_blank", rel: "noopener", text: "youtube.com/verify" }),
+          ", bestätige mit einer Handynummer (SMS-Code), fertig. Danach setzt die App die Thumbnails wieder selbst. Für schon hochgeladene Videos unten auf „Nehmen“ tippen.");
+      } else if (st.reason === "limit") {
+        note.textContent = "YouTube hat für heute genug Uploads angenommen. Morgen klappt es wieder.";
+      } else {
+        note.textContent = "Das letzte Thumbnail hat YouTube abgelehnt: " + st.reason;
+      }
+    }
+    function takeBtn(vid, v) {
+      var b = h("button", { cls: "btn sm", type: "button", text: "Nehmen" });
+      b.addEventListener("click", function () {
+        b.disabled = true; b.textContent = "Setzt…";
+        api("api/thumb/set", { video_id: vid, variant: v }).then(function () { toast("Thumbnail " + v + " ist jetzt auf YouTube."); },
+          function (er) { toast(er.message); b.disabled = false; b.textContent = "Nehmen"; });
+      });
+      return b;
+    }
+    function pair(slug, short, active, vid) {
+      return h("div", { cls: "tb-pair" + (short ? " short" : "") }, ["A", "B"].map(function (v) {
+        var bar = [h("span", { text: v === "A" ? "A: Wort + Satz" : "B: Satz im Kasten" })];
+        if (vid) bar.push(active === v ? h("span", { cls: "label", text: "Aktiv" })
+          : takeBtn(vid, v));
+        return h("div", { cls: "tb-opt" + (active === v ? " on" : "") }, [
+          h("a", { href: "api/thumbx/" + slug + "-" + v + ".jpg", target: "_blank", rel: "noopener" },
+            [h("img", { src: "api/thumbx/" + slug + "-" + v + ".jpg", alt: "Thumbnail " + v, loading: "lazy" })]),
+          h("div", { cls: "tb-bar" }, bar)]);
+      }));
+    }
+    if (T.next_long) grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: "Nächstes langes Video: " + T.next_long.title }), pair(T.next_long.slug, false, null, null)]));
+    (T.recent || []).forEach(function (r) {
+      grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: (r.lang ? "Lang: " : "Short: ") + r.title }), pair(r.slug, !r.lang, r.set, r.video_id)]));
+    });
+    if (!grid.children.length) grid.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Noch keine Thumbnails" }), "Beim nächsten Upload baut die App die ersten."]));
+  }
+
   function renderLearning(d) {
     renderLooks(d);
     renderHooks(d);
+    renderThumbs(d);
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite
