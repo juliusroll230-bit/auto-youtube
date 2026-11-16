@@ -1865,8 +1865,12 @@ dialog.vs[open] { display: grid; place-items: center; }
             <div class="card-h"><h2>Zeitplan</h2></div>
             <form class="card-b form" id="planForm">
               <div class="field">
-                <span class="label">Sendezeiten (deutsche Zeit, bis zu 10 pro Tag)</span>
-                <div class="hours" id="hours" role="group" aria-label="Sendezeiten"></div>
+                <span class="label">Sendezeiten Montag bis Freitag (deutsche Zeit, bis zu 10 pro Tag)</span>
+                <div class="hours" id="hours" role="group" aria-label="Sendezeiten Montag bis Freitag"></div>
+              </div>
+              <div class="field">
+                <span class="label">Sendezeiten Samstag und Sonntag</span>
+                <div class="hours" id="hoursWe" role="group" aria-label="Sendezeiten am Wochenende"></div>
               </div>
               <div class="field">
                 <label for="privacy">Sichtbarkeit neuer Videos</label>
@@ -2009,6 +2013,16 @@ dialog.vs[open] { display: grid; place-items: center; }
   function berlin(d) {
     var p = fKey.formatToParts(d), g = function (t) { return p.find(function (x) { return x.type === t; }).value; };
     return { day: g("year") + "-" + g("month") + "-" + g("day"), hour: Number(g("hour")) };
+  }
+  function dayHours(d, day) {  // Sendezeiten für einen Tag (JJJJ-MM-TT): Sa/So eigene Zeiten
+    var wd = new Date(day + "T12:00:00Z").getUTCDay();
+    var hrs = (wd === 0 || wd === 6) ? (d.slots_weekend || d.slots) : (d.slots_weekday || d.slots);
+    return hrs.map(Number).sort(function (a, b) { return a - b; });
+  }
+  function hoursText(d) {
+    var f = function (l) { return l.join(", ").replace(/, ([^,]+)$/, " und $1") + " Uhr"; };
+    var wk = d.slots_weekday || d.slots, we = d.slots_weekend || wk;
+    return wk.join() === we.join() ? "Täglich um " + f(wk) : "Mo bis Fr um " + f(wk) + ", Sa und So um " + f(we);
   }
   function slots(hours, n) {
     var out = [], t = new Date(); t.setUTCMinutes(0, 0, 0); t = new Date(t.getTime() + 3600e3);
@@ -2354,7 +2368,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var per = pub && pub.settings ? Number(pub.settings.clips_per_day) || 0 : 0;
     if (pub && pub.settings && pub.settings.on === false) per = 0;
     if ((d.clip_channel || {}).connected) per = 0;  // Clips laufen dann auf dem eigenen Kanal
-    var hrs = d.slots.map(Number).sort(function (a, b) { return a - b; });
+    var hrs = dayHours(d, berlin(new Date()).day);
     var ready = per > 0 ? readyClips(d) : [];
     var total = d.queue.length + ready.length, out = [];
     if (!total || !hrs.length) return out;
@@ -2365,7 +2379,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var qi = 0, ci = 0, t = new Date();
     t.setUTCMinutes(0, 0, 0); t = new Date(t.getTime() + 3600e3);
     for (var guard = 0; out.length < total && guard < 24 * 500; guard++, t = new Date(t.getTime() + 3600e3)) {
-      var b = berlin(t), idx = hrs.indexOf(b.hour);
+      var b = berlin(t), idx = dayHours(d, b.day).indexOf(b.hour);
       if (idx === -1) continue;
       var n = used[b.day] || 0, scriptsLeft = qi < d.queue.length;
       var useClip = ci < ready.length && n < per && (!scriptsLeft || pos[idx]);
@@ -2498,8 +2512,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderOverview(d, sch) {
     var ch = d.channel || {}, T = totals(d);
     $("hName").textContent = ch.title || "Shorts-Zentrale";
-    var hoursTxt = d.slots.map(function (x) { return (x < 10 ? "0" : "") + x; }).join(", ");
-    $("hSub").textContent = (ch.handle ? ch.handle + " · " : "") + d.slots.length + " Shorts täglich um " + hoursTxt + " Uhr";
+    $("hSub").textContent = (ch.handle ? ch.handle + " · " : "") + d.slots.length + " Shorts am Tag. " + hoursText(d);
     pill($("hStatus"), d.connected ? "live" : "warn", d.connected ? "Automatik läuft" : "Wartet auf Kanal");
     $("ovBanner").hidden = d.connected;
     if (d.expired) {
@@ -4828,7 +4841,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderPlan(d, sch) {
     renderNext(sch);
     var nClips = sch.filter(function (x) { return x.clip; }).length;
-    $("planSub").textContent = (sch.length - nClips) + " KI-Shorts" + (nClips ? " und " + nClips + (nClips === 1 ? " Clip" : " Clips") : "") + " geplant. Täglich um " + d.slots.map(function (x) { return x + " Uhr"; }).join(", ").replace(/, ([^,]+)$/, " und $1") + "." + (nClips ? " Clips kommen aus deinen Kampagnen." : "");
+    $("planSub").textContent = (sch.length - nClips) + " KI-Shorts" + (nClips ? " und " + nClips + (nClips === 1 ? " Clip" : " Clips") : "") + " geplant. " + hoursText(d) + "." + (nClips ? " Clips kommen aus deinen Kampagnen." : "");
     var seg = clear($("planFilter"));
     var nn = Array.from(new Set(sch.map(function (x) { return x.v.niche; })));
     if (S.filter !== "Alle" && nn.indexOf(S.filter) === -1) S.filter = "Alle";
@@ -5196,19 +5209,22 @@ dialog.vs[open] { display: grid; place-items: center; }
   }
 
   function renderHours(d) {
-    if (!S.hours) S.hours = d.slots.slice();
-    var box = clear($("hours"));
-    for (var i = 0; i < 24; i++) (function (hr) {
-      var b = h("button", { type: "button", "aria-pressed": String(S.hours.indexOf(hr) !== -1), text: (hr < 10 ? "0" : "") + hr });
-      b.disabled = !S.live;
-      b.addEventListener("click", function () {
-        var at2 = S.hours.indexOf(hr);
-        if (at2 === -1) { if (S.hours.length < 10) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at2, 1);
-        S.hours.sort(function (a, b) { return a - b; });
-        renderHours(d);
-      });
-      box.appendChild(b);
-    })(i);
+    if (!S.hours) S.hours = (d.slots_weekday || d.slots).slice();
+    if (!S.hoursWe) S.hoursWe = (d.slots_weekend || d.slots_weekday || d.slots).slice();
+    [["hours", S.hours], ["hoursWe", S.hoursWe]].forEach(function (pair) {
+      var box = clear($(pair[0])), list = pair[1];
+      for (var i = 0; i < 24; i++) (function (hr) {
+        var b = h("button", { type: "button", "aria-pressed": String(list.indexOf(hr) !== -1), text: (hr < 10 ? "0" : "") + hr });
+        b.disabled = !S.live;
+        b.addEventListener("click", function () {
+          var at2 = list.indexOf(hr);
+          if (at2 === -1) { if (list.length < 10) list.push(hr); } else if (list.length > 1) list.splice(at2, 1);
+          list.sort(function (a, b) { return a - b; });
+          renderHours(d);
+        });
+        box.appendChild(b);
+      })(i);
+    });
     $("privacy").value = d.privacy || "public";
   }
 
@@ -5293,8 +5309,8 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("planForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    api("api/settings", { post_hours: S.hours, privacy: $("privacy").value })
-      .then(function () { S.hours = null; flash("planMsg", "ok", "Gespeichert"); }, function (err) { flash("planMsg", "err", err.message); });
+    api("api/settings", { post_hours: S.hours, post_hours_weekend: S.hoursWe, privacy: $("privacy").value })
+      .then(function () { S.hours = null; S.hoursWe = null; flash("planMsg", "ok", "Gespeichert"); }, function (err) { flash("planMsg", "err", err.message); });
   });
   $("postNow").addEventListener("click", function () {
     api("api/post-now").then(function () { flash("actMsg", "ok", "Das Video wird erstellt und hochgeladen. Das dauert ein paar Minuten."); poll(5000); }, function (err) { flash("actMsg", "err", err.message); });
