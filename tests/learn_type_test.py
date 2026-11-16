@@ -35,4 +35,6 @@ import fishtts
 v = fishtts.Voice(None, "k", "normal", "dunkel", "warm")
 assert v.pick("warm") == "warm" and v.pick("neugierig", "freundlich") == "warm" and v.pick("gruselig") == "dunkel"
 assert v.pick("neugierig", "klar") == "normal" and fishtts.Voice(None, "k", "normal").pick("warm") == "normal"
+assert learn.world_by_type({**g, "welt": "block"}) == "Erzählte Geschichte · 3D"
+assert learn.world_by_type(g) == "Erzählte Geschichte · 2D"
 print("ok")
