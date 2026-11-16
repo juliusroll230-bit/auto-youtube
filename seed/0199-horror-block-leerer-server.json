@@ -1,0 +1,31 @@
+{
+  "slug": "horror-block-leerer-server",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": ["#0b0a14", "#4a2a6c"],
+  "accent": "#ff3b2f",
+  "title": "Der Server, auf dem niemand sein sollte 👀",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf einem Server, aber jemand schreibt im Chat.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": ["horror", "gruselgeschichte", "creepypasta", "gaming", "shorts"],
+  "figur": {"farbe": "blau"},
+  "stimmung": "gruselig",
+  "segments": [
+    {"text": "Du bist allein auf dem Server, aber jemand schreibt im Chat.",
+     "szene": {"typ": "horror", "ort": "strasse", "gefuehl": "angst", "aktion": "schockiert", "chat": "???: hallo", "augen": "#ff2a1f"}},
+    {"text": "Der Spieler hat keinen Namen und steht reglos am Ende der Straße.",
+     "szene": {"typ": "monster", "ort": "strasse", "monster": "schatten", "gefuehl": "angst", "aktion": "zittert", "kamera": "schulter"}},
+    {"text": "Du drehst dich kurz weg. Plötzlich steht er viel näher.",
+     "szene": {"typ": "monster", "ort": "strasse", "monster": "schatten", "gefuehl": "angst", "aktion": "schockiert", "kamera": "vorne"}},
+    {"text": "Du rennst in das einzige Haus mit Licht.",
+     "szene": {"typ": "monster", "ort": "strasse", "monster": "schatten", "gefuehl": "angst", "aktion": "rennt"}},
+    {"text": "Im Chat steht: Dreh dich nicht um.",
+     "szene": {"typ": "horror", "ort": "haus", "gefuehl": "angst", "aktion": "zittert", "chat": "???: dreh dich nicht um"}},
+    {"text": "Das Licht flackert, und die Tür hinter dir geht langsam auf.",
+     "szene": {"typ": "figur", "ort": "haus", "gefuehl": "angst", "aktion": "versteckt", "tuer": true, "kamera": "weit"}},
+    {"text": "Du willst das Spiel verlassen, doch der Knopf ist weg.",
+     "szene": {"typ": "objekt", "ort": "haus", "objekt": "🚪", "text": "Kein Ausgang"}},
+    {"text": "Dann schreibt er deinen echten Namen. Würdest du weiterspielen?",
+     "szene": {"typ": "raetsel", "ort": "haus", "objekt": "👁️", "chat": "???: ich kenne dich"}}
+  ]
+}

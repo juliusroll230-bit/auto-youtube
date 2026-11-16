@@ -15,6 +15,16 @@ Jeden Tag genau 5 Strichmännchen-Skripte in `seed/`:
   - 1 „Warum …?“-Alltagsfrage mit überraschender Antwort.
 - **1 Einzel-Mystery** (echtes ungelöstes Rätsel, Titel „Das X, das niemand …“).
 - **1 Horror** als Einzelvideo.
+- **Vergleich 2D gegen 3D (seit 14.11.2026, Julius' Wunsch):** Von Mystery und Horror ist jeden Tag
+  genau eins in der **Blockwelt** (`"welt": "block"`, 3D-Blockfiguren wie in einem Bauklotz-Spiel,
+  eigene Figuren, keine Marken) und eins als **Strichmännchen** (ohne `welt`). An geraden Tagen ist
+  Horror die Blockwelt, an ungeraden Mystery. Blockwelt-Horror sind ausgedachte Gruselgeschichten aus
+  einer Spielwelt (leerer Server, Spieler ohne Namen, Chat-Nachrichten, Etage, die es nicht gibt …),
+  mit `"chat"` in 2 bis 3 Szenen und einer Wendung am Ende; Vorbilder `seed/0199` bis `0201`.
+  Der erste Satz der Beschreibung enthält das Wort „Blockwelt“ (so erkennt man sie in `docs/videos.json`).
+- Die Zentrale vergleicht unter „Was am besten funktioniert“ das Merkmal **„Look 2D/3D“**
+  (`learn.world`). Nach 7 Tagen mit je mindestens 5 bewerteten Videos: Liegt ein Look im Schnitt mehr als
+  30 % vorne, bekommen Mystery und Horror beide diesen Look (der andere höchstens jeden 3. Tag zum Gegentest).
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 

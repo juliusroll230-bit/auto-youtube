@@ -110,7 +110,7 @@ VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erza
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
-                 "thumbnail": "Thumbnail (Shorts)"}
+                 "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D"}
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
@@ -147,6 +147,13 @@ def video_type(spec):
     return "Normal (Fakten)"
 
 
+def world(spec):
+    """Look der Cartoons: Blockwelt in 3D ("welt": "block") oder Strichmännchen in 2D. Für den Vergleich in der Zentrale."""
+    if spec.get("stil") != "cartoon" or spec.get("laenge") == "lang":
+        return None
+    return "Blockwelt 3D" if spec.get("welt") == "block" else "Strichmännchen 2D"
+
+
 def _hook_bucket(spec):
     """Note der Hook-Prüfliste als Gruppe (stark/gut/schwach), damit man sieht, ob die Prüfung trifft."""
     try:
@@ -176,6 +183,7 @@ def features(spec, look):
         "stimme": look.get("stimme") if spec.get("stil") == "cartoon" else None,
         "serie": spec.get("serie") or None,
         "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
+        "welt": world(spec),
     }
 
 
