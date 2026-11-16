@@ -6,30 +6,27 @@ Diese Regel ist neuer als der Text der täglichen Skript-Aufgabe und gilt vor ih
 Die Zahlen auf YouTube zeigen: Erklärvideos laufen deutlich besser als Einzel-Mystery
 (Erklärvideos im Schnitt ca. 560 Aufrufe, Mystery seit 11.11. ca. 210).
 
-Jeden Tag genau 5 Cartoon-Skripte in `seed/` (davon 3 in der Blockwelt, siehe unten):
+Jeden Tag genau **15 Cartoon-Skripte** in `seed/` (seit 16.11.2026 abends, Julius' Wunsch):
+**10 Strichmännchen** (ohne `welt`) und **5 Blockwelt** (`"welt": "block"`, 3D-Blockfiguren wie in einem
+Bauklotz-Spiel, eigene Figuren, keine Marken). Gesendet wird jede volle Stunde von 8 bis 22 Uhr.
 
-- **3 Erklärvideos** (`"niche": "Erklären"`):
-  - 2 im Muster „Was passiert, wenn …?“ in Du-Perspektive (Körper, Alltag, Extremfälle).
-    Vorbilder: „Was passiert, wenn du tagelang nicht schläfst?“ (1.500 Aufrufe),
-    „Was passiert, wenn das Seil deines Aufzugs reißt?“ (940).
-  - 1 „Warum …?“-Alltagsfrage mit überraschender Antwort.
-- **1 Einzel-Mystery** (echtes ungelöstes Rätsel, Titel „Das X, das niemand …“).
-- **1 Horror** als Einzelvideo.
+| Video-Typ | Strichmännchen (2D) | Blockwelt (3D) | zusammen |
+|---|---|---|---|
+| Erklärvideo „Was passiert, wenn …?“ (Du-Perspektive: Körper, Alltag, Extremfälle) | 4 | 2 | 6 |
+| Erklärvideo „Warum …?“ (Alltagsfrage, überraschende Antwort) | 2 | 1 | 3 |
+| Einzel-Mystery (echtes Rätsel, Titel „Das X, das niemand …“) | 2 | 1 | 3 |
+| Horror (Einzelvideo) | 2 | 1 | 3 |
+| **Summe** | **10** | **5** | **15** |
 
-### Blockwelt-Test: täglich 3 von 5 in 3D (seit 16.11.2026, Julius' Wunsch)
+So hat jeder Video-Typ jeden Tag beide Looks, und der Vergleich 2D gegen 3D bleibt fair.
+Vorbilder Erklärvideo: „Was passiert, wenn du tagelang nicht schläfst?“ (1.500 Aufrufe),
+„Was passiert, wenn das Seil deines Aufzugs reißt?“ (940).
 
-Genau 3 der 5 Shorts sind in der **Blockwelt** (`"welt": "block"`, 3D-Blockfiguren wie in einem
-Bauklotz-Spiel, eigene Figuren, keine Marken), die anderen 2 sind **Strichmännchen** (ohne `welt`).
-Es bleiben 5 Shorts am Tag (nicht mehr, wegen Spam-Risiko). Welche Plätze 3D sind, wechselt nach
-**Tag im Monat geteilt durch 3**, damit jeder Video-Typ beide Looks bekommt und der Vergleich fair bleibt:
+Bei 15 Themen am Tag besonders auf Doppelungen achten (vorher `seed/` und `docs/videos.json` prüfen).
+Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann mindestens die 5 Blockwelt-Videos schreiben.
 
-| Rest | Blockwelt (3D) | Strichmännchen (2D) |
-|---|---|---|
-| 0 (3., 6., 9. …) | Horror, Mystery, 1× „Was passiert, wenn“ | 1× „Was passiert, wenn“, „Warum“ |
-| 1 (1., 4., 7. …) | Horror, 1× „Was passiert, wenn“, „Warum“ | Mystery, 1× „Was passiert, wenn“ |
-| 2 (2., 5., 8. …) | Mystery, 1× „Was passiert, wenn“, „Warum“ | Horror, 1× „Was passiert, wenn“ |
-
-Jeden Tag gibt es also ein „Was passiert, wenn“-Paar 2D gegen 3D.
+`"vorrang": true` im Skript schiebt es in der Warteschlange ganz nach vorn (nur für „heute noch rausbringen“,
+nicht in der täglichen Aufgabe benutzen).
 
 - **Blockwelt-Horror:** ausgedachte Gruselgeschichten aus einer Spielwelt (leerer Server, Spieler ohne
   Namen, Chat-Nachrichten, Etage, die es nicht gibt …), `"chat"` in 2 bis 3 Szenen, Wendung am Ende.
@@ -45,9 +42,9 @@ Jeden Tag gibt es also ein „Was passiert, wenn“-Paar 2D gegen 3D.
 - Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Look 2D/3D“** (`learn.world`) und,
   fairer, **„Look je Video-Typ“** (`learn.world_by_type`, z. B. „Horror · 3D“ gegen „Horror · 2D“),
   denn Erklärvideos heben sonst den Schnitt des Looks, in dem sie öfter laufen.
-- Der Test läuft fest bis 30.11.2026. Danach je Video-Typ: Liegt ein Look in „Look je Video-Typ“ bei
-  mindestens 3 bewerteten Videos je Seite mehr als 30 % vorne, bekommt dieser Typ den Look (der andere
-  höchstens jeden 3. Tag zum Gegentest). Bis Julius etwas anderes sagt.
+- Die Aufteilung 10 + 5 bleibt fest bis 30.11.2026. Danach je Video-Typ: Liegt ein Look in „Look je Video-Typ“
+  bei mindestens 5 bewerteten Videos je Seite mehr als 30 % vorne, bekommt dieser Typ mehr von dem Look
+  (der andere bleibt mit mindestens 1 pro Tag zum Gegentest). Bis Julius etwas anderes sagt.
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 

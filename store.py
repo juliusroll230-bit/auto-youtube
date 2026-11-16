@@ -36,7 +36,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # Sendezeiten (volle Stunden, deutsche Zeit): Mo bis Fr und Sa/So getrennt.
                   # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
                   # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
-                  "post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18],
+                  # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
+                  "post_hours": list(range(8, 23)), "post_hours_weekend": list(range(8, 23)),
                   "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
@@ -113,6 +114,12 @@ def init():
             elif "post_hours" in raw and "post_hours_weekend" not in raw:
                 cfg["post_hours_weekend"] = list(cfg["post_hours"])
             cfg["hours_v6"] = True
+        # 16.11.: 15 statt 5 Shorts am Tag. Alte Standardzeiten werden umgestellt, eigene Zeiten bleiben.
+        if not cfg.get("hours_v7"):
+            if cfg["post_hours"] == [12, 15, 16, 17, 18] and cfg.get("post_hours_weekend") in (None, [11, 13, 15, 17, 18]):
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+                cfg["post_hours_weekend"] = DEFAULT_CONFIG["post_hours_weekend"]
+            cfg["hours_v7"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
@@ -604,12 +611,15 @@ def planned_queue(posted=None, ready_only=False, long=False):
     if ready_only and cfg["approval"]:
         ok = set(state()["approved"])
         queue = [q for q in queue if os.path.basename(q[0]) in ok]
+    # Skripte mit "vorrang": true (z. B. "heute noch rausbringen") kommen vor allen anderen dran
+    first = [q for q in queue if q[1].get("vorrang")]
+    queue = [q for q in queue if not q[1].get("vorrang")]
     planer = agents.settings(cfg)["planer"]
     if not planer["on"]:
-        return queue  # Lernmodus aus: einfach in Dateireihenfolge
+        return first + queue  # Lernmodus aus: einfach in Dateireihenfolge
     posted = learnable(posted)
     history = [p["niche"] for p in posted if p.get("niche")]
-    return learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
+    return first + learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
 
 
 def next_look(posted=None):
