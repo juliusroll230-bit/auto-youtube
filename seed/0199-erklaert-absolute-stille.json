@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-absolute-stille",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c1e24",
+    "#3a8c9c"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du in absoluter Stille stehst? 🤫",
+  "description": "In der leisesten Kammer der Welt hörst du dein Herz, deinen Atem und dein Blut. Warum völlige Stille nie wirklich still ist.\n\n#wissen #stille #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "stille",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Tim"
+  },
+  "segments": [
+    {
+      "text": "Du betrittst einen Raum, der plötzlich völlig still ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🤫"
+      }
+    },
+    {
+      "text": "Das ist eine Kammer, leiser als jeder normale Raum.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔇",
+        "text": "Leiseste Kammer"
+      }
+    },
+    {
+      "text": "So eine Kammer steht zum Beispiel in einem Labor in den USA.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "USA"
+      }
+    },
+    {
+      "text": "Nach wenigen Sekunden hörst du dein eigenes Herz schlagen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "❤️"
+      }
+    },
+    {
+      "text": "Dann hörst du auch Atem, Blut und Magen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Du hörst",
+        "punkte": [
+          "Herzschlag",
+          "Atem",
+          "Magen"
+        ]
+      }
+    },
+    {
+      "text": "Im Alltag übertönen Geräusche dein Inneres, hier gibt es keinen Schutz.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏙️",
+          "text": "Alltag: laut"
+        },
+        "rechts": {
+          "objekt": "🤫",
+          "text": "Kammer: still"
+        }
+      }
+    },
+    {
+      "text": "Ohne Echo wird vielen schwindelig, darum bleiben Besucher oft nur kurz.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🌀",
+        "text": "Schwindel"
+      }
+    },
+    {
+      "text": "Völlige Stille gibt es nie, denn dein Körper macht immer Lärm.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🧠",
+        "text": "Dein Körper"
+      }
+    }
+  ],
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Stille | macht schwindelig",
+    "Dein Herz ist laut"
+  ]
+}
