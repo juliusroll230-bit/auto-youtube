@@ -1,0 +1,112 @@
+{
+  "slug": "horror-tutanchamun-fluch",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#1a1408",
+    "#c49a2a"
+  ],
+  "accent": "#e0392f",
+  "title": "Der Fluch, der jeden treffen soll, der das Grab öffnete 👑",
+  "description": "Der Fluch des Pharaos: Nach dem Fund von Tutanchamuns Grab sterben angeblich alle Beteiligten. Belegt ist die Entdeckung, der Fluch ist Legende.\n\n#horror #legende #tutanchamun #fluch #shorts",
+  "tags": [
+    "horror",
+    "legende",
+    "tutanchamun",
+    "fluch",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Howard"
+  },
+  "segments": [
+    {
+      "text": "Das Grab öffnet sich nach dreitausend Jahren, und die Luft ist eiskalt.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ffd24d"
+      }
+    },
+    {
+      "text": "Neunzehnhundertzweiundzwanzig findet Howard Carter das Grab von Tutanchamun.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1922,
+        "text": "Tutanchamun",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Wenige Monate später stirbt sein Geldgeber Lord Carnarvon in Kairo.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "⚰️",
+        "text": "Carnarvon"
+      }
+    },
+    {
+      "text": "Die Zeitungen schreiben sofort: Der Fluch des Pharaos hat ihn getötet.",
+      "szene": {
+        "typ": "monster",
+        "ort": "friedhof",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Eine Inschrift mit Fluch gab es im Grab aber nie.",
+      "szene": {
+        "typ": "akte",
+        "text": "Kein Fluch",
+        "punkte": [
+          "📜",
+          "❌",
+          "👑"
+        ]
+      }
+    },
+    {
+      "text": "Er starb an einer Blutvergiftung nach einem infizierten Mückenstich.",
+      "szene": {
+        "typ": "liste",
+        "text": "Echte Ursache",
+        "punkte": [
+          "Mückenstich",
+          "Infektion",
+          "Blutvergiftung"
+        ]
+      }
+    },
+    {
+      "text": "Carter lebte danach noch siebzehn Jahre.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 17,
+        "einheit": "Jahre danach",
+        "objekt": "🎩",
+        "farbcode": "#1a1408"
+      }
+    },
+    {
+      "text": "Der Fluch ist erfunden, aber die Angst davor ist bis heute echt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "👑",
+        "text": "Nur Legende"
+      }
+    }
+  ],
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Fluch | nur eine Legende",
+    "Carter lebte weiter"
+  ]
+}
