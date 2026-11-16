@@ -1,0 +1,109 @@
+{
+  "slug": "geschichte-zettel-im-buch",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#1f3b4d",
+    "#7fb7be"
+  ],
+  "accent": "#ffd27a",
+  "title": "Wer legt Zettel in mein Mathebuch? 📖",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jede Woche liegt ein Zettel mit einem Mathe-Tipp im Buch aus der Bibliothek. Wer steckt dahinter?\n\n#geschichte #storytime #schule #mathe #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "schule",
+    "mathe",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "warm",
+  "segments": [
+    {
+      "text": "In meinem Mathebuch lag plötzlich ein Zettel mit meinem Namen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Darauf stand: Aufgabe vier ist leichter, als sie aussieht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "📝",
+        "text": "Aufgabe 4"
+      }
+    },
+    {
+      "text": "Eine Woche später lag wieder einer drin, und dann jede Woche.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "📚",
+        "text": "Jede Woche"
+      }
+    },
+    {
+      "text": "Die Tipps stimmten immer, und meine Mathenote wurde besser.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "📈"
+      }
+    },
+    {
+      "text": "Ich habe mich in der Bibliothek versteckt, um es herauszufinden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "denken",
+        "aktion": "versteckt"
+      }
+    },
+    {
+      "text": "Dann kam die Frau, die dort jeden Nachmittag Bücher sortiert.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Sie war früher Mathelehrerin und hat gesehen, wie ich mich quäle.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "👩‍🏫",
+        "text": "Früher Lehrerin"
+      }
+    },
+    {
+      "text": "Sie hat einfach geholfen, ohne je etwas zu sagen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "❤️"
+      }
+    }
+  ],
+  "thumb_text": [
+    "Zettel im Buch | jede Woche",
+    "Wer hilft mir heimlich?"
+  ]
+}

@@ -105,8 +105,10 @@ TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TR
 HEADLINES = ("mit", "ohne")                             # Titel als Kopfzeile oben im Bild
 BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (stock.py) oder gezeichnet
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
+# "warm": ruhige, freundliche Geschichten (seit 16.11.2026 Test); "freundlich" testet auch bei Erklärvideos mit.
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
-                   "neugierig": ("froehlich", "klar")}
+                   "neugierig": ("froehlich", "klar", "freundlich"),
+                   "warm": ("freundlich", "erzaehlerin", "erzaehler")}
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
@@ -128,6 +130,8 @@ def cartoon_mood(spec):
     """Stimmung eines Cartoons: aus dem Skript, sonst Horror gruselig und alles andere mysteriös."""
     if spec.get("stimmung") in VOICES_FOR_MOOD:
         return spec["stimmung"]
+    if str(spec.get("niche", "")).lower() == "erzählung":
+        return "warm"
     return "gruselig" if str(spec.get("niche", "")).lower() == "horror" else "mysterioes"
 
 
@@ -143,6 +147,8 @@ def video_type(spec):
         return "Mystery"
     if niche == "horror":
         return "Horror"
+    if niche == "erzählung":   # nicht "Geschichte": so heißt die alte Nische für echte Geschichte (History)
+        return "Erzählte Geschichte"   # ausgedachte Ich-Geschichte mit Wendung, warme Stimme (Test seit 16.11.2026)
     if spec.get("stil") == "cartoon":
         return "Mystery"  # alte Cartoons wie die Tanzwut
     return "Normal (Fakten)"

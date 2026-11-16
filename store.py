@@ -44,7 +44,7 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # Pixabay- oder Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
                   "stock_key": "",
                   # Fish Audio (fishtts.py): API-Schlüssel und Stimmen-IDs, leer = eingebaute Piper-Stimme
-                  "fish_key": "", "fish_voice": "", "fish_voice_dark": "",
+                  "fish_key": "", "fish_voice": "", "fish_voice_dark": "", "fish_voice_warm": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
                   "agents": {}, "approval": False,
                   # Schlüssel für den Video-Webhook (POST /webhook/video), wird beim ersten Start erzeugt
@@ -732,7 +732,7 @@ def dashboard(extra=None, working=None, repo=True):
         "has_client": bool(cfg["client_id"] and cfg["client_secret"]),
         "has_stock": bool(cfg.get("stock_key")),
         "fish": {"has_key": bool(cfg.get("fish_key")), "voice": cfg.get("fish_voice", ""),
-                 "voice_dark": cfg.get("fish_voice_dark", "")},
+                 "voice_dark": cfg.get("fish_voice_dark", ""), "voice_warm": cfg.get("fish_voice_warm", "")},
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),

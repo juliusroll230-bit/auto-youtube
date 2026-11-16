@@ -36,7 +36,48 @@ VOICES = {
     "klar": (1.02, 0.96, 0.0),        # normal, leicht aufgehellt
     "erzaehler": (0.97, 1.0, 0.0),    # Geschichten-Erzähler
     "unheimlich": (0.97, 1.13, 0.0),  # ernst und gelassen: kaum tiefer, deutlich ruhiger gesprochen, ohne Hall und ohne Brummen
+    "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
+    "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
 }
+
+# Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
+# Fehlt ein Modell (z. B. Bau ohne Download), spricht die normale Thorsten-Stimme.
+VOICE_MODELS = {
+    "freundlich": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
+    "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
+}
+_voice_models = {}
+
+
+def voice_model(voice):
+    """Eigenes Piper-Modell einer Stimme als (PiperVoice, Sprecher) oder None."""
+    if voice not in VOICE_MODELS:
+        return None
+    if voice not in _voice_models:
+        folder, name, speaker = VOICE_MODELS[voice]
+        path = os.path.join(os.path.dirname(MODEL_DIR), folder, name)
+        try:
+            _voice_models[voice] = (PiperVoice.load(path), speaker) if os.path.exists(path) else None
+        except Exception as e:  # noqa: BLE001  kaputtes Modell: lieber die normale Stimme
+            print("Stimme", voice, "nicht ladbar:", e)
+            _voice_models[voice] = None
+    return _voice_models[voice]
+
+
+def speak_piper(tts, text, voice=None, length_scale=1.0):
+    """Ein Satz mit Piper, mit dem Modell der Stimme (falls eigenes), immer in der Abtastrate von tts."""
+    rate = tts.config.sample_rate
+    model = voice_model(voice)
+    if model:
+        m, speaker = model
+        cfg = SynthesisConfig(length_scale=length_scale, speaker_id=speaker)
+        x = np.concatenate([c.audio_float_array for c in m.synthesize(text, syn_config=cfg)])
+        src = m.config.sample_rate
+        if src != rate:
+            x = np.interp(np.linspace(0, len(x) - 1, int(len(x) * rate / src)), np.arange(len(x)), x).astype(np.float32)
+        return x
+    cfg = SynthesisConfig(length_scale=length_scale)
+    return np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
 
 
 def voice_color(samples, rate, voice, pitch=None):
@@ -73,7 +114,7 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     if isinstance(tts, fishtts.Voice):  # Fish Audio ist eingerichtet
         try:
             # Fish-Stimmen nicht verstellen, nur Tempo und Hall übernehmen
-            spoken = [fishtts.speak(seg["text"].replace("*", ""), tts.key, tts.pick(mood), rate,
+            spoken = [fishtts.speak(seg["text"].replace("*", ""), tts.key, tts.pick(mood, voice), rate,
                                     speed=SPEED / (speed * slower)) for seg in segments]
             if echo:
                 spoken = [voice_color(x, rate, voice, pitch=1.0) for x in spoken]
@@ -86,9 +127,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         spoken = []
         for seg in segments:
             # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
-            cfg = SynthesisConfig(length_scale=speed * slower * pitch)
             text = seg["text"].replace("*", "")
-            samples = np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+            samples = speak_piper(tts, text, voice, length_scale=speed * slower * pitch)
             spoken.append(voice_color(samples, rate, voice) if voice else samples)
 
     chunks, timings, t = [], [], 0.0

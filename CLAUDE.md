@@ -48,6 +48,25 @@ nicht in der täglichen Aufgabe benutzen).
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 
+### Test: erzählte Geschichten mit warmer Stimme (seit 16.11.2026, Julius' Wunsch)
+
+Julius mag ruhige „Storytime“-Videos mit freundlicher Stimme. Darum als Test, **ohne den Plan oben zu ändern**:
+Montag, Mittwoch und Freitag wird **eins der 2 Strichmännchen-Mystery** zu einer erzählten Geschichte
+(also 3 pro Woche, weiterhin 15 Shorts am Tag).
+
+- Oben im Skript `"niche": "Erzählung"` (nicht „Geschichte“, so heißt die alte History-Nische) und `"stimmung": "warm"`.
+  Dann wählt die App eine der warmen Stimmen (`freundlich`, `erzaehlerin`, `erzaehler`), ruhige Spieluhr-Musik
+  und das helle Bild. Video-Typ in der Zentrale: „Erzählte Geschichte“.
+- Ausgedachte Alltagsgeschichte in der Ich-Form (Familie, Nachbarn, Schule, Freunde), warm, mit Wendung am Schluss,
+  die das Vorherige in neues Licht rückt. Keine echten Personen, nichts als „wahre Geschichte“ ausgeben;
+  die Beschreibung beginnt mit „Eine ausgedachte Geschichte, ruhig erzählt:“. Keine Serien.
+- „Ich“ am Anfang ist hier erlaubt (Hook-Prüfung kennt das). Erster Satz trotzdem die krasse Lage, höchstens 12 Wörter.
+- Helle Orte (`haus`, `stadt`, `schule`, `dorf`, `feld`, `krankenhaus`), Szenen `figur`, `zwei`, `objekt`. 70 bis 85 Wörter.
+- Vorbilder `seed/0208` bis `0210`. Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
+  mehr davon vorschlagen (Julius fragen).
+
+Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
+
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 
 Die Zentrale vergleicht unter „Was am besten funktioniert“ den **Video-Typ**
