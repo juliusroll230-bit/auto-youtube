@@ -6,7 +6,7 @@ Diese Regel ist neuer als der Text der täglichen Skript-Aufgabe und gilt vor ih
 Die Zahlen auf YouTube zeigen: Erklärvideos laufen deutlich besser als Einzel-Mystery
 (Erklärvideos im Schnitt ca. 560 Aufrufe, Mystery seit 11.11. ca. 210).
 
-Jeden Tag genau 5 Strichmännchen-Skripte in `seed/`:
+Jeden Tag genau 5 Cartoon-Skripte in `seed/` (davon 3 in der Blockwelt, siehe unten):
 
 - **3 Erklärvideos** (`"niche": "Erklären"`):
   - 2 im Muster „Was passiert, wenn …?“ in Du-Perspektive (Körper, Alltag, Extremfälle).
@@ -15,16 +15,39 @@ Jeden Tag genau 5 Strichmännchen-Skripte in `seed/`:
   - 1 „Warum …?“-Alltagsfrage mit überraschender Antwort.
 - **1 Einzel-Mystery** (echtes ungelöstes Rätsel, Titel „Das X, das niemand …“).
 - **1 Horror** als Einzelvideo.
-- **Vergleich 2D gegen 3D (seit 14.11.2026, Julius' Wunsch):** Von Mystery und Horror ist jeden Tag
-  genau eins in der **Blockwelt** (`"welt": "block"`, 3D-Blockfiguren wie in einem Bauklotz-Spiel,
-  eigene Figuren, keine Marken) und eins als **Strichmännchen** (ohne `welt`). An geraden Tagen ist
-  Horror die Blockwelt, an ungeraden Mystery. Blockwelt-Horror sind ausgedachte Gruselgeschichten aus
-  einer Spielwelt (leerer Server, Spieler ohne Namen, Chat-Nachrichten, Etage, die es nicht gibt …),
-  mit `"chat"` in 2 bis 3 Szenen und einer Wendung am Ende; Vorbilder `seed/0199` bis `0201`.
-  Der erste Satz der Beschreibung enthält das Wort „Blockwelt“ (so erkennt man sie in `docs/videos.json`).
-- Die Zentrale vergleicht unter „Was am besten funktioniert“ das Merkmal **„Look 2D/3D“**
-  (`learn.world`). Nach 7 Tagen mit je mindestens 5 bewerteten Videos: Liegt ein Look im Schnitt mehr als
-  30 % vorne, bekommen Mystery und Horror beide diesen Look (der andere höchstens jeden 3. Tag zum Gegentest).
+
+### Blockwelt-Test: täglich 3 von 5 in 3D (seit 16.11.2026, Julius' Wunsch)
+
+Genau 3 der 5 Shorts sind in der **Blockwelt** (`"welt": "block"`, 3D-Blockfiguren wie in einem
+Bauklotz-Spiel, eigene Figuren, keine Marken), die anderen 2 sind **Strichmännchen** (ohne `welt`).
+Es bleiben 5 Shorts am Tag (nicht mehr, wegen Spam-Risiko). Welche Plätze 3D sind, wechselt nach
+**Tag im Monat geteilt durch 3**, damit jeder Video-Typ beide Looks bekommt und der Vergleich fair bleibt:
+
+| Rest | Blockwelt (3D) | Strichmännchen (2D) |
+|---|---|---|
+| 0 (3., 6., 9. …) | Horror, Mystery, 1× „Was passiert, wenn“ | 1× „Was passiert, wenn“, „Warum“ |
+| 1 (1., 4., 7. …) | Horror, 1× „Was passiert, wenn“, „Warum“ | Mystery, 1× „Was passiert, wenn“ |
+| 2 (2., 5., 8. …) | Mystery, 1× „Was passiert, wenn“, „Warum“ | Horror, 1× „Was passiert, wenn“ |
+
+Jeden Tag gibt es also ein „Was passiert, wenn“-Paar 2D gegen 3D.
+
+- **Blockwelt-Horror:** ausgedachte Gruselgeschichten aus einer Spielwelt (leerer Server, Spieler ohne
+  Namen, Chat-Nachrichten, Etage, die es nicht gibt …), `"chat"` in 2 bis 3 Szenen, Wendung am Ende.
+  Vorbilder `seed/0199` bis `0201`.
+- **Blockwelt-Mystery:** das echte Rätsel mit Blockfiguren nachgespielt (Fakten bleiben echt, nichts
+  dazuerfinden), am Ende die offene Frage oder der überraschende Fund.
+- **Blockwelt-Erklärvideo:** „du“ ist die Blockfigur. Meist Szenen `figur`, `zwei`, `gruppe`, `objekt`,
+  `raetsel` (die werden 3D); höchstens eine 2D-Szene wie `vergleich` oder `akte`. Helle Orte
+  (`feld`, `haus`, `buero`, `stadt`, `schule`, `labor`), `"stimmung": "neugierig"`, höchstens 1 bis 2
+  kurze `"chat"`-Zeilen als Spiel-Gefühl. Aha-Moment am Schluss. Vorbild `seed/0205`.
+- Gute Geschichte mit Wendung bzw. Aha-Moment ist bei allen Pflicht, egal welcher Look.
+- Der erste Satz der Beschreibung enthält das Wort „Blockwelt“ (so erkennt man sie in `docs/videos.json`).
+- Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Look 2D/3D“** (`learn.world`) und,
+  fairer, **„Look je Video-Typ“** (`learn.world_by_type`, z. B. „Horror · 3D“ gegen „Horror · 2D“),
+  denn Erklärvideos heben sonst den Schnitt des Looks, in dem sie öfter laufen.
+- Der Test läuft fest bis 30.11.2026. Danach je Video-Typ: Liegt ein Look in „Look je Video-Typ“ bei
+  mindestens 3 bewerteten Videos je Seite mehr als 30 % vorne, bekommt dieser Typ den Look (der andere
+  höchstens jeden 3. Tag zum Gegentest). Bis Julius etwas anderes sagt.
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 
