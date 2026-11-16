@@ -1,0 +1,33 @@
+{
+  "slug": "mystery-block-wandernde-steine",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "vorrang": true,
+  "colors": ["#2a1a0c", "#c98a3a"],
+  "accent": "#ffe14d",
+  "title": "Die Steine, die niemand wandern sah 🪨",
+  "description": "Das echte Rätsel vom Death Valley, nachgespielt in der Blockwelt: Schwere Steine ziehen Spuren über einen trockenen See, und erst 2014 sah man, warum.\n\n#mystery #rätsel #deathvalley #wissen #shorts",
+  "tags": ["mystery", "rätsel", "deathvalley", "wissen", "shorts"],
+  "figur": {"farbe": "rot"},
+  "stimmung": "mysterioes",
+  "segments": [
+    {"text": "Mitten in der Wüste ziehen schwere Steine plötzlich lange Spuren.",
+     "szene": {"typ": "figur", "ort": "wueste", "gefuehl": "staunen", "aktion": "schockiert", "objekt": "🪨", "chat": "Spieler: wer schiebt die??"}},
+    {"text": "Der Ort heißt Racetrack Playa, ein ausgetrockneter See im Death Valley.",
+     "szene": {"typ": "objekt", "ort": "wueste", "objekt": "🏜️", "text": "Death Valley"}},
+    {"text": "Manche Steine sind so schwer wie ein Mensch.",
+     "szene": {"typ": "zwei", "ort": "wueste", "gefuehl": "staunen", "aktion": "haende", "kamera": "weit", "zweite": {"farbe": "blau", "gefuehl": "staunen", "aktion": "zeigt"}}},
+    {"text": "Jahrzehntelang sah niemand, wie sie sich bewegen.",
+     "szene": {"typ": "gruppe", "ort": "wueste", "anzahl": 4, "gefuehl": "denken", "aktion": "denkt", "text": "Niemand sah es"}},
+    {"text": "Man dachte an Wind, an Magnetfelder, sogar an Streiche.",
+     "szene": {"typ": "raetsel", "ort": "wueste", "objekt": "🧲"}},
+    {"text": "Dann stellten Forscher Steine mit GPS auf und filmten den See.",
+     "szene": {"typ": "objekt", "ort": "wueste", "objekt": "📡", "text": "GPS-Steine"}},
+    {"text": "Nach Regen friert das flache Wasser zu dünnen Eisplatten.",
+     "szene": {"typ": "objekt", "ort": "wueste", "objekt": "🧊", "text": "Dünnes Eis"}},
+    {"text": "Leichter Wind schiebt das Eis, und das Eis schiebt die Steine.",
+     "szene": {"typ": "figur", "ort": "wueste", "gefuehl": "freude", "aktion": "zeigt", "objekt": "🪨", "chat": "Spieler: das Eis wars!"}}
+  ],
+  "thumb_text": ["Death Valley | Spuren ohne Täter", "Niemand schiebt sie"]
+}

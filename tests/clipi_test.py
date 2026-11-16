@@ -122,8 +122,8 @@ _d = tempfile.mkdtemp()
 store.DATA = _d
 store.write("config.json", {"post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]})
 store.init()
-assert store.config()["post_hours"] == [12, 15, 16, 17, 18]
-assert store.config()["post_hours_weekend"] == [11, 13, 15, 17, 18]
+assert store.config()["post_hours"] == list(range(8, 23))
+assert store.config()["post_hours_weekend"] == list(range(8, 23))
 store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True})
 store.init()
 assert store.config()["post_hours"] == [9, 12]
@@ -132,7 +132,10 @@ assert store.config()["post_hours_weekend"] == [9, 12]  # eigene Zeiten gelten a
 store.write("config.json", {"post_hours": [8, 11, 13, 16, 18], "hours_v2": True, "hours_v4": True, "hours_v5": True})
 store.init()
 cfg_h = store.config()
-assert cfg_h["post_hours"] == [12, 15, 16, 17, 18] and cfg_h["post_hours_weekend"] == [11, 13, 15, 17, 18]
+assert cfg_h["post_hours"] == list(range(8, 23)) and cfg_h["post_hours_weekend"] == list(range(8, 23))
+# 16.11.: 15 Shorts am Tag, eigene Zuschauer-Zeiten (Werktag/Wochenende getrennt) bleiben wie gehabt prüfbar
+cfg_h = {"post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18]}
+store.write("config.json", {**store.config(), **cfg_h})
 fri = dt.datetime(2026, 11, 13, 10, 40, tzinfo=store.TZ)  # Freitag
 sat = dt.datetime(2026, 11, 14, 10, 40, tzinfo=store.TZ)  # Samstag
 assert store.hours_for(cfg_h, fri) == [12, 15, 16, 17, 18]
@@ -141,4 +144,12 @@ assert store.due_slot(fri) is None              # werktags erst ab 12 Uhr
 assert store.due_slot(sat) == "2026-11-14-11"   # am Wochenende schon um 11 Uhr
 assert store.next_slot(cfg_h, fri).hour == 12
 assert store.next_slot(cfg_h, dt.datetime(2026, 11, 13, 19, 0, tzinfo=store.TZ)) == dt.datetime(2026, 11, 14, 11, 0, tzinfo=store.TZ)
+store.write("config.json", {"post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18],
+                            "hours_v2": True, "hours_v4": True, "hours_v5": True, "hours_v6": True})
+store.init()
+assert store.config()["post_hours"] == list(range(8, 23)) and store.config()["post_hours_weekend"] == list(range(8, 23))
+store.write("config.json", {"post_hours": [9, 12], "post_hours_weekend": [10], "hours_v2": True, "hours_v4": True,
+                            "hours_v5": True, "hours_v6": True})
+store.init()
+assert store.config()["post_hours"] == [9, 12] and store.config()["post_hours_weekend"] == [10]  # eigene bleiben
 print("Zeiten ok")

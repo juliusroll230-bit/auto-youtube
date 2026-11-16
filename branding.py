@@ -19,21 +19,24 @@ RED = (240, 68, 68)
 NICHES = [("🏎️", "Business"), ("🧠", "Psychologie"), ("🏛️", "Geschichte"), ("💸", "Geld"), ("🌍", "Geografie")]
 
 # Erhöhen, wenn sich Banner oder Beschreibung ändern: dann setzt die App sie neu.
-VERSION = 2
+VERSION = 3
 
 
 def _times(hours):
+    hours = [int(h) for h in hours]
+    if len(hours) > 4 and hours == list(range(hours[0], hours[-1] + 1)):
+        return f"jede volle Stunde von {hours[0]} bis {hours[-1]}"
     return ", ".join(str(h) for h in hours[:-1]) + (f" und {hours[-1]}" if len(hours) > 1 else str(hours[0]))
 
 
 def description(channel_title, hours, weekend=None):
     times = _times(hours)
     if weekend and list(weekend) != list(hours):
-        times = f"{times} Uhr (Mo bis Fr), am Wochenende um {_times(weekend)}"
+        times = f"{times} Uhr (Mo bis Fr), am Wochenende {_times(weekend)}"
     return (
         f"{channel_title}: Jeden Tag Fakten, die du in unter einer Minute verstehst.\n\n"
         "🏎️ Business & Autos\n🧠 Psychologie\n🏛️ Geschichte\n💸 Geld & Finanzen\n🌍 Geografie\n\n"
-        f"🕛 Neue Shorts täglich um {times} Uhr\n"
+        f"🕛 Neue Shorts täglich {times if times.startswith('jede') else 'um ' + times} Uhr\n"
         "🔔 Abonnieren, damit du keinen Fakt verpasst!\n\n"
         "Die Videos entstehen mit KI-Stimme und eigenen Animationen."
     )

@@ -1,0 +1,33 @@
+{
+  "slug": "horror-block-fremdes-haus",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "vorrang": true,
+  "colors": ["#0b0a14", "#3a2a5c"],
+  "accent": "#ff3b2f",
+  "title": "Das Haus, das du nie gebaut hast 🏠",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deiner eigenen Welt steht plötzlich eine Kopie deines Hauses.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": ["horror", "gruselgeschichte", "creepypasta", "gaming", "shorts"],
+  "figur": {"farbe": "gruen"},
+  "stimmung": "gruselig",
+  "segments": [
+    {"text": "In deiner Welt steht plötzlich ein Haus, das du nie gebaut hast.",
+     "szene": {"typ": "horror", "ort": "strasse", "gefuehl": "angst", "aktion": "schockiert", "objekt": "🏠", "chat": "???: willkommen zurück"}},
+    {"text": "Es ist eine genaue Kopie von deinem Haus, Block für Block.",
+     "szene": {"typ": "figur", "ort": "strasse", "gefuehl": "angst", "aktion": "zeigt", "kamera": "weit"}},
+    {"text": "Aber diese Welt kennt niemand außer dir.",
+     "szene": {"typ": "objekt", "ort": "strasse", "objekt": "🔒", "text": "Nur du", "chat": "Server: 1 Spieler online"}},
+    {"text": "Drinnen brennt Licht, und die Tür geht langsam auf.",
+     "szene": {"typ": "figur", "ort": "haus", "gefuehl": "angst", "aktion": "versteckt", "tuer": true, "kamera": "weit"}},
+    {"text": "Auf dem Tisch liegt ein Schild: Ich warte schon lange.",
+     "szene": {"typ": "objekt", "ort": "haus", "objekt": "🪧", "text": "Ich warte schon"}},
+    {"text": "Du rennst zurück in dein eigenes Haus.",
+     "szene": {"typ": "monster", "ort": "strasse", "monster": "schatten", "gefuehl": "angst", "aktion": "rennt", "kamera": "schulter"}},
+    {"text": "Es ist leer. Alles, was du gebaut hast, steht jetzt drüben.",
+     "szene": {"typ": "horror", "ort": "haus", "gefuehl": "angst", "aktion": "zittert"}},
+    {"text": "Dann schreibt jemand mit deinem Namen: Jetzt wohne ich hier.",
+     "szene": {"typ": "raetsel", "ort": "haus", "objekt": "👁️", "chat": "Du: jetzt wohne ich hier"}}
+  ],
+  "thumb_text": ["Kopie | wer wohnt da?", "Das bin nicht ich"]
+}
