@@ -6,11 +6,92 @@
  },
  "videos": [
   {
+   "id": "1SqcpCyXV04",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 2) 🚗",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 99 Mitarbeiter und 14.900 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 4,
+   "published": "2026-11-16T19:30:30+00:00",
+   "thumb": "thumbs/1SqcpCyXV04.jpg"
+  },
+  {
+   "id": "zJvJMe6O3fE",
+   "title": "Was passiert, wenn dich ein Blitz trifft? ⚡",
+   "text": "Erklärt in der Blockwelt: Warum die meisten Menschen einen Blitzschlag überleben und was danach auf der Haut zu sehen ist.",
+   "niche": "Wissen",
+   "views": 89,
+   "published": "2026-11-16T19:21:47+00:00",
+   "thumb": "thumbs/zJvJMe6O3fE.jpg"
+  },
+  {
+   "id": "2k92b22sF1Q",
+   "title": "Das Bermuda-Dreieck: Was geschah wirklich mit Flug 19? 🔺",
+   "text": "5. Dezember 1945: Fünf Flugzeuge starten in Florida und kehren nie zurück. Wir erzählen die ganze Geschichte von Flug 19, zeigen die Spuren und prüfen jede Theorie zum Bermuda-Dreieck.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-16T19:16:17+00:00",
+   "thumb": "thumbs/2k92b22sF1Q.jpg"
+  },
+  {
+   "id": "db72bNEfjIY",
+   "title": "Der Server, auf dem niemand sein sollte 👀",
+   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf einem Server, aber jemand schreibt im Chat.",
+   "niche": "Wissen",
+   "views": 442,
+   "published": "2026-11-16T16:44:01+00:00",
+   "thumb": "thumbs/db72bNEfjIY.jpg"
+  },
+  {
+   "id": "sLPeeMzKj6g",
+   "title": "Das Schiff, dessen Crew niemand je wiederfand 🚢",
+   "text": "Die Carroll A. Deering strandete 1921 bei Cape Hatteras, ohne Besatzung. Bis heute ist ungeklärt, was geschah.",
+   "niche": "Geschichte",
+   "views": 246,
+   "published": "2026-11-16T15:41:05+00:00",
+   "thumb": "thumbs/sLPeeMzKj6g.jpg"
+  },
+  {
+   "id": "OFmPIwNFot8",
+   "title": "Warum schmeckt Essen im Flugzeug so fade? ✈️",
+   "text": "Trockene Luft, Lärm und niedriger Druck: Warum Süßes und Salziges in der Luft schwächer schmecken, und was dagegen hilft.",
+   "niche": "Wissen",
+   "views": 508,
+   "published": "2026-11-16T14:39:41+00:00",
+   "thumb": "thumbs/OFmPIwNFot8.jpg"
+  },
+  {
+   "id": "jbtXkkg-MuE",
+   "title": "Das Rätsel um Déjà-vu: Hast du das schon erlebt? 🔁",
+   "text": "Das Gefühl, etwas schon erlebt zu haben: Was steckt hinter Déjà-vu? Es gibt Theorien, aber keine endgültige Antwort.",
+   "niche": "Wissen",
+   "views": 534,
+   "published": "2026-11-16T13:40:08+00:00",
+   "thumb": "thumbs/jbtXkkg-MuE.jpg"
+  },
+  {
+   "id": "QdvHTu-lxBI",
+   "title": "Warum ist der Himmel eigentlich blau? ☁️",
+   "text": "Sonnenlicht ist weiß, doch der Himmel blau: Das Zusammenspiel aus Streuung und Augen erklärt es. Und warum der Abend rot ist.",
+   "niche": "Wissen",
+   "views": 682,
+   "published": "2026-11-16T11:40:16+00:00",
+   "thumb": "thumbs/QdvHTu-lxBI.jpg"
+  },
+  {
+   "id": "gHHURgEJal4",
+   "title": "Der Fluch, der jeden treffen soll, der das Grab öffnete 👑",
+   "text": "Der Fluch des Pharaos: Nach dem Fund von Tutanchamuns Grab sterben angeblich alle Beteiligten. Belegt ist die Entdeckung, der Fluch ist Legende.",
+   "niche": "Wissen",
+   "views": 138,
+   "published": "2026-11-16T10:40:17+00:00",
+   "thumb": "thumbs/gHHURgEJal4.jpg"
+  },
+  {
    "id": "GkAEqa6R2yA",
    "title": "Der Sender, der seit Jahrzehnten nur brummt 📻",
    "text": "UVB-76: ein Kurzwellensender, der seit Jahrzehnten einen Brummton sendet, gelegentlich unterbrochen von Stimmen. Wer ihn betreibt, ist nicht offiziell bestätigt.",
    "niche": "Wissen",
-   "views": 473,
+   "views": 940,
    "published": "2026-11-15T19:41:27+00:00",
    "thumb": "thumbs/GkAEqa6R2yA.jpg"
   },
@@ -19,7 +100,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 1) 🎮",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 87 Mitarbeiter und 10.700 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 360,
+   "views": 850,
    "published": "2026-11-15T19:32:46+00:00",
    "thumb": "thumbs/sJ1PBhadNcI.jpg"
   },
@@ -28,7 +109,7 @@
    "title": "Was passiert, wenn der Mond plötzlich verschwindet? 🌑",
    "text": "Der Mond ist weg. Was ändert sich auf der Erde? Gezeiten, Nächte und vielleicht sogar das Klima.",
    "niche": "Wissen",
-   "views": 464,
+   "views": 740,
    "published": "2026-11-15T19:23:39+00:00",
    "thumb": "thumbs/XZMKR9AcQaw.jpg"
   },
@@ -37,7 +118,7 @@
    "title": "Das Rätsel vom Djatlow-Pass: Was geschah in jener Nacht? ⛺",
    "text": "Februar 1959: Im Nordural wird ein Zelt gefunden, von innen aufgeschnitten, neun Wanderer sind tot. Wir erzählen die ganze Geschichte des Djatlow-Passes, zeigen die Spuren und prüfen jede Theorie.",
    "niche": "Geschichte",
-   "views": 12,
+   "views": 40,
    "published": "2026-11-15T19:18:35+00:00",
    "thumb": "thumbs/3kD5IBnKA-w.jpg"
   },
@@ -46,7 +127,7 @@
    "title": "Die Pilotin, die mitten im Pazifik spurlos verschwand ✈️",
    "text": "Amelia Earhart verschwand 1937 bei einem Weltumrundungsflug über dem Pazifik. Trotz großer Suche fand man sie nie. Es gibt nur Theorien.",
    "niche": "Geschichte",
-   "views": 835,
+   "views": 913,
    "published": "2026-11-15T16:40:48+00:00",
    "thumb": "thumbs/J8qYlbkPXWo.jpg"
   },
@@ -55,90 +136,9 @@
    "title": "Das Rätsel um den Geruch von Regen 🌧️",
    "text": "Warum riecht Regen auf trockenem Boden so besonders? Das steckt dahinter: Petrichor und Geosmin.",
    "niche": "Wissen",
-   "views": 940,
+   "views": 947,
    "published": "2026-11-15T15:40:21+00:00",
    "thumb": "thumbs/_KKF1PnlZJ0.jpg"
-  },
-  {
-   "id": "li-hukepg84",
-   "title": "Das Gerät im Schiffswrack, das nicht dort sein dürfte ⚙️",
-   "text": "Die Antikythera-Maschine: ein rund zweitausend Jahre altes Zahnradgerät aus einem griechischen Wrack. Es zeigt, wie weit antike Technik schon war.",
-   "niche": "Geschichte",
-   "views": 840,
-   "published": "2026-11-15T14:46:17+00:00",
-   "thumb": "thumbs/li-hukepg84.jpg"
-  },
-  {
-   "id": "FwUS0tZsk2Q",
-   "title": "Warum bekommst du eigentlich Gänsehaut? 🥶",
-   "text": "Warum stellen sich bei Kälte und Gefühlen die Haare auf? Ein Überbleibsel aus der Zeit unserer fellbedeckten Vorfahren.",
-   "niche": "Wissen",
-   "views": 1284,
-   "published": "2026-11-15T14:40:24+00:00",
-   "thumb": "thumbs/FwUS0tZsk2Q.jpg"
-  },
-  {
-   "id": "XV0fpGAJjvU",
-   "title": "Die Riesenbilder im Sand, die man nur von oben sieht 🛩️",
-   "text": "Die Nazca-Linien in Peru: riesige Figuren im Wüstenboden, vor etwa zweitausend Jahren entstanden. Wozu sie dienten, ist bis heute unklar.",
-   "niche": "Wissen",
-   "views": 885,
-   "published": "2026-11-15T11:40:38+00:00",
-   "thumb": "thumbs/XV0fpGAJjvU.jpg"
-  },
-  {
-   "id": "9IY18ivs_Nk",
-   "title": "Was passiert, wenn alle Menschen gleichzeitig springen? 🦘",
-   "text": "Alle Menschen der Erde springen im selben Moment. Bewegt sich die Erde? Die Physik hat eine klare Antwort.",
-   "niche": "Wissen",
-   "views": 969,
-   "published": "2026-11-15T09:39:24+00:00",
-   "thumb": "thumbs/9IY18ivs_Nk.jpg"
-  },
-  {
-   "id": "9dmpBcv6EJc",
-   "title": "Die Gasse unter Edinburgh, in der Besucher Spielzeug lassen 🧸",
-   "text": "Mary King's Close in Edinburgh: Eine überbaute Gasse, Pestgeschichten und ein Geistermädchen. Belegt ist die Gasse, der Rest ist Legende.",
-   "niche": "Wissen",
-   "views": 598,
-   "published": "2026-11-15T06:40:40+00:00",
-   "thumb": "thumbs/9dmpBcv6EJc.jpg"
-  },
-  {
-   "id": "Kc0VYTf0O0o",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Raketenfirma (Tag 1) 🚀",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Raketenfirma „Abo Space“ ein. Heute: 73 Mitarbeiter und 9.300 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 937,
-   "published": "2026-11-14T19:21:47+00:00",
-   "thumb": "thumbs/Kc0VYTf0O0o.jpg"
-  },
-  {
-   "id": "zbNTn6Pa4nw",
-   "title": "North Sentinel: Die Insel, die niemand betreten darf 🏝️",
-   "text": "North Sentinel im Indischen Ozean: Ein Volk wehrt seit Jahrtausenden jeden Besuch ab. Wir erzählen die Geschichte der Insel, der wenigen Begegnungen und des Verbots und zeigen, was wir wissen und was nicht.",
-   "niche": "Geschichte",
-   "views": 0,
-   "published": "2026-11-14T19:11:42+00:00",
-   "thumb": "thumbs/zbNTn6Pa4nw.jpg"
-  },
-  {
-   "id": "pVPieJz-K78",
-   "title": "Nebelbach: Wohin sind alle verschwunden? (Teil 1) 🌫️",
-   "text": "Nebelbach, Teil 1. Eine ausgedachte Mystery-Serie.",
-   "niche": "Wissen",
-   "views": 895,
-   "published": "2026-11-14T16:40:55+00:00",
-   "thumb": "thumbs/pVPieJz-K78.jpg"
-  },
-  {
-   "id": "fAlhZBbNY5M",
-   "title": "Wie überlebt man in Treibsand? 🏜️",
-   "text": "Was Treibsand wirklich ist und warum man darin nicht komplett versinkt. Der Mythos und die Physik dahinter.",
-   "niche": "Wissen",
-   "views": 925,
-   "published": "2026-11-14T14:40:28+00:00",
-   "thumb": "thumbs/fAlhZBbNY5M.jpg"
   }
  ]
 }
