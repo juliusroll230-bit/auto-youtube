@@ -139,7 +139,8 @@ def video_voice():
     cfg = store.config()
     if cfg.get("fish_key") and cfg.get("fish_voice"):
         import fishtts
-        return fishtts.Voice(tts(), cfg["fish_key"], cfg["fish_voice"], cfg.get("fish_voice_dark", ""))
+        return fishtts.Voice(tts(), cfg["fish_key"], cfg["fish_voice"], cfg.get("fish_voice_dark", ""),
+                             cfg.get("fish_voice_warm", ""))
     return tts()
 
 
@@ -985,7 +986,7 @@ class Handler(BaseHTTPRequestHandler):
         which = q.get("fish", [""])[0]
         if which and conf.get("fish_key"):  # Hörprobe der Fish-Audio-Stimme (normal oder dunkel)
             import fishtts
-            vid = conf.get("fish_voice_dark") if which == "dark" and conf.get("fish_voice_dark") else conf.get("fish_voice")
+            vid = {"dark": conf.get("fish_voice_dark"), "warm": conf.get("fish_voice_warm")}.get(which) or conf.get("fish_voice")
             if not vid:
                 return self.send(400, {"error": "Bitte zuerst eine Stimme eintragen."})
             try:
@@ -994,6 +995,16 @@ class Handler(BaseHTTPRequestHandler):
                                           voice.config.sample_rate)
             except Exception as e:
                 return self.send(502, {"error": str(e)})
+        elif q.get("stimme", [""])[0]:  # Hörprobe einer Cartoon-Stimme (z. B. die freundliche für Geschichten)
+            import make_short
+            name = q["stimme"][0]
+            if name not in make_short.VOICES:
+                return self.send(400, {"error": "Diese Stimme gibt es nicht."})
+            pitch, slower, _ = make_short.VOICES[name]
+            story = "Meine Oma hat mir einen alten Schlüssel geschenkt. Sie hat nur gelächelt und gesagt: Du wirst schon sehen."
+            with working("sprecher", task="Spricht eine Hörprobe"):
+                audio = make_short.speak_piper(voice, story, name, length_scale=cfg.length_scale * slower * pitch)
+                audio = make_short.voice_color(audio, voice.config.sample_rate, name)
         else:
             with working("sprecher", task="Spricht eine Hörprobe"):
                 audio = np.concatenate([c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)])
@@ -1098,7 +1109,7 @@ class Handler(BaseHTTPRequestHandler):
                 changes["stock_key"] = data["stock_key"].strip()  # leer = Clips ausschalten
             if isinstance(data.get("fish_key"), str):
                 changes["fish_key"] = data["fish_key"].strip()  # leer = eingebaute Stimme
-            for k in ("fish_voice", "fish_voice_dark"):
+            for k in ("fish_voice", "fish_voice_dark", "fish_voice_warm"):
                 if isinstance(data.get(k), str):
                     import fishtts
                     vid = fishtts.voice_id(data[k])

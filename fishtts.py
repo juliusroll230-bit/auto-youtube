@@ -16,6 +16,7 @@ import numpy as np
 URL = "https://api.fish.audio/v1/tts"
 MODEL = "s2.1-pro"
 DARK_MOODS = ("gruselig", "mysterioes")
+WARM_VOICES = ("freundlich", "erzaehlerin")   # wie make_short.VOICES: dafür nimmt Fish die warme Stimme
 
 
 def voice_id(text):
@@ -60,12 +61,17 @@ def speak(text, key, voice, rate, speed=1.0, timeout=60):
 class Voice:
     """Piper mit Fish-Audio-Stimme davor. Alles andere (z. B. config.sample_rate) kommt von Piper."""
 
-    def __init__(self, piper, key, voice, dark_voice=""):
+    def __init__(self, piper, key, voice, dark_voice="", warm_voice=""):
         self.piper, self.key, self.voice, self.dark_voice = piper, key, voice, dark_voice or voice
+        self.warm_voice = warm_voice or voice   # optional: warme, freundliche Stimme für Geschichten
         self.error = None   # letzter Fehler, damit die Zentrale ihn anzeigen kann
 
     def __getattr__(self, name):
         return getattr(self.piper, name)
 
-    def pick(self, mood):
-        return self.dark_voice if mood in DARK_MOODS else self.voice
+    def pick(self, mood, voice=None):
+        if mood in DARK_MOODS:
+            return self.dark_voice
+        if mood == "warm" or voice in WARM_VOICES:
+            return self.warm_voice
+        return self.voice

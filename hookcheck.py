@@ -259,6 +259,9 @@ def check(spec):
     if niche.startswith("erkl"):
         about_you = bool(YOU.search(first)) or first.endswith("?")
         you_tip = "Erklärvideo: im ersten Satz „du“ sagen oder die Frage stellen."
+    elif niche == "erzählung":  # Ich-Geschichte: „Ich“ ist erlaubt, nur kein „Heute“ oder „In diesem Video“
+        about_you = not re.match(r"^\s*(?:heute|in\s+diesem)\b", first, re.I)
+        you_tip = "Geschichte: direkt mit der Situation anfangen, nicht mit „Heute“."
     else:
         about_you = not WE_I.search(first)
         you_tip = "Nicht mit „Ich“, „Wir“ oder „Heute“ anfangen, sondern mit der Szene."

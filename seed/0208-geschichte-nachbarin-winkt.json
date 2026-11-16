@@ -1,0 +1,111 @@
+{
+  "slug": "geschichte-nachbarin-winkt",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Die Nachbarin, die jeden Morgen winkt 👋",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen winkt die Nachbarin am Fenster, bis sie es eines Tages nicht tut.\n\n#geschichte #storytime #nachbarn #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "nachbarn",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "segments": [
+    {
+      "text": "Meine Nachbarin winkt mir jeden Morgen. Heute bleibt das Fenster leer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🪟",
+        "text": "Kein Winken"
+      }
+    },
+    {
+      "text": "Seit drei Jahren steht sie um sieben am Fenster und lächelt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👵",
+        "text": "Jeden Morgen"
+      }
+    },
+    {
+      "text": "Ich klingle, aber niemand macht auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🚪"
+      }
+    },
+    {
+      "text": "Durch den Briefschlitz höre ich ganz leise: Hilfe.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📬",
+        "text": "Hilfe"
+      }
+    },
+    {
+      "text": "Sie war in der Küche gestürzt, und ich rufe sofort den Krankenwagen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🚑",
+        "text": "Schnell"
+      }
+    },
+    {
+      "text": "Am Abend im Krankenhaus erzählt sie mir etwas.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "krankenhaus",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Sie hat nie gewunken, nur um nett zu sein.",
+      "szene": {
+        "typ": "figur",
+        "ort": "krankenhaus",
+        "gefuehl": "staunen",
+        "aktion": "denkt"
+      }
+    },
+    {
+      "text": "Sie hat gewunken, damit jemand merkt, wenn sie es einmal nicht tut.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "❤️",
+        "text": "Jemand merkt es"
+      }
+    }
+  ],
+  "thumb_text": [
+    "Nachbarin | winkt nicht mehr",
+    "Warum sie wirklich winkte"
+  ]
+}

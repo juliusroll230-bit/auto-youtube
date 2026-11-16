@@ -1907,6 +1907,7 @@ dialog.vs[open] { display: grid; place-items: center; }
               <div class="field"><label for="fishKey">API-Schlüssel</label><input id="fishKey" type="password" autocomplete="off" spellcheck="false" placeholder="Schlüssel einfügen (leer lassen = bleibt wie er ist)"></div>
               <div class="field"><label for="fishVoice">Stimme</label><input id="fishVoice" autocomplete="off" spellcheck="false" placeholder="Link oder ID der Stimme"></div>
               <div class="field"><label for="fishDark">Stimme für Grusel</label><input id="fishDark" autocomplete="off" spellcheck="false" placeholder="optional"></div>
+              <div class="field"><label for="fishWarm">Stimme für Geschichten</label><input id="fishWarm" autocomplete="off" spellcheck="false" placeholder="optional, warm und freundlich"></div>
               <div class="row"><button class="btn primary" type="submit">Speichern</button><button class="btn" type="button" id="fishTest">Probe hören</button><button class="btn" type="button" id="fishOff">Ausschalten</button><span class="msg" id="fishMsg"></span></div>
               <div id="fishAudio"></div>
             </form>
@@ -4233,7 +4234,15 @@ dialog.vs[open] { display: grid; place-items: center; }
       var au = h("audio", { controls: "", autoplay: "", src: "api/voice-sample.wav?tempo=" + tempo + "&t=" + Date.now() });
       au.addEventListener("canplay", function () { btn.classList.remove("going"); });
       au.addEventListener("error", function () { btn.classList.remove("going"); toast("Die Stimme konnte nicht geladen werden."); });
-      clear(out).appendChild(au);
+      // Die Cartoon-Stimmen einzeln probehören (z. B. die freundliche für Geschichten)
+      var names = { freundlich: "Freundlich", erzaehlerin: "Erzählerin", erzaehler: "Erzähler", froehlich: "Fröhlich", klar: "Klar", unheimlich: "Unheimlich" };
+      var row = h("div", { cls: "row", style: "flex-wrap:wrap;gap:6px;margin-top:8px" });
+      Object.keys(names).forEach(function (k) {
+        var b = h("button", { cls: "btn", type: "button", text: names[k] });
+        b.addEventListener("click", function () { au.src = "api/voice-sample.wav?tempo=" + tempo + "&stimme=" + k + "&t=" + Date.now(); au.play(); });
+        row.appendChild(b);
+      });
+      clear(out).append(au, h("div", { cls: "hint", text: "Cartoon-Stimmen probehören:" }), row);
       return;
     }
     if (id === "studio") {
@@ -5157,6 +5166,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     pill($("fishStatus"), fishOn ? "ok" : "warn", fishOn ? "Aktiv" : (fi.has_key ? "Stimme fehlt" : "Aus"));
     if (document.activeElement !== $("fishVoice")) $("fishVoice").value = fi.voice || "";
     if (document.activeElement !== $("fishDark")) $("fishDark").value = fi.voice_dark || "";
+    if (document.activeElement !== $("fishWarm")) $("fishWarm").value = fi.voice_warm || "";
     var c = d.connect || { status: "idle" };
     pill($("conStatus"), d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
     var body = clear($("conBody"));
@@ -5282,7 +5292,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("fishForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var body = { fish_voice: $("fishVoice").value, fish_voice_dark: $("fishDark").value };
+    var body = { fish_voice: $("fishVoice").value, fish_voice_dark: $("fishDark").value, fish_voice_warm: $("fishWarm").value };
     if ($("fishKey").value.trim()) body.fish_key = $("fishKey").value.trim();
     api("api/settings", body)
       .then(function () { $("fishKey").value = ""; flash("fishMsg", "ok", "Gespeichert. Mit „Probe hören“ testen."); load(); }, function (err) { flash("fishMsg", "err", err.message); });

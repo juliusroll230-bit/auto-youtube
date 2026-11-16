@@ -49,10 +49,11 @@ Test-Video: `python cartoon.py skript.json ausgabe/`.
 Zusätzlich für jede Szene: `wetter` (regen, nebel, blitz, schnee) und bei figur/zwei/gruppe/horror ein `monster` im Hintergrund.
 Figuren können `name` (Namensschild) und `art` ("zombie", "blass") haben.
 
-**Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery) oder
-`neugierig` (lockere Erklärung). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
+**Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery),
+`neugierig` (lockere Erklärung) oder `warm` (ruhig erzählte Geschichte, Spieluhr-Musik, Stimmen `freundlich`,
+`erzaehlerin`, `erzaehler`; Nische `Erzählung`, Vorbild `seed/0208`). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
 dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere mysteriös. Die Stimme (`froehlich`, `klar`,
-`erzaehler`, `unheimlich`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
+`erzaehler`, `unheimlich`, `freundlich`, `erzaehlerin`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
 mit `"stimme"` im Skript ist sie fest.
 
 **Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene ist schon Action, die `titel`-Szene kommt als zweite, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
