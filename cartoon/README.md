@@ -74,7 +74,9 @@ Zusatzfelder je Szene: `chat` (Spiel-Chat oben links, „Name: Nachricht“, hö
 für Buchstabe), `kamera` (`vorne`, `nah`, `weit`, `schulter` = über die Schulter auf die Gefahr), `tuer` (true: Tür
 geht langsam auf). Gut wirkende Orte: strasse, haus, keller, kinderzimmer, krankenhaus, dunkelwald, friedhof, spukhaus.
 Rendern dauert etwa 6 bis 7 Minuten für 22 Sekunden (WebGL mit SwiftShader). Vorbilder: `seed/0199` bis `0201`.
-Der Lernmodus vergleicht das Merkmal „Look 2D/3D“ (`learn.world`).
+Auch Erklärvideos gehen in der Blockwelt (helle Orte wie `feld`, `haus`, `buero`, `stadt`, `schule`, `labor`,
+`"stimmung": "neugierig"`); Vorbild `seed/0205`. Der Lernmodus vergleicht „Look 2D/3D“ (`learn.world`) und
+„Look je Video-Typ“ (`learn.world_by_type`, z. B. „Horror · 3D“ gegen „Horror · 2D“).
 
 ## Lange Videos (Querformat, 7 bis 12 Minuten)
 

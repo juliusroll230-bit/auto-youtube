@@ -19,4 +19,7 @@ assert learn.world({"stil": "cartoon", "welt": "block"}) == "Blockwelt 3D"
 assert learn.world({"stil": "cartoon"}) == "Strichmännchen 2D"
 assert learn.world({"niche": "Geld"}) is None
 assert learn.features({"stil": "cartoon", "welt": "block", "niche": "Horror", "segments": [{"text": "a"}]}, {})["welt"] == "Blockwelt 3D"
+assert learn.world_by_type({"stil": "cartoon", "welt": "block", "niche": "Horror", "title": "X"}) == "Horror · 3D"
+assert learn.world_by_type({"stil": "cartoon", "niche": "Erklären", "title": "Was passiert, wenn X"}) == "Erklär: Was passiert, wenn · 2D"
+assert learn.world_by_type({"niche": "Geld"}) is None
 print("ok")

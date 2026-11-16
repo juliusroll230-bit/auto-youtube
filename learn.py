@@ -110,7 +110,8 @@ VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erza
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
-                 "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D"}
+                 "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
+                 "welt_typ": "Look je Video-Typ"}
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
@@ -154,6 +155,15 @@ def world(spec):
     return "Blockwelt 3D" if spec.get("welt") == "block" else "Strichmännchen 2D"
 
 
+def world_by_type(spec):
+    """Look und Video-Typ zusammen (z. B. "Horror · 3D"). Fairer Vergleich, weil Erklärvideos sonst den 2D-Schnitt heben."""
+    w = world(spec)
+    if not w:
+        return None
+    typ = video_type(spec).replace("Erklärvideo: ", "Erklär: ")
+    return f"{typ} · {'3D' if w.startswith('Blockwelt') else '2D'}"
+
+
 def _hook_bucket(spec):
     """Note der Hook-Prüfliste als Gruppe (stark/gut/schwach), damit man sieht, ob die Prüfung trifft."""
     try:
@@ -184,6 +194,7 @@ def features(spec, look):
         "serie": spec.get("serie") or None,
         "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
         "welt": world(spec),
+        "welt_typ": world_by_type(spec),
     }
 
 
