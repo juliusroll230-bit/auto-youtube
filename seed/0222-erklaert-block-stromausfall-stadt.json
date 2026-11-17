@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-stromausfall-stadt",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#14182a",
+    "#e0b84a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn in deiner Stadt der Strom ausfällt? 🔌",
+  "description": "Erklärt in der Blockwelt: Was bei einem langen Stromausfall zuerst ausfällt und wie ein kleiner Notvorrat hilft.\n\n#wissen #stromausfall #alltag #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "stromausfall",
+    "alltag",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Stromausfall | Was dann?",
+    "Vier Stunden Kühlschrank"
+  ],
+  "segments": [
+    {
+      "text": "In deiner Stadt geht plötzlich überall das Licht aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "💡",
+        "chat": "Server: Strom weg"
+      }
+    },
+    {
+      "text": "Ampeln fallen aus, und der Verkehr bleibt stehen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚦",
+        "text": "Ampeln aus"
+      }
+    },
+    {
+      "text": "Handys halten nur, solange der Akku hält.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Im Kühlschrank bleibt das Essen nur etwa vier Stunden kalt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 4,
+        "einheit": "Stunden kalt",
+        "objekt": "🧊",
+        "farbcode": "#14182a"
+      }
+    },
+    {
+      "text": "Auch Pumpen für Wasser und Heizung brauchen Strom.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🚰",
+        "text": "Pumpen aus"
+      }
+    },
+    {
+      "text": "Tankstellen und Geldautomaten funktionieren dann ebenfalls nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 5,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Alle warten"
+      }
+    },
+    {
+      "text": "Wer vorbereitet ist, hat Wasser, Kerzen und ein Radio.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "📻"
+      }
+    },
+    {
+      "text": "Darum raten Behörden zu einem kleinen Notvorrat.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎒",
+        "text": "Notvorrat"
+      }
+    }
+  ]
+}

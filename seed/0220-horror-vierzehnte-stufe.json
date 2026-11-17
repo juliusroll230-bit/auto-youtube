@@ -1,0 +1,111 @@
+{
+  "slug": "horror-vierzehnte-stufe",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a10",
+    "#4a2a2a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Die Stufe, die es gestern noch nicht gab 🪜",
+  "description": "Eine ausgedachte Gruselgeschichte: Auf deiner Treppe gibt es plötzlich eine Stufe mehr, und nur du siehst sie.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Treppe | eine Stufe mehr",
+    "Nur du siehst sie"
+  ],
+  "segments": [
+    {
+      "text": "Auf deiner Treppe gibt es plötzlich eine Stufe mehr.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🪜"
+      }
+    },
+    {
+      "text": "Du zählst nach: vierzehn, nicht dreizehn wie immer.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 14,
+        "einheit": "Stufen, nicht 13",
+        "objekt": "🪜",
+        "farbcode": "#1a0a14"
+      }
+    },
+    {
+      "text": "Deine Eltern zählen auch und finden dreizehn.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Nur du siehst die vierzehnte Stufe, ganz oben, ganz dunkel.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🪜"
+      }
+    },
+    {
+      "text": "Nachts hörst du dort Schritte, die nach unten gehen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👣",
+        "text": "Schritte"
+      }
+    },
+    {
+      "text": "Du leuchtest hin und siehst einen Schatten, der dich anstarrt.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Am Morgen zählst du erneut: wieder dreizehn.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "denkt"
+      }
+    },
+    {
+      "text": "Aber die vierzehnte Stufe liegt jetzt in deinem Zimmer.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🪜"
+      }
+    }
+  ]
+}

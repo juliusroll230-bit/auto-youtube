@@ -1,0 +1,107 @@
+{
+  "slug": "horror-anruf-eigene-nummer",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a14",
+    "#3a2a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Anruf, der von deiner eigenen Nummer kam 📱",
+  "description": "Eine ausgedachte Gruselgeschichte: Mitten in der Nacht ruft dich deine eigene Nummer an.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Anruf | von dir selbst",
+    "Bleib im Bett"
+  ],
+  "segments": [
+    {
+      "text": "Nachts klingelt dein Handy, und plötzlich steht deine Nummer da.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📱"
+      }
+    },
+    {
+      "text": "Du gehst ran, aber niemand sagt etwas.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📞"
+      }
+    },
+    {
+      "text": "Du hörst Atmen, Rascheln und Flüstern ganz nah.",
+      "szene": {
+        "typ": "liste",
+        "text": "Du hörst",
+        "punkte": [
+          "Atmen",
+          "Rascheln",
+          "Flüstern"
+        ]
+      }
+    },
+    {
+      "text": "Dann flüstert eine Stimme: Bleib im Bett.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🗣️",
+        "text": "Bleib im Bett"
+      }
+    },
+    {
+      "text": "Du lauschst, denn die Stimme klingt wie deine.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt"
+      }
+    },
+    {
+      "text": "Im Flur knarrt eine Tür, die du abgeschlossen hast.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Das Display zeigt jetzt: Anruf aus deinem Zimmer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "📱",
+        "text": "Aus deinem Zimmer"
+      }
+    },
+    {
+      "text": "Und neben dir flüstert jemand: Ich habe dich gewarnt.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

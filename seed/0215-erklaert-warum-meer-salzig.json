@@ -1,0 +1,109 @@
+{
+  "slug": "erklaert-warum-meer-salzig",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c2030",
+    "#3a8cb0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum ist das Meer salzig, aber der Regen nicht? 🌊",
+  "description": "Das Salz im Meer kommt von Land. Wie Regen und Flüsse es über sehr lange Zeit ins Meer tragen.\n\n#wissen #meer #salz #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "meer",
+    "salz",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Meersalz | kam vom Land",
+    "Regen ist schuld"
+  ],
+  "segments": [
+    {
+      "text": "Warum ist das Meer salzig, obwohl Regen süß ist?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Das Salz kommt ursprünglich aus Gestein an Land.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🪨",
+        "text": "Gestein"
+      }
+    },
+    {
+      "text": "Regen löst winzige Mengen davon heraus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🌧️"
+      }
+    },
+    {
+      "text": "Flüsse tragen es über Jahrmillionen ins Meer.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Flüsse zum Meer"
+      }
+    },
+    {
+      "text": "Dort verdunstet Wasser, aber das Salz bleibt zurück.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☀️",
+          "text": "Wasser: weg"
+        },
+        "rechts": {
+          "objekt": "🧂",
+          "text": "Salz: bleibt"
+        }
+      }
+    },
+    {
+      "text": "So kam in sehr langer Zeit das Salz zusammen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "⏳",
+        "text": "Sehr lange"
+      }
+    },
+    {
+      "text": "Heute enthält ein Liter Meerwasser rund fünfunddreißig Gramm Salz.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 35,
+        "einheit": "Gramm Salz pro Liter",
+        "objekt": "🧂",
+        "farbcode": "#0c2030"
+      }
+    },
+    {
+      "text": "Das Meer ist also nur der Endpunkt eines langen Weges.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "🧂"
+      }
+    }
+  ]
+}

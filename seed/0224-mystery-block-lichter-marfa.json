@@ -1,0 +1,113 @@
+{
+  "slug": "mystery-block-lichter-marfa",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#1a1020",
+    "#c07a3a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Lichter, die niemand erklären konnte 💡",
+  "description": "Das echte Rätsel von Marfa, nachgespielt in der Blockwelt: Nachts tanzen Lichter über der Wüste in Texas, und ein Teil davon bleibt umstritten.\n\n#mystery #rätsel #marfa #wissen #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "marfa",
+    "wissen",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Marfa | Lichter ohne Quelle",
+    "Nur Autos?"
+  ],
+  "segments": [
+    {
+      "text": "Nachts tanzen Lichter über der Wüste, und niemand weiß warum.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "💡",
+        "chat": "Spieler: was ist das??"
+      }
+    },
+    {
+      "text": "Der Ort heißt Marfa, mitten in Texas.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Marfa, Texas"
+      }
+    },
+    {
+      "text": "Schon vor über hundert Jahren wurden dort Lichter gemeldet.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wueste",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Lichter gemeldet"
+      }
+    },
+    {
+      "text": "Sie schweben, leuchten und verschwinden wieder.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "💡",
+        "text": "Aus und an"
+      }
+    },
+    {
+      "text": "Man dachte an Geister, Gase und Außerirdische.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "👽"
+      }
+    },
+    {
+      "text": "Studenten verglichen die Lichter mit Autoscheinwerfern.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🚗",
+        "text": "Scheinwerfer"
+      }
+    },
+    {
+      "text": "Viele Lichter waren Autos auf einer weit entfernten Straße.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wueste",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Ob wirklich alle Lichter Autos sind, bleibt umstritten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓",
+        "chat": "Spieler: und der Rest?"
+      }
+    }
+  ]
+}

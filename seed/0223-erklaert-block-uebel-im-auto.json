@@ -1,0 +1,118 @@
+{
+  "slug": "erklaert-block-uebel-im-auto",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2a24",
+    "#5ac098"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum wird dir im Auto auf der Rückbank übel? 🚗",
+  "description": "Erklärt in der Blockwelt: Warum Augen und Gleichgewichtsorgan sich im Auto widersprechen und was gegen die Übelkeit hilft.\n\n#wissen #reiseübelkeit #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "reiseübelkeit",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Autofahrt | Gehirn irrt",
+    "Augen gegen Ohren"
+  ],
+  "segments": [
+    {
+      "text": "Warum wird dir im Auto auf einmal richtig übel?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "🤢",
+        "chat": "Spieler: mir ist schlecht"
+      }
+    },
+    {
+      "text": "Dein Körper bekommt zwei Meldungen, die sich widersprechen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👁️",
+          "text": "Augen: still"
+        },
+        "rechts": {
+          "objekt": "🌀",
+          "text": "Ohr: Bewegung"
+        }
+      }
+    },
+    {
+      "text": "Deine Augen sehen den Sitz, der stillsteht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "💺",
+        "text": "Sitz steht still"
+      }
+    },
+    {
+      "text": "Dein Gleichgewichtsorgan im Ohr spürt jedes Schaukeln.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strasse",
+        "objekt": "👂",
+        "text": "Gleichgewicht"
+      }
+    },
+    {
+      "text": "Das Gehirn versteht nichts mehr und schlägt Alarm.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "wut",
+        "aktion": "schockiert",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Besonders auf der Rückbank wird vielen schnell schlecht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strasse",
+        "anzahl": 3,
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "text": "Vielen wird übel"
+      }
+    },
+    {
+      "text": "Hilfreich ist der Blick nach vorn auf die Straße.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "strasse",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "So passen Augen und Ohr wieder zusammen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😌"
+      }
+    }
+  ]
+}
