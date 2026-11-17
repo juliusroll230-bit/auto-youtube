@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-tagelang-nichts-trinken",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1a0c",
+    "#d8a050"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du tagelang nichts trinkst? 🏜️",
+  "description": "Was dein Körper ohne Wasser macht: von Durst über dickeres Blut bis zur Gefahr nach wenigen Tagen.\n\n#wissen #körper #wasser #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "wasser",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Kein Wasser | Was dann?",
+    "Dein Blut wird dicker"
+  ],
+  "segments": [
+    {
+      "text": "Du trinkst einen Tag lang nichts. Was macht dein Körper?",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🏜️"
+      }
+    },
+    {
+      "text": "Zuerst kommen Durst, dunkler Urin und Müdigkeit.",
+      "szene": {
+        "typ": "liste",
+        "text": "Erste Zeichen",
+        "punkte": [
+          "Durst",
+          "Dunkler Urin",
+          "Müdigkeit"
+        ]
+      }
+    },
+    {
+      "text": "Dein Blut wird dicker und das Herz muss mehr pumpen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🩸",
+          "text": "Normal"
+        },
+        "rechts": {
+          "objekt": "🩸",
+          "text": "Dicker"
+        }
+      }
+    },
+    {
+      "text": "Dein Kopf tut weh und du kannst dich kaum konzentrieren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🤕"
+      }
+    },
+    {
+      "text": "Ungefähr nach drei Tagen wird es lebensgefährlich.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 3,
+        "einheit": "Tage ohne Wasser",
+        "objekt": "⏳",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Dein Körper besteht zu über der Hälfte aus Wasser.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "💧",
+        "text": "Über die Hälfte"
+      }
+    },
+    {
+      "text": "Essen hältst du viel länger aus als Trinken.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "🍞",
+        "text": "Essen: Wochen"
+      }
+    },
+    {
+      "text": "Darum ist Wasser das Wichtigste, was du dabeihaben kannst.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💧"
+      }
+    }
+  ]
+}

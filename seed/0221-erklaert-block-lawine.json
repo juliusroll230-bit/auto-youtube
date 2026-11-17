@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-block-lawine",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2a3a",
+    "#8ac0e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du in eine Lawine gerätst? 🏔️",
+  "description": "Erklärt in der Blockwelt: Warum Lawinenschnee hart wie Beton wird, was die Atemhöhle bringt und warum die ersten Minuten zählen.\n\n#wissen #lawine #schnee #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "lawine",
+    "schnee",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Lawine | 15 Minuten",
+    "Beton aus Schnee"
+  ],
+  "segments": [
+    {
+      "text": "Du fährst Ski, und plötzlich rutscht der ganze Hang.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "❄️",
+        "wetter": "schnee",
+        "chat": "Server: Lawine!"
+      }
+    },
+    {
+      "text": "Eine Lawine kann schneller werden als ein Auto.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "❄️",
+        "text": "Sehr schnell"
+      }
+    },
+    {
+      "text": "Wenn sie stoppt, wird der Schnee hart wie Beton.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🧱",
+        "text": "Hart wie Beton"
+      }
+    },
+    {
+      "text": "Ohne Hilfe kommst du dann nicht mehr heraus.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Deine Rettung ist die Atemhöhle vor deinem Gesicht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🫧",
+        "text": "Atemhöhle"
+      }
+    },
+    {
+      "text": "Nach fünfzehn Minuten sinken die Chancen stark.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 15,
+        "einheit": "Minuten",
+        "objekt": "⏱️",
+        "farbcode": "#1a2a3a"
+      }
+    },
+    {
+      "text": "Darum sucht die Gruppe sofort mit Piepsern und Sonden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 4,
+        "gefuehl": "cool",
+        "aktion": "rennt",
+        "text": "Sofort suchen"
+      }
+    },
+    {
+      "text": "Wer schnell gefunden wird, überlebt meistens.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "⛑️",
+        "chat": "Spieler: gerettet!"
+      }
+    }
+  ]
+}

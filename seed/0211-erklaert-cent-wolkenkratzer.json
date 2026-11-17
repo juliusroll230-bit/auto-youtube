@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-cent-wolkenkratzer",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#10202a",
+    "#5a8cc4"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du einen Cent vom Wolkenkratzer wirfst? 🪙",
+  "description": "Der Killer-Cent ist ein alter Mythos. Was wirklich passiert, wenn eine Münze aus großer Höhe fällt und warum die Luft sie bremst.\n\n#wissen #physik #mythos #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "mythos",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Cent | tödlich?",
+    "Nur ein Mythos"
+  ],
+  "segments": [
+    {
+      "text": "Du wirfst einen Cent vom Wolkenkratzer. Kann er jemanden töten?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪙"
+      }
+    },
+    {
+      "text": "Dieser Mythos hält sich seit Jahrzehnten, aber er stimmt nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Mythos?"
+      }
+    },
+    {
+      "text": "Ein Cent ist winzig, leicht und flach.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🪙",
+        "text": "Winzig"
+      }
+    },
+    {
+      "text": "Beim Fall flattert er und erreicht etwa fünfzig Stundenkilometer.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 50,
+        "einheit": "km/h",
+        "objekt": "🪙",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Dann bremst ihn die Luft, schneller wird er nie.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🪙",
+          "text": "Cent: piekst"
+        },
+        "rechts": {
+          "objekt": "🧱",
+          "text": "Ziegel: gefährlich"
+        }
+      }
+    },
+    {
+      "text": "Ein Ziegel aus dieser Höhe wäre viel gefährlicher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🧱"
+      }
+    },
+    {
+      "text": "Der Cent piekst höchstens und tut im Auge weh.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt"
+      }
+    },
+    {
+      "text": "Der Killer-Cent bleibt ein Mythos, aber lass ihn trotzdem oben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🪙"
+      }
+    }
+  ]
+}

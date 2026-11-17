@@ -1,0 +1,121 @@
+{
+  "slug": "mystery-gruene-kinder-woolpit",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#102018",
+    "#4a9c5a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die grünen Kinder, die niemand erklären konnte 🟢",
+  "description": "Alte Chroniken aus dem England des zwölften Jahrhunderts berichten von zwei Kindern mit grüner Haut. Das Rätsel von Woolpit ist bis heute ungelöst.\n\n#mystery #rätsel #geschichte #woolpit #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "woolpit",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Woolpit | grüne Kinder",
+    "Woher kamen sie"
+  ],
+  "segments": [
+    {
+      "text": "Zwei grüne Kinder tauchen plötzlich auf einem Feld auf.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Grüne Haut"
+      }
+    },
+    {
+      "text": "Das ist England, zwölftes Jahrhundert, im Dorf Woolpit.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Woolpit"
+      }
+    },
+    {
+      "text": "Alte Chroniken berichten von diesen Kindern.",
+      "szene": {
+        "typ": "akte",
+        "text": "Chroniken",
+        "punkte": [
+          "Zwei Kinder",
+          "Grüne Haut",
+          "Fremde Sprache"
+        ]
+      }
+    },
+    {
+      "text": "Sie sprachen eine Sprache, die niemand kannte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "staunen",
+        "aktion": "haende",
+        "objekt": "💬"
+      }
+    },
+    {
+      "text": "Zuerst aßen sie nur rohe Bohnen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🫘",
+        "text": "Nur Bohnen"
+      }
+    },
+    {
+      "text": "Der Junge starb bald, das Mädchen lernte Englisch.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "dorf",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Sie erzählte von einem Land ohne Sonne.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "🌘",
+        "text": "Land ohne Sonne"
+      }
+    },
+    {
+      "text": "Forscher vermuten Flüchtlingskinder aus Flandern, sicher ist das nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Bis heute weiß niemand, woher sie kamen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Woher?"
+      }
+    }
+  ]
+}

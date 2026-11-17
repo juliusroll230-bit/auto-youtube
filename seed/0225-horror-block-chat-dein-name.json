@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-chat-dein-name",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0a0a12",
+    "#2a3a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Chat, der antwortet, wenn du allein bist 💬",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf dem Server, und trotzdem schreibt jemand mit deinem Namen.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "gaming",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Chat | mit deinem Namen",
+    "Dreh dich nicht um"
+  ],
+  "segments": [
+    {
+      "text": "Du bist allein auf dem Server, und trotzdem schreibt jemand.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "💬",
+        "chat": "???: hallo"
+      }
+    },
+    {
+      "text": "Die Nachricht kommt von deinem eigenen Namen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💬",
+        "text": "Dein Name",
+        "chat": "Du: ich sehe dich"
+      }
+    },
+    {
+      "text": "Du schaust dich um, aber da ist niemand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "kamera": "weit"
+      }
+    },
+    {
+      "text": "Dann schreibt dein Name: Dreh dich nicht um.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Nicht umdrehen"
+      }
+    },
+    {
+      "text": "Hinter dir hörst du Schritte, Block für Block.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Du rennst nach draußen in die dunkle Welt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Alle Spieler auf der Liste haben deinen Namen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Spielerliste",
+        "punkte": [
+          "Du",
+          "Du",
+          "Du"
+        ]
+      }
+    },
+    {
+      "text": "Und der letzte Eintrag tippt gerade: Ich bin schon da.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "chat": "Du: ich bin schon da"
+      }
+    }
+  ]
+}
