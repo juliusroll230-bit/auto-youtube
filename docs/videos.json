@@ -6,11 +6,56 @@
  },
  "videos": [
   {
+   "id": "hdkF5cMWxck",
+   "title": "Was passiert, wenn alle Bienen plötzlich verschwinden? 🐝",
+   "text": "Ohne Bienen und andere Bestäuber: Was würde auf deinem Teller fehlen? Ein Gedankenexperiment mit echten Zahlen.",
+   "niche": "Wissen",
+   "views": 39,
+   "published": "2026-11-17T15:40:22+00:00",
+   "thumb": "thumbs/hdkF5cMWxck.jpg"
+  },
+  {
+   "id": "MefJzyLttls",
+   "title": "Die Nachbarin, die jeden Morgen winkt 👋",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen winkt die Nachbarin am Fenster, bis sie es eines Tages nicht tut.",
+   "niche": "Geschichte",
+   "views": 362,
+   "published": "2026-11-17T14:40:30+00:00",
+   "thumb": "thumbs/MefJzyLttls.jpg"
+  },
+  {
+   "id": "HQ9pfnsamnI",
+   "title": "Was passiert, wenn sich die Erde plötzlich nicht mehr dreht? 🌍",
+   "text": "Die Erde dreht sich nicht mehr: Was passiert mit Luft, Meeren und Häusern? Ein Gedankenexperiment, das zum Glück praktisch unmöglich ist.",
+   "niche": "Wissen",
+   "views": 296,
+   "published": "2026-11-17T13:39:54+00:00",
+   "thumb": "thumbs/HQ9pfnsamnI.jpg"
+  },
+  {
+   "id": "LmsGyMVtngI",
+   "title": "Das Rätsel um Träume: Warum träumen wir überhaupt? 🌙",
+   "text": "Warum träumen wir? Die Forschung hat Theorien, aber keine sichere Antwort. Was wir über REM-Schlaf und Träume wissen.",
+   "niche": "Wissen",
+   "views": 644,
+   "published": "2026-11-17T11:40:17+00:00",
+   "thumb": "thumbs/LmsGyMVtngI.jpg"
+  },
+  {
+   "id": "G8CJfrt07nQ",
+   "title": "Die Steine, die niemand wandern sah 🪨",
+   "text": "Das echte Rätsel vom Death Valley, nachgespielt in der Blockwelt: Schwere Steine ziehen Spuren über einen trockenen See, und erst 2014 sah man, warum.",
+   "niche": "Wissen",
+   "views": 189,
+   "published": "2026-11-17T10:41:53+00:00",
+   "thumb": "thumbs/G8CJfrt07nQ.jpg"
+  },
+  {
    "id": "aQYqmw4sivk",
    "title": "Das Haus, das du nie gebaut hast 🏠",
    "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deiner eigenen Welt steht plötzlich eine Kopie deines Hauses.",
    "niche": "Wissen",
-   "views": 222,
+   "views": 248,
    "published": "2026-11-16T19:43:20+00:00",
    "thumb": "thumbs/aQYqmw4sivk.jpg"
   },
@@ -19,7 +64,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 2) 🚗",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 99 Mitarbeiter und 14.900 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 157,
+   "views": 593,
    "published": "2026-11-16T19:30:30+00:00",
    "thumb": "thumbs/1SqcpCyXV04.jpg"
   },
@@ -28,7 +73,7 @@
    "title": "Was passiert, wenn dich ein Blitz trifft? ⚡",
    "text": "Erklärt in der Blockwelt: Warum die meisten Menschen einen Blitzschlag überleben und was danach auf der Haut zu sehen ist.",
    "niche": "Wissen",
-   "views": 507,
+   "views": 704,
    "published": "2026-11-16T19:21:47+00:00",
    "thumb": "thumbs/zJvJMe6O3fE.jpg"
   },
@@ -46,7 +91,7 @@
    "title": "Der Server, auf dem niemand sein sollte 👀",
    "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf einem Server, aber jemand schreibt im Chat.",
    "niche": "Wissen",
-   "views": 785,
+   "views": 852,
    "published": "2026-11-16T16:44:01+00:00",
    "thumb": "thumbs/db72bNEfjIY.jpg"
   },
@@ -55,7 +100,7 @@
    "title": "Das Schiff, dessen Crew niemand je wiederfand 🚢",
    "text": "Die Carroll A. Deering strandete 1921 bei Cape Hatteras, ohne Besatzung. Bis heute ist ungeklärt, was geschah.",
    "niche": "Geschichte",
-   "views": 334,
+   "views": 345,
    "published": "2026-11-16T15:41:05+00:00",
    "thumb": "thumbs/sLPeeMzKj6g.jpg"
   },
@@ -64,7 +109,7 @@
    "title": "Warum schmeckt Essen im Flugzeug so fade? ✈️",
    "text": "Trockene Luft, Lärm und niedriger Druck: Warum Süßes und Salziges in der Luft schwächer schmecken, und was dagegen hilft.",
    "niche": "Wissen",
-   "views": 791,
+   "views": 893,
    "published": "2026-11-16T14:39:41+00:00",
    "thumb": "thumbs/OFmPIwNFot8.jpg"
   },
@@ -73,7 +118,7 @@
    "title": "Das Rätsel um Déjà-vu: Hast du das schon erlebt? 🔁",
    "text": "Das Gefühl, etwas schon erlebt zu haben: Was steckt hinter Déjà-vu? Es gibt Theorien, aber keine endgültige Antwort.",
    "niche": "Wissen",
-   "views": 894,
+   "views": 901,
    "published": "2026-11-16T13:40:08+00:00",
    "thumb": "thumbs/jbtXkkg-MuE.jpg"
   },
@@ -82,7 +127,7 @@
    "title": "Warum ist der Himmel eigentlich blau? ☁️",
    "text": "Sonnenlicht ist weiß, doch der Himmel blau: Das Zusammenspiel aus Streuung und Augen erklärt es. Und warum der Abend rot ist.",
    "niche": "Wissen",
-   "views": 875,
+   "views": 876,
    "published": "2026-11-16T11:40:16+00:00",
    "thumb": "thumbs/QdvHTu-lxBI.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Der Fluch, der jeden treffen soll, der das Grab öffnete 👑",
    "text": "Der Fluch des Pharaos: Nach dem Fund von Tutanchamuns Grab sterben angeblich alle Beteiligten. Belegt ist die Entdeckung, der Fluch ist Legende.",
    "niche": "Wissen",
-   "views": 207,
+   "views": 238,
    "published": "2026-11-16T10:40:17+00:00",
    "thumb": "thumbs/gHHURgEJal4.jpg"
-  },
-  {
-   "id": "GkAEqa6R2yA",
-   "title": "Der Sender, der seit Jahrzehnten nur brummt 📻",
-   "text": "UVB-76: ein Kurzwellensender, der seit Jahrzehnten einen Brummton sendet, gelegentlich unterbrochen von Stimmen. Wer ihn betreibt, ist nicht offiziell bestätigt.",
-   "niche": "Wissen",
-   "views": 945,
-   "published": "2026-11-15T19:41:27+00:00",
-   "thumb": "thumbs/GkAEqa6R2yA.jpg"
-  },
-  {
-   "id": "sJ1PBhadNcI",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 1) 🎮",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 87 Mitarbeiter und 10.700 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 850,
-   "published": "2026-11-15T19:32:46+00:00",
-   "thumb": "thumbs/sJ1PBhadNcI.jpg"
-  },
-  {
-   "id": "XZMKR9AcQaw",
-   "title": "Was passiert, wenn der Mond plötzlich verschwindet? 🌑",
-   "text": "Der Mond ist weg. Was ändert sich auf der Erde? Gezeiten, Nächte und vielleicht sogar das Klima.",
-   "niche": "Wissen",
-   "views": 762,
-   "published": "2026-11-15T19:23:39+00:00",
-   "thumb": "thumbs/XZMKR9AcQaw.jpg"
-  },
-  {
-   "id": "3kD5IBnKA-w",
-   "title": "Das Rätsel vom Djatlow-Pass: Was geschah in jener Nacht? ⛺",
-   "text": "Februar 1959: Im Nordural wird ein Zelt gefunden, von innen aufgeschnitten, neun Wanderer sind tot. Wir erzählen die ganze Geschichte des Djatlow-Passes, zeigen die Spuren und prüfen jede Theorie.",
-   "niche": "Geschichte",
-   "views": 40,
-   "published": "2026-11-15T19:18:35+00:00",
-   "thumb": "thumbs/3kD5IBnKA-w.jpg"
-  },
-  {
-   "id": "J8qYlbkPXWo",
-   "title": "Die Pilotin, die mitten im Pazifik spurlos verschwand ✈️",
-   "text": "Amelia Earhart verschwand 1937 bei einem Weltumrundungsflug über dem Pazifik. Trotz großer Suche fand man sie nie. Es gibt nur Theorien.",
-   "niche": "Geschichte",
-   "views": 915,
-   "published": "2026-11-15T16:40:48+00:00",
-   "thumb": "thumbs/J8qYlbkPXWo.jpg"
   }
  ]
 }
