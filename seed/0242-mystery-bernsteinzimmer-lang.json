@@ -505,11 +505,15 @@
     {
       "text": "Ein solcher Fund zeigt, wie stark ein einziges Stück sein kann: Sofort hoffen viele, dass auch der Rest irgendwo auftaucht.",
       "szene": {
-        "typ": "figur",
+        "typ": "zwei",
         "ort": "buero",
         "gefuehl": "freude",
         "aktion": "jubelt",
-        "objekt": "🧩"
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
       }
     },
     {
@@ -592,7 +596,7 @@
     {
       "text": "Der Nachbau ist aus neuem Bernstein gefertigt, und doch sagen viele Besucher, das Original habe eine andere Wirkung gehabt.",
       "szene": {
-        "typ": "objekt",
+        "typ": "raetsel",
         "objekt": "🟠",
         "text": "Der Nachbau",
         "ort": "burg"
