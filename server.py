@@ -20,6 +20,7 @@ import datetime as dt
 import glob
 import json
 import os
+import random
 import re
 import secrets
 import threading
@@ -32,6 +33,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
 import clips
+import comments
 import learn
 import money
 import store
@@ -614,7 +616,7 @@ def refresh_analytics():
     except Exception as e:
         text = str(e)
         if yt.is_expired(e):
-            store.save_config(analytics_token="")
+            store.save_config(analytics_token="", analytics_scopes="")
             error = "Der Zugang für die Zuschauer-Daten ist abgelaufen. Bitte im Reiter Kanal neu verbinden."
         elif "accessNotConfigured" in text or "has not been used" in text or "is disabled" in text:
             error = "Die YouTube Analytics API ist im Google-Projekt noch nicht aktiviert."
@@ -625,6 +627,90 @@ def refresh_analytics():
         store.log("error", error, agent="zuschauer", kind="error")
     finally:
         stop_work("zuschauer")
+
+
+comments_lock = threading.Lock()
+
+
+def comments_reset_access():
+    """Nach neuem Verbinden: alte Zugangs-Fehler vergessen, damit die Kommentar-Antworten neu prüfen."""
+    with store.LOCK:
+        d = comments.load()
+        d["status"] = {k: v for k, v in d["status"].items() if k not in ("reason", "error", "channel_ok")}
+        comments.save(d)
+
+
+def check_comments(force=False):
+    """Liest neue Kommentare und antwortet auf die einfachen (siehe comments.py). Läuft im eigenen Faden."""
+    if not comments_lock.acquire(blocking=False):
+        return
+    try:
+        cfg = store.config()
+        d = comments.load()
+        if not force and not comments.due(d):
+            return
+        acc = comments.access(cfg)
+        ch = store.read("channel.json", None) or {}
+        with store.LOCK:
+            d = comments.load()
+            d["status"]["checked_at"] = store.now().isoformat(timespec="seconds")
+            if acc != "ok" or not ch.get("id"):
+                d["status"].update(reason=acc if acc != "ok" else "kanal_fehlt", error=None)
+                return comments.save(d)
+            comments.save(d)
+        client = yt.reply_client(cfg)
+        if d["status"].get("channel_ok") != ch["id"]:
+            mine = yt.my_channel_id(client)
+            if mine != ch["id"]:
+                with store.LOCK:
+                    d = comments.load()
+                    d["status"].update(reason="kanal", error="Der Zugang gehört zu einem anderen Kanal. Bitte im "
+                                       "Reiter Zuschauer neu verbinden und dabei den Kanal „" + ch.get("title", "") + "“ wählen.")
+                    return comments.save(d)
+        threads = yt.comment_threads(client, ch["id"], ch["id"])
+        with store.LOCK:
+            d = comments.load()
+            d["status"].update(channel_ok=ch["id"], reason=None, error=None)
+            send = comments.process(threads, d, ch["id"], comments.videos())
+            comments.save(d)
+        for i, (entry, text) in enumerate(send):
+            if i:
+                time.sleep(random.uniform(20, 60))  # nicht alles in derselben Sekunde
+            try:
+                yt.reply(client, entry["id"], text)
+            except Exception as e:
+                reason, msg = comments.error_text(e)
+                with store.LOCK:
+                    d = comments.load()
+                    if reason in ("aus", "text"):
+                        d["seen"][entry["id"]] = store.now().isoformat(timespec="seconds")
+                        comments.save(d)
+                        continue
+                    d["status"].update(reason=reason, error=msg)
+                    if reason == "quota":
+                        tomorrow = (store.now() + dt.timedelta(days=1)).replace(hour=comments.HOURS[0], minute=5)
+                        d["status"]["pause_until"] = tomorrow.isoformat(timespec="seconds")
+                    d["seen"].pop(entry["id"], None)   # später noch einmal versuchen
+                    comments.save(d)
+                store.log("error", msg, kind="error")
+                break
+            with store.LOCK:
+                d = comments.load()
+                comments.record_sent(d, entry, text)
+                comments.save(d)
+        if send:
+            store.log("ok", f"Auf {len(send)} Kommentar{'e' if len(send) != 1 else ''} geantwortet.", kind="comments")
+    except Exception as e:
+        if yt.is_expired(e):
+            store.save_config(analytics_token="", analytics_scopes="")
+        reason, msg = comments.error_text(e)
+        with store.LOCK:
+            d = comments.load()
+            d["status"].update(reason=reason, error=msg)
+            comments.save(d)
+        traceback.print_exc()
+    finally:
+        comments_lock.release()
 
 
 def clip_connection_expired():
@@ -799,6 +885,8 @@ def scheduler():
                     if ag["designer"]["on"]:
                         apply_branding()
                     last_stats = time.time()
+            if comments.load()["settings"]["on"]:
+                background(check_comments)
             if cfg["analytics_token"] and time.time() - last_analytics > ag["zuschauer"]["hours"] * 3600:
                 last_analytics = time.time()
                 refresh_analytics()
@@ -951,9 +1039,10 @@ class Handler(BaseHTTPRequestHandler):
         else:
             cfg = store.config()
             try:
-                token = yt.analytics_exchange(cfg["analytics_client_id"], cfg["analytics_client_secret"],
-                                              OAUTH_PAGE, q.get("code", [""])[0])
-                store.save_config(analytics_token=token)
+                token, scopes = yt.analytics_exchange(cfg["analytics_client_id"], cfg["analytics_client_secret"],
+                                                      OAUTH_PAGE, q.get("code", [""])[0])
+                store.save_config(analytics_token=token, analytics_scopes=scopes)
+                comments_reset_access()
                 store.write("analytics.json", {**store.read("analytics.json", {"videos": {}}), "error": None})
                 store.log("ok", "Zuschauer-Daten verbunden. Die ersten Werte kommen in den nächsten Minuten.")
                 background(refresh_analytics)
@@ -1195,8 +1284,45 @@ class Handler(BaseHTTPRequestHandler):
             status["oauth_states"] = {**dict(list(status["oauth_states"].items())[-5:]), nonce: origin}
             state = nonce + "." + base64.urlsafe_b64encode(origin.encode()).decode().rstrip("=")
             return self.send(200, {"url": yt.analytics_auth_url(cfg["analytics_client_id"], OAUTH_PAGE, state)})
+        if p == "/api/comments/settings":
+            try:
+                s = comments.set_settings(on=data.get("on"), mode=data.get("mode"), per_day=data.get("per_day"))
+            except (ValueError, TypeError) as e:
+                return self.send(400, {"error": str(e)})
+            if s["on"]:
+                background(check_comments, True)
+            return self.send(200, {"ok": True, "settings": s})
+        if p == "/api/comments/check":
+            background(check_comments, True)
+            return self.send(200, {"ok": True})
+        if p in ("/api/comments/reply", "/api/comments/dismiss"):
+            cid, text = str(data.get("id", "")), str(data.get("text", "")).strip()
+            with store.LOCK:
+                d = comments.load()
+                item = next((t for t in d["todo"] if t["id"] == cid), None)
+                if not item:
+                    return self.send(404, {"error": "Diesen Kommentar gibt es nicht mehr."})
+                if p.endswith("dismiss"):
+                    d["todo"] = [t for t in d["todo"] if t["id"] != cid]
+                    comments.save(d)
+                    return self.send(200, {"ok": True})
+            if not 1 <= len(text) <= 500:
+                return self.send(400, {"error": "Die Antwort muss 1 bis 500 Zeichen lang sein."})
+            cfg = store.config()
+            if comments.access(cfg) != "ok":
+                return self.send(400, {"error": "Zum Antworten bitte zuerst im Reiter Zuschauer neu verbinden."})
+            try:
+                yt.reply(yt.reply_client(cfg), cid, text)
+            except Exception as e:
+                return self.send(400, {"error": comments.error_text(e)[1]})
+            with store.LOCK:
+                d = comments.load()
+                entry = {k: v for k, v in item.items() if k not in ("draft", "why", "at")}
+                comments.record_sent(d, entry, text, by="du" if text != item.get("draft") else "freigabe")
+                comments.save(d)
+            return self.send(200, {"ok": True})
         if p == "/api/analytics/disconnect":
-            store.save_config(analytics_token="")
+            store.save_config(analytics_token="", analytics_scopes="")
             store.log("warn", "Zuschauer-Daten getrennt.")
             return self.send(200, {"ok": True})
         if p == "/api/disconnect":

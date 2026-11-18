@@ -41,6 +41,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
+                  # welche Berechtigungen der zweite Zugang hat (mit youtube.force-ssl darf die App auf Kommentare antworten)
+                  "analytics_scopes": "",
                   # Pixabay- oder Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
                   "stock_key": "",
                   # Fish Audio (fishtts.py): API-Schlüssel und Stimmen-IDs, leer = eingebaute Piper-Stimme
@@ -750,6 +752,7 @@ def dashboard(extra=None, working=None, repo=True):
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
+        "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
         "clip_totals": camp["totals"],
         "clips_running": camp["running"],
