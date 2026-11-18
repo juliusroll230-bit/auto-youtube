@@ -6,11 +6,29 @@
  },
  "videos": [
   {
+   "id": "YW78l8uu3xQ",
+   "title": "Was passiert, wenn du im Toten Meer baden gehst? 🧂",
+   "text": "Im Toten Meer sinkst du nicht. Warum das Salzwasser dich trägt und was du dort besser lässt.",
+   "niche": "Wissen",
+   "views": 7,
+   "published": "2026-11-18T11:40:38+00:00",
+   "thumb": "thumbs/YW78l8uu3xQ.jpg"
+  },
+  {
+   "id": "9h1RkceSDns",
+   "title": "Was passiert, wenn du einen Cent vom Wolkenkratzer wirfst? 🪙",
+   "text": "Der Killer-Cent ist ein alter Mythos. Was wirklich passiert, wenn eine Münze aus großer Höhe fällt und warum die Luft sie bremst.",
+   "niche": "Wissen",
+   "views": 76,
+   "published": "2026-11-18T10:41:47+00:00",
+   "thumb": "thumbs/9h1RkceSDns.jpg"
+  },
+  {
    "id": "mKbFBtDRvbk",
    "title": "Warum klingt deine Stimme auf Aufnahmen so fremd? 🎙️",
    "text": "Warum erschrickst du bei deiner Sprachnachricht? Es liegt an Knochen, Luft und zwei Wegen für den Schall.",
    "niche": "Wissen",
-   "views": 667,
+   "views": 900,
    "published": "2026-11-17T19:39:56+00:00",
    "thumb": "thumbs/mKbFBtDRvbk.jpg"
   },
@@ -19,7 +37,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Burgerladen (Tag 2) 🍔",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Burgerladen „Abo Burger“ ein. Heute: 109 Mitarbeiter und 16.600 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 249,
+   "views": 409,
    "published": "2026-11-17T19:23:07+00:00",
    "thumb": "thumbs/aU08SZrlhao.jpg"
   },
@@ -28,7 +46,7 @@
    "title": "Was passiert, wenn du Papier zweiundvierzig Mal faltest? 📄",
    "text": "Jede Faltung verdoppelt die Dicke. Warum ein Blatt Papier nach zweiundvierzig Faltungen theoretisch über den Mond hinausragt und warum es in echt nie klappt.",
    "niche": "Wissen",
-   "views": 353,
+   "views": 383,
    "published": "2026-11-17T19:13:57+00:00",
    "thumb": "thumbs/c4rskoeVk_Q.jpg"
   },
@@ -37,7 +55,7 @@
    "title": "D. B. Cooper: Der Entführer, der spurlos verschwand 🪂",
    "text": "24. November 1971: Ein Mann entführt eine Boeing, bekommt 200.000 Dollar und springt in der Nacht ab. Er wurde nie gefunden. Wir erzählen die ganze Geschichte von D. B. Cooper, zeigen die Spuren und prüfen jede Theorie.",
    "niche": "Geschichte",
-   "views": 20,
+   "views": 67,
    "published": "2026-11-17T19:08:22+00:00",
    "thumb": "thumbs/WtsJCIjGyjs.jpg"
   },
@@ -46,7 +64,7 @@
    "title": "Was passiert, wenn du in absoluter Stille stehst? 🤫",
    "text": "In der leisesten Kammer der Welt hörst du dein Herz, deinen Atem und dein Blut. Warum völlige Stille nie wirklich still ist.",
    "niche": "Wissen",
-   "views": 523,
+   "views": 579,
    "published": "2026-11-17T16:40:49+00:00",
    "thumb": "thumbs/lozidljOuUs.jpg"
   },
@@ -55,7 +73,7 @@
    "title": "Was passiert, wenn alle Bienen plötzlich verschwinden? 🐝",
    "text": "Ohne Bienen und andere Bestäuber: Was würde auf deinem Teller fehlen? Ein Gedankenexperiment mit echten Zahlen.",
    "niche": "Wissen",
-   "views": 490,
+   "views": 566,
    "published": "2026-11-17T15:40:22+00:00",
    "thumb": "thumbs/hdkF5cMWxck.jpg"
   },
@@ -64,7 +82,7 @@
    "title": "Die Nachbarin, die jeden Morgen winkt 👋",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen winkt die Nachbarin am Fenster, bis sie es eines Tages nicht tut.",
    "niche": "Geschichte",
-   "views": 1043,
+   "views": 1086,
    "published": "2026-11-17T14:40:30+00:00",
    "thumb": "thumbs/MefJzyLttls.jpg"
   },
@@ -73,7 +91,7 @@
    "title": "Was passiert, wenn sich die Erde plötzlich nicht mehr dreht? 🌍",
    "text": "Die Erde dreht sich nicht mehr: Was passiert mit Luft, Meeren und Häusern? Ein Gedankenexperiment, das zum Glück praktisch unmöglich ist.",
    "niche": "Wissen",
-   "views": 801,
+   "views": 853,
    "published": "2026-11-17T13:39:54+00:00",
    "thumb": "thumbs/HQ9pfnsamnI.jpg"
   },
@@ -82,7 +100,7 @@
    "title": "Das Rätsel um Träume: Warum träumen wir überhaupt? 🌙",
    "text": "Warum träumen wir? Die Forschung hat Theorien, aber keine sichere Antwort. Was wir über REM-Schlaf und Träume wissen.",
    "niche": "Wissen",
-   "views": 915,
+   "views": 917,
    "published": "2026-11-17T11:40:17+00:00",
    "thumb": "thumbs/LmsGyMVtngI.jpg"
   },
@@ -91,7 +109,7 @@
    "title": "Die Steine, die niemand wandern sah 🪨",
    "text": "Das echte Rätsel vom Death Valley, nachgespielt in der Blockwelt: Schwere Steine ziehen Spuren über einen trockenen See, und erst 2014 sah man, warum.",
    "niche": "Wissen",
-   "views": 257,
+   "views": 272,
    "published": "2026-11-17T10:41:53+00:00",
    "thumb": "thumbs/G8CJfrt07nQ.jpg"
   },
@@ -100,7 +118,7 @@
    "title": "Das Haus, das du nie gebaut hast 🏠",
    "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deiner eigenen Welt steht plötzlich eine Kopie deines Hauses.",
    "niche": "Wissen",
-   "views": 299,
+   "views": 302,
    "published": "2026-11-16T19:43:20+00:00",
    "thumb": "thumbs/aQYqmw4sivk.jpg"
   },
@@ -109,7 +127,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 2) 🚗",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 99 Mitarbeiter und 14.900 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 838,
+   "views": 841,
    "published": "2026-11-16T19:30:30+00:00",
    "thumb": "thumbs/1SqcpCyXV04.jpg"
   },
@@ -118,27 +136,9 @@
    "title": "Was passiert, wenn dich ein Blitz trifft? ⚡",
    "text": "Erklärt in der Blockwelt: Warum die meisten Menschen einen Blitzschlag überleben und was danach auf der Haut zu sehen ist.",
    "niche": "Wissen",
-   "views": 839,
+   "views": 844,
    "published": "2026-11-16T19:21:47+00:00",
    "thumb": "thumbs/zJvJMe6O3fE.jpg"
-  },
-  {
-   "id": "2k92b22sF1Q",
-   "title": "Das Bermuda-Dreieck: Was geschah wirklich mit Flug 19? 🔺",
-   "text": "5. Dezember 1945: Fünf Flugzeuge starten in Florida und kehren nie zurück. Wir erzählen die ganze Geschichte von Flug 19, zeigen die Spuren und prüfen jede Theorie zum Bermuda-Dreieck.",
-   "niche": "Geschichte",
-   "views": 3,
-   "published": "2026-11-16T19:16:17+00:00",
-   "thumb": "thumbs/2k92b22sF1Q.jpg"
-  },
-  {
-   "id": "db72bNEfjIY",
-   "title": "Der Server, auf dem niemand sein sollte 👀",
-   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf einem Server, aber jemand schreibt im Chat.",
-   "niche": "Wissen",
-   "views": 860,
-   "published": "2026-11-16T16:44:01+00:00",
-   "thumb": "thumbs/db72bNEfjIY.jpg"
   }
  ]
 }
