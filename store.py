@@ -38,6 +38,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
                   # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
                   "post_hours": list(range(8, 23)), "post_hours_weekend": list(range(8, 23)),
+                  # davon so viele Blockwelt (3D), der Rest Strichmännchen. 0 = Lernmodus wählt frei.
+                  "block_per_day": 5,
                   "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
@@ -85,7 +87,7 @@ def now():
 
 
 def init():
-    for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns", "share"):
+    for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns", "share", "ready"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
         raw = read("config.json", {})
@@ -597,10 +599,91 @@ def due_firma(hour, at=None):
     return None if key in state().get("firma_slots", []) else key
 
 
-def planned_queue(posted=None, ready_only=False, long=False):
+# --- Vorrat: fertig gerenderte Shorts ----------------------------------------
+# Ein Short braucht auf dem Server rund eine Stunde zum Rendern. Damit trotzdem jede Stunde einer kommt,
+# rendert die App in freien Minuten (auch nachts) vor und lädt zum Sendeplatz nur noch hoch.
+
+READY_MAX = 6  # so viele fertige Shorts liegen höchstens bereit
+
+
+def ready_items():
+    """Fertig gerenderte Shorts, älteste zuerst. Räumt Videos weg, deren Skript nicht mehr wartet
+    (abgelehnt, gelöscht oder schon gepostet)."""
+    items = []
+    for meta in sorted(glob.glob(path("ready", "*.json"))):
+        try:
+            item = read_json(meta)
+            ok = os.path.exists(item["video"]) and os.path.exists(path("queue", item["file"]))
+        except (OSError, ValueError, KeyError, TypeError):
+            item, ok = {}, False
+        if not ok:
+            for f in (meta, item.get("video")):
+                try:
+                    if f:
+                        os.remove(f)
+                except OSError:
+                    pass
+            continue
+        items.append({**item, "meta": meta})
+    return items
+
+
+def add_ready(file, rendered):
+    """Legt einen fertig gerenderten Short in den Vorrat. file: Dateiname des Skripts in queue/."""
+    stamp = now().strftime("%Y%m%d-%H%M%S-%f")
+    meta = path("ready", f"{stamp}-{file}")
+    tmp = meta + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump({**rendered, "file": file, "rendered_at": now().isoformat(timespec="seconds")}, f, ensure_ascii=False)
+    os.replace(tmp, meta)
+
+
+def drop_ready(item):
+    for f in (item.get("meta"), item.get("video")):
+        try:
+            if f:
+                os.remove(f)
+        except OSError:
+            pass
+
+
+def ready_failed(item):
+    """Upload aus dem Vorrat ist schiefgegangen: einmal noch versuchen, danach verwerfen (wird neu gerendert)."""
+    tries = int(item.get("tries", 0)) + 1
+    if tries >= 2:
+        return drop_ready(item)
+    data = {k: v for k, v in item.items() if k != "meta"}
+    with open(item["meta"], "w", encoding="utf-8") as f:
+        json.dump({**data, "tries": tries}, f, ensure_ascii=False)
+
+
+def read_json(file):
+    with open(file, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _worlds(posted):
+    """Look der bisherigen Shorts (True = Blockwelt), älteste zuerst. Firmen-Spiel und Clips zählen nicht."""
+    firma = set(state().get("firma_slots", []))
+    out = []
+    for p in learnable(posted):
+        w = (p.get("features") or {}).get("welt")
+        if w and p.get("slot") not in firma:
+            out.append(w == "Blockwelt 3D")
+    return out
+
+
+def block_share(cfg, at=None):
+    n = int(cfg.get("block_per_day") or 0)
+    slots = len(hours_for(cfg, at or now())) or 1
+    return min(1.0, n / slots) if n > 0 else None
+
+
+def planned_queue(posted=None, ready_only=False, long=False, with_ready=True):
     """Warteschlange als (datei, skript) in der Reihenfolge, die der Lernmodus vorgibt.
 
     ready_only: mit Freigabe-Pflicht nur freigegebene Skripte (für den Upload).
+    with_ready: fertig gerenderte Shorts (Vorrat) vorne mit aufführen; False = nur, was noch gerendert werden muss.
     """
     import agents
 
@@ -608,6 +691,11 @@ def planned_queue(posted=None, ready_only=False, long=False):
     cfg = config()
     queue = [(f, load_spec(f)) for f in queue_files()]
     queue = [q for q in queue if is_long(q[1]) == long]  # lange Videos haben eine eigene Warteschlange
+    ready = [] if long else ready_items()
+    ready_files = [r["file"] for r in ready]
+    in_ready = [q for f in ready_files for q in queue if os.path.basename(q[0]) == f]
+    head = in_ready if with_ready else []
+    queue = [q for q in queue if os.path.basename(q[0]) not in ready_files]
     if ready_only and cfg["approval"]:
         ok = set(state()["approved"])
         queue = [q for q in queue if os.path.basename(q[0]) in ok]
@@ -615,11 +703,17 @@ def planned_queue(posted=None, ready_only=False, long=False):
     first = [q for q in queue if q[1].get("vorrang")]
     queue = [q for q in queue if not q[1].get("vorrang")]
     planer = agents.settings(cfg)["planer"]
+    share = None if long else block_share(cfg)
     if not planer["on"]:
-        return first + queue  # Lernmodus aus: einfach in Dateireihenfolge
+        if share:  # auch ohne Lernmodus: Blockwelt-Anteil halten, sonst Dateireihenfolge
+            return head + first + learn.plan(queue, [], None, worlds=_worlds(posted) + [
+                learn.is_block(s) for _, s in in_ready + first], block_share=share)
+        return head + first + queue  # Lernmodus aus: einfach in Dateireihenfolge
+    worlds = _worlds(posted) + [learn.is_block(s) for _, s in in_ready + first]
     posted = learnable(posted)
     history = [p["niche"] for p in posted if p.get("niche")]
-    return first + learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
+    return head + first + learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"],
+                                     worlds=worlds, block_share=share)
 
 
 def next_look(posted=None):
@@ -713,7 +807,9 @@ def dashboard(extra=None, working=None, repo=True):
     approved = set(st["approved"])
     scores = learn.niche_scores(learnable(posted), now())
     ag = agents.settings(cfg)
-    queue = [{**card(spec), "file": os.path.basename(f), "approved": os.path.basename(f) in approved}
+    ready = {r["file"] for r in ready_items()}
+    queue = [{**card(spec), "file": os.path.basename(f), "approved": os.path.basename(f) in approved,
+              "ready": os.path.basename(f) in ready, "block": learn.is_block(spec)}
              for f, spec in planned]
     rejected = []
     for f in sorted(glob.glob(path("rejected", "*.json"))):

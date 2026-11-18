@@ -25,6 +25,10 @@ Vorbilder Erklärvideo: „Was passiert, wenn du tagelang nicht schläfst?“ (1
 Bei 15 Themen am Tag besonders auf Doppelungen achten (vorher `seed/` und `docs/videos.json` prüfen).
 Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann mindestens die 5 Blockwelt-Videos schreiben.
 
+Die App hält den Mix selbst (seit 18.11.2026): Von je 15 Shorts sind 5 Blockwelt (`block_per_day` in der Config,
+Lernmodus wählt nur das Thema innerhalb des Looks). Weil ein Short auf dem Server ca. 1 Stunde rendert, rendert sie
+in freien Minuten (auch nachts) bis zu 6 Shorts vor (`ready/`, Vorrat) und lädt zum Sendeplatz nur noch hoch.
+
 `"vorrang": true` im Skript schiebt es in der Warteschlange ganz nach vorn (nur für „heute noch rausbringen“,
 nicht in der täglichen Aufgabe benutzen).
 

@@ -57,27 +57,49 @@ def favorite(scores):
     return max(rated, key=rated.get)
 
 
-def plan(queue, history, scores, explore_every=EXPLORE_EVERY):
+BLOCK_WINDOW = 15  # über so viele Shorts wird der Anteil Blockwelt gehalten (ein Tag = 15 Sendeplätze)
+
+
+def is_block(spec):
+    return spec.get("welt") == "block"
+
+
+def plan(queue, history, scores, explore_every=EXPLORE_EVERY, worlds=None, block_share=None):
     """Sortiert die Warteschlange in die Reihenfolge, in der gepostet wird.
 
     queue:   Liste von (datei, skript) in Dateireihenfolge
     history: Themen der bisherigen Uploads, älteste zuerst
+    worlds:  Look der letzten Shorts (True = Blockwelt), älteste zuerst
+    block_share: Anteil Blockwelt (z. B. 5/15). Dann ist jedes Video, das den Anteil sonst unterschreiten würde,
+                 ein Blockwelt-Video, die übrigen Strichmännchen. Innerhalb des Looks wählt der Lernmodus das Thema.
     """
     remaining = list(queue)
     last = {niche: i for i, niche in enumerate(history)}
-    best = favorite(scores)
+    best = favorite(scores) if scores is not None else None
     step, order = len(history), []
+    window = list(worlds or [])[-(BLOCK_WINDOW - 1):]
     while remaining:
-        niches = list(dict.fromkeys(spec["niche"] for _, spec in remaining))
+        pool = remaining
+        if block_share:
+            want = sum(window) < block_share * (len(window) + 1) - 1e-9
+            pool = [x for x in remaining if is_block(x[1]) == want] or remaining
+        if scores is None:  # Lernmodus aus: innerhalb des Looks einfach Dateireihenfolge
+            item = pool[0]
+            remaining.remove(item)
+            order.append(item)
+            window = (window + [is_block(item[1])])[-(BLOCK_WINDOW - 1):]
+            continue
+        niches = list(dict.fromkeys(spec["niche"] for _, spec in pool))
         explore = best not in niches or step % explore_every == explore_every - 1
         if explore:
             # das Thema, das am längsten nicht dran war (nie gepostete zuerst)
             pick = min(niches, key=lambda n: (last.get(n, -1), niches.index(n)))
         else:
             pick = best
-        item = next(x for x in remaining if x[1]["niche"] == pick)
+        item = next(x for x in pool if x[1]["niche"] == pick)
         remaining.remove(item)
         order.append(item)
+        window = (window + [is_block(item[1])])[-(BLOCK_WINDOW - 1):]
         last[pick] = step
         step += 1
     return order

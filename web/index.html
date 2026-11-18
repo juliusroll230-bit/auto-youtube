@@ -3870,7 +3870,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       acts.appendChild(actBtn("Ablehnen", "no", function () { return api("api/reject", { file: v.file }).then(function () { toast("Abgelehnt. Unter „Abgelehnt“ kannst du es zurückholen."); }); }, true));
       sl.appendChild(h("li", { cls: v.approved ? "ok" : "" }, [
         thumb(v, "t-sm"),
-        h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: v.title }), h("div", { cls: "mt" }, [chip(v.niche), h("span", { cls: "num", text: fDayS.format(x.at) + ", " + fTime.format(x.at) + " Uhr" })])]),
+        h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: v.title }), h("div", { cls: "mt" }, [chip(v.niche), v.block ? chip("Blockwelt 3D") : null, h("span", { cls: "num", text: fDayS.format(x.at) + ", " + fTime.format(x.at) + " Uhr" + (v.ready ? " · fertig gerendert" : "") })].filter(Boolean))]),
         acts
       ]));
     });
