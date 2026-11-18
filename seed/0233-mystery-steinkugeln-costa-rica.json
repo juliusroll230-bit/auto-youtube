@@ -1,0 +1,113 @@
+{
+  "slug": "mystery-steinkugeln-costa-rica",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10201a",
+    "#5a9c7a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Steinkugeln, die niemand erklären kann 🪨",
+  "description": "Im Dschungel von Costa Rica liegen hunderte fast perfekt runde Steinkugeln. Wer sie machte, ist bekannt, wozu sie dienten, bis heute nicht.\n\n#mystery #rätsel #costarica #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "costarica",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Steinkugeln | wozu gebaut",
+    "Fast perfekt rund"
+  ],
+  "segments": [
+    {
+      "text": "Im Dschungel liegen hunderte Steinkugeln, und niemand weiß wozu.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 4,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Perfekt rund"
+      }
+    },
+    {
+      "text": "Sie liegen in Costa Rica, tief im Wald.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Costa Rica"
+      }
+    },
+    {
+      "text": "Arbeiter fanden sie in den dreißiger Jahren beim Roden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🪓"
+      }
+    },
+    {
+      "text": "Manche sind klein, andere größer als ein Mensch.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⚽",
+          "text": "Klein"
+        },
+        "rechts": {
+          "objekt": "🪨",
+          "text": "Über 2 Meter"
+        }
+      }
+    },
+    {
+      "text": "Die größten wiegen mehrere Tonnen, und doch sind sie fast makellos.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 15,
+        "einheit": "Tonnen",
+        "objekt": "🪨",
+        "farbcode": "#10201a"
+      }
+    },
+    {
+      "text": "Gemacht hat sie ein Volk, das lange vor den Spaniern lebte.",
+      "szene": {
+        "typ": "akte",
+        "text": "Das Volk",
+        "punkte": [
+          "Diquís-Kultur",
+          "Etwa 600 bis 1500",
+          "Keine Schrift"
+        ]
+      }
+    },
+    {
+      "text": "Wozu sie dienten, weiß bis heute niemand sicher.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Wozu?"
+      }
+    },
+    {
+      "text": "Vielleicht zeigten sie Macht, vielleicht den Lauf der Sterne.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🌠"
+      }
+    }
+  ]
+}

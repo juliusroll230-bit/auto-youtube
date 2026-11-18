@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-schwarz-vor-augen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1020",
+    "#8a5ac8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dir beim Aufstehen schwarz wird? 😵",
+  "description": "Beim schnellen Aufstehen sackt kurz Blut in die Beine. Warum dir schwindelig wird und was dagegen hilft.\n\n#wissen #körper #kreislauf #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "kreislauf",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Aufstehen | Blut sackt ab",
+    "Gehirn schlägt Alarm"
+  ],
+  "segments": [
+    {
+      "text": "Du stehst auf und plötzlich wird dir schwarz vor Augen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😵"
+      }
+    },
+    {
+      "text": "Im Stehen sackt das Blut kurz in deine Beine.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🩸",
+        "text": "Blut sackt ab"
+      }
+    },
+    {
+      "text": "Dein Blutdruck fällt für einen Moment ab.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧍",
+          "text": "Liegen: gut"
+        },
+        "rechts": {
+          "objekt": "🧍",
+          "text": "Stehen: Druck fällt"
+        }
+      }
+    },
+    {
+      "text": "Dein Gehirn bekommt kurz zu wenig Blut und Sauerstoff.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🧠",
+        "text": "Zu wenig Blut"
+      }
+    },
+    {
+      "text": "Darum flimmert es, und dir wird schwindelig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌀"
+      }
+    },
+    {
+      "text": "Nach ein paar Sekunden gleicht dein Körper das aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⚖️",
+        "text": "Ausgleich"
+      }
+    },
+    {
+      "text": "Harmlos ist das meistens, doch setz dich lieber kurz hin.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Steh langsam auf und trink genug, dann passiert es seltener.",
+      "szene": {
+        "typ": "liste",
+        "text": "Dagegen hilft",
+        "punkte": [
+          "Langsam aufstehen",
+          "Genug trinken",
+          "Kurz hinsetzen"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-bienenstich",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2410",
+    "#e8c43a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dich eine Biene sticht? 🐝",
+  "description": "Warum der Stachel stecken bleibt, was die Biene bezahlt und was du nach einem Stich am besten tust.\n\n#wissen #biene #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "biene",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Bienenstich | Stachel bleibt",
+    "Schnell abkratzen"
+  ],
+  "segments": [
+    {
+      "text": "Du spürst einen Stich, und eine Biene fällt tot herunter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🐝"
+      }
+    },
+    {
+      "text": "Der Stachel hat Widerhaken und bleibt in deiner Haut.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "📌",
+        "text": "Widerhaken"
+      }
+    },
+    {
+      "text": "Dabei reißt sich die Biene ein Stück ihres Körpers ab.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Sie stirbt"
+      }
+    },
+    {
+      "text": "Der Giftbeutel pumpt noch weiter, auch wenn die Biene weg ist.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⏱️",
+          "text": "Schnell: weniger Gift"
+        },
+        "rechts": {
+          "objekt": "🐌",
+          "text": "Langsam: mehr Gift"
+        }
+      }
+    },
+    {
+      "text": "Darum kratz den Stachel weg, statt ihn zu drücken.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Kühlen hilft gegen die Schwellung und den Schmerz.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🧊",
+        "text": "Kühlen"
+      }
+    },
+    {
+      "text": "Gefährlich wird es bei einer Allergie oder bei Stichen im Mund.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🚑"
+      }
+    },
+    {
+      "text": "Dann ruf sofort den Notruf, es kann schnell gehen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "text": "Notruf wählen"
+      }
+    }
+  ]
+}

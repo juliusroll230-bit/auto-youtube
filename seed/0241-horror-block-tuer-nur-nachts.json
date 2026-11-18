@@ -1,0 +1,110 @@
+{
+  "slug": "horror-block-tuer-nur-nachts",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0a0a12",
+    "#4a2a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Die Tür, die nur nachts in deiner Welt erscheint 🚪",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Jede Nacht steht mitten im Feld eine Tür, die du nie gebaut hast.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "gaming",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Tür | nur nachts da",
+    "Wer wartet drinnen"
+  ],
+  "segments": [
+    {
+      "text": "Nachts erscheint in deiner Welt eine Tür, die du nie gebaut hast.",
+      "szene": {
+        "typ": "horror",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🚪",
+        "chat": "???: komm rein"
+      }
+    },
+    {
+      "text": "Sie steht mitten im Feld, ganz allein.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "kamera": "weit"
+      }
+    },
+    {
+      "text": "Du schlägst sie ein, doch am nächsten Abend ist sie wieder da.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🔨",
+        "text": "Wieder da",
+        "chat": "Server: Block platziert"
+      }
+    },
+    {
+      "text": "Diesmal steht ein Schild daneben: Er wartet drinnen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🪧",
+        "text": "Er wartet"
+      }
+    },
+    {
+      "text": "Neugierig öffnest du die Tür einen Spalt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "tuer": true
+      }
+    },
+    {
+      "text": "Dahinter ist ein dunkler Raum, und im Dunkeln steht ein Spieler.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Sein Name über dem Kopf ist leer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🏷️",
+        "text": "Kein Name",
+        "chat": "???: du bist spät"
+      }
+    },
+    {
+      "text": "Am Morgen steht draußen ein Schild mit deinem Namen: Verschollen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "chat": "Server: 0 Spieler online"
+      }
+    }
+  ]
+}

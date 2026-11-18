@@ -1,0 +1,681 @@
+{
+  "slug": "mystery-bernsteinzimmer-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#1a1008",
+    "#c8802a"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Bernsteinzimmer: Der Schatz, der im Krieg verschwand 🟠",
+  "description": "Ein ganzer Raum aus Bernstein und Gold, im Krieg verschwunden: Wir erzählen die Geschichte des Bernsteinzimmers, zeigen die Spuren und prüfen jede Theorie, wohin es verschwand.\n\n#mystery #rätsel #bernsteinzimmer #geschichte #schatz",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "bernsteinzimmer",
+    "geschichte",
+    "schatz"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "krone",
+    "name": "Zar Peter"
+  },
+  "thumb_text": [
+    "Bernsteinzimmer | spurlos weg",
+    "Wo ist der Schatz"
+  ],
+  "segments": [
+    {
+      "text": "Ein ganzer Raum aus Bernstein und Gold verschwindet im Krieg, und bis heute weiß niemand, ob er verbrannt, versunken oder versteckt ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Sein Wert war so groß, dass man ihn das achte Weltwunder nannte. Im Jahr neunzehnhundertfünfundvierzig verliert sich seine Spur.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🟠",
+        "text": "Spurlos",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte des Bernsteinzimmers, zeigen, wohin die Spuren führen, und prüfen jede Theorie, die bis heute diskutiert wird.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏰",
+        "text": "Bernsteinzimmer",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Zuerst die Entstehung, dann der Weg nach Russland, dann der Raub im Krieg, dann die Suche, und zum Schluss die Frage, was wirklich geschah.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Anfang des achtzehnten Jahrhunderts will der preußische König Friedrich der Erste einen Saal bauen lassen, wie ihn keiner sonst auf der Welt besitzt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Im Jahr siebzehnhunderteins beginnt in Berlin die Arbeit an einem Raum, dessen Wände ganz aus Bernstein bestehen sollen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1701",
+        "text": "Baubeginn",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Bernstein ist versteinertes Harz von Bäumen, das vor vielen Millionen Jahren in Wäldern an der Ostsee floss und im Lauf der Zeit hart wurde.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🟠",
+        "text": "Versteinertes Harz",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Damals galt Bernstein als so wertvoll wie Gold, denn nur an der Ostsee fand man davon größere Mengen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💎"
+      }
+    },
+    {
+      "text": "Für den Raum brauchte man mehrere Tonnen Bernstein, den Handwerker in tausende kleine Platten schnitten und zusammensetzten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 6,
+        "einheit": "Tonnen Bernstein",
+        "objekt": "🟠",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Dazu kamen Spiegel, Blattgold und feine Mosaike aus Stein, die dem Raum seinen besonderen Glanz gaben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Aus was er bestand",
+        "punkte": [
+          "Bernstein",
+          "Blattgold",
+          "Spiegel"
+        ]
+      }
+    },
+    {
+      "text": "Die Künstler arbeiteten Jahre daran, und im Licht von Kerzen leuchtete der ganze Saal wie flüssiger Honig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Jede kleine Platte musste genau passen. Die Handwerker schliffen, polierten und färbten den Bernstein, damit ein warmer, gleichmäßiger Farbton entstand.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛠️",
+        "text": "Handarbeit",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Doch der König starb, und sein Sohn hatte ganz andere Pläne mit dem Raum.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "👑",
+        "text": "Der Wechsel"
+      }
+    },
+    {
+      "text": "Friedrich Wilhelm der Erste war ein Sparsamer. Er liebte Soldaten, aber nicht den Prunk, und er wollte den teuren Saal lieber loswerden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "🪖"
+      }
+    },
+    {
+      "text": "Da bot sich eine Gelegenheit: Der russische Zar Peter der Große besuchte Preußen und bewunderte den Bernsteinsaal sehr.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧔",
+        "text": "Zar Peter",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Der Zar mochte Technik und Handwerk, und der König wollte einen mächtigen Verbündeten. Beide hatten also einen guten Grund, sich zu einigen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Im Jahr siebzehnhundertsechzehn schenkt der preußische König den ganzen Raum dem Zaren, als Zeichen für ein Bündnis gegen Schweden.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1716",
+        "text": "Das Geschenk",
+        "objekt": "🎁"
+      }
+    },
+    {
+      "text": "Man packt den Raum in achtzehn Kisten und schickt ihn auf den langen Weg nach Sankt Petersburg.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 18,
+        "einheit": "Kisten",
+        "objekt": "📦",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "In Russland wird der Raum zuerst im Winterpalast aufgebaut, später zieht er in den Katharinenpalast vor den Toren der Stadt um.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏰"
+      }
+    },
+    {
+      "text": "Die Zarin Elisabeth lässt ihn dort vergrößern, und Künstler fügen weitere Teile hinzu, bis ein riesiger Saal entsteht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "burg",
+        "anzahl": 4,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Neuer Saal"
+      }
+    },
+    {
+      "text": "Am Ende ist der Raum etwa fünfundfünfzig Quadratmeter groß und mit rund sechs Tonnen Bernstein verkleidet.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 55,
+        "einheit": "Quadratmeter",
+        "objekt": "🟠",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Zwei Jahrhunderte lang bestaunen Gäste aus aller Welt das Zimmer, und für die Zaren ist es ein Stolz und ein Symbol ihrer Macht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎉"
+      }
+    },
+    {
+      "text": "Besonders im Licht der Abendsonne glühte der Saal, und Besucher schrieben, sie hätten noch nie etwas so Schönes gesehen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌅",
+        "text": "Abendlicht",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Doch dann kommt der Krieg, und mit ihm das größte Unglück in der Geschichte des Raums.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "💥",
+        "text": "Der Krieg"
+      }
+    },
+    {
+      "text": "Im Sommer neunzehnhunderteinundvierzig greift Deutschland die Sowjetunion an, und die Front rückt schnell auf die Stadt zu, in der der Palast steht.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1941",
+        "text": "Der Angriff",
+        "objekt": "🪖"
+      }
+    },
+    {
+      "text": "Die Wärter wollen den Raum retten. Sie versuchen, die Bernsteinwände abzubauen, doch das Material ist so empfindlich, dass es dabei zerbröckeln könnte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "😰"
+      }
+    },
+    {
+      "text": "Deshalb tapezieren sie die Wände schnell mit Papier und Stoff und hoffen, dass die Soldaten den Schatz nicht erkennen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Verstecken",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Doch der Plan scheitert. Die deutschen Soldaten kennen den Raum, und sie lassen sich von dem Papier nicht täuschen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "👀",
+        "text": "Entdeckt",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Fachleute bauen den Raum in nur sechsunddreißig Stunden ab, packen ihn in Kisten und bringen ihn in die Stadt Königsberg.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 36,
+        "einheit": "Stunden",
+        "objekt": "⏱️",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Königsberg liegt damals in Ostpreußen. Dort wird der Raum im Schloss aufgebaut und für die Besucher als Kunstwerk ausgestellt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🏰"
+      }
+    },
+    {
+      "text": "Die Leitung des Museums übernimmt Doktor Alfred Rohde, und er kümmert sich darum, dass der Raum wieder sicher an einer Wand steht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👨‍🏫",
+        "text": "Alfred Rohde",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertvierundvierzig fallen Bomben auf Königsberg, und das Schloss wird schwer getroffen. Die Frage ist, ob der Raum noch heil ist.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1944",
+        "text": "Bomben",
+        "objekt": "💣"
+      }
+    },
+    {
+      "text": "Berichten zufolge wurde der Raum danach abgebaut und in Kisten gepackt, um ihn zu schützen. Was dann geschah, ist nicht mehr sicher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📦"
+      }
+    },
+    {
+      "text": "Wer hat den Raum zuletzt gesehen? Zeugen berichten von Kisten, die im Schloss standen. Doch dann endet jede sichere Nachricht.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📦",
+        "text": "Letzte Zeugen",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Genau hier beginnt das Rätsel. Gleich prüfen wir jede Spur, die man danach gefunden hat.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔍",
+        "text": "Das Rätsel"
+      }
+    },
+    {
+      "text": "Im Frühjahr neunzehnhundertfünfundvierzig erobert die Rote Armee Königsberg, und das Schloss brennt, so wie große Teile der Stadt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1945",
+        "text": "Königsberg fällt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Danach untersuchen sowjetische Fachleute die Ruinen und suchen nach dem Raum, aber sie finden nur Reste von Möbeln.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔦",
+        "text": "Suche",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Einer der Ermittler vermutet, dass der Raum im Feuer verbrannt ist. Bernstein brennt gut, und das Schloss stand in Flammen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Eine Kommission der Sowjets sucht nach dem Krieg viele Monate lang nach dem Schatz und befragt dutzende Zeugen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 12,
+        "einheit": "Monate Suche",
+        "objekt": "🔦",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Es gibt drei Hauptideen, die bis heute genannt werden, wenn jemand nach dem Verbleib fragt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Theorien",
+        "punkte": [
+          "Verbrannt",
+          "Versteckt",
+          "Verschifft"
+        ]
+      }
+    },
+    {
+      "text": "Theorie eins: Der Raum verbrannte im Schloss. Dafür spricht, dass das Gebäude brannte, doch es gibt keine Asche, die sich eindeutig zuordnen lässt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Theorie zwei: Der Raum wurde vorher weggebracht und in einem Bunker oder Stollen versteckt. Viele Schatzsucher glauben bis heute daran.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⛏️",
+        "text": "Stollen",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Dafür spricht, dass man Kunst oft in Bergwerken lagerte. Dagegen spricht, dass trotz langer Suche nie etwas Eindeutiges gefunden wurde.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⛏️",
+          "text": "Bergwerke"
+        },
+        "rechts": {
+          "objekt": "🔍",
+          "text": "Nichts gefunden"
+        }
+      }
+    },
+    {
+      "text": "Theorie drei: Der Raum wurde auf ein Schiff verladen, das im Krieg sank. Doch dafür gibt es bisher keine Belege.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Auch ein heimlicher Diebstahl nach dem Krieg wird erwogen, denn in dem Chaos verschwanden viele Kunstwerke für immer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🕵️",
+        "text": "Diebstahl?",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Auch Schatzsucher beteiligen sich. Sie graben in Wäldern, in alten Bergwerken und unter Ruinen, doch bisher ohne klaren Erfolg.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "rennt",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertsiebenundneunzig taucht in Bremen ein Teil auf: ein Mosaik, das einmal zum Raum gehörte, und das bei einem Erben gefunden wurde.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1997",
+        "text": "Bremen",
+        "objekt": "🧩"
+      }
+    },
+    {
+      "text": "Wie kam das Mosaik dorthin? Ein Soldat soll es mitgenommen haben, und seine Familie bewahrte es jahrzehntelang auf.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧩",
+        "text": "Wie kam es her?",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Das Mosaik wurde später zurückgegeben. Es ist der beste Beweis, dass der Raum zumindest teilweise 1945 noch existierte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🤝",
+        "text": "Zurückgegeben",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Ein solcher Fund zeigt, wie stark ein einziges Stück sein kann: Sofort hoffen viele, dass auch der Rest irgendwo auftaucht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🧩"
+      }
+    },
+    {
+      "text": "Auch eine kleine Kommode aus dem Raum bleibt bis heute verschwunden, und Forscher hoffen, dass auch sie irgendwo auftaucht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🗄️"
+      }
+    },
+    {
+      "text": "Und was ist heute aus dem Bernsteinzimmer geworden? Darauf gibt es eine überraschende Antwort.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏰",
+        "text": "Heute"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertneunundsiebzig beschließt die Sowjetunion, den Raum nachzubauen, und Handwerker beginnen mit der riesigen Aufgabe.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛠️",
+        "text": "Nachbau",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Das Projekt dauert fast ein Vierteljahrhundert, und am Ende steht ein Raum, der dem Original sehr nahekommt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "Jahre Bauzeit",
+        "objekt": "⏳",
+        "farbcode": "#2a1a0c"
+      }
+    },
+    {
+      "text": "Auch deutsche Firmen helfen mit Geld, denn viele Menschen in Deutschland und Russland wollen den Raum wiedersehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🤝"
+      }
+    },
+    {
+      "text": "Im Jahr zweitausenddrei wird der neue Raum zur Dreihundertjahrfeier von Sankt Petersburg eröffnet, mit dem Präsidenten und dem deutschen Kanzler.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2003",
+        "text": "Eröffnung",
+        "objekt": "🎊"
+      }
+    },
+    {
+      "text": "Heute können Besucher den Raum im Katharinenpalast besichtigen, und viele stehen staunend davor und fotografieren ihn.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "burg",
+        "anzahl": 5,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Besucher"
+      }
+    },
+    {
+      "text": "Doch das Original bleibt verschwunden, und mit jedem Jahr wird die Hoffnung kleiner, dass jemand es noch findet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Der Nachbau ist aus neuem Bernstein gefertigt, und doch sagen viele Besucher, das Original habe eine andere Wirkung gehabt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🟠",
+        "text": "Der Nachbau",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Das Schloss in Königsberg gibt es nicht mehr. Die Sowjets sprengten die Ruine neunzehnhundertachtundsechzig, und heute steht an der Stelle ein anderes Gebäude.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💥",
+        "text": "Schloss gesprengt",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Vielleicht liegt unter dem Boden der Stadt noch ein Keller, den bisher niemand geöffnet hat. Das ist eine der Hoffnungen vieler Forscher.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🕳️",
+        "text": "Unter der Stadt",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt eine Vermutung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Der Raum existierte, wurde nach Königsberg gebracht, und seit neunzehnhundertfünfundvierzig fehlt jede Spur.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Raum existierte",
+          "Nach Königsberg",
+          "Seit 1945 weg"
+        ]
+      }
+    },
+    {
+      "text": "Unklar bleibt: Ist er verbrannt, versteckt oder verschifft, und gibt es noch Reste im Boden?",
+      "szene": {
+        "typ": "akte",
+        "text": "Unklar",
+        "punkte": [
+          "🔥",
+          "⛏️",
+          "🚢"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist die traurige Antwort: Der Raum ging im Chaos der letzten Kriegstage verloren, vermutlich im Feuer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Doch ein kleiner Zweifel bleibt, und solange niemand Asche oder Bernsteinreste beweisen kann, lebt die Hoffnung weiter.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🟠",
+        "text": "Der Zweifel",
+        "ort": "burg"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du, dass das Original verbrannt ist, oder liegt es noch irgendwo in der Erde? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}
