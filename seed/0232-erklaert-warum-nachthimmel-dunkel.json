@@ -1,0 +1,108 @@
+{
+  "slug": "erklaert-warum-nachthimmel-dunkel",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0a0c1c",
+    "#4a5ac8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum ist der Nachthimmel dunkel, trotz unzähliger Sterne? 🌌",
+  "description": "Das alte Rätsel heißt Olbers-Paradox. Warum die Nacht dunkel ist, obwohl es so viele Sterne gibt, und was das über das Universum verrät.\n\n#wissen #weltall #sterne #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "weltall",
+    "sterne",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Olbers | altes Rätsel",
+    "Das Universum hat Alter"
+  ],
+  "segments": [
+    {
+      "text": "Warum ist der Nachthimmel dunkel, obwohl es so viele Sterne gibt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌌"
+      }
+    },
+    {
+      "text": "Wäre das All unendlich alt, müsste überall ein Stern leuchten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "⭐",
+        "text": "Stern überall"
+      }
+    },
+    {
+      "text": "Der Himmel wäre dann gleißend hell, Tag und Nacht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "☀️",
+        "text": "Hell wie Tag"
+      }
+    },
+    {
+      "text": "Aber das Universum ist nur etwa vierzehn Milliarden Jahre alt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 14,
+        "einheit": "Milliarden Jahre",
+        "objekt": "🌍",
+        "farbcode": "#0a0c1c"
+      }
+    },
+    {
+      "text": "Das Licht ferner Sterne ist noch nicht bei uns angekommen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Licht unterwegs"
+      }
+    },
+    {
+      "text": "Außerdem dehnt sich der Raum aus und streckt das Licht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌟",
+          "text": "Nah: hell"
+        },
+        "rechts": {
+          "objekt": "🌌",
+          "text": "Fern: schwach"
+        }
+      }
+    },
+    {
+      "text": "Dieses Rätsel hieß früher das Olbers-Paradox.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "📜",
+        "text": "Olbers-Paradox"
+      }
+    },
+    {
+      "text": "Die dunkle Nacht ist also ein Hinweis auf einen Anfang.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "🌙"
+      }
+    }
+  ]
+}

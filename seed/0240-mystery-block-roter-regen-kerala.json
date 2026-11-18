@@ -1,0 +1,113 @@
+{
+  "slug": "mystery-block-roter-regen-kerala",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#2a0c10",
+    "#c0303a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Der Regen, der plötzlich rot war 🔴",
+  "description": "Das echte Rätsel von Kerala, nachgespielt in der Blockwelt: Im Jahr 2001 färbt roter Regen in Indien Kleider und Wände, und eine Frage blieb offen.\n\n#mystery #rätsel #kerala #wissen #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "kerala",
+    "wissen",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Roter Regen | Kerala",
+    "Aus dem All?"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich fällt Regen vom Himmel, und er ist blutrot.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🔴",
+        "wetter": "regen",
+        "chat": "Spieler: ist das Blut??"
+      }
+    },
+    {
+      "text": "Das passiert im Sommer 2001 in Kerala in Indien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Kerala, Indien"
+      }
+    },
+    {
+      "text": "Wochenlang färbt der Regen Kleider und Wände rot.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "👕",
+        "text": "Alles rot"
+      }
+    },
+    {
+      "text": "Die Menschen haben Angst und denken an böse Zeichen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 4,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Böse Zeichen?"
+      }
+    },
+    {
+      "text": "Forscher sammeln Proben und schauen unter das Mikroskop.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Proben"
+      }
+    },
+    {
+      "text": "Sie finden winzige rote Teilchen, die wie Zellen aussehen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🧫",
+        "text": "Rote Zellen?"
+      }
+    },
+    {
+      "text": "Die Behörden sagen: Es sind Sporen einer Alge.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Einige Forscher glauben bis heute an Zellen aus dem All.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🌌",
+        "chat": "Spieler: aus dem All?"
+      }
+    }
+  ]
+}
