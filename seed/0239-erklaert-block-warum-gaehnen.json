@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-warum-gaehnen",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2030",
+    "#8aa0d8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum gähnst du, wenn andere gähnen? 🥱",
+  "description": "Erklärt in der Blockwelt: Warum Gähnen ansteckt, bei wem es besonders klappt und warum man noch nicht alles darüber weiß.\n\n#wissen #gähnen #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "gähnen",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Gähnen | steckt an",
+    "Du gähnst gleich auch"
+  ],
+  "segments": [
+    {
+      "text": "Warum gähnst du, sobald jemand neben dir gähnt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🥱",
+        "chat": "Spieler: ich auch..."
+      }
+    },
+    {
+      "text": "Gähnen steckt an, sogar wenn du nur davon liest.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🥱",
+        "text": "Ansteckend"
+      }
+    },
+    {
+      "text": "Forscher vermuten, dass es mit Mitgefühl zu tun hat.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Bei Freunden und Familie steckt es öfter an als bei Fremden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Nahe Menschen"
+      }
+    },
+    {
+      "text": "Kleine Kinder unter vier Jahren gähnen dabei meist nicht mit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧒",
+        "text": "Erst später"
+      }
+    },
+    {
+      "text": "Auch Hunde gähnen manchmal mit ihrem Menschen mit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🐕"
+      }
+    },
+    {
+      "text": "Wozu Gähnen gut ist, weiß man noch nicht genau.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Noch offen"
+      }
+    },
+    {
+      "text": "Vielleicht hast du gerade selbst gegähnt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🥱"
+      }
+    }
+  ]
+}

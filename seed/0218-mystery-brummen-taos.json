@@ -1,0 +1,124 @@
+{
+  "slug": "mystery-brummen-taos",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10161c",
+    "#4a6a8c"
+  ],
+  "accent": "#ffe14d",
+  "title": "Das Brummen, das niemand erklären kann 🔊",
+  "description": "In Taos in New Mexico hörten Menschen ein tiefes Brummen, das Messgeräte nie fanden. Das Rätsel vom Taos Hum ist bis heute offen.\n\n#mystery #rätsel #taos #brummen #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "taos",
+    "brummen",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Brummen | keine Quelle",
+    "Hörst du es"
+  ],
+  "segments": [
+    {
+      "text": "Nachts brummt es leise, aber nur manche hören es.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔊"
+      }
+    },
+    {
+      "text": "Es ist ein tiefer Ton, der nie aufhört.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🔊",
+        "text": "Tiefer Ton"
+      }
+    },
+    {
+      "text": "Der Ort heißt Taos in New Mexico.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Taos, USA"
+      }
+    },
+    {
+      "text": "In den Neunzigern klagten dort viele Menschen darüber.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 4,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Wer hört es?"
+      }
+    },
+    {
+      "text": "Forscher suchten Maschinen, Leitungen und Funkmasten ab.",
+      "szene": {
+        "typ": "liste",
+        "text": "Geprüft",
+        "punkte": [
+          "Maschinen",
+          "Leitungen",
+          "Funkmasten"
+        ]
+      }
+    },
+    {
+      "text": "Gefunden wurde keine Quelle.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Keine Quelle"
+      }
+    },
+    {
+      "text": "Die Messgeräte zeigten nichts, die Menschen hörten trotzdem.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📏",
+          "text": "Gerät: nichts"
+        },
+        "rechts": {
+          "objekt": "👂",
+          "text": "Ohr: Brummen"
+        }
+      }
+    },
+    {
+      "text": "Ähnliches gibt es an anderen Orten der Welt.",
+      "szene": {
+        "typ": "akte",
+        "text": "Ähnliche Orte",
+        "punkte": [
+          "Taos",
+          "Bristol",
+          "Windsor"
+        ]
+      }
+    },
+    {
+      "text": "Bis heute bleibt das Brummen ohne Erklärung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

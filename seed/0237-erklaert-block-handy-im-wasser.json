@@ -1,0 +1,118 @@
+{
+  "slug": "erklaert-block-handy-im-wasser",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#10202a",
+    "#4ab0d8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dein Handy ins Wasser fällt? 💧",
+  "description": "Erklärt in der Blockwelt: Warum nicht das Wasser, sondern der Strom ein Handy zerstört und was nach dem Sturz wirklich hilft.\n\n#wissen #handy #wasser #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "handy",
+    "wasser",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Kurzschluss | nicht Wasser",
+    "Reis ist ein Mythos"
+  ],
+  "segments": [
+    {
+      "text": "Dein Handy fällt ins Wasser, und du hast zwei Sekunden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📱",
+        "chat": "Server: Splash!"
+      }
+    },
+    {
+      "text": "Nicht das Wasser zerstört es, sondern der Strom darin.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⚡",
+        "text": "Kurzschluss"
+      }
+    },
+    {
+      "text": "Darum zuerst ausschalten und den Akku nicht laden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔌",
+        "text": "Aus lassen"
+      }
+    },
+    {
+      "text": "Reis aus dem Küchenschrank hilft kaum, das ist ein Mythos.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Reis: Mythos"
+      }
+    },
+    {
+      "text": "Besser ist es, das Handy sanft abzutrocknen und lange liegen zu lassen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Salzwasser ist am schlimmsten, denn Salz leitet Strom.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "🧂"
+      }
+    },
+    {
+      "text": "Neue Geräte schützt oft eine Dichtung gegen Spritzwasser.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📱",
+          "text": "Mit Dichtung"
+        },
+        "rechts": {
+          "objekt": "📱",
+          "text": "Ohne: ungeschützt"
+        }
+      }
+    },
+    {
+      "text": "Aber dauerhaft wasserdicht ist kaum ein Handy.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🛡️"
+      }
+    }
+  ]
+}

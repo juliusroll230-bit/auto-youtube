@@ -1,0 +1,679 @@
+{
+  "slug": "mystery-franklin-expedition-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0c1a24",
+    "#6aa0c8"
+  ],
+  "accent": "#c4161c",
+  "title": "Die verlorene Expedition: Was geschah mit Franklins Schiffen? 🧊",
+  "description": "1845 verschwinden zwei Schiffe mit 129 Männern im Eis der Arktis. Wir erzählen die Geschichte der Franklin-Expedition, zeigen die Spuren, den Zettel von King-William-Insel und die Wracks, die erst 2014 und 2016 gefunden wurden.\n\n#mystery #rätsel #franklin #geschichte #arktis",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "franklin",
+    "geschichte",
+    "arktis"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "kapitaen",
+    "name": "Franklin"
+  },
+  "thumb_text": [
+    "Franklin | im Eis verschollen",
+    "Der letzte Zettel"
+  ],
+  "segments": [
+    {
+      "text": "Im Jahr achtzehnhundertfünfundvierzig verschwinden zwei große Schiffe mit einhundertneunundzwanzig Männern im Eis der Arktis, und kein einziger von ihnen kehrt zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🚢",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Es dauert vierzehn Jahre, bis jemand einen Zettel findet, der erzählt, wie es endete, und noch einmal mehr als fünfzig, bis man die Schiffe selbst entdeckt.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📝",
+        "text": "Der Zettel",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte der verlorenen Franklin-Expedition, zeigen die Spuren und prüfen, woran die Männer wirklich starben.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧊",
+        "text": "Franklin",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Zuerst die Abfahrt, dann das Eis, dann die Suche, dann der Zettel, und zum Schluss die Wracks, die erst vor wenigen Jahren auftauchten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Die Briten wollen im neunzehnten Jahrhundert einen Seeweg durch die Arktis finden, der den Atlantik mit dem Pazifik verbindet, die sogenannte Nordwestpassage.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Er würde den Handel nach Asien enorm verkürzen, und wer ihn entdeckt, wird in England als Held gefeiert.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💰",
+        "text": "Seeweg nach Asien",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Mehrere Schiffe sind an dieser Aufgabe schon gescheitert, und das Eis in diesem Gebiet gilt als eines der gefährlichsten der Welt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🧊",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Im Mai achtzehnhundertfünfundvierzig laufen zwei Schiffe aus England aus: die Erebus und die Terror, beide kräftig gebaut und für das Eis verstärkt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1845",
+        "text": "Abfahrt",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Der Befehl liegt bei Sir John Franklin. Er ist neunundfünfzig Jahre alt, ein erfahrener Seemann und ein bekannter Polarforscher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "👨‍✈️"
+      }
+    },
+    {
+      "text": "Franklin hat früher schon eine Expedition geleitet, und damals überlebte er nur knapp, weil seine Männer sogar ihre Lederstiefel aßen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🥾",
+        "text": "Lederstiefel",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "An Bord sind einhundertneunundzwanzig Männer, Offiziere und Matrosen, und alle rechnen damit, dass die Reise etwa drei Jahre dauern wird.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 129,
+        "einheit": "Männer an Bord",
+        "objekt": "👥",
+        "farbcode": "#0c1a24"
+      }
+    },
+    {
+      "text": "Viele Menschen in England glauben, dass diese Expedition in die Geschichtsbücher eingehen wird, und die Stimmung beim Ablegen ist gut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎉"
+      }
+    },
+    {
+      "text": "Die Schiffe sind modern ausgestattet und sollen die Männer auch in einem langen Winter am Leben halten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Ausrüstung",
+        "punkte": [
+          "Dampfmaschinen",
+          "Dosenfleisch",
+          "Bibliothek"
+        ]
+      }
+    },
+    {
+      "text": "Sie haben sogar Maschinen von Lokomotiven eingebaut, damit die Schiffe auch ohne Wind durch das Eis fahren können.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "⚙️"
+      }
+    },
+    {
+      "text": "Dazu kommen Tausende Konservendosen mit Fleisch, Gemüse und Suppe, eine damals ganz neue Erfindung.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🥫",
+        "text": "Konserven",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Ende Juli achtzehnhundertfünfundvierzig sehen zwei Walfangschiffe die Erebus und die Terror in der Baffin-Bucht. Es ist das letzte Mal, dass Europäer sie sehen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1845",
+        "text": "Letzte Sichtung",
+        "objekt": "👀"
+      }
+    },
+    {
+      "text": "Danach herrscht Stille. Kein Brief, keine Nachricht und kein Notruf erreicht die Heimat, und Monate vergehen ohne ein Lebenszeichen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📭",
+        "text": "Keine Post",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Gleich erfährst du, was die Männer in den nächsten Jahren erlebten. Zuerst aber die Suche.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔍",
+        "text": "Die Suche"
+      }
+    },
+    {
+      "text": "Im Jahr achtzehnhundertachtundvierzig wird England unruhig, denn nach drei Jahren sollten die Schiffe längst zurück sein.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "angst",
+        "aktion": "denkt",
+        "objekt": "😟"
+      }
+    },
+    {
+      "text": "Franklins Frau Jane gibt nicht auf. Sie sammelt Geld, überzeugt Politiker und schickt immer neue Schiffe in die Arktis.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👩",
+        "text": "Lady Jane",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "In den folgenden Jahren fahren mehr als dreißig Suchexpeditionen los, und sie kosten viel Geld und kosten auch weitere Menschenleben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "Suchexpeditionen",
+        "objekt": "🚢",
+        "farbcode": "#0c1a24"
+      }
+    },
+    {
+      "text": "Das Eis ist gnadenlos. Winterstürme, Nebel und Packeis machen jede Suche zu einem Wagnis, und manche Schiffe kommen selbst nicht zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌨️",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Im Jahr achtzehnhundertfünfzig finden Suchtrupps auf der Beechey-Insel die ersten Spuren: drei Gräber mit Holzbrettern und einen alten Lagerplatz.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1850",
+        "text": "Beechey-Insel",
+        "objekt": "🪦"
+      }
+    },
+    {
+      "text": "Die Gräber gehören drei Männern, die im ersten Winter starben. Die Namen und Daten stehen noch auf den Brettern.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🪧",
+        "text": "Drei Gräber",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Mehr als hundert Jahre später öffnen Forscher diese Gräber und finden überraschend gut erhaltene Körper im Dauerfrost.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🧊",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Die Untersuchung zeigt erhöhte Mengen Blei in den Knochen. Hat eine Vergiftung die Männer schon früh geschwächt?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "☠️",
+        "text": "Blei?",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Die Dosen waren mit Blei verlötet, und so könnte etwas davon ins Essen gelangt sein. Das ist eine bekannte Theorie.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🥫",
+        "text": "Bleilot",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Doch es gibt Zweifel. Die Menschen jener Zeit nahmen Blei auch aus Wasserleitungen und Geschirr auf.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🥫",
+          "text": "Dosen"
+        },
+        "rechts": {
+          "objekt": "🚰",
+          "text": "Wasserrohre"
+        }
+      }
+    },
+    {
+      "text": "Im Jahr achtzehnhundertvierundfünfzig bringt der Forscher John Rae eine verstörende Nachricht aus der Arktis mit nach Hause.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1854",
+        "text": "John Rae",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Inuit hatten ihm erzählt, sie hätten Weiße Männer verhungern sehen, und sie hätten Spuren gefunden, die auf Kannibalismus hindeuten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "🗣️",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "In England empört sich die Öffentlichkeit. Zeitungen und sogar der Schriftsteller Charles Dickens weisen die Berichte zurück.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📰",
+        "text": "Empörung",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Warum glaubte man den Inuit nicht? Es war schwer vorstellbar, dass stolze britische Seeleute zu so etwas gezwungen wurden.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🤔",
+        "text": "Warum nicht?",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Doch dann kommt der Fund, der alles verändert: der Zettel auf der Insel.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📝",
+        "text": "Der Fund"
+      }
+    },
+    {
+      "text": "Im Jahr achtzehnhundertneunundfünfzig sucht eine Expedition unter Francis McClintock die Küste von King-William-Insel ab, und die Männer finden ein Steinhäufchen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1859",
+        "text": "Victory Point",
+        "objekt": "🪨"
+      }
+    },
+    {
+      "text": "In dem Steinhaufen liegt ein Blechbehälter mit einem Formular der Marine. Er enthält zwei kurze Mitteilungen in zwei verschiedenen Handschriften.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📝",
+        "text": "Der Zettel",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Die erste Nachricht stammt aus dem Jahr achtzehnhundertsiebenundvierzig und klingt noch beruhigend.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mai 1847",
+        "punkte": [
+          "Alles in Ordnung",
+          "Winter im Eis",
+          "Franklin lebt"
+        ]
+      }
+    },
+    {
+      "text": "Doch am Rand steht eine zweite Notiz vom April achtzehnhundertachtundvierzig, und sie ist erschütternd.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "zeigt",
+        "objekt": "✍️"
+      }
+    },
+    {
+      "text": "Die Schiffe wurden verlassen. Franklin starb im Juni achtzehnhundertsiebenundvierzig, und mehr als zwanzig Männer waren bereits tot.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Notiz",
+        "punkte": [
+          "⚓",
+          "👨‍✈️",
+          "☠️",
+          "🚶"
+        ]
+      }
+    },
+    {
+      "text": "Die übrigen hundertfünf Männer wollen sich zu Fuß über das Eis retten, immer weiter nach Süden zu einem Fluss auf dem Festland.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 105,
+        "einheit": "Überlebende",
+        "objekt": "🚶",
+        "farbcode": "#0c1a24"
+      }
+    },
+    {
+      "text": "Unter der Führung von Kapitän Crozier ziehen sie los, mit Booten auf Schlitten und mit viel zu schwerem Gepäck.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🛷",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Später finden Suchtrupps Schlitten mit seltsamen Dingen: Silberbesteck, Bücher und sogar Seife, die kein Mensch auf einem solchen Marsch braucht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🍴",
+        "text": "Silberbesteck",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Die Männer sind schwach, und sie leiden an Hunger, Kälte und wahrscheinlich Skorbut, der Krankheit, die durch Mangel an Vitamin C entsteht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "🥶",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Jeden Tag kommen sie nur wenige Kilometer weiter, bei Kälte weit unter null und mit Schlitten, die tonnenschwer sind.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛷",
+        "text": "Schwere Schlitten",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Wie weit kamen sie? Skelette liegen auf der Insel und auf dem Festland verstreut, und keiner der Männer erreichte sein Ziel.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "💀",
+        "text": "Wie weit?",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Die Inuit erzählten später, sie hätten Männer gesehen, die zu Fuß nach Süden zogen und nie wieder zurückkamen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "schlurft",
+        "objekt": "👣",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "An einigen Knochen sehen Forscher Schnittspuren, die zu den Berichten der Inuit passen und die Kannibalismus nahelegen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔬",
+        "text": "Schnittspuren",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Heute gelten vor allem diese Ursachen als wahrscheinlich, die sich gegenseitig verstärkt haben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Todesursachen",
+        "punkte": [
+          "Kälte",
+          "Hunger",
+          "Krankheit"
+        ]
+      }
+    },
+    {
+      "text": "Jetzt kommt die überraschende Wendung: Die Schiffe selbst wurden endlich gefunden.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🚢",
+        "text": "Die Wracks"
+      }
+    },
+    {
+      "text": "Jahrzehntelang suchen Forscher nach der Erebus und der Terror, mit Sonar, mit Flugzeugen und mit Hinweisen aus Erzählungen der Inuit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "📡"
+      }
+    },
+    {
+      "text": "Im September zweitausendvierzehn findet ein kanadisches Team die Erebus am Grund eines flachen Meeresarms, mehr als hundertsechzig Jahre nach dem Untergang.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2014",
+        "text": "Erebus gefunden",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Die Suche war zuvor jahrelang erfolglos geblieben, bis ein Hinweis aus Erzählungen der Inuit die Forscher in die richtige Gegend führte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Zwei Jahre später, im Jahr zweitausendsechzehn, entdecken Taucher auch die Terror, in einer Bucht, die nach ihr benannt ist.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2016",
+        "text": "Terror gefunden",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Beide Schiffe liegen in nur etwa vierzig Metern Tiefe und sind erstaunlich gut erhalten, fast so, als wären sie gestern gesunken.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 40,
+        "einheit": "Meter tief",
+        "objekt": "🌊",
+        "farbcode": "#0c1a24"
+      }
+    },
+    {
+      "text": "Taucher sehen Räume, Tische, Geschirr und Kisten, die seit der Expedition unberührt geblieben sind, im kalten, dunklen Wasser.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🤿"
+      }
+    },
+    {
+      "text": "Besonders wertvoll waren die Hinweise der Inuit, die seit Generationen erzählt hatten, wo die Schiffe gesunken waren.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👥",
+        "text": "Wissen der Inuit",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Heute arbeiten Behörden und Inuit zusammen. Die Wracks stehen unter Schutz, damit nichts von den Funden verloren geht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🤝"
+      }
+    },
+    {
+      "text": "Warum lagen die Schiffe so weit südlich von der Stelle, an der man sie verlassen hatte? Hatten einige Männer sie später noch einmal besetzt?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧭",
+        "text": "Zurückgekehrt?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Manche Forscher glauben, dass einige Überlebende zu den Schiffen zurückkehrten und versuchten, mit ihnen weiterzufahren, bevor sie sanken.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🛳️"
+      }
+    },
+    {
+      "text": "Auch die Frage nach den Todesursachen ist nicht endgültig geklärt, denn jedes Jahr kommen neue Funde und neue Untersuchungen hinzu.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔬",
+        "text": "Neue Funde",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt offen?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Bücher, Lieder und Filme erzählen die Geschichte bis heute, und sie gilt als eines der großen Rätsel der Polarforschung.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎬",
+        "text": "Bis heute",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Sicher ist: Alle einhundertneunundzwanzig Männer starben, die Schiffe wurden verlassen, und die Männer versuchten, zu Fuß zu entkommen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Alle starben",
+          "Schiffe verlassen",
+          "Marsch nach Süden"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt: Wer überlebte am längsten, wie genau verlief der Marsch, und warum sanken die Schiffe so weit im Süden?",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "🚶",
+          "🗺️",
+          "🚢"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist eine Kette aus Kälte, Hunger und Krankheit, die ein Schiff nach dem anderen und einen Mann nach dem anderen traf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Und doch lässt uns die Geschichte nicht los, denn zwei gewaltige Schiffe lagen mehr als hundert Jahre im Dunkel, und niemand wusste, wo.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌑",
+        "text": "Im Dunkel",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an Blei, Hunger oder Kälte als Hauptursache? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

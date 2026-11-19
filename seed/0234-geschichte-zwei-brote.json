@@ -1,0 +1,113 @@
+{
+  "slug": "geschichte-zwei-brote",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Warum Mama mir zwei Brote einpackt 🥪",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Mama packt jeden Tag zwei Brote ein, und ich verstehe lange nicht, warum.\n\n#geschichte #storytime #familie #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "familie",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Mama | verrät nichts",
+    "Wem das zweite gehört"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich packt Mama mir zwei Brote ein, obwohl ich eins esse.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🥪",
+        "text": "Zwei Brote"
+      }
+    },
+    {
+      "text": "Jeden Tag bringe ich das zweite Brot unberührt zurück.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🎒",
+        "text": "Brot übrig"
+      }
+    },
+    {
+      "text": "Mama sagt nur: Pack es trotzdem wieder ein.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Heute sehe ich, wie Jonas in der Pause nur zuschaut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "traurig",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Er hat nie etwas dabei und sagt, er habe keinen Hunger.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🍽️",
+        "text": "Kein Pausenbrot"
+      }
+    },
+    {
+      "text": "Ich gebe ihm das zweite Brot, und er strahlt.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Abends erzähle ich es Mama, und sie lächelt nur.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "winkt"
+      }
+    },
+    {
+      "text": "Sie hat es beim Elternabend gemerkt und mir nie etwas gesagt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "❤️",
+        "text": "Still geholfen"
+      }
+    }
+  ]
+}

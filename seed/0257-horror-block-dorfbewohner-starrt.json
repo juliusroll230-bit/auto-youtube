@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-dorfbewohner-starrt",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0a0a12",
+    "#3a4a2a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Dorfbewohner, der dich nie aus den Augen lässt 👀",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deinem Dorf starrt ein Bewohner dich an, egal wohin du gehst.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "gaming",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Blick | folgt dir überall",
+    "Er kennt deinen Namen"
+  ],
+  "segments": [
+    {
+      "text": "In deinem Dorf starrt ein Bewohner dich an, egal wohin du gehst.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "👀",
+        "chat": "???: ich sehe dich"
+      }
+    },
+    {
+      "text": "Du gehst um das Haus, und er dreht den Kopf mit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "kamera": "weit"
+      }
+    },
+    {
+      "text": "Die anderen Bewohner schauen nach unten, nur er nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 5,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Alle schauen weg"
+      }
+    },
+    {
+      "text": "Du baust dir eine Mauer aus Blöcken um dein Haus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧱",
+        "text": "Mauer",
+        "chat": "Server: Block platziert"
+      }
+    },
+    {
+      "text": "Am Morgen steht er auf der anderen Seite der Mauer.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Er ist näher"
+      }
+    },
+    {
+      "text": "Er klopft an die Wand, ganz sanft, immer im Takt.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Dein Name steht plötzlich über seinem Kopf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🏷️",
+        "text": "Dein Name",
+        "chat": "Du: das bin ich?"
+      }
+    },
+    {
+      "text": "Und über deinem eigenen Kopf steht jetzt sein Name.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "chat": "Server: Spieler getauscht"
+      }
+    }
+  ]
+}

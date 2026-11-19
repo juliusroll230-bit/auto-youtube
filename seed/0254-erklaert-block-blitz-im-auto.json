@@ -1,0 +1,117 @@
+{
+  "slug": "erklaert-block-blitz-im-auto",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#101826",
+    "#e0c43a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn der Blitz in dein Auto einschlägt? ⚡",
+  "description": "Erklärt in der Blockwelt: Warum du im Auto bei einem Blitzschlag meistens sicher bist und welcher Mythos über Gummireifen nicht stimmt.\n\n#wissen #blitz #auto #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "blitz",
+    "auto",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Faraday | schützt dich",
+    "Reifen schützen nicht"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich schlägt der Blitz direkt in dein Auto ein, während du drinsitzt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "⚡",
+        "wetter": "blitz",
+        "chat": "Server: Gewitter"
+      }
+    },
+    {
+      "text": "Du bleibst meistens unverletzt, denn der Strom fließt außen entlang.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strasse",
+        "objekt": "🚗",
+        "text": "Strom außen"
+      }
+    },
+    {
+      "text": "Die Metallkarosserie leitet ihn um dich herum.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🛡️",
+        "text": "Schutzkäfig"
+      }
+    },
+    {
+      "text": "Nicht die Gummireifen schützen dich, sondern das Metall.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🛞",
+          "text": "Reifen: Mythos"
+        },
+        "rechts": {
+          "objekt": "🚗",
+          "text": "Metall: schützt"
+        }
+      }
+    },
+    {
+      "text": "Berühre trotzdem keine Metallteile innen im Auto.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "✋"
+      }
+    },
+    {
+      "text": "Die Elektronik kann dabei Schäden nehmen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🔌",
+        "text": "Elektronik"
+      }
+    },
+    {
+      "text": "Bei Cabrios mit offenem Dach gilt der Schutz nicht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Bleib also im Auto und warte, bis das Gewitter vorbei ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "cool",
+        "aktion": "jubelt",
+        "objekt": "😌"
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "horror-nachtzug-haelt",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0a0c14",
+    "#2a4a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Zug, der nur nachts an deinem Haus hält 🚂",
+  "description": "Eine ausgedachte Gruselgeschichte: Vor deinem Haus hält jede Nacht ein Zug, obwohl dort nie Schienen lagen.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Zug | ohne Schienen",
+    "Einer trägt dein Gesicht"
+  ],
+  "segments": [
+    {
+      "text": "Nachts hält vor deinem Haus ein Zug, obwohl dort keine Schienen liegen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🚂"
+      }
+    },
+    {
+      "text": "Die Türen gehen auf, aber niemand steigt aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🚪",
+        "text": "Türen offen"
+      }
+    },
+    {
+      "text": "Alle Fenster sind hell, und darin sitzen Menschen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strasse",
+        "anzahl": 4,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Stille Fahrgäste"
+      }
+    },
+    {
+      "text": "Sie sehen dich an und winken dich heran.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "objekt": "👋"
+      }
+    },
+    {
+      "text": "Einer der Fahrgäste trägt deinen Pullover.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strasse",
+        "objekt": "🧥",
+        "text": "Dein Pullover"
+      }
+    },
+    {
+      "text": "Du erkennst dein eigenes Gesicht im Fenster.",
+      "szene": {
+        "typ": "monster",
+        "ort": "strasse",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "Der Zug pfeift leise, und die Türen schließen sich.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🚂",
+        "text": "Letzter Aufruf"
+      }
+    },
+    {
+      "text": "Am Morgen sitzt in deinem Bett jemand, der aussieht wie du.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

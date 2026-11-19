@@ -25,6 +25,10 @@ Vorbilder Erklärvideo: „Was passiert, wenn du tagelang nicht schläfst?“ (1
 Bei 15 Themen am Tag besonders auf Doppelungen achten (vorher `seed/` und `docs/videos.json` prüfen).
 Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann mindestens die 5 Blockwelt-Videos schreiben.
 
+Die App hält den Mix selbst (seit 18.11.2026): Von je 15 Shorts sind 5 Blockwelt (`block_per_day` in der Config,
+Lernmodus wählt nur das Thema innerhalb des Looks). Weil ein Short auf dem Server ca. 1 Stunde rendert, rendert sie
+in freien Minuten (auch nachts) bis zu 6 Shorts vor (`ready/`, Vorrat) und lädt zum Sendeplatz nur noch hoch.
+
 `"vorrang": true` im Skript schiebt es in der Warteschlange ganz nach vorn (nur für „heute noch rausbringen“,
 nicht in der täglichen Aufgabe benutzen).
 
@@ -70,6 +74,24 @@ Die Zentrale vergleicht das unter „Look je Video-Typ“ („Erzählte Geschich
   und `strasse` sind in 3D nachts), gern 1 bis 2 kurze `"chat"`-Zeilen; erster Satz der Beschreibung mit „Blockwelt“.
 - Vorbilder `seed/0208` bis `0210` (2D) und `seed/0211` (Blockwelt). Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
   mehr davon vorschlagen (Julius fragen).
+
+### Test: Loop-Ende (seit 19.11.2026)
+
+Stand 19.11.: Fast jeder Short bleibt bei ca. 800 bis 1.500 Aufrufen stehen (bester: Schlaf 2.600), egal ob
+Erklärvideo, Mystery, Horror, 2D oder 3D. Das Thema ist also nicht die Grenze. YouTube zeigt jeden Short erst
+einer kleinen Testgruppe und schiebt ihn nur weiter, wenn die Leute bis zum Ende schauen und nochmal schauen.
+Darum als Test, **ohne den Plan oben zu ändern**: Jeden Tag bekommen **5 der 15 Skripte** `"ende": "loop"`:
+2 „Was passiert, wenn“ (1× 2D, 1× 3D), 1 „Warum“ (2D), 1 Mystery (2D), 1 Horror (3D).
+
+- Der letzte Satz endet offen, ohne Schlusspunkt, und der erste Satz vollendet ihn. Wer nicht aufpasst,
+  merkt den Neustart nicht und schaut ein zweites Mal. Beispiele:
+  - erster Satz „Was passiert, wenn du die Luft zu lange anhältst?“, letzter „Also frag dich beim nächsten Tauchen noch mal:“
+  - erster Satz „Ein Schiff treibt im Atlantik, und niemand ist an Bord.“, letzter „Und bis heute weiß niemand, warum“
+- Die Auflösung bzw. der Aha-Moment kommt im vorletzten Satz. Kein Abschiedssatz, kein „Abonnier“.
+- Loop-Skripte eher kurz: 45 bis 65 Wörter (ca. 16 bis 20 s).
+- `hookcheck.py` gibt einen Tipp mit „·“, wenn der letzte Satz mit Punkt endet.
+- Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Ende (Loop)“** (`learn.ending`).
+  Liegt „Loop“ nach mindestens 10 bewerteten Videos je Seite klar vorne, Julius vorschlagen, alle Shorts so zu bauen.
 
 Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 

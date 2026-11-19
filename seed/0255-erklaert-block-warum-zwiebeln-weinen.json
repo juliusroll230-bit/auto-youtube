@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-block-warum-zwiebeln-weinen",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2410",
+    "#d8b04a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum musst du beim Zwiebelschneiden weinen? 🧅",
+  "description": "Erklärt in der Blockwelt: Welches Gas beim Schneiden entsteht, warum deine Augen weinen und wie du es verhinderst.\n\n#wissen #zwiebel #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "zwiebel",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zwiebel | Gas im Auge",
+    "Tränen spülen weg"
+  ],
+  "segments": [
+    {
+      "text": "Warum musst du beim Zwiebelschneiden weinen, obwohl dir nichts wehtut?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "🧅",
+        "chat": "Spieler: meine Augen!"
+      }
+    },
+    {
+      "text": "Beim Schneiden platzen winzige Zellen in der Zwiebel.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔪",
+        "text": "Zellen platzen"
+      }
+    },
+    {
+      "text": "Dabei entsteht ein reizendes Gas, das zu deinen Augen steigt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "💨",
+        "text": "Reizgas"
+      }
+    },
+    {
+      "text": "Deine Augen merken die Reizung und schützen sich mit Tränen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Die Tränen spülen das Gas wieder weg.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "💧"
+      }
+    },
+    {
+      "text": "Kühlst du die Zwiebel vorher, entsteht weniger Gas.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧊",
+        "text": "Vorher kühlen"
+      }
+    },
+    {
+      "text": "Ein scharfes Messer hilft auch, weil weniger Zellen zerquetscht werden.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔪",
+          "text": "Scharf: wenig"
+        },
+        "rechts": {
+          "objekt": "🥄",
+          "text": "Stumpf: viel"
+        }
+      }
+    },
+    {
+      "text": "Schneidest du unter Wasser, passiert fast nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😅"
+      }
+    }
+  ]
+}

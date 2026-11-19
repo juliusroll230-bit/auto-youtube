@@ -1,0 +1,114 @@
+{
+  "slug": "erklaert-warum-finger-schrumpelig",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#201a30",
+    "#8a7ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum werden deine Finger im Wasser schrumpelig? 🛁",
+  "description": "Es liegt nicht am Aufquellen. Warum deine Finger im Wasser Rillen bekommen und was Forscher darüber vermuten.\n\n#wissen #körper #haut #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "haut",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Haut | Profil für Halt",
+    "Ein Trick der Haut"
+  ],
+  "segments": [
+    {
+      "text": "Warum werden deine Finger im Wasser schrumpelig?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🛁"
+      }
+    },
+    {
+      "text": "Mit Aufquellen hat es wenig zu tun.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Nicht Wasser"
+      }
+    },
+    {
+      "text": "Dein Nervensystem zieht dabei kleine Blutgefäße zusammen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Was passiert",
+        "punkte": [
+          "Nerven melden",
+          "Gefäße ziehen zu",
+          "Haut rillt"
+        ]
+      }
+    },
+    {
+      "text": "Dadurch zieht sich die Haut zu Rillen zusammen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🖐️",
+          "text": "Trocken: glatt"
+        },
+        "rechts": {
+          "objekt": "🖐️",
+          "text": "Nass: Rillen"
+        }
+      }
+    },
+    {
+      "text": "Forscher vermuten: Die Rillen geben besseren Halt auf nassen Dingen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🥤"
+      }
+    },
+    {
+      "text": "Wie Reifenprofil bei Regen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🛞",
+        "text": "Reifenprofil"
+      }
+    },
+    {
+      "text": "Ganz sicher sind sich die Forscher aber noch nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Noch offen"
+      }
+    },
+    {
+      "text": "Deine Finger tragen also ein Profil, wenn es nass wird.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🛁"
+      }
+    }
+  ]
+}

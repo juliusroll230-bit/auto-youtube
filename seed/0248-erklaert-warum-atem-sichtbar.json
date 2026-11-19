@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-atem-sichtbar",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#10202a",
+    "#9ac8e8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum siehst du im Winter deinen Atem? ❄️",
+  "description": "Dein Atem ist kein Rauch. Warum aus unsichtbarem Wasserdampf bei Kälte eine weiße Wolke wird.\n\n#wissen #winter #physik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "winter",
+    "physik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Atem | kein Rauch",
+    "Winziger Nebel"
+  ],
+  "segments": [
+    {
+      "text": "Warum siehst du im Winter deinen Atem als weiße Wolke?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💨",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Dein Atem ist warm und voller unsichtbarem Wasserdampf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💧",
+        "text": "Wasserdampf"
+      }
+    },
+    {
+      "text": "Draußen trifft er auf kalte Luft und kühlt ab.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🫁",
+          "text": "Atem: warm"
+        },
+        "rechts": {
+          "objekt": "❄️",
+          "text": "Luft: kalt"
+        }
+      }
+    },
+    {
+      "text": "Kalte Luft kann viel weniger Wasserdampf halten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌡️",
+        "text": "Hält weniger"
+      }
+    },
+    {
+      "text": "Der Dampf wird zu winzigen Wassertropfen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💧",
+        "text": "Tropfen"
+      }
+    },
+    {
+      "text": "Genau diese Tropfen siehst du als Wolke.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "☁️"
+      }
+    },
+    {
+      "text": "Es ist also kein Rauch, sondern kleiner Nebel.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Mini-Nebel"
+      }
+    },
+    {
+      "text": "Im Sommer ist die Luft zu warm, darum siehst du nichts.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    }
+  ]
+}

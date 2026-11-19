@@ -94,12 +94,15 @@ def client(cfg):
 # (docs/oauth.html), die den Code an die Shorts-Zentrale im Heimnetz zurückgibt.
 
 ANALYTICS_SCOPE = "https://www.googleapis.com/auth/yt-analytics.readonly"
+# Seit 18.11.2026 fragt derselbe Zugang auch das Antworten auf Kommentare an (comments.py). Das geht nur mit
+# youtube.force-ssl, und die erlaubt Google bei der Geräte-Code-Anmeldung (Upload-Zugang) nicht.
+REPLY_SCOPE = "https://www.googleapis.com/auth/youtube.force-ssl"
 
 
 def analytics_auth_url(client_id, redirect_uri, state):
     return "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode({
         "client_id": client_id, "redirect_uri": redirect_uri, "response_type": "code",
-        "scope": ANALYTICS_SCOPE, "access_type": "offline", "prompt": "consent", "state": state,
+        "scope": ANALYTICS_SCOPE + " " + REPLY_SCOPE, "access_type": "offline", "prompt": "consent", "state": state,
     })
 
 
@@ -110,7 +113,7 @@ def analytics_exchange(client_id, client_secret, redirect_uri, code):
     })
     if "refresh_token" not in tok:
         raise RuntimeError(tok.get("error_description") or tok.get("error") or "Google hat keinen Zugang geliefert.")
-    return tok["refresh_token"]
+    return tok["refresh_token"], tok.get("scope", "")
 
 
 def _analytics(cfg):
@@ -260,3 +263,43 @@ def public_subscribers(cfg, pages=10):
         if not token:
             break
     return out
+
+
+# --- Kommentare (comments.py) ----------------------------------------------------
+
+def reply_client(cfg):
+    """YouTube mit dem zweiten Zugang (Webanwendung), der youtube.force-ssl hat und darum antworten darf."""
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+
+    creds = Credentials(token=None, refresh_token=cfg["analytics_token"], client_id=cfg["analytics_client_id"],
+                        client_secret=cfg["analytics_client_secret"], token_uri="https://oauth2.googleapis.com/token")
+    return build("youtube", "v3", credentials=creds, cache_discovery=False)
+
+
+def my_channel_id(yt):
+    items = yt.channels().list(part="id", mine=True).execute().get("items", [])
+    return items[0]["id"] if items else ""
+
+
+def comment_threads(yt, channel_id, own_channel):
+    """Neueste 100 Kommentare unter den Videos des Kanals (kostet 1 Einheit API-Quote)."""
+    res = yt.commentThreads().list(part="snippet,replies", allThreadsRelatedToChannelId=channel_id, maxResults=100,
+                                   order="time", textFormat="plainText").execute()
+    out = []
+    for it in res.get("items", []):
+        top = it["snippet"]["topLevelComment"]
+        s = top["snippet"]
+        replies = (it.get("replies") or {}).get("comments", [])
+        out.append({"id": top["id"], "video_id": it["snippet"].get("videoId", s.get("videoId", "")),
+                    "author": s.get("authorDisplayName", ""), "text": s.get("textDisplay", ""),
+                    "author_channel": (s.get("authorChannelId") or {}).get("value", ""), "at": s.get("publishedAt", ""),
+                    "own_reply": any((r["snippet"].get("authorChannelId") or {}).get("value") == own_channel
+                                     for r in replies)})
+    return out
+
+
+def reply(yt, parent_id, text):
+    """Antwortet auf einen Kommentar (kostet 50 Einheiten API-Quote)."""
+    body = {"snippet": {"parentId": parent_id, "textOriginal": text}}
+    return yt.comments().insert(part="snippet", body=body).execute()["id"]

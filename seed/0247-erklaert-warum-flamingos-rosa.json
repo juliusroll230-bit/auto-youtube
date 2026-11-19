@@ -1,0 +1,114 @@
+{
+  "slug": "erklaert-warum-flamingos-rosa",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1018",
+    "#e87a9a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum sind Flamingos eigentlich rosa? 🦩",
+  "description": "Flamingos werden grau geboren. Die rosa Farbe steckt in ihrem Futter, nicht in ihren Genen.\n\n#wissen #tiere #flamingo #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "tiere",
+    "flamingo",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Flamingo | Farbe vom Essen",
+    "Grau geboren"
+  ],
+  "segments": [
+    {
+      "text": "Warum sind Flamingos rosa, obwohl Küken grau schlüpfen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🦩"
+      }
+    },
+    {
+      "text": "Die Farbe steckt in ihrem Essen, nicht in ihren Genen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🦐",
+        "text": "Garnelen, Algen"
+      }
+    },
+    {
+      "text": "Algen und kleine Krebse enthalten rote Farbstoffe.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🧪",
+        "text": "Farbstoffe"
+      }
+    },
+    {
+      "text": "Der Körper des Flamingos löst sie auf und lagert sie ein.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🦐",
+          "text": "Essen: rot"
+        },
+        "rechts": {
+          "objekt": "🦩",
+          "text": "Federn: rosa"
+        }
+      }
+    },
+    {
+      "text": "Je mehr sie davon fressen, desto kräftiger wird ihr Rosa.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🦩"
+      }
+    },
+    {
+      "text": "Fehlt das Futter, werden die Federn blasser.",
+      "szene": {
+        "typ": "liste",
+        "text": "Zu wenig Futter",
+        "punkte": [
+          "Federn blasser",
+          "Weniger Rosa",
+          "Graue Küken"
+        ]
+      }
+    },
+    {
+      "text": "Auch in Zoos bekommen sie darum spezielles Futter.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Spezialfutter"
+      }
+    },
+    {
+      "text": "Du bist also, was du frisst, und Flamingos sind es sichtbar.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "🦩"
+      }
+    }
+  ]
+}

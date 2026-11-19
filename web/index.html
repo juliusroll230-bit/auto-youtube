@@ -175,6 +175,27 @@ main { padding-block: 28px 72px; }
 .hk { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 99px; font-size: 11.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; background: rgba(52, 211, 153, .14); color: var(--ok); }
 .hk.mid { background: rgba(242, 196, 109, .16); color: var(--warn); }
 .hk.low { background: rgba(255, 99, 99, .14); color: var(--err, #ff6b6b); }
+.cm-ctl { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px; margin-bottom: 14px; }
+.cm-ctl .field { min-width: 150px; margin: 0; }
+.cm-ctl .switch { height: 40px; }
+.cm-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+.cm-h { font-size: 15px; margin: 18px 0 8px; display: flex; gap: 8px; align-items: baseline; }
+.cm-it { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; background: rgba(255, 255, 255, .03); }
+.cm-it .meta { font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 6px; }
+.cm-it .meta a { color: var(--accent); }
+.cm-it q { display: block; font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.cm-it q::before, .cm-it q::after { content: ""; }
+.cm-it .why { font-size: 12px; color: var(--warn, #fbbf24); margin-top: 4px; }
+.cm-it textarea { width: 100%; min-height: 54px; margin-top: 10px; padding: 9px 11px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); font: inherit; font-size: 14px; resize: vertical; }
+.cm-it .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.cm-log { display: grid; gap: 6px; max-height: 420px; overflow: auto; }
+.cm-l { display: grid; grid-template-columns: 74px 1fr; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.cm-l .t { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.cm-l .c { overflow-wrap: anywhere; }
+.cm-l .r { display: block; margin-top: 3px; color: var(--ok, #34c759); }
+.cm-l .r.skip { color: var(--ink-2); }
+.cm-wish { display: flex; flex-wrap: wrap; gap: 8px; }
+.cm-wish span { font-size: 13px; padding: 6px 11px; border-radius: 980px; background: rgba(255, 255, 255, .07); overflow-wrap: anywhere; }
 .tb-note { margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; background: rgba(251, 191, 36, .12); color: var(--ink); font-size: 14px; line-height: 1.45; }
 .tb-note a { color: var(--accent); }
 .tb-grid { display: grid; gap: 18px; }
@@ -1669,7 +1690,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       <div class="card" id="zSetup" hidden>
         <div class="card-h"><div><h2>Zuschauer-Daten freischalten</h2><div class="sub">Einmalig, dauert etwa 5 Minuten</div></div></div>
         <div class="card-b">
-          <p class="muted" style="margin-bottom:16px">YouTube gibt die Daten, wann Zuschauer abschalten, nur über eine eigene Schnittstelle heraus. Dafür braucht die Shorts-Zentrale einen zweiten Zugang. Dein Upload-Zugang bleibt, wie er ist.</p>
+          <p class="muted" style="margin-bottom:16px">YouTube gibt die Daten, wann Zuschauer abschalten, nur über eine eigene Schnittstelle heraus. Dafür braucht die Shorts-Zentrale einen zweiten Zugang. Derselbe Zugang erlaubt auch das Antworten auf Kommentare. Dein Upload-Zugang bleibt, wie er ist.</p>
           <ol class="steps">
             <li><div>In Google Cloud die <a href="https://console.cloud.google.com/apis/library/youtubeanalytics.googleapis.com" target="_blank" rel="noopener">YouTube Analytics API</a> öffnen und auf <b>Aktivieren</b> klicken. Oben muss dein Projekt ausgewählt sein.</div></li>
             <li><div>Unter <a href="https://console.cloud.google.com/auth/clients" target="_blank" rel="noopener">Google Auth Platform → Clients</a> auf <b>Client erstellen</b> klicken, Typ <b>Webanwendung</b>. Bei <b>Autorisierte Weiterleitungs-URIs</b> diese Adresse eintragen:
@@ -1716,6 +1737,25 @@ dialog.vs[open] { display: grid; place-items: center; }
         </div>
       </div>
 
+      <div class="card" id="kmCard" style="margin-bottom:22px">
+        <div class="card-h"><div><h2>Antworten auf Kommentare</h2><div class="sub" id="kmSub">Die App antwortet selbst kurz und freundlich auf einfache Kommentare. Fragen zu Fakten, Kritik mit Inhalt und ernste Themen landen unter „Für dich“. Beleidigungen, Links und Werbung bekommen keine Antwort.</div></div><span class="pill" id="kmStatus"></span></div>
+        <div class="card-b">
+          <div class="cm-ctl">
+            <label class="switch"><input type="checkbox" id="kmOn"><span class="tr"></span><span>Automatisch antworten</span></label>
+            <div class="field"><label for="kmMode">Wie?</label><select id="kmMode"><option value="auto">Sofort antworten</option><option value="freigabe">Erst mir zeigen</option></select></div>
+            <div class="field"><label for="kmPer">Höchstens pro Tag</label><select id="kmPer"><option>5</option><option>10</option><option>20</option><option>30</option><option>50</option></select></div>
+            <button class="btn sm" type="button" id="kmCheck">Jetzt prüfen</button>
+          </div>
+          <p class="tb-note" id="kmNote" hidden></p>
+          <div class="cm-stats" id="kmStats"></div>
+          <h3 class="cm-h">Für dich <span class="label" id="kmTodoN"></span></h3>
+          <div id="kmTodo"></div>
+          <h3 class="cm-h">Themenwünsche aus den Kommentaren</h3>
+          <div class="cm-wish" id="kmWish"></div>
+          <h3 class="cm-h">Protokoll</h3>
+          <div class="cm-log" id="kmLog"></div>
+        </div>
+      </div>
       <div class="card">
         <div class="card-h"><div><h2>Lernmodus</h2><div class="sub" id="learnText"></div></div><span class="pill" id="learnStatus"></span></div>
         <div class="scroll" style="margin-top:8px"><table>
@@ -3870,7 +3910,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       acts.appendChild(actBtn("Ablehnen", "no", function () { return api("api/reject", { file: v.file }).then(function () { toast("Abgelehnt. Unter „Abgelehnt“ kannst du es zurückholen."); }); }, true));
       sl.appendChild(h("li", { cls: v.approved ? "ok" : "" }, [
         thumb(v, "t-sm"),
-        h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: v.title }), h("div", { cls: "mt" }, [chip(v.niche), h("span", { cls: "num", text: fDayS.format(x.at) + ", " + fTime.format(x.at) + " Uhr" })])]),
+        h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: v.title }), h("div", { cls: "mt" }, [chip(v.niche), v.block ? chip("Blockwelt 3D") : null, h("span", { cls: "num", text: fDayS.format(x.at) + ", " + fTime.format(x.at) + " Uhr" + (v.ready ? " · fertig gerendert" : "") })].filter(Boolean))]),
         acts
       ]));
     });
@@ -5249,6 +5289,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderCampaigns(d);
     renderOverview(d, sch);
     renderViewers(d);
+    renderComments(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5259,6 +5300,83 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("host").textContent = S.live ? "Läuft auf deinem Server" + ver : "Vorschau, die echte App läuft auf deinem Zima-Server";
     $("stand").textContent = (S.live ? "Aktualisiert " : "Vorschau mit Stand vom ") + fDayS.format(u) + ", " + fTime.format(u) + " Uhr";
   }
+
+  // --- Antworten auf Kommentare (comments.py) ---------------------------------
+  function renderComments(d) {
+    var C = d.comments || {}, st = C.settings || {}, A = C.status || {};
+    if (!$("kmCard")) return;
+    var acc = C.access || "zugang";
+    var on = !!st.on;
+    pill($("kmStatus"), !on ? "warn" : acc === "ok" && !A.error ? "live" : "err",
+      !on ? "Aus" : acc === "ok" && !A.error ? "Aktiv" : acc === "zugang" ? "Zugang fehlt" : acc === "kanal" ? "Falscher Kanal" : "Pause");
+    $("kmOn").checked = on; $("kmOn").disabled = !S.live;
+    $("kmMode").value = st.mode || "auto"; $("kmMode").disabled = !S.live;
+    var per = String(st.per_day || 20);
+    if (![].some.call($("kmPer").options, function (o) { return o.value === per; })) $("kmPer").appendChild(h("option", { text: per }));
+    $("kmPer").value = per; $("kmPer").disabled = !S.live;
+    $("kmCheck").disabled = !S.live || !on;
+    var note = clear($("kmNote"));
+    note.hidden = true;
+    if (acc === "zugang" || acc === "kanal") {
+      note.hidden = false;
+      var b = h("button", { cls: "btn sm primary", type: "button", text: C.has_client ? "Neu verbinden" : "Zuschauer-Daten einrichten" });
+      b.disabled = !S.live;
+      b.addEventListener("click", function () { if (C.has_client) startAnalytics(); else { location.hash = "#zuschauer"; $("zSetup").scrollIntoView({ behavior: "smooth" }); } });
+      note.append(h("b", { text: acc === "kanal" ? "Der Zugang gehört zu einem anderen Kanal. " : "Einmal neu verbinden, dann darf die App antworten. " }),
+        acc === "kanal" ? "Beim Verbinden den Kanal deiner Shorts wählen. " : (C.has_client ? "Google fragt dabei nach dem Recht, Kommentare zu schreiben. Mit dem Google-Konto deines Kanals anmelden und erlauben. " : "Dafür zuerst den Zugang für Zuschauer-Daten einrichten (Schritte oben). "),
+        h("div", { style: "margin-top:8px" }, [b]));
+    } else if (A.error) {
+      note.hidden = false;
+      note.append(h("b", { text: A.error }));
+    }
+    var last = A.checked_at ? "Zuletzt geprüft " + fDayS.format(new Date(A.checked_at)) + " " + fTime.format(new Date(A.checked_at)) + " Uhr" : "Noch nicht geprüft";
+    clear($("kmStats")).append(h("span", { text: "Heute " + (C.today || 0) + " von " + (st.per_day || 20) + " Antworten" }),
+      h("span", { text: "Insgesamt " + (C.sent_total || 0) }), h("span", { text: last }), h("span", { text: "Prüft alle 30 Min., 8 bis 22 Uhr" }));
+
+    var todo = C.todo || [], tbox = clear($("kmTodo"));
+    $("kmTodoN").textContent = todo.length ? todo.length + " offen" : "";
+    if (!todo.length) tbox.appendChild(h("div", { cls: "label", text: "Nichts offen. Hier landen Kommentare, auf die nur du gut antworten kannst." }));
+    todo.forEach(function (t) {
+      var ta = h("textarea", { maxlength: "500", placeholder: "Deine Antwort …", "aria-label": "Antwort an " + t.author });
+      ta.value = t.draft || "";
+      var send = h("button", { cls: "btn sm primary", type: "button", text: t.draft ? "Senden" : "Antworten" });
+      var skip = h("button", { cls: "btn sm", type: "button", text: t.draft ? "Verwerfen" : "Erledigt" });
+      var msg = h("span", { cls: "msg" });
+      send.disabled = skip.disabled = !S.live;
+      send.addEventListener("click", function () {
+        send.disabled = true;
+        api("api/comments/reply", { id: t.id, text: ta.value }).then(function () { toast("Antwort gesendet"); }, function (e) { send.disabled = false; msg.className = "msg err"; msg.textContent = e.message; });
+      });
+      skip.addEventListener("click", function () { api("api/comments/dismiss", { id: t.id }).catch(function (e) { toast(e.message); }); });
+      tbox.appendChild(h("div", { cls: "cm-it" }, [
+        h("div", { cls: "meta" }, [h("b", { text: t.author || "Zuschauer" }), h("span", { text: t.video || "Video" }),
+          h("a", { href: "https://www.youtube.com/watch?v=" + encodeURIComponent(t.video_id) + "&lc=" + encodeURIComponent(t.id), target: "_blank", rel: "noopener", text: "Auf YouTube" })]),
+        h("q", { text: t.text }), h("div", { cls: "why", text: t.why }), ta, h("div", { cls: "row" }, [send, skip, msg])
+      ]));
+    });
+
+    var wish = clear($("kmWish"));
+    (C.wishes || []).forEach(function (w) { wish.appendChild(h("span", { title: (w.author || "") + (w.video ? " · " + w.video : ""), text: w.text })); });
+    if (!(C.wishes || []).length) wish.appendChild(h("div", { cls: "label", text: "Noch keine. Wenn jemand „Mach mal ein Video über …“ schreibt, steht es hier." }));
+
+    var log = clear($("kmLog"));
+    (C.log || []).forEach(function (e) {
+      var at = new Date(e.at);
+      log.appendChild(h("div", { cls: "cm-l" }, [
+        h("span", { cls: "t", text: fDayS.format(at).replace(/,.*/, "") + " " + fTime.format(at) }),
+        h("div", { cls: "c" }, [h("span", { cls: "label", text: (e.author || "") + (e.video ? " · " + e.video : "") }), h("div", { text: "„" + e.text + "“" }),
+          h("span", { cls: "r" + (e.sent ? "" : " skip"), text: e.sent ? "↳ " + e.reply + (e.by === "du" ? " (von dir)" : "") : "Keine Antwort: " + (e.skip || "") })])
+      ]));
+    });
+    if (!(C.log || []).length) log.appendChild(h("div", { cls: "label", text: "Noch keine Antworten." }));
+  }
+  ["kmOn", "kmMode", "kmPer"].forEach(function (id) {
+    $(id).addEventListener("change", function () {
+      api("api/comments/settings", { on: $("kmOn").checked, mode: $("kmMode").value, per_day: +$("kmPer").value })
+        .then(function () { if (id === "kmOn") toast($("kmOn").checked ? "Kommentar-Antworten an" : "Kommentar-Antworten aus"); }, function (e) { toast(e.message); });
+    });
+  });
+  $("kmCheck").addEventListener("click", function () { api("api/comments/check").then(function () { toast("Prüft jetzt die neuen Kommentare"); setTimeout(load, 8000); }, function (e) { toast(e.message); }); });
 
   // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {
