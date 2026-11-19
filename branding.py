@@ -16,10 +16,11 @@ FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 BG_TOP, BG_BOTTOM = (24, 16, 64), (8, 8, 14)
 ACCENT = (255, 209, 102)   # Gelb wie die hervorgehobenen Wörter in den Videos
 RED = (240, 68, 68)
-NICHES = [("🏎️", "Business"), ("🧠", "Psychologie"), ("🏛️", "Geschichte"), ("💸", "Geld"), ("🌍", "Geografie")]
+# Was der Kanal heute zeigt (Emojis schweben im Banner, Namen stehen unter dem Kanalnamen)
+NICHES = [("🧠", "Was passiert, wenn …?"), ("🤔", "Warum?"), ("🔍", "Rätsel"), ("👻", "Grusel"), ("🧱", "Blockwelt")]
 
 # Erhöhen, wenn sich Banner oder Beschreibung ändern: dann setzt die App sie neu.
-VERSION = 3
+VERSION = 4
 
 
 def _times(hours):
