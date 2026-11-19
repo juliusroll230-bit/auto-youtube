@@ -35,4 +35,14 @@ import fishtts
 v = fishtts.Voice(None, "k", "normal", "dunkel", "warm")
 assert v.pick("warm") == "warm" and v.pick("neugierig", "freundlich") == "warm" and v.pick("gruselig") == "dunkel"
 assert v.pick("neugierig", "klar") == "normal" and fishtts.Voice(None, "k", "normal").pick("warm") == "normal"
+# Loop-Ende (Test seit 19.11.2026): nur Cartoon-Shorts, lange Videos und alte Shorts zählen nicht mit
+assert learn.ending({"stil": "cartoon", "ende": "loop"}) == "Loop"
+assert learn.ending({"stil": "cartoon"}) == "normal"
+assert learn.ending({"stil": "cartoon", "laenge": "lang", "ende": "loop"}) is None
+assert learn.ending({"niche": "Geld"}) is None
+assert learn.features({"stil": "cartoon", "ende": "loop", "segments": [{"text": "a"}]}, {})["ende"] == "Loop"
+loop = {"stil": "cartoon", "ende": "loop", "title": "X", "segments": [{"text": "Was passiert, wenn du X?"}, {"text": "Also frag dich noch mal:"}]}
+assert not any("Loop-Ende" in t for t in hookcheck.text_tips(loop))
+loop["segments"][-1]["text"] = "Das war es."
+assert any("Loop-Ende" in t for t in hookcheck.text_tips(loop))
 print("ok")

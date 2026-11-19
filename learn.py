@@ -135,7 +135,7 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
-                 "welt_typ": "Look je Video-Typ"}
+                 "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)"}
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
@@ -201,6 +201,16 @@ def _hook_bucket(spec):
         return None
 
 
+def ending(spec):
+    """Schluss eines Shorts: "Loop" (letzter Satz führt in den ersten zurück, Test seit 19.11.2026) oder "normal".
+
+    Lange Videos und Videos von vor dem Test bekommen nichts, damit der Vergleich nur neue Shorts enthält.
+    """
+    if spec.get("laenge") == "lang" or spec.get("stil") != "cartoon":
+        return None
+    return "Loop" if str(spec.get("ende", "")).lower() == "loop" else "normal"
+
+
 def features(spec, look):
     words = [len(s["text"].split()) for s in spec.get("segments", [])]
     total, hook = sum(words), (words[0] if words else 0)
@@ -223,6 +233,7 @@ def features(spec, look):
         "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
         "welt": world(spec),
         "welt_typ": world_by_type(spec),
+        "ende": ending(spec),
     }
 
 
