@@ -124,6 +124,13 @@ def init():
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
                 cfg["post_hours_weekend"] = DEFAULT_CONFIG["post_hours_weekend"]
             cfg["hours_v7"] = True
+        # 19.11.: Julius will sicher 15 Shorts am Tag (jede volle Stunde 8 bis 22 Uhr). Gespeicherte Zeiten mit
+        # weniger Plätzen (z. B. 10) hätten den neuen Standard überdeckt, darum einmalig für alle Tage umstellen.
+        if not cfg.get("hours_v8"):
+            for key in ("post_hours", "post_hours_weekend"):
+                if len(cfg.get(key) or []) < len(DEFAULT_CONFIG[key]):
+                    cfg[key] = list(DEFAULT_CONFIG[key])
+            cfg["hours_v8"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
