@@ -209,7 +209,8 @@ def render_short(spec):
     # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
     look = agents.apply_look(store.next_look(), ag)
     if spec.get("stil") == "cartoon":  # Stimme passend zur Stimmung, gelernt (oder fest im Skript)
-        look["stimme"] = spec.get("stimme") or store.next_voice(spec)
+        # lange Videos: immer die klare Stimme (Julius, 19.11.2026), Shorts lernen
+        look["stimme"] = spec.get("stimme") or ("klar" if spec.get("laenge") == "lang" else store.next_voice(spec))
         if spec.get("laenge") != "lang":  # Test: starke Soundeffekte auf der Auflösung gegen dezente
             look["effekte"] = spec.get("effekte") or store.next_effects()
     key = store.config().get("stock_key", "")

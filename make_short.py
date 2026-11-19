@@ -39,7 +39,7 @@ VOICES = {
     "unheimlich": (0.97, 1.13, 0.0),  # ernst und gelassen: kaum tiefer, deutlich ruhiger gesprochen, ohne Hall und ohne Brummen
     "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
     "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
-    "aufgeregt": (1.0, 0.82, 0.0),   # aufgeregt: höher, deutlich flotter, mit mehr Betonung (seit 19.11.2026, für Erklärvideos)
+    "aufgeregt": (1.0, 0.86, 0.0),   # aufgeregt: etwas flotter, mit Betonung (19.11.2026, abends auf Julius' Wunsch etwas zurückgenommen)
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -50,7 +50,7 @@ VOICE_MODELS = {
     "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
 }
 # Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
-VOICE_NOISE = {"aufgeregt": (1.0, 1.1)}
+VOICE_NOISE = {"aufgeregt": (0.9, 1.0)}
 _voice_models = {}
 
 
@@ -101,20 +101,20 @@ def speak_lively(tts, text, voice, length_scale):
     Fragen und Ausrufe enden höher, *Schlüsselwörter* sind höher und lauter. Kurze Atempausen dazwischen. Ohne Hall."""
     rate = tts.config.sample_rate
     clauses = [c for c in re.split(r"(?<=[,;:!?.])\s+", text.strip()) if c]
-    melody = (1.04, 0.99, 1.03, 0.98)
+    melody = (1.025, 0.99, 1.02, 0.985)
     out = []
     for i, clause in enumerate(clauses):
         key = "*" in clause
         plain = clause.replace("*", "")
         pitch = melody[i % len(melody)]
         if key:
-            pitch += 0.04
+            pitch += 0.025
         if plain.rstrip().endswith(("?", "!")):
-            pitch += 0.03
+            pitch += 0.02
         x = speak_piper(tts, plain, voice, length_scale=length_scale * pitch)
         x = _repitch(x, pitch)
         if key:
-            x = np.clip(x * 1.25, -1, 1)
+            x = np.clip(x * 1.15, -1, 1)
         out.append(x)
         if i < len(clauses) - 1:
             out.append(np.zeros(int((0.09 if plain.rstrip().endswith(",") else 0.05) * rate), dtype=np.float32))
