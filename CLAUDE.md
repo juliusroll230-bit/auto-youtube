@@ -104,7 +104,7 @@ keine fremden Sounds, Memes oder Bilder.
 
 Die Stimme `aufgeregt` (seit 19.11.2026, Julius: „die Stimme ist so trocken“) ist bei Erklärvideos die erste Wahl: Thorsten-emotional
 (Sprecher „amused“), höher, flotter, mehr Schwankung, Satzmelodie je Satzteil und höher/lauter auf `*Schlüsselwörtern*`
-(`make_short.speak_lively`), ohne Hall (am 19.11. abends etwas zurückgenommen, Julius: „bisschen zu extrem“). Lange Videos bekommen immer die Stimme `klar` (Julius mag sie zum Erklären). Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
+(`make_short.speak_lively`), ohne Hall (am 19.11. abends etwas zurückgenommen, Julius: „bisschen zu extrem“; später: zu hoch wie Stimmbruch, daher tiefere Grundlage und am Satzende geht die Stimme nach unten, `make_short._glide`). Lange Videos bekommen immer die Stimme `klar` (Julius mag sie zum Erklären). Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 
