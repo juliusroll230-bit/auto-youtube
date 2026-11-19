@@ -96,27 +96,44 @@ def _repitch(x, factor):
     return np.interp(np.linspace(0, len(x) - 1, int(len(x) / factor)), np.arange(len(x)), x).astype(np.float32)
 
 
+def _glide(x, start, end_factor):
+    """Tonhöhe ab dem Anteil start des Stücks langsam auf end_factor senken (Satzende geht runter)."""
+    n = len(x)
+    if n < 400:
+        return x
+    u = np.linspace(0, 1, n)
+    f = np.where(u < start, 1.0, 1.0 + (end_factor - 1.0) * np.clip((u - start) / (1 - start), 0, 1))
+    pos = np.cumsum(f) - f[0]
+    pos = pos[pos <= n - 1]
+    return np.interp(pos, np.arange(n), x).astype(np.float32)
+
+
+BASE = 0.94  # Grundtonhöhe der aufgeregten Stimme: tiefer als das Modell von selbst (gegen Quietschen)
+
+
 def speak_lively(tts, text, voice, length_scale):
-    """Spricht einen Satz in Satzteilen mit Melodie statt monoton: der Ton steigt und fällt von Teil zu Teil,
-    Fragen und Ausrufe enden höher, *Schlüsselwörter* sind höher und lauter. Kurze Atempausen dazwischen. Ohne Hall."""
+    """Spricht einen Satz in Satzteilen, klar und tief genug (kein Quietschen), mit Betonung auf *Schlüsselwörtern*
+    (lauter, etwas langsamer). Fragen enden leicht höher, Aussagen gehen am Ende nach unten. Kurze Atempausen. Ohne Hall."""
     rate = tts.config.sample_rate
     clauses = [c for c in re.split(r"(?<=[,;:!?.])\s+", text.strip()) if c]
-    melody = (1.025, 0.99, 1.02, 0.985)
     out = []
     for i, clause in enumerate(clauses):
         key = "*" in clause
         plain = clause.replace("*", "")
-        pitch = melody[i % len(melody)]
+        last = i == len(clauses) - 1
+        question = plain.rstrip().endswith("?")
+        x = speak_piper(tts, plain, voice, length_scale=length_scale * BASE * (1.04 if key else 1.0))
+        x = _repitch(x, BASE)
+        if question:
+            x = _glide(x, 0.6, 1.04)
+        elif plain.rstrip().endswith((".", "!")) or last:
+            x = _glide(x, 0.45, 0.9)  # Satzende: Stimme geht runter
+        elif plain.rstrip().endswith(","):
+            x = _glide(x, 0.7, 0.99)
         if key:
-            pitch += 0.025
-        if plain.rstrip().endswith(("?", "!")):
-            pitch += 0.02
-        x = speak_piper(tts, plain, voice, length_scale=length_scale * pitch)
-        x = _repitch(x, pitch)
-        if key:
-            x = np.clip(x * 1.15, -1, 1)
+            x = np.clip(x * 1.12, -1, 1)
         out.append(x)
-        if i < len(clauses) - 1:
+        if not last:
             out.append(np.zeros(int((0.09 if plain.rstrip().endswith(",") else 0.05) * rate), dtype=np.float32))
     return np.concatenate(out).astype(np.float32) if out else np.zeros(1, dtype=np.float32)
 
