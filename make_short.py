@@ -5,6 +5,7 @@ Braucht: ffmpeg, pillow, numpy, piper-tts und das Piper-Modell de_DE-thorsten-hi
 """
 import json
 import math
+import re
 import os
 import subprocess
 import sys
@@ -38,6 +39,7 @@ VOICES = {
     "unheimlich": (0.97, 1.13, 0.0),  # ernst und gelassen: kaum tiefer, deutlich ruhiger gesprochen, ohne Hall und ohne Brummen
     "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
     "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
+    "aufgeregt": (1.0, 0.82, 0.0),   # aufgeregt: höher, deutlich flotter, mit mehr Betonung (seit 19.11.2026, für Erklärvideos)
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -45,7 +47,10 @@ VOICES = {
 VOICE_MODELS = {
     "freundlich": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
     "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
+    "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
 }
+# Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
+VOICE_NOISE = {"aufgeregt": (1.0, 1.1)}
 _voice_models = {}
 
 
@@ -70,7 +75,8 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
     model = voice_model(voice)
     if model:
         m, speaker = model
-        cfg = SynthesisConfig(length_scale=length_scale, speaker_id=speaker)
+        ns, nw = VOICE_NOISE.get(voice, (None, None))
+        cfg = SynthesisConfig(length_scale=length_scale, speaker_id=speaker, noise_scale=ns, noise_w_scale=nw)
         x = np.concatenate([c.audio_float_array for c in m.synthesize(text, syn_config=cfg)])
         src = m.config.sample_rate
         if src != rate:
@@ -78,6 +84,41 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
         return x
     cfg = SynthesisConfig(length_scale=length_scale)
     return np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+
+
+LIVELY = ("aufgeregt",)   # Stimmen mit Satzmelodie: Satzteile, Betonung auf Schlüsselwörtern (gegen "trocken")
+
+
+def _repitch(x, factor):
+    """Tonhöhe um factor ändern (Strecken); die Dauer ändert sich mit und wird beim Sprechen eingerechnet."""
+    if abs(factor - 1) < 1e-3:
+        return x
+    return np.interp(np.linspace(0, len(x) - 1, int(len(x) / factor)), np.arange(len(x)), x).astype(np.float32)
+
+
+def speak_lively(tts, text, voice, length_scale):
+    """Spricht einen Satz in Satzteilen mit Melodie statt monoton: der Ton steigt und fällt von Teil zu Teil,
+    Fragen und Ausrufe enden höher, *Schlüsselwörter* sind höher und lauter. Kurze Atempausen dazwischen. Ohne Hall."""
+    rate = tts.config.sample_rate
+    clauses = [c for c in re.split(r"(?<=[,;:!?.])\s+", text.strip()) if c]
+    melody = (1.04, 0.99, 1.03, 0.98)
+    out = []
+    for i, clause in enumerate(clauses):
+        key = "*" in clause
+        plain = clause.replace("*", "")
+        pitch = melody[i % len(melody)]
+        if key:
+            pitch += 0.04
+        if plain.rstrip().endswith(("?", "!")):
+            pitch += 0.03
+        x = speak_piper(tts, plain, voice, length_scale=length_scale * pitch)
+        x = _repitch(x, pitch)
+        if key:
+            x = np.clip(x * 1.25, -1, 1)
+        out.append(x)
+        if i < len(clauses) - 1:
+            out.append(np.zeros(int((0.09 if plain.rstrip().endswith(",") else 0.05) * rate), dtype=np.float32))
+    return np.concatenate(out).astype(np.float32) if out else np.zeros(1, dtype=np.float32)
 
 
 def voice_color(samples, rate, voice, pitch=None):
@@ -129,7 +170,10 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         for seg in segments:
             # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
             text = seg["text"].replace("*", "")
-            samples = speak_piper(tts, text, voice, length_scale=speed * slower * pitch)
+            if voice in LIVELY:
+                samples = speak_lively(tts, seg["text"], voice, length_scale=speed * slower * pitch)
+            else:
+                samples = speak_piper(tts, text, voice, length_scale=speed * slower * pitch)
             spoken.append(voice_color(samples, rate, voice) if voice else samples)
 
     chunks, timings, t = [], [], 0.0
