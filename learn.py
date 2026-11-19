@@ -105,11 +105,16 @@ TRANSITIONS = ("blitz", "wischen", "zoom", "glitch")   # wie make_short.Scene.TR
 HEADLINES = ("mit", "ohne")                             # Titel als Kopfzeile oben im Bild
 BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (stock.py) oder gezeichnet
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
+# "warm": ruhige, freundliche Geschichten (seit 16.11.2026 Test); "freundlich" testet auch bei Erklärvideos mit.
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
-                   "neugierig": ("froehlich", "klar")}
+                   "neugierig": ("froehlich", "klar", "freundlich"),
+                   "warm": ("freundlich", "erzaehlerin", "erzaehler")}
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
-                 "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie"}
+                 "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
+                 "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
+                 "welt_typ": "Look je Video-Typ"}
+THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
 def default_look(spec):
@@ -125,6 +130,8 @@ def cartoon_mood(spec):
     """Stimmung eines Cartoons: aus dem Skript, sonst Horror gruselig und alles andere mysteriös."""
     if spec.get("stimmung") in VOICES_FOR_MOOD:
         return spec["stimmung"]
+    if str(spec.get("niche", "")).lower() == "erzählung":
+        return "warm"
     return "gruselig" if str(spec.get("niche", "")).lower() == "horror" else "mysterioes"
 
 
@@ -140,9 +147,27 @@ def video_type(spec):
         return "Mystery"
     if niche == "horror":
         return "Horror"
+    if niche == "erzählung":   # nicht "Geschichte": so heißt die alte Nische für echte Geschichte (History)
+        return "Erzählte Geschichte"   # ausgedachte Ich-Geschichte mit Wendung, warme Stimme (Test seit 16.11.2026)
     if spec.get("stil") == "cartoon":
         return "Mystery"  # alte Cartoons wie die Tanzwut
     return "Normal (Fakten)"
+
+
+def world(spec):
+    """Look der Cartoons: Blockwelt in 3D ("welt": "block") oder Strichmännchen in 2D. Für den Vergleich in der Zentrale."""
+    if spec.get("stil") != "cartoon" or spec.get("laenge") == "lang":
+        return None
+    return "Blockwelt 3D" if spec.get("welt") == "block" else "Strichmännchen 2D"
+
+
+def world_by_type(spec):
+    """Look und Video-Typ zusammen (z. B. "Horror · 3D"). Fairer Vergleich, weil Erklärvideos sonst den 2D-Schnitt heben."""
+    w = world(spec)
+    if not w:
+        return None
+    typ = video_type(spec).replace("Erklärvideo: ", "Erklär: ")
+    return f"{typ} · {'3D' if w.startswith('Blockwelt') else '2D'}"
 
 
 def _hook_bucket(spec):
@@ -173,6 +198,9 @@ def features(spec, look):
         "stimmung": cartoon_mood(spec) if spec.get("stil") == "cartoon" else None,
         "stimme": look.get("stimme") if spec.get("stil") == "cartoon" else None,
         "serie": spec.get("serie") or None,
+        "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
+        "welt": world(spec),
+        "welt_typ": world_by_type(spec),
     }
 
 
@@ -218,6 +246,11 @@ def choose_look(fscores, step):
 def choose_voice(fscores, step, spec):
     """Stimme für ein Cartoon: die beste passende (3 von 4 Mal) oder ein Test der anderen."""
     return choose(VOICES_FOR_MOOD[cartoon_mood(spec)], fscores.get("stimme", {}), step)
+
+
+def choose_thumb(fscores, step):
+    """Thumbnail-Variante: die bessere (3 von 4 Mal) oder ein Test der anderen."""
+    return choose(THUMBS, fscores.get("thumbnail", {}), step)
 
 
 def feature_summary(fscores):

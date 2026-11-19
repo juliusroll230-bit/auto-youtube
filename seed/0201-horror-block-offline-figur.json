@@ -1,0 +1,106 @@
+{
+  "slug": "horror-block-offline-figur",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a14",
+    "#4a2a6c"
+  ],
+  "accent": "#ff3b2f",
+  "stimmung": "gruselig",
+  "title": "Die Figur, die spielt, wenn niemand online ist 🎮",
+  "description": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Deine Figur ist im Spiel unterwegs, obwohl du offline bist.\n\n#horror #gruselgeschichte #creepypasta #gaming #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "gaming",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "segments": [
+    {
+      "text": "Deine Spielfigur bewegt sich, obwohl du seit Stunden offline bist.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "chat": "Freund: bist du doch online?",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Dein Freund schickt dir Bilder aus dem Spiel.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "📸",
+        "text": "Neue Bilder"
+      }
+    },
+    {
+      "text": "Auf jedem steht deine Figur in einem dunklen Wald.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "kamera": "weit"
+      }
+    },
+    {
+      "text": "Sie schaut nicht zu ihm, sondern direkt in die Kamera.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "kamera": "nah"
+      }
+    },
+    {
+      "text": "Du loggst dich ein, um nachzusehen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "💻",
+        "text": "Einloggen"
+      }
+    },
+    {
+      "text": "Deine Figur steht im Wald, und hinter ihr bewegt sich etwas.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "kamera": "schulter"
+      }
+    },
+    {
+      "text": "Es trägt deinen Namen über dem Kopf.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "kamera": "vorne",
+        "chat": "???: hab dich gefunden"
+      }
+    },
+    {
+      "text": "Wer hat dann die ganze Zeit gespielt?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "🎮"
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-warum-schluckauf",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2030",
+    "#6a8ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum hast du Schluckauf, und wozu ist er gut? 😮",
+  "description": "Beim Schluckauf zuckt das Zwerchfell und die Stimmbänder schließen sich. Wozu das gut sein soll, weiß bis heute niemand genau.\n\n#wissen #schluckauf #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schluckauf",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Hick | niemand weiß warum",
+    "Ein alter Reflex"
+  ],
+  "segments": [
+    {
+      "text": "Warum hast du Schluckauf, und wozu ist er überhaupt gut?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "😮"
+      }
+    },
+    {
+      "text": "Dein Zwerchfell zuckt plötzlich, ganz ohne Befehl.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🫁",
+        "text": "Zwerchfell zuckt"
+      }
+    },
+    {
+      "text": "Direkt danach schließen sich deine Stimmbänder.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔒",
+        "text": "Stimmbänder zu"
+      }
+    },
+    {
+      "text": "Die Luft knallt dagegen, und es macht Hick.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💨",
+          "text": "Luft strömt ein"
+        },
+        "rechts": {
+          "objekt": "🔒",
+          "text": "Stimmbänder zu"
+        }
+      }
+    },
+    {
+      "text": "Ausgelöst wird es oft durch hastiges Essen oder Sprudel.",
+      "szene": {
+        "typ": "liste",
+        "text": "Häufige Auslöser",
+        "punkte": [
+          "Hastig essen",
+          "Sprudel",
+          "Aufregung"
+        ]
+      }
+    },
+    {
+      "text": "Wozu es gut ist, weiß niemand genau.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Niemand weiß es"
+      }
+    },
+    {
+      "text": "Eine Theorie sagt: ein Überbleibsel aus der Zeit im Bauch.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👶",
+        "text": "Alter Reflex"
+      }
+    },
+    {
+      "text": "Meist ist er nach wenigen Minuten wieder von allein vorbei.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😌"
+      }
+    }
+  ]
+}

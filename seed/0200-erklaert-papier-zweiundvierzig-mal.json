@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-papier-zweiundvierzig-mal",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2030",
+    "#8aa0c8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du Papier zweiundvierzig Mal faltest? 📄",
+  "description": "Jede Faltung verdoppelt die Dicke. Warum ein Blatt Papier nach zweiundvierzig Faltungen theoretisch über den Mond hinausragt und warum es in echt nie klappt.\n\n#wissen #mathe #papier #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "mathe",
+    "papier",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Paula"
+  },
+  "segments": [
+    {
+      "text": "Du faltest Papier zweiundvierzig Mal. Wie dick wird es?",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📄"
+      }
+    },
+    {
+      "text": "Zehn Faltungen: handbreit. Zwanzig: Hochhaus. Dreißig: Weltall.",
+      "szene": {
+        "typ": "liste",
+        "text": "Dein Stapel",
+        "punkte": [
+          "10: handbreit",
+          "20: Hochhaus",
+          "30: Weltall"
+        ]
+      }
+    },
+    {
+      "text": "Bei zweiundvierzig ist der Stapel länger als der Weg zum Mond.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 42,
+        "einheit": "Faltungen",
+        "objekt": "🌕",
+        "farbcode": "#1a2030"
+      }
+    },
+    {
+      "text": "Er misst etwa vierhundertvierzigtausend Kilometer, bis zum Mond sind es weniger.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📄",
+          "text": "Stapel: 440.000 km"
+        },
+        "rechts": {
+          "objekt": "🌕",
+          "text": "Mond: 384.000 km"
+        }
+      }
+    },
+    {
+      "text": "Doch probier es aus, und es klappt nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Klappt das?"
+      }
+    },
+    {
+      "text": "Normales Papier schafft meist nur sieben bis acht Faltungen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📄",
+        "text": "Meist sieben"
+      }
+    },
+    {
+      "text": "Der Weltrekord liegt bei zwölf, mit einem Streifen von über einem Kilometer.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 12,
+        "einheit": "Faltungen",
+        "objekt": "🏆",
+        "farbcode": "#1a2030"
+      }
+    },
+    {
+      "text": "Jede Faltung verdoppelt die Dicke, und Verdoppeln wird schnell riesig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "✖️"
+      }
+    }
+  ],
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Papier | bis zum Mond",
+    "42 Mal falten"
+  ]
+}

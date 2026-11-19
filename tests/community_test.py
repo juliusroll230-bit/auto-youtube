@@ -61,7 +61,8 @@ assert [p["hour"] for p in plan] == [10, 14, 19] and len({p["type"] for p in pla
 community.set_per_day(store, 5)
 o = community.overview(store, posted, planned, {}, [8, 11, 13, 16, 18], firma=True)
 assert [p["hour"] for p in o["posts"] if p.get("hour")] == [9, 12, 15, 19, 21]
-assert community.post_times(3, [10, 14]) == [11, 15, 19]  # nie zur gleichen Stunde wie ein Short
+assert community.post_times(3, [10, 14]) == [11, 15, 19]
+assert community.post_times(3, list(range(8, 23))) == [10, 14, 19]  # Shorts jede Stunde: feste Zeiten  # nie zur gleichen Stunde wie ein Short
 for bad in (0, 6, "x"):
     try:
         community.set_per_day(store, bad)

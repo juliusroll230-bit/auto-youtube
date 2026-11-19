@@ -1,0 +1,110 @@
+{
+  "slug": "mystery-utah-monolith",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#2a1a10",
+    "#c4803a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Der Monolith, den niemand aufgestellt haben will 🔲",
+  "description": "November 2020: In der Wüste von Utah steht plötzlich eine Metallsäule. Wer sie aufgestellt hat, ist ungeklärt.\n\n#mystery #rätsel #monolith #utah #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "monolith",
+    "utah",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "helm",
+    "name": "Pilot"
+  },
+  "segments": [
+    {
+      "text": "Ein Hubschrauber überfliegt die Wüste, und plötzlich glänzt dort Metall.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔲"
+      }
+    },
+    {
+      "text": "Im November zweitausendzwanzig entdecken Piloten in Utah eine glänzende Metallsäule.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 2020,
+        "text": "Utah",
+        "objekt": "🔲"
+      }
+    },
+    {
+      "text": "Sie steht mitten im Felsen, gut drei Meter hoch, ganz ohne Hinweis.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🔲",
+        "text": "Drei Meter"
+      }
+    },
+    {
+      "text": "Kein Schild und kein Absender.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "❓",
+        "text": "Wer war es?"
+      }
+    },
+    {
+      "text": "Satellitenbilder zeigen: Sie stand dort schon seit etwa zweitausendsechzehn.",
+      "szene": {
+        "typ": "akte",
+        "text": "Alte Bilder",
+        "punkte": [
+          "🛰️",
+          "📅",
+          "🔲"
+        ]
+      }
+    },
+    {
+      "text": "Nach wenigen Tagen ist sie plötzlich weg, nur Spuren bleiben.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🕳️",
+        "text": "Plötzlich weg"
+      }
+    },
+    {
+      "text": "Dann tauchen ähnliche Säulen in Rumänien und Kalifornien auf.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mehr Säulen",
+        "punkte": [
+          "Utah",
+          "Rumänien",
+          "Kalifornien"
+        ]
+      }
+    },
+    {
+      "text": "Wer die erste baute, bleibt offen. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "🔲",
+        "text": "Wer war es?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Monolith | wer baute ihn",
+    "Plötzlich in der Wüste"
+  ]
+}

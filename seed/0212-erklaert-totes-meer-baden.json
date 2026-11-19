@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-totes-meer-baden",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0c2a3a",
+    "#4ab0c8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du im Toten Meer baden gehst? 🧂",
+  "description": "Im Toten Meer sinkst du nicht. Warum das Salzwasser dich trägt und was du dort besser lässt.\n\n#wissen #totesmeer #salz #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "totesmeer",
+    "salz",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Totes Meer | trägt dich",
+    "Du sinkst nie"
+  ],
+  "segments": [
+    {
+      "text": "Du steigst ins Tote Meer und gehst nicht unter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🧂"
+      }
+    },
+    {
+      "text": "Das Wasser ist so salzig, dass es dich trägt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🧂",
+        "text": "Extrem salzig"
+      }
+    },
+    {
+      "text": "Es hat ungefähr zehnmal mehr Salz als normales Meerwasser.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "mal mehr Salz",
+        "objekt": "🌊",
+        "farbcode": "#0c2a3a"
+      }
+    },
+    {
+      "text": "Dein Körper ist leichter als das Wasser, also schwimmst du oben.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧍",
+          "text": "Du: leichter"
+        },
+        "rechts": {
+          "objekt": "💧",
+          "text": "Wasser: schwerer"
+        }
+      }
+    },
+    {
+      "text": "Lesen auf dem Wasser klappt, Tauchen dagegen gar nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Ein Spritzer ins Auge brennt sehr stark.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "👁️",
+        "text": "Brennt"
+      }
+    },
+    {
+      "text": "Kratzer auf der Haut brennen im Salz ebenfalls.",
+      "szene": {
+        "typ": "liste",
+        "text": "Besser lassen",
+        "punkte": [
+          "Frische Kratzer",
+          "Wasser schlucken",
+          "Tauchen"
+        ]
+      }
+    },
+    {
+      "text": "Schlucken solltest du nie: Das Salz belastet Körper und Magen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "🧂"
+      }
+    }
+  ]
+}

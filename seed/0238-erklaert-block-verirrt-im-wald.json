@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-verirrt-im-wald",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#10241a",
+    "#5ac07a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du dich im Wald verirrst? 🌲",
+  "description": "Erklärt in der Blockwelt: Warum Stehenbleiben meist besser ist als Weiterlaufen und wie dich Suchtrupps schneller finden.\n\n#wissen #wald #sicherheit #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "wald",
+    "sicherheit",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Verirrt | Nicht rennen",
+    "Stehen bleiben rettet"
+  ],
+  "segments": [
+    {
+      "text": "Du bist im Wald, und plötzlich erkennst du keinen Weg mehr.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🧭",
+        "chat": "Spieler: wo bin ich?"
+      }
+    },
+    {
+      "text": "Der erste Instinkt ist weiterzulaufen, und genau das ist falsch.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❌",
+        "text": "Nicht rennen"
+      }
+    },
+    {
+      "text": "Wer läuft, verirrt sich oft noch weiter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Die Regel heißt: Stehen bleiben, denken, umsehen, planen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🛑",
+        "text": "Stehen bleiben"
+      }
+    },
+    {
+      "text": "Wer bleibt, wird von Suchtrupps viel leichter gefunden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 4,
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "text": "Suchtrupp"
+      }
+    },
+    {
+      "text": "Dreimal Pfeifen oder Rufen ist ein bekanntes Notsignal.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "📢",
+        "text": "Dreimal"
+      }
+    },
+    {
+      "text": "Hilfreich sind helle Kleidung und ein Handy mit Akku.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "cool",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Sag vor jedem Ausflug jemandem, wohin du gehst.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "🗺️",
+        "chat": "Du: Bescheid gesagt"
+      }
+    }
+  ]
+}

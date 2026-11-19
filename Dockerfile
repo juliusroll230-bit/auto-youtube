@@ -14,9 +14,20 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Deutsche Stimme "thorsten" (Piper, CC0)
+# curl mit Wiederholungen: GitHub liefert beim Bauen manchmal kurz eine Fehlerseite statt der Datei.
 RUN mkdir -p models \
- && curl -sSL https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2 \
-    | tar xj -C models
+ && curl -fsSL --retry 6 --retry-delay 5 --retry-all-errors -o /tmp/voice.tar.bz2 \
+    https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-de_DE-thorsten-high.tar.bz2 \
+ && tar xjf /tmp/voice.tar.bz2 -C models \
+ && rm /tmp/voice.tar.bz2
+
+# Zwei weitere Stimmen (beide CC0) für Geschichten und freundliche Erklärungen, siehe make_short.VOICE_MODELS.
+# Klappt der Download nicht, sprechen diese Videos mit der normalen Thorsten-Stimme.
+RUN for v in de_DE-thorsten_emotional-medium de_DE-kerstin-low; do \
+      curl -fsSL --retry 6 --retry-delay 5 --retry-all-errors -o /tmp/v.tar.bz2 \
+        https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-$v.tar.bz2 \
+      && tar xjf /tmp/v.tar.bz2 -C models && rm /tmp/v.tar.bz2 || echo "Stimme $v fehlt"; \
+    done
 
 # Spracherkennung für den Video-Clipper (Whisper "base", läuft auf der CPU).
 # Klappt der Download beim Bauen nicht, lädt die App das Modell beim ersten Clip nach.

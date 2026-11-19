@@ -1,0 +1,105 @@
+{
+  "slug": "erklaert-stimme-aufnahme-fremd",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1030",
+    "#7a5ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum klingt deine Stimme auf Aufnahmen so fremd? 🎙️",
+  "description": "Warum erschrickst du bei deiner Sprachnachricht? Es liegt an Knochen, Luft und zwei Wegen für den Schall.\n\n#wissen #stimme #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "stimme",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner",
+    "name": "Ben"
+  },
+  "segments": [
+    {
+      "text": "Du hörst deine Sprachnachricht und erschrickst: Das bin doch nicht ich?",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🎙️"
+      }
+    },
+    {
+      "text": "Warum klingt deine Stimme auf Aufnahmen plötzlich fremd?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Warum fremd?"
+      }
+    },
+    {
+      "text": "Wenn du sprichst, hörst du dich auf zwei Wegen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "👂",
+        "text": "Zwei Wege"
+      }
+    },
+    {
+      "text": "Einmal durch die Luft, einmal durch Knochen und Schädel.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌬️",
+          "text": "Luft"
+        },
+        "rechts": {
+          "objekt": "🦴",
+          "text": "Knochen"
+        }
+      }
+    },
+    {
+      "text": "Knochen machen deine Stimme tiefer und voller.",
+      "szene": {
+        "typ": "akte",
+        "text": "Innen-Klang",
+        "punkte": [
+          "🦴",
+          "🎵",
+          "⬇️"
+        ]
+      }
+    },
+    {
+      "text": "Ein Mikrofon hört nur den Weg durch die Luft.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🎙️",
+        "text": "Nur Luft"
+      }
+    },
+    {
+      "text": "Alle anderen hören dich schon immer genau so, nur du nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Alle hören so"
+      }
+    }
+  ],
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Stimme | Wer spricht da",
+    "Das bin nicht ich"
+  ]
+}

@@ -49,10 +49,11 @@ Test-Video: `python cartoon.py skript.json ausgabe/`.
 Zusätzlich für jede Szene: `wetter` (regen, nebel, blitz, schnee) und bei figur/zwei/gruppe/horror ein `monster` im Hintergrund.
 Figuren können `name` (Namensschild) und `art` ("zombie", "blass") haben.
 
-**Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery) oder
-`neugierig` (lockere Erklärung). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
+**Stimmung und Stimme:** Oben im Skript `"stimmung"`: `gruselig` (Horror), `mysterioes` (Rätsel, Mystery),
+`neugierig` (lockere Erklärung) oder `warm` (ruhig erzählte Geschichte, Spieluhr-Musik, Stimmen `freundlich`,
+`erzaehlerin`, `erzaehler`; Nische `Erzählung`, Vorbild `seed/0208`). Gruselig und mysteriös bekommen unheimliche Musik (Brummen, Herzschlag, Spieluhr),
 dunkleres Bild mit Nebel. Fehlt das Feld, ist Horror gruselig und alles andere mysteriös. Die Stimme (`froehlich`, `klar`,
-`erzaehler`, `unheimlich`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
+`erzaehler`, `unheimlich`, `freundlich`, `erzaehlerin`) wählt die Zentrale passend zur Stimmung und lernt, welche am besten ankommt;
 mit `"stimme"` im Skript ist sie fest.
 
 **Serien:** Oben im Skript `"serie": "Station 13"` und `"teil": 1`, die Hauptfigur mit festem Namen und fester Farbe in `figur`. Erste Szene ist schon Action, die `titel`-Szene kommt als zweite, letzte Szene endet mit offener Frage ("Teil 2 kommt bald"). Vorbild: `seed/0110-horror-station-13-teil-1.json`.
@@ -64,6 +65,20 @@ Eine Serie hat höchstens 3 Teile (Stand 10.11.: Teil 1 und 2 liefen gut, ab Tei
 - `farbe`: rot, blau, gelb, gruen, lila, navy · `hut`: keiner, bandana, matrose, kapitaen, krone, zylinder, helm, muetze, hexe, ritter
 - `text` und `tafel` höchstens 22 Zeichen.
 
+## Blockwelt (3D-Blockfiguren, `"welt": "block"`)
+
+Mit `"welt": "block"` oben im Skript spielen `figur`, `zwei`, `gruppe`, `horror`, `monster`, `objekt` und `raetsel`
+in einer 3D-Spielwelt aus Klötzen (`block3d.js`, three.js): eigene Blockfiguren mit Würfelkopf (Farbe aus `figur.farbe`,
+Gesicht nach `gefuehl`), Nacht, Taschenlampe, Nebel, flackernde Lampe. Monster: `schatten` (groß, schwarz, rote Augen),
+`zombie` (bis 4), `geist`. Alle anderen Szenentypen bleiben 2D. Keine Marken, Logos oder Figuren anderer Spiele.
+Zusatzfelder je Szene: `chat` (Spiel-Chat oben links, „Name: Nachricht“, höchstens 40 Zeichen, tippt sich Buchstabe
+für Buchstabe), `kamera` (`vorne`, `nah`, `weit`, `schulter` = über die Schulter auf die Gefahr), `tuer` (true: Tür
+geht langsam auf). Gut wirkende Orte: strasse, haus, keller, kinderzimmer, krankenhaus, dunkelwald, friedhof, spukhaus.
+Rendern dauert etwa 6 bis 7 Minuten für 22 Sekunden (WebGL mit SwiftShader). Vorbilder: `seed/0199` bis `0201`.
+Auch Erklärvideos gehen in der Blockwelt (helle Orte wie `feld`, `haus`, `buero`, `stadt`, `schule`, `labor`,
+`"stimmung": "neugierig"`); Vorbild `seed/0205`. Der Lernmodus vergleicht „Look 2D/3D“ (`learn.world`) und
+„Look je Video-Typ“ (`learn.world_by_type`, z. B. „Horror · 3D“ gegen „Horror · 2D“).
+
 ## Lange Videos (Querformat, 7 bis 12 Minuten)
 
 Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvideo statt eines Shorts. Vorbild:
@@ -73,6 +88,7 @@ Mit `"laenge": "lang"` oben im Skript wird aus dem Cartoon ein langes Erklärvid
 - Bild: echtes Querformat 1920x1080 (16:9). Dieselben Szenen, `lib.js` zeigt im Querformat (`PLAN.wide`) einen Ausschnitt des Hochformat-Entwurfsraums (Faktor 0,85), die Hintergründe reichen weit über den Rand. Neue Szenen: Hintergründe breit zeichnen (x von -740 bis 1820) und Vollflächen-Effekte mit `fillRect(-1500, -1500, 4080, 4500)`, Transform mit `base(ctx)` statt `setTransform(1, 0, 0, 1, 0, 0)`. Rendern dauert etwa so lang wie das Video. Stimme etwas langsamer als bei Shorts.
 - Eigene Warteschlange und eigener Sendeplan: `long_per_week` im Publisher (Standard 4 = Mo, Mi, Fr, Sa um 19 Uhr). Titel ohne `#shorts`. Kein Einfluss auf den Lernmodus der Shorts.
 - Aufbau: Hook in Satz 1, Frage stellen, in Kapiteln erklären, alle paar Sätze ein neuer Fakt oder eine neue Wendung, am Ende Frage an die Zuschauer.
+- Thumbnail: `"thumb_text": ["THEMA | Neugier-Zeile", "Satz für B"]` (je höchstens 4 Wörter), siehe `thumbnail.py` und CLAUDE.md. Die App baut zwei Varianten und setzt eine beim Upload.
 
 ## Firmen-Spiel: vier Firmen (`firma.py`, Szene `firma`)
 

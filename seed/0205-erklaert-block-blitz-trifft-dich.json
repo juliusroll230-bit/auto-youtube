@@ -1,0 +1,100 @@
+{
+  "slug": "erklaert-block-blitz-trifft-dich",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "vorrang": true,
+  "colors": [
+    "#101826",
+    "#3a5a8c"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dich ein Blitz trifft? ⚡",
+  "description": "Erklärt in der Blockwelt: Warum die meisten Menschen einen Blitzschlag überleben und was danach auf der Haut zu sehen ist.\n\n#wissen #blitz #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "blitz",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "segments": [
+    {
+      "text": "Du stehst auf einem Feld und plötzlich trifft dich ein Blitz.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "⚡",
+        "chat": "Server: Gewitter zieht auf"
+      }
+    },
+    {
+      "text": "In einem Bruchteil einer Sekunde jagt Strom durch deinen Körper.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "⚡",
+        "text": "Blitzschnell"
+      }
+    },
+    {
+      "text": "Doch oft fließt der meiste Strom außen über deine nasse Haut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "kamera": "nah"
+      }
+    },
+    {
+      "text": "Darum überleben die meisten Menschen einen Blitzschlag.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 4,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Die meisten überleben"
+      }
+    },
+    {
+      "text": "Gefährlich bleibt das Herz, denn es kann kurz aussetzen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "❤️",
+        "text": "Herz in Gefahr"
+      }
+    },
+    {
+      "text": "Und danach zeigt sich auf der Haut ein Muster wie ein Farn.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌿",
+        "chat": "Spieler: was ist das??"
+      }
+    },
+    {
+      "text": "Es heißt Lichtenberg-Figur und verschwindet meist nach ein paar Tagen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌿"
+      }
+    }
+  ],
+  "thumb_text": [
+    "Blitz | Farn auf der Haut",
+    "Du überlebst wahrscheinlich"
+  ]
+}

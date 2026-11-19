@@ -34,13 +34,20 @@ LATE_MIN = 100   # bis so spät danach wird ein verpasster Platz nachgeholt
 
 LOCK = threading.RLock()
 DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
-                  "post_hours": [8, 11, 13, 16, 18], "privacy": "public", "expired": False,
+                  # Sendezeiten (volle Stunden, deutsche Zeit): Mo bis Fr und Sa/So getrennt.
+                  # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
+                  # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
+                  # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
+                  "post_hours": list(range(8, 23)), "post_hours_weekend": list(range(8, 23)),
+                  "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
+                  # welche Berechtigungen der zweite Zugang hat (mit youtube.force-ssl darf die App auf Kommentare antworten)
+                  "analytics_scopes": "",
                   # Pixabay- oder Pexels-Schlüssel für echte Videoclips als Hintergrund (stock.py), leer = nur Animation
                   "stock_key": "",
                   # Fish Audio (fishtts.py): API-Schlüssel und Stimmen-IDs, leer = eingebaute Piper-Stimme
-                  "fish_key": "", "fish_voice": "", "fish_voice_dark": "",
+                  "fish_key": "", "fish_voice": "", "fish_voice_dark": "", "fish_voice_warm": "",
                   # Einstellungen der Agenten (agents.py) und Freigabe-Pflicht für neue Videos
                   "agents": {}, "approval": False,
                   # Schlüssel für den Video-Webhook (POST /webhook/video), wird beim ersten Start erzeugt
@@ -84,7 +91,8 @@ def init():
     for d in ("queue", "posted", "thumbs", "out", "rejected", "inbox", "campaigns", "share"):
         os.makedirs(path(d), exist_ok=True)
     with LOCK:
-        cfg = {**DEFAULT_CONFIG, **read("config.json", {})}
+        raw = read("config.json", {})
+        cfg = {**DEFAULT_CONFIG, **raw}
         # Alte Standardzeiten (3 pro Tag) einmalig auf 6 pro Tag umstellen, eigene Zeiten bleiben
         if not cfg.get("hours_v2"):
             if cfg["post_hours"] == [12, 17, 20]:
@@ -100,6 +108,21 @@ def init():
             if cfg["post_hours"] == [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]:
                 cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
             cfg["hours_v5"] = True
+        # 15.11.: Zeiten nach Zuschauer-Aktivität, am Wochenende eigene Zeiten. Eigene Zeiten bleiben,
+        # dann gelten sie auch am Wochenende (wie bisher).
+        if not cfg.get("hours_v6"):
+            if cfg["post_hours"] in ([8, 11, 13, 16, 18], DEFAULT_CONFIG["post_hours"]):
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+                cfg["post_hours_weekend"] = DEFAULT_CONFIG["post_hours_weekend"]
+            elif "post_hours" in raw and "post_hours_weekend" not in raw:
+                cfg["post_hours_weekend"] = list(cfg["post_hours"])
+            cfg["hours_v6"] = True
+        # 16.11.: 15 statt 5 Shorts am Tag. Alte Standardzeiten werden umgestellt, eigene Zeiten bleiben.
+        if not cfg.get("hours_v7"):
+            if cfg["post_hours"] == [12, 15, 16, 17, 18] and cfg.get("post_hours_weekend") in (None, [11, 13, 15, 17, 18]):
+                cfg["post_hours"] = DEFAULT_CONFIG["post_hours"]
+                cfg["post_hours_weekend"] = DEFAULT_CONFIG["post_hours_weekend"]
+            cfg["hours_v7"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
@@ -239,10 +262,21 @@ def find_spec(slug):
     return None
 
 
+def is_weekend(day):
+    return day.weekday() >= 5
+
+
+def hours_for(cfg, day):
+    """Sendezeiten (volle Stunden) für diesen Tag: Sa/So eigene Zeiten, sonst die normalen."""
+    if is_weekend(day) and cfg.get("post_hours_weekend"):
+        return cfg["post_hours_weekend"]
+    return cfg["post_hours"]
+
+
 def due_slot(at=None, done="done_slots"):
     """Der Sendeplatz, der gerade dran ist. done="clip_slots" für den eigenen Clip-Kanal."""
     at = at or now()
-    st, hours = state(), config()["post_hours"]
+    st, hours = state(), hours_for(config(), at)
     for h in hours:
         slot = at.replace(hour=int(h), minute=0, second=0, microsecond=0)
         key = slot.strftime("%Y-%m-%d-%H")
@@ -349,7 +383,7 @@ def clipi_room(cfg, st, at=None):
     ups = [u for u in st.get("uploads", []) if (u.get("posted_at") or "")[:10] == today]
     clip_done = sum(1 for u in ups if u.get("channel") == "clips")
     main_done = len(ups) - clip_done
-    main_total = len(cfg.get("post_hours") or []) + 2  # + langes Video + Firmen-Folge
+    main_total = len(hours_for(cfg, at) or []) + 2  # + langes Video + Firmen-Folge
     main_left = max(0, main_total - main_done)
     return max(0, PROJECT_DAILY - main_done - main_left - clip_done)
 
@@ -397,7 +431,7 @@ def sentence_marks(spec):
     return [round(x / t, 4) for x in starts] if t else []
 
 
-def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None, done="done_slots"):
+def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None, done="done_slots", thumb=None):
     with LOCK:
         shutil.move(file, path("posted", os.path.basename(file)))
         st = state()
@@ -408,6 +442,8 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
                "marks": marks, "duration": duration, "look": look}
         if is_long(spec):
             rec["lang"] = True
+        if thumb:
+            rec["thumb"] = thumb   # eigenes Thumbnail: {"set": "A"/"B"/None, "error": ...}
         st["uploads"].append(rec)
         write("state.json", st)
 
@@ -578,12 +614,15 @@ def planned_queue(posted=None, ready_only=False, long=False):
     if ready_only and cfg["approval"]:
         ok = set(state()["approved"])
         queue = [q for q in queue if os.path.basename(q[0]) in ok]
+    # Skripte mit "vorrang": true (z. B. "heute noch rausbringen") kommen vor allen anderen dran
+    first = [q for q in queue if q[1].get("vorrang")]
+    queue = [q for q in queue if not q[1].get("vorrang")]
     planer = agents.settings(cfg)["planer"]
     if not planer["on"]:
-        return queue  # Lernmodus aus: einfach in Dateireihenfolge
+        return first + queue  # Lernmodus aus: einfach in Dateireihenfolge
     posted = learnable(posted)
     history = [p["niche"] for p in posted if p.get("niche")]
-    return learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
+    return first + learn.plan(queue, history, learn.niche_scores(posted, now()), planer["explore_every"])
 
 
 def next_look(posted=None):
@@ -592,17 +631,62 @@ def next_look(posted=None):
     return learn.choose_look(learn.feature_scores(posted, now()), len(posted))
 
 
+def next_thumb(long, posted=None):
+    """Thumbnail-Variante für das nächste Video. Lange Videos lernen getrennt von den Shorts."""
+    posted = posted if posted is not None else posted_items()
+    pool = [p for p in posted if p.get("lang")] if long else learnable(posted)
+    return learn.choose_thumb(learn.feature_scores(pool, now()), len(pool))
+
+
+def thumb_path(slug, variant):
+    return path("thumbs", "custom", f"{slug}-{variant}.jpg")
+
+
+def set_thumb_status(ok, reason=""):
+    """Merkt sich, ob YouTube eigene Thumbnails annimmt (für den Hinweis in der Zentrale)."""
+    with LOCK:
+        st = state()
+        st["thumb_status"] = {"ok": bool(ok), "reason": reason, "at": now().isoformat(timespec="seconds")}
+        write("state.json", st)
+
+
+def set_upload_thumb(video_id, variant):
+    """Nach einem Wechsel von Hand: Variante beim Upload eintragen (zählt dann fürs Lernen)."""
+    import thumbnail
+    with LOCK:
+        st = state()
+        for u in st["uploads"]:
+            if u.get("video_id") == video_id:
+                u["thumb"] = {"set": variant}
+                u["look"] = {**(u.get("look") or {}), "thumbnail": thumbnail.VARIANTS["AB".index(variant)]}
+        write("state.json", st)
+
+
+def thumbs_overview(posted, long_queue):
+    """Für die Karte „Thumbnails“: Status, nächstes langes Video und die letzten Uploads."""
+    recent = [p for p in posted if p.get("kind") != "clip" and p.get("video_id")]
+    longs = [p for p in recent if p.get("lang")][-6:]
+    shorts = [p for p in recent if not p.get("lang")][-4:]
+    pick = lambda p: {"slug": p["slug"], "title": p.get("title", ""), "video_id": p["video_id"],  # noqa: E731
+                      "lang": bool(p.get("lang")), "set": (p.get("thumb") or {}).get("set"),
+                      "posted_at": p.get("posted_at")}
+    return {"status": state().get("thumb_status"),
+            "next_long": {"slug": long_queue[0]["slug"], "title": long_queue[0]["title"]} if long_queue else None,
+            "recent": [pick(p) for p in reversed(longs + shorts)]}
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())
     return learn.choose_voice(learn.feature_scores(posted, now()), len(posted), spec)
 
 
-def next_slot(hours, at=None):
+def next_slot(cfg, at=None):
     at = at or now()
     for day in range(2):
-        for h in sorted(hours):
-            slot = (at + dt.timedelta(days=day)).replace(hour=int(h), minute=0, second=0, microsecond=0)
+        d = at + dt.timedelta(days=day)
+        for h in sorted(int(x) for x in hours_for(cfg, d)):
+            slot = d.replace(hour=h, minute=0, second=0, microsecond=0)
             if slot > at:
                 return slot
     return None
@@ -645,12 +729,13 @@ def dashboard(extra=None, working=None, repo=True):
         "source": "server",
         "updated_at": now().isoformat(timespec="seconds"),
         "stats_updated_at": stats.get("updated_at"),
-        "slots": cfg["post_hours"],
+        "slots": hours_for(cfg, now()),  # heutige Zeiten
+        "slots_weekday": cfg["post_hours"], "slots_weekend": cfg.get("post_hours_weekend") or cfg["post_hours"],
         "privacy": cfg["privacy"],
         "has_client": bool(cfg["client_id"] and cfg["client_secret"]),
         "has_stock": bool(cfg.get("stock_key")),
         "fish": {"has_key": bool(cfg.get("fish_key")), "voice": cfg.get("fish_voice", ""),
-                 "voice_dark": cfg.get("fish_voice_dark", "")},
+                 "voice_dark": cfg.get("fish_voice_dark", ""), "voice_warm": cfg.get("fish_voice_warm", "")},
         "connected": bool(cfg["refresh_token"]),
         "expired": bool(cfg["expired"]) and not cfg["refresh_token"],
         "channel": read("channel.json", None),
@@ -664,10 +749,11 @@ def dashboard(extra=None, working=None, repo=True):
         "agents": agents.overview(cfg, st["agent_runs"], {
             "connected": bool(cfg["refresh_token"]), "analytics": bool(cfg["analytics_token"]),
             "working": set(working), "tasks": working, "queue": len(queue), "posted": len(posted),
-            "favorite": learn.favorite(scores), "next_slot": next_slot(cfg["post_hours"]), "now": now(), "repo": repo,
+            "favorite": learn.favorite(scores), "next_slot": next_slot(cfg), "now": now(), "repo": repo,
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
+        "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
         "community": _safe(lambda: __import__("community").overview(
             sys.modules[__name__], posted, [sp for _, sp in planned], read("channel.json", None) or {},
@@ -680,7 +766,10 @@ def dashboard(extra=None, working=None, repo=True):
         "branding_at": st.get("branding_at"),
         "learning": learn.summary(scores, ag["planer"]["explore_every"]) if ag["planer"]["on"]
         else {**learn.summary(scores, ag["planer"]["explore_every"]), "favorite": None, "off": True},
-        "looks": learn.feature_summary(learn.feature_scores(learnable(posted), now())),
+        "looks": learn.feature_summary(learn.feature_scores(learnable(posted), now())) + [
+            {**row, "key": "thumbnail_lang", "label": "Thumbnail (lange Videos)"} for row in learn.feature_summary(
+                learn.feature_scores([p for p in posted if p.get("lang")], now())) if row["key"] == "thumbnail"],
+        "thumbs": _safe(lambda: thumbs_overview(posted, [card(s) for _, s in long_planned]), {}),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),

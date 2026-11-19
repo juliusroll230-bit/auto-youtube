@@ -1,0 +1,669 @@
+{
+  "slug": "mystery-bermuda-dreieck-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0d1a24",
+    "#3a7aa8"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Bermuda-Dreieck: Was geschah wirklich mit Flug 19? 🔺",
+  "description": "5. Dezember 1945: Fünf Flugzeuge starten in Florida und kehren nie zurück. Wir erzählen die ganze Geschichte von Flug 19, zeigen die Spuren und prüfen jede Theorie zum Bermuda-Dreieck.\n\n#mystery #rätsel #bermudadreieck #geschichte #flug19",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "bermudadreieck",
+    "flug19",
+    "geschichte"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "muetze",
+    "name": "Taylor"
+  },
+  "thumb_text": [
+    "Bermuda | alles erfunden?",
+    "Flug 19 verschwand"
+  ],
+  "segments": [
+    {
+      "text": "Fünfter Dezember neunzehnhundertfünfundvierzig, Florida: Fünf Kampfflugzeuge starten zu einem Übungsflug, und keines von ihnen kehrt je zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "✈️",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Die Piloten melden, dass ihre Kompasse verrückt spielen. Dann reißt der Funkkontakt ab, und vom Himmel über dem Meer bleibt nur Stille.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧭",
+        "text": "Kompass weg",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Als Rettung losgeschickt wird, verschwindet auch das Rettungsflugzeug mit dreizehn Mann. Heute erzählen wir, was beim Bermuda-Dreieck wirklich geschah.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔺",
+        "text": "Bermuda",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Zuerst der Ort, dann Flug neunzehn, dann die Legenden, die Theorien, und zum Schluss die Frage, ob an dem Mythos überhaupt etwas dran ist.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Das Bermuda-Dreieck liegt im Atlantik. Seine Ecken sind Florida, die Insel Bermuda und Puerto Rico, und es hat keine offiziellen Grenzen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏝️",
+          "text": "Bermuda"
+        },
+        "rechts": {
+          "objekt": "🌴",
+          "text": "Florida"
+        }
+      }
+    },
+    {
+      "text": "Auf Karten wird es mal größer, mal kleiner gezeichnet. Schon das zeigt: Das Dreieck ist keine Region mit festen Grenzen, sondern eine Erfindung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📐"
+      }
+    },
+    {
+      "text": "Den Namen gab es lange gar nicht. Erst neunzehnhundertvierundsechzig schrieb ein Autor in einem Heft über seltsame Verluste in dieser Gegend.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1964",
+        "text": "Der Name",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Zehn Jahre später machte ein Sachbuchautor daraus einen Bestseller, mit Geschichten über Schiffe, Flugzeuge und angeblich unerklärliche Kräfte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📚",
+        "text": "Bestseller",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Millionen Menschen lasen davon, und aus einem Stück Meer wurde der berühmteste Ort der Welt für unerklärliche Rätsel.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1,
+        "einheit": "Dreieck im Kopf",
+        "objekt": "🔺",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Bevor wir die Legende prüfen, schauen wir auf die Geschichte, die alles auslöste: den Verlust von Flug neunzehn.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Der Start: Ein ganz normaler Übungsflug an einem Nachmittag in Florida.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🛫",
+        "text": "Flug 19"
+      }
+    },
+    {
+      "text": "Fünf Torpedobomber vom Typ Avenger stehen bereit. An Bord sind vierzehn Flieger der US-Marine, die meisten noch in der Ausbildung.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 5,
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "text": "Flug 19"
+      }
+    },
+    {
+      "text": "Der Flugleiter heißt Charles Taylor. Er ist erfahren, hat im Krieg viele Flugstunden gesammelt und kennt die Gegend gut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "👨‍✈️"
+      }
+    },
+    {
+      "text": "Die Flugzeuge sind schwer und robust, aber ohne Funkpeilung und ohne moderne Navigation verlassen sich die Piloten allein auf Uhr, Kompass und Karte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🗺️",
+        "text": "Nur Kompass",
+        "ort": "strand"
+      }
+    },
+    {
+      "text": "Der Plan ist einfach: nach Osten fliegen, dann nach Norden, dann zurück nach Hause, ungefähr zwei Stunden lang über dem Meer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛩️",
+        "text": "Dreieckskurs",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Gegen halb drei Uhr nachmittags heben die Flugzeuge ab. Das Wetter ist am Anfang noch ordentlich, auch wenn der Wind später auffrischt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1945",
+        "text": "14:10 Uhr Start",
+        "objekt": "⏰"
+      }
+    },
+    {
+      "text": "Nach gut einer Stunde meldet Taylor ein Problem: Er weiß nicht mehr, wo er ist, und glaubt, seine Kompasse seien ausgefallen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🧭",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Ein Mithörender notiert seine Worte: Er sei sich nicht sicher, wo er sei, und alles sehe seltsam aus. Auch das Meer erscheine ihm falsch.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌊",
+        "text": "Alles fremd",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Auf dem Funk liegen die Stimmen der jungen Piloten übereinander. Sie fragen sich gegenseitig, wohin sie fliegen sollen, und niemand weiß eine sichere Antwort.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "gelb",
+          "hut": "muetze",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Taylor glaubt, die Gruppe sei über den Florida Keys, also fliegt er nach Nordosten, und genau das führt sie wohl immer weiter hinaus aufs Meer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏝️",
+        "text": "Falsche Insel",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Die Lage wird mit jeder Minute schlimmer, und diese drei Dinge kommen zusammen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Lage",
+        "punkte": [
+          "Kompass fraglich",
+          "Sprit sinkt",
+          "Wetter schlechter"
+        ]
+      }
+    },
+    {
+      "text": "Funkleute hören, wie die Piloten untereinander sprechen. Einige raten Taylor, nach Westen zu fliegen, aber er bleibt bei seinem Kurs.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📻"
+      }
+    },
+    {
+      "text": "Warum ändert Taylor den Kurs nicht? Vielleicht, weil er fest glaubte, die Inseln unter sich zu erkennen. Ein Irrtum, der in der Luft kaum zu merken ist.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🏝️",
+        "text": "Warum nicht?",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Es wird dunkel, und der Treibstoff reicht nur noch für wenige Minuten. Die Maschinen können jetzt nicht mehr lange in der Luft bleiben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 5,
+        "einheit": "Flugzeuge",
+        "objekt": "⛽",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Gegen Abend wird der Funkkontakt immer schwächer, bis nur noch ein Rauschen zu hören ist. Dann ist auch das vorbei.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📻",
+        "text": "Rauschen",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Zur selben Zeit steigt ein Rettungsflugzeug auf, ein großes Flugboot mit dreizehn Mann. Es soll die Gruppe auf See suchen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "neutral",
+        "aktion": "rennt",
+        "objekt": "🛩️"
+      }
+    },
+    {
+      "text": "Kurz nach dem Start meldet ein Schiff in der Nähe eine Explosion am Himmel, mit einer Flamme, die ins Meer stürzt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 13,
+        "einheit": "Mann im Flugboot",
+        "objekt": "🔥",
+        "farbcode": "#3a1010"
+      }
+    },
+    {
+      "text": "Am Ende fehlen alle: sechs Flugzeuge und sieben und zwanzig Menschen. Eine große Suche findet nur Wellen und kein einziges Trümmerteil.",
+      "szene": {
+        "typ": "akte",
+        "text": "Was fehlt?",
+        "punkte": [
+          "✈️",
+          "✈️",
+          "🛟",
+          "👥"
+        ]
+      }
+    },
+    {
+      "text": "In Florida warten Angehörige am Flugplatz, und noch in der Nacht starten Schiffe und weitere Flugzeuge, die in der Dunkelheit nach Lichtern suchen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "traurig",
+        "aktion": "steht",
+        "objekt": "🔦"
+      }
+    },
+    {
+      "text": "Der Untersuchungsbericht der Marine nennt die Ursache zuerst unbekannt. Doch nach dem Einspruch von Taylors Mutter ändert man den Text.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "📋"
+      }
+    },
+    {
+      "text": "Später steht dort, dass die Ursache nicht sicher bekannt sei. Aus diesem Satz machten viele Autoren eine Geschichte von Magie und fremden Kräften.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📄",
+        "text": "Ursache?",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Genug über Flug neunzehn. Jetzt sehen wir, was sonst noch in diesem Dreieck angeblich geschah.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Die Legende"
+      }
+    },
+    {
+      "text": "Schon Kolumbus soll im Jahr vierzehnhundertzweiundneunzig dort seltsame Lichter gesehen und einen schwankenden Kompass bemerkt haben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡",
+        "wetter": "nebel"
+      }
+    },
+    {
+      "text": "Dabei sprach Kolumbus nur von einem Licht in der Ferne und einer kleinen Abweichung der Nadel, und das war weder ungewöhnlich noch gefährlich.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧭",
+        "text": "Kleine Abweichung",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Im März neunzehnhundertachtzehn verschwindet das Versorgungsschiff Cyclops mit mehr als dreihundert Menschen, ohne einen Notruf gesendet zu haben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1918",
+        "text": "Cyclops weg",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Das Schiff war stark überladen, ein Motor war beschädigt, und es geriet mutmaßlich in schweres Wetter, ohne Funkkontakt zu halten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⚙️",
+        "text": "Überladen",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Dazu kommen Geschichten von verschwundenen Yachten, Frachtern und Flugzeugen, die gern in einem Atemzug genannt werden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Fälle",
+        "punkte": [
+          "Cyclops",
+          "Flug 19",
+          "Yachten"
+        ]
+      }
+    },
+    {
+      "text": "Viele dieser Geschichten stammen aus Büchern, in denen Berichte stark vereinfacht wurden. Wetter, Stürme und andere Ursachen blieben oft unerwähnt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Allein im Jahr des Flugzeugverlusts waren im Nordatlantik tausende Schiffe unterwegs, und schlechtes Wetter war damals eine tägliche Gefahr.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1000,
+        "einheit": "Schiffe im Jahr",
+        "objekt": "⚓",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Jetzt zum spannenden Teil: Was könnte dort wirklich passieren? Wir prüfen die beliebtesten Theorien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔍",
+        "text": "Theorien"
+      }
+    },
+    {
+      "text": "Theorie eins: Außerirdische. Sie müssten mit Raumschiffen Flugzeuge einsammeln. Dafür gibt es keinen einzigen Beweis, nur Geschichten.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "👽",
+        "text": "Aliens?",
+        "ort": "weltall"
+      }
+    },
+    {
+      "text": "Theorie zwei: Das versunkene Atlantis. Eine alte Stadt am Meeresgrund soll Energie ausstrahlen. Auch hier gibt es keine Funde und keine Messung.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏛️",
+        "text": "Atlantis?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Auch die Fantasie vom Zeitloch gehört dazu. Wer ein Flugzeug zurückholt, das in der Luft verschwindet, müsste dafür erst einmal einen Beweis liefern.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Theorie drei: Magnetfelder. Kompasse zeigen fast überall leicht in die Irre, aber in diesem Gebiet nicht mehr als anderswo.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧲",
+          "text": "Magnet"
+        },
+        "rechts": {
+          "objekt": "🧭",
+          "text": "Normal"
+        }
+      }
+    },
+    {
+      "text": "Theorie vier: Methan. Gas vom Meeresboden könnte aufsteigen und Schiffe sinken lassen. Im Labor klappt das, im offenen Meer wurde es nie beobachtet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🫧"
+      }
+    },
+    {
+      "text": "Theorie fünf: Riesenwellen. Der Golfstrom trifft hier auf Stürme, und dabei können sehr hohe Wellen entstehen, die auch große Schiffe in Gefahr bringen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌊",
+        "text": "Riesenwellen",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Dazu kommt die Tiefe. Westlich von Puerto Rico liegt ein Graben, der rund achttausend Meter in die Tiefe reicht.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 8000,
+        "einheit": "Meter tief",
+        "objekt": "🕳️",
+        "farbcode": "#0d1420"
+      }
+    },
+    {
+      "text": "Was dort untergeht, ist kaum zu finden. Strömung und Tiefe verteilen Trümmer, und deshalb bleiben manche Wracks für immer verschollen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔍"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertfünfundsiebzig prüft ein Bibliothekar die alten Berichte genau, Fall für Fall, mit Zeitungen und Seekarten.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1975",
+        "text": "Die Prüfung",
+        "objekt": "🔎"
+      }
+    },
+    {
+      "text": "Sein Ergebnis ist überraschend: Viele angebliche Rätsel hatten klare Ursachen, manche Schiffe sanken bei Stürmen, andere gar nicht in der Region.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📋",
+        "text": "Prüfung",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Er schrieb ein Buch darüber und sagte, die Rätsel seien keine. Die Verlustzahlen seien normal, und viele Berichte seien wie bei stiller Post immer weiter ausgeschmückt worden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✍️"
+      }
+    },
+    {
+      "text": "Er fand drei Fehler, die in den Büchern immer wieder auftauchten und aus alltäglichen Unglücken geheimnisvolle Fälle machten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Seine Funde",
+        "punkte": [
+          "Falscher Ort",
+          "Sturm vergessen",
+          "Erfundene Details"
+        ]
+      }
+    },
+    {
+      "text": "Auch Versicherer und Küstenwache haben nachgesehen. Sie sagen, dass dort nicht mehr Schiffe und Flugzeuge verloren gehen als auf anderen, stark befahrenen Meeren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🛟"
+      }
+    },
+    {
+      "text": "Denn die Gegend gehört zu den am meisten befahrenen Seegebieten der Welt, und mehr Verkehr bedeutet am Ende auch mehr Unfälle.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1,
+        "einheit": "der meistbefahrenen Meere",
+        "objekt": "🚢",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Und was ist mit Flug neunzehn? Hier sprechen die Fakten für einen Navigationsfehler, der in der Dunkelheit zu einem tödlichen Irrtum wurde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Taylor glaubte, über dem Golf von Mexiko zu sein, und flog deshalb in die falsche Richtung. Als der Treibstoff ausging, mussten die Maschinen im Meer notlanden.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛩️",
+        "text": "Falsche Richtung",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Nachts im Winter bei hohem Seegang ist so eine Notwasserung kaum zu überleben, und das Wasser war kalt und rau.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌊",
+        "text": "Kaltes Meer",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Und das Flugboot? Es hatte den Ruf, leicht Benzindämpfe zu sammeln, und die Explosion, die ein Schiff sah, passt dazu sehr gut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "💥"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was ist sicher, was bleibt offen, und was ist am wahrscheinlichsten?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Flug neunzehn verschwand wirklich, und die Besatzung kam ums Leben, weil sie sich in der Dunkelheit verirrte.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Flug 19 weg",
+          "Schlechtes Wetter",
+          "Keine Trümmer"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt, wo genau die Maschinen aufs Wasser trafen. Das Meer ist groß und tief, und die Suche nach ihnen geht bis heute weiter.",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "📍",
+          "🔍",
+          "🌊"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist die nüchterne Erklärung: Wetter, Fehler und viel Verkehr, dazu ein Mythos, der immer weiter erzählt wurde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⚖️"
+      }
+    },
+    {
+      "text": "Und doch lässt uns das Dreieck nicht los, denn dort, wo die Antwort fehlt, füllt unsere Fantasie die Lücke aus.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔺",
+        "text": "Die Lücke",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an Technik, Wetter und Irrtum, oder reicht dir diese Erklärung nicht? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

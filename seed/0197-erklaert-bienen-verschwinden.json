@@ -1,0 +1,102 @@
+{
+  "slug": "erklaert-bienen-verschwinden",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2010",
+    "#e0b03a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn alle Bienen plötzlich verschwinden? 🐝",
+  "description": "Ohne Bienen und andere Bestäuber: Was würde auf deinem Teller fehlen? Ein Gedankenexperiment mit echten Zahlen.\n\n#wissen #bienen #natur #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "bienen",
+    "natur",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "keiner",
+    "name": "Mia"
+  },
+  "segments": [
+    {
+      "text": "Du gehst in den Supermarkt, und die Regale sind halb leer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🛒"
+      }
+    },
+    {
+      "text": "Alle Bienen sind weg. Was fehlt jetzt auf deinem Teller?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Was fehlt?"
+      }
+    },
+    {
+      "text": "Rund drei Viertel der wichtigen Nutzpflanzen profitieren von Bestäubern.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 75,
+        "einheit": "Prozent",
+        "objekt": "🍎",
+        "farbcode": "#2a2010"
+      }
+    },
+    {
+      "text": "Äpfel, Mandeln, Kaffee und Kürbisse würden deutlich weniger werden.",
+      "szene": {
+        "typ": "akte",
+        "text": "Weniger Ernte",
+        "punkte": [
+          "🍎",
+          "☕",
+          "🎃"
+        ]
+      }
+    },
+    {
+      "text": "Weizen und Reis brauchen kaum Bienen, doch dein Essen wird einseitig.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌾",
+          "text": "Weizen: wenig"
+        },
+        "rechts": {
+          "objekt": "🍎",
+          "text": "Obst: viel"
+        }
+      }
+    },
+    {
+      "text": "Obst und Gemüse würden knapp und teuer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💰",
+        "text": "Teurer"
+      }
+    },
+    {
+      "text": "Zum Glück gibt es Wildbienen. Pflanzt du Blumen für sie?",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Blumen pflanzen"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

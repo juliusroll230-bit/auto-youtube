@@ -183,6 +183,34 @@ def dark_music(seconds, rate, seed):
     return out.astype(np.float32)
 
 
+def warm_music(seconds, rate, seed):
+    """Ruhige, freundliche Musik für Geschichten: weiche Dur-Fläche und leise Spieluhr, ohne Schlagzeug."""
+    rng = np.random.default_rng(seed)
+    n = int(seconds * rate)
+    root = int(rng.choice([0, 2, 5, 7]))
+    out = np.zeros(n, dtype=np.float64)
+    prog = [(0, 4, 7), (-3, 0, 4), (5, 9, 12), (7, 11, 14)]   # I, vi, IV, V
+    seg = 4.0
+    for k in range(int(seconds / seg) + 1):
+        m = int(seg * rate)
+        tt = np.arange(m) / rate
+        chord = prog[k % len(prog)]
+        pad = sum(np.sin(2 * np.pi * _note_hz(root + 12 + iv) * tt) + 0.3 * np.sin(2 * np.pi * _note_hz(root + 24 + iv) * tt)
+                  for iv in chord)
+        swell = np.sin(np.pi * np.clip(tt / seg, 0, 1)) ** 1.5
+        _add(out, k * seg * rate, 0.07 * pad * swell)
+        # Spieluhr: ein paar Töne aus dem Akkord, sanft verteilt
+        for j in range(4):
+            f = _note_hz(root + 36 + chord[int(rng.integers(3))])
+            bt = np.arange(int(1.2 * rate)) / rate
+            bell = (np.sin(2 * np.pi * f * bt) + 0.25 * np.sin(2 * np.pi * f * 3 * bt)) * np.exp(-bt * 3)
+            _add(out, (k * seg + j * seg / 4 + float(rng.uniform(0, 0.15))) * rate, 0.05 * bell)
+    out /= max(1e-6, np.abs(out).max())
+    fade = int(0.8 * rate)
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out.astype(np.float32)
+
+
 def boom(rate):
     """Tiefer, dumpfer Schlag für den Einstieg bei Grusel-Videos."""
     n = int(0.9 * rate)
@@ -195,11 +223,12 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None):
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
     pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick),
-    mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat.
+    mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat, "warm" für ruhige Geschichten-Musik.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
-    bed = (dark_music if dark else music)(n / rate + 0.1, rate, seed)[:n]
+    warm = mood == "warm"
+    bed = (dark_music if dark else warm_music if warm else music)(n / rate + 0.1, rate, seed)[:n]
     if len(bed) < n:
         bed = np.pad(bed, (0, n - len(bed)))
     # Ducking: Musik geht runter, sobald die Stimme spricht
@@ -207,13 +236,13 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None):
     env = np.convolve(np.abs(voice), np.ones(win) / win, mode="same")
     duck = 1 - 0.55 * np.clip(env / 0.04, 0, 1)
     duck = np.convolve(duck, np.ones(win) / win, mode="same")
-    out = voice * 1.0 + bed * (0.3 if dark else 0.22) * duck
+    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
         _add(sfx, p * rate, 0.18 * tick(rate))
     for i, c in enumerate(cuts):
         w = whoosh(rate, seed + i)
-        _add(sfx, max(0, c - 0.2) * rate, (0.12 if dark else 0.22) * w)
+        _add(sfx, max(0, c - 0.2) * rate, (0.12 if dark else 0.08 if warm else 0.22) * w)
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

@@ -175,6 +175,38 @@ main { padding-block: 28px 72px; }
 .hk { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 99px; font-size: 11.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; background: rgba(52, 211, 153, .14); color: var(--ok); }
 .hk.mid { background: rgba(242, 196, 109, .16); color: var(--warn); }
 .hk.low { background: rgba(255, 99, 99, .14); color: var(--err, #ff6b6b); }
+.cm-ctl { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px; margin-bottom: 14px; }
+.cm-ctl .field { min-width: 150px; margin: 0; }
+.cm-ctl .switch { height: 40px; }
+.cm-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+.cm-h { font-size: 15px; margin: 18px 0 8px; display: flex; gap: 8px; align-items: baseline; }
+.cm-it { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; background: rgba(255, 255, 255, .03); }
+.cm-it .meta { font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 6px; }
+.cm-it .meta a { color: var(--accent); }
+.cm-it q { display: block; font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.cm-it q::before, .cm-it q::after { content: ""; }
+.cm-it .why { font-size: 12px; color: var(--warn, #fbbf24); margin-top: 4px; }
+.cm-it textarea { width: 100%; min-height: 54px; margin-top: 10px; padding: 9px 11px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .05); color: var(--ink); font: inherit; font-size: 14px; resize: vertical; }
+.cm-it .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.cm-log { display: grid; gap: 6px; max-height: 420px; overflow: auto; }
+.cm-l { display: grid; grid-template-columns: 74px 1fr; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.cm-l .t { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.cm-l .c { overflow-wrap: anywhere; }
+.cm-l .r { display: block; margin-top: 3px; color: var(--ok, #34c759); }
+.cm-l .r.skip { color: var(--ink-2); }
+.cm-wish { display: flex; flex-wrap: wrap; gap: 8px; }
+.cm-wish span { font-size: 13px; padding: 6px 11px; border-radius: 980px; background: rgba(255, 255, 255, .07); overflow-wrap: anywhere; }
+.tb-note { margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; background: rgba(251, 191, 36, .12); color: var(--ink); font-size: 14px; line-height: 1.45; }
+.tb-note a { color: var(--accent); }
+.tb-grid { display: grid; gap: 18px; }
+.tb-row h3 { margin: 0 0 8px; font-size: 14px; font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tb-pair.short { grid-template-columns: repeat(2, minmax(0, 150px)); }
+.tb-opt { position: relative; border-radius: 12px; overflow: hidden; border: 2px solid transparent; background: var(--surface-2); }
+.tb-opt.on { border-color: var(--accent); }
+.tb-opt img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.tb-pair.short .tb-opt img { aspect-ratio: 9 / 16; }
+.tb-opt .tb-bar { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; font-size: 12px; color: var(--muted); }
 .hk-tips { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
 .looks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 22px; }
 .looks h3 { font-size: 12px; font-weight: 650; color: var(--muted); letter-spacing: .01em; margin-bottom: 8px; }
@@ -1707,7 +1739,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       <div class="card" id="zSetup" hidden>
         <div class="card-h"><div><h2>Zuschauer-Daten freischalten</h2><div class="sub">Einmalig, dauert etwa 5 Minuten</div></div></div>
         <div class="card-b">
-          <p class="muted" style="margin-bottom:16px">YouTube gibt die Daten, wann Zuschauer abschalten, nur über eine eigene Schnittstelle heraus. Dafür braucht die Shorts-Zentrale einen zweiten Zugang. Dein Upload-Zugang bleibt, wie er ist.</p>
+          <p class="muted" style="margin-bottom:16px">YouTube gibt die Daten, wann Zuschauer abschalten, nur über eine eigene Schnittstelle heraus. Dafür braucht die Shorts-Zentrale einen zweiten Zugang. Derselbe Zugang erlaubt auch das Antworten auf Kommentare. Dein Upload-Zugang bleibt, wie er ist.</p>
           <ol class="steps">
             <li><div>In Google Cloud die <a href="https://console.cloud.google.com/apis/library/youtubeanalytics.googleapis.com" target="_blank" rel="noopener">YouTube Analytics API</a> öffnen und auf <b>Aktivieren</b> klicken. Oben muss dein Projekt ausgewählt sein.</div></li>
             <li><div>Unter <a href="https://console.cloud.google.com/auth/clients" target="_blank" rel="noopener">Google Auth Platform → Clients</a> auf <b>Client erstellen</b> klicken, Typ <b>Webanwendung</b>. Bei <b>Autorisierte Weiterleitungs-URIs</b> diese Adresse eintragen:
@@ -1754,6 +1786,25 @@ dialog.vs[open] { display: grid; place-items: center; }
         </div>
       </div>
 
+      <div class="card" id="kmCard" style="margin-bottom:22px">
+        <div class="card-h"><div><h2>Antworten auf Kommentare</h2><div class="sub" id="kmSub">Die App antwortet selbst kurz und freundlich auf einfache Kommentare. Fragen zu Fakten, Kritik mit Inhalt und ernste Themen landen unter „Für dich“. Beleidigungen, Links und Werbung bekommen keine Antwort.</div></div><span class="pill" id="kmStatus"></span></div>
+        <div class="card-b">
+          <div class="cm-ctl">
+            <label class="switch"><input type="checkbox" id="kmOn"><span class="tr"></span><span>Automatisch antworten</span></label>
+            <div class="field"><label for="kmMode">Wie?</label><select id="kmMode"><option value="auto">Sofort antworten</option><option value="freigabe">Erst mir zeigen</option></select></div>
+            <div class="field"><label for="kmPer">Höchstens pro Tag</label><select id="kmPer"><option>5</option><option>10</option><option>20</option><option>30</option><option>50</option></select></div>
+            <button class="btn sm" type="button" id="kmCheck">Jetzt prüfen</button>
+          </div>
+          <p class="tb-note" id="kmNote" hidden></p>
+          <div class="cm-stats" id="kmStats"></div>
+          <h3 class="cm-h">Für dich <span class="label" id="kmTodoN"></span></h3>
+          <div id="kmTodo"></div>
+          <h3 class="cm-h">Themenwünsche aus den Kommentaren</h3>
+          <div class="cm-wish" id="kmWish"></div>
+          <h3 class="cm-h">Protokoll</h3>
+          <div class="cm-log" id="kmLog"></div>
+        </div>
+      </div>
       <div class="card">
         <div class="card-h"><div><h2>Lernmodus</h2><div class="sub" id="learnText"></div></div><span class="pill" id="learnStatus"></span></div>
         <div class="scroll" style="margin-top:8px"><table>
@@ -1773,6 +1824,11 @@ dialog.vs[open] { display: grid; place-items: center; }
           <thead><tr><th>Als Nächstes</th><th class="r">Note</th><th class="hide-sm">Was fehlt</th></tr></thead>
           <tbody id="hookBody"></tbody>
         </table></div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="card-h"><div><h2>Thumbnails</h2><div class="sub">Für jedes Video baut die App zwei Thumbnails: A (großes Thema, Neugier-Zeile, Emoji im Kreis) und B (Satz im gelben Kasten). Eine davon setzt sie beim Upload, welche besser läuft, lernt sie unter „Was am besten funktioniert“. Du kannst jederzeit wechseln.</div></div><span class="pill" id="tbStatus"></span></div>
+        <div class="card-b"><p class="tb-note" id="tbNote" hidden></p><div class="tb-grid" id="tbGrid"></div></div>
       </div>
     </section>
 
@@ -1902,8 +1958,12 @@ dialog.vs[open] { display: grid; place-items: center; }
             <div class="card-h"><h2>Zeitplan</h2></div>
             <form class="card-b form" id="planForm">
               <div class="field">
-                <span class="label">Sendezeiten (deutsche Zeit, bis zu 10 pro Tag)</span>
-                <div class="hours" id="hours" role="group" aria-label="Sendezeiten"></div>
+                <span class="label">Sendezeiten Montag bis Freitag (deutsche Zeit, bis zu 10 pro Tag)</span>
+                <div class="hours" id="hours" role="group" aria-label="Sendezeiten Montag bis Freitag"></div>
+              </div>
+              <div class="field">
+                <span class="label">Sendezeiten Samstag und Sonntag</span>
+                <div class="hours" id="hoursWe" role="group" aria-label="Sendezeiten am Wochenende"></div>
               </div>
               <div class="field">
                 <label for="privacy">Sichtbarkeit neuer Videos</label>
@@ -1940,6 +2000,7 @@ dialog.vs[open] { display: grid; place-items: center; }
               <div class="field"><label for="fishKey">API-Schlüssel</label><input id="fishKey" type="password" autocomplete="off" spellcheck="false" placeholder="Schlüssel einfügen (leer lassen = bleibt wie er ist)"></div>
               <div class="field"><label for="fishVoice">Stimme</label><input id="fishVoice" autocomplete="off" spellcheck="false" placeholder="Link oder ID der Stimme"></div>
               <div class="field"><label for="fishDark">Stimme für Grusel</label><input id="fishDark" autocomplete="off" spellcheck="false" placeholder="optional"></div>
+              <div class="field"><label for="fishWarm">Stimme für Geschichten</label><input id="fishWarm" autocomplete="off" spellcheck="false" placeholder="optional, warm und freundlich"></div>
               <div class="row"><button class="btn primary" type="submit">Speichern</button><button class="btn" type="button" id="fishTest">Probe hören</button><button class="btn" type="button" id="fishOff">Ausschalten</button><span class="msg" id="fishMsg"></span></div>
               <div id="fishAudio"></div>
             </form>
@@ -2046,6 +2107,16 @@ dialog.vs[open] { display: grid; place-items: center; }
   function berlin(d) {
     var p = fKey.formatToParts(d), g = function (t) { return p.find(function (x) { return x.type === t; }).value; };
     return { day: g("year") + "-" + g("month") + "-" + g("day"), hour: Number(g("hour")) };
+  }
+  function dayHours(d, day) {  // Sendezeiten für einen Tag (JJJJ-MM-TT): Sa/So eigene Zeiten
+    var wd = new Date(day + "T12:00:00Z").getUTCDay();
+    var hrs = (wd === 0 || wd === 6) ? (d.slots_weekend || d.slots) : (d.slots_weekday || d.slots);
+    return hrs.map(Number).sort(function (a, b) { return a - b; });
+  }
+  function hoursText(d) {
+    var f = function (l) { return l.join(", ").replace(/, ([^,]+)$/, " und $1") + " Uhr"; };
+    var wk = d.slots_weekday || d.slots, we = d.slots_weekend || wk;
+    return wk.join() === we.join() ? "Täglich um " + f(wk) : "Mo bis Fr um " + f(wk) + ", Sa und So um " + f(we);
   }
   function slots(hours, n) {
     var out = [], t = new Date(); t.setUTCMinutes(0, 0, 0); t = new Date(t.getTime() + 3600e3);
@@ -2391,7 +2462,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var per = pub && pub.settings ? Number(pub.settings.clips_per_day) || 0 : 0;
     if (pub && pub.settings && pub.settings.on === false) per = 0;
     if ((d.clip_channel || {}).connected) per = 0;  // Clips laufen dann auf dem eigenen Kanal
-    var hrs = d.slots.map(Number).sort(function (a, b) { return a - b; });
+    var hrs = dayHours(d, berlin(new Date()).day);
     var ready = per > 0 ? readyClips(d) : [];
     var total = d.queue.length + ready.length, out = [];
     if (!total || !hrs.length) return out;
@@ -2402,7 +2473,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     var qi = 0, ci = 0, t = new Date();
     t.setUTCMinutes(0, 0, 0); t = new Date(t.getTime() + 3600e3);
     for (var guard = 0; out.length < total && guard < 24 * 500; guard++, t = new Date(t.getTime() + 3600e3)) {
-      var b = berlin(t), idx = hrs.indexOf(b.hour);
+      var b = berlin(t), idx = dayHours(d, b.day).indexOf(b.hour);
       if (idx === -1) continue;
       var n = used[b.day] || 0, scriptsLeft = qi < d.queue.length;
       var useClip = ci < ready.length && n < per && (!scriptsLeft || pos[idx]);
@@ -2535,8 +2606,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderOverview(d, sch) {
     var ch = d.channel || {}, T = totals(d);
     $("hName").textContent = ch.title || "Shorts-Zentrale";
-    var hoursTxt = d.slots.map(function (x) { return (x < 10 ? "0" : "") + x; }).join(", ");
-    $("hSub").textContent = (ch.handle ? ch.handle + " · " : "") + d.slots.length + " Shorts täglich um " + hoursTxt + " Uhr";
+    $("hSub").textContent = (ch.handle ? ch.handle + " · " : "") + d.slots.length + " Shorts am Tag. " + hoursText(d);
     pill($("hStatus"), d.connected ? "live" : "warn", d.connected ? "Automatik läuft" : "Wartet auf Kanal");
     $("ovBanner").hidden = d.connected;
     if (d.expired) {
@@ -2844,9 +2914,53 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   }
 
+  function renderThumbs(d) {
+    var T = d.thumbs || {}, st = T.status || null, grid = clear($("tbGrid")), note = $("tbNote");
+    pill($("tbStatus"), !st ? "warn" : st.ok ? "live" : "warn", !st ? "Noch nicht benutzt" : st.ok ? "Aktiv" : "Gesperrt");
+    note.hidden = !(st && !st.ok);
+    if (st && !st.ok) {
+      clear(note);
+      if (st.reason === "verify") {
+        note.append("YouTube lässt eigene Thumbnails erst zu, wenn dein Kanal bestätigt ist. Öffne ",
+          h("a", { href: "https://www.youtube.com/verify", target: "_blank", rel: "noopener", text: "youtube.com/verify" }),
+          ", bestätige mit einer Handynummer (SMS-Code), fertig. Danach setzt die App die Thumbnails wieder selbst. Für schon hochgeladene Videos unten auf „Nehmen“ tippen.");
+      } else if (st.reason === "limit") {
+        note.textContent = "YouTube hat für heute genug Uploads angenommen. Morgen klappt es wieder.";
+      } else {
+        note.textContent = "Das letzte Thumbnail hat YouTube abgelehnt: " + st.reason;
+      }
+    }
+    function takeBtn(vid, v) {
+      var b = h("button", { cls: "btn sm", type: "button", text: "Nehmen" });
+      b.addEventListener("click", function () {
+        b.disabled = true; b.textContent = "Setzt…";
+        api("api/thumb/set", { video_id: vid, variant: v }).then(function () { toast("Thumbnail " + v + " ist jetzt auf YouTube."); },
+          function (er) { toast(er.message); b.disabled = false; b.textContent = "Nehmen"; });
+      });
+      return b;
+    }
+    function pair(slug, short, active, vid) {
+      return h("div", { cls: "tb-pair" + (short ? " short" : "") }, ["A", "B"].map(function (v) {
+        var bar = [h("span", { text: v === "A" ? "A: Wort + Satz" : "B: Satz im Kasten" })];
+        if (vid) bar.push(active === v ? h("span", { cls: "label", text: "Aktiv" })
+          : takeBtn(vid, v));
+        return h("div", { cls: "tb-opt" + (active === v ? " on" : "") }, [
+          h("a", { href: "api/thumbx/" + slug + "-" + v + ".jpg", target: "_blank", rel: "noopener" },
+            [h("img", { src: "api/thumbx/" + slug + "-" + v + ".jpg", alt: "Thumbnail " + v, loading: "lazy" })]),
+          h("div", { cls: "tb-bar" }, bar)]);
+      }));
+    }
+    if (T.next_long) grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: "Nächstes langes Video: " + T.next_long.title }), pair(T.next_long.slug, false, null, null)]));
+    (T.recent || []).forEach(function (r) {
+      grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: (r.lang ? "Lang: " : "Short: ") + r.title }), pair(r.slug, !r.lang, r.set, r.video_id)]));
+    });
+    if (!grid.children.length) grid.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Noch keine Thumbnails" }), "Beim nächsten Upload baut die App die ersten."]));
+  }
+
   function renderLearning(d) {
     renderLooks(d);
     renderHooks(d);
+    renderThumbs(d);
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite
@@ -3720,7 +3834,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderPostPlan(C, P) {
     var plan = P.filter(function (p) { return p.hour; }), nowH = new Date().getHours();
     var done = plan.filter(function (p) { return p.done; }).length;
-    var sub = (C.per_day || 3) + " Posts am Tag um " + (C.times || []).join(", ") + " Uhr, nicht zur gleichen Zeit wie die Shorts. Heute " + done + " von " + plan.length + " gepostet.";
+    var sub = (C.per_day || 3) + " Posts am Tag um " + (C.times || []).join(", ") + " Uhr. Heute " + done + " von " + plan.length + " gepostet.";
     [["cmTl", "cmPlanSub"], ["cmTl2", "cmPlanSub2"]].forEach(function (ids) {
       var ol = $(ids[0]);
       if (!ol) return;
@@ -4306,7 +4420,15 @@ dialog.vs[open] { display: grid; place-items: center; }
       var au = h("audio", { controls: "", autoplay: "", src: "api/voice-sample.wav?tempo=" + tempo + "&t=" + Date.now() });
       au.addEventListener("canplay", function () { btn.classList.remove("going"); });
       au.addEventListener("error", function () { btn.classList.remove("going"); toast("Die Stimme konnte nicht geladen werden."); });
-      clear(out).appendChild(au);
+      // Die Cartoon-Stimmen einzeln probehören (z. B. die freundliche für Geschichten)
+      var names = { freundlich: "Freundlich", erzaehlerin: "Erzählerin", erzaehler: "Erzähler", froehlich: "Fröhlich", klar: "Klar", unheimlich: "Unheimlich" };
+      var row = h("div", { cls: "row", style: "flex-wrap:wrap;gap:6px;margin-top:8px" });
+      Object.keys(names).forEach(function (k) {
+        var b = h("button", { cls: "btn", type: "button", text: names[k] });
+        b.addEventListener("click", function () { au.src = "api/voice-sample.wav?tempo=" + tempo + "&stimme=" + k + "&t=" + Date.now(); au.play(); });
+        row.appendChild(b);
+      });
+      clear(out).append(au, h("div", { cls: "hint", text: "Cartoon-Stimmen probehören:" }), row);
       return;
     }
     if (id === "studio") {
@@ -4914,7 +5036,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   function renderPlan(d, sch) {
     renderNext(sch);
     var nClips = sch.filter(function (x) { return x.clip; }).length;
-    $("planSub").textContent = (sch.length - nClips) + " KI-Shorts" + (nClips ? " und " + nClips + (nClips === 1 ? " Clip" : " Clips") : "") + " geplant. Täglich um " + d.slots.map(function (x) { return x + " Uhr"; }).join(", ").replace(/, ([^,]+)$/, " und $1") + "." + (nClips ? " Clips kommen aus deinen Kampagnen." : "");
+    $("planSub").textContent = (sch.length - nClips) + " KI-Shorts" + (nClips ? " und " + nClips + (nClips === 1 ? " Clip" : " Clips") : "") + " geplant. " + hoursText(d) + "." + (nClips ? " Clips kommen aus deinen Kampagnen." : "");
     var seg = clear($("planFilter"));
     var nn = Array.from(new Set(sch.map(function (x) { return x.v.niche; })));
     if (S.filter !== "Alle" && nn.indexOf(S.filter) === -1) S.filter = "Alle";
@@ -5230,6 +5352,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     pill($("fishStatus"), fishOn ? "ok" : "warn", fishOn ? "Aktiv" : (fi.has_key ? "Stimme fehlt" : "Aus"));
     if (document.activeElement !== $("fishVoice")) $("fishVoice").value = fi.voice || "";
     if (document.activeElement !== $("fishDark")) $("fishDark").value = fi.voice_dark || "";
+    if (document.activeElement !== $("fishWarm")) $("fishWarm").value = fi.voice_warm || "";
     var c = d.connect || { status: "idle" };
     pill($("conStatus"), d.connected ? "live" : c.status === "fehler" ? "err" : "warn", d.connected ? "Verbunden" : c.status === "code" ? "Wartet auf dich" : "Nicht verbunden");
     var body = clear($("conBody"));
@@ -5282,19 +5405,22 @@ dialog.vs[open] { display: grid; place-items: center; }
   }
 
   function renderHours(d) {
-    if (!S.hours) S.hours = d.slots.slice();
-    var box = clear($("hours"));
-    for (var i = 0; i < 24; i++) (function (hr) {
-      var b = h("button", { type: "button", "aria-pressed": String(S.hours.indexOf(hr) !== -1), text: (hr < 10 ? "0" : "") + hr });
-      b.disabled = !S.live;
-      b.addEventListener("click", function () {
-        var at2 = S.hours.indexOf(hr);
-        if (at2 === -1) { if (S.hours.length < 10) S.hours.push(hr); } else if (S.hours.length > 1) S.hours.splice(at2, 1);
-        S.hours.sort(function (a, b) { return a - b; });
-        renderHours(d);
-      });
-      box.appendChild(b);
-    })(i);
+    if (!S.hours) S.hours = (d.slots_weekday || d.slots).slice();
+    if (!S.hoursWe) S.hoursWe = (d.slots_weekend || d.slots_weekday || d.slots).slice();
+    [["hours", S.hours], ["hoursWe", S.hoursWe]].forEach(function (pair) {
+      var box = clear($(pair[0])), list = pair[1];
+      for (var i = 0; i < 24; i++) (function (hr) {
+        var b = h("button", { type: "button", "aria-pressed": String(list.indexOf(hr) !== -1), text: (hr < 10 ? "0" : "") + hr });
+        b.disabled = !S.live;
+        b.addEventListener("click", function () {
+          var at2 = list.indexOf(hr);
+          if (at2 === -1) { if (list.length < 10) list.push(hr); } else if (list.length > 1) list.splice(at2, 1);
+          list.sort(function (a, b) { return a - b; });
+          renderHours(d);
+        });
+        box.appendChild(b);
+      })(i);
+    });
     $("privacy").value = d.privacy || "public";
   }
 
@@ -5310,6 +5436,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderCampaigns(d);
     renderOverview(d, sch);
     renderViewers(d);
+    renderComments(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5320,6 +5447,83 @@ dialog.vs[open] { display: grid; place-items: center; }
     $("host").textContent = S.live ? "Läuft auf deinem Server" + ver : "Vorschau, die echte App läuft auf deinem Zima-Server";
     $("stand").textContent = (S.live ? "Aktualisiert " : "Vorschau mit Stand vom ") + fDayS.format(u) + ", " + fTime.format(u) + " Uhr";
   }
+
+  // --- Antworten auf Kommentare (comments.py) ---------------------------------
+  function renderComments(d) {
+    var C = d.comments || {}, st = C.settings || {}, A = C.status || {};
+    if (!$("kmCard")) return;
+    var acc = C.access || "zugang";
+    var on = !!st.on;
+    pill($("kmStatus"), !on ? "warn" : acc === "ok" && !A.error ? "live" : "err",
+      !on ? "Aus" : acc === "ok" && !A.error ? "Aktiv" : acc === "zugang" ? "Zugang fehlt" : acc === "kanal" ? "Falscher Kanal" : "Pause");
+    $("kmOn").checked = on; $("kmOn").disabled = !S.live;
+    $("kmMode").value = st.mode || "auto"; $("kmMode").disabled = !S.live;
+    var per = String(st.per_day || 20);
+    if (![].some.call($("kmPer").options, function (o) { return o.value === per; })) $("kmPer").appendChild(h("option", { text: per }));
+    $("kmPer").value = per; $("kmPer").disabled = !S.live;
+    $("kmCheck").disabled = !S.live || !on;
+    var note = clear($("kmNote"));
+    note.hidden = true;
+    if (acc === "zugang" || acc === "kanal") {
+      note.hidden = false;
+      var b = h("button", { cls: "btn sm primary", type: "button", text: C.has_client ? "Neu verbinden" : "Zuschauer-Daten einrichten" });
+      b.disabled = !S.live;
+      b.addEventListener("click", function () { if (C.has_client) startAnalytics(); else { location.hash = "#zuschauer"; $("zSetup").scrollIntoView({ behavior: "smooth" }); } });
+      note.append(h("b", { text: acc === "kanal" ? "Der Zugang gehört zu einem anderen Kanal. " : "Einmal neu verbinden, dann darf die App antworten. " }),
+        acc === "kanal" ? "Beim Verbinden den Kanal deiner Shorts wählen. " : (C.has_client ? "Google fragt dabei nach dem Recht, Kommentare zu schreiben. Mit dem Google-Konto deines Kanals anmelden und erlauben. " : "Dafür zuerst den Zugang für Zuschauer-Daten einrichten (Schritte oben). "),
+        h("div", { style: "margin-top:8px" }, [b]));
+    } else if (A.error) {
+      note.hidden = false;
+      note.append(h("b", { text: A.error }));
+    }
+    var last = A.checked_at ? "Zuletzt geprüft " + fDayS.format(new Date(A.checked_at)) + " " + fTime.format(new Date(A.checked_at)) + " Uhr" : "Noch nicht geprüft";
+    clear($("kmStats")).append(h("span", { text: "Heute " + (C.today || 0) + " von " + (st.per_day || 20) + " Antworten" }),
+      h("span", { text: "Insgesamt " + (C.sent_total || 0) }), h("span", { text: last }), h("span", { text: "Prüft alle 30 Min., 8 bis 22 Uhr" }));
+
+    var todo = C.todo || [], tbox = clear($("kmTodo"));
+    $("kmTodoN").textContent = todo.length ? todo.length + " offen" : "";
+    if (!todo.length) tbox.appendChild(h("div", { cls: "label", text: "Nichts offen. Hier landen Kommentare, auf die nur du gut antworten kannst." }));
+    todo.forEach(function (t) {
+      var ta = h("textarea", { maxlength: "500", placeholder: "Deine Antwort …", "aria-label": "Antwort an " + t.author });
+      ta.value = t.draft || "";
+      var send = h("button", { cls: "btn sm primary", type: "button", text: t.draft ? "Senden" : "Antworten" });
+      var skip = h("button", { cls: "btn sm", type: "button", text: t.draft ? "Verwerfen" : "Erledigt" });
+      var msg = h("span", { cls: "msg" });
+      send.disabled = skip.disabled = !S.live;
+      send.addEventListener("click", function () {
+        send.disabled = true;
+        api("api/comments/reply", { id: t.id, text: ta.value }).then(function () { toast("Antwort gesendet"); }, function (e) { send.disabled = false; msg.className = "msg err"; msg.textContent = e.message; });
+      });
+      skip.addEventListener("click", function () { api("api/comments/dismiss", { id: t.id }).catch(function (e) { toast(e.message); }); });
+      tbox.appendChild(h("div", { cls: "cm-it" }, [
+        h("div", { cls: "meta" }, [h("b", { text: t.author || "Zuschauer" }), h("span", { text: t.video || "Video" }),
+          h("a", { href: "https://www.youtube.com/watch?v=" + encodeURIComponent(t.video_id) + "&lc=" + encodeURIComponent(t.id), target: "_blank", rel: "noopener", text: "Auf YouTube" })]),
+        h("q", { text: t.text }), h("div", { cls: "why", text: t.why }), ta, h("div", { cls: "row" }, [send, skip, msg])
+      ]));
+    });
+
+    var wish = clear($("kmWish"));
+    (C.wishes || []).forEach(function (w) { wish.appendChild(h("span", { title: (w.author || "") + (w.video ? " · " + w.video : ""), text: w.text })); });
+    if (!(C.wishes || []).length) wish.appendChild(h("div", { cls: "label", text: "Noch keine. Wenn jemand „Mach mal ein Video über …“ schreibt, steht es hier." }));
+
+    var log = clear($("kmLog"));
+    (C.log || []).forEach(function (e) {
+      var at = new Date(e.at);
+      log.appendChild(h("div", { cls: "cm-l" }, [
+        h("span", { cls: "t", text: fDayS.format(at).replace(/,.*/, "") + " " + fTime.format(at) }),
+        h("div", { cls: "c" }, [h("span", { cls: "label", text: (e.author || "") + (e.video ? " · " + e.video : "") }), h("div", { text: "„" + e.text + "“" }),
+          h("span", { cls: "r" + (e.sent ? "" : " skip"), text: e.sent ? "↳ " + e.reply + (e.by === "du" ? " (von dir)" : "") : "Keine Antwort: " + (e.skip || "") })])
+      ]));
+    });
+    if (!(C.log || []).length) log.appendChild(h("div", { cls: "label", text: "Noch keine Antworten." }));
+  }
+  ["kmOn", "kmMode", "kmPer"].forEach(function (id) {
+    $(id).addEventListener("change", function () {
+      api("api/comments/settings", { on: $("kmOn").checked, mode: $("kmMode").value, per_day: +$("kmPer").value })
+        .then(function () { if (id === "kmOn") toast($("kmOn").checked ? "Kommentar-Antworten an" : "Kommentar-Antworten aus"); }, function (e) { toast(e.message); });
+    });
+  });
+  $("kmCheck").addEventListener("click", function () { api("api/comments/check").then(function () { toast("Prüft jetzt die neuen Kommentare"); setTimeout(load, 8000); }, function (e) { toast(e.message); }); });
 
   // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {
@@ -5353,7 +5557,7 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("fishForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var body = { fish_voice: $("fishVoice").value, fish_voice_dark: $("fishDark").value };
+    var body = { fish_voice: $("fishVoice").value, fish_voice_dark: $("fishDark").value, fish_voice_warm: $("fishWarm").value };
     if ($("fishKey").value.trim()) body.fish_key = $("fishKey").value.trim();
     api("api/settings", body)
       .then(function () { $("fishKey").value = ""; flash("fishMsg", "ok", "Gespeichert. Mit „Probe hören“ testen."); load(); }, function (err) { flash("fishMsg", "err", err.message); });
@@ -5380,8 +5584,8 @@ dialog.vs[open] { display: grid; place-items: center; }
   });
   $("planForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    api("api/settings", { post_hours: S.hours, privacy: $("privacy").value })
-      .then(function () { S.hours = null; flash("planMsg", "ok", "Gespeichert"); }, function (err) { flash("planMsg", "err", err.message); });
+    api("api/settings", { post_hours: S.hours, post_hours_weekend: S.hoursWe, privacy: $("privacy").value })
+      .then(function () { S.hours = null; S.hoursWe = null; flash("planMsg", "ok", "Gespeichert"); }, function (err) { flash("planMsg", "err", err.message); });
   });
   $("postNow").addEventListener("click", function () {
     api("api/post-now").then(function () { flash("actMsg", "ok", "Das Video wird erstellt und hochgeladen. Das dauert ein paar Minuten."); poll(5000); }, function (err) { flash("actMsg", "err", err.message); });

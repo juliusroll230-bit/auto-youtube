@@ -1,0 +1,114 @@
+{
+  "slug": "erklaert-chili-schaerfe",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1010",
+    "#e0603a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du eine scharfe Chili isst? 🌶️",
+  "description": "Scharf ist kein Geschmack, sondern ein Schmerzreiz. Warum dein Mund brennt, obwohl nichts verbrennt, und was wirklich gegen die Schärfe hilft.\n\n#wissen #chili #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "chili",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Chili | brennt ohne Feuer",
+    "Wasser hilft kaum"
+  ],
+  "segments": [
+    {
+      "text": "Du beißt in eine Chili und plötzlich brennt dein ganzer Mund.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🌶️"
+      }
+    },
+    {
+      "text": "Dabei brennt nichts wirklich, deine Haut ist völlig heil.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Kein Feuer"
+      }
+    },
+    {
+      "text": "Der Stoff Capsaicin trickst deine Schmerzfühler im Mund aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧪",
+        "text": "Capsaicin"
+      }
+    },
+    {
+      "text": "Sie melden Hitze, obwohl es nur ein Wirkstoff ist.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔥",
+          "text": "Echte Hitze"
+        },
+        "rechts": {
+          "objekt": "🌶️",
+          "text": "Nur Meldung"
+        }
+      }
+    },
+    {
+      "text": "Dein Körper schwitzt, die Nase läuft und das Herz klopft.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "💦"
+      }
+    },
+    {
+      "text": "Trinkst du Wasser, wird es kaum besser.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "text": "Wasser hilft kaum"
+      }
+    },
+    {
+      "text": "Milch und Joghurt helfen, weil sie das Capsaicin binden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das hilft",
+        "punkte": [
+          "Milch",
+          "Joghurt",
+          "Brot"
+        ]
+      }
+    },
+    {
+      "text": "Nach kurzer Zeit schüttet dein Körper oft sogar Glückshormone aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😅"
+      }
+    }
+  ]
+}

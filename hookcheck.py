@@ -4,6 +4,11 @@ Ideen aus dem Skill-Paket "claude-content-skills" (MIT): virality (Checkliste f�
 3 Sekunden) und humanizer (typische KI-Floskeln entfernen), umgebaut für deutsche
 Strichmännchen-Shorts.
 
+Seit 15.11.2026 dazu die Text-Regeln aus „unslop“ von Damir Sokolovsky (@heydamir, CC BY 4.0,
+https://github.com/heydamir/unslop), auf Deutsch umgebaut: keine Hype-Wörter, keine Begrüßung,
+keine gehäuften Ausrufezeichen, keine unbelegten Zahlen, kurze Zeilen ohne Schlusspunkt,
+Emojis nur als Bild und nicht als Deko. Das gilt auch für Titel, Beschreibung und Thumbnail-Text.
+
     python3 hookcheck.py seed/0193-*.json          # Note und was fehlt
     python3 hookcheck.py --fix seed/0193-*.json    # zusätzlich Floskeln/Gedankenstriche entfernen
 
@@ -33,7 +38,8 @@ EMPTY_SENTENCES = [
 ]
 EMPTY = re.compile(r"(?:^|(?<=[.!?]))\s*(?:" + "|".join(EMPTY_SENTENCES) + r")\s*[.!]+", re.I)
 
-DASH = re.compile(r"\s*(?:—|–|\s--\s)\s*")
+# Gedankenstriche, aber nicht zwischen Zahlen („1959–1960“ bleibt)
+DASH = re.compile(r"(?<!\d)\s*(?:—|–|\s--\s)\s*|\s*(?:—|–|\s--\s)\s*(?!\d)")
 
 # Was oft nach KI klingt (wird nur gemeldet, nicht automatisch umgeschrieben)
 TELLS = [
@@ -51,8 +57,121 @@ TELLS = [
     (r"\bhier\s+ist\s+der\s+(?:clou|haken)\b", "„hier ist der Clou“"),
     (r"\bund\s+das\s+(?:beste|verrückteste)\s*[?:]", "„und das Beste?“"),
     (r"\blass(?:t)?\s+das\s+(?:mal\s+)?sacken\b", "„lass das sacken“"),
+    # typisch deutsches KI-Deutsch (unslop + Humanizer)
+    (r"\b(?:heutzutage|in\s+der\s+heutigen\s+(?:zeit|welt))\b", "„heutzutage“"),
+    (r"\beine?\s+(?:wichtige|entscheidende|zentrale|große)\s+rolle\b", "„spielt eine wichtige Rolle“"),
+    (r"\bvon\s+(?:entscheidender|großer|zentraler)\s+bedeutung\b", "„von entscheidender Bedeutung“"),
+    (r"\b(?:darüber\s+hinaus|nicht\s+zuletzt|zweifellos|ohne\s+zweifel|im\s+endeffekt|sozusagen)\b", "Füllwort"),
+    (r"(?:^|[.!?]\s+)tatsächlich\b", "„Tatsächlich …“ am Satzanfang"),
+    (r"\bmehr\s+als\s+nur\b", "„mehr als nur“"),
+    (r"\b(?:fakt\s+ist|spoiler)\s*:", "„Fakt ist:“"),
+    (r"\bdie\s+antwort\s+wird\s+dich\s+überraschen\b", "„die Antwort wird dich überraschen“"),
 ]
 TELLS = [(re.compile(p, re.I), name) for p, name in TELLS]
+
+# Hype-Wörter (unslop: „supercharge, seamless, unlock, magic, revolutionize“ auf Deutsch)
+HYPE = [
+    (r"\brevolution(?:är\w*|ier\w*)", "„revolutionär“"),
+    (r"\bbahnbrechend\w*", "„bahnbrechend“"),
+    (r"\bultimativ\w*", "„ultimativ“"),
+    (r"\bnahtlos\w*", "„nahtlos“"),
+    (r"\bgame[\s-]?changer\b|\bdas\s+ändert\s+alles\b", "„Game-Changer“"),
+    (r"\bdu\s+wirst\s+(?:es\s+)?nicht\s+glauben\b", "„du wirst nicht glauben“"),
+    (r"\bunfassbar\w*", "„unfassbar“"),
+    (r"\b(?:der|die|das)\s+absolute\s+wahnsinn\b|\babsolut\s+krass\b", "„absoluter Wahnsinn“"),
+    (r"\bgänsehaut\s+garantiert\b", "„Gänsehaut garantiert“"),
+    (r"\bmuss\s+man\s+gesehen\s+haben\b|\bmust[\s-]see\b", "„muss man gesehen haben“"),
+]
+HYPE = [(re.compile(p, re.I), name) for p, name in HYPE]
+
+# Behauptungen, die niemand prüfen kann (unslop: „Loved by 10,000+ teams“)
+CLAIMS = [
+    (r"\b(?:9\d|100)\s*(?:%|prozent)\s+(?:aller|der)\s+\w+", "„99 % der Menschen …“"),
+    (r"\b(?:die\s+meisten|fast\s+alle|kaum\s+jemand)\s+(?:menschen|leute|deutschen)?\s*(?:wissen|kennen)\s+(?:das\s+)?nicht\b",
+     "„die meisten wissen das nicht“"),
+    (r"\bwissenschaftlich\s+(?:bewiesen|belegt)\b", "„wissenschaftlich bewiesen“ ohne Quelle"),
+]
+CLAIMS = [(re.compile(p, re.I), name) for p, name in CLAIMS]
+
+_E1 = "[\U0001F000-\U0001F1E5\U0001F200-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF][\uFE0F\U0001F3FB-\U0001F3FF]*"
+EMOJI = re.compile("[\U0001F1E6-\U0001F1FF]{2}|" + _E1 + "(?:\u200D" + _E1 + ")*")
+GREETING = re.compile(r"^\s*(?:(?:hallo|hey|hi|servus|moin)(?:\s+(?:leute|zusammen|ihr))?|willkommen(?:\s+zurück)?)\s*[,.!:]+\s*", re.I)
+
+
+def _found(text, rules):
+    return [name for rx, name in rules if rx.search(text)]
+
+
+def polish(text, kind="line"):
+    """Bereinigt einen kurzen Text (unslop): kind = title, line (Thumbnail), description oder post.
+
+    Entfernt Gedankenstriche, Begrüßung, gehäufte !!/??, leere Ankündigungen; Titel und Zeilen
+    enden ohne Punkt, ein Titel behält höchstens ein Emoji. Hashtags und Zeilenumbrüche bleiben.
+    """
+    if not isinstance(text, str) or not text.strip():
+        return text
+    if kind in ("description", "post"):
+        lines = []
+        for i, line in enumerate(text.split("\n")):
+            if line.lstrip().startswith("#") or not line.strip():
+                lines.append(line.rstrip())
+                continue
+            new = humanize(line, first=i == 0)
+            new = GREETING.sub("", new) if i == 0 else new
+            lines.append(new)
+        out = "\n".join(lines).strip("\n")
+        return out or text
+    out = DASH.sub(" " if kind == "line" else ", ", text)
+    out = GREETING.sub("", out)
+    out = re.sub(r"([!?])[!?1]+", r"\1", out)
+    out = re.sub(r",\s*([.!?])", r"\1", out)
+    out = re.sub(r"\s*,\s*$", "", out)
+    out = re.sub(r"(?<![.])\.\s*$", "", out.strip())  # kein Schlusspunkt, „…“ bleibt
+    if kind == "title":
+        seen = []
+        def keep_first(m):
+            seen.append(m.group(0))
+            return m.group(0) if len(seen) == 1 else ""
+        out = EMOJI.sub(keep_first, out)
+    out = re.sub(r"\s{2,}", " ", out).strip(" ,")
+    if out and out[0].islower() and out != text.strip():
+        out = out[0].upper() + out[1:]
+    return out or text
+
+
+def text_tips(spec):
+    """Tipps für Titel, Beschreibung und Thumbnail-Text (zählen nicht zur Hook-Note)."""
+    tips = []
+    title = str(spec.get("title") or "")
+    desc = str(spec.get("description") or "")
+    thumbs = spec.get("thumb_text") or []
+    thumbs = [thumbs] if isinstance(thumbs, str) else [str(t) for t in thumbs]
+    plain = EMOJI.sub("", title).strip()
+    if len(plain) > 70:
+        tips.append(f"Titel hat {len(plain)} Zeichen, besser unter 60 (sonst abgeschnitten).")
+    if len(EMOJI.findall(title)) > 1:
+        tips.append("Titel: höchstens ein Emoji.")
+    if title.count("!") > 1 or re.search(r"[!?]{2,}", title):
+        tips.append("Titel: keine gehäuften Ausrufezeichen.")
+    caps = [w for w in re.findall(r"\b[A-ZÄÖÜ]{4,}\b", title)]
+    if len(caps) > 1:
+        tips.append("Titel: nicht mehrere Wörter in GROSSBUCHSTABEN.")
+    found = _found(title + " " + desc + " " + " ".join(thumbs), HYPE)
+    if found:
+        tips.append("Hype-Wörter: " + ", ".join(found) + ". Lieber sagen, was passiert.")
+    text = " ".join([title, desc] + [str(s.get("text", "")) for s in spec.get("segments", [])])
+    found = _found(text, CLAIMS)
+    if found:
+        tips.append("Unbelegte Behauptung: " + ", ".join(found) + ". Nur mit echter Quelle, sonst weg.")
+    if GREETING.match(desc):
+        tips.append("Beschreibung beginnt mit einer Begrüßung, lieber direkt mit dem Inhalt.")
+    tw = set(re.findall(r"\w{4,}", title.lower()))
+    for t in thumbs:
+        words = re.findall(r"\w{4,}", t.replace("|", " ").lower())
+        if len(words) >= 3 and sum(w in tw for w in words) >= len(words) - 1:
+            tips.append("Thumbnail-Text wiederholt den Titel, lieber eine neue Neugier-Zeile.")
+            break
+    return tips
 
 
 def humanize(text, first=False):
@@ -72,11 +191,16 @@ def humanize(text, first=False):
 def clean(spec):
     """Bereinigt Titel und Sätze eines Skripts. Gibt (skript, geändert?) zurück."""
     changed = False
-    title = spec.get("title")
-    if isinstance(title, str):
-        new = DASH.sub(", ", title).strip(" ,")
-        changed |= new != title
-        spec["title"] = new
+    for key, kind in (("title", "title"), ("description", "description")):
+        if isinstance(spec.get(key), str):
+            new = polish(spec[key], kind)
+            changed |= new != spec[key]
+            spec[key] = new
+    thumbs = spec.get("thumb_text")
+    if isinstance(thumbs, list):
+        new = [polish(t, "line") if isinstance(t, str) else t for t in thumbs]
+        changed |= new != thumbs
+        spec["thumb_text"] = new
     for i, seg in enumerate(spec.get("segments", [])):
         if not isinstance(seg.get("text"), str):
             continue
@@ -89,7 +213,7 @@ def clean(spec):
 def tells(spec):
     """Gefundene KI-Floskeln im ganzen Skript (Liste von Namen, doppelte nur einmal)."""
     text = " ".join(str(s.get("text", "")) for s in spec.get("segments", []))
-    found = [name for rx, name in TELLS if rx.search(text)]
+    found = [name for rx, name in TELLS + HYPE if rx.search(text)]
     if DASH.search(text):
         found.append("Gedankenstrich")
     return found
@@ -135,6 +259,9 @@ def check(spec):
     if niche.startswith("erkl"):
         about_you = bool(YOU.search(first)) or first.endswith("?")
         you_tip = "Erklärvideo: im ersten Satz „du“ sagen oder die Frage stellen."
+    elif niche == "erzählung":  # Ich-Geschichte: „Ich“ ist erlaubt, nur kein „Heute“ oder „In diesem Video“
+        about_you = not re.match(r"^\s*(?:heute|in\s+diesem)\b", first, re.I)
+        you_tip = "Geschichte: direkt mit der Situation anfangen, nicht mit „Heute“."
     else:
         about_you = not WE_I.search(first)
         you_tip = "Nicht mit „Ich“, „Wir“ oder „Heute“ anfangen, sondern mit der Szene."
@@ -170,6 +297,7 @@ def check(spec):
         "score": score, "max": len(points),
         "points": [{"key": k, "label": label, "ok": bool(ok)} for k, label, ok, _ in points],
         "tips": [tip for _, _, ok, tip in points if not ok and tip],
+        "text_tips": text_tips(spec),
     }
 
 
@@ -199,6 +327,8 @@ def main(args):
         print(f"{r['score']}/{r['max']}  {name}")
         for tip in r["tips"]:
             print("      - " + tip)
+        for tip in r["text_tips"]:
+            print("      · " + tip)
     return 0 if worst >= 6 else 2
 
 

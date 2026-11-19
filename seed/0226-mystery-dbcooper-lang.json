@@ -1,0 +1,688 @@
+{
+  "slug": "mystery-dbcooper-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0c1218",
+    "#4a6a8c"
+  ],
+  "accent": "#c4161c",
+  "title": "D. B. Cooper: Der Entführer, der spurlos verschwand 🪂",
+  "description": "24. November 1971: Ein Mann entführt eine Boeing, bekommt 200.000 Dollar und springt in der Nacht ab. Er wurde nie gefunden. Wir erzählen die ganze Geschichte von D. B. Cooper, zeigen die Spuren und prüfen jede Theorie.\n\n#mystery #rätsel #dbcooper #geschichte #kriminalfall",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "dbcooper",
+    "geschichte",
+    "kriminalfall"
+  ],
+  "figur": {
+    "farbe": "navy",
+    "hut": "keiner",
+    "name": "Cooper"
+  },
+  "thumb_text": [
+    "Cooper | nie gefunden",
+    "Er sprang ins Dunkel"
+  ],
+  "segments": [
+    {
+      "text": "Am Tag vor Thanksgiving reicht ein Mann im Flugzeug der Stewardess plötzlich einen Zettel, der alles verändert.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "✈️",
+        "wetter": "regen"
+      }
+    },
+    {
+      "text": "Auf dem Zettel steht, dass er eine Bombe dabei hat. Wenige Stunden später springt er ab, und von ihm fehlt bis heute jede Spur.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📝",
+        "text": "Der Zettel",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte von D. B. Cooper, dem einzigen Flugzeugentführer der USA, der nie gefunden wurde.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🪂",
+        "text": "D. B. Cooper",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Zuerst der Flug, dann die Forderungen, dann der Sprung, dann die Spuren, und zum Schluss die Frage, ob er überlebt hat.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Am vierundzwanzigsten November neunzehnhunderteinundsiebzig steht am Flughafen in Portland ein Mann am Schalter und kauft ein Ticket nach Seattle.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1971",
+        "text": "Portland",
+        "objekt": "🎫"
+      }
+    },
+    {
+      "text": "Er nennt sich Dan Cooper, bezahlt bar und wirkt völlig ruhig. Er trägt einen dunklen Anzug, eine schmale Krawatte und eine Sonnenbrille.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🕶️"
+      }
+    },
+    {
+      "text": "Nichts an ihm fällt auf. Er ist ruhig und höflich, und die Besatzung wird ihn später als freundlich und gar nicht nervös beschreiben.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🙂",
+        "text": "Höflich",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "In der Hand hat er einen schwarzen Koffer. Es ist die Maschine von Northwest Orient, eine Boeing 727, Flug dreihundertfünf.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💼",
+        "text": "Der Koffer",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Der Flug dauert nur etwa eine halbe Stunde, und es sind sechsunddreißig Fahrgäste an Bord, dazu die Besatzung.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 36,
+        "einheit": "Fahrgäste",
+        "objekt": "👥",
+        "farbcode": "#10161c"
+      }
+    },
+    {
+      "text": "Cooper setzt sich in die hintere Reihe, bestellt einen Whiskey mit Soda und zündet sich eine Zigarette an, als wäre nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🥃"
+      }
+    },
+    {
+      "text": "Die Stewardessen bemerken nichts Besonderes. Sie bringen Getränke, plaudern kurz mit ihm, und ahnen noch nicht, was in seinem Koffer steckt.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "nacht",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Dann reicht er der Stewardess Florence Schaffner einen Zettel. Sie steckt ihn ein, ohne ihn zu lesen, denn sie hält ihn für eine Telefonnummer.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📝",
+        "text": "Der Zettel",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Er beugt sich zu ihr und sagt leise, sie solle ihn lesen. Sie wird blass, denn auf dem Zettel steht das Wort Bombe.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Dann öffnet er den Koffer einen Spalt. Sie sieht Drähte und rote Stäbe, die nach einer Bombe aussehen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💣",
+        "text": "Bombe?",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Seine Forderungen sind klar und werden sofort ans Cockpit weitergegeben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Forderung",
+        "punkte": [
+          "200.000 Dollar",
+          "Vier Fallschirme",
+          "Tankwagen"
+        ]
+      }
+    },
+    {
+      "text": "Er verlangt, dass das Geld in kleinen Scheinen zu zwanzig Dollar bereitliegt, und es soll in Seattle bereitstehen, wenn das Flugzeug landet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "💵"
+      }
+    },
+    {
+      "text": "Jetzt wird es ernst. Wie reagieren die Behörden auf diese Forderung?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⚖️",
+        "text": "Die Reaktion"
+      }
+    },
+    {
+      "text": "Der Pilot fliegt eine Warteschleife, während am Boden das Geld besorgt wird und die Polizei alles vorbereitet.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛩️",
+        "text": "Warteschleife",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Die Fluggesellschaft entscheidet, zu zahlen. Die Fahrgäste wissen lange nichts, denn man sagt ihnen nur, es gebe eine kleine Verzögerung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🤫"
+      }
+    },
+    {
+      "text": "Die Maschine kreist fast zwei Stunden über Seattle, und in dieser Zeit sitzen die Fahrgäste und warten auf eine Erklärung.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2,
+        "einheit": "Stunden Warteschleife",
+        "objekt": "⏳",
+        "farbcode": "#10161c"
+      }
+    },
+    {
+      "text": "Nach Einbruch der Dunkelheit landet die Maschine in Seattle. Dort bringt man Cooper das Geld und die Fallschirme.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1971",
+        "text": "Seattle",
+        "objekt": "🌃"
+      }
+    },
+    {
+      "text": "Als Gegenleistung lässt er alle Fahrgäste und die Stewardessen gehen. Nur Pilot, Copilot und Bordingenieur bleiben an Bord.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚪",
+        "text": "Alle frei",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Er hat zweihunderttausend Dollar bekommen. Nach heutigem Wert wäre das mehr als eine Million Dollar.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 200000,
+        "einheit": "Dollar",
+        "objekt": "💰",
+        "farbcode": "#10161c"
+      }
+    },
+    {
+      "text": "Dann gibt er den Befehl zum Start: Das Ziel ist Mexiko, aber mit einer Zwischenlandung zum Tanken in Reno.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🇲🇽"
+      }
+    },
+    {
+      "text": "Außerdem stellt er genaue Regeln für den Flug auf, die zeigen, dass er sich auskennt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Seine Regeln",
+        "punkte": [
+          "Tief fliegen",
+          "Langsam fliegen",
+          "Kabine offen"
+        ]
+      }
+    },
+    {
+      "text": "Warum diese Regeln? Wer so fliegt, kann aus einer Boeing mit der hinteren Treppe aussteigen, ohne dass die Luft ihn gleich wegreißt.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔧",
+        "text": "Hinten raus",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Das ist ein Detail, das nicht jeder weiß. Cooper kennt dieses Flugzeug offenbar sehr gut und plant seinen Sprung bis ins Kleinste.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Jetzt zum Kern der Geschichte: der Sprung in die Dunkelheit.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌌",
+        "text": "Der Sprung"
+      }
+    },
+    {
+      "text": "Die Stewardessen sitzen vorn im Flugzeug, als im Cockpit ein Lämpchen aufleuchtet. Es zeigt, dass die hintere Treppe ausgefahren wurde.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💡",
+        "text": "Warnlicht",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Gegen zwanzig Uhr, irgendwo über dem Bundesstaat Washington, springt der Mann in Nacht, Regen und eisige Luft hinaus.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1971",
+        "text": "Der Sprung",
+        "objekt": "🌧️"
+      }
+    },
+    {
+      "text": "Draußen sind es etwa zehn Grad unter null, es regnet, und das Flugzeug fliegt noch immer mit mehr als zweihundert Stundenkilometern.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "faellt",
+        "objekt": "🌬️",
+        "wetter": "regen"
+      }
+    },
+    {
+      "text": "Er trägt einen Anzug und Halbschuhe, hat kein Licht und keine Karte dabei. Wo er aufkommt, weiß vermutlich nicht einmal er selbst.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "👞",
+        "text": "Halbschuhe",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Im Cockpit merkt die Besatzung nur, dass sich der Druck verändert. Sie landen in Reno, und die Polizei stürmt das Flugzeug.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚓",
+        "text": "Reno",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Die Piloten hören nur, wie der Wind hinten rauscht. Dann ändert sich der Druck, und sie wissen, dass der Mann gesprungen sein muss.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌀"
+      }
+    },
+    {
+      "text": "Doch die Kabine ist leer. Cooper, das Geld und zwei der Fallschirme sind weg, und die Treppe hängt offen im Wind.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🪂"
+      }
+    },
+    {
+      "text": "Was haben die Ermittler an Bord gefunden? Eine Menge winziger Spuren.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔍",
+        "text": "Die Spuren"
+      }
+    },
+    {
+      "text": "Am Sitz bleiben ein paar Dinge zurück, die später sehr wichtig werden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Zurückgelassen",
+        "punkte": [
+          "Krawatte",
+          "Zigaretten",
+          "Fallschirmteile"
+        ]
+      }
+    },
+    {
+      "text": "Die Krawatte enthält winzige Teilchen eines seltenen Metalls. Sie haben nur wenige Firmen verwendet, doch eine Spur zum Täter ergibt sich nicht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👔",
+        "text": "Die Krawatte",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Auch acht Zigarettenstummel liegen im Aschenbecher. Man kann daran später Erbgut finden, aber es führt zu keinem Namen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🚬"
+      }
+    },
+    {
+      "text": "Der Name Cooper selbst ist eine Verwechslung. Ein Reporter schrieb versehentlich D. B. statt Dan, und so blieb der Name hängen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📰",
+        "text": "D. B.?",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Hunderte Hinweise gehen ein, und viele führen in die Irre. Immer wieder meldet sich jemand, der Cooper erkannt haben will.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📞",
+        "text": "Hinweise",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Der FBI-Fall läuft über vierundvierzig Jahre, mit tausenden Hinweisen und hunderten Verdächtigen, bis die Akte 2016 geschlossen wird.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 44,
+        "einheit": "Jahre Ermittlung",
+        "objekt": "📁",
+        "farbcode": "#10161c"
+      }
+    },
+    {
+      "text": "Die Suche am Boden beginnt sofort. Hunderte Helfer durchkämmen Wälder und Felder, aber sie finden weder Körper noch Fallschirm.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌲",
+        "text": "Die Suche",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Die Ermittler berechnen, wo er gelandet sein könnte, und markieren auf der Karte ein Gebiet nördlich von Portland.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📍"
+      }
+    },
+    {
+      "text": "Das Gelände ist riesig, bergig und dicht bewachsen, und im Winter liegt dort viel Schnee, der Spuren schnell verdeckt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🏔️",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Neun Jahre später spielt ein Junge am Ufer des Columbia River und entdeckt im Sand ein Bündel verrotteter Geldscheine.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1980",
+        "text": "Der Fund",
+        "objekt": "🏞️"
+      }
+    },
+    {
+      "text": "Es sind fast sechstausend Dollar. Die Nummern der Scheine passen zum Lösegeld, doch von dem Rest fehlt jede Spur.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💵",
+        "text": "Das Geld",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Wie kam das Geld dorthin? Vielleicht trug der Fluss es herunter, vielleicht war Cooper hier, vielleicht auch nicht. Niemand weiß es sicher.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌊",
+        "text": "Wie kam es her?",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Gleich prüfen wir die wichtigsten Theorien und fragen, wer Cooper wirklich gewesen sein könnte.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🕵️",
+        "text": "Verdächtige"
+      }
+    },
+    {
+      "text": "Theorie eins: Cooper überlebte. Er war vielleicht ein ehemaliger Soldat oder Fallschirmjäger, der Sprung und Landung gut geplant hatte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🪖"
+      }
+    },
+    {
+      "text": "Theorie zwei: Er kam um. Wer nachts bei Regen mit Anzug und ohne Ausrüstung springt, hat wohl kaum eine Chance.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💀",
+        "text": "Überlebt?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Für beide Seiten gibt es Argumente. Er plante gründlich, aber er sprang in einer Nacht, die für Anfänger viel zu gefährlich war.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧠",
+          "text": "Gut geplant"
+        },
+        "rechts": {
+          "objekt": "🌧️",
+          "text": "Falsche Nacht"
+        }
+      }
+    },
+    {
+      "text": "Mehrere Männer wurden als Cooper verdächtigt, darunter ein Fallschirmspringer, der später selbst ein Flugzeug entführte und danach erschossen wurde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔎"
+      }
+    },
+    {
+      "text": "Auch ein Mann, der auf dem Sterbebett gestanden haben soll, er sei Cooper, wurde geprüft. Doch Beweise ergaben sich nicht.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛏️",
+        "text": "Geständnis?",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Bei allen Verdächtigen passte etwas nicht zusammen, und so blieb jede Theorie ohne Beweis.",
+      "szene": {
+        "typ": "liste",
+        "text": "Offene Punkte",
+        "punkte": [
+          "Kein Körper",
+          "Kein Fallschirm",
+          "Kein Beweis"
+        ]
+      }
+    },
+    {
+      "text": "Kein einziger Verdächtiger passt zu allen Spuren, weder zur Größe, noch zum Alter, noch zu den Fingerabdrücken im Flugzeug.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔍",
+        "text": "Passt keiner",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Die Fluggesellschaften zogen eine Lehre. Man baute eine Sperre ein, die verhindert, dass die hintere Treppe im Flug ausfährt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🔒"
+      }
+    },
+    {
+      "text": "Sie heißt bis heute Cooper-Vane, und nach dem Fall wurden Passagiere in den USA genauer kontrolliert.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛡️",
+        "text": "Cooper-Vane",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Im Sommer 2016 stellt die Bundespolizei die aktive Suche nach Cooper offiziell ein und setzt ihre Mittel anders ein.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2016",
+        "text": "Fall zu den Akten",
+        "objekt": "📁"
+      }
+    },
+    {
+      "text": "Das heißt nicht, dass der Fall gelöst ist. Wer neue Beweise hat, kann sie weiter melden, und das tun Hobbyforscher bis heute.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📬"
+      }
+    },
+    {
+      "text": "Auch das FBI räumt ein, dass die Chancen auf eine Lösung gering sind, weil so viele Zeugen gestorben und Beweise verloren sind.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Zeit läuft",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was ist sicher, was ist offen, und was ist wahrscheinlich?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Der Mann hat ein Flugzeug entführt, Geld bekommen und ist über dem Land abgesprungen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Entführung",
+          "Geld erhalten",
+          "Absprung"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt: Wer war er, wo kam er auf, und hat er den Sprung überlebt?",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "👤",
+          "📍",
+          "❤️"
+        ]
+      }
+    },
+    {
+      "text": "Wahrscheinlich ist eher das Traurige: Ein Sprung in Nacht, Regen und Kälte ging für ihn schief, und der Wald hat ihn behalten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Und doch hält uns der Fall gefangen, weil ein Mann mit ruhiger Stimme ein Land an der Nase herumführte und im Dunkel verschwand.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌑",
+        "text": "Im Dunkel",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du, dass Cooper überlebt hat, oder meinst du, der Wald hat ihn behalten? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

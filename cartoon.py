@@ -38,6 +38,7 @@ ACTIONS = {"steht", "zeigt", "winkt", "jubelt", "rennt", "zittert", "denkt", "fa
 WEATHER = {"regen", "nebel", "blitz", "schnee"}
 MONSTERS = {"zombie", "geist", "schatten"}
 COLORS = {"rot", "blau", "gelb", "gruen", "lila", "navy"}
+WORLDS = {"strich", "block"}  # block: 3D-Blockfiguren (cartoon/web/block3d.js)
 HATS = {"keiner", "bandana", "matrose", "kapitaen", "krone", "zylinder", "helm", "muetze", "hexe", "ritter"}
 
 
@@ -73,6 +74,8 @@ def validate(spec):
     fig(spec.get("figur"), "figur")
     if spec.get("stimmung") and spec["stimmung"] not in MOODS_VIDEO:
         errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
+    if spec.get("welt") and spec["welt"] not in WORLDS:
+        errs.append(f"Welt {spec['welt']}, erlaubt: {', '.join(sorted(WORLDS))}")
     if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
         errs.append(f"Stimme {spec['stimme']}, erlaubt: {', '.join(make_short.VOICES)}")
     for i, seg in enumerate(segs, 1):
@@ -111,6 +114,8 @@ def validate(spec):
             errs.append(f"Segment {i}: vergleich braucht links und rechts")
         if typ == "objekt" and not sc.get("objekt"):
             errs.append(f"Segment {i}: objekt (Emoji) fehlt")
+        if len(str(sc.get("chat") or "")) > 40:
+            errs.append(f"Segment {i}: chat länger als 40 Zeichen")
         for k in ("text", "tafel"):
             if len(str(sc.get(k) or "")) > 22:
                 errs.append(f"Segment {i}: {k} länger als 22 Zeichen")
@@ -151,6 +156,7 @@ def plan(spec, timings, total):
     for sc in scenes:  # gleiche Figur im ganzen Video, wenn die Szene nichts anderes sagt
         sc.setdefault("figur", spec.get("figur") or {"farbe": "rot"})
     return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec),
+            "welt": spec.get("welt") or "strich", "figur": spec.get("figur") or {},  # "block": 3D-Blockwelt
             "wide": is_long(spec)}  # lange Videos: Querformat 1920x1080
 
 

@@ -1,0 +1,103 @@
+{
+  "slug": "mystery-hameln-kinder",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#2a1a10",
+    "#c4803a"
+  ],
+  "accent": "#ffd24d",
+  "title": "Die Stadt, aus der hundertdreißig Kinder verschwanden 🎶",
+  "description": "Hameln, 1284: Der Überlieferung nach verschwinden hundertdreißig Kinder. Die Ratten kamen erst später in die Sage, was geschah, ist ungeklärt.\n\n#mystery #rätsel #hameln #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "hameln",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot",
+    "hut": "keiner",
+    "name": "Flötenspieler"
+  },
+  "segments": [
+    {
+      "text": "Ein Flötenspieler spielt eine Melodie, und alle Kinder folgen ihm.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🎶"
+      }
+    },
+    {
+      "text": "Das geschah der Überlieferung nach am sechsundzwanzigsten Juni zwölfhundertvierundachtzig.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1284,
+        "text": "Hameln",
+        "objekt": "🎶"
+      }
+    },
+    {
+      "text": "Hundertdreißig Kinder verließen die Stadt und kamen nie zurück.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 130,
+        "einheit": "Kinder",
+        "objekt": "👧",
+        "farbcode": "#2a1a10"
+      }
+    },
+    {
+      "text": "Eine Straße, in der keine Musik erlaubt ist, erinnert daran.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚫",
+        "text": "Keine Musik"
+      }
+    },
+    {
+      "text": "Was geschah wirklich? Die Ratten kamen erst später in die Sage.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Was geschah?"
+      }
+    },
+    {
+      "text": "Theorien: Auswanderung nach Osten, Seuche oder ein Unglück.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Auswanderung",
+          "Seuche",
+          "Unglück"
+        ]
+      }
+    },
+    {
+      "text": "Viele Forscher glauben: Sie zogen als Siedler weit nach Osten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Nach Osten"
+      }
+    },
+    {
+      "text": "Sicher ist nur: Die Geschichte lebt weiter. Was glaubst du?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🎶",
+        "text": "Was glaubst du?"
+      }
+    }
+  ],
+  "stimmung": "mysterioes"
+}

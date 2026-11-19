@@ -175,7 +175,8 @@ def overview(cfg, runs, ctx):
                        ("Untertitel", "lernt selbst" if s["untertitel"] == "auto" else s["untertitel"].capitalize())]
         elif a == "publisher":
             nxt = ctx["next_slot"] if on else None
-            metrics = [("Sendezeiten", ", ".join(f"{h} Uhr" for h in cfg["post_hours"])),
+            metrics = [("Sendezeiten", "Mo-Fr " + ", ".join(f"{h}" for h in cfg["post_hours"]) + " Uhr, Sa/So "
+                        + ", ".join(f"{h}" for h in (cfg.get("post_hours_weekend") or cfg["post_hours"])) + " Uhr"),
                        ("Gepostet", f"{ctx['posted']} Videos"),
                        ("Clips pro Tag", f"bis zu {s['clips_per_day']}" if s["clips_per_day"] else "keine"),
                        ("Lange Videos", f"{s['long_per_week']} pro Woche" if s["long_per_week"] else "keine")]

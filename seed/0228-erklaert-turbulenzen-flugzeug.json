@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-turbulenzen-flugzeug",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#101a2a",
+    "#5a8cc4"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dein Flugzeug in Turbulenzen gerät? ✈️",
+  "description": "Turbulenzen fühlen sich gefährlich an. Was dabei wirklich passiert, warum Flugzeuge viel aushalten und wann es doch wehtun kann.\n\n#wissen #flugzeug #turbulenzen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "flugzeug",
+    "turbulenzen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Turbulenz | halb so wild",
+    "Warum du anschnallst"
+  ],
+  "segments": [
+    {
+      "text": "Dein Flugzeug ruckelt, und plötzlich sackt es durch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "✈️",
+        "wetter": "blitz"
+      }
+    },
+    {
+      "text": "Das fühlt sich gefährlich an, ist es aber meistens nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "✈️",
+        "text": "Gefährlich?"
+      }
+    },
+    {
+      "text": "Turbulenzen sind Luftströme, die das Flugzeug durchrütteln.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🌬️",
+        "text": "Luftströme"
+      }
+    },
+    {
+      "text": "Flugzeuge sind dafür gebaut und halten viel mehr aus.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌬️",
+          "text": "Turbulenz"
+        },
+        "rechts": {
+          "objekt": "✈️",
+          "text": "Flügel: stabil"
+        }
+      }
+    },
+    {
+      "text": "Die Flügel biegen sich dabei sogar sichtbar nach oben.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "nacht",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Flügel biegen sich"
+      }
+    },
+    {
+      "text": "Verletzt werden vor allem Menschen, die nicht angeschnallt sind.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "faellt",
+        "objekt": "🪑"
+      }
+    },
+    {
+      "text": "Darum bleibst du bei Turbulenzen angeschnallt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Bei Turbulenz",
+        "punkte": [
+          "Anschnallen",
+          "Ruhig bleiben",
+          "Getränk festhalten"
+        ]
+      }
+    },
+    {
+      "text": "Dann ist das Ruckeln nur unbequem, aber nicht gefährlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "cool",
+        "aktion": "jubelt",
+        "objekt": "😌"
+      }
+    }
+  ]
+}

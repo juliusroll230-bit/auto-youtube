@@ -1,0 +1,101 @@
+{
+  "slug": "geschichte-omas-schluessel",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#3a2a1e",
+    "#d9a066"
+  ],
+  "accent": "#ffd27a",
+  "title": "Der Schlüssel, der in kein Schloss passt 🗝️",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Oma verschenkt einen alten Schlüssel, der nirgends passt. Zehn Jahre später verstehe ich, warum.\n\n#geschichte #storytime #oma #familie #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "oma",
+    "familie",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "warm",
+  "segments": [
+    {
+      "text": "Meine Oma gab mir einen Schlüssel, der in kein Schloss passt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🗝️"
+      }
+    },
+    {
+      "text": "Ich habe jede Tür probiert: Keller, Dachboden, sogar ihr altes Fahrrad.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "rennt",
+        "objekt": "🚪"
+      }
+    },
+    {
+      "text": "Oma hat nur gelächelt und gesagt: Du wirst schon sehen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Zehn Jahre später ziehe ich in meine erste eigene Wohnung.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "📦",
+        "text": "Erste Wohnung"
+      }
+    },
+    {
+      "text": "Am ersten Abend liegt ein Brief von Oma im Kasten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "✉️",
+        "text": "Von Oma"
+      }
+    },
+    {
+      "text": "Der Schlüssel gehörte zu ihrer ersten Wohnung, dort hat sie Opa kennengelernt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🏠",
+        "text": "Ihre erste Wohnung"
+      }
+    },
+    {
+      "text": "Er sollte nie eine Tür öffnen. Er sollte meiner Wohnung Glück bringen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🗝️",
+        "text": "Für Glück"
+      }
+    }
+  ],
+  "thumb_text": [
+    "Omas Schlüssel | passt nirgends",
+    "Er öffnet keine Tür"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "horror-kinderlied-leeres-zimmer",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a14",
+    "#3a2a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Lied, das aus dem leeren Zimmer kommt 🎵",
+  "description": "Eine ausgedachte Gruselgeschichte: Nachts singt im Zimmer nebenan eine Kinderstimme, obwohl dort niemand wohnt.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Spieluhr | spielt allein",
+    "Sie summt weiter"
+  ],
+  "segments": [
+    {
+      "text": "Nachts singt im Zimmer nebenan eine Kinderstimme, doch dort wohnt niemand.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🎵"
+      }
+    },
+    {
+      "text": "Du schleichst zur Tür und hörst das Lied lauter werden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt"
+      }
+    },
+    {
+      "text": "Es ist eine Spieluhr, die seit Jahren kaputt ist.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🎶",
+        "text": "Kaputte Spieluhr"
+      }
+    },
+    {
+      "text": "Du öffnest die Tür, und der Raum ist eiskalt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "🥶",
+        "text": "Eiskalt"
+      }
+    },
+    {
+      "text": "Ein kleines Mädchen steht mit dem Rücken zu dir.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Sie summt weiter und dreht sich ganz langsam um.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sie tut",
+        "punkte": [
+          "Summt weiter",
+          "Dreht sich um",
+          "Kommt näher"
+        ]
+      }
+    },
+    {
+      "text": "Sie hat kein Gesicht, nur einen Mund, der mitsingt.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "👄"
+      }
+    },
+    {
+      "text": "Am Morgen liegt die Spieluhr in deinem Bett, und sie spielt noch.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎶",
+        "text": "Sie spielt noch"
+      }
+    }
+  ]
+}

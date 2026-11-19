@@ -384,11 +384,11 @@ def reshuffle(store):
 def post_times(per_day, short_hours=()):
     """Uhrzeiten für die Posts. Fällt eine auf einen Shorts-Termin, rückt sie eine Stunde weiter."""
     taken, out = set(int(h) for h in short_hours or ()), []
-    for h in TIMES[max(1, min(5, int(per_day)))]:
-        while (h in taken or h in out) and h < 22:
-            h += 1
+    for base in TIMES[max(1, min(5, int(per_day)))]:
+        # nächste freie Stunde in den 2 Stunden danach; sendet der Kanal jede Stunde, bleibt die Uhrzeit
+        h = next((x for x in (base, base + 1, base + 2) if x not in taken and x not in out and x <= 22), base)
         out.append(h)
-    return sorted(out)
+    return sorted(set(out)) if len(set(out)) == len(out) else TIMES[max(1, min(5, int(per_day)))]
 
 
 def day_plan(posts, per_day, short_hours=()):

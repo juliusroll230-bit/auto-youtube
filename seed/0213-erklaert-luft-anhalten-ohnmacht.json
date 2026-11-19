@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-luft-anhalten-ohnmacht",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#101a30",
+    "#5a7ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du die Luft zu lange anhältst? 🫁",
+  "description": "Warum dein Körper beim Luftanhalten Alarm schlägt, was bei einer Ohnmacht passiert und warum Wasser alles gefährlich macht.\n\n#wissen #körper #atmen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "atmen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Atem | bis zur Ohnmacht",
+    "Dein Atemreiz lügt"
+  ],
+  "segments": [
+    {
+      "text": "Wie lange hältst du die Luft an, bevor es gefährlich wird?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zittert",
+        "objekt": "🫁"
+      }
+    },
+    {
+      "text": "Nach kurzer Zeit schreit dein Körper nach Luft.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔔",
+        "text": "Atemreiz"
+      }
+    },
+    {
+      "text": "Schuld ist zu viel Kohlendioxid im Blut, nicht fehlender Sauerstoff.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "❌",
+          "text": "Kein Sauerstoff"
+        },
+        "rechts": {
+          "objekt": "💨",
+          "text": "Zu viel CO2"
+        }
+      }
+    },
+    {
+      "text": "Das Gehirn merkt es und drängt dich zu atmen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Hältst du trotzdem durch, kannst du ohnmächtig werden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💫",
+        "text": "Ohnmacht"
+      }
+    },
+    {
+      "text": "Danach atmet dein Körper von selbst wieder los.",
+      "szene": {
+        "typ": "liste",
+        "text": "Danach",
+        "punkte": [
+          "Ohnmacht",
+          "Körper atmet",
+          "Aufwachen"
+        ]
+      }
+    },
+    {
+      "text": "Unter Wasser endet dieselbe Ohnmacht tödlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "faellt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Halte darum nie die Luft an, wenn du allein schwimmst.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 2,
+        "gefuehl": "cool",
+        "aktion": "zeigt"
+      }
+    }
+  ]
+}
