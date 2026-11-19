@@ -391,21 +391,53 @@ def apply_thumb(video_id, files, variant):
     try:
         yt.set_thumbnail(store.config(), video_id, files[variant])
     except Exception as e:  # noqa: BLE001
+        print(f"Thumbnail für {video_id} abgelehnt: {e!r}", flush=True)
         if yt.is_limit(e):
-            store.set_thumb_status(False, "limit")
+            store.set_thumb_status(False, "limit", e)
             store.log("warn", "Thumbnail nicht gesetzt: YouTube-Tageslimit erreicht.", agent="publisher")
         elif yt.thumb_not_allowed(e):
             first = (store.state().get("thumb_status") or {}).get("reason") != "verify"
-            store.set_thumb_status(False, "verify")
+            store.set_thumb_status(False, "verify", e)
             if first:
                 store.log("warn", "Eigene Thumbnails gehen erst, wenn dein Kanal bestätigt ist: youtube.com/verify "
                                   "öffnen und mit Handynummer bestätigen.", agent="publisher")
         else:
-            store.set_thumb_status(False, str(e)[:200])
+            store.set_thumb_status(False, str(e)[:200], e)
             store.log("warn", f"Thumbnail nicht gesetzt: {e}", agent="publisher")
         return None
     store.set_thumb_status(True)
     return variant
+
+
+def retry_thumbs():
+    """Setzt Thumbnails für die letzten Uploads, bei denen YouTube sie noch nicht angenommen hat (z. B. nach der
+    Kanal-Bestätigung). Hört beim ersten „nicht erlaubt“ auf, damit nicht 30 Mal derselbe Fehler kommt."""
+    import thumbnail
+    ups = [u for u in store.state()["uploads"] if u.get("kind") != "clip" and u.get("video_id")]
+    todo = [u for u in ups[-store.THUMB_RETRY_MAX:] if not (u.get("thumb") or {}).get("set")]
+    done = 0
+    for u in reversed(todo):   # neueste zuerst
+        spec = store.find_spec(u["slug"])
+        if not spec:
+            continue
+        variant = _safe_variant(bool(u.get("lang")))[:1]
+        file = store.thumb_path(u["slug"], variant)
+        try:
+            if not os.path.exists(file):
+                with thumb_lock:
+                    thumbnail.build(spec, os.path.dirname(file))
+        except Exception as e:  # noqa: BLE001
+            store.log("warn", f"Thumbnail nicht erstellt ({u['title']}): {e}", agent="studio")
+            continue
+        if not apply_thumb(u["video_id"], {variant: file}, variant):
+            break
+        store.set_upload_thumb(u["video_id"], variant)
+        done += 1
+    st = store.state().get("thumb_status") or {}
+    if done:
+        store.log("ok", f"Thumbnails nachgeholt: {done} Videos.", agent="publisher", kind="input")
+    elif not st.get("ok"):
+        store.log("warn", "Thumbnails nachholen: YouTube lehnt noch ab. " + (st.get("detail") or ""), agent="publisher")
 
 
 def firma_episode():
@@ -1521,6 +1553,9 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "rules": rules})
+        if p == "/api/thumb/retry":  # fehlende Thumbnails der letzten Uploads nachholen
+            background(retry_thumbs)
+            return self.send(200, {"ok": True})
         if p == "/api/thumb/set":  # andere Thumbnail-Variante für ein hochgeladenes Video setzen
             vid, variant = str(data.get("video_id") or ""), str(data.get("variant") or "")
             u = next((x for x in store.state()["uploads"] if x.get("video_id") == vid and x.get("kind") != "clip"), None)

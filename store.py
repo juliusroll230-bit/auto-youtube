@@ -742,11 +742,15 @@ def thumb_path(slug, variant):
     return path("thumbs", "custom", f"{slug}-{variant}.jpg")
 
 
-def set_thumb_status(ok, reason=""):
-    """Merkt sich, ob YouTube eigene Thumbnails annimmt (für den Hinweis in der Zentrale)."""
+def set_thumb_status(ok, reason="", detail=""):
+    """Merkt sich, ob YouTube eigene Thumbnails annimmt (für den Hinweis in der Zentrale).
+
+    detail: der genaue Fehlertext von YouTube, damit man in der Zentrale sieht, woran es liegt.
+    """
     with LOCK:
         st = state()
-        st["thumb_status"] = {"ok": bool(ok), "reason": reason, "at": now().isoformat(timespec="seconds")}
+        st["thumb_status"] = {"ok": bool(ok), "reason": reason, "detail": str(detail)[:400],
+                              "at": now().isoformat(timespec="seconds")}
         write("state.json", st)
 
 
@@ -762,6 +766,9 @@ def set_upload_thumb(video_id, variant):
         write("state.json", st)
 
 
+THUMB_RETRY_MAX = 30   # so viele der letzten Uploads holt „Fehlende nachholen“ höchstens nach
+
+
 def thumbs_overview(posted, long_queue):
     """Für die Karte „Thumbnails“: Status, nächstes langes Video und die letzten Uploads."""
     recent = [p for p in posted if p.get("kind") != "clip" and p.get("video_id")]
@@ -770,7 +777,8 @@ def thumbs_overview(posted, long_queue):
     pick = lambda p: {"slug": p["slug"], "title": p.get("title", ""), "video_id": p["video_id"],  # noqa: E731
                       "lang": bool(p.get("lang")), "set": (p.get("thumb") or {}).get("set"),
                       "posted_at": p.get("posted_at")}
-    return {"status": state().get("thumb_status"),
+    missing = sum(1 for p in recent[-THUMB_RETRY_MAX:] if not (p.get("thumb") or {}).get("set"))
+    return {"status": state().get("thumb_status"), "missing": missing,
             "next_long": {"slug": long_queue[0]["slug"], "title": long_queue[0]["title"]} if long_queue else None,
             "recent": [pick(p) for p in reversed(longs + shorts)]}
 
