@@ -87,13 +87,20 @@ Darum als Test, **ohne den Plan oben zu ändern**: Jeden Tag bekommen **5 der 15
 - Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Ende (Loop)“** (`learn.ending`).
   Liegt „Loop“ nach mindestens 10 bewerteten Videos je Seite klar vorne, Julius vorschlagen, alle Shorts so zu bauen.
 
-### Test: Soundeffekte (seit 19.11.2026)
+### Test: Soundeffekte und Bild-Effekte (seit 19.11.2026)
 
-Die App entscheidet selbst, die Skripte brauchen nichts Neues: Jeder Cartoon-Short bekommt „dezent“ (wie bisher:
-Whoosh bei Schnitten, Klick bei Zahlen) oder „stark“: vor dem **vorletzten Satz** steigt ein Riser an, dann harter Schnitt,
-Schlag, kurze Musikpause, Bild-Stoß mit Aufblitzen. Darum muss der vorletzte Satz die Auflösung bzw. der Aha-Moment sein.
-Lernmerkmal „Soundeffekte“ (`learn.choose_effects`), 3 von 4 dann die bessere Stufe. Keine fremden Sounds oder Memes,
-alles wird in `audio.py` selbst erzeugt.
+Die App entscheidet selbst, welche von drei Stufen ein Cartoon-Short bekommt (`look.effekte`, Lernmerkmal „Soundeffekte“,
+`learn.choose_effects`, danach 3 von 4 die beste Stufe):
+
+- **dezent:** wie bisher, Whoosh bei Schnitten, Klick bei Zahlen.
+- **stark:** vor dem **vorletzten Satz** steigt ein Riser an, dann harter Schnitt, Schlag, kurze Musikpause, Bild-Stoß mit Aufblitzen.
+- **voll:** wie stark, dazu steigender Ton und kurzer Zoom auf jedem `*Schlüsselwort*`, langsamer Kamera-Zug in jeder Szene
+  und ein Reaktions-Sticker (🤯 neugierig, 😱 gruselig, 🤔 mysteriös, 🥹 warm) mit Glockenton auf der Auflösung.
+  Im Skript optional `"sticker": "🤯"` für ein eigenes Emoji.
+
+Darum in **jedem** Skript: der vorletzte Satz ist die Auflösung bzw. der Aha-Moment, und **2 bis 4 Wörter** stehen
+in `*Sternchen*` (die wichtigsten, nicht mehr als eins pro Satz). Alles wird selbst erzeugt (`audio.py`, Emoji-Schrift im Repo),
+keine fremden Sounds, Memes oder Bilder.
 
 Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 

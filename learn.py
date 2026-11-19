@@ -137,7 +137,9 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
                  "effekte": "Soundeffekte"}
-EFFECTS = ("dezent", "stark")   # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung (Test seit 19.11.2026)
+# stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
+# langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
+EFFECTS = ("stark", "voll", "dezent")
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
