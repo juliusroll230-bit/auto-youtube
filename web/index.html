@@ -685,6 +685,12 @@ button.thumb { padding: 0; border: 0; cursor: pointer; color: inherit; }
 button.thumb:hover .play i { transform: scale(1.12); background: var(--accent); }
 
 /* Schalter */
+.so-p { padding: 14px 0; border-bottom: 1px solid var(--line, rgba(127,127,127,.18)); }
+.so-p:last-child { border-bottom: 0; }
+.so-h { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.so-setup { margin-top: 10px; }
+.so-setup summary { cursor: pointer; font-weight: 600; font-size: 13px; }
+.so-setup .steps { margin-top: 12px; }
 .switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; font-size: 13px; user-select: none; }
 .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .switch .tr { position: relative; width: 44px; height: 24px; border-radius: 12px; background: rgba(255, 255, 255, .14); border: 1px solid var(--line-2); transition: background-color .18s ease, box-shadow .18s ease; flex: none; }
@@ -1859,6 +1865,61 @@ dialog.vs[open] { display: grid; place-items: center; }
         <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
           <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
         <div class="card-b shlist" id="shList"></div>
+      </div>
+      <div class="card" id="soCard">
+        <div class="card-h"><div><h2>Automatisch auf Instagram und TikTok</h2><div class="sub">Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest.</div></div></div>
+        <div class="card-b">
+          <div class="so-p" id="soIg">
+            <div class="so-h"><b>Instagram</b><span class="pill" id="soIgStatus"></span></div>
+            <div class="cm-ctl">
+              <label class="switch"><input type="checkbox" id="soIgOn"><span class="tr"></span><span>Automatisch posten</span></label>
+              <div class="field"><label for="soIgPer">Pro Tag</label><select id="soIgPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
+              <button class="btn sm" type="button" id="soIgNow">Jetzt einen senden</button>
+            </div>
+            <p class="tb-note" id="soIgNote"></p>
+            <details class="so-setup" id="soIgSetup">
+              <summary>Einrichten (einmalig, ca. 20 Minuten)</summary>
+              <ol class="steps">
+                <li><div>In der Instagram-App: Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>. Kostenlos.</div></li>
+                <li><div>Eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie dein Kanal) und in Instagram unter <b>Kontenübersicht</b> mit der Seite verbinden.</div></li>
+                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> eine App erstellen (Typ <b>Business</b>, Anwendungsfall „Instagram verwalten“). Klappt die Anmeldung als Entwickler nicht, legt ein Elternteil die App an und trägt dich unter <b>App-Rollen</b> als Tester ein. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist für dein eigenes Konto nicht nötig.</div></li>
+                <li><div>App-ID und App-Geheimnis stehen unter <b>App-Einstellungen → Allgemeines</b>. Dann im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> deine App wählen, diese Berechtigungen anhaken und <b>Generate Access Token</b> klicken:
+                  <div class="copy"><code id="soIgScopes">instagram_basic, instagram_content_publish, pages_show_list, pages_read_engagement, business_management</code></div></div></li>
+                <li><div>Alles hier einfügen und verbinden. Der Token wird gegen einen dauerhaften getauscht, du musst das nur einmal machen.
+                  <form class="form" id="soIgForm" style="margin-top:10px">
+                    <div class="field"><label for="soIgApp">App-ID</label><input id="soIgApp" autocomplete="off" spellcheck="false" inputmode="numeric" placeholder="z. B. 1234567890123456"></div>
+                    <div class="field"><label for="soIgSecret">App-Geheimnis</label><input id="soIgSecret" type="password" autocomplete="off" spellcheck="false" placeholder="leer lassen = bleibt wie es ist"></div>
+                    <div class="field"><label for="soIgToken">Access Token aus dem Explorer</label><input id="soIgToken" type="password" autocomplete="off" spellcheck="false" placeholder="EAA…"></div>
+                    <div class="row"><button class="btn primary" type="submit">Verbinden</button><button class="btn sm" type="button" id="soIgOff" hidden>Trennen</button><span class="msg" id="soIgMsg"></span></div>
+                  </form></div></li>
+              </ol>
+            </details>
+          </div>
+          <div class="so-p" id="soTt">
+            <div class="so-h"><b>TikTok</b><span class="pill" id="soTtStatus"></span></div>
+            <div class="cm-ctl">
+              <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Entwürfe schicken</span></label>
+              <div class="field"><label for="soTtPer">Pro Tag</label><select id="soTtPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
+              <button class="btn sm" type="button" id="soTtNow">Jetzt einen senden</button>
+            </div>
+            <p class="tb-note" id="soTtNote"></p>
+            <details class="so-setup" id="soTtSetup">
+              <summary>Einrichten (einmalig, ca. 20 Minuten)</summary>
+              <ol class="steps">
+                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> anmelden und eine App anlegen. Produkte <b>Login Kit</b> und <b>Content Posting API</b> hinzufügen, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Falls TikTok ein Mindestalter verlangt, legt ein Elternteil die App an.</div></li>
+                <li><div>Als Webseite, Datenschutz und Nutzungsbedingungen deine Homepage angeben, als <b>Redirect URI</b> diese Adresse:
+                  <div class="copy"><code id="soTtRedir">–</code></div></div></li>
+                <li><div>Die App zur Prüfung einreichen (TikTok schaut sie sich an, das dauert meist ein paar Tage). Bis dahin klappt die Anmeldung nur, wenn du dein TikTok-Konto in der App unter <b>Sandbox → Target users</b> einträgst.</div></li>
+                <li><div>Client Key und Client Secret hier eintragen, speichern und verbinden:
+                  <form class="form" id="soTtForm" style="margin-top:10px">
+                    <div class="field"><label for="soTtKey">Client Key</label><input id="soTtKey" autocomplete="off" spellcheck="false" placeholder="aw…"></div>
+                    <div class="field"><label for="soTtSecret">Client Secret</label><input id="soTtSecret" type="password" autocomplete="off" spellcheck="false" placeholder="leer lassen = bleibt wie es ist"></div>
+                    <div class="row"><button class="btn" type="submit">Speichern</button><button class="btn primary" type="button" id="soTtConnect">Mit TikTok verbinden</button><button class="btn sm" type="button" id="soTtOff" hidden>Trennen</button><span class="msg" id="soTtMsg"></span></div>
+                  </form></div></li>
+              </ol>
+            </details>
+          </div>
+        </div>
       </div>
       <h2 class="sec-h">Verbindung und Einstellungen</h2>
       <div class="banner" id="previewNote" hidden>
@@ -5304,6 +5365,7 @@ dialog.vs[open] { display: grid; place-items: center; }
     renderOverview(d, sch);
     renderViewers(d);
     renderComments(d);
+    renderSocial(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5391,6 +5453,71 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
   });
   $("kmCheck").addEventListener("click", function () { api("api/comments/check").then(function () { toast("Prüft jetzt die neuen Kommentare"); setTimeout(load, 8000); }, function (e) { toast(e.message); }); });
+
+  // --- Automatisch auf Instagram und TikTok (social.py) ---------------------------------
+  function renderSocial(d) {
+    var so = d.social;
+    if (!so) { $("soCard").hidden = true; return; }
+    $("soTtRedir").textContent = d.oauth_page || "–";
+    [["Ig", so.instagram, "instagram"], ["Tt", so.tiktok, "tiktok"]].forEach(function (P) {
+      var k = P[0], x = P[1], ae = document.activeElement;
+      var st = $("so" + k + "Status");
+      if (!x.connected) { st.className = "pill"; st.textContent = "Nicht verbunden"; }
+      else if (x.error) { st.className = "pill warn"; st.textContent = "Fehler"; }
+      else { st.className = "pill " + (x.on ? "live" : ""); st.textContent = x.on ? "Läuft" : "Aus"; }
+      $("so" + k + "On").checked = !!x.on; $("so" + k + "On").disabled = !x.connected || !S.live;
+      if (ae !== $("so" + k + "Per")) $("so" + k + "Per").value = String(x.per_day || 2);
+      $("so" + k + "Now").disabled = !x.connected || !S.live;
+      $("so" + k + "Off").hidden = !x.connected;
+      if (!x.connected) $("so" + k + "Setup").open = true;
+      var note = [];
+      if (x.connected) note.push(k === "Ig" ? "Verbunden mit @" + (x.username || "?") + (x.page ? " (Seite " + x.page + ")" : "") : "Verbunden" + (x.username ? " als " + x.username : ""));
+      if (x.last && x.last.at) note.push("Zuletzt: „" + x.last.title + "“ " + fDayS.format(new Date(x.last.at)).replace(/,.*/, "") + " " + fTime.format(new Date(x.last.at)) + (x.last.failed ? " (fehlgeschlagen)" : ""));
+      if (x.error) note.push("Fehler: " + x.error);
+      $("so" + k + "Note").textContent = note.join(" · ");
+      $("so" + k + "Note").hidden = !note.length;
+      if (k === "Ig" && ae !== $("soIgApp") && x.app_id) $("soIgApp").value = x.app_id;
+      if (k === "Tt" && ae !== $("soTtKey") && x.client_key) $("soTtKey").value = x.client_key;
+    });
+  }
+  [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (P) {
+    var k = P[0], plat = P[1];
+    ["On", "Per"].forEach(function (f) {
+      $("so" + k + f).addEventListener("change", function () {
+        api("api/social/settings", { platform: plat, on: $("so" + k + "On").checked, per_day: +$("so" + k + "Per").value })
+          .then(function () { if (f === "On") toast((plat === "instagram" ? "Instagram" : "TikTok") + ($("so" + k + "On").checked ? " an" : " aus")); }, function (e) { toast(e.message); });
+      });
+    });
+    $("so" + k + "Now").addEventListener("click", function () {
+      api("api/social/now", { platform: plat }).then(function (r) { toast("Wird gesendet: " + r.title); }, function (e) { toast(e.message); });
+    });
+    $("so" + k + "Off").addEventListener("click", function () {
+      var b = $("so" + k + "Off");
+      if (!b.dataset.sure) { b.dataset.sure = "1"; b.textContent = "Sicher?"; return; }
+      api("api/social/disconnect", { platform: plat }).then(function () { toast("Getrennt"); b.dataset.sure = ""; b.textContent = "Trennen"; }, function (e) { toast(e.message); });
+    });
+  });
+  $("soIgForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    $("soIgMsg").textContent = "Verbinde …";
+    api("api/social/instagram/connect", { app_id: $("soIgApp").value, app_secret: $("soIgSecret").value, token: $("soIgToken").value })
+      .then(function (r) { $("soIgMsg").textContent = "✓ Verbunden mit @" + r.username; $("soIgToken").value = ""; $("soIgSecret").value = ""; },
+        function (er) { $("soIgMsg").textContent = er.message; });
+  });
+  $("soTtForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    api("api/social/settings", { platform: "tiktok", client_key: $("soTtKey").value, client_secret: $("soTtSecret").value })
+      .then(function () { $("soTtMsg").textContent = "✓ Gespeichert"; $("soTtSecret").value = ""; }, function (er) { $("soTtMsg").textContent = er.message; });
+  });
+  $("soTtConnect").addEventListener("click", function () {
+    fetch("api/social/tiktok/start", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ origin: location.origin }) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); return j; }); })
+      .then(function (j) { location.href = j.url; }, function (er) { $("soTtMsg").textContent = er.message; });
+  });
+  (function () {
+    var q = new URLSearchParams(location.search).get("tiktok");
+    if (q) setTimeout(function () { toast({ ok: "TikTok verbunden", abgebrochen: "TikTok-Anmeldung abgebrochen", ungueltig: "Anmeldung abgelaufen, bitte nochmal", fehler: "TikTok-Verbindung fehlgeschlagen, siehe Protokoll" }[q] || "TikTok"); }, 600);
+  })();
 
   // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {

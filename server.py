@@ -36,6 +36,7 @@ import clips
 import comments
 import learn
 import money
+import social
 import store
 import whop
 import yt
@@ -1013,8 +1014,21 @@ def background(fn, *args):
     threading.Thread(target=fn, args=args, daemon=True).start()
 
 
+social_lock = threading.Lock()
+
+
+def post_social():
+    """Je Plattform höchstens ein Short pro Durchgang (siehe social.py). Nie zwei Durchgänge gleichzeitig."""
+    if not social_lock.acquire(blocking=False):
+        return
+    try:
+        social.run_once()
+    finally:
+        social_lock.release()
+
+
 def scheduler():
-    last_stats = last_sync = last_analytics = last_whop = 0.0
+    last_stats = last_sync = last_analytics = last_whop = last_social = 0.0
     while True:
         try:
             if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
@@ -1043,6 +1057,9 @@ def scheduler():
                     last_stats = time.time()
             if comments.load()["settings"]["on"]:
                 background(check_comments)
+            if time.time() - last_social > 5 * 60:  # die besten Shorts zu Instagram (Reel) und TikTok (Entwurf)
+                last_social = time.time()
+                background(post_social)
             if cfg["analytics_token"] and time.time() - last_analytics > ag["zuschauer"]["hours"] * 3600:
                 last_analytics = time.time()
                 refresh_analytics()
@@ -1150,7 +1167,8 @@ class Handler(BaseHTTPRequestHandler):
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
-                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary()},
+                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
+                                                   "social": social.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
             q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
@@ -1168,6 +1186,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.preview()
         if p == "/api/analytics/callback":
             return self.analytics_callback()
+        if p == "/api/tiktok/callback":
+            return self.tiktok_callback()
         m = re.fullmatch(r"/api/share/([A-Za-z0-9_-]+)\.mp4", p)
         if m:
             u = next((x for x in store.state()["uploads"] if x.get("video_id") == m.group(1)), None)
@@ -1337,6 +1357,27 @@ class Handler(BaseHTTPRequestHandler):
                     thumbnail.build(spec, os.path.dirname(file))
         self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=600")
 
+    def tiktok_callback(self):
+        """TikTok hat über die Weiterleitungsseite einen Code geschickt (state beginnt mit "tt-")."""
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        nonce = (q.get("state", [""])[0]).split(".")[0]
+        ok = nonce.startswith("tt-") and status["oauth_states"].pop(nonce, None)
+        if q.get("error"):
+            note = "abgebrochen"
+        elif not ok:
+            note = "ungueltig"
+        else:
+            try:
+                social.tt_exchange(q.get("code", [""])[0], OAUTH_PAGE)
+                store.log("ok", "TikTok verbunden. Die besten Shorts kommen ab jetzt als Entwurf in deine TikTok-App.")
+                note = "ok"
+            except Exception as e:
+                store.log("error", f"TikTok: Verbindung fehlgeschlagen: {e}")
+                note = "fehler"
+        self.send_response(303)
+        self.send_header("Location", f"/?tiktok={note}#kanal")
+        self.end_headers()
+
     def do_POST(self):
         path = self.path.split("?")[0]
         if path == "/webhook/video":
@@ -1414,6 +1455,58 @@ class Handler(BaseHTTPRequestHandler):
                     socials[k] = v
             store.save_config(socials=socials)
             return self.send(200, {"ok": True, "socials": socials})
+        if p == "/api/social/settings":
+            try:
+                keys = {k: data[k] for k in ("app_id", "app_secret", "client_key", "client_secret") if k in data}
+                return self.send(200, social.set_settings(str(data.get("platform", "")), on=data.get("on"),
+                                                          per_day=data.get("per_day"), **keys))
+            except (ValueError, TypeError) as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/instagram/connect":
+            try:
+                r = social.ig_connect(str(data.get("app_id", "")), str(data.get("app_secret", "")), str(data.get("token", "")))
+                store.log("ok", f"Instagram verbunden: @{r['username']}.")
+                return self.send(200, r)
+            except (ValueError, KeyError, social.ApiError, OSError) as e:
+                return self.send(400, {"error": f"Instagram: {e}"})
+        if p == "/api/social/tiktok/start":
+            if not OAUTH_PAGE:
+                return self.send(400, {"error": "Keine Weiterleitungsseite eingestellt (SCRIPTS_REPO oder OAUTH_PAGE)."})
+            origin = str(data.get("origin", ""))
+            if not re.fullmatch(r"https?://[\w.\-\[\]:]+", origin):
+                return self.send(400, {"error": "Ungültige Adresse."})
+            nonce = "tt-" + secrets.token_urlsafe(16)
+            status["oauth_states"] = {**dict(list(status["oauth_states"].items())[-5:]), nonce: origin}
+            state = nonce + "." + base64.urlsafe_b64encode(origin.encode()).decode().rstrip("=")
+            try:
+                return self.send(200, {"url": social.tt_auth_url(OAUTH_PAGE, state)})
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/disconnect":
+            d = social.load()
+            plat = str(data.get("platform", ""))
+            if plat == "instagram":
+                d["instagram"].update(token="", ig_id="", username="", page="", on=False, error=None)
+            elif plat == "tiktok":
+                d["tiktok"].update(access="", refresh="", expires=0, open_id="", username="", on=False, error=None)
+            else:
+                return self.send(400, {"error": "Unbekannte Plattform."})
+            social.save(d)
+            return self.send(200, {"ok": True})
+        if p == "/api/social/now":
+            plat = str(data.get("platform", ""))
+            if plat not in social.DEFAULTS:
+                return self.send(400, {"error": "Unbekannte Plattform."})
+            if not social.summary()[plat]["connected"]:
+                return self.send(400, {"error": "Bitte zuerst verbinden."})
+            u = social.pick(store.posted_items(), plat, store.now())
+            if not u:
+                return self.send(400, {"error": "Gerade kein passender Short (der beste der letzten 2 Tage ist schon dort)."})
+            def once():
+                with social_lock:
+                    social.post_now(plat)
+            background(once)
+            return self.send(200, {"ok": True, "title": u.get("title", "")})
         if p == "/api/short/shared":
             try:
                 store.set_short_shared(str(data.get("video_id", "")), str(data.get("platform", "")), bool(data.get("done")))
