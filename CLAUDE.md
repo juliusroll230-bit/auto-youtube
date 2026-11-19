@@ -72,7 +72,7 @@ Die Zentrale vergleicht das unter „Look je Video-Typ“ („Erzählte Geschich
 - Helle Orte (`haus`, `stadt`, `schule`, `dorf`, `feld`, `krankenhaus`), Szenen `figur`, `zwei`, `objekt`. 70 bis 85 Wörter.
 - Blockwelt-Geschichte: „ich“ ist die Blockfigur, helle Orte (`haus`, `stadt`, `feld`, `dorf`, `schule`; `krankenhaus`
   und `strasse` sind in 3D nachts), gern 1 bis 2 kurze `"chat"`-Zeilen; erster Satz der Beschreibung mit „Blockwelt“.
-- Vorbilder `seed/0208` bis `0210` (2D) und `seed/0211` (Blockwelt). Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
+- Vorbilder `seed/0208` bis `0210` (2D) und `seed/0259` (Blockwelt). Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
   mehr davon vorschlagen (Julius fragen).
 
 ### Test: Loop-Ende (seit 19.11.2026)
