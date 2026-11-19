@@ -456,7 +456,7 @@ def mark_posted(file, slot, spec, video_id, marks=None, duration=None, look=None
         write("state.json", st)
 
 
-SHARE_KEEP = 24  # so viele fertige Shorts bleiben zum Weiterposten auf TikTok und Instagram liegen
+SHARE_KEEP = 36  # so viele fertige Shorts bleiben zum Weiterposten auf TikTok und Instagram liegen (ca. 2,4 Tage bei 15 am Tag)
 
 
 def share_path(video_id):
