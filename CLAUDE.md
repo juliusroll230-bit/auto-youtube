@@ -87,6 +87,14 @@ Darum als Test, **ohne den Plan oben zu ändern**: Jeden Tag bekommen **5 der 15
 - Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Ende (Loop)“** (`learn.ending`).
   Liegt „Loop“ nach mindestens 10 bewerteten Videos je Seite klar vorne, Julius vorschlagen, alle Shorts so zu bauen.
 
+### Test: Soundeffekte (seit 19.11.2026)
+
+Die App entscheidet selbst, die Skripte brauchen nichts Neues: Jeder Cartoon-Short bekommt „dezent“ (wie bisher:
+Whoosh bei Schnitten, Klick bei Zahlen) oder „stark“: vor dem **vorletzten Satz** steigt ein Riser an, dann harter Schnitt,
+Schlag, kurze Musikpause, Bild-Stoß mit Aufblitzen. Darum muss der vorletzte Satz die Auflösung bzw. der Aha-Moment sein.
+Lernmerkmal „Soundeffekte“ (`learn.choose_effects`), 3 von 4 dann die bessere Stufe. Keine fremden Sounds oder Memes,
+alles wird in `audio.py` selbst erzeugt.
+
 Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.

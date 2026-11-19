@@ -775,6 +775,12 @@ def thumbs_overview(posted, long_queue):
             "recent": [pick(p) for p in reversed(longs + shorts)]}
 
 
+def next_effects(posted=None):
+    """Soundeffekte (dezent/stark) für den nächsten Cartoon-Short, nach dem was bisher besser lief."""
+    posted = learnable(posted if posted is not None else posted_items())
+    return learn.choose_effects(learn.feature_scores(posted, now()), len(posted) + 1)
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())

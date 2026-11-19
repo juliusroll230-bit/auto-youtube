@@ -135,7 +135,9 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
-                 "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)"}
+                 "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
+                 "effekte": "Soundeffekte"}
+EFFECTS = ("dezent", "stark")   # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung (Test seit 19.11.2026)
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
@@ -234,6 +236,7 @@ def features(spec, look):
         "welt": world(spec),
         "welt_typ": world_by_type(spec),
         "ende": ending(spec),
+        "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
     }
 
 
@@ -279,6 +282,11 @@ def choose_look(fscores, step):
 def choose_voice(fscores, step, spec):
     """Stimme für ein Cartoon: die beste passende (3 von 4 Mal) oder ein Test der anderen."""
     return choose(VOICES_FOR_MOOD[cartoon_mood(spec)], fscores.get("stimme", {}), step)
+
+
+def choose_effects(fscores, step):
+    """Soundeffekte für einen Cartoon-Short: die bessere Stufe (3 von 4 Mal) oder ein Test der anderen."""
+    return choose(EFFECTS, fscores.get("effekte", {}), step)
 
 
 def choose_thumb(fscores, step):
