@@ -4285,7 +4285,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       au.addEventListener("canplay", function () { btn.classList.remove("going"); });
       au.addEventListener("error", function () { btn.classList.remove("going"); toast("Die Stimme konnte nicht geladen werden."); });
       // Die Cartoon-Stimmen einzeln probehören (z. B. die freundliche für Geschichten)
-      var names = { freundlich: "Freundlich", erzaehlerin: "Erzählerin", erzaehler: "Erzähler", froehlich: "Fröhlich", klar: "Klar", unheimlich: "Unheimlich" };
+      var names = { freundlich: "Freundlich", erzaehlerin: "Erzählerin", erzaehler: "Erzähler", froehlich: "Fröhlich", aufgeregt: "Aufgeregt", klar: "Klar", unheimlich: "Unheimlich" };
       var row = h("div", { cls: "row", style: "flex-wrap:wrap;gap:6px;margin-top:8px" });
       Object.keys(names).forEach(function (k) {
         var b = h("button", { cls: "btn", type: "button", text: names[k] });

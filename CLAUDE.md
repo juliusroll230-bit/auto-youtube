@@ -102,7 +102,9 @@ Darum in **jedem** Skript: der vorletzte Satz ist die Auflösung bzw. der Aha-Mo
 in `*Sternchen*` (die wichtigsten, nicht mehr als eins pro Satz). Alles wird selbst erzeugt (`audio.py`, Emoji-Schrift im Repo),
 keine fremden Sounds, Memes oder Bilder.
 
-Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
+Die Stimme `aufgeregt` (seit 19.11.2026, Julius: „die Stimme ist so trocken“) ist bei Erklärvideos die erste Wahl: Thorsten-emotional
+(Sprecher „amused“), höher, flotter, mehr Schwankung, Satzmelodie je Satzteil und höher/lauter auf `*Schlüsselwörtern*`
+(`make_short.speak_lively`), ohne Hall. Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 

@@ -60,4 +60,8 @@ assert make_short.key_hits([{"text": "Ohne Sternchen hier"}], [(0, 2)]) == []
 import audio, numpy as np
 mixed = audio.mix(np.zeros(48000 * 8, dtype=np.float32), 48000, [2, 4, 6], 1, accent=6.0, keys=[1.0, 3.0], sticker=True)
 assert mixed.shape == (48000 * 8,) and np.abs(mixed).max() > 0.1
+# Stimme "aufgeregt" (19.11.2026): für Erklärvideos zuerst, mit Satzmelodie
+assert learn.VOICES_FOR_MOOD["neugierig"][0] == "aufgeregt" and "aufgeregt" in make_short.VOICES
+assert learn.choose_voice({}, 0, {"stimmung": "neugierig", "slug": "x"}) == "aufgeregt"
+assert "aufgeregt" in make_short.LIVELY and "aufgeregt" in make_short.VOICE_MODELS and "aufgeregt" in make_short.VOICE_NOISE
 print("ok")
