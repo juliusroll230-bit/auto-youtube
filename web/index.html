@@ -2510,8 +2510,12 @@ dialog.vs[open] { display: grid; place-items: center; }
     if (!all.length) return;
     clear(box);
     var so = d.socials || {};
-    var rows = all.filter(function (v) { var sh = v.shared || {}; return !(sh.tiktok && sh.instagram); })
-      .sort(function (a, b) { return (b.posted_at || "").localeCompare(a.posted_at || ""); }).slice(0, 5);
+    // die 2 besten noch nicht geposteten Shorts der letzten 2 Tage (nach Aufrufen, ohne Zahlen die neuesten)
+    var open = all.filter(function (v) { var sh = v.shared || {}; return !(sh.tiktok && sh.instagram); });
+    var cutoff = Date.now() - 48 * 3600 * 1000;
+    var recent = open.filter(function (v) { return Date.parse(v.posted_at || "") >= cutoff; });
+    var rows = (recent.length ? recent : open)
+      .sort(function (a, b) { return ((b.views || 0) - (a.views || 0)) || (b.posted_at || "").localeCompare(a.posted_at || ""); }).slice(0, 2);
     if (!so.tiktok || !so.instagram) {
       var f = h("form", { cls: "hin" }, [["tiktok", "TikTok-Name"], ["instagram", "Instagram-Name"]].map(function (P) {
         return h("input", { type: "text", autocomplete: "off", name: P[0], placeholder: P[1] + " (@name)", "aria-label": P[1], value: so[P[0]] ? "@" + so[P[0]] : "" });
@@ -2524,10 +2528,10 @@ dialog.vs[open] { display: grid; place-items: center; }
       f.querySelectorAll("input,button").forEach(function (e) { e.disabled = !S.live; });
       box.appendChild(f);
     }
-    $("ovShareSub").textContent = rows.length ? rows.length + " Short" + (rows.length > 1 ? "s" : "") + " warten auf TikTok und Instagram. Video laden, Text kopieren, posten, abhaken."
+    $("ovShareSub").textContent = rows.length ? "Die " + (rows.length > 1 ? rows.length + " besten Shorts" : "beste Short") + " der letzten 2 Tage. Video laden, Text kopieren, posten, abhaken. Weitere findest du im Reiter Kanäle."
       : "Alles gepostet. Stark!";
     if (!rows.length) box.appendChild(h("p", { cls: "shempty", text: "Neue Shorts erscheinen hier automatisch nach dem Upload." }));
-    rows.forEach(function (v) {
+    rows.forEach(function (v, i) {
       var sh = v.shared || {};
       var dl = h("a", { cls: "btn sm primary", href: "api/share/" + v.video_id + ".mp4", download: "", text: "Video laden" });
       var cp = h("button", { cls: "btn sm", type: "button", text: "Text kopieren" });
@@ -2545,7 +2549,7 @@ dialog.vs[open] { display: grid; place-items: center; }
       box.appendChild(h("div", { cls: "shr" }, [
         h("img", { src: "api/thumb/" + v.slug + ".jpg", alt: "", loading: "lazy" }),
         h("div", { style: "min-width:0" }, [h("div", { cls: "t", text: v.title }),
-          h("div", { cls: "m", text: (v.seconds ? Math.round(v.seconds) + " s · " : "") + (v.views != null ? nf.format(v.views) + " Aufrufe auf YouTube" : "auf YouTube") })]),
+          h("div", { cls: "m", text: "Platz " + (i + 1) + " · " + (v.seconds ? Math.round(v.seconds) + " s · " : "") + (v.views != null ? nf.format(v.views) + " Aufrufe auf YouTube" : "auf YouTube") })]),
         h("div", { cls: "b" }, [dl, cp].concat(tg))
       ]));
     });

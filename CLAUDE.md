@@ -52,6 +52,22 @@ nicht in der täglichen Aufgabe benutzen).
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 
+### Mehr Gewinner-Themen (seit 20.11.2026, Julius' Wunsch)
+
+Stand 19.11. (öffentliche Aufrufe): Der Kanal hängt fast überall bei ca. 1.000. Vorne liegen **Themen über den eigenen Körper
+und Alltag in der Du-Perspektive**: „Was passiert, wenn du tagelang nicht schläfst?“ (2.600, mit Abstand vorn), Gänsehaut (1.500),
+Luft anhalten (1.300), die eigene Stimme auf Aufnahmen (1.300), Schlüssel/Rätsel (1.100), Aufzug (1.000), Cent vom Wolkenkratzer (1.000).
+Darum von den 15 Skripten am Tag **4 bis 5 Nachbarthemen der Gewinner** (zählen zu den Erklärvideo-Plätzen oben, kein Extra-Skript):
+
+- Körper, Sinne, Gehirn und Schlaf, jeder kennt das Gefühl: Müdigkeit, Koffein, Hunger, Durst, Kälte, Hitze, Stille, Dunkelheit, Träume,
+  Gähnen, Schluckauf, Gänsehaut, Schwindel, Zeitgefühl, Gedächtnis. Beispiele: „Was passiert, wenn du eine Woche nichts trinkst?“,
+  „Warum bekommst du Schluckauf?“, „Was passiert, wenn du nie wieder träumst?“.
+- Aus dem Titel der Top 10 jeweils ein **neues** Nachbarthema bauen (nicht dasselbe Thema nochmal): gleiche Art von Frage, anderer Körperteil,
+  Sinn oder Extremfall.
+- Die übrigen 10 bis 11 bleiben Vielfalt (Mystery, Horror, Technik, Natur, Geschichte), damit der Lernmodus weiter testen kann.
+- Alle Regeln oben gelten weiter (Doppelungen prüfen, Fakten nicht erfinden, 2 bis 4 `*Schlüsselwörter*`, Auflösung im vorletzten Satz).
+- Nach ca. 5 Tagen unter „Was am besten funktioniert“ prüfen, ob die Körper-Themen vorne liegen. Wenn nicht, wieder auf 2 am Tag zurück.
+
 ### Test: erzählte Geschichten mit warmer Stimme (seit 16.11.2026, Julius' Wunsch)
 
 Julius mag ruhige „Storytime“-Videos mit freundlicher Stimme. Darum als Test, **ohne den Plan oben zu ändern**:
