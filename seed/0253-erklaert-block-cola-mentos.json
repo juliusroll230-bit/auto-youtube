@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-cola-mentos",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1410",
+    "#d86a3a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du Mentos in Cola wirfst? 🥤",
+  "description": "Erklärt in der Blockwelt: Warum Cola nach einem Bonbon als Fontäne hochschießt, obwohl es keine chemische Reaktion ist.\n\n#wissen #experiment #cola #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "experiment",
+    "cola",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Cola | keine Reaktion",
+    "Nur Physik"
+  ],
+  "segments": [
+    {
+      "text": "Du wirfst plötzlich Mentos in eine Colaflasche, und sie schießt hoch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🥤",
+        "chat": "Server: Fontäne!"
+      }
+    },
+    {
+      "text": "Das ist keine chemische Reaktion, sondern reine Physik.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⚗️",
+        "text": "Nur Physik"
+      }
+    },
+    {
+      "text": "In Cola steckt gelöstes Kohlendioxid unter Druck.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🫧",
+        "text": "Gelöstes Gas"
+      }
+    },
+    {
+      "text": "Die Oberfläche der Mentos ist winzig rau und voller Löcher.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Raue Oberfläche"
+      }
+    },
+    {
+      "text": "An diesen Kanten bilden sich blitzschnell unzählige Blasen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🫧",
+        "text": "Blitzschnell"
+      }
+    },
+    {
+      "text": "Die Blasen drücken die Cola mit Wucht aus der Flasche.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💥"
+      }
+    },
+    {
+      "text": "Ungefährlich ist es trotzdem nicht, denn es spritzt klebrig.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Mach es draußen und halte Abstand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🏃"
+      }
+    }
+  ]
+}

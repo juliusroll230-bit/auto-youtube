@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-im-eis-einbrechen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#10202a",
+    "#8ac8e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du im Eis einbrichst? 🧊",
+  "description": "Der Kälteschock ist gefährlicher als die Kälte selbst. Was in der ersten Minute passiert und wie du dich aus dem Eis rettest.\n\n#wissen #eis #überleben #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "eis",
+    "überleben",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Eisloch | erste Minute",
+    "Atmen vor Retten"
+  ],
+  "segments": [
+    {
+      "text": "Du brichst plötzlich im Eis ein, und das eiskalte Wasser trifft dich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🧊",
+        "wetter": "schnee"
+      }
+    },
+    {
+      "text": "Zuerst schnappst du unwillkürlich nach Luft.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💨",
+        "text": "Kälteschock"
+      }
+    },
+    {
+      "text": "Atme ruhig, die erste Minute ist entscheidend.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⏱️",
+        "text": "Erst atmen"
+      }
+    },
+    {
+      "text": "Danach hast du etwa zehn Minuten, um dich zu retten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Minuten für die Rettung",
+        "objekt": "⏳",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Stütz die Arme aufs Eis und strample kräftig mit den Beinen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "💪"
+      }
+    },
+    {
+      "text": "Rolle dich dann flach weg, statt aufzustehen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧍",
+          "text": "Aufstehen: bricht"
+        },
+        "rechts": {
+          "objekt": "🛌",
+          "text": "Rollen: verteilt"
+        }
+      }
+    },
+    {
+      "text": "Nach der Rettung musst du dich schnell aufwärmen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Danach",
+        "punkte": [
+          "Nasse Kleider aus",
+          "Aufwärmen",
+          "Notruf"
+        ]
+      }
+    },
+    {
+      "text": "Geh nie auf dünnes Eis, auch nicht für ein Foto.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Lieber nicht"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-metall-in-mikrowelle",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1a24",
+    "#e0a03a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du Metall in die Mikrowelle legst? ⚡",
+  "description": "Warum es in der Mikrowelle funkt, wenn eine Gabel drin liegt, was dabei passiert und was du stattdessen nehmen solltest.\n\n#wissen #mikrowelle #physik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "mikrowelle",
+    "physik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Gabel | Funken im Gerät",
+    "Metall wirft zurück"
+  ],
+  "segments": [
+    {
+      "text": "Du legst eine Gabel in die Mikrowelle, und plötzlich sprühen Funken.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "⚡"
+      }
+    },
+    {
+      "text": "Metall wirft die Mikrowellen zurück, statt sie zu schlucken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔁",
+        "text": "Wirft zurück"
+      }
+    },
+    {
+      "text": "Auf Spitzen und Kanten sammeln sich elektrische Ladungen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "⚡",
+        "text": "Spitzen"
+      }
+    },
+    {
+      "text": "Dort springen Funken über, und es blitzt.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Funken fliegen"
+      }
+    },
+    {
+      "text": "Das kann das Gerät beschädigen oder einen Brand auslösen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔥",
+        "text": "Brandgefahr"
+      }
+    },
+    {
+      "text": "Besonders gefährlich sind dünne Folie und zerknüllte Stücke.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍴",
+          "text": "Gabel: Funken"
+        },
+        "rechts": {
+          "objekt": "🧻",
+          "text": "Folie: Brandgefahr"
+        }
+      }
+    },
+    {
+      "text": "Ein Teller mit Goldrand macht dasselbe Problem.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🍽️",
+        "text": "Goldrand"
+      }
+    },
+    {
+      "text": "Lass Metall draußen und nimm einfach Glas oder Keramik.",
+      "szene": {
+        "typ": "liste",
+        "text": "Besser nehmen",
+        "punkte": [
+          "Glas",
+          "Keramik",
+          "Mikrowellenteller"
+        ]
+      }
+    }
+  ]
+}
