@@ -102,9 +102,7 @@ Darum in **jedem** Skript: der vorletzte Satz ist die Auflösung bzw. der Aha-Mo
 in `*Sternchen*` (die wichtigsten, nicht mehr als eins pro Satz). Alles wird selbst erzeugt (`audio.py`, Emoji-Schrift im Repo),
 keine fremden Sounds, Memes oder Bilder.
 
-Die Stimme `aufgeregt` (seit 19.11.2026, Julius: „die Stimme ist so trocken“) ist bei Erklärvideos die erste Wahl: Thorsten-emotional
-(Sprecher „amused“), höher, flotter, mehr Schwankung, Satzmelodie je Satzteil und höher/lauter auf `*Schlüsselwörtern*`
-(`make_short.speak_lively`), ohne Hall (am 19.11. abends etwas zurückgenommen, Julius: „bisschen zu extrem“; später: zu hoch wie Stimmbruch, daher tiefere Grundlage; das Absenken am Satzende hat er gleich wieder abgelehnt, Satzenden bleiben natürlich). Lange Videos bekommen immer die Stimme `klar` (Julius mag sie zum Erklären). Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
+Die Stimme `aufgeregt` (seit 19.11.2026, Julius: „die Stimme ist so trocken“) ist bei Erklärvideos die erste Wahl: Thorsten-emotional (Sprecher „amused“), etwas flotter, aber **gleichmäßig und gut verständlich**. Julius hat sie am 19.11. mehrfach korrigiert (zu extrem, zu hoch wie Stimmbruch, nicht so hoch und runter, kein Absenken am Satzende), deshalb: tiefere Grundlage (`BASE`), niedriges Rauschen (`VOICE_NOISE`), Satz am Stück, keine Melodie-Tricks mehr (`make_short.speak_lively`), ohne Hall. Lange Videos bekommen immer die Stimme `klar` (Julius mag sie zum Erklären). Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 

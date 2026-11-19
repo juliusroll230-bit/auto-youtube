@@ -50,7 +50,7 @@ VOICE_MODELS = {
     "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
 }
 # Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
-VOICE_NOISE = {"aufgeregt": (0.9, 1.0)}
+VOICE_NOISE = {"aufgeregt": (0.5, 0.7)}  # niedrig = gleichmäßige Satzmelodie
 _voice_models = {}
 
 
@@ -100,23 +100,11 @@ BASE = 0.94  # Grundtonhöhe der aufgeregten Stimme: tiefer als das Modell von s
 
 
 def speak_lively(tts, text, voice, length_scale):
-    """Spricht einen Satz in Satzteilen, klar und tief genug (kein Quietschen), mit Betonung auf *Schlüsselwörtern*
-    (lauter, etwas langsamer). Satzenden bleiben natürlich, wie Piper sie spricht. Kurze Atempausen. Ohne Hall."""
-    rate = tts.config.sample_rate
-    clauses = [c for c in re.split(r"(?<=[,;:!?.])\s+", text.strip()) if c]
-    out = []
-    for i, clause in enumerate(clauses):
-        key = "*" in clause
-        plain = clause.replace("*", "")
-        last = i == len(clauses) - 1
-        x = speak_piper(tts, plain, voice, length_scale=length_scale * BASE * (1.04 if key else 1.0))
-        x = _repitch(x, BASE)
-        if key:
-            x = np.clip(x * 1.12, -1, 1)
-        out.append(x)
-        if not last:
-            out.append(np.zeros(int((0.09 if plain.rstrip().endswith(",") else 0.05) * rate), dtype=np.float32))
-    return np.concatenate(out).astype(np.float32) if out else np.zeros(1, dtype=np.float32)
+    """Spricht den Satz am Stück, gleichmäßig und gut verständlich (Julius 19.11.: nicht so hoch und runter).
+    Etwas tiefer als das Modell von selbst, kein Springen zwischen Satzteilen, Betonung auf *Schlüsselwörtern* nur durch Lautstärke."""
+    plain = text.replace("*", "")
+    x = speak_piper(tts, plain, voice, length_scale=length_scale * BASE)
+    return _repitch(x, BASE)
 
 
 def voice_color(samples, rate, voice, pitch=None):
