@@ -46,9 +46,10 @@ function renderShot(ctx, i, t) {
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
   ctx.save(); base(ctx); s.draw(ctx, t - s.start, t); ctx.restore();
 }
+let ZOOM = 1;   // Stoß auf der Auflösung (PLAN.punch), sonst 1
 function blit(src, dx, blur) {
   const n = blur > 2 ? 7 : 1;
-  out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
+  out.save(); out.setTransform(ZOOM, 0, 0, ZOOM, W / 2 * (1 - ZOOM), H * .47 * (1 - ZOOM));
   for (let k = 0; k < n; k++) { const off = n > 1 ? (k / (n - 1) - .5) * blur : 0; out.globalAlpha = 1 / (k + 1); const x = dx + off; out.drawImage(src, x, 0); if (x > 0) out.drawImage(src, x - W, 0); if (x < 0) out.drawImage(src, x + W, 0); }
   out.restore();
 }
@@ -62,12 +63,15 @@ function renderFrame(f) {
   const prev = SHOTS[i - 1];
   if (prev && prev.tr === 'whip' && t < s.start + WT) { const p = 1 - easeOut((t - s.start) / WT); dx = p * 420; blur = p * 260; }
   renderShot(bctx, i, t);
+  const pt = PLAN.punch != null ? t - PLAN.punch : -1;
+  ZOOM = pt >= 0 && pt < 1.2 ? 1 + .12 * Math.exp(-pt * 4) * (1 - Math.exp(-pt * 40)) : 1;
   blit(buf, dx, blur);
   out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
   const VK = WIDE ? .75 : 1; const g = out.createRadialGradient(W / 2, H * .47, (DARK ? 380 : 500) * VK, W / 2, H / 2, 1250 * VK * (WIDE ? 1.15 : 1)); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, DARK ? 'rgba(4,2,14,.62)' : 'rgba(10,5,20,.2)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
   if (DARK) { out.globalCompositeOperation = 'multiply'; out.fillStyle = PLAN.stimmung === 'gruselig' ? '#a39fbf' : '#9cadca'; out.fillRect(0, 0, W, H); out.globalCompositeOperation = 'source-over'; fog(out, t, .22, WIDE ? 1250 : 1500); }
   if (GRADE) grade(out);
   out.globalCompositeOperation = 'overlay'; out.globalAlpha = .07; const pat = out.createPattern(grains[f % 4], 'repeat'); out.fillStyle = pat; out.translate((f * 37) % 256, (f * 91) % 256); out.fillRect(-256, -256, W + 512, H + 512);
+  if (pt >= 0 && pt < .4) { out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over'; out.globalAlpha = .45 * Math.exp(-pt * 12); out.fillStyle = '#fff'; out.fillRect(0, 0, W, H); }
   out.restore();
   drawCaption(out, t);
 }

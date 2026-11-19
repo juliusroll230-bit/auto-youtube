@@ -45,4 +45,10 @@ loop = {"stil": "cartoon", "ende": "loop", "title": "X", "segments": [{"text": "
 assert not any("Loop-Ende" in t for t in hookcheck.text_tips(loop))
 loop["segments"][-1]["text"] = "Das war es."
 assert any("Loop-Ende" in t for t in hookcheck.text_tips(loop))
+# Soundeffekte (Test seit 19.11.2026): nur Cartoons, abwechselnd dezent/stark, bis beide bewertet sind
+assert learn.features({"stil": "cartoon", "segments": [{"text": "a"}]}, {"effekte": "stark"})["effekte"] == "stark"
+assert learn.features({"niche": "Geld", "segments": [{"text": "a"}]}, {"effekte": "stark"})["effekte"] is None
+assert {learn.choose_effects({}, 0), learn.choose_effects({"effekte": {"dezent": {"score": 1, "videos": 1}}}, 1)} == {"dezent", "stark"}
+import make_short
+assert make_short.accent_time([(0, 1), (1, 2), (2, 3), (3, 4)]) == 2 and make_short.accent_time([(0, 1), (1, 2)]) is None
 print("ok")

@@ -136,6 +136,32 @@ def tick(rate):
     return (np.sin(2 * np.pi * 1800 * t) * np.exp(-t * 60) + 0.5 * np.sin(2 * np.pi * 2700 * t) * np.exp(-t * 80)).astype(np.float32)
 
 
+def riser(rate, seed=0, length=0.9):
+    """Rauschen, das immer heller und lauter wird: baut Spannung kurz vor der Auflösung auf."""
+    rng = np.random.default_rng(seed + 99)
+    n = int(length * rate)
+    t = np.linspace(0, 1, n)
+    noise = rng.standard_normal(n)
+    alpha = 0.02 + 0.6 * t ** 2
+    y = np.empty(n)
+    acc = 0.0
+    for i in range(n):
+        acc += alpha[i] * (noise[i] - acc)
+        y[i] = acc
+    tone = np.sin(2 * np.pi * np.cumsum(220 + 660 * t ** 2) / rate)
+    y = (y / max(1e-6, np.abs(y).max()) + 0.35 * tone) * t ** 2.2
+    return (y / max(1e-6, np.abs(y).max())).astype(np.float32)
+
+
+def hit(rate):
+    """Tiefer Schlag mit hellem Knall obendrauf: der Moment, in dem die Auflösung kommt."""
+    n = int(0.7 * rate)
+    t = np.arange(n) / rate
+    low = np.sin(2 * np.pi * np.cumsum(45 + 90 * np.exp(-t * 14)) / rate) * np.exp(-t * 5)
+    snap = np.random.default_rng(7).standard_normal(n) * np.exp(-t * 45)
+    return ((low + 0.4 * snap) / 1.4).astype(np.float32)
+
+
 DARK_MOODS = ("gruselig", "mysterioes")
 
 
@@ -218,12 +244,14 @@ def boom(rate):
     return (np.sin(2 * np.pi * np.cumsum(30 + 60 * np.exp(-t * 8)) / rate) * np.exp(-t * 4)).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None):
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
     pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick),
-    mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat, "warm" für ruhige Geschichten-Musik.
+    mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat, "warm" für ruhige Geschichten-Musik,
+    accent: Zeitpunkt (s) der Auflösung. Dann steigt davor ein Riser an, auf ihr kommt ein Schlag und die Musik
+    setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026).
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -236,13 +264,24 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None):
     env = np.convolve(np.abs(voice), np.ones(win) / win, mode="same")
     duck = 1 - 0.55 * np.clip(env / 0.04, 0, 1)
     duck = np.convolve(duck, np.ones(win) / win, mode="same")
+    if accent is not None:  # Musik setzt für einen Moment aus: die Stille macht die Auflösung lauter
+        a, b = int(accent * rate), int((accent + 0.7) * rate)
+        gap = np.ones(n, dtype=np.float32)
+        gap[max(0, a):max(0, min(n, b))] = 0.0
+        duck = duck * np.convolve(gap, np.ones(win) / win, mode="same")
     out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
         _add(sfx, p * rate, 0.18 * tick(rate))
     for i, c in enumerate(cuts):
+        if accent is not None and abs(c - accent) < 0.02:
+            continue  # vor der Auflösung kein Whoosh: dort kommt Stille und der Schlag
         w = whoosh(rate, seed + i)
         _add(sfx, max(0, c - 0.2) * rate, (0.12 if dark else 0.08 if warm else 0.22) * w)
+    if accent is not None:
+        r = riser(rate, seed)
+        _add(sfx, max(0, accent * rate - len(r)), (0.10 if warm else 0.16) * r)
+        _add(sfx, accent * rate, (0.25 if warm else 0.45) * hit(rate))
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

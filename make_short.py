@@ -100,10 +100,11 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE):
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
-    voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix).
+    voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
+    effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
     """
     import audio
 
@@ -139,7 +140,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         t += dur + pause
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
-    track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood)
+    track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
+                      accent=accent_time(timings) if effects == "stark" else None)
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -147,6 +149,11 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         f.setframerate(rate)
         f.writeframes(pcm.tobytes())
     return timings, t
+
+
+def accent_time(timings):
+    """Start des vorletzten Satzes: dort steht die Auflösung bzw. der Aha-Moment. Kurze Videos haben keinen."""
+    return round(timings[-2][0], 3) if len(timings) >= 4 else None
 
 
 def number_hits(segments, timings, gap=0.6):

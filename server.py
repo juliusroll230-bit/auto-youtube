@@ -210,6 +210,8 @@ def render_short(spec):
     look = agents.apply_look(store.next_look(), ag)
     if spec.get("stil") == "cartoon":  # Stimme passend zur Stimmung, gelernt (oder fest im Skript)
         look["stimme"] = spec.get("stimme") or store.next_voice(spec)
+        if spec.get("laenge") != "lang":  # Test: starke Soundeffekte auf der Auflösung gegen dezente
+            look["effekte"] = spec.get("effekte") or store.next_effects()
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"
