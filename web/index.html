@@ -2870,12 +2870,22 @@ dialog.vs[open] { display: grid; place-items: center; }
       if (st.reason === "verify") {
         note.append("YouTube lässt eigene Thumbnails erst zu, wenn dein Kanal bestätigt ist. Öffne ",
           h("a", { href: "https://www.youtube.com/verify", target: "_blank", rel: "noopener", text: "youtube.com/verify" }),
-          ", bestätige mit einer Handynummer (SMS-Code), fertig. Danach setzt die App die Thumbnails wieder selbst. Für schon hochgeladene Videos unten auf „Nehmen“ tippen.");
+          " mit dem Google-Konto des Kanals, bestätige mit einer Handynummer (SMS-Code). Prüfen kannst du es in YouTube Studio unter Einstellungen > Kanal > Funktionsberechtigung: dort muss „Mittlere Funktionen“ an sein. Danach hier auf „Fehlende nachholen“ tippen.");
       } else if (st.reason === "limit") {
         note.textContent = "YouTube hat für heute genug Uploads angenommen. Morgen klappt es wieder.";
       } else {
         note.textContent = "Das letzte Thumbnail hat YouTube abgelehnt: " + st.reason;
       }
+      if (st.detail) note.append(h("br"), h("small", { cls: "label", text: "YouTube sagt: " + st.detail + (st.at ? " (" + st.at.replace("T", " ").slice(0, 16) + ")" : "") }));
+    }
+    if (T.missing) {
+      var rb = h("button", { cls: "btn sm primary", type: "button", text: "Fehlende nachholen (" + T.missing + ")" });
+      rb.addEventListener("click", function () {
+        rb.disabled = true;
+        api("api/thumb/retry", {}).then(function () { toast("Die App setzt jetzt die fehlenden Thumbnails. Das dauert ein paar Minuten."); },
+          function (er) { toast(er.message); rb.disabled = false; });
+      });
+      grid.appendChild(h("div", null, [rb]));
     }
     function takeBtn(vid, v) {
       var b = h("button", { cls: "btn sm", type: "button", text: "Nehmen" });
