@@ -1,0 +1,114 @@
+{
+  "slug": "erklaert-in-die-sonne-schauen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2008",
+    "#f0c43a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du in die Sonne schaust? ☀️",
+  "description": "Die Netzhaut spürt keinen Schmerz. Warum ein Blick in die Sonne trotzdem schadet und warum selbst bei einer Sonnenfinsternis Schutz nötig ist.\n\n#wissen #sonne #augen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "sonne",
+    "augen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Netzhaut | kein Schmerz",
+    "Blinder Fleck bleibt"
+  ],
+  "segments": [
+    {
+      "text": "Du schaust plötzlich direkt in die Sonne, und es tut nicht weh.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "☀️"
+      }
+    },
+    {
+      "text": "Genau das ist das Problem: Die Netzhaut hat keine Schmerzfühler.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Kein Schmerz"
+      }
+    },
+    {
+      "text": "Das gebündelte Licht kann sie schon nach kurzer Zeit schädigen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🔍",
+        "text": "Gebündelt"
+      }
+    },
+    {
+      "text": "Es entsteht ein dunkler Fleck, der bleiben kann.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👁️",
+          "text": "Vorher: klar"
+        },
+        "rechts": {
+          "objekt": "⚫",
+          "text": "Danach: Fleck"
+        }
+      }
+    },
+    {
+      "text": "Auch bei einer Sonnenfinsternis ist es gefährlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🌑"
+      }
+    },
+    {
+      "text": "Dann ist die Sonne weniger grell, und man schaut länger hin.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Sie schauen länger"
+      }
+    },
+    {
+      "text": "Dafür gibt es spezielle Brillen, normale Sonnenbrillen reichen nicht.",
+      "szene": {
+        "typ": "liste",
+        "text": "Nur das hilft",
+        "punkte": [
+          "Spezielle Brille",
+          "Normale reichen nicht",
+          "Nie ohne Schutz"
+        ]
+      }
+    },
+    {
+      "text": "Also schau nie ohne Schutz in die Sonne.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🕶️"
+      }
+    }
+  ]
+}

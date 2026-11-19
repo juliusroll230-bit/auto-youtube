@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-nicht-mehr-blinzeln",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#101a2a",
+    "#5a9ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du nicht mehr blinzelst? 👁️",
+  "description": "Blinzeln wirkt unwichtig, schützt aber deine Augen. Was passiert, wenn der Tränenfilm austrocknet und warum der Reflex am Ende gewinnt.\n\n#wissen #augen #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "augen",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Tränenfilm | in Gefahr",
+    "Dein Reflex gewinnt"
+  ],
+  "segments": [
+    {
+      "text": "Du blinzelst nicht mehr, und deine Augen fangen an zu brennen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👁️"
+      }
+    },
+    {
+      "text": "Normalerweise blinzelst du etwa fünfzehn Mal pro Minute.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 15,
+        "einheit": "Mal pro Minute",
+        "objekt": "👁️",
+        "farbcode": "#101a2a"
+      }
+    },
+    {
+      "text": "Jedes Blinzeln verteilt einen dünnen Tränenfilm auf dem Auge.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💧",
+        "text": "Tränenfilm"
+      }
+    },
+    {
+      "text": "Ohne ihn trocknet die Oberfläche aus und brennt.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👁️",
+          "text": "Mit Film: klar"
+        },
+        "rechts": {
+          "objekt": "🏜️",
+          "text": "Ohne: trocken"
+        }
+      }
+    },
+    {
+      "text": "Nach wenigen Sekunden wird dein Blick unscharf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "denkt",
+        "objekt": "🌫️"
+      }
+    },
+    {
+      "text": "Der Körper zwingt dich dann, zu blinzeln.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔔",
+        "text": "Reflex"
+      }
+    },
+    {
+      "text": "Selbst wenn du es verbietest, gewinnt er irgendwann.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "text": "Reflex gewinnt"
+      }
+    },
+    {
+      "text": "Beim Bildschirm blinzelst du seltener, darum brennen die Augen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "💻"
+      }
+    }
+  ]
+}

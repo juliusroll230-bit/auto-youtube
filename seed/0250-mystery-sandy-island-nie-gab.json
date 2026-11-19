@@ -1,0 +1,104 @@
+{
+  "slug": "mystery-sandy-island-nie-gab",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0c2030",
+    "#3a9ac8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Insel, die es nie gab 🏝️",
+  "description": "Jahrelang zeigten Karten eine Insel im Pazifik. Dann fuhr ein Forschungsschiff hin und fand nur tiefes Meer. Wie sie auf die Karten kam, ist bis heute offen.\n\n#mystery #rätsel #insel #karten #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "insel",
+    "karten",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Sandy Island | nie da",
+    "Auf jeder Karte"
+  ],
+  "segments": [
+    {
+      "text": "Auf Karten gab es jahrelang eine Insel, die niemand je betreten hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Sandy Island lag im Pazifik, zwischen Australien und Neukaledonien.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Sandy Island"
+      }
+    },
+    {
+      "text": "Sogar Atlanten und Satellitenbilder zeigten sie, und Google Earth auch.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🛰️",
+        "text": "Auf Karten"
+      }
+    },
+    {
+      "text": "Ein Walfänger soll sie achtzehnhundertsechsundsiebzig gemeldet haben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1876",
+        "text": "Meldung",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Im Jahr 2012 fährt ein australisches Forschungsschiff dorthin.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Dort ist das Meer über tausend Meter tief.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1400,
+        "einheit": "Meter Wassertiefe",
+        "objekt": "🌊",
+        "farbcode": "#0c2030"
+      }
+    },
+    {
+      "text": "Von der Insel ist keine Spur zu sehen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Keine Insel"
+      }
+    },
+    {
+      "text": "Wie sie auf die Karten kam, ist bis heute nicht geklärt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📜"
+      }
+    }
+  ]
+}

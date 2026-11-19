@@ -1,0 +1,112 @@
+{
+  "slug": "mystery-block-stadt-unter-der-erde",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#2a1c10",
+    "#b07a3a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Stadt unter der Erde, die jemand vergaß 🕳️",
+  "description": "Das echte Rätsel von Derinkuyu, nachgespielt in der Blockwelt: Unter der Türkei liegt eine Stadt für tausende Menschen, und wer sie zuerst baute, ist unklar.\n\n#mystery #rätsel #derinkuyu #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "derinkuyu",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Derinkuyu | Stadt im Boden",
+    "Wer baute sie"
+  ],
+  "segments": [
+    {
+      "text": "Unter einem Haus in der Türkei liegt plötzlich eine ganze Stadt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🕳️",
+        "chat": "Spieler: wow, was ist das?"
+      }
+    },
+    {
+      "text": "Das ist Derinkuyu in Kappadokien, entdeckt im Jahr neunzehnhundertdreiundsechzig.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Derinkuyu"
+      }
+    },
+    {
+      "text": "Beim Umbau fand ein Bewohner hinter einer Wand einen Gang.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧱",
+        "text": "Versteckter Gang"
+      }
+    },
+    {
+      "text": "Dahinter gab es Räume, Ställe und sogar eine Kirche.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "keller",
+        "anzahl": 4,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Stadt unter Tage"
+      }
+    },
+    {
+      "text": "Sie reicht mehr als sechzig Meter in die Tiefe.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "⬇️",
+        "text": "60 Meter tief"
+      }
+    },
+    {
+      "text": "Luftschächte und Brunnen versorgten tausende Menschen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "💨",
+        "text": "Luftschächte"
+      }
+    },
+    {
+      "text": "Mit schweren Steintüren schlossen sie die Gänge von innen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Wer sie zuerst baute und wann, ist bis heute unklar.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓",
+        "chat": "Spieler: wer war das?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "slug": "horror-spiegel-zu-spaet",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0b0a14",
+    "#4a3a6c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Spiegel, der eine Sekunde zu spät zeigt 🪞",
+  "description": "Eine ausgedachte Gruselgeschichte: Dein Spiegelbild bewegt sich eine Sekunde später als du.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Spiegelbild | lächelt allein",
+    "Er sieht dich"
+  ],
+  "segments": [
+    {
+      "text": "Dein Spiegelbild bewegt sich eine Sekunde später als du.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🪞"
+      }
+    },
+    {
+      "text": "Du winkst, und dein Spiegelbild winkt zurück, aber zu spät.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👋"
+      }
+    },
+    {
+      "text": "Du hältst still, doch dein Spiegelbild bewegt sich weiter.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪞",
+        "text": "Es bewegt sich"
+      }
+    },
+    {
+      "text": "Es tritt näher an die Glasscheibe heran.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Kommt näher"
+      }
+    },
+    {
+      "text": "Dann lächelt es, obwohl du nicht lächelst.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Du drehst dich weg und läufst aus dem Raum.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Jetzt weißt du: Nicht du siehst ihn, er sieht dich.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🪞",
+          "text": "Du: schaust"
+        },
+        "rechts": {
+          "objekt": "👤",
+          "text": "Er: sieht dich"
+        }
+      }
+    },
+    {
+      "text": "Hinter dir sagt jemand leise: Jetzt bin ich dran.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    }
+  ]
+}

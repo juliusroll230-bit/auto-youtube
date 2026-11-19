@@ -1,0 +1,105 @@
+{
+  "slug": "horror-schulbus-nachts",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0a0c14",
+    "#3a4a5c"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
+  "description": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.\n\n#horror #gruselgeschichte #creepypasta #grusel #shorts",
+  "tags": [
+    "horror",
+    "gruselgeschichte",
+    "creepypasta",
+    "grusel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Schulbus | ohne Fahrer",
+    "Dein Name steht drauf"
+  ],
+  "segments": [
+    {
+      "text": "Nachts fährt ein Schulbus durch dein leeres Dorf, ohne Fahrer.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🚌"
+      }
+    },
+    {
+      "text": "Alle Fenster sind beleuchtet, aber du siehst nur Schatten.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 5,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Schatten im Bus"
+      }
+    },
+    {
+      "text": "Der Bus hält genau vor deinem Haus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🚏",
+        "text": "Haltestelle"
+      }
+    },
+    {
+      "text": "Die Tür öffnet sich, und eine Kinderstimme ruft deinen Namen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "🗣️",
+        "text": "Dein Name"
+      }
+    },
+    {
+      "text": "Du schließt das Fenster, doch die Stimme ist im Flur.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt"
+      }
+    },
+    {
+      "text": "Im Dunkeln steht ein Kind mit schwarzem Gesicht.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Es hält dir einen Fahrschein hin: Dein Name steht darauf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎫",
+        "text": "Dein Name"
+      }
+    },
+    {
+      "text": "Am Morgen steht dein Platz in der Klasse leer.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}
