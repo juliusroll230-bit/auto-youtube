@@ -162,6 +162,22 @@ def hit(rate):
     return ((low + 0.4 * snap) / 1.4).astype(np.float32)
 
 
+def bloop(rate):
+    """Kurzer, steigender Ton auf einem Schlüsselwort (wie ein Daumen-hoch-Geräusch)."""
+    n = int(0.11 * rate)
+    t = np.arange(n) / rate
+    f = 520 + 1500 * t
+    return (np.sin(2 * np.pi * np.cumsum(f) / rate) * np.exp(-t * 28)).astype(np.float32)
+
+
+def ding(rate):
+    """Heller Glockenton für den Reaktions-Sticker (Aha!)."""
+    n = int(0.9 * rate)
+    t = np.arange(n) / rate
+    y = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * d) for f, a, d in ((1320, 1.0, 5), (1980, 0.5, 7), (2640, 0.25, 9)))
+    return (y / 1.75).astype(np.float32)
+
+
 DARK_MOODS = ("gruselig", "mysterioes")
 
 
@@ -244,14 +260,15 @@ def boom(rate):
     return (np.sin(2 * np.pi * np.cumsum(30 + 60 * np.exp(-t * 8)) / rate) * np.exp(-t * 4)).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None):
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
     pops: Zeitpunkte, an denen eine Zahl kommt (kurzer Klick),
     mood: "gruselig" oder "mysterioes" für unheimliche Musik statt Beat, "warm" für ruhige Geschichten-Musik,
     accent: Zeitpunkt (s) der Auflösung. Dann steigt davor ein Riser an, auf ihr kommt ein Schlag und die Musik
-    setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026).
+    setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026),
+    keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -283,5 +300,9 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None):
         r = riser(rate, seed)
         _add(sfx, max(0, accent * rate - len(r)), (0.10 if warm else 0.16) * r)
         _add(sfx, accent * rate, (0.25 if warm else 0.45) * hit(rate))
+        if sticker:
+            _add(sfx, (accent + 0.12) * rate, (0.10 if dark else 0.16) * ding(rate))
+    for k in keys:
+        _add(sfx, k * rate, (0.07 if warm else 0.12) * bloop(rate))
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

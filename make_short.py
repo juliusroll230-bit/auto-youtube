@@ -141,7 +141,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
-                      accent=accent_time(timings) if effects == "stark" else None)
+                      accent=accent_time(timings) if effects in ("stark", "voll") else None,
+                      keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll")
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -154,6 +155,17 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
 def accent_time(timings):
     """Start des vorletzten Satzes: dort steht die Auflösung bzw. der Aha-Moment. Kurze Videos haben keinen."""
     return round(timings[-2][0], 3) if len(timings) >= 4 else None
+
+
+def key_hits(segments, timings, gap=0.9, limit=5):
+    """Zeitpunkte der *Sternchen*-Schlüsselwörter (Ton und kurzer Zoom bei stufe "voll"), höchstens `limit`."""
+    hits = []
+    for (s, e), seg in zip(timings, segments):
+        for _, _, words in caption_chunks(seg["text"], s, e):
+            for w, ws, _, key in words:
+                if key and ws - s > 0.25 and (not hits or ws - hits[-1] >= gap):
+                    hits.append(round(ws, 3))
+    return hits[:limit]
 
 
 def number_hits(segments, timings, gap=0.6):

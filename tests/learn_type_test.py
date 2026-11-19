@@ -48,7 +48,16 @@ assert any("Loop-Ende" in t for t in hookcheck.text_tips(loop))
 # Soundeffekte (Test seit 19.11.2026): nur Cartoons, abwechselnd dezent/stark, bis beide bewertet sind
 assert learn.features({"stil": "cartoon", "segments": [{"text": "a"}]}, {"effekte": "stark"})["effekte"] == "stark"
 assert learn.features({"niche": "Geld", "segments": [{"text": "a"}]}, {"effekte": "stark"})["effekte"] is None
-assert {learn.choose_effects({}, 0), learn.choose_effects({"effekte": {"dezent": {"score": 1, "videos": 1}}}, 1)} == {"dezent", "stark"}
+assert learn.choose_effects({}, 0) == "stark"
+assert learn.choose_effects({"effekte": {"stark": {"score": 1, "videos": 1}}}, 1) == "voll"
+assert learn.choose_effects({"effekte": {k: {"score": 1, "videos": 1} for k in ("stark", "voll")}}, 2) == "dezent"
 import make_short
 assert make_short.accent_time([(0, 1), (1, 2), (2, 3), (3, 4)]) == 2 and make_short.accent_time([(0, 1), (1, 2)]) is None
+segs = [{"text": "Du *atmest* ein."}, {"text": "Dein *Körper* wehrt sich."}, {"text": "Dann kommt der Hammer."}, {"text": "Das ist die Auflösung."}]
+tm = [(0, 2), (2, 4), (4, 6), (6, 8)]
+assert make_short.key_hits(segs, tm) and all(0 < h < 6 for h in make_short.key_hits(segs, tm))
+assert make_short.key_hits([{"text": "Ohne Sternchen hier"}], [(0, 2)]) == []
+import audio, numpy as np
+mixed = audio.mix(np.zeros(48000 * 8, dtype=np.float32), 48000, [2, 4, 6], 1, accent=6.0, keys=[1.0, 3.0], sticker=True)
+assert mixed.shape == (48000 * 8,) and np.abs(mixed).max() > 0.1
 print("ok")
