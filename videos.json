@@ -6,11 +6,20 @@
  },
  "videos": [
   {
+   "id": "xn5PPIiWuG8",
+   "title": "Die Mütze am Schulzaun 🧢",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im Winter hängen Mützen am Schulzaun, bis jemand herausfindet, wer sie strickt.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-20T12:36:15+00:00",
+   "thumb": "thumbs/xn5PPIiWuG8.jpg"
+  },
+  {
    "id": "7WTEw64hsQY",
    "title": "Warum Mama mir zwei Brote einpackt 🥪",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Mama packt jeden Tag zwei Brote ein, und ich verstehe lange nicht, warum.",
    "niche": "Geschichte",
-   "views": 3,
+   "views": 119,
    "published": "2026-11-20T11:36:14+00:00",
    "thumb": "thumbs/7WTEw64hsQY.jpg"
   },
@@ -19,7 +28,7 @@
    "title": "Das Lied, das aus dem leeren Zimmer kommt 🎵",
    "text": "Eine ausgedachte Gruselgeschichte: Nachts singt im Zimmer nebenan eine Kinderstimme, obwohl dort niemand wohnt.",
    "niche": "Wissen",
-   "views": 58,
+   "views": 116,
    "published": "2026-11-20T10:35:47+00:00",
    "thumb": "thumbs/x2NryBdGAWw.jpg"
   },
@@ -28,7 +37,7 @@
    "title": "Die Stufe, die es gestern noch nicht gab 🪜",
    "text": "Eine ausgedachte Gruselgeschichte: Auf deiner Treppe gibt es plötzlich eine Stufe mehr, und nur du siehst sie.",
    "niche": "Wissen",
-   "views": 56,
+   "views": 120,
    "published": "2026-11-20T09:36:06+00:00",
    "thumb": "thumbs/O-21KzBhwos.jpg"
   },
@@ -37,7 +46,7 @@
    "title": "Wer legt Zettel in mein Mathebuch? 📖",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jede Woche liegt ein Zettel mit einem Mathe-Tipp im Buch aus der Bibliothek. Wer steckt dahinter?",
    "niche": "Geschichte",
-   "views": 77,
+   "views": 118,
    "published": "2026-11-20T08:36:10+00:00",
    "thumb": "thumbs/LlFXF7_Zrcw.jpg"
   },
@@ -46,7 +55,7 @@
    "title": "Der Anruf, der von deiner eigenen Nummer kam 📱",
    "text": "Eine ausgedachte Gruselgeschichte: Mitten in der Nacht ruft dich deine eigene Nummer an.",
    "niche": "Wissen",
-   "views": 170,
+   "views": 299,
    "published": "2026-11-20T07:35:43+00:00",
    "thumb": "thumbs/zCG8V13xczk.jpg"
   },
@@ -55,7 +64,7 @@
    "title": "Was passiert, wenn dein Flugzeug in Turbulenzen gerät? ✈️",
    "text": "Turbulenzen fühlen sich gefährlich an. Was dabei wirklich passiert, warum Flugzeuge viel aushalten und wann es doch wehtun kann.",
    "niche": "Wissen",
-   "views": 65,
+   "views": 157,
    "published": "2026-11-20T06:35:50+00:00",
    "thumb": "thumbs/k3GAH4rHvtc.jpg"
   },
@@ -73,7 +82,7 @@
    "title": "Die verlorene Expedition: Was geschah mit Franklins Schiffen? 🧊",
    "text": "1845 verschwinden zwei Schiffe mit 129 Männern im Eis der Arktis. Wir erzählen die Geschichte der Franklin-Expedition, zeigen die Spuren, den Zettel von King-William-Insel und die Wracks, die erst 2014 und 2016 gefunden wurden.",
    "niche": "Geschichte",
-   "views": 12,
+   "views": 23,
    "published": "2026-11-19T20:24:35+00:00",
    "thumb": "thumbs/G5BMO4N29TM.jpg"
   },
@@ -82,7 +91,7 @@
    "title": "Was passiert, wenn du Mentos in Cola wirfst? 🥤",
    "text": "Erklärt in der Blockwelt: Warum Cola nach einem Bonbon als Fontäne hochschießt, obwohl es keine chemische Reaktion ist.",
    "niche": "Wissen",
-   "views": 277,
+   "views": 280,
    "published": "2026-11-19T19:35:32+00:00",
    "thumb": "thumbs/JBD7eJ5Dj5k.jpg"
   },
@@ -91,7 +100,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 2) 🎮",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 141 Mitarbeiter und 24.200 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 206,
+   "views": 207,
    "published": "2026-11-19T19:22:37+00:00",
    "thumb": "thumbs/CcI_AT3AMm0.jpg"
   },
@@ -100,7 +109,7 @@
    "title": "Warum gähnst du, wenn andere gähnen? 🥱",
    "text": "Erklärt in der Blockwelt: Warum Gähnen ansteckt, bei wem es besonders klappt und warum man noch nicht alles darüber weiß.",
    "niche": "Wissen",
-   "views": 359,
+   "views": 357,
    "published": "2026-11-19T18:35:54+00:00",
    "thumb": "thumbs/qnSb1c2_4WI.jpg"
   },
@@ -118,7 +127,7 @@
    "title": "Was passiert, wenn du dich im Wald verirrst? 🌲",
    "text": "Erklärt in der Blockwelt: Warum Stehenbleiben meist besser ist als Weiterlaufen und wie dich Suchtrupps schneller finden.",
    "niche": "Wissen",
-   "views": 731,
+   "views": 736,
    "published": "2026-11-19T17:35:39+00:00",
    "thumb": "thumbs/Hx3M51n8TGE.jpg"
   },
@@ -130,15 +139,6 @@
    "views": 904,
    "published": "2026-11-19T16:35:57+00:00",
    "thumb": "thumbs/yUtvwf4_YSI.jpg"
-  },
-  {
-   "id": "7GVEQeS7p4E",
-   "title": "Warum wird dir im Auto auf der Rückbank übel? 🚗",
-   "text": "Erklärt in der Blockwelt: Warum Augen und Gleichgewichtsorgan sich im Auto widersprechen und was gegen die Übelkeit hilft.",
-   "niche": "Wissen",
-   "views": 678,
-   "published": "2026-11-19T15:35:34+00:00",
-   "thumb": "thumbs/7GVEQeS7p4E.jpg"
   }
  ]
 }
