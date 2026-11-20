@@ -1284,6 +1284,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 .so-big { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 2px 0 18px; }
 .so-easy li > div { font-size: 15px; }
 .so-buf { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; }
+.so-ok { margin: 6px 0 0; font-size: 15px; color: var(--ok); }
+.so-manual + .so-adv { margin-top: 6px; }
 .so-adv { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
 .so-adv > summary { cursor: pointer; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
 </style>
@@ -1894,30 +1896,35 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="dev-w" id="shFilm"></div>
       </div>
       <div class="card so-card" id="soCard">
-        <div class="card-h"><div><h2>Auf TikTok und Instagram posten</h2><div class="sub">Deine besten Videos, fertig zum Hochladen.</div></div></div>
+        <div class="card-h"><div><h2>Instagram und TikTok</h2><div class="sub">Automatisch posten, genau wie bei YouTube.</div></div></div>
         <div class="card-b">
+          <div class="so-p so-buf" id="soBuf">
+            <div class="so-h"><b>Einmal verbinden, dann postet die Zentrale selbst</b><span class="pill" id="soBufStatus"></span></div>
+            <p class="label" id="soBufIntro">Wie bei YouTube: einmal ca. 10 Minuten einrichten, danach musst du nichts mehr tun. Jeden Tag gehen deine 2 besten Shorts von selbst auf Instagram und TikTok. Kostenlos über den Planer Buffer.</p>
+            <p class="so-ok" id="soBufOk" hidden></p>
+              <button class="btn sm" type="button" id="soBufOff" hidden style="margin-top:10px">Trennen</button>
+            <ol class="steps so-easy" id="soBufSteps">
+              <li><div>Bei <a href="https://buffer.com" target="_blank" rel="noopener">buffer.com</a> kostenlos anmelden.</div></li>
+              <li><div>In Buffer Instagram und TikTok verbinden, ganz normal mit deinem Login. Instagram muss ein Creator-Konto sein (Instagram → Einstellungen → Kontotyp und Tools).</div></li>
+              <li><div>Auf <a href="https://developers.buffer.com" target="_blank" rel="noopener">developers.buffer.com</a> einen API-Schlüssel erstellen und kopieren.</div></li>
+              <li><div>Hier einfügen und auf Verbinden klicken:
+                <form class="form" id="soBufForm" style="margin-top:10px">
+                  <div class="field"><label for="soBufKey">Buffer-Schlüssel</label><input id="soBufKey" type="password" autocomplete="off" spellcheck="false" placeholder="hier einfügen"></div>
+                  <div class="row"><button class="btn primary" type="submit">Verbinden</button><span class="msg" id="soBufMsg"></span></div>
+                </form></div></li>
+            </ol>
+          </div>
+          <details class="so-adv so-manual" id="soManual">
+            <summary>Lieber selbst hochladen</summary>
           <div class="so-big"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Heutige Videos für TikTok &amp; Instagram holen</a><span class="msg" id="soPackMsg"></span></div>
           <ol class="steps so-easy">
             <li><div>Knopf drücken und die Datei öffnen.</div></li>
             <li><div>Ein Video in <a href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok</a> oder in die Instagram-App hochladen.</div></li>
             <li><div>Den passenden Text aus <b>texte.txt</b> reinkopieren und posten.</div></li>
           </ol>
+          </details>
           <details class="so-adv" id="soAdv">
-            <summary>Für Fortgeschrittene: automatisch posten</summary>
-            <div class="so-p so-buf" id="soBuf">
-              <div class="so-h"><b>Automatisch mit Buffer</b><span class="pill" id="soBufStatus"></span></div>
-              <p class="label">Empfohlen. Kostenlos, ca. 10 Minuten, keine Entwickler-App. Danach gehen jeden Tag deine 2 besten Shorts von selbst raus.</p>
-              <ol class="steps so-easy">
-                <li><div>Bei <a href="https://buffer.com" target="_blank" rel="noopener">buffer.com</a> kostenlos anmelden.</div></li>
-                <li><div>In Buffer Instagram und TikTok verbinden, ganz normal mit deinem Login. Instagram muss ein Creator-Konto sein (Instagram → Einstellungen → Kontotyp und Tools).</div></li>
-                <li><div>Auf <a href="https://developers.buffer.com" target="_blank" rel="noopener">developers.buffer.com</a> einen API-Schlüssel erstellen und kopieren.</div></li>
-                <li><div>Hier einfügen und auf Verbinden klicken:
-                  <form class="form" id="soBufForm" style="margin-top:10px">
-                    <div class="field"><label for="soBufKey">Buffer-Schlüssel</label><input id="soBufKey" type="password" autocomplete="off" spellcheck="false" placeholder="hier einfügen"></div>
-                    <div class="row"><button class="btn primary" type="submit">Verbinden</button><button class="btn sm" type="button" id="soBufOff" hidden>Trennen</button><span class="msg" id="soBufMsg"></span></div>
-                  </form></div></li>
-              </ol>
-            </div>
+            <summary>Für Fortgeschrittene: ohne Buffer</summary>
           <div class="so-p" id="soIg">
             <div class="so-h"><b>Instagram</b><span class="pill" id="soIgStatus"></span></div>
             <div class="cm-ctl">
@@ -5588,7 +5595,17 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var bf = so.buffer || {}, bst = $("soBufStatus");
     bst.className = "pill" + (bf.connected ? " live" : ""); bst.textContent = bf.connected ? "Verbunden" : "Nicht verbunden";
     $("soBufOff").hidden = !bf.connected;
-    if (!S.soAdv) { S.soAdv = 1; if (so.instagram.connected || so.tiktok.connected || /[?&]tiktok=/.test(location.search)) $("soAdv").open = true; }
+    $("soBufSteps").hidden = !!bf.connected; $("soBufIntro").hidden = !!bf.connected; $("soBufOk").hidden = !bf.connected;
+    if (bf.connected) {
+      var parts = [["instagram", "Instagram"], ["tiktok", "TikTok"]].filter(function (P) { return so[P[0]].buffer; }).map(function (P) {
+        var x = so[P[0]], t = P[1] + (x.username ? " (" + x.username + ")" : "") + (x.on ? "" : " ist aus");
+        if (x.error) t += ": Fehler, " + x.error;
+        else if (x.last && x.last.at) t += ", zuletzt „" + x.last.title + "“" + (x.last.failed ? " (fehlgeschlagen)" : "");
+        return t;
+      });
+      $("soBufOk").textContent = "✓ Läuft. Jeden Tag gehen die besten Shorts raus, zwischen 12 und 22 Uhr. " + parts.join(" · ");
+    }
+    if (!S.soAdv) { S.soAdv = 1; if (((so.instagram.connected && !so.instagram.buffer) || (so.tiktok.connected && !so.tiktok.buffer)) || /[?&]tiktok=/.test(location.search)) $("soAdv").open = true; }
   }
   $("soBufForm").addEventListener("submit", function (e) {
     e.preventDefault();
