@@ -1504,6 +1504,19 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 return self.send(400, {"error": "Unbekannte Plattform."})
             social.save(d)
+            b = social.buffer_load()
+            if (b.get("channels") or {}).pop(plat, None):
+                social.buffer_save(b if b["channels"] else {})
+            return self.send(200, {"ok": True})
+        if p == "/api/social/buffer/connect":
+            try:
+                r = social.buffer_connect(str(data.get("key", "")))
+                store.log("ok", "Buffer verbunden: " + ", ".join({"instagram": "Instagram", "tiktok": "TikTok"}[k] for k in r["found"]) + ".")
+                return self.send(200, r)
+            except (ValueError, KeyError, social.ApiError, OSError) as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/buffer/disconnect":
+            social.buffer_disconnect()
             return self.send(200, {"ok": True})
         if p == "/api/social/now":
             plat = str(data.get("platform", ""))
