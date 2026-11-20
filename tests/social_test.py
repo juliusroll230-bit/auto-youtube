@@ -99,7 +99,7 @@ assert up[3]["file_size"] == "1234" and up[3]["Authorization"] == "OAuth PAGE" a
 assert calls[0][2]["media_type"] == "REELS" and calls[0][2]["upload_type"] == "resumable"
 
 # Verbinden: Seite mit Instagram-Konto wird gefunden, Geheimnisse nicht im summary
-s = social.ig_connect("111", "geheim", "KURZ")
+s = social.ig_connect("111", "geheim", "EAA" + "x" * 50)
 assert s["connected"] and s["username"] == "60sekundenwissen" and s["page"] == "60 Sekunden Wissen"
 assert "geheim" not in str(social.summary()) and "PAGE" not in str(social.summary())
 assert social.load()["instagram"]["token"] == "PAGE"
@@ -140,3 +140,29 @@ assert not social.send("instagram", {"video_id": "b", "title": "Schlaf"}, now)
 assert "Token" in social.load()["instagram"]["error"]
 assert social.load()["instagram"]["last"]["failed"] is True
 print("social ok")
+
+# Paket ohne Entwickler-App: beste Shorts mit Datei, Textdatei mit Uhrzeit-Vorschlag
+import zipfile  # noqa: E402
+for vid in ("a", "b", "g"):
+    with open(store.share_path(vid), "wb") as f:
+        f.write(b"video")
+dest = os.path.join(os.environ["DATA_DIR"], "p.zip")
+ids = [u["video_id"] for u in social.package_items(posted, now)]
+assert {"a", "b", "g"} <= set(ids) and not {"e", "f"} & set(ids), ids  # keine Clips, keine langen Videos
+assert ids == sorted(ids, key=lambda v: -next(u["views"] for u in posted if u["video_id"] == v))  # beste zuerst
+assert social.build_package(dest, posted, now) == len(ids)
+names = zipfile.ZipFile(dest).namelist()
+assert names[0].startswith("01-t-" + ids[0]) and "texte.txt" in names, names
+txt = zipfile.ZipFile(dest).read("texte.txt").decode()
+assert "Text b" in txt and "Planen für" in txt
+try:
+    social.build_package(dest, [], now)
+    raise AssertionError("leeres Paket")
+except ValueError:
+    pass
+
+# Fehler in einfachem Deutsch
+assert social.friendly("400: Error validating access token: Session has expired").startswith("Der Token ist abgelaufen")
+assert social.friendly("400: (#10) Application does not have permission").startswith("Es fehlt eine Erlaubnis")
+assert social.friendly("etwas anderes") == "etwas anderes"
+print("Paket und Fehlertexte ok")

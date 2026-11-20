@@ -1106,7 +1106,7 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n) or b"{}") if n else {}
 
-    def send_file(self, path, ctype, download=None):
+    def send_file(self, path, ctype, download=None, ext="mp4"):
         """Datei mit Range-Unterstützung (damit man im Video-Player spulen kann)."""
         size = os.path.getsize(path)
         start, end, code = 0, size - 1, 200
@@ -1132,8 +1132,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
         if download:
             safe = re.sub(r"[^A-Za-z0-9._-]+", "-", download).strip("-") or "clip"
-            self.send_header("Content-Disposition", f"attachment; filename=\"{safe}.mp4\"; "
-                             f"filename*=UTF-8''{urllib.parse.quote(download)}.mp4")
+            self.send_header("Content-Disposition", f"attachment; filename=\"{safe}.{ext}\"; "
+                             f"filename*=UTF-8''{urllib.parse.quote(download)}.{ext}")
         self.end_headers()
         try:
             with open(path, "rb") as f:
@@ -1188,6 +1188,13 @@ class Handler(BaseHTTPRequestHandler):
             return self.analytics_callback()
         if p == "/api/tiktok/callback":
             return self.tiktok_callback()
+        if p == "/api/social/paket.zip":  # beste Shorts + Texte, zum Planen ohne Entwickler-App
+            dest = store.path("share", "paket.zip")
+            try:
+                social.build_package(dest)
+            except ValueError as e:
+                return self.send(404, {"error": str(e)})
+            return self.send_file(dest, "application/zip", download="shorts-fuer-insta-und-tiktok", ext="zip")
         m = re.fullmatch(r"/api/share/([A-Za-z0-9_-]+)\.mp4", p)
         if m:
             u = next((x for x in store.state()["uploads"] if x.get("video_id") == m.group(1)), None)
@@ -1481,6 +1488,11 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 return self.send(200, {"url": social.tt_auth_url(OAUTH_PAGE, state)})
             except ValueError as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/test":
+            try:
+                return self.send(200, {"ok": True, "message": social.test(str(data.get("platform", "")))})
+            except (ValueError, KeyError, social.ApiError, OSError) as e:
                 return self.send(400, {"error": str(e)})
         if p == "/api/social/disconnect":
             d = social.load()
