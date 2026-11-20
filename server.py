@@ -37,6 +37,7 @@ import comments
 import learn
 import money
 import social
+import vorbilder
 import store
 import whop
 import yt
@@ -1027,6 +1028,22 @@ def post_social():
         social_lock.release()
 
 
+vorbilder_lock = threading.Lock()
+_vb_try = [0.0]   # letzter Versuch (ohne Netz nicht alle 30 s neu probieren)
+
+
+def refresh_vorbilder():
+    if not vorbilder_lock.acquire(blocking=False):
+        return
+    _vb_try[0] = time.time()
+    try:
+        ours = [u.get("title", "") for u in reversed(store.state().get("uploads", []))
+                if u.get("channel") != "clips" and not u.get("lang")]
+        vorbilder.refresh(ours[:40])
+    finally:
+        vorbilder_lock.release()
+
+
 def scheduler():
     last_stats = last_sync = last_analytics = last_whop = last_social = 0.0
     while True:
@@ -1057,6 +1074,8 @@ def scheduler():
                     last_stats = time.time()
             if comments.load()["settings"]["on"]:
                 background(check_comments)
+            if vorbilder.due() and time.time() - _vb_try[0] > 3600:  # Vorbilder: neueste Titel und Aufrufe (öffentlicher RSS-Feed, keine Quote)
+                background(refresh_vorbilder)
             if time.time() - last_social > 5 * 60:  # die besten Shorts zu Instagram (Reel) und TikTok (Entwurf)
                 last_social = time.time()
                 background(post_social)
@@ -1168,7 +1187,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
-                                                   "social": social.summary()},
+                                                   "social": social.summary(), "vorbilder": vorbilder.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
             q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
