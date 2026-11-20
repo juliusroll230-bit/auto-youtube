@@ -139,6 +139,10 @@ keine reinen Feuer-/Regen-Shorts (YouTube wertet sie leicht als wiederholte Inha
   z. B. 1 Stunde (`python entspannung.py feuer 60 ordner`), komplett selbst gezeichnet und vertont (`cartoon/web/ambient.js`,
   `audio.ambience`). Gehört auf einen **eigenen Kanal**, nicht auf „60 Sekunden Wissen“. Keine fremden Clips oder Musik.
 
+- **Entspannungskanal (seit 20.11.2026, Julius' Wunsch):** dritter YouTube-Kanal, in der Zentrale unter Kanäle verbinden
+  (`relax_token`, wie Clipi). `server.relax_worker` baut täglich ab `relax_hour` (Standard 17 Uhr) ein Video von `relax_minutes`
+  (Standard 120) und lädt es hoch, Art reihum Feuer, Regen, Pendel. Keine Skripte dafür schreiben, die tägliche Aufgabe bleibt gleich.
+
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 
 `vorbilder.py` hat 14 erfolgreiche Kanäle in unseren Nischen (Zack D. Films, What If, Unlucky Guy, SONNENSEITE …).
