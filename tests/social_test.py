@@ -154,7 +154,7 @@ assert social.build_package(dest, posted, now) == len(ids)
 names = zipfile.ZipFile(dest).namelist()
 assert names[0].startswith("01-t-" + ids[0]) and "texte.txt" in names, names
 txt = zipfile.ZipFile(dest).read("texte.txt").decode()
-assert "Text b" in txt and "Planen für" in txt
+assert "Text b" in txt and "Am besten am" in txt
 try:
     social.build_package(dest, [], now)
     raise AssertionError("leeres Paket")
