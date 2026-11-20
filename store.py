@@ -789,6 +789,19 @@ def next_effects(posted=None):
     return learn.choose_effects(learn.feature_scores(posted, now()), len(posted) + 1)
 
 
+def next_layout(posted=None):
+    """"normal" oder "spannung" (Herzschlag + Countdown). Zählt jeden Cartoon-Short mit,
+    auch die vorgerenderten, damit pro 15 Shorts genau der Test-Platz drankommt."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("aufbau_n", 0)
+        st["aufbau_n"] = n + 1
+        write("state.json", st)
+    return learn.choose_layout(n, fs)
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())

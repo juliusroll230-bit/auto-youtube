@@ -260,7 +260,85 @@ def boom(rate):
     return (np.sin(2 * np.pi * np.cumsum(30 + 60 * np.exp(-t * 8)) / rate) * np.exp(-t * 4)).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False):
+# --- Entspannungsvideos und Spannung (seit 20.11.2026), alles selbst erzeugt -------------------------------
+
+def _shaped_noise(n, rate, seed, lo, hi, tilt=0.0):
+    """Rauschen, auf ein Frequenzband begrenzt (per FFT, schnell auch bei langen Spuren). tilt < 0: dumpfer."""
+    rng = np.random.default_rng(seed)
+    spec = np.fft.rfft(rng.standard_normal(n))
+    f = np.fft.rfftfreq(n, 1 / rate)
+    gain = ((f >= lo) & (f <= hi)) * (np.maximum(f, 20) / 1000.0) ** tilt
+    y = np.fft.irfft(spec * gain, n)
+    return y / max(1e-6, np.abs(y).max())
+
+
+def ambience(kind, seconds, rate, seed, loop=False):
+    """Geräusch für Entspannungsvideos: "regen" (Rauschen + Tropfen), "feuer" (Knistern), "pendel" (leises Klicken).
+
+    loop: Ende geht nahtlos in den Anfang über (das Rauschen ist per FFT ohnehin rund, Tropfen am Ende laufen vorne
+    weiter), dann kein Einblenden. So lässt sich eine kurze Schleife beliebig oft wiederholen.
+    """
+    n = int(seconds * rate)
+    rng = np.random.default_rng(seed + 31)
+    out = np.zeros(n)
+
+    def _add(buf, start, sound):   # wie das globale _add, aber bei loop rund herum
+        i = int(start)
+        if not loop:
+            return globals()["_add"](buf, i, sound)
+        idx = (i + np.arange(len(sound))) % len(buf)
+        np.add.at(buf, idx, sound)
+    if kind == "regen":
+        out += 0.6 * _shaped_noise(n, rate, seed, 300, 9000, tilt=-0.4)
+        drop_t = np.arange(int(0.03 * rate)) / rate
+        for _ in range(int(seconds * 9)):
+            f = rng.uniform(1800, 4200)
+            _add(out, rng.integers(n), rng.uniform(0.05, 0.25) * np.sin(2 * np.pi * f * drop_t) * np.exp(-drop_t * 160))
+    elif kind == "feuer":
+        out += 0.5 * _shaped_noise(n, rate, seed, 40, 900, tilt=-0.8)   # tiefes Rauschen der Flammen
+        k = int(0.012 * rate)
+        for _ in range(int(seconds * 14)):
+            c = rng.standard_normal(k) * np.exp(-np.arange(k) / rate * 500)
+            _add(out, rng.integers(n), rng.uniform(0.2, 1.0) * c)
+    else:   # pendel: ganz leises, weiches Klicken wie ein Uhrwerk
+        tt = np.arange(int(0.05 * rate)) / rate
+        clk = np.sin(2 * np.pi * 1100 * tt) * np.exp(-tt * 90)
+        for i in range(int(seconds / 0.5)):
+            _add(out, int(i * 0.5 * rate), (0.35 if i % 2 else 0.22) * clk)
+        tt = np.arange(n) / rate   # ruhige, weiche Fläche darunter (ganze Hertz-Zahlen: läuft nahtlos weiter)
+        swell = 0.6 + 0.4 * np.sin(2 * np.pi * tt * round(seconds / 10) / seconds)
+        out += 0.12 * swell * sum(np.sin(2 * np.pi * f * tt) for f in (110, 165, 220, 277))
+    fade = min(n // 2, int(0.6 * rate))
+    if fade and not loop:
+        out[:fade] *= np.linspace(0, 1, fade)
+    return (out / max(1e-6, np.abs(out).max())).astype(np.float32)
+
+
+def heartbeat(rate):
+    """Ein Herzschlag (lub-dub): zwei tiefe, dumpfe Schläge kurz hintereinander."""
+    n = int(0.5 * rate)
+    t = np.arange(n) / rate
+
+    def thump(at, f, g):
+        tt = np.clip(t - at, 0, None)
+        return g * (t >= at) * np.sin(2 * np.pi * f * tt) * np.exp(-tt * 18) * np.minimum(1, tt / 0.004)
+    y = thump(0, 55, 1.0) + thump(0.16, 48, 0.7)
+    return (y / max(1e-6, np.abs(y).max())).astype(np.float32)
+
+
+def tension_beats(reveal, start=0.4):
+    """Zeitpunkte der Herzschläge bis zur Auflösung: anfangs ruhig (ca. 70/min), am Ende schnell (ca. 120/min)."""
+    if not reveal or reveal <= start + 1:
+        return []
+    beats, t = [], start
+    while t < reveal - 0.15:
+        beats.append(round(t, 3))
+        p = (t - start) / (reveal - start)
+        t += 0.86 - 0.36 * p
+    return beats
+
+
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=()):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
@@ -269,6 +347,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
     accent: Zeitpunkt (s) der Auflösung. Dann steigt davor ein Riser an, auf ihr kommt ein Schlag und die Musik
     setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026),
     keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
+    beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -286,7 +365,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
         gap = np.ones(n, dtype=np.float32)
         gap[max(0, a):max(0, min(n, b))] = 0.0
         duck = duck * np.convolve(gap, np.ones(win) / win, mode="same")
-    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * duck
+    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 1.0) * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
@@ -304,5 +383,9 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
             _add(sfx, (accent + 0.12) * rate, (0.10 if dark else 0.16) * ding(rate))
     for k in keys:
         _add(sfx, k * rate, (0.07 if warm else 0.12) * bloop(rate))
+    if beats:
+        hb = heartbeat(rate)
+        for i, b in enumerate(beats):   # wird zum Ende hin etwas lauter
+            _add(sfx, b * rate, (0.22 + 0.16 * i / max(1, len(beats) - 1)) * hb)
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

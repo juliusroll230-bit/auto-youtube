@@ -215,6 +215,9 @@ def render_short(spec):
         look["stimme"] = spec.get("stimme") or ("klar" if spec.get("laenge") == "lang" else store.next_voice(spec))
         if spec.get("laenge") != "lang":  # Test: starke Soundeffekte auf der Auflösung gegen dezente
             look["effekte"] = spec.get("effekte") or store.next_effects()
+            if spec.get("format") != "firma":  # Test: Spannung (Herzschlag + Countdown) gegen normale Shorts
+                lay = store.next_layout()
+                look["aufbau"] = spec["aufbau"] if spec.get("aufbau") in learn.LAYOUTS else lay
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"
