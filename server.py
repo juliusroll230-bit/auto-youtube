@@ -60,8 +60,9 @@ VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
 thumb_lock = threading.Lock()  # Thumbnails nacheinander bauen (Chromium)
+relax_lock = threading.Lock()  # Entspannungskanal: baut und lädt ein langes Video, unabhängig vom Hauptkanal
 clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
-status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "oauth_states": {}}
+status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "connect_relax": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 _tts_lock = threading.Lock()
 
@@ -729,6 +730,12 @@ def refresh_stats():
             except Exception as e:
                 if yt.is_expired(e):
                     clip_connection_expired()
+        if cfg["relax_token"]:
+            try:
+                store.write("relaxchannel.json", yt.channel({**cfg, "refresh_token": cfg["relax_token"]}))
+            except Exception as e:
+                if yt.is_expired(e):
+                    relax_connection_expired()
         store.record_history(sum(v["views"] for k, v in videos.items() if k not in own), ch.get("subscribers", 0), clip=cch)
         store.agent_done("analyst")
     except Exception as e:
@@ -896,6 +903,115 @@ def connect_clip_channel():
     except Exception as e:
         status["connect_clip"] = {"status": "fehler", "message": str(e)}
         store.log("error", f"Clip-Kanal-Verbindung fehlgeschlagen: {e}")
+
+
+def relax_connection_expired():
+    store.save_config(relax_token="", relax_expired=True)
+    status["connect_relax"] = {"status": "idle"}
+    store.log("warn", "Die Verbindung zum Entspannungskanal ist abgelaufen. Bitte im Reiter Kanäle neu verbinden.")
+
+
+def connect_relax_channel():
+    cfg = store.config()
+    try:
+        code = yt.device_start(cfg["client_id"])
+        status["connect_relax"] = {"status": "code", "user_code": code["user_code"],
+                                   "verification_url": code.get("verification_url", "https://www.google.com/device"),
+                                   "expires_at": code["expires_at"]}
+        token = yt.device_wait(cfg["client_id"], cfg["client_secret"], code)
+        ch = yt.channel({**cfg, "refresh_token": token})
+        others = [(store.read("channel.json", {}) or {}).get("id"), (store.read("clipchannel.json", {}) or {}).get("id")]
+        if ch["id"] in [o for o in others if o]:
+            raise RuntimeError("Das ist ein Kanal, der schon verbunden ist. Wähle bei Google den neuen Entspannungskanal aus.")
+        store.write("relaxchannel.json", ch)
+        store.save_config(relax_token=token, relax_expired=False)
+        status["connect_relax"] = {"status": "verbunden"}
+        store.log("ok", f"Entspannungskanal verbunden: {ch.get('title', 'YouTube')}. Ab jetzt kommt dort täglich ein langes Video.")
+    except Exception as e:
+        status["connect_relax"] = {"status": "fehler", "message": str(e)}
+        store.log("error", f"Entspannungskanal-Verbindung fehlgeschlagen: {e}")
+
+
+def post_relax(manual=False):
+    """Baut ein langes Entspannungsvideo (Lagerfeuer, Regen oder Pendel reihum) und lädt es auf den Entspannungskanal.
+
+    Rendert nur eine Minute Bild, der Rest ist ffmpeg-Kopie. Braucht kurz den Renderer (work_lock),
+    damit nicht gleichzeitig ein Short rendert. Dateien werden nach dem Upload gelöscht.
+    """
+    import shutil
+    import entspannung
+    if not relax_lock.acquire(blocking=False):
+        return False
+    folder = store.path("relax")
+    try:
+        cfg = store.config()
+        if not cfg["relax_token"]:
+            return False
+        if not work_lock.acquire(timeout=600 if not manual else 5):
+            raise RuntimeError("Der Server rendert gerade einen anderen Short, später noch einmal.")
+        try:
+            st = store.state()
+            kind = entspannung.next_kind(int(st.get("relax_n", 0)))
+            minutes = int(cfg["relax_minutes"])
+            shutil.rmtree(folder, ignore_errors=True)
+            status["busy"] = f"Baut Entspannungsvideo: {entspannung.KINDS[kind]['name']}, {entspannung.dauer_text(minutes)}"
+            with working("studio", task="Baut ein langes Entspannungsvideo"):
+                r = entspannung.build(kind, minutes, folder, seed=int(st.get("relax_n", 0)) + 1)
+        finally:
+            status["busy"] = ""
+            work_lock.release()
+        meta = entspannung.meta(kind, minutes)
+        rcfg = {**cfg, "refresh_token": cfg["relax_token"]}
+        spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "de", "chunksize": 64 * 1024 * 1024}
+        with working("publisher", task="Lädt ein Entspannungsvideo hoch"):
+            video_id = yt.upload(rcfg, r["video"], spec)
+        thumb = False
+        try:
+            yt.set_thumbnail(rcfg, video_id, r["thumb"])
+            thumb = True
+        except Exception as e:  # Thumbnails brauchen einen bestätigten Kanal (youtube.com/verify)
+            store.log("warn", f"Thumbnail für das Entspannungsvideo nicht gesetzt: {e}")
+        day = store.now().date().isoformat()
+        with store.LOCK:
+            st = store.state()
+            st["relax_last"], st["relax_n"] = day, int(st.get("relax_n", 0)) + 1
+            store.write("state.json", st)
+        info = store.read("relax.json", {}) or {}
+        info["error"] = None
+        info["uploads"] = (info.get("uploads") or [])[-30:] + [{"video_id": video_id, "title": meta["title"], "kind": kind,
+                                                               "minutes": minutes, "at": day, "thumb": thumb}]
+        store.write("relax.json", info)
+        store.log("ok", f"Entspannungsvideo hochgeladen: {meta['title']}")
+        return True
+    except Exception as e:
+        traceback.print_exc()
+        info = store.read("relax.json", {}) or {}
+        info["error"] = str(e)[:300]
+        store.write("relax.json", info)
+        with store.LOCK:
+            st = store.state()
+            st["relax_tried"] = store.now().isoformat(timespec="seconds")
+            store.write("state.json", st)
+        if yt.is_expired(e):
+            relax_connection_expired()
+        store.log("error", f"Entspannungsvideo fehlgeschlagen: {e}", kind="error")
+        return False
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+        relax_lock.release()
+
+
+def relax_worker():
+    """Eigener Faden: einmal pro Tag ab der eingestellten Uhrzeit ein langes Entspannungsvideo."""
+    import entspannung
+    while True:
+        try:
+            st = store.state()
+            if entspannung.is_due(store.config(), st.get("relax_last"), store.now(), st.get("relax_tried")):
+                post_relax()
+        except Exception:
+            traceback.print_exc()
+        time.sleep(60)
 
 
 def connection_expired():
@@ -1187,7 +1303,7 @@ class Handler(BaseHTTPRequestHandler):
             if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
-            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"],
+            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
                                                    "social": social.summary(), "vorbilder": vorbilder.summary()},
@@ -1472,6 +1588,41 @@ class Handler(BaseHTTPRequestHandler):
             store.write("clipchannel.json", None)
             status["connect_clip"] = {"status": "idle"}
             store.log("warn", "Clip-Kanal getrennt. Clips laufen wieder auf dem Hauptkanal mit.")
+            return self.send(200, {"ok": True})
+        if p == "/api/relax/connect":
+            cfg = store.config()
+            if not (cfg["client_id"] and cfg["client_secret"] and cfg["refresh_token"]):
+                return self.send(400, {"error": "Bitte zuerst deinen Hauptkanal verbinden."})
+            status["connect_relax"] = {"status": "start"}
+            background(connect_relax_channel)
+            return self.send(200, {"ok": True})
+        if p == "/api/relax/disconnect":
+            store.save_config(relax_token="", relax_expired=False)
+            store.write("relaxchannel.json", None)
+            status["connect_relax"] = {"status": "idle"}
+            store.log("warn", "Entspannungskanal getrennt.")
+            return self.send(200, {"ok": True})
+        if p == "/api/relax/settings":
+            import entspannung
+            ch = {}
+            if "minutes" in data:
+                if int(data["minutes"]) not in entspannung.MINUTES:
+                    return self.send(400, {"error": "Länge: " + ", ".join(str(m) for m in entspannung.MINUTES) + " Minuten."})
+                ch["relax_minutes"] = int(data["minutes"])
+            if "hour" in data:
+                if int(data["hour"]) not in entspannung.HOURS:
+                    return self.send(400, {"error": "Uhrzeit von 0 bis 23."})
+                ch["relax_hour"] = int(data["hour"])
+            if "on" in data:
+                ch["relax_on"] = bool(data["on"])
+            store.save_config(**ch)
+            return self.send(200, {"ok": True})
+        if p == "/api/relax/now":
+            if not store.config()["relax_token"]:
+                return self.send(400, {"error": "Der Entspannungskanal ist nicht verbunden."})
+            if relax_lock.locked():
+                return self.send(400, {"error": "Es wird gerade schon ein Entspannungsvideo gebaut."})
+            background(post_relax, True)
             return self.send(200, {"ok": True})
         if p == "/api/socials":
             socials = dict(store.config()["socials"])
@@ -1910,6 +2061,7 @@ def main():
     threading.Thread(target=scheduler, daemon=True).start()
     threading.Thread(target=clip_worker, daemon=True).start()
     threading.Thread(target=clipi_worker, daemon=True).start()
+    threading.Thread(target=relax_worker, daemon=True).start()
     threading.Thread(target=ready_worker, daemon=True).start()
     background(warm_thumbs)
     print(f"Shorts-Zentrale läuft auf Port {PORT}", flush=True)

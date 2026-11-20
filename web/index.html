@@ -5184,6 +5184,47 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       b.appendChild(h("div", { cls: "acts" }, [go2]));
     }
     g.appendChild(b);
+    // Entspannungskanal: lange Videos (Lagerfeuer, Regen, Pendel), täglich eins
+    var RC = d.relax_channel || {}, rl = d.connect_relax || { status: "idle" }, rch = RC.channel || {};
+    var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Entspannungskanal", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
+    if (RC.connected) {
+      r.appendChild(chNums([[nf.format(rch.subscribers || 0), "Abonnenten"], [nf.format(rch.views || 0), "Aufrufe"], [nf.format(rch.videos || 0), "Videos"]]));
+      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · " + (RC.minutes / 60) + " Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
+      if (RC.error) r.appendChild(h("p", { cls: "msg err", text: "Letzter Versuch fehlgeschlagen: " + RC.error }));
+      var sel = h("select", { "aria-label": "Länge" }, [60, 120, 180, 300, 480].map(function (m) { return h("option", { value: m, text: (m / 60) + " Std." }); }));
+      sel.value = String(RC.minutes); sel.disabled = preview;
+      sel.addEventListener("change", function () { api("api/relax/settings", { minutes: Number(sel.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+      var hs = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
+      hs.value = String(RC.hour); hs.disabled = preview;
+      hs.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hs.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+      r.appendChild(h("div", { cls: "hin" }, [sel, hs]));
+      var tg = h("button", { cls: "btn sm", type: "button", text: RC.on ? "Pausieren" : "Wieder starten" });
+      tg.disabled = preview;
+      tg.addEventListener("click", function () { api("api/relax/settings", { on: !RC.on }).then(soon, function (e) { toast(e.message); }); });
+      var nw = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
+      nw.disabled = preview;
+      nw.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 Minuten"); soon(); }, function (e) { toast(e.message); }); });
+      var offr = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
+      offr.disabled = preview;
+      offr.addEventListener("click", function () { if (offr.dataset.sure) api("api/relax/disconnect").then(soon); else { offr.dataset.sure = "1"; offr.textContent = "Wirklich trennen?"; } });
+      r.appendChild(h("div", { cls: "acts" }, [nw, tg, offr]));
+      (RC.uploads || []).forEach(function (u) {
+        r.appendChild(h("p", { text: u.at + " · " }, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title })]));
+      });
+    } else if (rl.status === "code") {
+      r.appendChild(h("p", { text: "Öffne google.com/device, melde dich an und wähle bei Google deinen neuen Entspannungskanal. Dann diesen Code eingeben:" }));
+      r.appendChild(h("div", { cls: "code", text: rl.user_code }));
+      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: rl.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
+    } else {
+      if (rl.status === "fehler") r.appendChild(h("p", { cls: "msg err", text: rl.message || "Die Verbindung hat nicht geklappt." }));
+      else if (RC.expired) r.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+      r.appendChild(h("p", { text: "Ein dritter YouTube-Kanal nur für lange Videos zum Entspannen und Einschlafen (Lagerfeuer, Regen, Pendel). Die Zentrale baut sie selbst und lädt täglich eins hoch." }));
+      var go3 = h("button", { cls: "btn sm primary", type: "button", text: rl.status === "start" ? "Startet …" : "Entspannungskanal verbinden" });
+      go3.disabled = preview || !d.connected || rl.status === "start";
+      go3.addEventListener("click", function () { api("api/relax/connect").then(function () { poll(3000); }, function (e) { toast(e.message); }); });
+      r.appendChild(h("div", { cls: "acts" }, [go3]));
+    }
+    g.appendChild(r);
     // TikTok und Instagram
     [["tiktok", "tt", "TikTok", "https://www.tiktok.com/@"], ["instagram", "ig", "Instagram", "https://www.instagram.com/"]].forEach(function (P) {
       var name = so[P[0]] || "", done = list.filter(function (x) { return (x[1].shared || {})[P[0]]; }).length;
@@ -5797,8 +5838,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     S.timer = setTimeout(function () {
       load().then(function (d) {
         if (!S.live || !d) return;
-        var c = (d.connect || {}).status;
-        poll(d.busy || c === "code" || c === "start" ? 4000 : 30000);
+        var c = (d.connect || {}).status, c2 = (d.connect_clip || {}).status, c3 = (d.connect_relax || {}).status;
+        var wait = function (x) { return x === "code" || x === "start"; };
+        poll(d.busy || wait(c) || wait(c2) || wait(c3) ? 4000 : 30000);
       });
     }, ms);
   }

@@ -53,6 +53,31 @@ window.READY = true;
 </script></body></html>"""
 
 
+MINUTES = (60, 120, 180, 300, 480)   # erlaubte Längen (1, 2, 3, 5, 8 Stunden)
+HOURS = list(range(0, 24))
+
+
+def next_kind(n):
+    """Welche Art als nächstes dran ist: reihum Feuer, Regen, Pendel."""
+    order = list(KINDS)
+    return order[n % len(order)]
+
+
+def is_due(cfg, last_date, now, tried_at=None):
+    """True, wenn heute noch kein Entspannungsvideo kam, die Uhrzeit erreicht ist und der letzte Versuch eine Stunde her ist.
+
+    last_date: Datum (YYYY-MM-DD) des letzten erfolgreichen Uploads, now: aktuelle Zeit (mit Zeitzone der Zentrale),
+    tried_at: ISO-Zeit des letzten (fehlgeschlagenen) Versuchs.
+    """
+    if not (cfg.get("relax_token") and cfg.get("relax_on", True)):
+        return False
+    if last_date == now.date().isoformat() or now.hour < int(cfg.get("relax_hour", 17)):
+        return False
+    if tried_at and (now - __import__("datetime").datetime.fromisoformat(tried_at)).total_seconds() < 3600:
+        return False
+    return True
+
+
 def dauer_text(minutes):
     return f"{minutes // 60} Stunde{'n' if minutes >= 120 else ''}" if minutes % 60 == 0 else f"{minutes} Minuten"
 
