@@ -1268,6 +1268,14 @@ dialog.vs[open] { display: grid; place-items: center; }
 @media (prefers-reduced-motion: reduce) { .vs-c { animation: none; } }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .sec-h { font: 600 22px/1.2 var(--f-display); letter-spacing: -.025em; margin-top: 10px; }
+.so-card .card-h { flex-wrap: wrap; gap: 10px; }
+.so-card h2 .pill { vertical-align: middle; margin-left: 6px; font-size: 11px; }
+.so-lead { margin: 0 0 14px; color: var(--muted); line-height: 1.5; }
+.so-lead b { color: var(--ink); }
+.so-parents { margin: 0 0 18px; }
+.so-parents > b { display: block; margin: 12px 0 4px; }
+#shList { scroll-margin-top: 90px; }
+a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; }
 </style>
 
 <svg class="sprite-defs" aria-hidden="true" focusable="false">
@@ -1858,27 +1866,51 @@ dialog.vs[open] { display: grid; place-items: center; }
         </div>
         <div class="dev-w" id="shFilm"></div>
       </div>
-      <h2 class="sec-h">Deine Kanäle</h2>
-      <p class="sec-sub">Ein Ort für alle Kanäle. KI-Shorts laufen auf dem Hauptkanal, Clips auf Wunsch auf einem eigenen Kanal.</p>
-      <div class="chg" id="chGrid"></div>
-      <div class="card shc">
-        <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
-          <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
-        <div class="card-b shlist" id="shList"></div>
-      </div>
-      <div class="card" id="soCard">
-        <div class="card-h"><div><h2>Automatisch auf Instagram und TikTok</h2><div class="sub">Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest.</div></div></div>
+      <div class="card so-card" id="soCard">
+        <div class="card-h"><div><h2>Instagram und TikTok verbinden <span class="pill live">Neu</span></h2><div class="sub">Deine besten Shorts auch auf Instagram und TikTok. Such dir einen Weg aus.</div></div>
+          <div class="seg" role="group" aria-label="Weg wählen"><button type="button" aria-pressed="true" data-sow="leicht">Ohne Entwickler-Konto</button><button type="button" aria-pressed="false" data-sow="auto">Vollautomatisch</button></div></div>
         <div class="card-b">
+          <div id="soWayEasy">
+            <p class="so-lead"><b>Der einfache Weg.</b> Kein Entwickler-Konto, keine Schlüssel, geht mit deinem normalen Konto. Alle 2 Tage ca. 5 Minuten: Die Zentrale packt dir die besten Shorts mit fertigem Text, du planst sie einmal ein, sie gehen dann von selbst online.</p>
+            <ol class="steps">
+              <li><div><b>Paket laden</b> (die 6 besten Shorts der letzten 2 Tage und eine Datei <span class="mono">texte.txt</span> mit Text und Uhrzeit):
+                <div class="row" style="margin-top:8px"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Paket herunterladen</a><span class="msg" id="soPackMsg"></span></div>
+                <p class="label" style="margin-top:6px">ZIP-Datei mit Rechtsklick → „Alle extrahieren“ entpacken.</p></div></li>
+              <li><div><b>TikTok:</b> <a href="https://www.tiktok.com/tiktokstudio/upload" target="_blank" rel="noopener">TikTok Studio</a> am PC öffnen → Video reinziehen → Text aus <span class="mono">texte.txt</span> einfügen → bei „Wann posten“ <b>Planen</b> wählen (bis 10 Tage im Voraus) → Uhrzeit aus der Datei.</div></li>
+              <li><div><b>Instagram:</b> In der Instagram-App Reel erstellen → Weiter → <b>Erweiterte Einstellungen</b> → <b>Diesen Beitrag planen</b>. Am PC geht es mit der <a href="https://business.facebook.com/latest/composer" target="_blank" rel="noopener">Meta Business Suite</a> (braucht eine kostenlose Facebook-Seite). Planen klappt bei Creator-Konten: Instagram → Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>.</div></li>
+              <li><div>Fertig. Am Handy geht es auch einzeln: in der Liste <a href="#shList">„Für TikTok und Instagram“</a> weiter unten Clip laden, Text kopieren, posten und abhaken.</div></li>
+            </ol>
+          </div>
+          <div id="soWayAuto" hidden>
+            <p class="so-lead"><b>Vollautomatisch.</b> Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest. Dafür braucht es einmal eine kleine Entwickler-App bei Meta und TikTok. Die verlangen dafür meist <b>18 Jahre</b>: Dann richtet ein Elternteil das mit der Anleitung unten ein, danach läuft alles ohne sie.</p>
+            <details class="so-setup so-parents" id="soParents">
+              <summary>Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
+              <p class="label">Kostet nichts. Es wird nur das eigene Konto Ihres Kindes verbunden, nichts wird öffentlich als App angeboten. Die Zentrale postet nur selbst gemachte KI-Videos.</p>
+              <b>Instagram</b>
+              <ol class="steps">
+                <li><div>Ihr Kind stellt Instagram auf ein <b>Creator-Konto</b> um (Instagram → Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln).</div></li>
+                <li><div>Mit Ihrem Facebook-Konto eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie der Kanal). In den Seiten-Einstellungen unter <b>Verknüpfte Konten → Instagram</b> das Instagram-Konto Ihres Kindes verbinden (Ihr Kind meldet sich dort kurz an).</div></li>
+                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> mit Facebook anmelden (einmal per Handy bestätigen) → <b>App erstellen</b> → Typ <b>Business</b> bzw. Anwendungsfall „Instagram verwalten“. Name z. B. „Shorts Zentrale“. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist nicht nötig.</div></li>
+                <li><div>Im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> rechts die App wählen, die fünf Berechtigungen aus Schritt 4 im Instagram-Teil oben hinzufügen, <b>Generate Access Token</b> klicken und im Fenster Seite und Instagram-Konto anhaken.</div></li>
+                <li><div>App-ID und App-Geheimnis (App-Einstellungen → Allgemeines) und den Token in die Felder im Instagram-Teil einfügen → <b>Verbinden</b> → <b>Verbindung testen</b>. Der Token wird gegen einen dauerhaften getauscht, das ist eine einmalige Sache.</div></li>
+              </ol>
+              <b>TikTok</b>
+              <ol class="steps">
+                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> registrieren → <b>App anlegen</b>. Produkte <b>Login Kit</b> und <b>Content Posting API</b>, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Als Redirect URI die Adresse aus Schritt 2 im TikTok-Teil.</div></li>
+                <li><div>Unter <b>Sandbox → Target users</b> das TikTok-Konto Ihres Kindes eintragen. Dann klappt es sofort, ohne Prüfung durch TikTok.</div></li>
+                <li><div>Client Key und Client Secret im TikTok-Teil einfügen → <b>Speichern</b>. Ihr Kind klickt dann <b>Mit TikTok verbinden</b> und meldet sich an.</div></li>
+              </ol>
+            </details>
           <div class="so-p" id="soIg">
             <div class="so-h"><b>Instagram</b><span class="pill" id="soIgStatus"></span></div>
             <div class="cm-ctl">
               <label class="switch"><input type="checkbox" id="soIgOn"><span class="tr"></span><span>Automatisch posten</span></label>
               <div class="field"><label for="soIgPer">Pro Tag</label><select id="soIgPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
-              <button class="btn sm" type="button" id="soIgNow">Jetzt einen senden</button>
+              <button class="btn sm" type="button" id="soIgTest">Verbindung testen</button><button class="btn sm" type="button" id="soIgNow">Jetzt einen senden</button>
             </div>
             <p class="tb-note" id="soIgNote"></p>
             <details class="so-setup" id="soIgSetup">
-              <summary>Einrichten (einmalig, ca. 20 Minuten)</summary>
+              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
               <ol class="steps">
                 <li><div>In der Instagram-App: Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>. Kostenlos.</div></li>
                 <li><div>Eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie dein Kanal) und in Instagram unter <b>Kontenübersicht</b> mit der Seite verbinden.</div></li>
@@ -1900,11 +1932,11 @@ dialog.vs[open] { display: grid; place-items: center; }
             <div class="cm-ctl">
               <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Entwürfe schicken</span></label>
               <div class="field"><label for="soTtPer">Pro Tag</label><select id="soTtPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
-              <button class="btn sm" type="button" id="soTtNow">Jetzt einen senden</button>
+              <button class="btn sm" type="button" id="soTtTest">Verbindung testen</button><button class="btn sm" type="button" id="soTtNow">Jetzt einen senden</button>
             </div>
             <p class="tb-note" id="soTtNote"></p>
             <details class="so-setup" id="soTtSetup">
-              <summary>Einrichten (einmalig, ca. 20 Minuten)</summary>
+              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
               <ol class="steps">
                 <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> anmelden und eine App anlegen. Produkte <b>Login Kit</b> und <b>Content Posting API</b> hinzufügen, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Falls TikTok ein Mindestalter verlangt, legt ein Elternteil die App an.</div></li>
                 <li><div>Als Webseite, Datenschutz und Nutzungsbedingungen deine Homepage angeben, als <b>Redirect URI</b> diese Adresse:
@@ -1919,7 +1951,16 @@ dialog.vs[open] { display: grid; place-items: center; }
               </ol>
             </details>
           </div>
+          </div>
         </div>
+      </div>
+      <h2 class="sec-h">Deine Kanäle</h2>
+      <p class="sec-sub">Ein Ort für alle Kanäle. KI-Shorts laufen auf dem Hauptkanal, Clips auf Wunsch auf einem eigenen Kanal.</p>
+      <div class="chg" id="chGrid"></div>
+      <div class="card shc">
+        <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
+          <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
+        <div class="card-b shlist" id="shList"></div>
       </div>
       <h2 class="sec-h">Verbindung und Einstellungen</h2>
       <div class="banner" id="previewNote" hidden>
@@ -5478,8 +5519,31 @@ dialog.vs[open] { display: grid; place-items: center; }
       $("so" + k + "Note").hidden = !note.length;
       if (k === "Ig" && ae !== $("soIgApp") && x.app_id) $("soIgApp").value = x.app_id;
       if (k === "Tt" && ae !== $("soTtKey") && x.client_key) $("soTtKey").value = x.client_key;
+      $("so" + k + "Test").disabled = !x.connected || !S.live;
     });
+    if (!S.soWay) soShowWay(/[?&]tiktok=/.test(location.search) ? "auto" : soSavedWay() || (so.instagram.connected || so.tiktok.connected ? "auto" : "leicht"));
   }
+  function soSavedWay() { try { return localStorage.getItem("soWay"); } catch (e) { return null; } }
+  function soShowWay(w) {
+    S.soWay = w;
+    $("soWayEasy").hidden = w !== "leicht"; $("soWayAuto").hidden = w !== "auto";
+    document.querySelectorAll("[data-sow]").forEach(function (o) { o.setAttribute("aria-pressed", o.dataset.sow === w ? "true" : "false"); });
+  }
+  document.querySelectorAll("[data-sow]").forEach(function (b) {
+    b.addEventListener("click", function () { soShowWay(b.dataset.sow); try { localStorage.setItem("soWay", b.dataset.sow); } catch (e) { /* egal */ } });
+  });
+  $("soPack").addEventListener("click", function (e) {
+    e.preventDefault();
+    var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Packt die Shorts …";
+    fetch("api/social/paket.zip").then(function (r) {
+      if (!r.ok) return r.json().then(function (j) { throw new Error(j.error || "Fehler"); }, function () { throw new Error("Paket gerade nicht möglich (" + r.status + ")"); });
+      return r.blob();
+    }).then(function (b) {
+      var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "shorts-fuer-insta-und-tiktok.zip";
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 60000);
+      m.className = "msg ok"; m.textContent = "✓ Heruntergeladen. Jetzt entpacken und einplanen.";
+    }, function (er) { m.className = "msg err"; m.textContent = er.message; });
+  });
   [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (P) {
     var k = P[0], plat = P[1];
     ["On", "Per"].forEach(function (f) {
@@ -5490,6 +5554,14 @@ dialog.vs[open] { display: grid; place-items: center; }
     });
     $("so" + k + "Now").addEventListener("click", function () {
       api("api/social/now", { platform: plat }).then(function (r) { toast("Wird gesendet: " + r.title); }, function (e) { toast(e.message); });
+    });
+    $("so" + k + "Test").addEventListener("click", function () {
+      var m = $("so" + k + "Msg"), b = $("so" + k + "Test");
+      b.disabled = true; m.textContent = "Teste …";
+      fetch("api/social/test", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ platform: plat }) })
+        .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || "Fehler"); return j; }); })
+        .then(function (j) { m.textContent = "✓ " + j.message; toast(j.message); load(); }, function (er) { m.textContent = er.message; toast(er.message); })
+        .then(function () { b.disabled = false; });
     });
     $("so" + k + "Off").addEventListener("click", function () {
       var b = $("so" + k + "Off");

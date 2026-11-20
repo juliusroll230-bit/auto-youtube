@@ -124,7 +124,7 @@ store.write("config.json", {"post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]
 store.init()
 assert store.config()["post_hours"] == list(range(8, 23))
 assert store.config()["post_hours_weekend"] == list(range(8, 23))
-store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True})
+store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True, "hours_v8": True})
 store.init()
 assert store.config()["post_hours"] == [9, 12]
 assert store.config()["post_hours_weekend"] == [9, 12]  # eigene Zeiten gelten auch am Wochenende
@@ -149,7 +149,12 @@ store.write("config.json", {"post_hours": [12, 15, 16, 17, 18], "post_hours_week
 store.init()
 assert store.config()["post_hours"] == list(range(8, 23)) and store.config()["post_hours_weekend"] == list(range(8, 23))
 store.write("config.json", {"post_hours": [9, 12], "post_hours_weekend": [10], "hours_v2": True, "hours_v4": True,
-                            "hours_v5": True, "hours_v6": True})
+                            "hours_v5": True, "hours_v6": True, "hours_v7": True, "hours_v8": True})
 store.init()
 assert store.config()["post_hours"] == [9, 12] and store.config()["post_hours_weekend"] == [10]  # eigene bleiben
+# 19.11. (hours_v8): weniger als 15 Plätze werden einmal auf jede Stunde 8 bis 22 Uhr umgestellt
+store.write("config.json", {"post_hours": [9, 12], "post_hours_weekend": [10], "hours_v2": True, "hours_v4": True,
+                            "hours_v5": True, "hours_v6": True, "hours_v7": True})
+store.init()
+assert store.config()["post_hours"] == list(range(8, 23)) and store.config()["post_hours_weekend"] == list(range(8, 23))
 print("Zeiten ok")

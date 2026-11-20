@@ -27,6 +27,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zipfile
 
 import store
 
@@ -124,8 +125,42 @@ def _req(method, url, data=None, headers=None, body=None, timeout=60):
             j = {}
         err = j.get("error") or {}
         msg = (err.get("message") if isinstance(err, dict) else None) or j.get("error_description") or raw[:200].decode(errors="ignore")
-        raise ApiError(f"{e.code}: {msg}") from None
+        raise ApiError(friendly(f"{e.code}: {msg}")) from None
+    except urllib.error.URLError as e:
+        raise ApiError(f"Keine Verbindung ins Internet ({e.reason}). Läuft der Server und hat er Internet?") from None
     return json.loads(raw or b"{}") if raw else {}
+
+
+# Meta und TikTok antworten auf Englisch mit Fachbegriffen. Hier die häufigsten Fehler in einfachem Deutsch.
+FRIENDLY = [
+    (("error validating client secret", "invalid client_id", "invalid client secret", "client_secret"),
+     "App-ID oder App-Geheimnis passen nicht zusammen. Beide nochmal aus App-Einstellungen → Allgemeines kopieren."),
+    (("session has expired", "error validating access token", "invalid oauth", "malformed access token",
+      "cannot parse access token", "access token has expired"),
+     "Der Token ist abgelaufen oder falsch kopiert. Im Graph-API-Explorer neu auf „Generate Access Token“ klicken "
+     "und sofort hier einfügen (er gilt nur ca. 1 Stunde)."),
+    (("(#10)", "(#200)", "permission", "not authorized", "scope_not_authorized", "missing permission"),
+     "Es fehlt eine Erlaubnis. Beim Erzeugen des Tokens alle angezeigten Berechtigungen anhaken und im "
+     "Facebook-Fenster bei Seite und Instagram-Konto überall „Alle auswählen“ bzw. Häkchen setzen."),
+    (("application request limit", "rate limit", "rate_limit_exceeded", "too many"),
+     "Zu viele Anfragen in kurzer Zeit. In einer Stunde klappt es wieder."),
+    (("spam_risk_too_many_pending_share",),
+     "In deiner TikTok-App liegen zu viele offene Entwürfe. Erst ein paar posten oder löschen, dann geht es weiter."),
+    (("unaudited_client", "app_not_approved", "not approved"),
+     "TikTok hat die App noch nicht freigegeben. Bis dahin klappt es nur mit deinem Konto unter Sandbox → Target users."),
+    (("access_token_invalid", "invalid_grant", "refresh_token"),
+     "Die TikTok-Anmeldung ist abgelaufen. Unten auf „Mit TikTok verbinden“ klicken."),
+    (("redirect_uri",),
+     "Die Weiterleitungs-Adresse in der TikTok-App stimmt nicht. Genau die Adresse aus Schritt 2 eintragen."),
+]
+
+
+def friendly(msg):
+    m = (msg or "").lower()
+    for keys, text in FRIENDLY:
+        if any(k in m for k in keys):
+            return f"{text} (Meldung: {msg[:120]})"
+    return msg
 
 
 # --- Instagram ----------------------------------------------------------------
@@ -138,6 +173,9 @@ def ig_connect(app_id, app_secret, short_token):
     ig["app_secret"] = (app_secret or ig["app_secret"]).strip()
     if not (ig["app_id"] and ig["app_secret"] and short_token.strip()):
         raise ValueError("Bitte App-ID, App-Geheimnis und Token einfügen.")
+    if any(c in short_token for c in "*•") or len(short_token.strip()) < 40:
+        raise ValueError("Das sieht nicht nach einem Token aus. Er beginnt mit EAA und ist sehr lang. "
+                         "Im Graph-API-Explorer auf das Kopier-Symbol neben dem Token klicken.")
     long = _req("GET", GRAPH + "/oauth/access_token?" + urllib.parse.urlencode({
         "grant_type": "fb_exchange_token", "client_id": ig["app_id"], "client_secret": ig["app_secret"],
         "fb_exchange_token": short_token.strip()}))["access_token"]
@@ -152,6 +190,70 @@ def ig_connect(app_id, app_secret, short_token):
               page=page.get("name", ""), error=None)
     save(d)
     return summary()["instagram"]
+
+
+def test(platform):
+    """Knopf „Verbindung testen“: fragt nur das Konto ab, postet nichts."""
+    d = load()
+    if platform == "instagram":
+        ig = d["instagram"]
+        if not (ig["token"] and ig["ig_id"]):
+            raise ValueError("Instagram ist noch nicht verbunden. Erst die Schritte unten machen.")
+        j = _req("GET", f"{GRAPH}/{ig['ig_id']}?" + urllib.parse.urlencode({"fields": "username", "access_token": ig["token"]}))
+        ig.update(username=j.get("username", ig["username"]), error=None)
+        save(d)
+        return f"Verbindung ok: @{ig['username']}. Instagram ist bereit."
+    if platform == "tiktok":
+        if not d["tiktok"]["refresh"]:
+            raise ValueError("TikTok ist noch nicht verbunden. Erst die Schritte unten machen.")
+        u = _req("GET", TT_API + "/user/info/?fields=display_name", headers={"Authorization": "Bearer " + tt_access()})
+        name = ((u.get("data") or {}).get("user") or {}).get("display_name", "")
+        d = load()
+        d["tiktok"].update(username=name or d["tiktok"]["username"], error=None)
+        save(d)
+        return f"Verbindung ok{': ' + name if name else ''}. TikTok ist bereit."
+    raise ValueError("Unbekannte Plattform.")
+
+
+def package_items(posted, now, n=6):
+    """Die besten Shorts der letzten 2 Tage, die noch als Datei bereitliegen (für das Paket ohne Entwickler-App)."""
+    out = []
+    for u in posted:
+        if u.get("kind") == "clip" or u.get("lang") or not u.get("video_id") or u.get("laenge") == "lang":
+            continue
+        t = _parse(u.get("posted_at"))
+        if not t or now - t > dt.timedelta(hours=WINDOW_H + 12) or not os.path.exists(store.share_path(u["video_id"])):
+            continue
+        out.append(u)
+    out.sort(key=lambda u: (u.get("views") or 0, u.get("posted_at") or ""), reverse=True)
+    return out[:n]
+
+
+def build_package(dest, posted=None, now=None, n=6):
+    """ZIP mit den besten Shorts und einer Textdatei (Text zum Einfügen + Uhrzeit-Vorschlag). Gibt die Anzahl zurück."""
+    now = now or store.now()
+    items = package_items(posted if posted is not None else store.posted_items(), now, n)
+    if not items:
+        raise ValueError("Gerade liegen keine fertigen Shorts bereit. Nach dem nächsten YouTube-Upload klappt es.")
+    lines = ["Deine besten Shorts der letzten 2 Tage für Instagram und TikTok.",
+             "So planst du sie (ca. 5 Minuten, am PC):",
+             "  Instagram: business.facebook.com/latest/composer öffnen (Meta Business Suite) → Reel erstellen →",
+             "             Video wählen, Text einfügen, unten „Planen“ und die Uhrzeit von hier.",
+             "  TikTok:    tiktok.com/tiktokstudio/upload öffnen → Video wählen, Text einfügen,",
+             "             bei „Wann posten“ auf „Planen“ und die Uhrzeit von hier.",
+             "Im Handy geht es auch: Instagram-App → Reel → Weiter → Erweiterte Einstellungen → „Planen“.", ""]
+    slots = [(1, 12), (1, 18), (2, 12), (2, 18), (3, 12), (3, 18)]
+    with zipfile.ZipFile(dest, "w", zipfile.ZIP_STORED) as z:
+        for i, u in enumerate(items, 1):
+            slug = "".join(c if c.isalnum() else "-" for c in (u.get("title") or "short").lower())[:40].strip("-")
+            name = f"{i:02d}-{slug or 'short'}.mp4"
+            z.write(store.share_path(u["video_id"]), name)
+            day, hour = slots[(i - 1) % len(slots)]
+            when = (now + dt.timedelta(days=day)).strftime("%d.%m.")
+            lines += [f"{i:02d}. {name}", f"    Planen für: {when} um {hour} Uhr", "    Text zum Einfügen:",
+                      *["    " + x for x in (u.get("share") or u.get("title", "")).splitlines()], ""]
+        z.writestr("texte.txt", "\r\n".join(lines))
+    return len(items)
 
 
 def ig_post(video, caption, ig, wait=lambda s: time.sleep(s)):
