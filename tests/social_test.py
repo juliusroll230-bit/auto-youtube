@@ -166,3 +166,35 @@ assert social.friendly("400: Error validating access token: Session has expired"
 assert social.friendly("400: (#10) Application does not have permission").startswith("Es fehlt eine Erlaubnis")
 assert social.friendly("etwas anderes") == "etwas anderes"
 print("Paket und Fehlertexte ok")
+
+# Buffer: Schlüssel einfügen, Kanäle finden, über Buffer posten (Netz gespielt)
+calls = []
+def fake_gql(key, q, v=None):
+    calls.append((q, v))
+    if "organizations" in q:
+        return {"account": {"organizations": [{"id": "org1", "name": "Julius"}]}}
+    if "channels" in q:
+        return {"channels": [{"id": "c-ig", "service": "instagram", "displayName": "60sek"},
+                             {"id": "c-tt", "service": "tiktok", "name": "60sek_tt"}, {"id": "c-x", "service": "twitter"}]}
+    if "createPost" in q:
+        assert v["i"]["assets"][0]["video"]["url"] == "https://litter.catbox.moe/x.mp4"
+        return {"createPost": {"post": {"id": "p1"}}}
+    raise AssertionError(q)
+social._gql = fake_gql
+try:
+    social.buffer_connect("kurz")
+    raise AssertionError("kurzer Schlüssel")
+except ValueError:
+    pass
+r = social.buffer_connect("x" * 40)
+assert r["found"] == ["instagram", "tiktok"]
+sm = social.summary()
+assert sm["instagram"]["connected"] and sm["instagram"]["buffer"] and sm["tiktok"]["username"] == "60sek_tt"
+assert sm["instagram"]["on"] and sm["tiktok"]["on"]
+assert social.buffer_post("tiktok", store.share_path("b"), "Text", host=lambda v: "https://litter.catbox.moe/x.mp4") == "p1"
+inp = calls[-1][1]["i"]
+assert inp["channelId"] == "c-tt" and inp["mode"] == "shareNow" and "tiktok" in inp["metadata"]
+assert "Buffer" in social.test("instagram")
+social.buffer_disconnect()
+assert not social.summary()["instagram"]["buffer"]
+print("Buffer ok")

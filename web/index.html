@@ -1278,6 +1278,7 @@ dialog.vs[open] { display: grid; place-items: center; }
 a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; justify-content: center; text-align: center; font-size: 17px; padding: 14px 26px; min-height: 52px; white-space: normal; }
 .so-big { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 2px 0 18px; }
 .so-easy li > div { font-size: 15px; }
+.so-buf { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; }
 .so-adv { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
 .so-adv > summary { cursor: pointer; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
 </style>
@@ -1881,25 +1882,20 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           </ol>
           <details class="so-adv" id="soAdv">
             <summary>Für Fortgeschrittene: automatisch posten</summary>
-            <p class="so-lead"><b>Vollautomatisch.</b> Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest. Dafür braucht es einmal eine kleine Entwickler-App bei Meta und TikTok. Die verlangen dafür meist <b>18 Jahre</b>: Dann richtet ein Elternteil das mit der Anleitung unten ein, danach läuft alles ohne sie.</p>
-            <details class="so-setup so-parents" id="soParents">
-              <summary>Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
-              <p class="label">Kostet nichts. Es wird nur das eigene Konto Ihres Kindes verbunden, nichts wird öffentlich als App angeboten. Die Zentrale postet nur selbst gemachte KI-Videos.</p>
-              <b>Instagram</b>
-              <ol class="steps">
-                <li><div>Ihr Kind stellt Instagram auf ein <b>Creator-Konto</b> um (Instagram → Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln).</div></li>
-                <li><div>Mit Ihrem Facebook-Konto eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie der Kanal). In den Seiten-Einstellungen unter <b>Verknüpfte Konten → Instagram</b> das Instagram-Konto Ihres Kindes verbinden (Ihr Kind meldet sich dort kurz an).</div></li>
-                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> mit Facebook anmelden (einmal per Handy bestätigen) → <b>App erstellen</b> → Typ <b>Business</b> bzw. Anwendungsfall „Instagram verwalten“. Name z. B. „Shorts Zentrale“. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist nicht nötig.</div></li>
-                <li><div>Im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> rechts die App wählen, die fünf Berechtigungen aus Schritt 4 im Instagram-Teil oben hinzufügen, <b>Generate Access Token</b> klicken und im Fenster Seite und Instagram-Konto anhaken.</div></li>
-                <li><div>App-ID und App-Geheimnis (App-Einstellungen → Allgemeines) und den Token in die Felder im Instagram-Teil einfügen → <b>Verbinden</b> → <b>Verbindung testen</b>. Der Token wird gegen einen dauerhaften getauscht, das ist eine einmalige Sache.</div></li>
+            <div class="so-p so-buf" id="soBuf">
+              <div class="so-h"><b>Automatisch mit Buffer</b><span class="pill" id="soBufStatus"></span></div>
+              <p class="label">Empfohlen. Kostenlos, ca. 10 Minuten, keine Entwickler-App. Danach gehen jeden Tag deine 2 besten Shorts von selbst raus.</p>
+              <ol class="steps so-easy">
+                <li><div>Bei <a href="https://buffer.com" target="_blank" rel="noopener">buffer.com</a> kostenlos anmelden.</div></li>
+                <li><div>In Buffer Instagram und TikTok verbinden, ganz normal mit deinem Login. Instagram muss ein Creator-Konto sein (Instagram → Einstellungen → Kontotyp und Tools).</div></li>
+                <li><div>Auf <a href="https://developers.buffer.com" target="_blank" rel="noopener">developers.buffer.com</a> einen API-Schlüssel erstellen und kopieren.</div></li>
+                <li><div>Hier einfügen und auf Verbinden klicken:
+                  <form class="form" id="soBufForm" style="margin-top:10px">
+                    <div class="field"><label for="soBufKey">Buffer-Schlüssel</label><input id="soBufKey" type="password" autocomplete="off" spellcheck="false" placeholder="hier einfügen"></div>
+                    <div class="row"><button class="btn primary" type="submit">Verbinden</button><button class="btn sm" type="button" id="soBufOff" hidden>Trennen</button><span class="msg" id="soBufMsg"></span></div>
+                  </form></div></li>
               </ol>
-              <b>TikTok</b>
-              <ol class="steps">
-                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> registrieren → <b>App anlegen</b>. Produkte <b>Login Kit</b> und <b>Content Posting API</b>, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Als Redirect URI die Adresse aus Schritt 2 im TikTok-Teil.</div></li>
-                <li><div>Unter <b>Sandbox → Target users</b> das TikTok-Konto Ihres Kindes eintragen. Dann klappt es sofort, ohne Prüfung durch TikTok.</div></li>
-                <li><div>Client Key und Client Secret im TikTok-Teil einfügen → <b>Speichern</b>. Ihr Kind klickt dann <b>Mit TikTok verbinden</b> und meldet sich an.</div></li>
-              </ol>
-            </details>
+            </div>
           <div class="so-p" id="soIg">
             <div class="so-h"><b>Instagram</b><span class="pill" id="soIgStatus"></span></div>
             <div class="cm-ctl">
@@ -1909,7 +1905,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
             </div>
             <p class="tb-note" id="soIgNote"></p>
             <details class="so-setup" id="soIgSetup">
-              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
+              <summary>Ohne Buffer einrichten (schwerer, eigene Entwickler-App)</summary>
               <ol class="steps">
                 <li><div>In der Instagram-App: Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>. Kostenlos.</div></li>
                 <li><div>Eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie dein Kanal) und in Instagram unter <b>Kontenübersicht</b> mit der Seite verbinden.</div></li>
@@ -1929,13 +1925,13 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           <div class="so-p" id="soTt">
             <div class="so-h"><b>TikTok</b><span class="pill" id="soTtStatus"></span></div>
             <div class="cm-ctl">
-              <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Entwürfe schicken</span></label>
+              <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Automatisch posten</span></label>
               <div class="field"><label for="soTtPer">Pro Tag</label><select id="soTtPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
               <button class="btn sm" type="button" id="soTtTest">Verbindung testen</button><button class="btn sm" type="button" id="soTtNow">Jetzt einen senden</button>
             </div>
             <p class="tb-note" id="soTtNote"></p>
             <details class="so-setup" id="soTtSetup">
-              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
+              <summary>Ohne Buffer einrichten (schwerer, eigene Entwickler-App)</summary>
               <ol class="steps">
                 <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> anmelden und eine App anlegen. Produkte <b>Login Kit</b> und <b>Content Posting API</b> hinzufügen, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Falls TikTok ein Mindestalter verlangt, legt ein Elternteil die App an.</div></li>
                 <li><div>Als Webseite, Datenschutz und Nutzungsbedingungen deine Homepage angeben, als <b>Redirect URI</b> diese Adresse:
@@ -1950,6 +1946,24 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
               </ol>
             </details>
           </div>
+            <details class="so-setup so-parents" id="soParents">
+              <summary>Ohne Buffer: Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
+              <p class="label">Kostet nichts. Es wird nur das eigene Konto Ihres Kindes verbunden, nichts wird öffentlich als App angeboten. Die Zentrale postet nur selbst gemachte KI-Videos.</p>
+              <b>Instagram</b>
+              <ol class="steps">
+                <li><div>Ihr Kind stellt Instagram auf ein <b>Creator-Konto</b> um (Instagram → Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln).</div></li>
+                <li><div>Mit Ihrem Facebook-Konto eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie der Kanal). In den Seiten-Einstellungen unter <b>Verknüpfte Konten → Instagram</b> das Instagram-Konto Ihres Kindes verbinden (Ihr Kind meldet sich dort kurz an).</div></li>
+                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> mit Facebook anmelden (einmal per Handy bestätigen) → <b>App erstellen</b> → Typ <b>Business</b> bzw. Anwendungsfall „Instagram verwalten“. Name z. B. „Shorts Zentrale“. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist nicht nötig.</div></li>
+                <li><div>Im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> rechts die App wählen, die fünf Berechtigungen aus Schritt 4 im Instagram-Teil oben hinzufügen, <b>Generate Access Token</b> klicken und im Fenster Seite und Instagram-Konto anhaken.</div></li>
+                <li><div>App-ID und App-Geheimnis (App-Einstellungen → Allgemeines) und den Token in die Felder im Instagram-Teil einfügen → <b>Verbinden</b> → <b>Verbindung testen</b>. Der Token wird gegen einen dauerhaften getauscht, das ist eine einmalige Sache.</div></li>
+              </ol>
+              <b>TikTok</b>
+              <ol class="steps">
+                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> registrieren → <b>App anlegen</b>. Produkte <b>Login Kit</b> und <b>Content Posting API</b>, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Als Redirect URI die Adresse aus Schritt 2 im TikTok-Teil.</div></li>
+                <li><div>Unter <b>Sandbox → Target users</b> das TikTok-Konto Ihres Kindes eintragen. Dann klappt es sofort, ohne Prüfung durch TikTok.</div></li>
+                <li><div>Client Key und Client Secret im TikTok-Teil einfügen → <b>Speichern</b>. Ihr Kind klickt dann <b>Mit TikTok verbinden</b> und meldet sich an.</div></li>
+              </ol>
+            </details>
           </details>
         </div>
       </div>
@@ -5509,9 +5523,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       if (ae !== $("so" + k + "Per")) $("so" + k + "Per").value = String(x.per_day || 2);
       $("so" + k + "Now").disabled = !x.connected || !S.live;
       $("so" + k + "Off").hidden = !x.connected;
-      if (!x.connected) $("so" + k + "Setup").open = true;
       var note = [];
-      if (x.connected) note.push(k === "Ig" ? "Verbunden mit @" + (x.username || "?") + (x.page ? " (Seite " + x.page + ")" : "") : "Verbunden" + (x.username ? " als " + x.username : ""));
+      if (x.connected && x.buffer) note.push("Verbunden über Buffer" + (x.username ? " (" + x.username + ")" : ""));
+      else if (x.connected) note.push(k === "Ig" ? "Verbunden mit @" + (x.username || "?") + (x.page ? " (Seite " + x.page + ")" : "") : "Verbunden" + (x.username ? " als " + x.username : ""));
       if (x.last && x.last.at) note.push("Zuletzt: „" + x.last.title + "“ " + fDayS.format(new Date(x.last.at)).replace(/,.*/, "") + " " + fTime.format(new Date(x.last.at)) + (x.last.failed ? " (fehlgeschlagen)" : ""));
       if (x.error) note.push("Fehler: " + x.error);
       $("so" + k + "Note").textContent = note.join(" · ");
@@ -5520,8 +5534,24 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       if (k === "Tt" && ae !== $("soTtKey") && x.client_key) $("soTtKey").value = x.client_key;
       $("so" + k + "Test").disabled = !x.connected || !S.live;
     });
+    var bf = so.buffer || {}, bst = $("soBufStatus");
+    bst.className = "pill" + (bf.connected ? " live" : ""); bst.textContent = bf.connected ? "Verbunden" : "Nicht verbunden";
+    $("soBufOff").hidden = !bf.connected;
     if (!S.soAdv) { S.soAdv = 1; if (so.instagram.connected || so.tiktok.connected || /[?&]tiktok=/.test(location.search)) $("soAdv").open = true; }
   }
+  $("soBufForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var m = $("soBufMsg"); m.className = "msg"; m.textContent = "Verbinde …";
+    api("api/social/buffer/connect", { key: $("soBufKey").value }).then(function (r) {
+      var n = r.found.map(function (x) { return x === "instagram" ? "Instagram" : "TikTok"; }).join(" und ");
+      m.className = "msg ok"; m.textContent = "✓ Fertig! " + n + " posten jetzt automatisch."; $("soBufKey").value = "";
+    }, function (er) { m.className = "msg err"; m.textContent = er.message; });
+  });
+  $("soBufOff").addEventListener("click", function () {
+    var b = $("soBufOff");
+    if (!b.dataset.sure) { b.dataset.sure = "1"; b.textContent = "Sicher?"; return; }
+    api("api/social/buffer/disconnect").then(function () { toast("Buffer getrennt"); b.dataset.sure = ""; b.textContent = "Trennen"; }, function (er) { toast(er.message); });
+  });
   $("soPack").addEventListener("click", function (e) {
     e.preventDefault();
     var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Einen Moment …";

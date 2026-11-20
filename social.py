@@ -67,13 +67,19 @@ def summary():
     """Für die Zentrale: ohne Geheimnisse."""
     d = load()
     ig, tt = d["instagram"], d["tiktok"]
+    b = buffer_load()
     return {
-        "instagram": {"on": ig["on"], "per_day": ig["per_day"], "connected": bool(ig["token"] and ig["ig_id"]),
-                      "username": ig["username"], "page": ig["page"], "app_id": ig["app_id"],
+        "instagram": {"on": ig["on"], "per_day": ig["per_day"],
+                      "connected": bool(ig["token"] and ig["ig_id"]) or via_buffer("instagram", b), "buffer": via_buffer("instagram", b),
+                      "username": b["names"].get("instagram") if via_buffer("instagram", b) else ig["username"],
+                      "page": ig["page"], "app_id": ig["app_id"],
                       "has_secret": bool(ig["app_secret"]), "error": ig["error"], "last": ig["last"]},
-        "tiktok": {"on": tt["on"], "per_day": tt["per_day"], "connected": bool(tt["refresh"]),
-                   "username": tt["username"], "client_key": tt["client_key"], "has_secret": bool(tt["client_secret"]),
+        "tiktok": {"on": tt["on"], "per_day": tt["per_day"], "connected": bool(tt["refresh"]) or via_buffer("tiktok", b),
+                   "buffer": via_buffer("tiktok", b),
+                   "username": b["names"].get("tiktok") if via_buffer("tiktok", b) else tt["username"],
+                   "client_key": tt["client_key"], "has_secret": bool(tt["client_secret"]),
                    "error": tt["error"], "last": tt["last"]},
+        "buffer": {"connected": bool(b.get("key")), "found": sorted((b.get("channels") or {}).keys())},
     }
 
 
@@ -195,6 +201,15 @@ def ig_connect(app_id, app_secret, short_token):
 def test(platform):
     """Knopf „Verbindung testen“: fragt nur das Konto ab, postet nichts."""
     d = load()
+    if via_buffer(platform):
+        b = buffer_load()
+        chans = _gql(b["key"], "query($i: ChannelsInput!) { channels(input: $i) { id service } }",
+                     {"i": {"organizationId": b["org"]}}).get("channels") or []
+        if not any(c.get("id") == b["channels"][platform] for c in chans):
+            raise ValueError("Der Kanal ist in Buffer nicht mehr da. In Buffer neu verbinden und hier nochmal „Verbinden“.")
+        d[platform]["error"] = None
+        save(d)
+        return f"Verbindung ok über Buffer ({b['names'].get(platform) or platform}). Bereit."
     if platform == "instagram":
         ig = d["instagram"]
         if not (ig["token"] and ig["ig_id"]):
@@ -275,6 +290,119 @@ def ig_post(video, caption, ig, wait=lambda s: time.sleep(s)):
     else:
         raise ApiError("Instagram braucht zu lange für das Video.")
     return _req("POST", f"{GRAPH}/{uid}/media_publish", {"creation_id": cid, "access_token": tok})["id"]
+
+
+
+# --- Buffer (der einfache Weg zur Automatik) -----------------------------------
+# Buffer (buffer.com) ist ein kostenloser Planer. Julius verbindet dort Instagram und TikTok mit seinem
+# normalen Login und fügt in der Zentrale nur den API-Schlüssel ein. Keine Meta- oder TikTok-Entwickler-App.
+# Buffer holt Videos nur über eine öffentliche Adresse; der Server steht im Heimnetz, darum liegt das Video
+# kurz (24 h) bei Litterbox (litterbox.catbox.moe, kostenlos, löscht von selbst). Es sind nur eigene KI-Shorts,
+# die ohnehin öffentlich auf YouTube stehen.
+
+BUFFER_FILE = "buffer.json"
+BUFFER_API = "https://api.buffer.com"
+LITTERBOX = "https://litterbox.catbox.moe/resources/internals/api.php"
+
+
+def buffer_load():
+    return {"key": "", "org": "", "channels": {}, "names": {}, **(store.read(BUFFER_FILE, {}) or {})}
+
+
+def buffer_save(b):
+    store.write(BUFFER_FILE, b)
+    try:
+        os.chmod(store.path(BUFFER_FILE), 0o600)
+    except OSError:
+        pass
+
+
+def _gql(key, query, variables=None):
+    j = _req("POST", BUFFER_API, {"query": query, "variables": variables or {}},
+             headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
+    if j.get("errors"):
+        msg = "; ".join(str(e.get("message", e)) for e in j["errors"])[:200]
+        if "auth" in msg.lower() or "unauthor" in msg.lower() or "token" in msg.lower():
+            raise ApiError("Buffer kennt diesen Schlüssel nicht. Bitte in Buffer neu erzeugen und komplett einfügen.")
+        raise ApiError("Buffer: " + msg)
+    return j.get("data") or {}
+
+
+def buffer_connect(key):
+    """Schlüssel prüfen, Instagram- und TikTok-Kanal in Buffer finden, beide Plattformen einschalten."""
+    key = (key or "").strip()
+    if len(key) < 20 or any(c in key for c in "*• "):
+        raise ValueError("Das sieht nicht nach einem Buffer-Schlüssel aus. In Buffer auf „Kopieren“ klicken und hier einfügen.")
+    orgs = (_gql(key, "query { account { organizations { id name } } }").get("account") or {}).get("organizations") or []
+    if not orgs:
+        raise ValueError("In diesem Buffer-Konto gibt es noch nichts. Erst bei Buffer anmelden und Kanäle verbinden.")
+    chans, org = [], ""
+    for o in orgs:
+        chans = _gql(key, "query($i: ChannelsInput!) { channels(input: $i) { id service name displayName } }",
+                     {"i": {"organizationId": o["id"]}}).get("channels") or []
+        org = o["id"]
+        if any(c.get("service") in ("instagram", "tiktok") for c in chans):
+            break
+    found = {c["service"]: c for c in chans if c.get("service") in ("instagram", "tiktok")}
+    if not found:
+        raise ValueError("Schlüssel passt, aber in Buffer ist noch kein Instagram oder TikTok verbunden. "
+                         "In Buffer auf „Kanal verbinden“ klicken, dann hier nochmal.")
+    b = {"key": key, "org": org, "channels": {k: v["id"] for k, v in found.items()},
+         "names": {k: v.get("displayName") or v.get("name") or "" for k, v in found.items()}}
+    buffer_save(b)
+    d = load()
+    for plat in found:
+        d[plat]["on"] = True
+        d[plat]["error"] = None
+    save(d)
+    return {"found": sorted(found), "names": b["names"]}
+
+
+def buffer_disconnect():
+    buffer_save({})
+
+
+def host_video(video):
+    """Video für 24 Stunden öffentlich ablegen (Litterbox) und die Adresse zurückgeben."""
+    bound = "----zentrale" + str(int(time.time() * 1000))
+    with open(video, "rb") as f:
+        data = f.read()
+    parts = []
+    for k, v in (("reqtype", "fileupload"), ("time", "24h")):
+        parts.append(f"--{bound}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
+    parts.append(f"--{bound}\r\nContent-Disposition: form-data; name=\"fileToUpload\"; filename=\"short.mp4\"\r\n"
+                 "Content-Type: video/mp4\r\n\r\n".encode() + data + b"\r\n")
+    parts.append(f"--{bound}--\r\n".encode())
+    req = urllib.request.Request(LITTERBOX, data=b"".join(parts), method="POST",
+                                 headers={"Content-Type": "multipart/form-data; boundary=" + bound, "User-Agent": "Shorts-Zentrale"})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r:
+            url = r.read().decode(errors="ignore").strip()
+    except (urllib.error.URLError, OSError) as e:
+        raise ApiError(f"Video konnte nicht kurz abgelegt werden ({e}). Nächster Versuch in 3 Stunden.") from None
+    if not url.startswith("https://"):
+        raise ApiError("Video konnte nicht kurz abgelegt werden: " + url[:120])
+    return url
+
+
+def buffer_post(platform, video, caption, b=None, host=host_video):
+    """Über Buffer sofort posten (Instagram als Reel, TikTok als echter Post). Gibt die Buffer-Post-ID zurück."""
+    b = b or buffer_load()
+    url = host(video)
+    meta = {"instagram": {"type": "reel", "shouldShareToFeed": True}} if platform == "instagram" else {"tiktok": {"isAiGenerated": True}}
+    inp = {"text": caption[:2200], "channelId": b["channels"][platform], "schedulingType": "automatic", "mode": "shareNow",
+           "needsApproval": False, "assets": [{"video": {"url": url}}], "metadata": meta}
+    r = _gql(b["key"], "mutation($i: CreatePostInput!) { createPost(input: $i) { "
+                       "... on PostActionSuccess { post { id } } ... on MutationError { message } } }", {"i": inp})
+    res = r.get("createPost") or {}
+    if res.get("message") or not (res.get("post") or {}).get("id"):
+        raise ApiError("Buffer: " + str(res.get("message") or "kein Post angelegt"))
+    return res["post"]["id"]
+
+
+def via_buffer(platform, b=None):
+    b = b or buffer_load()
+    return bool(b.get("key") and (b.get("channels") or {}).get(platform))
 
 
 # --- TikTok -------------------------------------------------------------------
@@ -376,7 +504,7 @@ def pick(posted, platform, now, exists=os.path.exists):
 def due(platform, d, posted, now):
     """Ist jetzt ein automatischer Post für diese Plattform dran? Dann den Short, sonst None."""
     p = d[platform]
-    ready = p["token"] and p["ig_id"] if platform == "instagram" else p["refresh"]
+    ready = via_buffer(platform) or (p["token"] and p["ig_id"] if platform == "instagram" else p["refresh"])
     if not (p["on"] and ready and p["per_day"] > 0):
         return None
     if not HOURS[0] <= now.hour < HOURS[1]:
@@ -411,7 +539,11 @@ def send(platform, u, now=None):
     caption = u.get("share") or u.get("title", "")
     name = "Instagram" if platform == "instagram" else "TikTok"
     try:
-        if platform == "instagram":
+        if via_buffer(platform):
+            ref = buffer_post(platform, video, caption)
+            mark(u["video_id"], platform, ref, shared=True)
+            store.log("ok", f"{name}: „{u.get('title', '')}“ über Buffer gepostet.")
+        elif platform == "instagram":
             ref = ig_post(video, caption, d["instagram"])
             mark(u["video_id"], "instagram", ref, shared=True)
             store.log("ok", f"Instagram: „{u.get('title', '')}“ als Reel gepostet.")
