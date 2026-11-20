@@ -136,22 +136,19 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
-                 "effekte": "Soundeffekte", "aufbau": "Split-Screen/Spannung",
-                 "unten": "Split-Screen unten"}
+                 "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
-# Bildaufbau (Test seit 20.11.2026): 2 von 15 Cartoon-Shorts bekommen eine Variante, die Zuschauer halten soll.
-# split: oben das Video, unten eine selbst gezeichnete, ruhige Dauerschleife (Regen, Lagerfeuer, Pendel)
-# spannung: leiser Herzschlag, der schneller wird, und ein Countdown bis zur Auflösung
-LAYOUTS = ("normal", "split", "spannung")
+# Spannung (Test seit 20.11.2026): 1 von 15 Cartoon-Shorts bekommt einen leisen Herzschlag, der schneller wird,
+# und einen Countdown bis zur Auflösung. Kein Split-Screen in den Shorts (Julius, 20.11.2026).
+LAYOUTS = ("normal", "spannung")
 LAYOUT_CYCLE = 15                     # ein Tag = 15 Sendeplätze
-LAYOUT_SLOTS = {4: "split", 11: "spannung"}   # Platz im 15er-Kreis -> Variante
-LAYOUT_BONUS = (1, 8)                 # liegt eine Variante klar vorn, bekommt sie diese Plätze dazu
+LAYOUT_SLOTS = {7: "spannung"}        # Platz im 15er-Kreis -> Variante
+LAYOUT_BONUS = (2, 12)                # liegt die Variante klar vorn, bekommt sie diese Plätze dazu
 LAYOUT_MIN = 5                        # so viele bewertete Videos je Seite, bevor eine Variante mehr bekommt
 LAYOUT_LEAD = 1.3                     # ... und mindestens 30 % vorne
-AMBIENTS = ("regen", "feuer", "pendel")   # wie cartoon/web/ambient.js
 
 
 def default_look(spec):
@@ -251,7 +248,6 @@ def features(spec, look):
         "ende": ending(spec),
         "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
         "aufbau": look.get("aufbau") if spec.get("stil") == "cartoon" else None,
-        "unten": look.get("unten") if look.get("aufbau") == "split" else None,
     }
 
 
@@ -316,20 +312,15 @@ def layout_winner(fscores):
 
 
 def choose_layout(n, fscores):
-    """Bildaufbau für den n-ten Cartoon-Short: fest 1 Split-Screen und 1 Spannung pro 15 (Test), sonst normal.
+    """Für den n-ten Cartoon-Short: fest 1 "spannung" pro 15 (Test), sonst "normal".
 
-    Läuft eine Variante nach genug Videos klar besser, bekommt sie 2 Plätze mehr pro 15 (die andere bleibt zum Gegentest).
+    Läuft Spannung nach genug Videos klar besser, bekommt sie 2 Plätze mehr pro 15.
     """
     pos = n % LAYOUT_CYCLE
     if pos in LAYOUT_SLOTS:
         return LAYOUT_SLOTS[pos]
     win = layout_winner(fscores)
     return win if win and pos in LAYOUT_BONUS else "normal"
-
-
-def choose_ambient(fscores, step):
-    """Was unten im Split-Screen läuft: das bessere Bild (3 von 4 Mal) oder ein Test der anderen."""
-    return choose(AMBIENTS, fscores.get("unten", {}), step)
 
 
 def choose_thumb(fscores, step):

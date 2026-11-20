@@ -790,8 +790,8 @@ def next_effects(posted=None):
 
 
 def next_layout(posted=None):
-    """Bildaufbau (normal/split/spannung) und, bei Split-Screen, was unten läuft. Zählt jeden Cartoon-Short mit,
-    auch die vorgerenderten, damit pro 15 Shorts genau die Test-Plätze drankommen."""
+    """"normal" oder "spannung" (Herzschlag + Countdown). Zählt jeden Cartoon-Short mit,
+    auch die vorgerenderten, damit pro 15 Shorts genau der Test-Platz drankommt."""
     posted = learnable(posted if posted is not None else posted_items())
     fs = learn.feature_scores(posted, now())
     with LOCK:
@@ -799,8 +799,7 @@ def next_layout(posted=None):
         n = st.get("aufbau_n", 0)
         st["aufbau_n"] = n + 1
         write("state.json", st)
-    layout = learn.choose_layout(n, fs)
-    return {"aufbau": layout, **({"unten": learn.choose_ambient(fs, n // learn.LAYOUT_CYCLE)} if layout == "split" else {})}
+    return learn.choose_layout(n, fs)
 
 
 def next_voice(spec, posted=None):

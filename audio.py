@@ -260,7 +260,7 @@ def boom(rate):
     return (np.sin(2 * np.pi * np.cumsum(30 + 60 * np.exp(-t * 8)) / rate) * np.exp(-t * 4)).astype(np.float32)
 
 
-# --- Split-Screen und Spannung (Test seit 20.11.2026), alles selbst erzeugt -------------------------------
+# --- Entspannungsvideos und Spannung (seit 20.11.2026), alles selbst erzeugt -------------------------------
 
 def _shaped_noise(n, rate, seed, lo, hi, tilt=0.0):
     """Rauschen, auf ein Frequenzband begrenzt (per FFT, schnell auch bei langen Spuren). tilt < 0: dumpfer."""
@@ -272,11 +272,22 @@ def _shaped_noise(n, rate, seed, lo, hi, tilt=0.0):
     return y / max(1e-6, np.abs(y).max())
 
 
-def ambience(kind, seconds, rate, seed):
-    """Leiser Hintergrund für den Split-Screen: "regen" (Rauschen + Tropfen), "feuer" (Knistern), "pendel" (leises Klicken)."""
+def ambience(kind, seconds, rate, seed, loop=False):
+    """Geräusch für Entspannungsvideos: "regen" (Rauschen + Tropfen), "feuer" (Knistern), "pendel" (leises Klicken).
+
+    loop: Ende geht nahtlos in den Anfang über (das Rauschen ist per FFT ohnehin rund, Tropfen am Ende laufen vorne
+    weiter), dann kein Einblenden. So lässt sich eine kurze Schleife beliebig oft wiederholen.
+    """
     n = int(seconds * rate)
     rng = np.random.default_rng(seed + 31)
     out = np.zeros(n)
+
+    def _add(buf, start, sound):   # wie das globale _add, aber bei loop rund herum
+        i = int(start)
+        if not loop:
+            return globals()["_add"](buf, i, sound)
+        idx = (i + np.arange(len(sound))) % len(buf)
+        np.add.at(buf, idx, sound)
     if kind == "regen":
         out += 0.6 * _shaped_noise(n, rate, seed, 300, 9000, tilt=-0.4)
         drop_t = np.arange(int(0.03 * rate)) / rate
@@ -294,8 +305,11 @@ def ambience(kind, seconds, rate, seed):
         clk = np.sin(2 * np.pi * 1100 * tt) * np.exp(-tt * 90)
         for i in range(int(seconds / 0.5)):
             _add(out, int(i * 0.5 * rate), (0.35 if i % 2 else 0.22) * clk)
+        tt = np.arange(n) / rate   # ruhige, weiche Fläche darunter (ganze Hertz-Zahlen: läuft nahtlos weiter)
+        swell = 0.6 + 0.4 * np.sin(2 * np.pi * tt * round(seconds / 10) / seconds)
+        out += 0.12 * swell * sum(np.sin(2 * np.pi * f * tt) for f in (110, 165, 220, 277))
     fade = min(n // 2, int(0.6 * rate))
-    if fade:
+    if fade and not loop:
         out[:fade] *= np.linspace(0, 1, fade)
     return (out / max(1e-6, np.abs(out).max())).astype(np.float32)
 
@@ -324,8 +338,7 @@ def tension_beats(reveal, start=0.4):
     return beats
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False,
-        beats=(), ambient=None):
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=()):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
@@ -334,7 +347,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
     accent: Zeitpunkt (s) der Auflösung. Dann steigt davor ein Riser an, auf ihr kommt ein Schlag und die Musik
     setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026),
     keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
-    beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser; ambient: Geräusch unter dem Split-Screen.
+    beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -353,8 +366,6 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
         gap[max(0, a):max(0, min(n, b))] = 0.0
         duck = duck * np.convolve(gap, np.ones(win) / win, mode="same")
     out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 1.0) * duck
-    if ambient:
-        out = out + 0.07 * ambience(ambient, n / rate, rate, seed)[:n]
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:

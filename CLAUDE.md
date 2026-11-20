@@ -125,20 +125,19 @@ Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 Die Zentrale vergleicht unter „Was am besten funktioniert“ den **Video-Typ**
 (`learn.video_type`). Wenn Mystery dort wieder klar vorne liegt, den Mix zurückdrehen.
 
-### Test: Split-Screen und Spannung (seit 20.11.2026)
+### Test: Spannung und lange Entspannungsvideos (seit 20.11.2026)
 
-Julius fragte nach Feuer-/Regen-, Spannungs- und Lern-Videos. Reine Ambient-Videos (nur Feuer oder Regen) bauen wir **nicht**
-als Shorts: YouTube wertet sie leicht als wiederholte Inhalte (Monetarisierungsrisiko), sie laufen eher als lange Videos.
-Stattdessen testet die App selbst zwei Varianten, die die Zuschauer halten sollen (`learn.choose_layout`, `look.aufbau`):
+Julius fragte nach Feuer-/Regen-, Spannungs- und Lern-Videos. **Kein Split-Screen in Shorts** (Julius, 20.11.2026) und
+keine reinen Feuer-/Regen-Shorts (YouTube wertet sie leicht als wiederholte Inhalte). Stattdessen:
 
-- **split:** oben das normale Video, unten eine selbst gezeichnete, ruhige Dauerschleife (`cartoon/web/ambient.js`:
-  `regen`, `feuer`, `pendel`, leises eigenes Geräusch aus `audio.ambience`). Was unten läuft, lernt die App („Split-Screen unten“).
-- **spannung:** leiser Herzschlag, der bis zur Auflösung schneller wird (`audio.tension_beats`), roter Puls am Rand und
-  Countdown oben links bis zum vorletzten Satz.
-- Fest **1 Split + 1 Spannung pro 15 Cartoon-Shorts**, die übrigen normal. Liegt eine Variante unter „Was am besten funktioniert“ →
-  **„Split-Screen/Spannung“** nach mind. 5 Videos je Seite mehr als 30 % vor „normal“, bekommt sie selbst 2 Plätze mehr.
-- Für die tägliche Skript-Aufgabe ändert sich nichts (die App wählt die Variante). Nur zum Ausprobieren im Skript:
-  `"aufbau": "split"` / `"spannung"` und optional `"unten": "feuer"`. Fremde Gameplay-Clips oder Musik nie verwenden.
+- **Spannung (Shorts):** 1 von 15 Cartoon-Shorts bekommt einen leisen Herzschlag, der bis zur Auflösung schneller wird
+  (`audio.tension_beats`), roten Puls am Rand und einen Countdown oben links (`learn.choose_layout`, `look.aufbau`).
+  Die App wählt selbst, die tägliche Skript-Aufgabe ändert sich nicht (zum Ausprobieren im Skript `"aufbau": "spannung"`).
+  Läuft sie nach mind. 5 Videos je Seite mehr als 30 % vor „normal“ („Spannung (Herzschlag)“ unter „Was am besten funktioniert“),
+  bekommt sie 2 Plätze mehr.
+- **Lange Entspannungsvideos:** `entspannung.py` baut Lagerfeuer, Regen am Fenster oder Pendel-Welle als nahtlose Schleife,
+  z. B. 1 Stunde (`python entspannung.py feuer 60 ordner`), komplett selbst gezeichnet und vertont (`cartoon/web/ambient.js`,
+  `audio.ambience`). Gehört auf einen **eigenen Kanal**, nicht auf „60 Sekunden Wissen“. Keine fremden Clips oder Musik.
 
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 

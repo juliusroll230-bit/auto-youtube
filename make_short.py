@@ -128,12 +128,12 @@ def load_tts():
 
 
 def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None,
-               layout=None, ambient=None):
+               layout=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
     effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
-    layout: "spannung" legt einen Herzschlag bis zur Auflösung darunter, "split" das Geräusch `ambient` (Test).
+    layout: "spannung" legt einen Herzschlag bis zur Auflösung darunter (Test).
     """
     import audio
 
@@ -175,8 +175,7 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
                       accent=accent_time(timings) if effects in ("stark", "voll") else None,
                       keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll",
-                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else (),
-                      ambient=(ambient or "regen") if layout == "split" else None)
+                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else ())
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)

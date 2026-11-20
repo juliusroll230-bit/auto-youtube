@@ -33,7 +33,7 @@ const capText = s => s.toLowerCase().replace(/[-–—]/g, ' ').replace(/[^\p{L}
 function drawCaption(ctx, t) {
   const c = CHUNKS.find(c => t >= c.s && t < c.e); if (!c) return;
   const k = clamp((t - c.s) / .1); const sc = .82 + .18 * backOut(k);
-  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(W / 2, WIDE ? H - 130 : SPLIT ? H / 2 + 6 : 1345); ctx.scale(sc, sc);
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(W / 2, WIDE ? H - 130 : 1345); ctx.scale(sc, sc);
   const str = capText(c.text); const FS = WIDE ? 66 : 78, MW = WIDE ? 1500 : 900; ctx.font = `700 ${FS}px Poppins`; const wd = ctx.measureText(str).width; const fs = wd > MW ? FS * MW / wd : FS;
   ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 5;
   text(ctx, str, 0, 0, fs, '#fff', '#111', 14, 'Poppins', 700);
@@ -46,24 +46,8 @@ function renderShot(ctx, i, t) {
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
   ctx.save(); base(ctx); s.draw(ctx, t - s.start, t); ctx.restore();
 }
-// Test Bildaufbau (seit 20.11.2026): "split" = oben das Video, unten eine ruhige Dauerschleife (ambient.js);
-// "spannung" = Herzschlag-Puls am Rand und Countdown bis zur Auflösung (PLAN.reveal, Herzschläge PLAN.beats wie im Ton).
-const SPLIT = PLAN.aufbau === 'split' && !WIDE;
+// Test Spannung (seit 20.11.2026): Herzschlag-Puls am Rand und Countdown bis zur Auflösung (PLAN.reveal, Herzschläge PLAN.beats wie im Ton).
 const TENSE = PLAN.aufbau === 'spannung' && PLAN.reveal != null && !WIDE;
-const SPLIT_Y0 = 300, SPLIT_H = 1180;   // dieser Ausschnitt des Hochformat-Bilds kommt verkleinert nach oben
-const SPLIT_W = Math.round(W * (H / 2) / SPLIT_H);
-const sbuf = SPLIT ? document.createElement('canvas') : null; if (sbuf) { sbuf.width = W; sbuf.height = H; }
-function splitScreen(t) {
-  sbuf.getContext('2d').drawImage(canvas, 0, 0);
-  out.save(); out.setTransform(1, 0, 0, 1, 0, 0); out.globalAlpha = 1; out.globalCompositeOperation = 'source-over'; out.filter = 'none';
-  out.fillStyle = '#000'; out.fillRect(0, 0, W, H);
-  out.filter = 'blur(28px) brightness(.55)'; out.drawImage(sbuf, 0, SPLIT_Y0, W, SPLIT_H, -60, -60, W + 120, H / 2 + 120); out.filter = 'none';   // Ränder: unscharf
-  out.drawImage(sbuf, 0, SPLIT_Y0, W, SPLIT_H, (W - SPLIT_W) / 2, 0, SPLIT_W, H / 2);
-  out.translate(0, H / 2); drawAmbient(out, PLAN.unten, t, W, H / 2); out.setTransform(1, 0, 0, 1, 0, 0);
-  const sh = out.createLinearGradient(0, H / 2, 0, H / 2 + 40); sh.addColorStop(0, 'rgba(0,0,0,.55)'); sh.addColorStop(1, 'rgba(0,0,0,0)');
-  out.fillStyle = sh; out.fillRect(0, H / 2, W, 40); out.fillStyle = 'rgba(255,255,255,.85)'; out.fillRect(0, H / 2 - 3, W, 6);
-  out.restore();
-}
 function tension(t) {
   let pulse = 0;   // roter Rand, der mit jedem Herzschlag aufleuchtet
   for (const b of PLAN.beats || []) { const d = t - b; if (d >= 0 && d < .6) pulse = Math.max(pulse, Math.exp(-d * 7) + .6 * Math.exp(-Math.max(0, d - .16) * 9) * (d > .16)); }
@@ -122,10 +106,9 @@ function renderFrame(f) {
   if (PLAN.sticker && pt >= .12 && pt < 1.9) {   // Reaktions-Sticker (selbst gezeichnet, Emoji-Schrift): springt rein, wackelt, blendet aus
     const q = pt - .12, k = backOut(clamp(q / .25)), fade = 1 - clamp((q - 1.4) / .35);
     out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
-    emoji(out, PLAN.sticker, W * .8, SPLIT ? H * .3 : H * .27, 300 * k, Math.sin(q * 9) * .14 * Math.exp(-q * 1.5), fade);
+    emoji(out, PLAN.sticker, W * .8, H * .27, 300 * k, Math.sin(q * 9) * .14 * Math.exp(-q * 1.5), fade);
     out.restore();
   }
-  if (SPLIT) splitScreen(t);
   if (TENSE) tension(t);
   drawCaption(out, t);
 }
