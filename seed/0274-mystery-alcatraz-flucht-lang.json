@@ -1,0 +1,708 @@
+{
+  "slug": "mystery-alcatraz-flucht-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#10202a",
+    "#6a98b0"
+  ],
+  "accent": "#c4161c",
+  "title": "Die Flucht aus Alcatraz, die niemand erklären kann 🏝️",
+  "description": "Im Juni 1962 verschwinden drei Häftlinge aus Alcatraz. Wir erzählen die Geschichte der Flucht, zeigen den Plan, die Spuren und die Frage, ob die Männer das Ufer erreichten.\n\n#mystery #rätsel #alcatraz #geschichte #kriminalfall",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "alcatraz",
+    "geschichte",
+    "kriminalfall"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "muetze",
+    "name": "Morris"
+  },
+  "thumb_text": [
+    "Alcatraz | spurlos verschwunden",
+    "Floß aus Regenmänteln"
+  ],
+  "segments": [
+    {
+      "text": "In der Nacht auf den zwölften Juni neunzehnhundertzweiundsechzig verschwinden drei Häftlinge aus dem härtesten Gefängnis der USA, und niemand weiß, ob sie überlebten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Gefunden werden später nur Spuren: ein Paddel, Fetzen von Regenmänteln und eine Schwimmweste, aber keine Leichen. Was geschah in dieser Nacht wirklich?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Was geschah?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte der Flucht von Alcatraz, zeigen, wie sie geplant war, und prüfen, ob die Männer das Ufer erreichen konnten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏝️",
+        "text": "Alcatraz",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Zuerst die Insel, dann die drei Männer, dann der Plan, die Nacht selbst und am Ende die Frage, ob sie überlebten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Alcatraz ist eine kleine Felseninsel in der Bucht von San Francisco, mehr als zwei Kilometer vom Festland entfernt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Von neunzehnhundertvierunddreißig bis neunzehnhundertdreiundsechzig dient die Insel als Bundesgefängnis für die gefährlichsten Häftlinge des Landes.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1934",
+        "text": "Gefängnis",
+        "objekt": "🔒"
+      }
+    },
+    {
+      "text": "Das Wasser in der Bucht ist kaum wärmer als zehn Grad, und die Strömung ist so stark, dass selbst gute Schwimmer schnell erschöpfen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Grad kaltes Wasser",
+        "objekt": "🥶",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Man nennt Alcatraz deshalb den Felsen, und die Wärter sind überzeugt, dass von hier niemand fliehen kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "steht",
+        "objekt": "🪨"
+      }
+    },
+    {
+      "text": "Vierzehn Fluchtversuche mit sechsunddreißig Häftlingen gab es, und kein einziger gilt offiziell als geglückt.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏃",
+          "text": "14 Versuche"
+        },
+        "rechts": {
+          "objekt": "❌",
+          "text": "Keiner sicher"
+        }
+      }
+    },
+    {
+      "text": "Fünf Männer blieben für immer verschwunden und gelten als ertrunken, auch wenn man ihre Körper nie gefunden hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Doch ein Fall ragt heraus, weil er so geschickt geplant war, dass er die Behörden über Jahre beschäftigte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔍",
+        "text": "Der besondere Fall",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Der Anführer heißt Frank Morris. Er ist Bankräuber, gilt als sehr intelligent und ist schon aus anderen Gefängnissen ausgebrochen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Im Januar neunzehnhundertsechzig kommt Morris nach Alcatraz, und bald darauf folgen die Brüder John und Clarence Anglin.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1960",
+        "text": "Morris kommt",
+        "objekt": "⛓️"
+      }
+    },
+    {
+      "text": "Die Anglin-Brüder wuchsen in Florida auf, wurden wegen Banküberfällen verurteilt und halten immer fest zusammen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "cool",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Dazu kommt Allen West, ein weiterer Häftling, der im selben Gang sitzt und bei dem Plan mitmachen will.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧑‍🤝‍🧑"
+      }
+    },
+    {
+      "text": "Ihre Zellen liegen nebeneinander im Zellenblock B, und in jeder Zelle gibt es eine Wand mit einem kleinen Lüftungsgitter.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧱",
+        "text": "Zellenblock B",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Hinter dem Gitter liegt kein Draußen, sondern ein schmaler Versorgungsgang, den die Wärter kaum kontrollieren.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🚪",
+        "text": "Versteckter Gang",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Der Beton rund um das Gitter ist durch Salz und Feuchtigkeit brüchig geworden, und genau das fällt den Männern auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🧱"
+      }
+    },
+    {
+      "text": "Ihr Werkzeug sieht harmlos aus, ist aber in langen Nächten zurechtgebogen oder zusammengebaut worden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Werkzeug",
+        "punkte": [
+          "Löffel",
+          "Bohrer",
+          "Pappe"
+        ]
+      }
+    },
+    {
+      "text": "Sie schleifen Löffel aus der Kantine zu Meißeln und bauen aus einem Staubsaugermotor einen kleinen Bohrer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🥄"
+      }
+    },
+    {
+      "text": "Das Bohren macht Lärm, deshalb arbeiten sie Berichten zufolge dann, wenn im Zellenblock Musik gespielt wird.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎵",
+        "text": "Musikstunde",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Wie kann man monatelang graben, ohne dass bei den täglichen Kontrollen jemand etwas bemerkt, und wo versteckt man den Schutt?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Wohin mit dem Schutt?",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Monatelang graben sie in den Abendstunden, bis die Löcher in der Wand groß genug sind, dass ein Mensch hindurchpasst.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "keller",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "text": "Geduldige Arbeit"
+      }
+    },
+    {
+      "text": "Doch jedes Loch ist ein Beweis, und so müssen die Männer es bei jeder Kontrolle unsichtbar machen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "👀",
+        "text": "Unsichtbar",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Sie malen Pappe so an, dass sie wie die graue Wand aussieht, und hängen sie vor die Löcher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "cool",
+        "aktion": "versteckt",
+        "objekt": "🎨"
+      }
+    },
+    {
+      "text": "Hinter den Zellen entdecken sie einen Weg nach oben, bis auf das Dach des Zellenblocks, das kaum jemand betritt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏠",
+        "text": "Das Dach",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Auf dem Dach richten sie sich heimlich eine Werkstatt ein, wo sie ungestört arbeiten können.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🔧"
+      }
+    },
+    {
+      "text": "Dort nähen sie aus mehr als fünfzig Regenmänteln ein Floß und Schwimmwesten, und sie kleben die Nähte mit Wärme zusammen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 50,
+        "einheit": "Regenmäntel",
+        "objekt": "🧥",
+        "farbcode": "#10202a"
+      }
+    },
+    {
+      "text": "Als Kleber dient ein Mittel, das sie mit der heißen Dampfleitung des Gefängnisses weich und dicht machen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "♨️",
+        "text": "Dampfleitung",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Dazu basteln sie weitere Dinge, die in der Nacht der Flucht über Leben und Tod entscheiden können.",
+      "szene": {
+        "typ": "liste",
+        "text": "Ausrüstung",
+        "punkte": [
+          "Floß",
+          "Westen",
+          "Paddel"
+        ]
+      }
+    },
+    {
+      "text": "Aus Holz entstehen kleine Paddel, und aus Gummi wird ein Floß, das groß genug für drei Männer sein soll.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🛶"
+      }
+    },
+    {
+      "text": "Jeder Handgriff muss sitzen, denn ein einziger entdeckter Löffel oder ein loses Gitter würde den ganzen Plan zerstören.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "😰",
+        "text": "Kein Fehler erlaubt",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Doch wie verhindert man, dass die Wärter beim nächtlichen Zählen sofort merken, dass die Betten leer sind?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🛏️",
+        "text": "Leere Betten",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "Sie formen Köpfe aus Gips, Seife und Toilettenpapier und malen sie in der Farbe von Haut an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🗿"
+      }
+    },
+    {
+      "text": "Als Haare dienen echte Haare, die sie heimlich vom Boden der Gefängnisfriseurstube einsammeln.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💇",
+        "text": "Echte Haare",
+        "ort": "keller"
+      }
+    },
+    {
+      "text": "In den Betten liegen die Köpfe unter der Decke, daneben eingerollte Kleidung, und bei flüchtigem Hinsehen sieht es aus wie ein schlafender Mann.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "cool",
+        "aktion": "versteckt",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "cool",
+          "aktion": "versteckt"
+        }
+      }
+    },
+    {
+      "text": "Am Abend des elften Juni neunzehnhundertzweiundsechzig ist alles bereit, und nur eines geht an diesem Abend schief.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1962",
+        "text": "Die Nacht",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Allen West kommt nicht rechtzeitig durch sein Loch, weil sein Gitter sich nicht lösen lässt, und die anderen drei können nicht warten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Morris und die Anglins steigen nacheinander durch die Wand, klettern über die Rohre nach oben und erreichen das Dach.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "nacht",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "text": "Drei Männer"
+      }
+    },
+    {
+      "text": "Von dort geht es an einem Rohr an der Außenwand hinunter, immer in Reichweite der Scheinwerfer und der Wachtürme.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔦",
+        "text": "Scheinwerfer",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Wie kommen sie ungesehen am Wachturm vorbei, und wie bringen sie das Floß unbemerkt zum Wasser?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🗼",
+        "text": "Wachturm",
+        "ort": "nacht"
+      }
+    },
+    {
+      "text": "Sie laufen im Dunkeln zur Nordostecke der Insel, blasen das Floß auf und setzen es ins Wasser.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🌌"
+      }
+    },
+    {
+      "text": "Dann paddeln sie los, in Richtung Angel Island, einer anderen Insel in der Bucht, und verschwinden in der Dunkelheit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛶",
+        "text": "Angel Island",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Am nächsten Morgen, früh am Morgen, wecken die Wärter die Häftlinge, und drei Betten bleiben seltsam still.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "⏰"
+      }
+    },
+    {
+      "text": "Ein Wärter berührt einen der Köpfe, und der Kopf fällt zur Seite, und in diesem Moment beginnt der Alarm.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "angst",
+          "aktion": "schockiert"
+        }
+      }
+    },
+    {
+      "text": "Sofort wird die ganze Bucht abgesucht, mit Booten, Hubschraubern und Suchtrupps auf den umliegenden Inseln.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚁",
+        "text": "Großsuche",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "In den Tagen danach finden die Ermittler nur diese Dinge, die zeigen, dass die Männer wirklich auf dem Wasser waren.",
+      "szene": {
+        "typ": "liste",
+        "text": "Gefunden",
+        "punkte": [
+          "Paddel",
+          "Westenteile",
+          "Briefe"
+        ]
+      }
+    },
+    {
+      "text": "Ein Paddel und Teile einer Schwimmweste treiben in der Bucht, und ein Päckchen mit Briefen liegt in einem Gummibeutel am Ufer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📦"
+      }
+    },
+    {
+      "text": "Die Fundstücke beweisen die Flucht, aber nicht, ob die Männer das Ufer erreicht haben oder untergingen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Ertrunken?",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Die Behörden sind sich sicher: Die Männer sind in der Kälte und Strömung ertrunken, wenn auch ihre Körper fehlen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Erst am letzten Tag des Jahres neunzehnhundertneunundsiebzig schließt die Polizeibehörde ihre Akte, die US-Marshals suchen aber weiter.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1979",
+        "text": "Akte zu",
+        "objekt": "📁"
+      }
+    },
+    {
+      "text": "Zeit, die Gründe zu prüfen, die dafür sprechen, dass sie es doch geschafft haben könnten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Chancen"
+      }
+    },
+    {
+      "text": "Eine Computerstudie aus den Niederlanden kam zu dem Schluss, dass die Flucht gelingen konnte, wenn sie zur richtigen Zeit losfuhren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "💻"
+      }
+    },
+    {
+      "text": "Mit der richtigen Strömung könnten sie in Richtung der Küste getrieben worden sein, statt in den offenen Pazifik hinaus.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌊",
+        "text": "Richtige Strömung",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Außerdem ging ein Brief bei der Polizei ein, den angeblich John Anglin geschrieben hat, doch ob er echt ist, ließ sich nicht klären.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Auch ein Foto, das die Brüder angeblich in Brasilien zeigt, konnte nie sicher bestätigt werden.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "📷",
+        "text": "Foto aus Brasilien",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Dafür spricht, dass sie so gut vorbereitet waren, dagegen spricht die Kälte und der fehlende Beweis für ihr Überleben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Überlebt?",
+        "punkte": [
+          "Gut geplant",
+          "Kaltes Wasser",
+          "Kein Beweis"
+        ]
+      }
+    },
+    {
+      "text": "Alcatraz selbst wurde im März neunzehnhundertdreiundsechzig geschlossen, vor allem, weil der Betrieb zu teuer war.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "🔒"
+      }
+    },
+    {
+      "text": "Heute ist die Insel ein Museum, und jedes Jahr besuchen sie viele Menschen, die die Zellen und die Löcher sehen wollen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏛️",
+        "text": "Museum",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Hollywood hat die Geschichte neunzehnhundertneunundsiebzig verfilmt, und noch heute zeigen Führer den Besuchern die Zellen der Flüchtlinge.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1979",
+        "text": "Der Film",
+        "objekt": "🎬"
+      }
+    },
+    {
+      "text": "Bis heute prüfen die US-Marshals neue Hinweise zu dem Fall, auch wenn die Männer inzwischen weit über neunzig Jahre alt wären.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Die Familie Anglin erzählt, dass bei der Beerdigung der Mutter angeblich zwei große Fremde am Grab standen und wieder verschwanden.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💐",
+        "text": "Zwei Fremde",
+        "ort": "friedhof"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt offen?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Sicher ist: Drei Männer entkamen aus ihren Zellen, bauten ein Floß, und sie verschwanden in der Nacht im Wasser der Bucht.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Ausbruch",
+          "Floß gebaut",
+          "Spurlos"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt: Haben sie das Ufer erreicht, wo sind sie danach hingegangen, und leben ihre Nachkommen noch?",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "🏖️",
+          "🧭",
+          "👨‍👩‍👧"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist, dass sie im kalten Wasser ertranken, auch wenn ihre Körper nie gefunden wurden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Und doch lässt uns die Geschichte nicht los, denn niemand hat je einen Beweis gefunden, weder für den Tod noch für das Überleben.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌫️",
+        "text": "Kein Beweis",
+        "ort": "meer"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du, die Männer haben überlebt, oder lag das Floß am Grund der Bucht? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

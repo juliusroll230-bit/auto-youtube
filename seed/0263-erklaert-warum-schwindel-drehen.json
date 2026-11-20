@@ -1,0 +1,105 @@
+{
+  "slug": "erklaert-warum-schwindel-drehen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1240",
+    "#8a5ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum wird dir schwindelig, wenn du dich drehst? 🌀",
+  "description": "Dein Innenohr meldet Drehung, deine Augen sehen Stillstand. Warum dieser Streit im Kopf Schwindel auslöst.\n\n#wissen #schwindel #ohr #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schwindel",
+    "ohr",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Schwindel | Ohr gegen Augen",
+    "Dein Ohr lügt"
+  ],
+  "segments": [
+    {
+      "text": "Warum wird dir schwindelig, wenn du dich im Kreis drehst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "rennt",
+        "objekt": "🌀"
+      }
+    },
+    {
+      "text": "Im Innenohr steckt Flüssigkeit in drei kleinen Bögen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "👂",
+        "text": "Bogengänge"
+      }
+    },
+    {
+      "text": "Beim Drehen schwappt sie mit und meldet *Drehung*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌀",
+        "text": "Meldet Drehung"
+      }
+    },
+    {
+      "text": "Bleibst du stehen, schwappt sie einfach weiter.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 2,
+        "gefuehl": "staunen",
+        "aktion": "faellt",
+        "text": "Schwappt weiter"
+      }
+    },
+    {
+      "text": "Dein Ohr sagt Drehung, deine Augen sagen Stillstand.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👂",
+          "text": "Ohr: dreht"
+        },
+        "rechts": {
+          "objekt": "👀",
+          "text": "Augen: still"
+        }
+      }
+    },
+    {
+      "text": "Dieser *Streit* im Kopf fühlt sich wie Schwindel an.",
+      "szene": {
+        "typ": "akte",
+        "text": "Schwindel",
+        "punkte": [
+          "Ohr: Drehung",
+          "Auge: Stillstand",
+          "Kopf: Chaos"
+        ]
+      }
+    },
+    {
+      "text": "Und jetzt frag dich noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

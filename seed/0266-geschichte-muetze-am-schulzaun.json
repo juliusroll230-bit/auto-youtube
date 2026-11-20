@@ -1,0 +1,110 @@
+{
+  "slug": "geschichte-muetze-am-schulzaun",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Die Mütze am Schulzaun 🧢",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Im Winter hängen Mützen am Schulzaun, bis jemand herausfindet, wer sie strickt.\n\n#geschichte #storytime #winter #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "winter",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Winter | jemand wusste es",
+    "Wer strickt das"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich hängt eine *Mütze* mit meinem Namen am Schulzaun.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🧢"
+      }
+    },
+    {
+      "text": "Ich habe meine vergessen, und es ist eisig kalt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "❄️",
+        "text": "Eisig kalt"
+      }
+    },
+    {
+      "text": "Sie passt genau und ist warm, als hätte jemand gemessen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "🧢"
+      }
+    },
+    {
+      "text": "Am nächsten Tag hängt eine für Mia da, dann eine für Ben.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🧢",
+        "text": "Für Mia und Ben"
+      }
+    },
+    {
+      "text": "Ich passe früh auf und sehe den *Hausmeister* mit Wolle.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "denken",
+        "aktion": "versteckt",
+        "objekt": "🧶"
+      }
+    },
+    {
+      "text": "Er sagt leise, früher hatte er als Kind nie eine Mütze.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "steht",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "traurig",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Er strickt jedem eine, damit niemand so *friert* wie er damals.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🧶",
+        "text": "Für alle"
+      }
+    },
+    {
+      "text": "Heute stricke ich mit, und wir hängen sie zusammen auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "❤️"
+      }
+    }
+  ]
+}

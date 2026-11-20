@@ -1,0 +1,101 @@
+{
+  "slug": "horror-block-spieler-im-nebel",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#0d1117",
+    "#4a5a6a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Spieler ohne Namen im Nebel 🌫️",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Im dichten Nebel läuft dir ein Spieler ohne Namen nach.\n\n#horror #gruselig #blockwelt #creepy #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "creepy",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Nebel | dein Name",
+    "Er läuft dir nach"
+  ],
+  "segments": [
+    {
+      "text": "Ein Spieler ohne Namen steht im Nebel und starrt dich plötzlich an.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "chat": "???: hallo",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Der *Nebel* kam, als du den Server betreten hast.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🌫️",
+        "text": "Dichter Nebel"
+      }
+    },
+    {
+      "text": "Du hörst *Schritte*, die genau zu deinen passen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👣"
+      }
+    },
+    {
+      "text": "Er läuft, wenn du läufst, und stoppt, wenn du stoppst.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dorf",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Du bleibst stehen, und er spiegelt jede Bewegung.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "👣",
+        "text": "Er spiegelt dich"
+      }
+    },
+    {
+      "text": "Über seinem Kopf steht plötzlich dein eigener *Name*.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "chat": "Spieler: das bin ich",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Dreh dich nicht um, denn hinter dir wartet",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌫️"
+      }
+    }
+  ],
+  "ende": "loop"
+}
