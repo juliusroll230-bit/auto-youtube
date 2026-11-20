@@ -125,6 +125,21 @@ Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 Die Zentrale vergleicht unter „Was am besten funktioniert“ den **Video-Typ**
 (`learn.video_type`). Wenn Mystery dort wieder klar vorne liegt, den Mix zurückdrehen.
 
+### Test: Split-Screen und Spannung (seit 20.11.2026)
+
+Julius fragte nach Feuer-/Regen-, Spannungs- und Lern-Videos. Reine Ambient-Videos (nur Feuer oder Regen) bauen wir **nicht**
+als Shorts: YouTube wertet sie leicht als wiederholte Inhalte (Monetarisierungsrisiko), sie laufen eher als lange Videos.
+Stattdessen testet die App selbst zwei Varianten, die die Zuschauer halten sollen (`learn.choose_layout`, `look.aufbau`):
+
+- **split:** oben das normale Video, unten eine selbst gezeichnete, ruhige Dauerschleife (`cartoon/web/ambient.js`:
+  `regen`, `feuer`, `pendel`, leises eigenes Geräusch aus `audio.ambience`). Was unten läuft, lernt die App („Split-Screen unten“).
+- **spannung:** leiser Herzschlag, der bis zur Auflösung schneller wird (`audio.tension_beats`), roter Puls am Rand und
+  Countdown oben links bis zum vorletzten Satz.
+- Fest **1 Split + 1 Spannung pro 15 Cartoon-Shorts**, die übrigen normal. Liegt eine Variante unter „Was am besten funktioniert“ →
+  **„Split-Screen/Spannung“** nach mind. 5 Videos je Seite mehr als 30 % vor „normal“, bekommt sie selbst 2 Plätze mehr.
+- Für die tägliche Skript-Aufgabe ändert sich nichts (die App wählt die Variante). Nur zum Ausprobieren im Skript:
+  `"aufbau": "split"` / `"spannung"` und optional `"unten": "feuer"`. Fremde Gameplay-Clips oder Musik nie verwenden.
+
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 
 `vorbilder.py` hat 14 erfolgreiche Kanäle in unseren Nischen (Zack D. Films, What If, Unlucky Guy, SONNENSEITE …).

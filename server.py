@@ -215,6 +215,11 @@ def render_short(spec):
         look["stimme"] = spec.get("stimme") or ("klar" if spec.get("laenge") == "lang" else store.next_voice(spec))
         if spec.get("laenge") != "lang":  # Test: starke Soundeffekte auf der Auflösung gegen dezente
             look["effekte"] = spec.get("effekte") or store.next_effects()
+            if spec.get("format") != "firma":  # Test: Split-Screen / Spannung gegen normale Shorts
+                lay = store.next_layout()
+                if spec.get("aufbau") in learn.LAYOUTS:   # fest im Skript
+                    lay = {"aufbau": spec["aufbau"], "unten": spec.get("unten") or lay.get("unten") or "regen"}
+                look.update(lay if lay["aufbau"] == "split" else {"aufbau": lay["aufbau"]})
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"
