@@ -23,7 +23,7 @@
   </section>
 </main>
 <script>
-// Google leitet nach der Anmeldung hierher. Diese Seite gibt den Code an die Shorts-Zentrale
+// Google oder TikTok leiten nach der Anmeldung hierher. Diese Seite gibt den Code an die Shorts-Zentrale
 // im Heimnetz weiter. Ihre Adresse steckt im Feld "state" (vom Server erzeugt).
 (function () {
   var q = new URLSearchParams(location.search);
@@ -36,7 +36,8 @@
     msg.textContent = "Diese Seite wird nur bei der Anmeldung für die Shorts-Zentrale gebraucht.";
     return;
   }
-  var target = origin + "/api/analytics/callback" + location.search;
+  // state "tt-…" kommt von TikTok, alles andere von Google
+  var target = origin + (state.indexOf("tt-") === 0 ? "/api/tiktok/callback" : "/api/analytics/callback") + location.search;
   msg.innerHTML = "";
   msg.append("Weiter zur Shorts-Zentrale … Falls nichts passiert: ");
   var a = document.createElement("a");

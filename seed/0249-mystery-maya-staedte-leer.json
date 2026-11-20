@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-maya-staedte-leer",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10241a",
+    "#5ab07a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Maya-Städte, die plötzlich leer standen 🏛️",
+  "description": "Zwischen dem achten und zehnten Jahrhundert verlassen die Maya viele Städte im Dschungel. Warum, ist bis heute nicht geklärt, doch die Maya selbst sind nie verschwunden.\n\n#mystery #rätsel #maya #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "maya",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Maya | Dürre oder Krieg",
+    "Wohin gingen sie"
+  ],
+  "segments": [
+    {
+      "text": "Mitten im Dschungel stehen riesige Städte, und niemand wohnt mehr darin.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 4,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Leere Städte"
+      }
+    },
+    {
+      "text": "Zwischen dem achten und zehnten Jahrhundert verlassen die Maya viele Zentren.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "850",
+        "text": "Städte verlassen",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Davor lebten dort tausende Menschen, mit Tempeln und Märkten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Südliches Tiefland"
+      }
+    },
+    {
+      "text": "Warum gaben sie ihre Heimat auf?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    },
+    {
+      "text": "Forscher fanden Hinweise auf lange Dürren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🌵",
+        "text": "Dürre"
+      }
+    },
+    {
+      "text": "Dazu kamen Kriege, und der Wald wurde abgeholzt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mögliche Gründe",
+        "punkte": [
+          "Dürre",
+          "Krieg",
+          "Abholzung"
+        ]
+      }
+    },
+    {
+      "text": "Doch die Maya sind nicht verschwunden, ihre Nachfahren leben bis heute dort.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "dorf",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Nur die großen Städte starben, aber die Frage, warum, bleibt offen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🏛️"
+      }
+    }
+  ]
+}

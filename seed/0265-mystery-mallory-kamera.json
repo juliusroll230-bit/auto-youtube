@@ -1,0 +1,97 @@
+{
+  "slug": "mystery-mallory-kamera",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#101a2a",
+    "#9ac0e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Kamera, die niemand am Everest fand 📷",
+  "description": "Neunzehnhundertvierundzwanzig verschwinden Mallory und Irvine am Everest. Gefunden wurde nur Mallory, die Kamera fehlt bis heute.\n\n#mystery #everest #rätsel #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "everest",
+    "rätsel",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Everest | Film fehlt",
+    "Waren sie oben"
+  ],
+  "segments": [
+    {
+      "text": "Neunzehnhundertvierundzwanzig verschwinden zwei Männer am Everest in den Wolken.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "wetter": "schnee",
+        "objekt": "🏔️"
+      }
+    },
+    {
+      "text": "Mallory und Irvine wollen als Erste den Gipfel erreichen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏔️",
+        "text": "Everest 1924"
+      }
+    },
+    {
+      "text": "Ein Kollege sieht sie zuletzt, dann verschlucken Wolken den Hang.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "☁️",
+        "text": "Letzter Blick"
+      }
+    },
+    {
+      "text": "Erst 1999 findet ein Team die Leiche von *Mallory*.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1999",
+        "text": "Fund",
+        "objekt": "❄️"
+      }
+    },
+    {
+      "text": "Bei ihm finden sie vieles, aber keine *Kamera*.",
+      "szene": {
+        "typ": "akte",
+        "text": "Gefunden",
+        "punkte": [
+          "Brille",
+          "Höhenmesser",
+          "Keine Kamera"
+        ]
+      }
+    },
+    {
+      "text": "Auf dem Film könnte stehen, ob sie den *Gipfel* erreichten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "📷",
+        "text": "Beweis?"
+      }
+    },
+    {
+      "text": "Und alles begann im Jahr",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "📷",
+        "text": "Kamera fehlt"
+      }
+    }
+  ],
+  "ende": "loop"
+}

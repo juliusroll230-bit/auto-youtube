@@ -171,6 +171,11 @@ def text_tips(spec):
         if len(words) >= 3 and sum(w in tw for w in words) >= len(words) - 1:
             tips.append("Thumbnail-Text wiederholt den Titel, lieber eine neue Neugier-Zeile.")
             break
+    segs = spec.get("segments") or []
+    if str(spec.get("ende", "")).lower() == "loop" and segs:
+        last = str(segs[-1].get("text", "")).strip()
+        if last.endswith((".", "!")):
+            tips.append("Loop-Ende: der letzte Satz soll offen enden und in den ersten Satz übergehen (ohne Schlusspunkt).")
     return tips
 
 

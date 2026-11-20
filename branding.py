@@ -16,10 +16,11 @@ FONT_EMOJI = os.path.join(HERE, "fonts", "NotoColorEmoji.ttf")
 BG_TOP, BG_BOTTOM = (24, 16, 64), (8, 8, 14)
 ACCENT = (255, 209, 102)   # Gelb wie die hervorgehobenen Wörter in den Videos
 RED = (240, 68, 68)
-NICHES = [("🏎️", "Business"), ("🧠", "Psychologie"), ("🏛️", "Geschichte"), ("💸", "Geld"), ("🌍", "Geografie")]
+# Was der Kanal heute zeigt (Emojis schweben im Banner, Namen stehen unter dem Kanalnamen)
+NICHES = [("🧠", "Was passiert, wenn …?"), ("🤔", "Warum?"), ("🔍", "Rätsel"), ("👻", "Grusel"), ("🧱", "Blockwelt")]
 
 # Erhöhen, wenn sich Banner oder Beschreibung ändern: dann setzt die App sie neu.
-VERSION = 3
+VERSION = 4
 
 
 def _times(hours):
@@ -34,16 +35,17 @@ def description(channel_title, hours, weekend=None):
     if weekend and list(weekend) != list(hours):
         times = f"{times} Uhr (Mo bis Fr), am Wochenende {_times(weekend)}"
     return (
-        f"{channel_title}: Jeden Tag Fakten, die du in unter einer Minute verstehst.\n\n"
-        "🏎️ Business & Autos\n🧠 Psychologie\n🏛️ Geschichte\n💸 Geld & Finanzen\n🌍 Geografie\n\n"
+        f"{channel_title}: Kurze Cartoons über Fragen, die du dir schon immer gestellt hast.\n\n"
+        "🫁 Was passiert, wenn du …?\n🤔 Warum ist das so?\n🔍 Echte Rätsel, die niemand lösen kann\n"
+        "👻 Kurze Gruselgeschichten\n\n"
         f"🕛 Neue Shorts täglich {times if times.startswith('jede') else 'um ' + times} Uhr\n"
-        "🔔 Abonnieren, damit du keinen Fakt verpasst!\n\n"
+        "🔔 Abonnier, wenn du die nächste Frage nicht verpassen willst\n\n"
         "Die Videos entstehen mit KI-Stimme und eigenen Animationen."
     )
 
 
-KEYWORDS = ('Wissen Fakten Shorts "unnützes Wissen" Psychologie Geschichte Geld Finanzen Business Autos '
-            'Geografie Lernen Allgemeinwissen')
+KEYWORDS = ('Wissen Fakten Shorts "was passiert wenn" Erklärvideo Cartoon Rätsel Mystery Gruselgeschichten '
+            'Körper Allgemeinwissen Lernen')
 
 
 def _font(path, size):

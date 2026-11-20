@@ -25,6 +25,10 @@ Vorbilder Erklärvideo: „Was passiert, wenn du tagelang nicht schläfst?“ (1
 Bei 15 Themen am Tag besonders auf Doppelungen achten (vorher `seed/` und `docs/videos.json` prüfen).
 Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann mindestens die 5 Blockwelt-Videos schreiben.
 
+Die App hält den Mix selbst (seit 18.11.2026): Von je 15 Shorts sind 5 Blockwelt (`block_per_day` in der Config,
+Lernmodus wählt nur das Thema innerhalb des Looks). Weil ein Short auf dem Server ca. 1 Stunde rendert, rendert sie
+in freien Minuten (auch nachts) bis zu 6 Shorts vor (`ready/`, Vorrat) und lädt zum Sendeplatz nur noch hoch.
+
 `"vorrang": true` im Skript schiebt es in der Warteschlange ganz nach vorn (nur für „heute noch rausbringen“,
 nicht in der täglichen Aufgabe benutzen).
 
@@ -48,6 +52,22 @@ nicht in der täglichen Aufgabe benutzen).
 - Keine Serien. Themen nicht doppeln (vorher `seed/` prüfen).
 - Erster Satz = die krasse Situation oder Frage. Kein Intro, keine Begrüßung, ca. 22 s.
 
+### Mehr Gewinner-Themen (seit 20.11.2026, Julius' Wunsch)
+
+Stand 19.11. (öffentliche Aufrufe): Der Kanal hängt fast überall bei ca. 1.000. Vorne liegen **Themen über den eigenen Körper
+und Alltag in der Du-Perspektive**: „Was passiert, wenn du tagelang nicht schläfst?“ (2.600, mit Abstand vorn), Gänsehaut (1.500),
+Luft anhalten (1.300), die eigene Stimme auf Aufnahmen (1.300), Schlüssel/Rätsel (1.100), Aufzug (1.000), Cent vom Wolkenkratzer (1.000).
+Darum von den 15 Skripten am Tag **4 bis 5 Nachbarthemen der Gewinner** (zählen zu den Erklärvideo-Plätzen oben, kein Extra-Skript):
+
+- Körper, Sinne, Gehirn und Schlaf, jeder kennt das Gefühl: Müdigkeit, Koffein, Hunger, Durst, Kälte, Hitze, Stille, Dunkelheit, Träume,
+  Gähnen, Schluckauf, Gänsehaut, Schwindel, Zeitgefühl, Gedächtnis. Beispiele: „Was passiert, wenn du eine Woche nichts trinkst?“,
+  „Warum bekommst du Schluckauf?“, „Was passiert, wenn du nie wieder träumst?“.
+- Aus dem Titel der Top 10 jeweils ein **neues** Nachbarthema bauen (nicht dasselbe Thema nochmal): gleiche Art von Frage, anderer Körperteil,
+  Sinn oder Extremfall.
+- Die übrigen 10 bis 11 bleiben Vielfalt (Mystery, Horror, Technik, Natur, Geschichte), damit der Lernmodus weiter testen kann.
+- Alle Regeln oben gelten weiter (Doppelungen prüfen, Fakten nicht erfinden, 2 bis 4 `*Schlüsselwörter*`, Auflösung im vorletzten Satz).
+- Nach ca. 5 Tagen unter „Was am besten funktioniert“ prüfen, ob die Körper-Themen vorne liegen. Wenn nicht, wieder auf 2 am Tag zurück.
+
 ### Test: erzählte Geschichten mit warmer Stimme (seit 16.11.2026, Julius' Wunsch)
 
 Julius mag ruhige „Storytime“-Videos mit freundlicher Stimme. Darum als Test, **ohne den Plan oben zu ändern**:
@@ -65,7 +85,40 @@ Montag, Mittwoch und Freitag wird **eins der 2 Strichmännchen-Mystery** zu eine
 - Vorbilder `seed/0208` bis `0210`. Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
   mehr davon vorschlagen (Julius fragen).
 
-Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
+### Test: Loop-Ende (seit 19.11.2026)
+
+Stand 19.11.: Fast jeder Short bleibt bei ca. 800 bis 1.500 Aufrufen stehen (bester: Schlaf 2.600), egal ob
+Erklärvideo, Mystery, Horror, 2D oder 3D. Das Thema ist also nicht die Grenze. YouTube zeigt jeden Short erst
+einer kleinen Testgruppe und schiebt ihn nur weiter, wenn die Leute bis zum Ende schauen und nochmal schauen.
+Darum als Test, **ohne den Plan oben zu ändern**: Jeden Tag bekommen **5 der 15 Skripte** `"ende": "loop"`:
+2 „Was passiert, wenn“ (1× 2D, 1× 3D), 1 „Warum“ (2D), 1 Mystery (2D), 1 Horror (3D).
+
+- Der letzte Satz endet offen, ohne Schlusspunkt, und der erste Satz vollendet ihn. Wer nicht aufpasst,
+  merkt den Neustart nicht und schaut ein zweites Mal. Beispiele:
+  - erster Satz „Was passiert, wenn du die Luft zu lange anhältst?“, letzter „Also frag dich beim nächsten Tauchen noch mal:“
+  - erster Satz „Ein Schiff treibt im Atlantik, und niemand ist an Bord.“, letzter „Und bis heute weiß niemand, warum“
+- Die Auflösung bzw. der Aha-Moment kommt im vorletzten Satz. Kein Abschiedssatz, kein „Abonnier“.
+- Loop-Skripte eher kurz: 45 bis 65 Wörter (ca. 16 bis 20 s).
+- `hookcheck.py` gibt einen Tipp mit „·“, wenn der letzte Satz mit Punkt endet.
+- Die Zentrale vergleicht unter „Was am besten funktioniert“ **„Ende (Loop)“** (`learn.ending`).
+  Liegt „Loop“ nach mindestens 10 bewerteten Videos je Seite klar vorne, Julius vorschlagen, alle Shorts so zu bauen.
+
+### Test: Soundeffekte und Bild-Effekte (seit 19.11.2026)
+
+Die App entscheidet selbst, welche von drei Stufen ein Cartoon-Short bekommt (`look.effekte`, Lernmerkmal „Soundeffekte“,
+`learn.choose_effects`, danach 3 von 4 die beste Stufe):
+
+- **dezent:** wie bisher, Whoosh bei Schnitten, Klick bei Zahlen.
+- **stark:** vor dem **vorletzten Satz** steigt ein Riser an, dann harter Schnitt, Schlag, kurze Musikpause, Bild-Stoß mit Aufblitzen.
+- **voll:** wie stark, dazu steigender Ton und kurzer Zoom auf jedem `*Schlüsselwort*`, langsamer Kamera-Zug in jeder Szene
+  und ein Reaktions-Sticker (🤯 neugierig, 😱 gruselig, 🤔 mysteriös, 🥹 warm) mit Glockenton auf der Auflösung.
+  Im Skript optional `"sticker": "🤯"` für ein eigenes Emoji.
+
+Darum in **jedem** Skript: der vorletzte Satz ist die Auflösung bzw. der Aha-Moment, und **2 bis 4 Wörter** stehen
+in `*Sternchen*` (die wichtigsten, nicht mehr als eins pro Satz). Alles wird selbst erzeugt (`audio.py`, Emoji-Schrift im Repo),
+keine fremden Sounds, Memes oder Bilder.
+
+Die Stimme `aufgeregt` (seit 19.11.2026, Julius: „die Stimme ist so trocken“) ist bei Erklärvideos die erste Wahl: Thorsten-emotional (Sprecher „amused“), etwas flotter, aber **gleichmäßig und gut verständlich**. Julius hat sie am 19.11. mehrfach korrigiert (zu extrem, zu hoch wie Stimmbruch, nicht so hoch und runter, kein Absenken am Satzende), deshalb: tiefere Grundlage (`BASE`), niedriges Rauschen (`VOICE_NOISE`), Satz am Stück, keine Melodie-Tricks mehr (`make_short.speak_lively`), ohne Hall. Lange Videos bekommen immer die Stimme `klar` (Julius mag sie zum Erklären). Darum die Schlüsselwörter in jedem Skript setzen. Die Stimme `freundlich` testet die App auch bei Erklärvideos mit (Stimme lernt unter „Was am besten funktioniert“).
 
 Das lange Video (täglich 1, stärkstes Thema) bleibt wie bisher.
 

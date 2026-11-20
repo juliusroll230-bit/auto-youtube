@@ -144,8 +144,12 @@ def word_times(segments, timings):
     return words
 
 
+STICKERS = {"neugierig": "🤯", "gruselig": "😱", "mysterioes": "🤔", "warm": "🥹"}   # Reaktions-Sticker je Stimmung
+
+
 def plan(spec, timings, total):
     segs = spec["segments"]
+    fx = spec.get("effekte") if spec.get("effekte") in ("stark", "voll") and not is_long(spec) and make_short.accent_time(timings) else None
     scenes = []
     for i, seg in enumerate(segs):
         sc = dict(seg.get("szene") or {"typ": "objekt", "objekt": seg.get("emoji") or "❓"})
@@ -157,7 +161,13 @@ def plan(spec, timings, total):
         sc.setdefault("figur", spec.get("figur") or {"farbe": "rot"})
     return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec),
             "welt": spec.get("welt") or "strich", "figur": spec.get("figur") or {},  # "block": 3D-Blockwelt
-            "wide": is_long(spec)}  # lange Videos: Querformat 1920x1080
+            "wide": is_long(spec),  # lange Videos: Querformat 1920x1080
+            # Soundeffekte "stark": Bild-Stoß mit kurzem Aufblitzen auf der Auflösung
+            "punch": make_short.accent_time(timings) if fx else None,
+            "fx": spec.get("effekte") if fx else None,
+            # Stufe "voll": Zoom auf Schlüsselwörtern, langsamer Kamera-Zug, Reaktions-Sticker auf der Auflösung
+            "hits": make_short.key_hits(segs, timings) if fx == "voll" else [],
+            "sticker": (spec.get("sticker") or STICKERS.get(mood(spec), "🤯")) if fx == "voll" else None}
 
 
 def stage(p, folder):
@@ -205,7 +215,8 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
                                            speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
-                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE)
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE,
+                                           effects=None if is_long(spec) else spec.get("effekte"))
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []

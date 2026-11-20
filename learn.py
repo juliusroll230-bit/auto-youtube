@@ -57,27 +57,49 @@ def favorite(scores):
     return max(rated, key=rated.get)
 
 
-def plan(queue, history, scores, explore_every=EXPLORE_EVERY):
+BLOCK_WINDOW = 15  # über so viele Shorts wird der Anteil Blockwelt gehalten (ein Tag = 15 Sendeplätze)
+
+
+def is_block(spec):
+    return spec.get("welt") == "block"
+
+
+def plan(queue, history, scores, explore_every=EXPLORE_EVERY, worlds=None, block_share=None):
     """Sortiert die Warteschlange in die Reihenfolge, in der gepostet wird.
 
     queue:   Liste von (datei, skript) in Dateireihenfolge
     history: Themen der bisherigen Uploads, älteste zuerst
+    worlds:  Look der letzten Shorts (True = Blockwelt), älteste zuerst
+    block_share: Anteil Blockwelt (z. B. 5/15). Dann ist jedes Video, das den Anteil sonst unterschreiten würde,
+                 ein Blockwelt-Video, die übrigen Strichmännchen. Innerhalb des Looks wählt der Lernmodus das Thema.
     """
     remaining = list(queue)
     last = {niche: i for i, niche in enumerate(history)}
-    best = favorite(scores)
+    best = favorite(scores) if scores is not None else None
     step, order = len(history), []
+    window = list(worlds or [])[-(BLOCK_WINDOW - 1):]
     while remaining:
-        niches = list(dict.fromkeys(spec["niche"] for _, spec in remaining))
+        pool = remaining
+        if block_share:
+            want = sum(window) < block_share * (len(window) + 1) - 1e-9
+            pool = [x for x in remaining if is_block(x[1]) == want] or remaining
+        if scores is None:  # Lernmodus aus: innerhalb des Looks einfach Dateireihenfolge
+            item = pool[0]
+            remaining.remove(item)
+            order.append(item)
+            window = (window + [is_block(item[1])])[-(BLOCK_WINDOW - 1):]
+            continue
+        niches = list(dict.fromkeys(spec["niche"] for _, spec in pool))
         explore = best not in niches or step % explore_every == explore_every - 1
         if explore:
             # das Thema, das am längsten nicht dran war (nie gepostete zuerst)
             pick = min(niches, key=lambda n: (last.get(n, -1), niches.index(n)))
         else:
             pick = best
-        item = next(x for x in remaining if x[1]["niche"] == pick)
+        item = next(x for x in pool if x[1]["niche"] == pick)
         remaining.remove(item)
         order.append(item)
+        window = (window + [is_block(item[1])])[-(BLOCK_WINDOW - 1):]
         last[pick] = step
         step += 1
     return order
@@ -107,13 +129,17 @@ BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (sto
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
 # "warm": ruhige, freundliche Geschichten (seit 16.11.2026 Test); "freundlich" testet auch bei Erklärvideos mit.
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
-                   "neugierig": ("froehlich", "klar", "freundlich"),
+                   "neugierig": ("aufgeregt", "froehlich", "klar", "freundlich"),
                    "warm": ("freundlich", "erzaehlerin", "erzaehler")}
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
-                 "welt_typ": "Look je Video-Typ"}
+                 "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
+                 "effekte": "Soundeffekte"}
+# stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
+# langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
+EFFECTS = ("stark", "voll", "dezent")
 THUMBS = ("A: Wort + Satz", "B: Satz im Kasten")       # wie thumbnail.VARIANTS
 
 
@@ -179,6 +205,16 @@ def _hook_bucket(spec):
         return None
 
 
+def ending(spec):
+    """Schluss eines Shorts: "Loop" (letzter Satz führt in den ersten zurück, Test seit 19.11.2026) oder "normal".
+
+    Lange Videos und Videos von vor dem Test bekommen nichts, damit der Vergleich nur neue Shorts enthält.
+    """
+    if spec.get("laenge") == "lang" or spec.get("stil") != "cartoon":
+        return None
+    return "Loop" if str(spec.get("ende", "")).lower() == "loop" else "normal"
+
+
 def features(spec, look):
     words = [len(s["text"].split()) for s in spec.get("segments", [])]
     total, hook = sum(words), (words[0] if words else 0)
@@ -201,6 +237,8 @@ def features(spec, look):
         "thumbnail": look.get("thumbnail"),   # nur gesetzt, wenn YouTube das eigene Thumbnail angenommen hat
         "welt": world(spec),
         "welt_typ": world_by_type(spec),
+        "ende": ending(spec),
+        "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
     }
 
 
@@ -246,6 +284,11 @@ def choose_look(fscores, step):
 def choose_voice(fscores, step, spec):
     """Stimme für ein Cartoon: die beste passende (3 von 4 Mal) oder ein Test der anderen."""
     return choose(VOICES_FOR_MOOD[cartoon_mood(spec)], fscores.get("stimme", {}), step)
+
+
+def choose_effects(fscores, step):
+    """Soundeffekte für einen Cartoon-Short: die bessere Stufe (3 von 4 Mal) oder ein Test der anderen."""
+    return choose(EFFECTS, fscores.get("effekte", {}), step)
 
 
 def choose_thumb(fscores, step):

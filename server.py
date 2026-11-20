@@ -36,6 +36,7 @@ import clips
 import comments
 import learn
 import money
+import social
 import store
 import whop
 import yt
@@ -152,7 +153,14 @@ def post_next(slot, manual=False, long=False, firma=False):
     """Rendert das nächste Skript und lädt es hoch. long: ein langes Video (eigene Warteschlange, eigener Sendeplan).
 
     firma: die tägliche Folge des Firmen-Spiels, zusätzlich zu den normalen Sendeplätzen (eigener Sendeplan).
+    Liegt schon ein fertig gerenderter Short im Vorrat, wird nur der hochgeladen (dauert wenige Minuten).
     """
+    if not long and not firma and store.ready_items():
+        try:
+            return post_ready(slot, manual)
+        finally:
+            if manual:
+                status["busy"] = ""  # "Startet …" vom Knopf „Jetzt posten“ wieder freigeben
     done = "long_slots" if long else "firma_slots" if firma else "done_slots"
     if not work_lock.acquire(blocking=False):
         return
@@ -165,7 +173,7 @@ def post_next(slot, manual=False, long=False, firma=False):
                     return
                 planned = [extra]
             else:
-                planned = store.planned_queue(ready_only=True, long=long)  # Reihenfolge nach Lernmodus
+                planned = store.planned_queue(ready_only=True, long=long, with_ready=False)  # nach Lernmodus
             cfg = store.config()
             # Mit eigenem Clip-Kanal laufen Clips getrennt (post_clip_slot), sonst ersetzen sie hier Sendeplätze
             clip = None if (cfg["clip_token"] or long or firma) else clips.choose_for_slot(
@@ -181,73 +189,187 @@ def post_next(slot, manual=False, long=False, firma=False):
                 store.mark_slot(slot, done)
             return
         file, spec = planned[0]
-        n = len(store.state()["uploads"]) + 1  # laufende Nummer für die Sprechblasen
         status["busy"] = "Prüft die Verbindung zu YouTube"
         with working("publisher", task="Prüft die YouTube-Verbindung"):
             yt.check(store.config())
         status["busy"] = f"Erstelle Video: {spec['title']}"
-        from make_short import build_video
-        ag = agents.settings(store.config())
-        # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
-        look = agents.apply_look(store.next_look(), ag)
-        if spec.get("stil") == "cartoon":  # Stimme passend zur Stimmung, gelernt (oder fest im Skript)
-            look["stimme"] = spec.get("stimme") or store.next_voice(spec)
-        key = store.config().get("stock_key", "")
-        if not key:
-            look["hintergrund"] = "animation"
-        info = {}
-        voice = video_voice()
-        with working("sprecher", task=f"Spricht Video #{n}"), working("studio", task=f"Rendert Video #{n}"):
-            video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
-                                                store.path("out"), voice, stock_key=key, info=info)
-        if getattr(voice, "error", None):
-            store.log("warn", f"{voice.error}. Dieses Video spricht die eingebaute Stimme.", agent="sprecher")
-        if look.get("hintergrund") == "clips" and not info.get("stock"):
-            look["hintergrund"] = "animation"  # kein Clip gefunden, das Video ist animiert
-        if info.get("stock"):  # Pixabay und Pexels bitten um einen Hinweis auf die Quelle
-            import stock
-            src = stock.CREDIT.get(info["stock"][0].get("provider"), "Pixabay (pixabay.com)")
-            spec = {**spec, "description": spec.get("description", "") + f"\n\nHintergrundvideos: {src}"}
-        status["busy"] = f"Baut das Thumbnail: {spec['title']}"
-        with working("studio", task=f"Baut das Thumbnail für Video #{n}"):
-            thumb_files = make_thumbs(spec)
-        status["busy"] = f"Lade hoch: {spec['title']}"
-        with working("publisher", task=f"Lädt Video #{n} hoch"):
-            video_id = yt.upload(store.config(), video, spec)
-        thumb = None
-        if thumb_files:
-            choice = _safe_variant(long)
-            thumb = {"set": apply_thumb(video_id, thumb_files, choice[:1])}
-            if thumb["set"]:
-                look["thumbnail"] = choice  # Lern-Merkmal nur, wenn YouTube das Bild angenommen hat
-        marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
-        store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done,
-                          thumb=thumb)
-        if spec.get("format") == "firma" and spec.get("firma_state"):
-            store.write("firma.json", spec["firma_state"])  # Spielstand erst nach dem Upload weiterzählen
-        for a in ("planer", "sprecher", "studio", "publisher"):
-            store.agent_done(a)
-        if not long:
-            try:
-                store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
-            except OSError as e:
-                store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
-        os.remove(video)
-        store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""),
-                  agent="publisher", kind="posted", source="youtube")
-        refresh_stats()
+        r = render_short(spec)
+        publish(file, r["spec"], r["video"], r["total"], r["timings"], r["look"], slot, manual, done, long, show=True)
     except Exception as e:
-        if yt.is_expired(e):
-            connection_expired()
-            return  # Sendeplatz bleibt offen und wird nach dem Neu-Verbinden nachgeholt
-        traceback.print_exc()
-        store.agent_done("publisher", error=e)
-        store.log("error", f"Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
-        if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
-            store.mark_slot(slot, done)
+        upload_failed(e, slot, done)
     finally:
         status["busy"] = ""
         work_lock.release()
+
+
+def render_short(spec):
+    """Rendert ein Skript zum fertigen Video. Gibt Video, Länge, Satzzeiten, Look und (ergänztes) Skript zurück."""
+    n = len(store.state()["uploads"]) + 1  # laufende Nummer für die Sprechblasen
+    from make_short import build_video
+    ag = agents.settings(store.config())
+    # Untertitel-Stil, Übergang und Kopfzeile, die bisher am besten liefen (oder fest im Video-Studio)
+    look = agents.apply_look(store.next_look(), ag)
+    if spec.get("stil") == "cartoon":  # Stimme passend zur Stimmung, gelernt (oder fest im Skript)
+        # lange Videos: immer die klare Stimme (Julius, 19.11.2026), Shorts lernen
+        look["stimme"] = spec.get("stimme") or ("klar" if spec.get("laenge") == "lang" else store.next_voice(spec))
+        if spec.get("laenge") != "lang":  # Test: starke Soundeffekte auf der Auflösung gegen dezente
+            look["effekte"] = spec.get("effekte") or store.next_effects()
+    key = store.config().get("stock_key", "")
+    if not key:
+        look["hintergrund"] = "animation"
+    info = {}
+    voice = video_voice()
+    with working("sprecher", task=f"Spricht Video #{n}"), working("studio", task=f"Rendert Video #{n}"):
+        video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
+                                            store.path("out"), voice, stock_key=key, info=info)
+    if getattr(voice, "error", None):
+        store.log("warn", f"{voice.error}. Dieses Video spricht die eingebaute Stimme.", agent="sprecher")
+    if look.get("hintergrund") == "clips" and not info.get("stock"):
+        look["hintergrund"] = "animation"  # kein Clip gefunden, das Video ist animiert
+    if info.get("stock"):  # Pixabay und Pexels bitten um einen Hinweis auf die Quelle
+        import stock
+        src = stock.CREDIT.get(info["stock"][0].get("provider"), "Pixabay (pixabay.com)")
+        spec = {**spec, "description": spec.get("description", "") + f"\n\nHintergrundvideos: {src}"}
+    return {"video": video, "total": total, "timings": [list(t) for t in timings], "look": look, "spec": spec}
+
+
+def publish(file, spec, video, total, timings, look, slot, manual, done, long, show=False):
+    """Thumbnail, Upload, Eintrag in die Liste der Uploads. Die Videodatei wird danach gelöscht.
+
+    show: den Schritt oben in der Zentrale anzeigen (nicht beim Hochladen aus dem Vorrat, während etwas anderes rendert).
+    """
+    n = len(store.state()["uploads"]) + 1
+    if show:
+        status["busy"] = f"Baut das Thumbnail: {spec['title']}"
+    with working("studio", task=f"Baut das Thumbnail für Video #{n}"):
+        thumb_files = make_thumbs(spec)
+    if show:
+        status["busy"] = f"Lade hoch: {spec['title']}"
+    with working("publisher", task=f"Lädt Video #{n} hoch"):
+        video_id = yt.upload(store.config(), video, spec)
+    thumb = None
+    if thumb_files:
+        choice = _safe_variant(long)
+        thumb = {"set": apply_thumb(video_id, thumb_files, choice[:1])}
+        if thumb["set"]:
+            look["thumbnail"] = choice  # Lern-Merkmal nur, wenn YouTube das Bild angenommen hat
+    marks = [round(s / total, 4) for s, _ in timings]  # Satzanfänge, für die Abschalt-Kurve
+    store.mark_posted(file, slot, spec, video_id, marks=marks, duration=round(total, 1), look=look, done=done,
+                      thumb=thumb)
+    if spec.get("format") == "firma" and spec.get("firma_state"):
+        store.write("firma.json", spec["firma_state"])  # Spielstand erst nach dem Upload weiterzählen
+    for a in ("planer", "sprecher", "studio", "publisher"):
+        store.agent_done(a)
+    if not long:
+        try:
+            store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
+        except OSError as e:
+            store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
+    try:
+        os.remove(video)
+    except OSError:
+        pass
+    store.log("ok", f"Gepostet: {spec['title']}" + (" (manuell)" if manual else ""),
+              agent="publisher", kind="posted", source="youtube")
+    refresh_stats()
+
+
+def upload_failed(e, slot, done):
+    if yt.is_expired(e):
+        connection_expired()
+        return  # Sendeplatz bleibt offen und wird nach dem Neu-Verbinden nachgeholt
+    traceback.print_exc()
+    store.agent_done("publisher", error=e)
+    store.log("error", f"Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+    if slot:  # nicht endlos wiederholen, der nächste Platz versucht es erneut
+        store.mark_slot(slot, done)
+
+
+upload_lock = threading.Lock()  # fertige Shorts aus dem Vorrat hochladen, auch während gerade etwas rendert
+
+
+def post_ready(slot, manual=False):
+    """Lädt den ältesten fertig gerenderten Short aus dem Vorrat hoch."""
+    if not upload_lock.acquire(blocking=False):
+        return
+    try:
+        items = store.ready_items()
+        if not items:
+            return
+        item = items[0]
+        file = store.path("queue", item["file"])
+        cfg = store.config()
+        if cfg["approval"] and item["file"] not in set(store.state()["approved"]):
+            # Freigabe zurückgenommen: Video wegwerfen, das Skript wartet wieder normal
+            store.drop_ready(item)
+            return post_ready_next(slot, manual)
+        with working("publisher", task="Prüft die YouTube-Verbindung"):
+            yt.check(cfg)
+        try:
+            publish(file, item["spec"], item["video"], item["total"], item["timings"], item["look"],
+                    slot, manual, "done_slots", False)
+        except Exception as e:
+            if not yt.is_expired(e):
+                store.ready_failed(item)  # nach 2 Fehlversuchen wird das Video verworfen und neu gerendert
+            raise
+        store.drop_ready(item)
+    except Exception as e:
+        upload_failed(e, slot, "done_slots")
+    finally:
+        upload_lock.release()
+
+
+def post_ready_next(slot, manual):
+    """Nach einem verworfenen Vorrats-Video: nächstes versuchen (ohne Sperre, die hält schon der Aufrufer)."""
+    items = [i for i in store.ready_items()
+             if not store.config()["approval"] or i["file"] in set(store.state()["approved"])]
+    if not items:
+        return
+    item = items[0]
+    yt.check(store.config())
+    publish(store.path("queue", item["file"]), item["spec"], item["video"], item["total"], item["timings"],
+            item["look"], slot, manual, "done_slots", False)
+    store.drop_ready(item)
+
+
+def prerender():
+    """Rendert den nächsten Short in den Vorrat, wenn der Server gerade frei ist.
+
+    Lange Videos und die Firmen-Folge haben Vorrang: Sind sie dran, wird nicht vorgerendert.
+    """
+    cfg = store.config()
+    ag = agents.settings(cfg)
+    if not cfg["refresh_token"] or not ag["publisher"]["on"] or status["busy"]:
+        return
+    if store.due_long(ag["publisher"].get("long_per_week", 0)) or store.due_firma(cfg.get("firma_hour")):
+        return
+    if len(store.ready_items()) >= store.READY_MAX:
+        return
+    if not work_lock.acquire(blocking=False):
+        return
+    try:
+        planned = store.planned_queue(ready_only=True, with_ready=False)
+        if not planned:
+            return
+        file, spec = planned[0]
+        r = render_short(spec)
+        store.add_ready(os.path.basename(file), r)
+        store.log("info", f"Fertig gerendert, wartet auf den Sendeplatz: {spec['title']}", agent="studio")
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        store.log("warn", f"Vorrendern fehlgeschlagen: {e}", agent="studio")
+        time.sleep(600)  # nicht im Kreis rendern, wenn etwas kaputt ist
+    finally:
+        work_lock.release()
+
+
+def ready_worker():
+    while True:
+        try:
+            prerender()
+        except Exception:
+            traceback.print_exc()
+        time.sleep(30)
 
 
 def make_thumbs(spec):
@@ -273,21 +395,53 @@ def apply_thumb(video_id, files, variant):
     try:
         yt.set_thumbnail(store.config(), video_id, files[variant])
     except Exception as e:  # noqa: BLE001
+        print(f"Thumbnail für {video_id} abgelehnt: {e!r}", flush=True)
         if yt.is_limit(e):
-            store.set_thumb_status(False, "limit")
+            store.set_thumb_status(False, "limit", e)
             store.log("warn", "Thumbnail nicht gesetzt: YouTube-Tageslimit erreicht.", agent="publisher")
         elif yt.thumb_not_allowed(e):
             first = (store.state().get("thumb_status") or {}).get("reason") != "verify"
-            store.set_thumb_status(False, "verify")
+            store.set_thumb_status(False, "verify", e)
             if first:
                 store.log("warn", "Eigene Thumbnails gehen erst, wenn dein Kanal bestätigt ist: youtube.com/verify "
                                   "öffnen und mit Handynummer bestätigen.", agent="publisher")
         else:
-            store.set_thumb_status(False, str(e)[:200])
+            store.set_thumb_status(False, str(e)[:200], e)
             store.log("warn", f"Thumbnail nicht gesetzt: {e}", agent="publisher")
         return None
     store.set_thumb_status(True)
     return variant
+
+
+def retry_thumbs():
+    """Setzt Thumbnails für die letzten Uploads, bei denen YouTube sie noch nicht angenommen hat (z. B. nach der
+    Kanal-Bestätigung). Hört beim ersten „nicht erlaubt“ auf, damit nicht 30 Mal derselbe Fehler kommt."""
+    import thumbnail
+    ups = [u for u in store.state()["uploads"] if u.get("kind") != "clip" and u.get("video_id")]
+    todo = [u for u in ups[-store.THUMB_RETRY_MAX:] if not (u.get("thumb") or {}).get("set")]
+    done = 0
+    for u in reversed(todo):   # neueste zuerst
+        spec = store.find_spec(u["slug"])
+        if not spec:
+            continue
+        variant = _safe_variant(bool(u.get("lang")))[:1]
+        file = store.thumb_path(u["slug"], variant)
+        try:
+            if not os.path.exists(file):
+                with thumb_lock:
+                    thumbnail.build(spec, os.path.dirname(file))
+        except Exception as e:  # noqa: BLE001
+            store.log("warn", f"Thumbnail nicht erstellt ({u['title']}): {e}", agent="studio")
+            continue
+        if not apply_thumb(u["video_id"], {variant: file}, variant):
+            break
+        store.set_upload_thumb(u["video_id"], variant)
+        done += 1
+    st = store.state().get("thumb_status") or {}
+    if done:
+        store.log("ok", f"Thumbnails nachgeholt: {done} Videos.", agent="publisher", kind="input")
+    elif not st.get("ok"):
+        store.log("warn", "Thumbnails nachholen: YouTube lehnt noch ab. " + (st.get("detail") or ""), agent="publisher")
 
 
 def firma_episode():
@@ -891,8 +1045,21 @@ def background(fn, *args):
     threading.Thread(target=fn, args=args, daemon=True).start()
 
 
+social_lock = threading.Lock()
+
+
+def post_social():
+    """Je Plattform höchstens ein Short pro Durchgang (siehe social.py). Nie zwei Durchgänge gleichzeitig."""
+    if not social_lock.acquire(blocking=False):
+        return
+    try:
+        social.run_once()
+    finally:
+        social_lock.release()
+
+
 def scheduler():
-    last_stats = last_sync = last_analytics = last_whop = 0.0
+    last_stats = last_sync = last_analytics = last_whop = last_social = 0.0
     while True:
         try:
             if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
@@ -903,14 +1070,17 @@ def scheduler():
             ag = agents.settings(cfg)
             if cfg["refresh_token"]:
                 slot = store.due_slot() if ag["publisher"]["on"] else None
-                if slot and not status["busy"]:
+                if slot and store.ready_items():
+                    post_ready(slot)  # fertiger Short aus dem Vorrat: nur hochladen, auch wenn gerade etwas rendert
+                elif slot and not status["busy"]:
                     post_next(slot)
+                # Firmen-Folge und langes Video rendern im Hintergrund, damit Sendeplätze weiterlaufen
                 fslot = store.due_firma(cfg.get("firma_hour")) if ag["publisher"]["on"] else None
-                if fslot and not status["busy"]:
-                    post_next(fslot, firma=True)  # Firmen-Spiel: zusätzlich zu den normalen Videos
+                if fslot and not status["busy"] and not work_lock.locked():
+                    background(post_next, fslot, False, False, True)  # Firmen-Spiel: zusätzlich zu den normalen
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
-                if lslot and not status["busy"]:
-                    post_next(lslot, long=True)
+                if lslot and not fslot and not status["busy"] and not work_lock.locked():
+                    background(post_next, lslot, False, True)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
                     refresh_stats()
                     if ag["designer"]["on"]:
@@ -918,6 +1088,9 @@ def scheduler():
                     last_stats = time.time()
             if comments.load()["settings"]["on"]:
                 background(check_comments)
+            if time.time() - last_social > 5 * 60:  # die besten Shorts zu Instagram (Reel) und TikTok (Entwurf)
+                last_social = time.time()
+                background(post_social)
             if cfg["analytics_token"] and time.time() - last_analytics > ag["zuschauer"]["hours"] * 3600:
                 last_analytics = time.time()
                 refresh_analytics()
@@ -964,7 +1137,7 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length") or 0)
         return json.loads(self.rfile.read(n) or b"{}") if n else {}
 
-    def send_file(self, path, ctype, download=None):
+    def send_file(self, path, ctype, download=None, ext="mp4"):
         """Datei mit Range-Unterstützung (damit man im Video-Player spulen kann)."""
         size = os.path.getsize(path)
         start, end, code = 0, size - 1, 200
@@ -990,8 +1163,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
         if download:
             safe = re.sub(r"[^A-Za-z0-9._-]+", "-", download).strip("-") or "clip"
-            self.send_header("Content-Disposition", f"attachment; filename=\"{safe}.mp4\"; "
-                             f"filename*=UTF-8''{urllib.parse.quote(download)}.mp4")
+            self.send_header("Content-Disposition", f"attachment; filename=\"{safe}.{ext}\"; "
+                             f"filename*=UTF-8''{urllib.parse.quote(download)}.{ext}")
         self.end_headers()
         try:
             with open(path, "rb") as f:
@@ -1025,7 +1198,8 @@ class Handler(BaseHTTPRequestHandler):
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
-                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary()},
+                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
+                                                   "social": social.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
             q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
@@ -1043,6 +1217,15 @@ class Handler(BaseHTTPRequestHandler):
             return self.preview()
         if p == "/api/analytics/callback":
             return self.analytics_callback()
+        if p == "/api/tiktok/callback":
+            return self.tiktok_callback()
+        if p == "/api/social/paket.zip":  # beste Shorts + Texte, zum Planen ohne Entwickler-App
+            dest = store.path("share", "paket.zip")
+            try:
+                social.build_package(dest)
+            except ValueError as e:
+                return self.send(404, {"error": str(e)})
+            return self.send_file(dest, "application/zip", download="shorts-fuer-insta-und-tiktok", ext="zip")
         m = re.fullmatch(r"/api/share/([A-Za-z0-9_-]+)\.mp4", p)
         if m:
             u = next((x for x in store.state()["uploads"] if x.get("video_id") == m.group(1)), None)
@@ -1241,6 +1424,27 @@ class Handler(BaseHTTPRequestHandler):
                     thumbnail.build(spec, os.path.dirname(file))
         self.send(200, open(file, "rb").read(), "image/jpeg", cache="max-age=600")
 
+    def tiktok_callback(self):
+        """TikTok hat über die Weiterleitungsseite einen Code geschickt (state beginnt mit "tt-")."""
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
+        nonce = (q.get("state", [""])[0]).split(".")[0]
+        ok = nonce.startswith("tt-") and status["oauth_states"].pop(nonce, None)
+        if q.get("error"):
+            note = "abgebrochen"
+        elif not ok:
+            note = "ungueltig"
+        else:
+            try:
+                social.tt_exchange(q.get("code", [""])[0], OAUTH_PAGE)
+                store.log("ok", "TikTok verbunden. Die besten Shorts kommen ab jetzt als Entwurf in deine TikTok-App.")
+                note = "ok"
+            except Exception as e:
+                store.log("error", f"TikTok: Verbindung fehlgeschlagen: {e}")
+                note = "fehler"
+        self.send_response(303)
+        self.send_header("Location", f"/?tiktok={note}#kanal")
+        self.end_headers()
+
     def do_POST(self):
         path = self.path.split("?")[0]
         if path == "/webhook/video":
@@ -1348,6 +1552,63 @@ class Handler(BaseHTTPRequestHandler):
                     socials[k] = v
             store.save_config(socials=socials)
             return self.send(200, {"ok": True, "socials": socials})
+        if p == "/api/social/settings":
+            try:
+                keys = {k: data[k] for k in ("app_id", "app_secret", "client_key", "client_secret") if k in data}
+                return self.send(200, social.set_settings(str(data.get("platform", "")), on=data.get("on"),
+                                                          per_day=data.get("per_day"), **keys))
+            except (ValueError, TypeError) as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/instagram/connect":
+            try:
+                r = social.ig_connect(str(data.get("app_id", "")), str(data.get("app_secret", "")), str(data.get("token", "")))
+                store.log("ok", f"Instagram verbunden: @{r['username']}.")
+                return self.send(200, r)
+            except (ValueError, KeyError, social.ApiError, OSError) as e:
+                return self.send(400, {"error": f"Instagram: {e}"})
+        if p == "/api/social/tiktok/start":
+            if not OAUTH_PAGE:
+                return self.send(400, {"error": "Keine Weiterleitungsseite eingestellt (SCRIPTS_REPO oder OAUTH_PAGE)."})
+            origin = str(data.get("origin", ""))
+            if not re.fullmatch(r"https?://[\w.\-\[\]:]+", origin):
+                return self.send(400, {"error": "Ungültige Adresse."})
+            nonce = "tt-" + secrets.token_urlsafe(16)
+            status["oauth_states"] = {**dict(list(status["oauth_states"].items())[-5:]), nonce: origin}
+            state = nonce + "." + base64.urlsafe_b64encode(origin.encode()).decode().rstrip("=")
+            try:
+                return self.send(200, {"url": social.tt_auth_url(OAUTH_PAGE, state)})
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/test":
+            try:
+                return self.send(200, {"ok": True, "message": social.test(str(data.get("platform", "")))})
+            except (ValueError, KeyError, social.ApiError, OSError) as e:
+                return self.send(400, {"error": str(e)})
+        if p == "/api/social/disconnect":
+            d = social.load()
+            plat = str(data.get("platform", ""))
+            if plat == "instagram":
+                d["instagram"].update(token="", ig_id="", username="", page="", on=False, error=None)
+            elif plat == "tiktok":
+                d["tiktok"].update(access="", refresh="", expires=0, open_id="", username="", on=False, error=None)
+            else:
+                return self.send(400, {"error": "Unbekannte Plattform."})
+            social.save(d)
+            return self.send(200, {"ok": True})
+        if p == "/api/social/now":
+            plat = str(data.get("platform", ""))
+            if plat not in social.DEFAULTS:
+                return self.send(400, {"error": "Unbekannte Plattform."})
+            if not social.summary()[plat]["connected"]:
+                return self.send(400, {"error": "Bitte zuerst verbinden."})
+            u = social.pick(store.posted_items(), plat, store.now())
+            if not u:
+                return self.send(400, {"error": "Gerade kein passender Short (der beste der letzten 2 Tage ist schon dort)."})
+            def once():
+                with social_lock:
+                    social.post_now(plat)
+            background(once)
+            return self.send(200, {"ok": True, "title": u.get("title", "")})
         if p == "/api/short/shared":
             try:
                 store.set_short_shared(str(data.get("video_id", "")), str(data.get("platform", "")), bool(data.get("done")))
@@ -1490,6 +1751,9 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             store.log("info", "Vorgaben der Whop-Kampagne gespeichert", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "rules": rules})
+        if p == "/api/thumb/retry":  # fehlende Thumbnails der letzten Uploads nachholen
+            background(retry_thumbs)
+            return self.send(200, {"ok": True})
         if p == "/api/thumb/set":  # andere Thumbnail-Variante für ein hochgeladenes Video setzen
             vid, variant = str(data.get("video_id") or ""), str(data.get("variant") or "")
             u = next((x for x in store.state()["uploads"] if x.get("video_id") == vid and x.get("kind") != "clip"), None)
@@ -1701,6 +1965,7 @@ def main():
     threading.Thread(target=scheduler, daemon=True).start()
     threading.Thread(target=clip_worker, daemon=True).start()
     threading.Thread(target=clipi_worker, daemon=True).start()
+    threading.Thread(target=ready_worker, daemon=True).start()
     background(warm_thumbs)
     print(f"Shorts-Zentrale läuft auf Port {PORT}", flush=True)
     ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()

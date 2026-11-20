@@ -5,6 +5,7 @@ Braucht: ffmpeg, pillow, numpy, piper-tts und das Piper-Modell de_DE-thorsten-hi
 """
 import json
 import math
+import re
 import os
 import subprocess
 import sys
@@ -38,6 +39,7 @@ VOICES = {
     "unheimlich": (0.97, 1.13, 0.0),  # ernst und gelassen: kaum tiefer, deutlich ruhiger gesprochen, ohne Hall und ohne Brummen
     "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
     "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
+    "aufgeregt": (1.0, 0.86, 0.0),   # aufgeregt: etwas flotter, mit Betonung (19.11.2026, abends auf Julius' Wunsch etwas zurückgenommen)
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -45,7 +47,10 @@ VOICES = {
 VOICE_MODELS = {
     "freundlich": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
     "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
+    "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
 }
+# Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
+VOICE_NOISE = {"aufgeregt": (0.5, 0.7)}  # niedrig = gleichmäßige Satzmelodie
 _voice_models = {}
 
 
@@ -70,7 +75,8 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
     model = voice_model(voice)
     if model:
         m, speaker = model
-        cfg = SynthesisConfig(length_scale=length_scale, speaker_id=speaker)
+        ns, nw = VOICE_NOISE.get(voice, (None, None))
+        cfg = SynthesisConfig(length_scale=length_scale, speaker_id=speaker, noise_scale=ns, noise_w_scale=nw)
         x = np.concatenate([c.audio_float_array for c in m.synthesize(text, syn_config=cfg)])
         src = m.config.sample_rate
         if src != rate:
@@ -78,6 +84,27 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
         return x
     cfg = SynthesisConfig(length_scale=length_scale)
     return np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
+
+
+LIVELY = ("aufgeregt",)   # Stimmen mit Satzmelodie: Satzteile, Betonung auf Schlüsselwörtern (gegen "trocken")
+
+
+def _repitch(x, factor):
+    """Tonhöhe um factor ändern (Strecken); die Dauer ändert sich mit und wird beim Sprechen eingerechnet."""
+    if abs(factor - 1) < 1e-3:
+        return x
+    return np.interp(np.linspace(0, len(x) - 1, int(len(x) / factor)), np.arange(len(x)), x).astype(np.float32)
+
+
+BASE = 0.94  # Grundtonhöhe der aufgeregten Stimme: tiefer als das Modell von selbst (gegen Quietschen)
+
+
+def speak_lively(tts, text, voice, length_scale):
+    """Spricht den Satz am Stück, gleichmäßig und gut verständlich (Julius 19.11.: nicht so hoch und runter).
+    Etwas tiefer als das Modell von selbst, kein Springen zwischen Satzteilen, Betonung auf *Schlüsselwörtern* nur durch Lautstärke."""
+    plain = text.replace("*", "")
+    x = speak_piper(tts, plain, voice, length_scale=length_scale * BASE)
+    return _repitch(x, BASE)
 
 
 def voice_color(samples, rate, voice, pitch=None):
@@ -100,10 +127,11 @@ def load_tts():
     return PiperVoice.load(f"{MODEL_DIR}/de_DE-thorsten-high.onnx")
 
 
-def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE):
+def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
-    voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix).
+    voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
+    effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
     """
     import audio
 
@@ -128,7 +156,10 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         for seg in segments:
             # tiefer heißt beim Strecken auch länger, darum vorher entsprechend schneller sprechen
             text = seg["text"].replace("*", "")
-            samples = speak_piper(tts, text, voice, length_scale=speed * slower * pitch)
+            if voice in LIVELY:
+                samples = speak_lively(tts, seg["text"], voice, length_scale=speed * slower * pitch)
+            else:
+                samples = speak_piper(tts, text, voice, length_scale=speed * slower * pitch)
             spoken.append(voice_color(samples, rate, voice) if voice else samples)
 
     chunks, timings, t = [], [], 0.0
@@ -139,7 +170,9 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         t += dur + pause
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
-    track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood)
+    track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
+                      accent=accent_time(timings) if effects in ("stark", "voll") else None,
+                      keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll")
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -147,6 +180,22 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         f.setframerate(rate)
         f.writeframes(pcm.tobytes())
     return timings, t
+
+
+def accent_time(timings):
+    """Start des vorletzten Satzes: dort steht die Auflösung bzw. der Aha-Moment. Kurze Videos haben keinen."""
+    return round(timings[-2][0], 3) if len(timings) >= 4 else None
+
+
+def key_hits(segments, timings, gap=0.9, limit=5):
+    """Zeitpunkte der *Sternchen*-Schlüsselwörter (Ton und kurzer Zoom bei stufe "voll"), höchstens `limit`."""
+    hits = []
+    for (s, e), seg in zip(timings, segments):
+        for _, _, words in caption_chunks(seg["text"], s, e):
+            for w, ws, _, key in words:
+                if key and ws - s > 0.25 and (not hits or ws - hits[-1] >= gap):
+                    hits.append(round(ws, 3))
+    return hits[:limit]
 
 
 def number_hits(segments, timings, gap=0.6):

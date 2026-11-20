@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-koffein-kaffee",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1a10",
+    "#c98a4a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du zu viel Kaffee trinkst? ☕",
+  "description": "Koffein macht nicht wach, es versteckt die Müdigkeit. Wie Adenosin, Andockstellen und die Halbwertszeit zusammenhängen.\n\n#wissen #kaffee #koffein #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "kaffee",
+    "koffein",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Koffein | blockiert Müdigkeit",
+    "Du bist nicht wach"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du zu viel Kaffee trinkst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "☕"
+      }
+    },
+    {
+      "text": "Den Tag über sammelt sich *Adenosin*, das dich müde macht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔋",
+        "text": "Adenosin"
+      }
+    },
+    {
+      "text": "Koffein besetzt dieselben Andockstellen und blockiert sie.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔒",
+        "text": "Andockstellen"
+      }
+    },
+    {
+      "text": "Nach etwa fünf Stunden ist nur die Hälfte abgebaut.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 5,
+        "einheit": "Stunden",
+        "objekt": "⏱️",
+        "farbcode": "#2a1a10"
+      }
+    },
+    {
+      "text": "Zu viel macht dich *zittrig*, nervös und schlaflos.",
+      "szene": {
+        "typ": "liste",
+        "text": "Zu viel Koffein",
+        "punkte": [
+          "Zittern",
+          "Herzrasen",
+          "Schlaflos"
+        ]
+      }
+    },
+    {
+      "text": "Kaffee macht nicht wach, er *versteckt* nur die Müdigkeit.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☕",
+          "text": "Koffein: versteckt"
+        },
+        "rechts": {
+          "objekt": "🔋",
+          "text": "Müdigkeit: bleibt"
+        }
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Kaffee noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "horror-foto-jede-nacht-mehr",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10101c",
+    "#5a3a8a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Foto, auf dem jede Nacht jemand mehr steht 📱",
+  "description": "Eine ausgedachte Gruselgeschichte: Das Handy macht nachts heimlich Fotos, und auf jedem steht jemand mehr im Zimmer.\n\n#horror #gruselig #creepy #nachtfoto #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "nachtfoto",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Nachtfoto | vier Gestalten",
+    "Es ist von morgen"
+  ],
+  "segments": [
+    {
+      "text": "Niemand ist in meinem Zimmer, doch auf dem *Nachtfoto* steht jemand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📱"
+      }
+    },
+    {
+      "text": "Mein Handy macht seit Tagen heimlich Fotos im Schlaf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "📱",
+        "text": "Nachtfoto"
+      }
+    },
+    {
+      "text": "Erst steht eine Gestalt am Fenster.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "In der nächsten Nacht stehen zwei am Bett.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "kinderzimmer",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Zwei am Bett"
+      }
+    },
+    {
+      "text": "Dann drei, und sie kommen jede Nacht *näher*.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Heute zeigt das Foto vier, direkt neben meinem Gesicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🖼️"
+      }
+    },
+    {
+      "text": "Das Foto ist nicht von gestern, es ist von *morgen*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "📱",
+        "text": "Von morgen"
+      }
+    },
+    {
+      "text": "Darauf stehen schon fünf.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    }
+  ]
+}

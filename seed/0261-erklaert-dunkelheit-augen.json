@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-dunkelheit-augen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#080c18",
+    "#3a4a78"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du 30 Minuten im Dunkeln bleibst? 🌑",
+  "description": "Im Dunkeln stellen sich deine Augen um. Was Stäbchen und Pupillen tun und warum Astronomen rotes Licht nutzen.\n\n#wissen #augen #dunkelheit #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "augen",
+    "dunkelheit",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Dunkelheit | Stäbchen übernehmen",
+    "Rotes Licht hilft"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du dreißig Minuten im Dunkeln bleibst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌑"
+      }
+    },
+    {
+      "text": "Deine Pupillen werden groß, damit mehr Licht hereinkommt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "👁️",
+        "text": "Pupille groß"
+      }
+    },
+    {
+      "text": "Dann übernehmen die *Stäbchen*, die empfindlichsten Zellen im Auge.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "🔦",
+        "text": "Stäbchen"
+      }
+    },
+    {
+      "text": "Sie brauchen etwa dreißig Minuten, bis sie voll arbeiten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "Minuten",
+        "objekt": "⏱️",
+        "farbcode": "#080c18"
+      }
+    },
+    {
+      "text": "Du siehst mehr Formen, aber kaum noch Farben.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌈",
+          "text": "Tag: Farben"
+        },
+        "rechts": {
+          "objekt": "🌑",
+          "text": "Nacht: Grau"
+        }
+      }
+    },
+    {
+      "text": "Schon kurzes Handylicht setzt alles wieder *zurück*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "📱"
+      }
+    },
+    {
+      "text": "Rotes Licht stört die Stäbchen kaum, darum nutzen es *Astronomen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "🔴",
+        "text": "Rotes Licht"
+      }
+    },
+    {
+      "text": "Dein Auge stellt sich selbst auf Nacht um.",
+      "szene": {
+        "typ": "liste",
+        "text": "Nachtsicht",
+        "punkte": [
+          "Pupille weit",
+          "Stäbchen aktiv",
+          "Kaum Farben"
+        ]
+      }
+    }
+  ]
+}
