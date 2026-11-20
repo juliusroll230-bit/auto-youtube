@@ -235,13 +235,9 @@ def build_package(dest, posted=None, now=None, n=6):
     items = package_items(posted if posted is not None else store.posted_items(), now, n)
     if not items:
         raise ValueError("Gerade liegen keine fertigen Shorts bereit. Nach dem nächsten YouTube-Upload klappt es.")
-    lines = ["Deine besten Shorts der letzten 2 Tage für Instagram und TikTok.",
-             "So planst du sie (ca. 5 Minuten, am PC):",
-             "  Instagram: business.facebook.com/latest/composer öffnen (Meta Business Suite) → Reel erstellen →",
-             "             Video wählen, Text einfügen, unten „Planen“ und die Uhrzeit von hier.",
-             "  TikTok:    tiktok.com/tiktokstudio/upload öffnen → Video wählen, Text einfügen,",
-             "             bei „Wann posten“ auf „Planen“ und die Uhrzeit von hier.",
-             "Im Handy geht es auch: Instagram-App → Reel → Weiter → Erweiterte Einstellungen → „Planen“.", ""]
+    lines = ["Deine besten Videos für TikTok und Instagram.",
+             "So geht's: Video hochladen, den Text darunter reinkopieren, posten.",
+             "Tipp: 1 bis 2 Videos am Tag reichen.", ""]
     slots = [(1, 12), (1, 18), (2, 12), (2, 18), (3, 12), (3, 18)]
     with zipfile.ZipFile(dest, "w", zipfile.ZIP_STORED) as z:
         for i, u in enumerate(items, 1):
@@ -250,7 +246,7 @@ def build_package(dest, posted=None, now=None, n=6):
             z.write(store.share_path(u["video_id"]), name)
             day, hour = slots[(i - 1) % len(slots)]
             when = (now + dt.timedelta(days=day)).strftime("%d.%m.")
-            lines += [f"{i:02d}. {name}", f"    Planen für: {when} um {hour} Uhr", "    Text zum Einfügen:",
+            lines += [f"{i:02d}. {name}", f"    Am besten am {when} um {hour} Uhr", "    Text:",
                       *["    " + x for x in (u.get("share") or u.get("title", "")).splitlines()], ""]
         z.writestr("texte.txt", "\r\n".join(lines))
     return len(items)

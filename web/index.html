@@ -1275,7 +1275,11 @@ dialog.vs[open] { display: grid; place-items: center; }
 .so-parents { margin: 0 0 18px; }
 .so-parents > b { display: block; margin: 12px 0 4px; }
 #shList { scroll-margin-top: 90px; }
-a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; }
+a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; justify-content: center; text-align: center; font-size: 17px; padding: 14px 26px; min-height: 52px; white-space: normal; }
+.so-big { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 2px 0 18px; }
+.so-easy li > div { font-size: 15px; }
+.so-adv { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.so-adv > summary { cursor: pointer; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
 </style>
 
 <svg class="sprite-defs" aria-hidden="true" focusable="false">
@@ -1867,21 +1871,16 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="dev-w" id="shFilm"></div>
       </div>
       <div class="card so-card" id="soCard">
-        <div class="card-h"><div><h2>Instagram und TikTok verbinden <span class="pill live">Neu</span></h2><div class="sub">Deine besten Shorts auch auf Instagram und TikTok. Such dir einen Weg aus.</div></div>
-          <div class="seg" role="group" aria-label="Weg wählen"><button type="button" aria-pressed="true" data-sow="leicht">Ohne Entwickler-Konto</button><button type="button" aria-pressed="false" data-sow="auto">Vollautomatisch</button></div></div>
+        <div class="card-h"><div><h2>Auf TikTok und Instagram posten</h2><div class="sub">Deine besten Videos, fertig zum Hochladen.</div></div></div>
         <div class="card-b">
-          <div id="soWayEasy">
-            <p class="so-lead"><b>Der einfache Weg.</b> Kein Entwickler-Konto, keine Schlüssel, geht mit deinem normalen Konto. Alle 2 Tage ca. 5 Minuten: Die Zentrale packt dir die besten Shorts mit fertigem Text, du planst sie einmal ein, sie gehen dann von selbst online.</p>
-            <ol class="steps">
-              <li><div><b>Paket laden</b> (die 6 besten Shorts der letzten 2 Tage und eine Datei <span class="mono">texte.txt</span> mit Text und Uhrzeit):
-                <div class="row" style="margin-top:8px"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Paket herunterladen</a><span class="msg" id="soPackMsg"></span></div>
-                <p class="label" style="margin-top:6px">ZIP-Datei mit Rechtsklick → „Alle extrahieren“ entpacken.</p></div></li>
-              <li><div><b>TikTok:</b> <a href="https://www.tiktok.com/tiktokstudio/upload" target="_blank" rel="noopener">TikTok Studio</a> am PC öffnen → Video reinziehen → Text aus <span class="mono">texte.txt</span> einfügen → bei „Wann posten“ <b>Planen</b> wählen (bis 10 Tage im Voraus) → Uhrzeit aus der Datei.</div></li>
-              <li><div><b>Instagram:</b> In der Instagram-App Reel erstellen → Weiter → <b>Erweiterte Einstellungen</b> → <b>Diesen Beitrag planen</b>. Am PC geht es mit der <a href="https://business.facebook.com/latest/composer" target="_blank" rel="noopener">Meta Business Suite</a> (braucht eine kostenlose Facebook-Seite). Planen klappt bei Creator-Konten: Instagram → Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>.</div></li>
-              <li><div>Fertig. Am Handy geht es auch einzeln: in der Liste <a href="#shList">„Für TikTok und Instagram“</a> weiter unten Clip laden, Text kopieren, posten und abhaken.</div></li>
-            </ol>
-          </div>
-          <div id="soWayAuto" hidden>
+          <div class="so-big"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Heutige Videos für TikTok &amp; Instagram holen</a><span class="msg" id="soPackMsg"></span></div>
+          <ol class="steps so-easy">
+            <li><div>Knopf drücken und die Datei öffnen.</div></li>
+            <li><div>Ein Video in <a href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok</a> oder in die Instagram-App hochladen.</div></li>
+            <li><div>Den passenden Text aus <b>texte.txt</b> reinkopieren und posten.</div></li>
+          </ol>
+          <details class="so-adv" id="soAdv">
+            <summary>Für Fortgeschrittene: automatisch posten</summary>
             <p class="so-lead"><b>Vollautomatisch.</b> Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest. Dafür braucht es einmal eine kleine Entwickler-App bei Meta und TikTok. Die verlangen dafür meist <b>18 Jahre</b>: Dann richtet ein Elternteil das mit der Anleitung unten ein, danach läuft alles ohne sie.</p>
             <details class="so-setup so-parents" id="soParents">
               <summary>Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
@@ -1951,7 +1950,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
               </ol>
             </details>
           </div>
-          </div>
+          </details>
         </div>
       </div>
       <h2 class="sec-h">Deine Kanäle</h2>
@@ -5521,27 +5520,18 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       if (k === "Tt" && ae !== $("soTtKey") && x.client_key) $("soTtKey").value = x.client_key;
       $("so" + k + "Test").disabled = !x.connected || !S.live;
     });
-    if (!S.soWay) soShowWay(/[?&]tiktok=/.test(location.search) ? "auto" : soSavedWay() || (so.instagram.connected || so.tiktok.connected ? "auto" : "leicht"));
+    if (!S.soAdv) { S.soAdv = 1; if (so.instagram.connected || so.tiktok.connected || /[?&]tiktok=/.test(location.search)) $("soAdv").open = true; }
   }
-  function soSavedWay() { try { return localStorage.getItem("soWay"); } catch (e) { return null; } }
-  function soShowWay(w) {
-    S.soWay = w;
-    $("soWayEasy").hidden = w !== "leicht"; $("soWayAuto").hidden = w !== "auto";
-    document.querySelectorAll("[data-sow]").forEach(function (o) { o.setAttribute("aria-pressed", o.dataset.sow === w ? "true" : "false"); });
-  }
-  document.querySelectorAll("[data-sow]").forEach(function (b) {
-    b.addEventListener("click", function () { soShowWay(b.dataset.sow); try { localStorage.setItem("soWay", b.dataset.sow); } catch (e) { /* egal */ } });
-  });
   $("soPack").addEventListener("click", function (e) {
     e.preventDefault();
-    var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Packt die Shorts …";
+    var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Einen Moment …";
     fetch("api/social/paket.zip").then(function (r) {
       if (!r.ok) return r.json().then(function (j) { throw new Error(j.error || "Fehler"); }, function () { throw new Error("Paket gerade nicht möglich (" + r.status + ")"); });
       return r.blob();
     }).then(function (b) {
       var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "shorts-fuer-insta-und-tiktok.zip";
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 60000);
-      m.className = "msg ok"; m.textContent = "✓ Heruntergeladen. Jetzt entpacken und einplanen.";
+      m.className = "msg ok"; m.textContent = "✓ Fertig. Datei öffnen und los.";
     }, function (er) { m.className = "msg err"; m.textContent = er.message; });
   });
   [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (P) {
