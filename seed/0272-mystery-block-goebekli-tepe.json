@@ -1,0 +1,102 @@
+{
+  "slug": "mystery-block-goebekli-tepe",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#2a2418",
+    "#d8b070"
+  ],
+  "accent": "#ffe14d",
+  "title": "Der Tempel, den niemand erklären kann 🪨",
+  "description": "Blockwelt: Göbekli Tepe in der Türkei ist etwa elftausend Jahre alt, älter als jede Stadt. Warum wurde er gebaut und dann begraben?\n\n#mystery #göbeklitepe #archäologie #rätsel #shorts",
+  "tags": [
+    "mystery",
+    "göbeklitepe",
+    "archäologie",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Urtempel | Warum begraben",
+    "Älter als Städte"
+  ],
+  "segments": [
+    {
+      "text": "Hier steht ein Tempel, älter als jede Stadt, und niemand weiß warum.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪨",
+        "chat": "Spieler: wie alt??"
+      }
+    },
+    {
+      "text": "Göbekli Tepe ist ungefähr *elftausend* Jahre alt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "⏳",
+        "text": "11.000 Jahre"
+      }
+    },
+    {
+      "text": "Die Pfeiler sind mehrere Meter hoch und tragen Tierbilder.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Pfeiler mit Tieren"
+      }
+    },
+    {
+      "text": "Damals gab es noch keine Städte und keine Schrift.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Keine Städte"
+      }
+    },
+    {
+      "text": "Wer hat das gebaut, und warum so viel *Mühe*?",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Später wurde der Tempel *absichtlich* mit Erde zugeschüttet.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "⛏️",
+        "text": "Zugeschüttet"
+      }
+    },
+    {
+      "text": "Warum, das weiß bis heute niemand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Warum?"
+      }
+    }
+  ]
+}

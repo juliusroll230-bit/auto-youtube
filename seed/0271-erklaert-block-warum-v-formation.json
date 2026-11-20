@@ -1,0 +1,103 @@
+{
+  "slug": "erklaert-block-warum-v-formation",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#18344a",
+    "#8ad0e8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum fliegen Zugvögel im V? 🦆",
+  "description": "Erklärt in der Blockwelt: Wie der Luftwirbel des Vordermanns Kraft spart und warum sich die Vögel vorn abwechseln.\n\n#wissen #vögel #natur #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "vögel",
+    "natur",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "V-Form | Gratis-Aufwind",
+    "Sie wechseln sich ab"
+  ],
+  "segments": [
+    {
+      "text": "Warum fliegen Zugvögel eigentlich im V?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🦆",
+        "chat": "Spieler: schau mal hoch"
+      }
+    },
+    {
+      "text": "Jeder Flügelschlag wirbelt die Luft hinter dem Vogel auf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🌬️",
+        "text": "Luftwirbel"
+      }
+    },
+    {
+      "text": "Der Vogel dahinter fliegt genau in den *Aufwind*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⬆️",
+        "text": "Aufwind"
+      }
+    },
+    {
+      "text": "So spart jeder Vogel *Kraft* auf der langen Reise.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 5,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Kraft sparen"
+      }
+    },
+    {
+      "text": "Der vorderste hat es am schwersten.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "neutral",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Darum lösen sie sich vorn oft wie ein *Team* ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🤝",
+        "text": "Team"
+      }
+    },
+    {
+      "text": "Manche fliegen so über tausend Kilometer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🗺️"
+      }
+    }
+  ]
+}

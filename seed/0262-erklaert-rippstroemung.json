@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-rippstroemung",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0a2a4a",
+    "#3ab0d8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dich eine Strömung wegzieht? 🌊",
+  "description": "Eine Rippströmung zieht dich nicht unter Wasser, sondern hinaus. Woran du sie erkennst und was du tun kannst.\n\n#wissen #meer #strömung #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "meer",
+    "strömung",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Rippströmung | nicht dagegen",
+    "Schwimm zur Seite"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dich eine Strömung vom Strand wegzieht?",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Das ist eine *Rippströmung*, ein schmaler Strom zurück ins Meer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🌊",
+        "text": "Rippströmung"
+      }
+    },
+    {
+      "text": "Sie zieht dich nicht nach unten, sondern nach draußen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⬇️",
+          "text": "Nicht nach unten"
+        },
+        "rechts": {
+          "objekt": "➡️",
+          "text": "Nach draußen"
+        }
+      }
+    },
+    {
+      "text": "Viele schwimmen dagegen an und werden schnell *müde*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "objekt": "💦"
+      }
+    },
+    {
+      "text": "Von oben sieht man sie als Lücke in den Wellen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏖️",
+        "text": "Lücke in den Wellen"
+      }
+    },
+    {
+      "text": "Bleib ruhig und lass dich erst mal treiben.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das hilft",
+        "punkte": [
+          "Ruhig bleiben",
+          "Winken",
+          "Treiben lassen"
+        ]
+      }
+    },
+    {
+      "text": "Dann schwimmst du *seitlich*, parallel zum Ufer, aus dem Strom.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "↔️",
+        "text": "Seitlich"
+      }
+    },
+    {
+      "text": "Danach kommst du leicht zurück an Land.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🏖️"
+      }
+    }
+  ]
+}

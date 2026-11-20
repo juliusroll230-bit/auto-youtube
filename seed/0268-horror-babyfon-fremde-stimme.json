@@ -1,0 +1,95 @@
+{
+  "slug": "horror-babyfon-fremde-stimme",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0e1220",
+    "#6a8ab0"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Babyfon, das ein fremdes Lied summt 📻",
+  "description": "Eine ausgedachte Gruselgeschichte: Nachts summt das Babyfon ein Lied, aber im Kinderzimmer ist alles still.\n\n#horror #gruselig #creepy #babyfon #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "babyfon",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Babyfon | fremde Stimme",
+    "Sie ist im Flur"
+  ],
+  "segments": [
+    {
+      "text": "Das Babyfon flüstert nachts, aber das Baby schläft völlig still.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👶"
+      }
+    },
+    {
+      "text": "Eine tiefe Stimme summt ein *Kinderlied*, das niemand kennt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎵",
+        "text": "Fremdes Lied"
+      }
+    },
+    {
+      "text": "Ich schleiche zum Kinderzimmer, und das Summen wird *leiser*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schlurft",
+        "objekt": "🚪"
+      }
+    },
+    {
+      "text": "Dort ist alles ruhig, das Baby atmet friedlich.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Aber auf dem Gang hinter mir summt es weiter.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🎵",
+        "text": "Summt weiter"
+      }
+    },
+    {
+      "text": "Die Stimme kam nie aus dem Babyfon, sondern vom *Flur*.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📻",
+        "text": "Nicht das Babyfon"
+      }
+    },
+    {
+      "text": "Und jetzt höre ich sie direkt hinter mir.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-reifenplatzer",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#18283a",
+    "#7ab0d8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn bei Tempo 130 ein Reifen platzt? 💥",
+  "description": "Erklärt in der Blockwelt: Warum das Auto zur Seite zieht, warum voll bremsen schlimmer macht und was du stattdessen tust.\n\n#wissen #auto #reifen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "auto",
+    "reifen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Reifenplatzer | nicht bremsen",
+    "Erst Gas weg"
+  ],
+  "segments": [
+    {
+      "text": "Du fährst schnell, und plötzlich platzt ein Reifen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🛞",
+        "chat": "Server: PLATZ!"
+      }
+    },
+    {
+      "text": "Das Auto zieht sofort zur Seite.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💥",
+        "text": "Zieht zur Seite"
+      }
+    },
+    {
+      "text": "Jetzt zählt, was du in den nächsten Sekunden machst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Was tust du?"
+      }
+    },
+    {
+      "text": "Voll bremsen macht es *schlimmer*, das Auto kann ausbrechen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🛑",
+        "text": "Nicht voll bremsen"
+      }
+    },
+    {
+      "text": "Halte das *Lenkrad* fest und nimm langsam das Gas weg.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Lass das Auto von allein langsamer werden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 2,
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "text": "Ausrollen"
+      }
+    },
+    {
+      "text": "Erst bei niedrigem Tempo bremst du *sanft* und hältst an.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🅿️",
+        "text": "Sanft bremsen"
+      }
+    },
+    {
+      "text": "So bleibt aus dem Schreck nur ein Reifenwechsel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🛞"
+      }
+    }
+  ]
+}

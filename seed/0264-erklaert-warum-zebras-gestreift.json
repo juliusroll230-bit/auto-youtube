@@ -1,0 +1,101 @@
+{
+  "slug": "erklaert-warum-zebras-gestreift",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2a18",
+    "#e0d8a0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum haben Zebras Streifen? 🦓",
+  "description": "Tarnung, Hitze oder Schutz? Was Studien über Zebrastreifen und Fliegen herausgefunden haben.\n\n#wissen #zebra #tiere #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "zebra",
+    "tiere",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zebra | gegen Fliegen",
+    "Kein Zufall"
+  ],
+  "segments": [
+    {
+      "text": "Warum haben Zebras eigentlich Streifen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🦓"
+      }
+    },
+    {
+      "text": "Man vermutete *Tarnung*, Hitze oder Schutz vor Raubtieren.",
+      "szene": {
+        "typ": "liste",
+        "text": "Frühere Ideen",
+        "punkte": [
+          "Tarnung",
+          "Hitze",
+          "Raubtiere"
+        ]
+      }
+    },
+    {
+      "text": "Studien zeigen, dass *Bremsen* auf Zebras seltener landen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🦓",
+          "text": "Zebra: wenig"
+        },
+        "rechts": {
+          "objekt": "🐴",
+          "text": "Pferd: viel"
+        }
+      }
+    },
+    {
+      "text": "Die Streifen irritieren die Fliegen im Landeanflug.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🪰",
+        "text": "Landeanflug"
+      }
+    },
+    {
+      "text": "Im Versuch trugen Pferde Zebra-Mäntel und wurden seltener gestochen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🐴"
+      }
+    },
+    {
+      "text": "Die Streifen sind also vermutlich ein *Fliegenschutz*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🦓",
+        "text": "Fliegenschutz"
+      }
+    },
+    {
+      "text": "Ganz sicher ist die Forschung aber noch nicht.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔬",
+        "text": "Noch offen"
+      }
+    }
+  ]
+}

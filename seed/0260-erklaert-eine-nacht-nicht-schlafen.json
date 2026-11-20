@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-eine-nacht-nicht-schlafen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0e1530",
+    "#6a7ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du eine Nacht nicht schläfst? 🌙",
+  "description": "Eine einzige durchwachte Nacht verändert Reaktion, Laune und Hunger. Und warum es morgens wieder besser wird.\n\n#wissen #schlaf #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schlaf",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "navy"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Wachsein | wie Alkohol",
+    "Dein Tief um vier"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du eine ganze Nacht nicht schläfst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Nach siebzehn Stunden reagierst du wie leicht *angetrunken*.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 17,
+        "einheit": "Stunden wach",
+        "objekt": "🥱",
+        "farbcode": "#0e1530"
+      }
+    },
+    {
+      "text": "Dein Gehirn schaltet für *Sekunden* einfach ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "😵",
+        "text": "Sekundenschlaf"
+      }
+    },
+    {
+      "text": "Dein Körper will mehr Zucker und mehr Essen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍔",
+          "text": "Hunger: hoch"
+        },
+        "rechts": {
+          "objekt": "🧠",
+          "text": "Sättigung: runter"
+        }
+      }
+    },
+    {
+      "text": "Kleine Dinge nerven dich sofort, deine Laune kippt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "objekt": "💢"
+      }
+    },
+    {
+      "text": "Konzentration, Reaktion und Gedächtnis werden schlechter.",
+      "szene": {
+        "typ": "liste",
+        "text": "Wird schlechter",
+        "punkte": [
+          "Konzentration",
+          "Reaktion",
+          "Gedächtnis"
+        ]
+      }
+    },
+    {
+      "text": "Gegen vier Uhr morgens ist dein Tief am *tiefsten*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "⏰",
+        "text": "4 Uhr"
+      }
+    },
+    {
+      "text": "Danach geht es bergauf, weil deine innere Uhr aufdreht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "☀️"
+      }
+    }
+  ]
+}
