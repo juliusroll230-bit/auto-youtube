@@ -1288,6 +1288,71 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 .so-manual + .so-adv { margin-top: 6px; }
 .so-adv { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
 .so-adv > summary { cursor: pointer; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+/* Reiter Insta & TikTok (social.overview) */
+.sv-ref { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sv-note { margin: 18px 0 0; padding: 12px 14px; border-radius: 12px; background: rgba(242, 196, 109, .12); font-size: 13.5px; line-height: 1.45; }
+.sv-plats { margin-top: 22px; }
+.sv-p { overflow: hidden; }
+.sv-top { display: flex; align-items: center; gap: 12px; padding: 18px 20px 0; }
+.sv-logo { width: 42px; height: 42px; border-radius: 12px; flex: none; display: grid; place-items: center; color: #fff; overflow: hidden; }
+.sv-logo svg { width: 24px; height: 24px; }
+.sv-logo img { width: 100%; height: 100%; object-fit: cover; }
+.sv-logo.ig { background: radial-gradient(circle at 30% 110%, #fdcb52 0 22%, #fd5949 45%, #d6249f 65%, #285aeb 95%); }
+.sv-logo.tt { background: #000; border: 1px solid rgba(255, 255, 255, .16); box-shadow: inset -2px 0 0 #25f4ee, inset 2px 0 0 #fe2c55; }
+.sv-id { min-width: 0; flex: 1; }
+.sv-id b { display: block; font-size: 16px; font-weight: 700; }
+.sv-id span { color: var(--muted); font-size: 12.5px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-k { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 16px 20px 0; }
+.sv-k div { padding: 12px; border-radius: 13px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .07); min-width: 0; }
+.sv-k b { display: block; font-size: 22px; font-weight: 750; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.sv-k span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.sv-k b.na { color: var(--muted); font-weight: 600; }
+.sv-next { margin: 14px 20px 0; padding: 12px 14px; border-radius: 13px; background: rgba(154, 212, 166, .09); border: 1px solid rgba(154, 212, 166, .2); display: flex; gap: 10px; align-items: center; font-size: 13.5px; }
+.sv-next i { font-style: normal; font-size: 18px; }
+.sv-next.off { background: rgba(255, 255, 255, .04); border-color: var(--line); color: var(--ink-2); }
+.sv-err { margin: 12px 20px 0; padding: 11px 14px; border-radius: 12px; background: rgba(240, 138, 116, .12); border: 1px solid rgba(240, 138, 116, .3); font-size: 13px; line-height: 1.45; }
+.sv-info { margin: 12px 20px 0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+.sv-list { list-style: none; margin: 14px 0 0; padding: 0 10px 12px; }
+.sv-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 10px; border-radius: 12px; }
+.sv-list li:hover { background: rgba(255, 255, 255, .04); }
+.sv-list img, .sv-list .ph { width: 40px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--surface-2); display: block; }
+.sv-list .tt { font-weight: 600; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-list .mt { font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+.sv-list .mt b { color: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.sv-list a.btn { text-decoration: none; }
+.sv-b { display: inline-block; font-size: 11px; font-weight: 650; padding: 1px 8px; border-radius: 99px; background: rgba(154, 212, 166, .15); color: var(--accent); }
+.sv-b.err { background: rgba(240, 138, 116, .16); color: var(--err); }
+.sv-b.wait { background: rgba(242, 196, 109, .15); color: var(--hi); }
+.sv-h3 { padding: 18px 20px 0; font-size: 13px; font-weight: 650; color: var(--ink-2); }
+.sv-empty { padding: 26px 20px 24px; text-align: center; color: var(--muted); }
+.sv-empty b { display: block; color: var(--ink); margin-bottom: 4px; }
+.sv-kit { margin-top: 22px; }
+.sv-kit-b { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 28px; }
+.sv-blk { margin-bottom: 18px; min-width: 0; }
+.sv-t { font-weight: 650; font-size: 13.5px; margin-bottom: 6px; }
+.sv-bio { white-space: pre-wrap; margin: 0 0 8px; padding: 10px 12px; border-radius: 11px; background: rgba(0, 0, 0, .3); border: 1px solid var(--line); font: inherit; font-size: 13px; line-height: 1.5; }
+.sv-pics { display: flex; gap: 14px; flex-wrap: wrap; }
+.sv-pic { width: 140px; text-align: center; }
+.sv-pic img { width: 100px; height: 100px; border-radius: 50%; display: block; margin: 0 auto 8px; border: 2px solid var(--line-2); }
+.sv-pic .label { display: block; margin-bottom: 6px; min-height: 2.8em; }
+.sv-pic a.btn { text-decoration: none; }
+.sv-tag { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.sv-tag:first-child { border-top: 0; padding-top: 0; }
+.sv-tag b { font-size: 12.5px; }
+.sv-tag code { grid-column: 1; font-size: 12px; color: var(--ink-2); word-break: break-word; }
+.sv-tag .btn { grid-row: 1 / span 2; grid-column: 2; }
+.sv-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sv-check label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; padding: 9px 11px; border-radius: 11px; background: rgba(255, 255, 255, .04); cursor: pointer; }
+.sv-check input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--accent); }
+.sv-check .label { display: block; }
+.sv-check .on b { text-decoration: line-through; color: var(--muted); }
+@media (max-width: 1100px) { .sv-k { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) {  /* 10 Reiter: Leiste unten wischbar statt abgeschnitten */
+  .nav { overflow-x: auto; justify-content: flex-start; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 1 0 auto; min-width: 58px; padding-inline: 6px; }
+}
+@media (max-width: 760px) { .sv-kit-b { grid-template-columns: minmax(0, 1fr); } .sv-list li { grid-template-columns: 40px minmax(0, 1fr); } .sv-list li > a.btn { grid-column: 2; justify-self: start; } }
 </style>
 
 <svg class="sprite-defs" aria-hidden="true" focusable="false">
@@ -1307,6 +1372,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   <nav class="nav" aria-label="Bereiche">
     <a href="#zentrale" data-tab="zentrale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 7 18a2.5 2.5 0 0 0 5 .5V5.6A2.5 2.5 0 0 0 9 4.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 17 18a2.5 2.5 0 0 1-5 .5"/><path d="M12 9h2.5M12 13.5h3"/></svg><span>Zentrale</span></a>
     <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
+    <a href="#social" data-tab="social"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg><span class="l">Insta &amp; TikTok</span><span class="s" aria-hidden="true">Social</span></a>
     <a href="#geld" data-tab="geld"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M6.5 10.5h6M6.5 13.5h6"/></svg><span>Geld</span></a>
     <a href="#kampagnen" data-tab="kampagnen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><span class="l">Kampagnen</span><span class="s" aria-hidden="true">Clips</span></a>
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
@@ -1446,6 +1512,38 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     </section>
 
     <!-- CLIPI -->
+    <section class="view" id="v-social" hidden>
+      <div class="head">
+        <div>
+          <h1>Instagram &amp; TikTok</h1>
+          <p>Was gepostet wurde, wie es läuft und was als Nächstes rausgeht. Dazu alles fürs Profil zum Kopieren.</p>
+        </div>
+        <div class="sv-ref"><span class="label" id="svStand"></span><button class="btn sm" type="button" id="svRefresh">Zahlen neu holen</button></div>
+      </div>
+      <div class="sv-note" id="svNote" hidden></div>
+      <div class="grid g-11 sv-plats">
+        <div class="card sv-p" id="svIg"></div>
+        <div class="card sv-p" id="svTt"></div>
+      </div>
+      <div class="card sv-kit" id="svKit">
+        <div class="card-h"><div><h2>Profil-Paket</h2><div class="sub">Name, Bild, Bio, Link und Hashtags. Antippen, kopieren, in der App einfügen.</div></div><span class="pill" id="svDonePill"></span></div>
+        <div class="card-b sv-kit-b">
+          <div class="sv-col">
+            <div class="sv-blk"><div class="sv-t">Name</div><div class="copy"><code id="svName"></code><button class="btn sm" type="button" data-copy="svName">Kopieren</button></div></div>
+            <div class="sv-blk"><div class="sv-t">Benutzername <span class="label">(den ersten freien nehmen)</span></div><div id="svUsers"></div></div>
+            <div class="sv-blk"><div class="sv-t">Bio Instagram <span class="label" id="svBioIgN"></span></div><pre class="sv-bio" id="svBioIg"></pre><button class="btn sm" type="button" data-copy="svBioIg">Bio kopieren</button></div>
+            <div class="sv-blk"><div class="sv-t">Bio TikTok <span class="label" id="svBioTtN"></span></div><pre class="sv-bio" id="svBioTt"></pre><button class="btn sm" type="button" data-copy="svBioTt">Bio kopieren</button></div>
+            <div class="sv-blk"><div class="sv-t">Link in der Bio</div><div class="copy"><code id="svLink"></code><button class="btn sm" type="button" data-copy="svLink">Kopieren</button></div>
+              <p class="label" style="margin-top:6px">Führt zu deinem YouTube-Kanal, dort zählt jeder Aufruf fürs Werbegeld. Bei TikTok gibt es den Link erst ab 1.000 Followern.</p></div>
+          </div>
+          <div class="sv-col">
+            <div class="sv-blk"><div class="sv-t">Profilbild <span class="label">(überall dasselbe)</span></div><div class="sv-pics" id="svPics"></div></div>
+            <div class="sv-blk"><div class="sv-t">Hashtags je Video-Art <span class="label">(die Zentrale setzt sie beim Posten selbst, das hier ist fürs Posten von Hand)</span></div><div id="svTags"></div></div>
+            <div class="sv-blk"><div class="sv-t">Profil fertig?</div><ul class="sv-check" id="svCheck"></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="view" id="v-geld" hidden>
       <div class="head">
         <div>
@@ -5519,6 +5617,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderViewers(d);
     renderComments(d);
     renderSocial(d);
+    renderSocialView(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5720,6 +5819,141 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if (q) setTimeout(function () { toast({ ok: "TikTok verbunden", abgebrochen: "TikTok-Anmeldung abgebrochen", ungueltig: "Anmeldung abgelaufen, bitte nochmal", fehler: "TikTok-Verbindung fehlgeschlagen, siehe Protokoll" }[q] || "TikTok"); }, 600);
   })();
 
+  // --- Reiter Insta & TikTok (social.overview) ------------------------------------------
+  var SV_ICON = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="#fff"><path d="M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2-2.8V9a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.6 4.6 0 0 1-4.4-4.7z"/></svg>'
+  };
+  function svWhen(iso) {
+    var t = new Date(iso); if (isNaN(t)) return "";
+    var today = berlin(new Date()).day, dd = berlin(t).day, tm = berlin(new Date(Date.now() + 864e5)).day;
+    var day = dd === today ? "heute" : dd === tm ? "morgen" : dd === berlin(new Date(Date.now() - 864e5)).day ? "gestern" : fDayS.format(t);
+    return day + ", " + fTime.format(t) + " Uhr";
+  }
+  function svNum(v) { return v == null ? "–" : v >= 10000 ? nfc.format(v) : nf.format(v); }
+  function svPlatform(box, plat, x, sv) {
+    clear(box);
+    var name = plat === "instagram" ? "Instagram" : "TikTok";
+    var logo = h("div", { cls: "sv-logo " + (plat === "instagram" ? "ig" : "tt") });
+    if (x.avatar) logo.appendChild(h("img", { src: x.avatar, alt: "", referrerpolicy: "no-referrer" })); else logo.innerHTML = SV_ICON[plat];
+    var pl = h("span", { cls: "pill" });
+    if (!x.connected) pill(pl, "", "Nicht verbunden");
+    else if (x.disconnected) pill(pl, "err", "Verbindung weg");
+    else if (x.error) pill(pl, "err", "Fehler");
+    else if (!x.on) pill(pl, "warn", "Pausiert");
+    else pill(pl, "live", "Läuft");
+    var sub = x.connected ? (x.username ? (plat === "instagram" && !x.buffer ? "@" : "") + x.username : "verbunden") + (x.buffer ? " · über Buffer" : "") : "noch nicht verbunden";
+    var top = h("div", { cls: "sv-top" }, [logo, h("div", { cls: "sv-id" }, [h("b", { text: name }), h("span", { text: sub })]), pl]);
+    box.appendChild(top);
+    if (!x.connected) {
+      box.appendChild(h("div", { cls: "sv-empty" }, [h("b", { text: name + " ist noch nicht verbunden" }),
+        h("p", { text: "Einmal ca. 10 Minuten einrichten, danach postet die Zentrale jeden Tag die besten Shorts von selbst." }),
+        h("a", { cls: "btn primary", href: "#kanal", text: "Jetzt verbinden" })]));
+      return;
+    }
+    var T = x.totals || {};
+    var k = h("div", { cls: "sv-k" });
+    [[x.has_numbers ? (T.views || 0) : null, "Aufrufe", !x.has_numbers],
+     [x.has_numbers ? (T.likes || 0) : null, "Likes", !x.has_numbers],
+     [x.followers != null ? x.followers : x.has_numbers ? (T.comments || 0) : null, x.followers != null ? "Follower" : "Kommentare", x.followers == null && !x.has_numbers],
+     [x.week, "Posts in 7 Tagen", false]].forEach(function (q) {
+      k.appendChild(h("div", null, [h("b", { cls: q[2] ? "na" : "", text: svNum(q[0]) }), h("span", { text: q[1] })]));
+    });
+    box.appendChild(k);
+    var n = x.next;
+    if (n) box.appendChild(h("div", { cls: "sv-next" }, [h("i", { text: "⏭" }), h("div", null, [
+      h("b", { text: "Als Nächstes: " + svWhen(n.at) }),
+      h("div", { cls: "label", text: n.title ? "„" + n.title + "“ (dein bester Short der letzten 2 Tage, der dort noch fehlt)" : "Wartet auf den nächsten neuen Short von YouTube." })])]));
+    else box.appendChild(h("div", { cls: "sv-next off" }, [h("i", { text: "⏸" }), h("div", { text: !x.on ? "Automatik ist aus. Im Reiter Kanäle wieder einschalten." : "Gerade nichts geplant." })]));
+    (x.scheduled || []).forEach(function (p) {
+      box.appendChild(h("div", { cls: "sv-info", text: "In Buffer geplant: „" + (p.title || "Post") + "“ " + (p.due ? svWhen(p.due) : "") }));
+    });
+    var errs = [];
+    if (x.disconnected) errs.push(name + " ist in Buffer getrennt. Bei buffer.com einloggen und den Kanal neu verbinden.");
+    if (x.error) errs.push("Letzter Versuch: " + x.error);
+    (x.failed || []).slice(0, 2).forEach(function (p) { errs.push("„" + (p.title || "Post") + "“ ging nicht raus" + (p.error ? ": " + p.error : ".")); });
+    errs.forEach(function (e) { box.appendChild(h("div", { cls: "sv-err", text: e })); });
+    var info = [];
+    if (!x.has_numbers) info.push(plat === "tiktok" ? "TikTok gibt ohne Buffer keine Zahlen heraus. Verbinde TikTok über Buffer (Reiter Kanäle), dann stehen hier Aufrufe und Likes. Follower zeigt nur die TikTok-App." : "Zahlen gibt es, sobald Instagram über Buffer verbunden ist.");
+    else if (x.followers == null) info.push("Follower gibt Buffer nicht heraus, die siehst du in der " + name + "-App. Aufrufe und Likes holt Buffer einmal am Tag, neue Posts zeigen deshalb erst nach ca. 24 Stunden Zahlen.");
+    else info.push("Aufrufe und Likes kommen von " + name + " selbst und sind höchstens 30 Minuten alt.");
+    box.appendChild(h("p", { cls: "sv-info", text: info.join(" ") }));
+    box.appendChild(h("div", { cls: "sv-h3", text: "Zuletzt gepostet" }));
+    var posts = (x.posts || []).filter(function (p) { return p.status !== "scheduled"; }).slice(0, 8);
+    if (!posts.length) { box.appendChild(h("div", { cls: "sv-empty", text: "Noch nichts gepostet. Der erste Short geht zwischen 12 und 22 Uhr raus." })); return; }
+    var ul = h("ul", { cls: "sv-list" });
+    posts.forEach(function (p) {
+      var m = p.metrics || {}, mt = h("div", { cls: "mt" });
+      mt.appendChild(h("span", { text: svWhen(p.at) }));
+      var badge = p.status === "error" ? ["err", "Fehler"] : p.status === "draft" ? ["wait", "Entwurf in der App"] : p.status === "sending" ? ["wait", "wird gesendet"] : ["", "online"];
+      mt.appendChild(h("span", { cls: "sv-b " + badge[0], text: badge[1] }));
+      if (m.views != null) mt.appendChild(h("span", null, [h("b", { text: svNum(m.views) }), " Aufrufe"]));
+      if (m.likes != null) mt.appendChild(h("span", null, [h("b", { text: svNum(m.likes) }), " Likes"]));
+      if (m.comments) mt.appendChild(h("span", null, [h("b", { text: svNum(m.comments) }), " Kommentare"]));
+      if (p.status === "sent" && x.has_numbers && m.views == null && m.likes == null) mt.appendChild(h("span", { text: "Zahlen folgen" }));
+      var img = p.slug ? h("img", { src: "api/thumb/" + p.slug + ".jpg", alt: "", loading: "lazy" }) : h("span", { cls: "ph" });
+      ul.appendChild(h("li", null, [img, h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: p.title || "Post" }), mt]),
+        p.link ? h("a", { cls: "btn sm", href: p.link, target: "_blank", rel: "noopener", text: "Ansehen" }) : null]));
+    });
+    box.appendChild(ul);
+  }
+  function renderSocialView(d) {
+    var sv = d.social_view;
+    if (!sv || !$("svIg")) return;
+    svPlatform($("svIg"), "instagram", sv.instagram, sv);
+    svPlatform($("svTt"), "tiktok", sv.tiktok, sv);
+    $("svStand").textContent = sv.stats_at ? "Zahlen von " + svWhen(sv.stats_at) : "";
+    $("svRefresh").hidden = !(sv.instagram.has_numbers || sv.tiktok.has_numbers);
+    $("svRefresh").disabled = !S.live;
+    var note = $("svNote"), e = sv.errors || {};
+    var msg = e.buffer ? "Zahlen von Buffer gerade nicht abrufbar: " + e.buffer : e.instagram ? "Zahlen von Instagram gerade nicht abrufbar: " + e.instagram : "";
+    note.hidden = !msg; note.textContent = msg;
+    renderKit(sv);
+  }
+  function renderKit(sv) {
+    var P = sv.profile;
+    if (!P) return;
+    $("svName").textContent = P.name;
+    var us = clear($("svUsers"));
+    P.usernames.forEach(function (u, i) {
+      var c = h("code", { id: "svU" + i, text: u }), b = h("button", { cls: "btn sm", type: "button", text: "Kopieren" });
+      b.addEventListener("click", function () { copyText(u, b); });
+      us.appendChild(h("div", { cls: "copy" }, [c, b]));
+    });
+    [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (q) {
+      var t = P.bio[q[1]], len = Array.from(t).length;
+      $("svBio" + q[0]).textContent = t;
+      $("svBio" + q[0] + "N").textContent = "(" + len + " von " + P.bio_max[q[1]] + " Zeichen)";
+    });
+    $("svLink").textContent = P.link;
+    if (!$("svPics").childNodes.length) P.pictures.forEach(function (pic) {
+      $("svPics").appendChild(h("div", { cls: "sv-pic" }, [h("img", { src: pic.file, alt: "Profilbild " + pic.name }),
+        h("b", { text: pic.name }), h("span", { cls: "label", text: pic.tip }),
+        h("a", { cls: "btn sm", href: pic.file, download: "profilbild-60-sekunden-wissen.png", text: "Herunterladen" })]));
+    });
+    if (!$("svTags").childNodes.length) P.hashtags.forEach(function (t) {
+      var b = h("button", { cls: "btn sm", type: "button", text: "Kopieren" });
+      b.addEventListener("click", function () { copyText(t.tags, b); });
+      $("svTags").appendChild(h("div", { cls: "sv-tag" }, [h("b", { text: t.name }), b, h("code", { text: t.tags })]));
+    });
+    var done = sv.done || [], ul = clear($("svCheck"));
+    P.checklist.forEach(function (c) {
+      var on = done.indexOf(c[0]) !== -1;
+      var cb = h("input", { type: "checkbox" }); cb.checked = on; cb.disabled = !S.live;
+      cb.addEventListener("change", function () {
+        api("api/social/profil", { key: c[0], done: cb.checked }).then(null, function (e) { toast(e.message); cb.checked = !cb.checked; });
+      });
+      ul.appendChild(h("li", null, [h("label", { cls: on ? "on" : "" }, [cb, h("div", null, [h("b", { text: c[1] }), h("span", { cls: "label", text: c[2] })])])]));
+    });
+    var n = P.checklist.filter(function (c) { return done.indexOf(c[0]) !== -1; }).length;
+    pill($("svDonePill"), n === P.checklist.length ? "live" : "warn", n === P.checklist.length ? "Profil fertig" : n + " von " + P.checklist.length + " erledigt");
+  }
+  $("svRefresh").addEventListener("click", function () {
+    var b = $("svRefresh"); b.disabled = true; b.textContent = "Hole Zahlen …";
+    api("api/social/refresh").then(function () { toast("Zahlen aktualisiert"); }, function (e) { toast(e.message); })
+      .then(function () { b.disabled = false; b.textContent = "Zahlen neu holen"; });
+  });
+
   // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {
     return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) })
@@ -5792,7 +6026,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
+  var TABS = ["zentrale", "social", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -5802,6 +6036,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if ($("vs").open) $("vs").close();
     TABS.forEach(function (x) { $("v-" + x).hidden = x !== t; });
     document.querySelectorAll("[data-tab]").forEach(function (a) { if (a.dataset.tab === t) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    var cur = document.querySelector('.nav a[aria-current="page"]');
+    if (cur && matchMedia("(max-width: 860px)").matches) cur.scrollIntoView({ inline: "center", block: "nearest" });
     window.scrollTo(0, 0);
     if (S.d) render();  // Diagramme brauchen die Breite des sichtbaren Bereichs
   }
