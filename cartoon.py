@@ -77,6 +77,8 @@ def validate(spec):
         errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
     if spec.get("aufbau") and spec["aufbau"] not in learn.LAYOUTS:
         errs.append(f"Aufbau {spec['aufbau']}, erlaubt: {', '.join(learn.LAYOUTS)}")
+    if spec.get("tempo") and spec["tempo"] not in learn.TEMPOS:
+        errs.append(f"Tempo {spec['tempo']}, erlaubt: {', '.join(learn.TEMPOS)}")
     if spec.get("welt") and spec["welt"] not in WORLDS:
         errs.append(f"Welt {spec['welt']}, erlaubt: {', '.join(sorted(WORLDS))}")
     if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
@@ -134,13 +136,13 @@ def word_times(segments, timings):
     """Wort-Zeiten für die Untertitel: jeder Satz bekommt seine Zeit, die Wörter teilen sie nach Länge."""
     words = []
     for li, (seg, (s0, s1)) in enumerate(zip(segments, timings)):
-        toks = seg["text"].replace("*", "").split()
+        toks = re.sub(r"\*([^*]+)\*", lambda m: " ".join("*" + x for x in m.group(1).split()), seg["text"]).split()
         weights = [len(re.sub(r"\W", "", w)) + 2 + (4 if re.search(r"[,.:;?!]$", w) else 0) for w in toks]
         total, acc = sum(weights) or 1, 0
         for w, x in zip(toks, weights):
             st = s0 + (s1 - s0) * acc / total
             acc += x
-            words.append({"w": numerals.display_word(w), "s": round(st, 3), "line": li})
+            words.append({"w": numerals.display_word(w.replace("*", "")), "s": round(st, 3), "line": li, "k": "*" in w})
     for i, w in enumerate(words):
         nxt = words[i + 1]["s"] if i + 1 < len(words) else timings[-1][1]
         w["e"] = round(min(nxt, w["s"] + 1.2), 3)
@@ -150,6 +152,11 @@ def word_times(segments, timings):
 def layout(spec):
     """"spannung" (Herzschlag + Countdown, Test) oder None (normal). Lange Videos immer normal."""
     return "spannung" if spec.get("aufbau") == "spannung" and not is_long(spec) else None
+
+
+def fast(spec):
+    """Tempo "schnell" (Test seit 21.11.2026): Schnitt alle ca. 1,3 s, flottere Stimme. Lange Videos nie."""
+    return spec.get("tempo") == "schnell" and not is_long(spec)
 
 
 STICKERS = {"neugierig": "🤯", "gruselig": "😱", "mysterioes": "🤔", "warm": "🥹"}   # Reaktions-Sticker je Stimmung
@@ -179,7 +186,10 @@ def plan(spec, timings, total):
             # Test Spannung: Herzschlag-Puls und Countdown bis zur Auflösung
             "aufbau": layout(spec),
             "reveal": make_short.accent_time(timings) if layout(spec) == "spannung" else None,
-            "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else []}
+            "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else [],
+            # Test Tempo "schnell": Zwischenschnitte (gleiche Zeiten wie die Snaps im Ton)
+            "tempo": "schnell" if fast(spec) else "normal",
+            "cuts": make_short.fast_cuts(timings, total) if fast(spec) else []}
 
 
 def stage(p, folder):
@@ -226,10 +236,10 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
-                                           speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
-                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE,
+                                           speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 0.9 if fast(spec) else 1),
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=0.0 if fast(spec) else PAUSE,
                                            effects=None if is_long(spec) else spec.get("effekte"),
-                                           layout=layout(spec))
+                                           layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None)
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []

@@ -151,6 +151,20 @@ keine reinen Feuer-/Regen-Shorts (YouTube wertet sie leicht als wiederholte Inha
   30-s-Teaser-Short. Lernmodus wählt Szene und Länge nach Aufrufen pro Tag. Neue Ideen nur als Eintrag in `IDEAS` (eigene Zeichnung,
   eigener Klang), keine fremden Clips, Musik oder Marken. Banner/Profilbild: `python entspannung.py branding ordner` (Varianten A/B/C).
 
+### Test: Tempo „schnell“ (seit 21.11.2026, Julius' Wunsch nach zwei Instagram-Reels)
+
+Julius mag schnelle Reels (3D-Sketch und Tipp-Liste, je ca. 22 bis 25 s). Darum als Test, **ohne den Plan oben zu ändern**:
+Die App wählt selbst **2 von 15 Cartoon-Shorts** (`learn.choose_tempo`, `look.tempo`, Lernmerkmal „Tempo (schnell)“):
+Schnitt alle ca. 1,3 s (`make_short.fast_cuts`) mit wechselnder Einstellung (weit, nah, schräg), Stoß-Zoom und kurzem Blitz,
+selbst erzeugter Snap-Ton (`audio.snap`), Stimme ca. 10 % flotter ohne Pausen, große Wort-für-Wort-Untertitel
+(Schlüsselwörter gelb) und gelber Fortschrittsbalken oben. Nicht zusammen mit „Spannung“, nie bei langen Videos.
+Zum Ausprobieren im Skript `"tempo": "schnell"`.
+
+- Die tägliche Skript-Aufgabe ändert sich nicht. Weil jeder Short dran kommen kann: kurze Sätze (5 bis 10 Wörter) helfen allen Shorts.
+- Liegt „schnell“ nach mind. 5 bewerteten Videos je Seite mehr als 30 % vorn, bekommt es 4 Plätze mehr (6 von 15).
+  Dann Julius vorschlagen, ob alle Shorts so laufen sollen.
+- Nur Stil gelernt (Tempo, Schnitt, Untertitel), nichts aus den Reels übernommen.
+
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 
 `vorbilder.py` hat 14 erfolgreiche Kanäle in unseren Nischen (Zack D. Films, What If, Unlucky Guy, SONNENSEITE …).

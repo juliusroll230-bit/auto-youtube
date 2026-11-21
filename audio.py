@@ -431,7 +431,18 @@ def tension_beats(reveal, start=0.4):
     return beats
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=()):
+def snap(rate):
+    """Sehr kurzer, trockener Klick mit Luft: der Schnitt-Ton im Tempo "schnell" (selbst erzeugt)."""
+    n = int(0.09 * rate)
+    t = np.arange(n) / rate
+    rng = np.random.default_rng(7)
+    click = np.sin(2 * np.pi * (1400 - 6000 * t) * t) * np.exp(-t * 90)
+    air = rng.standard_normal(n) * np.exp(-t * 60) * 0.5
+    y = click + _lowpass(air, 0.35)
+    return (y / max(1e-6, np.abs(y).max())).astype(np.float32)
+
+
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=(), snaps=()):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
@@ -441,6 +452,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
     setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026),
     keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
     beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser.
+    snaps: Zwischenschnitte (Tempo "schnell"): kurzer Snap, Musik etwas lauter.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -458,7 +470,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
         gap = np.ones(n, dtype=np.float32)
         gap[max(0, a):max(0, min(n, b))] = 0.0
         duck = duck * np.convolve(gap, np.ones(win) / win, mode="same")
-    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 1.0) * duck
+    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 1.15 if snaps else 1.0) * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
@@ -476,6 +488,11 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
             _add(sfx, (accent + 0.12) * rate, (0.10 if dark else 0.16) * ding(rate))
     for k in keys:
         _add(sfx, k * rate, (0.07 if warm else 0.12) * bloop(rate))
+    if snaps:
+        sn = snap(rate)
+        for c in snaps:
+            if accent is None or abs(c - accent) > 0.3:
+                _add(sfx, c * rate, (0.06 if dark else 0.1) * sn)
     if beats:
         hb = heartbeat(rate)
         for i, b in enumerate(beats):   # wird zum Ende hin etwas lauter

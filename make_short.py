@@ -128,12 +128,13 @@ def load_tts():
 
 
 def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None,
-               layout=None):
+               layout=None, tempo=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
     effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
     layout: "spannung" legt einen Herzschlag bis zur Auflösung darunter (Test).
+    tempo: "schnell" legt auf jeden Zwischenschnitt (fast_cuts) einen kurzen Snap (Test seit 21.11.2026).
     """
     import audio
 
@@ -175,7 +176,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
                       accent=accent_time(timings) if effects in ("stark", "voll") else None,
                       keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll",
-                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else ())
+                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else (),
+                      snaps=fast_cuts(timings, t + TAIL) if tempo == "schnell" else ())
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -183,6 +185,23 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         f.setframerate(rate)
         f.writeframes(pcm.tobytes())
     return timings, t
+
+
+FAST_SHOT = 1.3   # Tempo "schnell": so lange (s) bleibt eine Einstellung ungefähr stehen
+
+
+def fast_cuts(timings, total, every=FAST_SHOT):
+    """Zwischenschnitte innerhalb der Sätze für Tempo "schnell": ca. alle 1,3 s eine neue Einstellung,
+    aber nie kurz vor dem nächsten Satz (der bringt selbst einen Schnitt)."""
+    cuts = []
+    for i, (s, _) in enumerate(timings):
+        end = timings[i + 1][0] if i + 1 < len(timings) else total
+        n = int((end - s) / every)
+        if n >= 1 and (end - s) / (n + 1) < 0.75:   # Stücke nicht kürzer als 0,75 s
+            n -= 1
+        step = (end - s) / (n + 1)
+        cuts += [round(s + step * k, 3) for k in range(1, n + 1)]
+    return cuts
 
 
 def accent_time(timings):

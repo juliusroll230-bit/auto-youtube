@@ -19,11 +19,27 @@ const TOTAL_FRAMES = Math.round(DUR * FPS);
 const grains = [];
 for (let k = 0; k < 4; k++) { const g = document.createElement('canvas'); g.width = g.height = 256; const gc = g.getContext('2d'); const id = gc.createImageData(256, 256); const R = rng(k + 11); for (let i = 0; i < id.data.length; i += 4) { const v = 128 + (R() - .5) * 120; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; } gc.putImageData(id, 0, 0); grains.push(g); }
 const WORDS = PLAN.words;
+// Test Tempo "schnell" (seit 21.11.2026, nach Julius' Vorbild-Reels): Schnitt alle ca. 1,3 s (PLAN.cuts, gleiche Zeiten wie die Snaps im Ton),
+// jede Einstellung anders gerahmt (nah, halbnah, schräg), Stoß-Zoom auf jedem Schnitt, Wort-für-Wort-Untertitel, Fortschrittsbalken.
+const FAST = PLAN.tempo === 'schnell' && !WIDE;
+const CUTS = FAST ? [...PLAN.scenes.slice(1).map(s => s.start), ...(PLAN.cuts || [])].sort((a, b) => a - b) : [];
+// z: Zoom, x: seitlich, y: Bildpunkt (Höhe), der in die Mitte kommt (Gesichter sitzen oben), r: Neigung
+const FRAMINGS = [{ z: 1, x: 0, y: .47, r: 0 }, { z: 1.32, x: 0, y: .39, r: 0 }, { z: 1.16, x: -70, y: .43, r: -.035 }, { z: 1.45, x: 40, y: .36, r: .02 }, { z: 1.1, x: 80, y: .45, r: .03 }];
+function fastCam(t) {
+  // Nummer der Einstellung innerhalb der Szene: jede Szene startet weit (man sieht, wo man ist), danach wechselt es
+  let k = 0, last = 0; const sc = PLAN.scenes.findLast ? PLAN.scenes.findLast(s => t >= s.start) : PLAN.scenes.filter(s => t >= s.start).pop();
+  for (const c of PLAN.cuts || []) { if (c <= t && sc && c > sc.start) k++; }
+  for (const c of CUTS) if (c <= t) last = c;
+  const f = k === 0 ? FRAMINGS[(sc && sc.i % 2) ? 4 : 0] : FRAMINGS[1 + ((k - 1 + (sc ? sc.i : 0)) % 4)];
+  const d = t - last, kick = last > 0 && d < .5 ? .09 * Math.exp(-d * 11) : 0;   // Stoß-Zoom direkt nach dem Schnitt
+  return { z: f.z * (1 + kick), x: f.x, y: f.y, r: f.r, flash: last > 0 && d < .07 ? .22 * (1 - d / .07) : 0 };
+}
+let CAM = { z: 1, x: 0, y: .47, r: 0, flash: 0 };
 const CHUNKS = (() => {
   const ch = []; let cur = null;
   WORDS.forEach((w, i) => {
     const prev = WORDS[i - 1];
-    const brk = !cur || cur.words.length >= 2 || (cur.text + ' ' + w.w).length > 13 || /[.,?!:;]$/.test(prev ? prev.w : '') || (prev && prev.line !== w.line);
+    const brk = !cur || cur.words.length >= (FAST ? 1 + (w.w.length <= 3 || cur.text.length <= 3 ? 1 : 0) : 2) || (cur.text + ' ' + w.w).length > 13 || /[.,?!:;]$/.test(prev ? prev.w : '') || (prev && prev.line !== w.line);
     if (brk) { cur = { words: [w], text: w.w, s: w.s, e: w.e }; ch.push(cur); } else { cur.words.push(w); cur.text += ' ' + w.w; cur.e = w.e; }
   });
   ch.forEach((c, i) => { const n = ch[i + 1]; c.e = n && n.s - c.e < .5 ? n.s : c.e + .25; });
@@ -33,11 +49,14 @@ const capText = s => s.toLowerCase().replace(/[-–—]/g, ' ').replace(/[^\p{L}
 function drawCaption(ctx, t) {
   const c = CHUNKS.find(c => t >= c.s && t < c.e); if (!c) return;
   const k = clamp((t - c.s) / .1); const sc = .82 + .18 * backOut(k);
-  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(W / 2, WIDE ? H - 130 : 1345); ctx.scale(sc, sc);
-  const str = capText(c.text); const FS = WIDE ? 66 : 78, MW = WIDE ? 1500 : 900; ctx.font = `700 ${FS}px Poppins`; const wd = ctx.measureText(str).width; const fs = wd > MW ? FS * MW / wd : FS;
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.translate(W / 2, WIDE ? H - 130 : FAST ? 1470 : 1345); ctx.scale(sc, sc);
+  const key = FAST && c.words.some(w => w.k);   // Schlüsselwort gelb wie in den schnellen Reels
+  if (FAST) ctx.rotate(Math.sin(c.s * 13) * .05 * (1 - k));
+  const str = capText(c.text); const FS = WIDE ? 66 : FAST ? 112 : 78, MW = WIDE ? 1500 : 900; ctx.font = `700 ${FS}px Poppins`; const wd = ctx.measureText(str).width; const fs = wd > MW ? FS * MW / wd : FS;
   ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 5;
-  text(ctx, str, 0, 0, fs, '#fff', '#111', 14, 'Poppins', 700);
-  ctx.shadowColor = 'transparent'; text(ctx, str, 0, 0, fs, '#fff', '#111', 0, 'Poppins', 700);
+  const col = key ? '#ffd23a' : '#fff';
+  text(ctx, FAST ? str.toUpperCase() : str, 0, 0, fs, col, '#111', FAST ? 18 : 14, 'Poppins', 700);
+  ctx.shadowColor = 'transparent'; text(ctx, FAST ? str.toUpperCase() : str, 0, 0, fs, col, '#111', 0, 'Poppins', 700);
   ctx.restore();
 }
 function renderShot(ctx, i, t) {
@@ -76,6 +95,7 @@ let ZOOM = 1;   // Stoß auf der Auflösung (PLAN.punch), sonst 1
 function blit(src, dx, blur) {
   const n = blur > 2 ? 7 : 1;
   out.save(); out.setTransform(ZOOM, 0, 0, ZOOM, W / 2 * (1 - ZOOM), H * .47 * (1 - ZOOM));
+  if (FAST) { out.translate(W / 2, H * .47); out.rotate(CAM.r); out.scale(CAM.z, CAM.z); out.translate(-(W / 2 + CAM.x), -H * CAM.y); }
   for (let k = 0; k < n; k++) { const off = n > 1 ? (k / (n - 1) - .5) * blur : 0; out.globalAlpha = 1 / (k + 1); const x = dx + off; out.drawImage(src, x, 0); if (x > 0) out.drawImage(src, x - W, 0); if (x < 0) out.drawImage(src, x + W, 0); }
   out.restore();
 }
@@ -95,6 +115,7 @@ function renderFrame(f) {
     ZOOM *= 1 + .05 * clamp((t - s.start) / Math.max(.5, s.end - s.start));
     for (const h of PLAN.hits || []) { const d = t - h; if (d >= 0 && d < .5) ZOOM *= 1 + .05 * Math.exp(-d * 9) * (1 - Math.exp(-d * 60)); }
   }
+  if (FAST) CAM = fastCam(t);
   blit(buf, dx, blur);
   out.save(); out.setTransform(1, 0, 0, 1, 0, 0);
   const VK = WIDE ? .75 : 1; const g = out.createRadialGradient(W / 2, H * .47, (DARK ? 380 : 500) * VK, W / 2, H / 2, 1250 * VK * (WIDE ? 1.15 : 1)); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, DARK ? 'rgba(4,2,14,.62)' : 'rgba(10,5,20,.2)'); out.fillStyle = g; out.fillRect(0, 0, W, H);
@@ -110,6 +131,13 @@ function renderFrame(f) {
     out.restore();
   }
   if (TENSE) tension(t);
+  if (FAST) {   // kurzer heller Blitz auf jedem Schnitt und Fortschrittsbalken oben (zeigt: gleich ist es vorbei, also dranbleiben)
+    out.save(); out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over';
+    if (CAM.flash > 0) { out.globalAlpha = CAM.flash; out.fillStyle = '#fff'; out.fillRect(0, 0, W, H); out.globalAlpha = 1; }
+    out.fillStyle = 'rgba(0,0,0,.35)'; out.fillRect(0, 0, W, 14);
+    out.fillStyle = '#ffd23a'; out.fillRect(0, 0, W * clamp(t / DUR), 14);
+    out.restore();
+  }
   drawCaption(out, t);
 }
 window.renderFrame = renderFrame; window.TOTAL_FRAMES = TOTAL_FRAMES; window.DUR = DUR;
