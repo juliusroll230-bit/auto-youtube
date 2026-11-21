@@ -1,0 +1,109 @@
+{
+  "slug": "mystery-schlacht-los-angeles-1942",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#10141e",
+    "#e0b04a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Schlacht gegen niemand 🔦",
+  "description": "Februar 1942: Über Los Angeles feuert die Flugabwehr eine ganze Nacht lang, doch am Morgen findet man kein feindliches Flugzeug. Was war am Himmel?\n\n#mystery #rätsel #losangeles #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "losangeles",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Los Angeles | Feind fehlte",
+    "Was war am Himmel"
+  ],
+  "segments": [
+    {
+      "text": "Über Los Angeles schießen Soldaten *stundenlang* auf etwas, das niemand sieht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🔦"
+      }
+    },
+    {
+      "text": "Es ist Februar neunzehnhundertzweiundvierzig, wenige Monate nach Pearl Harbor.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1942",
+        "text": "Februar 1942",
+        "objekt": "🔦"
+      }
+    },
+    {
+      "text": "Nachts heulen die Sirenen, und die Stadt macht das Licht aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "📢",
+        "text": "Alarm"
+      }
+    },
+    {
+      "text": "Scheinwerfer suchen den Himmel ab, und die Flugabwehr feuert über tausend *Granaten*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Flugabwehr"
+      }
+    },
+    {
+      "text": "Doch am Morgen findet man kein einziges feindliches Flugzeug.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Kein Flugzeug"
+      }
+    },
+    {
+      "text": "Trotzdem sterben mehrere Menschen, durch Unfälle und Herzattacken.",
+      "szene": {
+        "typ": "liste",
+        "text": "Folgen",
+        "punkte": [
+          "Unfälle",
+          "Herzattacken",
+          "Schäden"
+        ]
+      }
+    },
+    {
+      "text": "Die Marine sprach von *Fehlalarm*, die Armee von unbekannten Flugzeugen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Zwei Meinungen",
+        "punkte": [
+          "Marine: Fehlalarm",
+          "Armee: Flugzeuge"
+        ]
+      }
+    },
+    {
+      "text": "Was damals am Himmel war, weiß bis heute niemand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "❓",
+        "text": "Was war es?"
+      }
+    }
+  ]
+}

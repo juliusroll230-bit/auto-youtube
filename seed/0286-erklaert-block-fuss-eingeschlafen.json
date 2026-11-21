@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-fuss-eingeschlafen",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1a3a2a",
+    "#7ad8a8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dein Fuß einschläft? 🦶",
+  "description": "Erklärt in der Blockwelt: Warum ein Nerv bei langem Sitzen gedrückt wird, was das Kribbeln ist und warum es von allein vergeht.\n\n#wissen #körper #nerven #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "nerven",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Fuß | eingeschlafen",
+    "Das Kribbeln"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dein Fuß einschläft?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🦶",
+        "chat": "Spieler: ich spür nichts"
+      }
+    },
+    {
+      "text": "Du sitzt lange, und ein *Nerv* wird dabei zusammengedrückt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪑",
+        "text": "Nerv gedrückt"
+      }
+    },
+    {
+      "text": "Der Nerv kann seine Signale nicht mehr ans Gehirn schicken.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "📡",
+        "text": "Signal weg"
+      }
+    },
+    {
+      "text": "Dein Fuß fühlt sich dann taub und seltsam fremd an.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Auch die Durchblutung wird kurz gestört.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Weniger Blut"
+      }
+    },
+    {
+      "text": "Stehst du auf, kommt das Blut zurück, und der Nerv meldet sich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zittert",
+        "objekt": "✨"
+      }
+    },
+    {
+      "text": "Das Kribbeln ist nur der Nerv, der *aufwacht*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⚡",
+        "text": "Nerv wacht auf"
+      }
+    },
+    {
+      "text": "Nach ein paar Minuten ist alles wieder *normal*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🦶"
+      }
+    }
+  ]
+}

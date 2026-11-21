@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-nie-zaehne-putzen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0e2a2a",
+    "#6ad8c8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du nie Zähne putzt? 🦷",
+  "description": "Wie Bakterien aus Zucker Säure machen, warum Zahnfleisch blutet und was zwei Minuten am Tag verhindern.\n\n#wissen #zähne #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "zähne",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zähne | ohne Putzen",
+    "Zwei Minuten"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du nie wieder deine Zähne putzt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🦷"
+      }
+    },
+    {
+      "text": "Schon nach Stunden bildet sich ein Belag aus Bakterien.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🦠",
+        "text": "Zahnbelag"
+      }
+    },
+    {
+      "text": "Die Bakterien machen aus Zucker *Säure*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🍬",
+        "text": "Zucker wird Säure"
+      }
+    },
+    {
+      "text": "Die Säure löst den Zahnschmelz auf, und es entsteht Karies.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🦷",
+          "text": "Schmelz: hart"
+        },
+        "rechts": {
+          "objekt": "🕳️",
+          "text": "Karies: Loch"
+        }
+      }
+    },
+    {
+      "text": "Dein Zahnfleisch entzündet sich, wird rot und blutet schnell.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "😖"
+      }
+    },
+    {
+      "text": "Dazu kommen Mundgeruch und im schlimmsten Fall *Zahnverlust*.",
+      "szene": {
+        "typ": "liste",
+        "text": "Folgen",
+        "punkte": [
+          "Karies",
+          "Zahnfleisch",
+          "Mundgeruch"
+        ]
+      }
+    },
+    {
+      "text": "Dabei reicht zweimal am Tag *putzen*, um das zu bremsen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪥",
+        "text": "Zweimal täglich"
+      }
+    },
+    {
+      "text": "Zwei Minuten, die deine Zähne jahrzehntelang retten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2,
+        "einheit": "Minuten",
+        "objekt": "🪥",
+        "farbcode": "#0e2a2a"
+      }
+    }
+  ]
+}

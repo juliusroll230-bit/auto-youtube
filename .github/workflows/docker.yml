@@ -90,6 +90,10 @@ jobs:
         run: docker exec app python tests/community_test.py
       - name: Instagram und TikTok testen
         run: docker exec app python tests/social_test.py
+      - name: Reiter Insta & TikTok (Zahlen, Nächstes, Profil-Checkliste)
+        run: docker exec app python tests/social_view_test.py
+      - name: Vorbilder testen
+        run: docker exec app python tests/vorbilder_test.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app

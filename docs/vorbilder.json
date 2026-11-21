@@ -1,0 +1,439 @@
+{
+ "updated": "2026-11-21T02:22+00:00",
+ "channels": [
+  {
+   "id": "UCvz84_Q0BbvZThy75mbd-Dg",
+   "name": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "abos": "29,8 Mio.",
+   "top": "How Stitches Work 😯 (255 Mio.)",
+   "anders": "Eine Alltags- oder Körperfrage, Antwort in 30 s, Titel 3 bis 5 Wörter plus ein Emoji, über 4.000 Shorts.",
+   "lernen": "Blockwelt-Erklärvideos: Körper und Alltagsdinge (Pflaster, Splitter, Adern), ganz kurze Titel.",
+   "url": "https://www.youtube.com/@zackdfilms",
+   "ok": true,
+   "best_new": {
+    "id": "fhpFTshEXAc",
+    "title": "Turning Your Finger Into A Gun 😨",
+    "views": 6666737,
+    "per_day": 5739382
+   },
+   "new_per_week": 15
+  },
+  {
+   "id": "UCPRmoN_Oq-20XBTQfagEOJA",
+   "name": "Zeck Felms",
+   "handle": "@ZeckFelms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "abos": "1,3 Mio.",
+   "top": "How to Win Tic Tac Toe Everytime 😱 (97 Mio.)",
+   "anders": "Gleicher 3D-Stil wie Zack D. Films, aber lockerer Ton und „So gewinnst du immer“-Tricks.",
+   "lernen": "Neuer Erklär-Typ „So gewinnst du immer bei …“ (echte Strategie, z. B. Spiele).",
+   "url": "https://www.youtube.com/@ZeckFelms",
+   "ok": true,
+   "best_new": {
+    "id": "ZsFO81Q4mj8",
+    "title": "Airplane Mistakes Parents Should Know ✈️⚠️",
+    "views": 4185786,
+    "per_day": 336907
+   },
+   "new_per_week": 2
+  },
+  {
+   "id": "UCBNqzxdXbV3Oki_aKtiS5UA",
+   "name": "NYKentertain",
+   "handle": "@nykentertain",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "abos": "878 Tsd.",
+   "top": "Which Treadmill Should You Choose? 🏃 (53 Mio.)",
+   "anders": "Fast jeder Titel verspricht einen Vorteil oder eine Wahl („Welches würdest du nehmen?“).",
+   "lernen": "Ab und zu eine Wahl-Frage im Titel, die Leute in die Kommentare holt.",
+   "url": "https://www.youtube.com/@nykentertain",
+   "ok": true,
+   "best_new": {
+    "id": "aUPJlc_sCgo",
+    "title": "The Ultimate Privacy Hat 😏 (Patent Rejected)",
+    "views": 1395201,
+    "per_day": 530438
+   },
+   "new_per_week": 6
+  },
+  {
+   "id": "UCphTF9wHwhCt-BzIq-s4V-g",
+   "name": "What If",
+   "handle": "@whatifscienceshow",
+   "lang": "en",
+   "nische": "Was passiert, wenn …",
+   "abos": "9 Mio.",
+   "top": "What If Earth Was Shaped Like a Donut? (51 Mio.)",
+   "anders": "Absurde, aber wissenschaftliche Gedankenspiele, Titel beginnt immer mit „What If“.",
+   "lernen": "Ab und zu ein großes Gedankenspiel statt nur Körper („Was wäre, wenn die Erde ein Donut wäre?“).",
+   "url": "https://www.youtube.com/@whatifscienceshow",
+   "ok": true,
+   "best_new": {
+    "id": "f9UiLDJFYnw",
+    "title": "TON-618 is stranger than we think...",
+    "views": 30099,
+    "per_day": 73509
+   },
+   "new_per_week": 8
+  },
+  {
+   "id": "UCnwUjPK7dXety-AJ4fNw_RQ",
+   "name": "The Paint Explainer",
+   "handle": "@ThePaintExplainer",
+   "lang": "en",
+   "nische": "Strichmännchen",
+   "abos": "2 Mio.",
+   "top": "Lange Erklärvideos im Paint-Stil",
+   "anders": "Einfachste Zeichnungen, die Frage im Titel trägt alles. Wenige, lange Videos.",
+   "lernen": "Unser Strichmännchen-Look reicht. Die Frage muss stark sein, nicht die Grafik.",
+   "url": "https://www.youtube.com/@ThePaintExplainer",
+   "ok": true,
+   "best_new": {
+    "id": "yMwWSX_cvrc",
+    "title": "Most Guarded Places on Earth You Can’t Visit",
+    "views": 2443675,
+    "per_day": 33278
+   },
+   "new_per_week": 1
+  },
+  {
+   "id": "UCUAL--p3qAa27luR0IYbjZA",
+   "name": "Pencilmation",
+   "handle": "@pencilmation",
+   "lang": "en",
+   "nische": "Strichmännchen",
+   "abos": "20,6 Mio.",
+   "top": "Krill🦐 (46 Mio.)",
+   "anders": "Ein-Wort-Titel, Gag ohne Sprache, endet so, dass man es nochmal schaut.",
+   "lernen": "Loop-Ende weiter testen, Bild-Gags in der ersten Sekunde.",
+   "url": "https://www.youtube.com/@pencilmation",
+   "ok": true,
+   "best_new": {
+    "id": "XGGfXSnwZVk",
+    "title": "Cheetah🐆",
+    "views": 200746,
+    "per_day": 734925
+   },
+   "new_per_week": 3
+  },
+  {
+   "id": "UCB4H9VsgYNwHuXrcL6F_v5g",
+   "name": "Unlucky Guy",
+   "handle": "@UnluckyGuyStories",
+   "lang": "en",
+   "nische": "Blockwelt-Horror",
+   "abos": "568 Tsd.",
+   "top": "Never Run To The Ice Cream Truck At Night 😱 (5,7 Mio.)",
+   "anders": "Spielwelt-Horror mit Regeln („Niemals …“, „Du hast 60 Sekunden …“), vertraute Orte wie Schule.",
+   "lernen": "Blockwelt-Horror-Titel als Regel oder Countdown: „Geh nachts nie zum Eiswagen“.",
+   "url": "https://www.youtube.com/@UnluckyGuyStories",
+   "ok": true,
+   "best_new": {
+    "id": "oOPyny5CbaU",
+    "title": "Buddy 🐻",
+    "views": 82627,
+    "per_day": 268875
+   },
+   "new_per_week": 15
+  },
+  {
+   "id": "UCsCAWoG-SagS7aFuWT1IZPw",
+   "name": "Horror Shorts Party",
+   "handle": "@HorrorShortsParty",
+   "lang": "en",
+   "nische": "Horror",
+   "abos": "1,7 Mio.",
+   "top": "Animierte Grusel-Shorts an bekannten Orten",
+   "anders": "Der Ort macht den Klick: Orte, die jeder kennt. Nutzt fremde Marken und Figuren (machen wir nicht).",
+   "lernen": "Horror an Alltagsorten (Supermarkt, Bus, Schulklo), aber ohne Marken.",
+   "url": "https://www.youtube.com/@HorrorShortsParty",
+   "ok": true,
+   "best_new": {
+    "id": "eh98igOVcXo",
+    "title": "3 GTA 6 True Horror Stories ANIMATED",
+    "views": 211553,
+    "per_day": 94708
+   },
+   "new_per_week": 2
+  },
+  {
+   "id": "UCpFFItkfZz1qz5PpHpqzYBw",
+   "name": "Nexpo",
+   "handle": "@Nexpo",
+   "lang": "en",
+   "nische": "Mystery",
+   "abos": "4 Mio.",
+   "top": "Lange Internet-Rätsel",
+   "anders": "Eine Nische, die sonst keiner bedient: unheimliche Internet-Rätsel, ruhig erzählt.",
+   "lernen": "Mystery-Themen aus dem Internet und der Technik (seltsame Funksignale, verschwundene Webseiten).",
+   "url": "https://www.youtube.com/@Nexpo",
+   "ok": true,
+   "best_new": {
+    "id": "6zLCZ_Ic1hI",
+    "title": "The Internet's Deepest Rabbit Hole",
+    "views": 10934872,
+    "per_day": 99168
+   },
+   "new_per_week": 0
+  },
+  {
+   "id": "UCDq8FAH3ewRf_nXKdmY36DQ",
+   "name": "SONNENSEITE",
+   "handle": "@SONNENSEITEBrightSideGerman",
+   "lang": "de",
+   "nische": "Alltags-Erklärvideo (DE)",
+   "abos": "1,5 Mio.",
+   "top": "Es hieß, dass die blaue Seite Kugelschreiber wegradiert (2,4 Mio.)",
+   "anders": "Deutsche Alltags-Rätsel zu Dingen, die jeder zu Hause hat. Über 11.000 Videos.",
+   "lernen": "Deutsche Titel über Alltagsdinge: „Wozu ist dieser Knopf am Gurt?“, „Warum 1 % Akku so lange hält“.",
+   "url": "https://www.youtube.com/@SONNENSEITEBrightSideGerman",
+   "ok": true,
+   "best_new": {
+    "id": "DETaEYEce0U",
+    "title": "Der schlafende Supervulkan unter Europa erwacht",
+    "views": 4261,
+    "per_day": 5273
+   },
+   "new_per_week": 15
+  },
+  {
+   "id": "UCKGMHVipEvuZudhHD05FOYA",
+   "name": "Simplicissimus",
+   "handle": "@Simplicissimus",
+   "lang": "de",
+   "nische": "Erklärvideo (DE)",
+   "abos": "2,6 Mio.",
+   "top": "Russland ist gar nicht so groß! (2,2 Mio.)",
+   "anders": "Kurze Shorts aus langen Videos, Titel als Behauptung, die man prüfen will.",
+   "lernen": "Ab und zu Titel als Behauptung statt Frage („Japan ist riesig!“).",
+   "url": "https://www.youtube.com/@Simplicissimus",
+   "ok": true,
+   "best_new": {
+    "id": "0bYOsIvRGAs",
+    "title": "Der Preis der japanischen Pünktlichkeit",
+    "views": 1560393,
+    "per_day": 456395
+   },
+   "new_per_week": 1
+  },
+  {
+   "id": "UCwRH985XgMYXQ6NxXDo8npw",
+   "name": "Dinge Erklärt – Kurzgesagt",
+   "handle": "@KurzgesagtDE",
+   "lang": "de",
+   "nische": "Erklärvideo (DE)",
+   "abos": "2,7 Mio.",
+   "top": "Lange Wissenschaftsvideos",
+   "anders": "Sehr starke Animation, wenige Videos, alles mit Quellen.",
+   "lernen": "Fakten sauber halten, lieber ein Thema weglassen als etwas erfinden.",
+   "url": "https://www.youtube.com/@KurzgesagtDE",
+   "ok": true,
+   "best_new": {
+    "id": "RTbQKDy-umg",
+    "title": "Der Pakt mit dem Speed Teufel",
+    "views": 505744,
+    "per_day": 354105
+   },
+   "new_per_week": 1
+  },
+  {
+   "id": "UCesjlAoEgN_Sz_cKTvKEmmw",
+   "name": "Doktor Whatson",
+   "handle": "@DoktorWhatson",
+   "lang": "de",
+   "nische": "Erklärvideo (DE)",
+   "abos": "429 Tsd.",
+   "top": "Ist Neuralink wirklich so langlebig? (373 Tsd.)",
+   "anders": "Aktuelle Technik- und Wissenschaftsthemen, Frage im Titel.",
+   "lernen": "Ab und zu ein aktuelles Thema als „Warum …?“.",
+   "url": "https://www.youtube.com/@DoktorWhatson",
+   "ok": true,
+   "best_new": {
+    "id": "xJBwr82ejbY",
+    "title": "Warum es eine neue Weltkarte gibt",
+    "views": 132331,
+    "per_day": 28014
+   },
+   "new_per_week": 3
+  },
+  {
+   "id": "UCYFqha8pa6s5OvMGVGXyyEg",
+   "name": "Schliingeel Facts",
+   "handle": "@SchliingeelFacts",
+   "lang": "de",
+   "nische": "Fakten-Shorts (DE)",
+   "abos": "156 Tsd.",
+   "top": "Ich lese deine Gedanken! (2 Mio.)",
+   "anders": "Mitmach-Shorts: der Zuschauer testet sich selbst (Farben sehen, Gedanken lesen).",
+   "lernen": "Mitmach-Hook: „Teste dich: …“ oder „Schau genau hin“ bei Erklärvideos.",
+   "url": "https://www.youtube.com/@SchliingeelFacts",
+   "ok": true,
+   "best_new": {
+    "id": "LftT0cwS9zE",
+    "title": "Du siehst aus wie du heißt",
+    "views": 192998,
+    "per_day": 131255
+   },
+   "new_per_week": 8
+  }
+ ],
+ "trend": [
+  {
+   "id": "fhpFTshEXAc",
+   "title": "Turning Your Finger Into A Gun 😨",
+   "views": 6666737,
+   "per_day": 5739382,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "TLmmiI1CiaA",
+   "title": "Orangutan Nearly Drowns Getting Food 😥",
+   "views": 2557078,
+   "per_day": 5640138,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "gpZstBrMiF0",
+   "title": "Dumping Yellowstone’s Magma On NYC 🤯",
+   "views": 1632322,
+   "per_day": 4973064,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "AMlsGz_YJD8",
+   "title": "The Tsunami Baby Claimed By Nine Families 🤨",
+   "views": 6149089,
+   "per_day": 4940254,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "1BQ3UepwRvE",
+   "title": "How To Make A Knife From Milk 🤨",
+   "views": 9191807,
+   "per_day": 3623936,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "Zsr6EQdWNjA",
+   "title": "When You Should Replace Your Toothbrush 🤔",
+   "views": 7394354,
+   "per_day": 3175857,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "NAayFUMhVSI",
+   "title": "Researcher Uses Ants To Make Yogurt 🤢",
+   "views": 758757,
+   "per_day": 3035028,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "qOweqqb79KI",
+   "title": "How An Etch A Sketch Works 🤔",
+   "views": 1540955,
+   "per_day": 2871760,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "G6FBnH5ggQs",
+   "title": "Ancestry DNA Exposed Grandma’s Secret 😱",
+   "views": 663981,
+   "per_day": 2655924,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "GEvgMF9j5Xc",
+   "title": "The Firefighter Who Never Gave Up 😢",
+   "views": 3473872,
+   "per_day": 2390749,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "BpZE5qKWjuk",
+   "title": "How A Corked Baseball Bat Works 🤔",
+   "views": 4031009,
+   "per_day": 1864896,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  },
+  {
+   "id": "jORaARvCJrI",
+   "title": "How An Echo Chamber Works 🤔",
+   "views": 2832606,
+   "per_day": 1843757,
+   "channel": "Zack D. Films",
+   "handle": "@zackdfilms",
+   "lang": "en",
+   "nische": "3D-Erklärvideo",
+   "short": true
+  }
+ ],
+ "muster": {
+  "n": 40,
+  "words": 5.0,
+  "question": 5,
+  "you": 12,
+  "emoji": 78,
+  "starts_q": 25
+ },
+ "unsere": {
+  "n": 15,
+  "words": 7.3,
+  "question": 20,
+  "you": 13,
+  "emoji": 100,
+  "starts_q": 27
+ },
+ "tips": [
+  "Kürzere Titel: Vorbilder im Schnitt 5 Wörter, wir 7."
+ ],
+ "regel": "Nur Stil und Methoden lernen: Art der Frage, Titelbau, Länge, Rhythmus. Keine Themen, Texte, Bilder oder Videos 1:1 übernehmen, keine fremden Videos clippen."
+}

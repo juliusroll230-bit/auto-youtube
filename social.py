@@ -56,7 +56,9 @@ DEFAULTS = {
 
 def load():
     d = store.read(FILE, {}) or {}
-    return {k: {**v, **(d.get(k) or {})} for k, v in DEFAULTS.items()}
+    out = {k: {**v, **(d.get(k) or {})} for k, v in DEFAULTS.items()}
+    out["profil_done"] = [k for k in (d.get("profil_done") or []) if isinstance(k, str)]  # Checkliste „Profil fertig?“
+    return out
 
 
 def save(d):
@@ -67,13 +69,19 @@ def summary():
     """Für die Zentrale: ohne Geheimnisse."""
     d = load()
     ig, tt = d["instagram"], d["tiktok"]
+    b = buffer_load()
     return {
-        "instagram": {"on": ig["on"], "per_day": ig["per_day"], "connected": bool(ig["token"] and ig["ig_id"]),
-                      "username": ig["username"], "page": ig["page"], "app_id": ig["app_id"],
+        "instagram": {"on": ig["on"], "per_day": ig["per_day"],
+                      "connected": bool(ig["token"] and ig["ig_id"]) or via_buffer("instagram", b), "buffer": via_buffer("instagram", b),
+                      "username": b["names"].get("instagram") if via_buffer("instagram", b) else ig["username"],
+                      "page": ig["page"], "app_id": ig["app_id"],
                       "has_secret": bool(ig["app_secret"]), "error": ig["error"], "last": ig["last"]},
-        "tiktok": {"on": tt["on"], "per_day": tt["per_day"], "connected": bool(tt["refresh"]),
-                   "username": tt["username"], "client_key": tt["client_key"], "has_secret": bool(tt["client_secret"]),
+        "tiktok": {"on": tt["on"], "per_day": tt["per_day"], "connected": bool(tt["refresh"]) or via_buffer("tiktok", b),
+                   "buffer": via_buffer("tiktok", b),
+                   "username": b["names"].get("tiktok") if via_buffer("tiktok", b) else tt["username"],
+                   "client_key": tt["client_key"], "has_secret": bool(tt["client_secret"]),
                    "error": tt["error"], "last": tt["last"]},
+        "buffer": {"connected": bool(b.get("key")), "found": sorted((b.get("channels") or {}).keys())},
     }
 
 
@@ -195,6 +203,15 @@ def ig_connect(app_id, app_secret, short_token):
 def test(platform):
     """Knopf „Verbindung testen“: fragt nur das Konto ab, postet nichts."""
     d = load()
+    if via_buffer(platform):
+        b = buffer_load()
+        chans = _gql(b["key"], "query($i: ChannelsInput!) { channels(input: $i) { id service } }",
+                     {"i": {"organizationId": b["org"]}}).get("channels") or []
+        if not any(c.get("id") == b["channels"][platform] for c in chans):
+            raise ValueError("Der Kanal ist in Buffer nicht mehr da. In Buffer neu verbinden und hier nochmal „Verbinden“.")
+        d[platform]["error"] = None
+        save(d)
+        return f"Verbindung ok über Buffer ({b['names'].get(platform) or platform}). Bereit."
     if platform == "instagram":
         ig = d["instagram"]
         if not (ig["token"] and ig["ig_id"]):
@@ -235,13 +252,9 @@ def build_package(dest, posted=None, now=None, n=6):
     items = package_items(posted if posted is not None else store.posted_items(), now, n)
     if not items:
         raise ValueError("Gerade liegen keine fertigen Shorts bereit. Nach dem nächsten YouTube-Upload klappt es.")
-    lines = ["Deine besten Shorts der letzten 2 Tage für Instagram und TikTok.",
-             "So planst du sie (ca. 5 Minuten, am PC):",
-             "  Instagram: business.facebook.com/latest/composer öffnen (Meta Business Suite) → Reel erstellen →",
-             "             Video wählen, Text einfügen, unten „Planen“ und die Uhrzeit von hier.",
-             "  TikTok:    tiktok.com/tiktokstudio/upload öffnen → Video wählen, Text einfügen,",
-             "             bei „Wann posten“ auf „Planen“ und die Uhrzeit von hier.",
-             "Im Handy geht es auch: Instagram-App → Reel → Weiter → Erweiterte Einstellungen → „Planen“.", ""]
+    lines = ["Deine besten Videos für TikTok und Instagram.",
+             "So geht's: Video hochladen, den Text darunter reinkopieren, posten.",
+             "Tipp: 1 bis 2 Videos am Tag reichen.", ""]
     slots = [(1, 12), (1, 18), (2, 12), (2, 18), (3, 12), (3, 18)]
     with zipfile.ZipFile(dest, "w", zipfile.ZIP_STORED) as z:
         for i, u in enumerate(items, 1):
@@ -250,7 +263,7 @@ def build_package(dest, posted=None, now=None, n=6):
             z.write(store.share_path(u["video_id"]), name)
             day, hour = slots[(i - 1) % len(slots)]
             when = (now + dt.timedelta(days=day)).strftime("%d.%m.")
-            lines += [f"{i:02d}. {name}", f"    Planen für: {when} um {hour} Uhr", "    Text zum Einfügen:",
+            lines += [f"{i:02d}. {name}", f"    Am besten am {when} um {hour} Uhr", "    Text:",
                       *["    " + x for x in (u.get("share") or u.get("title", "")).splitlines()], ""]
         z.writestr("texte.txt", "\r\n".join(lines))
     return len(items)
@@ -279,6 +292,119 @@ def ig_post(video, caption, ig, wait=lambda s: time.sleep(s)):
     else:
         raise ApiError("Instagram braucht zu lange für das Video.")
     return _req("POST", f"{GRAPH}/{uid}/media_publish", {"creation_id": cid, "access_token": tok})["id"]
+
+
+
+# --- Buffer (der einfache Weg zur Automatik) -----------------------------------
+# Buffer (buffer.com) ist ein kostenloser Planer. Julius verbindet dort Instagram und TikTok mit seinem
+# normalen Login und fügt in der Zentrale nur den API-Schlüssel ein. Keine Meta- oder TikTok-Entwickler-App.
+# Buffer holt Videos nur über eine öffentliche Adresse; der Server steht im Heimnetz, darum liegt das Video
+# kurz (24 h) bei Litterbox (litterbox.catbox.moe, kostenlos, löscht von selbst). Es sind nur eigene KI-Shorts,
+# die ohnehin öffentlich auf YouTube stehen.
+
+BUFFER_FILE = "buffer.json"
+BUFFER_API = "https://api.buffer.com"
+LITTERBOX = "https://litterbox.catbox.moe/resources/internals/api.php"
+
+
+def buffer_load():
+    return {"key": "", "org": "", "channels": {}, "names": {}, **(store.read(BUFFER_FILE, {}) or {})}
+
+
+def buffer_save(b):
+    store.write(BUFFER_FILE, b)
+    try:
+        os.chmod(store.path(BUFFER_FILE), 0o600)
+    except OSError:
+        pass
+
+
+def _gql(key, query, variables=None):
+    j = _req("POST", BUFFER_API, {"query": query, "variables": variables or {}},
+             headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
+    if j.get("errors"):
+        msg = "; ".join(str(e.get("message", e)) for e in j["errors"])[:200]
+        if "auth" in msg.lower() or "unauthor" in msg.lower() or "token" in msg.lower():
+            raise ApiError("Buffer kennt diesen Schlüssel nicht. Bitte in Buffer neu erzeugen und komplett einfügen.")
+        raise ApiError("Buffer: " + msg)
+    return j.get("data") or {}
+
+
+def buffer_connect(key):
+    """Schlüssel prüfen, Instagram- und TikTok-Kanal in Buffer finden, beide Plattformen einschalten."""
+    key = (key or "").strip()
+    if len(key) < 20 or any(c in key for c in "*• "):
+        raise ValueError("Das sieht nicht nach einem Buffer-Schlüssel aus. In Buffer auf „Kopieren“ klicken und hier einfügen.")
+    orgs = (_gql(key, "query { account { organizations { id name } } }").get("account") or {}).get("organizations") or []
+    if not orgs:
+        raise ValueError("In diesem Buffer-Konto gibt es noch nichts. Erst bei Buffer anmelden und Kanäle verbinden.")
+    chans, org = [], ""
+    for o in orgs:
+        chans = _gql(key, "query($i: ChannelsInput!) { channels(input: $i) { id service name displayName } }",
+                     {"i": {"organizationId": o["id"]}}).get("channels") or []
+        org = o["id"]
+        if any(c.get("service") in ("instagram", "tiktok") for c in chans):
+            break
+    found = {c["service"]: c for c in chans if c.get("service") in ("instagram", "tiktok")}
+    if not found:
+        raise ValueError("Schlüssel passt, aber in Buffer ist noch kein Instagram oder TikTok verbunden. "
+                         "In Buffer auf „Kanal verbinden“ klicken, dann hier nochmal.")
+    b = {"key": key, "org": org, "channels": {k: v["id"] for k, v in found.items()},
+         "names": {k: v.get("displayName") or v.get("name") or "" for k, v in found.items()}}
+    buffer_save(b)
+    d = load()
+    for plat in found:
+        d[plat]["on"] = True
+        d[plat]["error"] = None
+    save(d)
+    return {"found": sorted(found), "names": b["names"]}
+
+
+def buffer_disconnect():
+    buffer_save({})
+
+
+def host_video(video):
+    """Video für 24 Stunden öffentlich ablegen (Litterbox) und die Adresse zurückgeben."""
+    bound = "----zentrale" + str(int(time.time() * 1000))
+    with open(video, "rb") as f:
+        data = f.read()
+    parts = []
+    for k, v in (("reqtype", "fileupload"), ("time", "24h")):
+        parts.append(f"--{bound}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
+    parts.append(f"--{bound}\r\nContent-Disposition: form-data; name=\"fileToUpload\"; filename=\"short.mp4\"\r\n"
+                 "Content-Type: video/mp4\r\n\r\n".encode() + data + b"\r\n")
+    parts.append(f"--{bound}--\r\n".encode())
+    req = urllib.request.Request(LITTERBOX, data=b"".join(parts), method="POST",
+                                 headers={"Content-Type": "multipart/form-data; boundary=" + bound, "User-Agent": "Shorts-Zentrale"})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r:
+            url = r.read().decode(errors="ignore").strip()
+    except (urllib.error.URLError, OSError) as e:
+        raise ApiError(f"Video konnte nicht kurz abgelegt werden ({e}). Nächster Versuch in 3 Stunden.") from None
+    if not url.startswith("https://"):
+        raise ApiError("Video konnte nicht kurz abgelegt werden: " + url[:120])
+    return url
+
+
+def buffer_post(platform, video, caption, b=None, host=host_video):
+    """Über Buffer sofort posten (Instagram als Reel, TikTok als echter Post). Gibt die Buffer-Post-ID zurück."""
+    b = b or buffer_load()
+    url = host(video)
+    meta = {"instagram": {"type": "reel", "shouldShareToFeed": True}} if platform == "instagram" else {"tiktok": {"isAiGenerated": True}}
+    inp = {"text": caption[:2200], "channelId": b["channels"][platform], "schedulingType": "automatic", "mode": "shareNow",
+           "needsApproval": False, "assets": [{"video": {"url": url}}], "metadata": meta}
+    r = _gql(b["key"], "mutation($i: CreatePostInput!) { createPost(input: $i) { "
+                       "... on PostActionSuccess { post { id } } ... on MutationError { message } } }", {"i": inp})
+    res = r.get("createPost") or {}
+    if res.get("message") or not (res.get("post") or {}).get("id"):
+        raise ApiError("Buffer: " + str(res.get("message") or "kein Post angelegt"))
+    return res["post"]["id"]
+
+
+def via_buffer(platform, b=None):
+    b = b or buffer_load()
+    return bool(b.get("key") and (b.get("channels") or {}).get(platform))
 
 
 # --- TikTok -------------------------------------------------------------------
@@ -380,7 +506,7 @@ def pick(posted, platform, now, exists=os.path.exists):
 def due(platform, d, posted, now):
     """Ist jetzt ein automatischer Post für diese Plattform dran? Dann den Short, sonst None."""
     p = d[platform]
-    ready = p["token"] and p["ig_id"] if platform == "instagram" else p["refresh"]
+    ready = via_buffer(platform) or (p["token"] and p["ig_id"] if platform == "instagram" else p["refresh"])
     if not (p["on"] and ready and p["per_day"] > 0):
         return None
     if not HOURS[0] <= now.hour < HOURS[1]:
@@ -415,7 +541,11 @@ def send(platform, u, now=None):
     caption = u.get("share") or u.get("title", "")
     name = "Instagram" if platform == "instagram" else "TikTok"
     try:
-        if platform == "instagram":
+        if via_buffer(platform):
+            ref = buffer_post(platform, video, caption)
+            mark(u["video_id"], platform, ref, shared=True)
+            store.log("ok", f"{name}: „{u.get('title', '')}“ über Buffer gepostet.")
+        elif platform == "instagram":
             ref = ig_post(video, caption, d["instagram"])
             mark(u["video_id"], "instagram", ref, shared=True)
             store.log("ok", f"Instagram: „{u.get('title', '')}“ als Reel gepostet.")
@@ -449,3 +579,220 @@ def run_once(posted=None, now=None):
         u = due(platform, load(), posted, now)
         if u:
             send(platform, u, now)
+
+
+# --- Übersicht für den Reiter „Insta & TikTok“ ---------------------------------
+# Zahlen holt die Zentrale, so weit die Schnittstellen es erlauben:
+# - über Buffer: je Post Aufrufe, Likes, Kommentare … (Buffer aktualisiert einmal am Tag, also bis ca. 24 h alt).
+#   Follower gibt die Buffer-Schnittstelle nicht heraus.
+# - Instagram direkt (eigene Meta-App): Follower, Beiträge, Likes, Kommentare, Aufrufe je Reel.
+# - TikTok direkt (Entwurf-Weg): keine Zahlen, die Berechtigung dafür (video.list, user.info.stats) fehlt.
+# Gespeichert in social_stats.json, neu geholt alle 30 Minuten (server.scheduler) oder per Knopf.
+
+STATS_FILE = "social_stats.json"
+STATS_EVERY = 30 * 60
+METRIC_KEYS = ("views", "likes", "comments", "shares", "saves", "reach", "impressions", "follows")
+POST_FIELDS = ("id channelId channelService status text sentAt dueAt createdAt externalLink "
+               "error { message } metrics { type value } metricsUpdatedAt")
+
+
+def _metrics(lst):
+    out = {}
+    for m in lst or []:
+        t, v = m.get("type"), m.get("value")
+        if t == "favorites":
+            t = "likes"
+        if t in METRIC_KEYS and isinstance(v, (int, float)):
+            out[t] = out.get(t, 0) + int(v)
+    return out
+
+
+def _buffer_stats(b):
+    chans = [c for c in (b.get("channels") or {}).values()]
+    q = ("query($i: PostsInput!) { posts(first: 60, input: $i) { edges { node { " + POST_FIELDS + " } } } }")
+    j = _gql(b["key"], q, {"i": {"organizationId": b["org"], "filter": {"channelIds": chans,
+                                                                         "status": ["sent", "error", "scheduled", "sending"]}}})
+    posts = []
+    for e in ((j.get("posts") or {}).get("edges") or []):
+        n = e.get("node") or {}
+        plat = n.get("channelService")
+        if plat not in ("instagram", "tiktok"):
+            continue
+        posts.append({"id": n.get("id"), "platform": plat, "status": n.get("status"), "text": (n.get("text") or "")[:300],
+                      "at": n.get("sentAt") or n.get("dueAt") or n.get("createdAt"), "due": n.get("dueAt"),
+                      "link": n.get("externalLink"), "error": (n.get("error") or {}).get("message"),
+                      "metrics": _metrics(n.get("metrics")), "metrics_at": n.get("metricsUpdatedAt")})
+    info = {}
+    try:
+        cs = _gql(b["key"], "query($i: ChannelsInput!) { channels(input: $i) { id service avatar isDisconnected externalLink } }",
+                  {"i": {"organizationId": b["org"]}}).get("channels") or []
+        info = {c["service"]: {"avatar": c.get("avatar"), "disconnected": bool(c.get("isDisconnected")), "link": c.get("externalLink")}
+                for c in cs if c.get("service") in ("instagram", "tiktok")}
+    except (ApiError, KeyError, TypeError):
+        pass
+    return posts, info
+
+
+def _ig_stats(ig):
+    tok, uid = ig["token"], ig["ig_id"]
+    acc = _req("GET", f"{GRAPH}/{uid}?" + urllib.parse.urlencode({"fields": "username,followers_count,media_count", "access_token": tok}))
+    media = _req("GET", f"{GRAPH}/{uid}/media?" + urllib.parse.urlencode({
+        "fields": "id,caption,timestamp,permalink,like_count,comments_count,media_product_type", "limit": 25,
+        "access_token": tok})).get("data") or []
+    posts = []
+    for i, m in enumerate(media):
+        met = {"likes": int(m.get("like_count") or 0), "comments": int(m.get("comments_count") or 0)}
+        if i < 12 and m.get("media_product_type") == "REELS":  # Aufrufe je Reel (eine Anfrage pro Reel, darum nur die neuesten)
+            try:
+                ins = _req("GET", f"{GRAPH}/{m['id']}/insights?" + urllib.parse.urlencode({"metric": "views", "access_token": tok}))
+                for x in ins.get("data") or []:
+                    if x.get("name") == "views" and x.get("values"):
+                        met["views"] = int(x["values"][0].get("value") or 0)
+            except ApiError:
+                pass
+        posts.append({"id": m.get("id"), "platform": "instagram", "status": "sent", "text": (m.get("caption") or "")[:300],
+                      "at": m.get("timestamp"), "link": m.get("permalink"), "metrics": met})
+    return {"followers": acc.get("followers_count"), "media_count": acc.get("media_count"),
+            "username": acc.get("username")}, posts
+
+
+def refresh_stats(force=False):
+    """Zahlen bei Buffer bzw. Instagram holen und in social_stats.json merken. Fehler landen dort als Text."""
+    old = store.read(STATS_FILE, {}) or {}
+    if not force and time.time() - (old.get("ts") or 0) < STATS_EVERY:
+        return old
+    d, b = load(), buffer_load()
+    out = {"ts": time.time(), "at": store.now().isoformat(timespec="seconds"), "posts": [], "accounts": {}, "errors": {}}
+    if b.get("key"):
+        try:
+            posts, info = _buffer_stats(b)
+            out["posts"] += posts
+            for k, v in info.items():
+                out["accounts"].setdefault(k, {}).update(v)
+        except (ApiError, ValueError, KeyError, TypeError, OSError) as e:
+            out["errors"]["buffer"] = str(e)[:200]
+    ig = d["instagram"]
+    if ig["token"] and ig["ig_id"]:
+        try:
+            acc, posts = _ig_stats(ig)
+            out["accounts"].setdefault("instagram", {}).update(acc)
+            if not via_buffer("instagram", b):  # sonst liefert Buffer die Posts, Instagram direkt nur die Follower
+                out["posts"] += posts
+        except (ApiError, ValueError, KeyError, TypeError, OSError) as e:
+            out["errors"]["instagram"] = str(e)[:200]
+    store.write(STATS_FILE, out)
+    return out
+
+
+def _next_time(platform, d, posted, now):
+    """Ungefähr wann der nächste automatische Post kommt (der Planer schaut alle 5 Minuten)."""
+    p = d[platform]
+    t = now
+    last = _parse((p.get("last") or {}).get("at") if isinstance(p.get("last"), dict) else None)
+    if last and t < last + dt.timedelta(hours=GAP_H):
+        t = last + dt.timedelta(hours=GAP_H)
+    if sent_today(posted, platform, now) >= p["per_day"] and t.date() == now.date():
+        t = (now + dt.timedelta(days=1)).replace(hour=HOURS[0], minute=0, second=0, microsecond=0)
+    if t.hour < HOURS[0]:
+        t = t.replace(hour=HOURS[0], minute=0, second=0, microsecond=0)
+    elif t.hour >= HOURS[1]:
+        t = (t + dt.timedelta(days=1)).replace(hour=HOURS[0], minute=0, second=0, microsecond=0)
+    return t
+
+
+PROFILE = {
+    "name": "60 Sekunden Wissen",
+    "usernames": ["60sekundenwissen", "60sek.wissen", "60sekundenwissen.de"],
+    "bio": {
+        "instagram": "Was passiert, wenn …? 🤔\nKurze Cartoons über Fragen, die du dir schon immer gestellt hast.\nTäglich neu · Ganze Videos auf YouTube 👇",
+        "tiktok": "Was passiert, wenn …? 🤔 Täglich neue Cartoons",
+    },
+    "bio_max": {"instagram": 150, "tiktok": 80},
+    "link": "https://www.youtube.com/@60SekundenWissen-s4i",
+    "pictures": [{"file": "static/profil/profilbild-gelb.png", "name": "Gelb (empfohlen)", "tip": "Fällt im Feed am meisten auf, gleiche Figur wie in den Videos."},
+                 {"file": "static/profil/profilbild-ring.png", "name": "Roter Ring", "tip": "Wie das YouTube-Logo."}],
+    "hashtags": [
+        {"name": "Erklärvideo", "tags": "#wissen #wasPassiertWenn #lernenmitspass #fakten #körper #shorts"},
+        {"name": "Warum …?", "tags": "#warum #wissen #alltag #fakten #lernen #fyp"},
+        {"name": "Mystery", "tags": "#mystery #rätsel #ungelöst #geheimnis #wissen #fyp"},
+        {"name": "Horror", "tags": "#horror #gruselig #gruselgeschichte #creepy #animation #fyp"},
+        {"name": "Erzählte Geschichte", "tags": "#storytime #geschichte #animation #cartoon #fyp"},
+    ],
+    "checklist": [
+        ["konto", "Profi-Konto an (Instagram: Creator-Konto)", "Einstellungen → Kontoart und Tools → Zu professionellem Konto wechseln → Creator. Nur so gibt es Zahlen."],
+        ["name", "Name: 60 Sekunden Wissen", "Bei beiden Apps unter „Profil bearbeiten“ → Name."],
+        ["user", "Benutzername gesichert", "Der erste freie Name aus der Liste oben."],
+        ["bild", "Profilbild hochgeladen", "Überall dasselbe Bild, dann erkennt man dich wieder."],
+        ["bio", "Bio eingefügt", "Text oben kopieren und einfügen."],
+        ["link", "Link in der Bio (Instagram)", "Bei TikTok erst ab 1.000 Followern möglich."],
+        ["buffer", "In Buffer verbunden", "Reiter Kanäle → „Einmal verbinden“. Dann postet die Zentrale selbst."],
+    ],
+}
+
+
+def overview(posted=None, now=None):
+    """Alles für den Reiter „Insta & TikTok“: Status, Zahlen, letzte Posts, Nächstes, Fehler, Profil-Paket."""
+    now = now or store.now()
+    posted = posted if posted is not None else store.posted_items()
+    d, b = load(), buffer_load()
+    sm = summary()
+    st = store.read(STATS_FILE, {}) or {}
+    by_ref = {}
+    for u in posted:
+        for plat in ("instagram", "tiktok"):
+            ref = (u.get("auto") or {}).get(plat)
+            if ref:
+                by_ref[(plat, str(ref))] = u
+    out = {"stats_at": st.get("at"), "errors": st.get("errors") or {}, "profile": PROFILE,
+           "done": d["profil_done"] + (["buffer"] if b.get("key") and "buffer" not in d["profil_done"] else [])}
+    for plat in ("instagram", "tiktok"):
+        s, acc = sm[plat], (st.get("accounts") or {}).get(plat) or {}
+        posts = []
+        for p in st.get("posts") or []:
+            if p.get("platform") != plat:
+                continue
+            u = by_ref.get((plat, str(p.get("id"))))
+            posts.append({**p, "title": (u or {}).get("title") or (p.get("text") or "").split("\n")[0][:90],
+                          "video_id": (u or {}).get("video_id"), "slug": (u or {}).get("slug")})
+        seen = {p.get("video_id") for p in posts if p.get("video_id")}
+        for u in posted:  # was die Zentrale geschickt hat, auch ohne Zahlen (z. B. TikTok-Entwurf)
+            a = u.get("auto") or {}
+            if a.get(plat) and u.get("video_id") not in seen:
+                posts.append({"id": str(a[plat]), "platform": plat, "title": u.get("title"), "video_id": u.get("video_id"),
+                              "slug": u.get("slug"), "at": a.get(plat + "_at"), "metrics": {},
+                              "status": "sent" if s["buffer"] or plat == "instagram" else "draft"})
+        posts.sort(key=lambda p: p.get("at") or "", reverse=True)
+        sent = [p for p in posts if p.get("status") == "sent"]
+        tot = {}
+        for p in sent:
+            for k, v in (p.get("metrics") or {}).items():
+                tot[k] = tot.get(k, 0) + v
+        nxt = None
+        ready = s["connected"] and s["on"] and s["per_day"] > 0
+        if ready:
+            cand = pick(posted, plat, now)
+            nxt = {"at": _next_time(plat, d, posted, now).isoformat(timespec="minutes"),
+                   "title": cand.get("title") if cand else None, "video_id": cand.get("video_id") if cand else None}
+        week = sum(1 for p in sent if (_parse(p.get("at")) or now - dt.timedelta(days=30)) > now - dt.timedelta(days=7))
+        has_numbers = s["buffer"] or (plat == "instagram" and bool(d["instagram"]["token"]))
+        out[plat] = {**{k: s[k] for k in ("connected", "buffer", "on", "per_day", "username", "error", "last")},
+                     "followers": acc.get("followers"), "avatar": acc.get("avatar"), "profile_link": acc.get("link"),
+                     "disconnected": bool(acc.get("disconnected")), "today": sent_today(posted, plat, now),
+                     "week": week, "count": len(sent), "totals": tot, "has_numbers": has_numbers,
+                     "posts": posts[:30], "next": nxt,
+                     "scheduled": [p for p in posts if p.get("status") in ("scheduled", "sending")][:5],
+                     "failed": [p for p in posts if p.get("status") == "error"][:5]}
+    return out
+
+
+def set_done(key, done):
+    keys = {c[0] for c in PROFILE["checklist"]}
+    if key not in keys:
+        raise ValueError("Unbekannter Punkt.")
+    d = load()
+    cur = [k for k in d["profil_done"] if k in keys and k != key]
+    if done:
+        cur.append(key)
+    d["profil_done"] = cur
+    save(d)
+    return cur

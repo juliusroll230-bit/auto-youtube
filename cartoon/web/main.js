@@ -46,6 +46,32 @@ function renderShot(ctx, i, t) {
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
   ctx.save(); base(ctx); s.draw(ctx, t - s.start, t); ctx.restore();
 }
+// Test Spannung (seit 20.11.2026): Herzschlag-Puls am Rand und Countdown bis zur Auflösung (PLAN.reveal, Herzschläge PLAN.beats wie im Ton).
+const TENSE = PLAN.aufbau === 'spannung' && PLAN.reveal != null && !WIDE;
+function tension(t) {
+  let pulse = 0;   // roter Rand, der mit jedem Herzschlag aufleuchtet
+  for (const b of PLAN.beats || []) { const d = t - b; if (d >= 0 && d < .6) pulse = Math.max(pulse, Math.exp(-d * 7) + .6 * Math.exp(-Math.max(0, d - .16) * 9) * (d > .16)); }
+  const R = PLAN.reveal, start = .25;
+  out.save(); out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over';
+  if (pulse > 0 && t < R) {
+    const g = out.createRadialGradient(W / 2, H / 2, 420, W / 2, H / 2, 1150); g.addColorStop(0, 'rgba(200,0,20,0)'); g.addColorStop(1, `rgba(200,0,20,${.38 * Math.min(1, pulse)})`);
+    out.fillStyle = g; out.fillRect(0, 0, W, H);
+  }
+  const fade = t < R ? clamp((t - start) / .25) : 1 - clamp((t - R) / .35);
+  if (fade > 0) {   // Countdown oben: Sekunden bis zur Auflösung, Ring läuft ab
+    const left = Math.max(0, R - t), sec = Math.ceil(left - 1e-6), frac = left - Math.floor(left);
+    const cx = 150, cy = 215, r = 68, k = t < R ? 1 + .14 * Math.exp(-(1 - frac) * 10) : 1 + .3 * clamp((t - R) / .35);
+    out.globalAlpha = fade; out.translate(cx, cy); out.scale(k, k);
+    out.fillStyle = 'rgba(8,6,14,.72)'; circle(out, 0, 0, r + 16); out.fill();
+    out.strokeStyle = 'rgba(255,255,255,.18)'; out.lineWidth = 12; circle(out, 0, 0, r); out.stroke();
+    const urgent = left < 3.5;
+    out.strokeStyle = urgent ? '#ff2d4a' : '#ffd23a'; out.lineCap = 'round'; out.lineWidth = 12;
+    out.beginPath(); out.arc(0, 0, r, -Math.PI / 2, -Math.PI / 2 + TAU * clamp(left / Math.max(1, R - start)), false); out.stroke();
+    text(out, t < R ? String(sec) : '!', 0, 5, 78, urgent ? '#ff4d63' : '#fff', '#111', 0, 'Poppins', 700);
+    text(out, 'AUFLÖSUNG', 0, r + 44, 26, '#fff', '#111', 8, 'Poppins', 700);
+  }
+  out.restore();
+}
 let ZOOM = 1;   // Stoß auf der Auflösung (PLAN.punch), sonst 1
 function blit(src, dx, blur) {
   const n = blur > 2 ? 7 : 1;
@@ -83,6 +109,7 @@ function renderFrame(f) {
     emoji(out, PLAN.sticker, W * .8, H * .27, 300 * k, Math.sin(q * 9) * .14 * Math.exp(-q * 1.5), fade);
     out.restore();
   }
+  if (TENSE) tension(t);
   drawCaption(out, t);
 }
 window.renderFrame = renderFrame; window.TOTAL_FRAMES = TOTAL_FRAMES; window.DUR = DUR;

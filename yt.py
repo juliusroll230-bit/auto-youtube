@@ -153,17 +153,19 @@ def upload(cfg, video_path, spec):
 
     title = spec["title"]
     description = spec.get("description", "").rstrip()
-    if FOOTER.splitlines()[0] not in description:
-        description += "\n\n" + FOOTER
+    footer = spec.get("footer", FOOTER)   # "" = kein Abspann (z. B. Entspannungskanal)
+    if footer and footer.splitlines()[0] not in description:
+        description += "\n\n" + footer
     if "#shorts" not in title.lower() and len(title) <= 90 and spec.get("laenge") != "lang":
         title += " #shorts"
     body = {
         "snippet": {"title": title[:100], "description": description[:4900], "tags": spec.get("tags", []),
-                    "categoryId": "27", "defaultLanguage": spec.get("language", "de"),
+                    "categoryId": spec.get("category", "27"), "defaultLanguage": spec.get("language", "de"),
                     "defaultAudioLanguage": spec.get("language", "de")},
         "status": {"privacyStatus": cfg.get("privacy", "public"), "selfDeclaredMadeForKids": False},
     }
-    media = MediaFileUpload(video_path, mimetype="video/mp4", chunksize=-1, resumable=True)
+    # große Dateien (Entspannungsvideos, mehrere GB) in Stücken senden, sonst liegt alles im Arbeitsspeicher
+    media = MediaFileUpload(video_path, mimetype="video/mp4", chunksize=spec.get("chunksize", -1), resumable=True)
     request = client(cfg).videos().insert(part="snippet,status", body=body, media_body=media)
     response = None
     while response is None:

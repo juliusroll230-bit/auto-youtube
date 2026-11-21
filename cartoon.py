@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tempfile
 
+import audio
 import learn
 import make_short
 import numerals
@@ -74,6 +75,8 @@ def validate(spec):
     fig(spec.get("figur"), "figur")
     if spec.get("stimmung") and spec["stimmung"] not in MOODS_VIDEO:
         errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
+    if spec.get("aufbau") and spec["aufbau"] not in learn.LAYOUTS:
+        errs.append(f"Aufbau {spec['aufbau']}, erlaubt: {', '.join(learn.LAYOUTS)}")
     if spec.get("welt") and spec["welt"] not in WORLDS:
         errs.append(f"Welt {spec['welt']}, erlaubt: {', '.join(sorted(WORLDS))}")
     if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
@@ -144,6 +147,11 @@ def word_times(segments, timings):
     return words
 
 
+def layout(spec):
+    """"spannung" (Herzschlag + Countdown, Test) oder None (normal). Lange Videos immer normal."""
+    return "spannung" if spec.get("aufbau") == "spannung" and not is_long(spec) else None
+
+
 STICKERS = {"neugierig": "🤯", "gruselig": "😱", "mysterioes": "🤔", "warm": "🥹"}   # Reaktions-Sticker je Stimmung
 
 
@@ -167,7 +175,11 @@ def plan(spec, timings, total):
             "fx": spec.get("effekte") if fx else None,
             # Stufe "voll": Zoom auf Schlüsselwörtern, langsamer Kamera-Zug, Reaktions-Sticker auf der Auflösung
             "hits": make_short.key_hits(segs, timings) if fx == "voll" else [],
-            "sticker": (spec.get("sticker") or STICKERS.get(mood(spec), "🤯")) if fx == "voll" else None}
+            "sticker": (spec.get("sticker") or STICKERS.get(mood(spec), "🤯")) if fx == "voll" else None,
+            # Test Spannung: Herzschlag-Puls und Countdown bis zur Auflösung
+            "aufbau": layout(spec),
+            "reveal": make_short.accent_time(timings) if layout(spec) == "spannung" else None,
+            "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else []}
 
 
 def stage(p, folder):
@@ -216,7 +228,8 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
                                            speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
                                            voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE,
-                                           effects=None if is_long(spec) else spec.get("effekte"))
+                                           effects=None if is_long(spec) else spec.get("effekte"),
+                                           layout=layout(spec))
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []

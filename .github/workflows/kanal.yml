@@ -2,6 +2,7 @@ name: Homepage
 
 # Hält die Homepage aktuell:
 # 1. holt alle 3 Stunden die neuesten Shorts (RSS-Feed, ohne API-Schlüssel) nach docs/,
+#    dazu alle 12 Stunden die Vorbild-Kanäle (docs/vorbilder.json, siehe vorbilder.py),
 # 2. veröffentlicht docs/ auf dem Zweig gh-pages, den GitHub Pages ausliefert.
 on:
   schedule:
@@ -12,6 +13,8 @@ on:
     paths:
       - "docs/**"
       - "tools/channel_feed.py"
+      - "tools/vorbilder_feed.py"
+      - "vorbilder.py"
       - ".github/workflows/kanal.yml"
 
 permissions:
@@ -37,9 +40,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Neueste Shorts holen
         run: python tools/channel_feed.py
+      - name: Vorbilder lesen (Muster und Trends, höchstens alle 12 Stunden)
+        run: python tools/vorbilder_feed.py || echo "Vorbilder diesmal nicht erreichbar"
       - name: Liste auf main speichern
         run: |
-          git add docs/videos.json docs/thumbs
+          git add docs/videos.json docs/thumbs docs/vorbilder.json 2>/dev/null || git add docs/videos.json docs/thumbs
           if git diff --cached --quiet; then echo "Nichts Neues"; exit 0; fi
           git commit -m "Homepage: neueste Shorts"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

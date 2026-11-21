@@ -56,6 +56,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "webhook_token": "",
                   # zweiter YouTube-Kanal nur für Clips (leer = Clips laufen auf dem Hauptkanal mit)
                   "clip_token": "", "clip_expired": False,
+                  # dritter YouTube-Kanal nur für lange Entspannungsvideos (entspannung.py): Länge in Minuten, ab dieser Uhrzeit täglich 1
+                  "relax_token": "", "relax_expired": False, "relax_on": True, "relax_minutes": 120, "relax_hour": 17,
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
                   # Firmen-Spiel (firma.py): eine Folge pro Tag zusätzlich (vier Firmen reihum), ab dieser Uhrzeit, None = aus
@@ -784,10 +786,32 @@ def thumbs_overview(posted, long_queue):
             "recent": [pick(p) for p in reversed(longs + shorts)]}
 
 
+def relax_overview(cfg, st):
+    """Für die Karte „Entspannungskanal“: verbunden, Einstellungen, letzte Uploads."""
+    info = read("relax.json", {}) or {}
+    return {"connected": bool(cfg["relax_token"]), "expired": bool(cfg["relax_expired"]) and not cfg["relax_token"],
+            "channel": read("relaxchannel.json", None) if cfg["relax_token"] else None,
+            "on": bool(cfg["relax_on"]), "minutes": cfg["relax_minutes"], "hour": cfg["relax_hour"],
+            "last": st.get("relax_last"), "error": info.get("error"), "uploads": (info.get("uploads") or [])[-5:][::-1]}
+
+
 def next_effects(posted=None):
     """Soundeffekte (dezent/stark) für den nächsten Cartoon-Short, nach dem was bisher besser lief."""
     posted = learnable(posted if posted is not None else posted_items())
     return learn.choose_effects(learn.feature_scores(posted, now()), len(posted) + 1)
+
+
+def next_layout(posted=None):
+    """"normal" oder "spannung" (Herzschlag + Countdown). Zählt jeden Cartoon-Short mit,
+    auch die vorgerenderten, damit pro 15 Shorts genau der Test-Platz drankommt."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("aufbau_n", 0)
+        st["aufbau_n"] = n + 1
+        write("state.json", st)
+    return learn.choose_layout(n, fs)
 
 
 def next_voice(spec, posted=None):
@@ -858,6 +882,7 @@ def dashboard(extra=None, working=None, repo=True):
         "channel": read("channel.json", None),
         "clip_channel": {"connected": bool(cfg["clip_token"]), "expired": bool(cfg["clip_expired"]) and not cfg["clip_token"],
                          "channel": read("clipchannel.json", None) if cfg["clip_token"] else None},
+        "relax_channel": relax_overview(cfg, st),
         "socials": cfg["socials"],
         "queue": queue,
         "long_queue": [{**card(spec), "file": os.path.basename(f)} for f, spec in long_planned],

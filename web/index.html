@@ -208,6 +208,11 @@ main { padding-block: 28px 72px; }
 .tb-pair.short .tb-opt img { aspect-ratio: 9 / 16; }
 .tb-opt .tb-bar { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; font-size: 12px; color: var(--muted); }
 .hk-tips { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+.vb-tips { margin: 0 0 14px; padding-left: 18px; font-size: 13.5px; line-height: 1.5; }
+.vb-tips .meta { color: var(--muted); font-size: 12.5px; list-style: none; margin-left: -18px; margin-top: 4px; }
+.vb-h { margin: 16px 0 6px; font-size: 14px; }
+.vb-sm { display: none; }
+@media (max-width: 560px) { .vb-sm { display: block; } }
 .looks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 22px; }
 .looks h3 { font-size: 12px; font-weight: 650; color: var(--muted); letter-spacing: .01em; margin-bottom: 8px; }
 .looks .lr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 8px; font-size: 13px; margin-bottom: 8px; }
@@ -1275,7 +1280,79 @@ dialog.vs[open] { display: grid; place-items: center; }
 .so-parents { margin: 0 0 18px; }
 .so-parents > b { display: block; margin: 12px 0 4px; }
 #shList { scroll-margin-top: 90px; }
-a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; }
+a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-items: center; justify-content: center; text-align: center; font-size: 17px; padding: 14px 26px; min-height: 52px; white-space: normal; }
+.so-big { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 2px 0 18px; }
+.so-easy li > div { font-size: 15px; }
+.so-buf { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; }
+.so-ok { margin: 6px 0 0; font-size: 15px; color: var(--ok); }
+.so-manual + .so-adv { margin-top: 6px; }
+.so-adv { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.so-adv > summary { cursor: pointer; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+/* Reiter Insta & TikTok (social.overview) */
+.sv-ref { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sv-note { margin: 18px 0 0; padding: 12px 14px; border-radius: 12px; background: rgba(242, 196, 109, .12); font-size: 13.5px; line-height: 1.45; }
+.sv-plats { margin-top: 22px; }
+.sv-p { overflow: hidden; }
+.sv-top { display: flex; align-items: center; gap: 12px; padding: 18px 20px 0; }
+.sv-logo { width: 42px; height: 42px; border-radius: 12px; flex: none; display: grid; place-items: center; color: #fff; overflow: hidden; }
+.sv-logo svg { width: 24px; height: 24px; }
+.sv-logo img { width: 100%; height: 100%; object-fit: cover; }
+.sv-logo.ig { background: radial-gradient(circle at 30% 110%, #fdcb52 0 22%, #fd5949 45%, #d6249f 65%, #285aeb 95%); }
+.sv-logo.tt { background: #000; border: 1px solid rgba(255, 255, 255, .16); box-shadow: inset -2px 0 0 #25f4ee, inset 2px 0 0 #fe2c55; }
+.sv-id { min-width: 0; flex: 1; }
+.sv-id b { display: block; font-size: 16px; font-weight: 700; }
+.sv-id span { color: var(--muted); font-size: 12.5px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-k { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 16px 20px 0; }
+.sv-k div { padding: 12px; border-radius: 13px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .07); min-width: 0; }
+.sv-k b { display: block; font-size: 22px; font-weight: 750; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.sv-k span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.sv-k b.na { color: var(--muted); font-weight: 600; }
+.sv-next { margin: 14px 20px 0; padding: 12px 14px; border-radius: 13px; background: rgba(154, 212, 166, .09); border: 1px solid rgba(154, 212, 166, .2); display: flex; gap: 10px; align-items: center; font-size: 13.5px; }
+.sv-next i { font-style: normal; font-size: 18px; }
+.sv-next.off { background: rgba(255, 255, 255, .04); border-color: var(--line); color: var(--ink-2); }
+.sv-err { margin: 12px 20px 0; padding: 11px 14px; border-radius: 12px; background: rgba(240, 138, 116, .12); border: 1px solid rgba(240, 138, 116, .3); font-size: 13px; line-height: 1.45; }
+.sv-info { margin: 12px 20px 0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+.sv-list { list-style: none; margin: 14px 0 0; padding: 0 10px 12px; }
+.sv-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 10px; border-radius: 12px; }
+.sv-list li:hover { background: rgba(255, 255, 255, .04); }
+.sv-list img, .sv-list .ph { width: 40px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--surface-2); display: block; }
+.sv-list .tt { font-weight: 600; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-list .mt { font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+.sv-list .mt b { color: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.sv-list a.btn { text-decoration: none; }
+.sv-b { display: inline-block; font-size: 11px; font-weight: 650; padding: 1px 8px; border-radius: 99px; background: rgba(154, 212, 166, .15); color: var(--accent); }
+.sv-b.err { background: rgba(240, 138, 116, .16); color: var(--err); }
+.sv-b.wait { background: rgba(242, 196, 109, .15); color: var(--hi); }
+.sv-h3 { padding: 18px 20px 0; font-size: 13px; font-weight: 650; color: var(--ink-2); }
+.sv-empty { padding: 26px 20px 24px; text-align: center; color: var(--muted); }
+.sv-empty b { display: block; color: var(--ink); margin-bottom: 4px; }
+.sv-kit { margin-top: 22px; }
+.sv-kit-b { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 28px; }
+.sv-blk { margin-bottom: 18px; min-width: 0; }
+.sv-t { font-weight: 650; font-size: 13.5px; margin-bottom: 6px; }
+.sv-bio { white-space: pre-wrap; margin: 0 0 8px; padding: 10px 12px; border-radius: 11px; background: rgba(0, 0, 0, .3); border: 1px solid var(--line); font: inherit; font-size: 13px; line-height: 1.5; }
+.sv-pics { display: flex; gap: 14px; flex-wrap: wrap; }
+.sv-pic { width: 140px; text-align: center; }
+.sv-pic img { width: 100px; height: 100px; border-radius: 50%; display: block; margin: 0 auto 8px; border: 2px solid var(--line-2); }
+.sv-pic .label { display: block; margin-bottom: 6px; min-height: 2.8em; }
+.sv-pic a.btn { text-decoration: none; }
+.sv-tag { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.sv-tag:first-child { border-top: 0; padding-top: 0; }
+.sv-tag b { font-size: 12.5px; }
+.sv-tag code { grid-column: 1; font-size: 12px; color: var(--ink-2); word-break: break-word; }
+.sv-tag .btn { grid-row: 1 / span 2; grid-column: 2; }
+.sv-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sv-check label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; padding: 9px 11px; border-radius: 11px; background: rgba(255, 255, 255, .04); cursor: pointer; }
+.sv-check input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--accent); }
+.sv-check .label { display: block; }
+.sv-check .on b { text-decoration: line-through; color: var(--muted); }
+@media (max-width: 1100px) { .sv-k { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) {  /* 10 Reiter: Leiste unten wischbar statt abgeschnitten */
+  .nav { overflow-x: auto; justify-content: flex-start; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 1 0 auto; min-width: 58px; padding-inline: 6px; }
+}
+@media (max-width: 760px) { .sv-kit-b { grid-template-columns: minmax(0, 1fr); } .sv-list li { grid-template-columns: 40px minmax(0, 1fr); } .sv-list li > a.btn { grid-column: 2; justify-self: start; } }
 </style>
 
 <svg class="sprite-defs" aria-hidden="true" focusable="false">
@@ -1295,6 +1372,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   <nav class="nav" aria-label="Bereiche">
     <a href="#zentrale" data-tab="zentrale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 7 18a2.5 2.5 0 0 0 5 .5V5.6A2.5 2.5 0 0 0 9 4.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 17 18a2.5 2.5 0 0 1-5 .5"/><path d="M12 9h2.5M12 13.5h3"/></svg><span>Zentrale</span></a>
     <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
+    <a href="#social" data-tab="social"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg><span class="l">Insta &amp; TikTok</span><span class="s" aria-hidden="true">Social</span></a>
     <a href="#geld" data-tab="geld"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M6.5 10.5h6M6.5 13.5h6"/></svg><span>Geld</span></a>
     <a href="#kampagnen" data-tab="kampagnen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><span class="l">Kampagnen</span><span class="s" aria-hidden="true">Clips</span></a>
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
@@ -1435,6 +1513,38 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     </section>
 
     <!-- CLIPI -->
+    <section class="view" id="v-social" hidden>
+      <div class="head">
+        <div>
+          <h1>Instagram &amp; TikTok</h1>
+          <p>Was gepostet wurde, wie es läuft und was als Nächstes rausgeht. Dazu alles fürs Profil zum Kopieren.</p>
+        </div>
+        <div class="sv-ref"><span class="label" id="svStand"></span><button class="btn sm" type="button" id="svRefresh">Zahlen neu holen</button></div>
+      </div>
+      <div class="sv-note" id="svNote" hidden></div>
+      <div class="grid g-11 sv-plats">
+        <div class="card sv-p" id="svIg"></div>
+        <div class="card sv-p" id="svTt"></div>
+      </div>
+      <div class="card sv-kit" id="svKit">
+        <div class="card-h"><div><h2>Profil-Paket</h2><div class="sub">Name, Bild, Bio, Link und Hashtags. Antippen, kopieren, in der App einfügen.</div></div><span class="pill" id="svDonePill"></span></div>
+        <div class="card-b sv-kit-b">
+          <div class="sv-col">
+            <div class="sv-blk"><div class="sv-t">Name</div><div class="copy"><code id="svName"></code><button class="btn sm" type="button" data-copy="svName">Kopieren</button></div></div>
+            <div class="sv-blk"><div class="sv-t">Benutzername <span class="label">(den ersten freien nehmen)</span></div><div id="svUsers"></div></div>
+            <div class="sv-blk"><div class="sv-t">Bio Instagram <span class="label" id="svBioIgN"></span></div><pre class="sv-bio" id="svBioIg"></pre><button class="btn sm" type="button" data-copy="svBioIg">Bio kopieren</button></div>
+            <div class="sv-blk"><div class="sv-t">Bio TikTok <span class="label" id="svBioTtN"></span></div><pre class="sv-bio" id="svBioTt"></pre><button class="btn sm" type="button" data-copy="svBioTt">Bio kopieren</button></div>
+            <div class="sv-blk"><div class="sv-t">Link in der Bio</div><div class="copy"><code id="svLink"></code><button class="btn sm" type="button" data-copy="svLink">Kopieren</button></div>
+              <p class="label" style="margin-top:6px">Führt zu deinem YouTube-Kanal, dort zählt jeder Aufruf fürs Werbegeld. Bei TikTok gibt es den Link erst ab 1.000 Followern.</p></div>
+          </div>
+          <div class="sv-col">
+            <div class="sv-blk"><div class="sv-t">Profilbild <span class="label">(überall dasselbe)</span></div><div class="sv-pics" id="svPics"></div></div>
+            <div class="sv-blk"><div class="sv-t">Hashtags je Video-Art <span class="label">(die Zentrale setzt sie beim Posten selbst, das hier ist fürs Posten von Hand)</span></div><div id="svTags"></div></div>
+            <div class="sv-blk"><div class="sv-t">Profil fertig?</div><ul class="sv-check" id="svCheck"></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="view" id="v-geld" hidden>
       <div class="head">
         <div>
@@ -1832,6 +1942,23 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="card-b"><div class="looks" id="looks"></div></div>
       </div>
 
+      <div class="card" style="margin-top:22px" id="vorbilder">
+        <div class="card-h"><div><h2>Vorbilder</h2><div class="sub">Erfolgreiche Kanäle in unseren Nischen. Die App liest alle 12 Stunden selbst Titel und Aufrufe ihrer neuesten Videos und vergleicht den Titelbau mit unserem. Wir lernen nur Stil und Methoden, wir kopieren keine Themen, Texte oder Videos.</div></div><span class="pill" id="vbStatus"></span></div>
+        <div class="card-b">
+          <ul class="vb-tips" id="vbTips"></ul>
+          <h3 class="vb-h">Läuft gerade bei den Vorbildern</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Video</th><th class="hide-sm">Kanal</th><th class="r">Aufrufe/Tag</th></tr></thead>
+            <tbody id="vbTrend"></tbody>
+          </table></div>
+          <h3 class="vb-h">Die Kanäle</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Kanal</th><th class="r">Abos</th><th>Das übernehmen wir</th><th class="hide-sm">Was sie anders machen</th></tr></thead>
+            <tbody id="vbBody"></tbody>
+          </table></div>
+        </div>
+      </div>
+
       <div class="card" style="margin-top:22px">
         <div class="card-h"><div><h2>Hook-Prüfung</h2><div class="sub">Jeder Short wird vor dem Upload nach 8 Punkten für die ersten 3 Sekunden geprüft: sofort starten, kurzer erster Satz, Bewegung im Bild, Spannung, keine KI-Floskeln. Gedankenstriche und Begrüßungen entfernt die App selbst.</div></div><span class="pill" id="hookAvg"></span></div>
         <div class="scroll" style="margin-top:8px"><table>
@@ -1920,40 +2047,35 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="dev-w" id="shFilm"></div>
       </div>
       <div class="card so-card" id="soCard">
-        <div class="card-h"><div><h2>Instagram und TikTok verbinden <span class="pill live">Neu</span></h2><div class="sub">Deine besten Shorts auch auf Instagram und TikTok. Such dir einen Weg aus.</div></div>
-          <div class="seg" role="group" aria-label="Weg wählen"><button type="button" aria-pressed="true" data-sow="leicht">Ohne Entwickler-Konto</button><button type="button" aria-pressed="false" data-sow="auto">Vollautomatisch</button></div></div>
+        <div class="card-h"><div><h2>Instagram und TikTok</h2><div class="sub">Automatisch posten, genau wie bei YouTube.</div></div></div>
         <div class="card-b">
-          <div id="soWayEasy">
-            <p class="so-lead"><b>Der einfache Weg.</b> Kein Entwickler-Konto, keine Schlüssel, geht mit deinem normalen Konto. Alle 2 Tage ca. 5 Minuten: Die Zentrale packt dir die besten Shorts mit fertigem Text, du planst sie einmal ein, sie gehen dann von selbst online.</p>
-            <ol class="steps">
-              <li><div><b>Paket laden</b> (die 6 besten Shorts der letzten 2 Tage und eine Datei <span class="mono">texte.txt</span> mit Text und Uhrzeit):
-                <div class="row" style="margin-top:8px"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Paket herunterladen</a><span class="msg" id="soPackMsg"></span></div>
-                <p class="label" style="margin-top:6px">ZIP-Datei mit Rechtsklick → „Alle extrahieren“ entpacken.</p></div></li>
-              <li><div><b>TikTok:</b> <a href="https://www.tiktok.com/tiktokstudio/upload" target="_blank" rel="noopener">TikTok Studio</a> am PC öffnen → Video reinziehen → Text aus <span class="mono">texte.txt</span> einfügen → bei „Wann posten“ <b>Planen</b> wählen (bis 10 Tage im Voraus) → Uhrzeit aus der Datei.</div></li>
-              <li><div><b>Instagram:</b> In der Instagram-App Reel erstellen → Weiter → <b>Erweiterte Einstellungen</b> → <b>Diesen Beitrag planen</b>. Am PC geht es mit der <a href="https://business.facebook.com/latest/composer" target="_blank" rel="noopener">Meta Business Suite</a> (braucht eine kostenlose Facebook-Seite). Planen klappt bei Creator-Konten: Instagram → Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>.</div></li>
-              <li><div>Fertig. Am Handy geht es auch einzeln: in der Liste <a href="#shList">„Für TikTok und Instagram“</a> weiter unten Clip laden, Text kopieren, posten und abhaken.</div></li>
+          <div class="so-p so-buf" id="soBuf">
+            <div class="so-h"><b>Einmal verbinden, dann postet die Zentrale selbst</b><span class="pill" id="soBufStatus"></span></div>
+            <p class="label" id="soBufIntro">Wie bei YouTube: einmal ca. 10 Minuten einrichten, danach musst du nichts mehr tun. Jeden Tag gehen deine 2 besten Shorts von selbst auf Instagram und TikTok. Kostenlos über den Planer Buffer.</p>
+            <p class="so-ok" id="soBufOk" hidden></p>
+              <button class="btn sm" type="button" id="soBufOff" hidden style="margin-top:10px">Trennen</button>
+            <ol class="steps so-easy" id="soBufSteps">
+              <li><div>Bei <a href="https://buffer.com" target="_blank" rel="noopener">buffer.com</a> kostenlos anmelden.</div></li>
+              <li><div>In Buffer Instagram und TikTok verbinden, ganz normal mit deinem Login. Instagram muss ein Creator-Konto sein (Instagram → Einstellungen → Kontotyp und Tools).</div></li>
+              <li><div>Auf <a href="https://developers.buffer.com" target="_blank" rel="noopener">developers.buffer.com</a> einen API-Schlüssel erstellen und kopieren.</div></li>
+              <li><div>Hier einfügen und auf Verbinden klicken:
+                <form class="form" id="soBufForm" style="margin-top:10px">
+                  <div class="field"><label for="soBufKey">Buffer-Schlüssel</label><input id="soBufKey" type="password" autocomplete="off" spellcheck="false" placeholder="hier einfügen"></div>
+                  <div class="row"><button class="btn primary" type="submit">Verbinden</button><span class="msg" id="soBufMsg"></span></div>
+                </form></div></li>
             </ol>
           </div>
-          <div id="soWayAuto" hidden>
-            <p class="so-lead"><b>Vollautomatisch.</b> Jeden Tag gehen die besten Shorts der letzten 2 Tage (nach YouTube-Aufrufen) raus, zwischen 12 und 22 Uhr mit 3 Stunden Abstand. Instagram postet als Reel, TikTok legt einen Entwurf in deine TikTok-App, den du dort mit einem Tipp postest. Dafür braucht es einmal eine kleine Entwickler-App bei Meta und TikTok. Die verlangen dafür meist <b>18 Jahre</b>: Dann richtet ein Elternteil das mit der Anleitung unten ein, danach läuft alles ohne sie.</p>
-            <details class="so-setup so-parents" id="soParents">
-              <summary>Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
-              <p class="label">Kostet nichts. Es wird nur das eigene Konto Ihres Kindes verbunden, nichts wird öffentlich als App angeboten. Die Zentrale postet nur selbst gemachte KI-Videos.</p>
-              <b>Instagram</b>
-              <ol class="steps">
-                <li><div>Ihr Kind stellt Instagram auf ein <b>Creator-Konto</b> um (Instagram → Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln).</div></li>
-                <li><div>Mit Ihrem Facebook-Konto eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie der Kanal). In den Seiten-Einstellungen unter <b>Verknüpfte Konten → Instagram</b> das Instagram-Konto Ihres Kindes verbinden (Ihr Kind meldet sich dort kurz an).</div></li>
-                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> mit Facebook anmelden (einmal per Handy bestätigen) → <b>App erstellen</b> → Typ <b>Business</b> bzw. Anwendungsfall „Instagram verwalten“. Name z. B. „Shorts Zentrale“. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist nicht nötig.</div></li>
-                <li><div>Im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> rechts die App wählen, die fünf Berechtigungen aus Schritt 4 im Instagram-Teil oben hinzufügen, <b>Generate Access Token</b> klicken und im Fenster Seite und Instagram-Konto anhaken.</div></li>
-                <li><div>App-ID und App-Geheimnis (App-Einstellungen → Allgemeines) und den Token in die Felder im Instagram-Teil einfügen → <b>Verbinden</b> → <b>Verbindung testen</b>. Der Token wird gegen einen dauerhaften getauscht, das ist eine einmalige Sache.</div></li>
-              </ol>
-              <b>TikTok</b>
-              <ol class="steps">
-                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> registrieren → <b>App anlegen</b>. Produkte <b>Login Kit</b> und <b>Content Posting API</b>, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Als Redirect URI die Adresse aus Schritt 2 im TikTok-Teil.</div></li>
-                <li><div>Unter <b>Sandbox → Target users</b> das TikTok-Konto Ihres Kindes eintragen. Dann klappt es sofort, ohne Prüfung durch TikTok.</div></li>
-                <li><div>Client Key und Client Secret im TikTok-Teil einfügen → <b>Speichern</b>. Ihr Kind klickt dann <b>Mit TikTok verbinden</b> und meldet sich an.</div></li>
-              </ol>
-            </details>
+          <details class="so-adv so-manual" id="soManual">
+            <summary>Lieber selbst hochladen</summary>
+          <div class="so-big"><a class="btn primary" id="soPack" href="api/social/paket.zip" download>Heutige Videos für TikTok &amp; Instagram holen</a><span class="msg" id="soPackMsg"></span></div>
+          <ol class="steps so-easy">
+            <li><div>Knopf drücken und die Datei öffnen.</div></li>
+            <li><div>Ein Video in <a href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok</a> oder in die Instagram-App hochladen.</div></li>
+            <li><div>Den passenden Text aus <b>texte.txt</b> reinkopieren und posten.</div></li>
+          </ol>
+          </details>
+          <details class="so-adv" id="soAdv">
+            <summary>Für Fortgeschrittene: ohne Buffer</summary>
           <div class="so-p" id="soIg">
             <div class="so-h"><b>Instagram</b><span class="pill" id="soIgStatus"></span></div>
             <div class="cm-ctl">
@@ -1963,7 +2085,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
             </div>
             <p class="tb-note" id="soIgNote"></p>
             <details class="so-setup" id="soIgSetup">
-              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
+              <summary>Ohne Buffer einrichten (schwerer, eigene Entwickler-App)</summary>
               <ol class="steps">
                 <li><div>In der Instagram-App: Einstellungen → <b>Kontotyp und Tools</b> → <b>Zu professionellem Konto wechseln</b> → <b>Creator</b>. Kostenlos.</div></li>
                 <li><div>Eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie dein Kanal) und in Instagram unter <b>Kontenübersicht</b> mit der Seite verbinden.</div></li>
@@ -1983,13 +2105,13 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           <div class="so-p" id="soTt">
             <div class="so-h"><b>TikTok</b><span class="pill" id="soTtStatus"></span></div>
             <div class="cm-ctl">
-              <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Entwürfe schicken</span></label>
+              <label class="switch"><input type="checkbox" id="soTtOn"><span class="tr"></span><span>Automatisch posten</span></label>
               <div class="field"><label for="soTtPer">Pro Tag</label><select id="soTtPer"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
               <button class="btn sm" type="button" id="soTtTest">Verbindung testen</button><button class="btn sm" type="button" id="soTtNow">Jetzt einen senden</button>
             </div>
             <p class="tb-note" id="soTtNote"></p>
             <details class="so-setup" id="soTtSetup">
-              <summary>Einrichten (einmalig, ca. 15 Minuten, siehe auch „Anleitung für Eltern“)</summary>
+              <summary>Ohne Buffer einrichten (schwerer, eigene Entwickler-App)</summary>
               <ol class="steps">
                 <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> anmelden und eine App anlegen. Produkte <b>Login Kit</b> und <b>Content Posting API</b> hinzufügen, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Falls TikTok ein Mindestalter verlangt, legt ein Elternteil die App an.</div></li>
                 <li><div>Als Webseite, Datenschutz und Nutzungsbedingungen deine Homepage angeben, als <b>Redirect URI</b> diese Adresse:
@@ -2004,7 +2126,25 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
               </ol>
             </details>
           </div>
-          </div>
+            <details class="so-setup so-parents" id="soParents">
+              <summary>Ohne Buffer: Anleitung für Eltern (ca. 10 Minuten je Plattform)</summary>
+              <p class="label">Kostet nichts. Es wird nur das eigene Konto Ihres Kindes verbunden, nichts wird öffentlich als App angeboten. Die Zentrale postet nur selbst gemachte KI-Videos.</p>
+              <b>Instagram</b>
+              <ol class="steps">
+                <li><div>Ihr Kind stellt Instagram auf ein <b>Creator-Konto</b> um (Instagram → Einstellungen → Kontotyp und Tools → Zu professionellem Konto wechseln).</div></li>
+                <li><div>Mit Ihrem Facebook-Konto eine <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Facebook-Seite</a> anlegen (Name wie der Kanal). In den Seiten-Einstellungen unter <b>Verknüpfte Konten → Instagram</b> das Instagram-Konto Ihres Kindes verbinden (Ihr Kind meldet sich dort kurz an).</div></li>
+                <li><div>Auf <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com</a> mit Facebook anmelden (einmal per Handy bestätigen) → <b>App erstellen</b> → Typ <b>Business</b> bzw. Anwendungsfall „Instagram verwalten“. Name z. B. „Shorts Zentrale“. Die App bleibt im Entwicklungsmodus, eine Prüfung durch Meta ist nicht nötig.</div></li>
+                <li><div>Im <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Graph-API-Explorer</a> rechts die App wählen, die fünf Berechtigungen aus Schritt 4 im Instagram-Teil oben hinzufügen, <b>Generate Access Token</b> klicken und im Fenster Seite und Instagram-Konto anhaken.</div></li>
+                <li><div>App-ID und App-Geheimnis (App-Einstellungen → Allgemeines) und den Token in die Felder im Instagram-Teil einfügen → <b>Verbinden</b> → <b>Verbindung testen</b>. Der Token wird gegen einen dauerhaften getauscht, das ist eine einmalige Sache.</div></li>
+              </ol>
+              <b>TikTok</b>
+              <ol class="steps">
+                <li><div>Auf <a href="https://developers.tiktok.com/apps" target="_blank" rel="noopener">developers.tiktok.com</a> registrieren → <b>App anlegen</b>. Produkte <b>Login Kit</b> und <b>Content Posting API</b>, Berechtigungen <b>user.info.basic</b> und <b>video.upload</b>. Als Redirect URI die Adresse aus Schritt 2 im TikTok-Teil.</div></li>
+                <li><div>Unter <b>Sandbox → Target users</b> das TikTok-Konto Ihres Kindes eintragen. Dann klappt es sofort, ohne Prüfung durch TikTok.</div></li>
+                <li><div>Client Key und Client Secret im TikTok-Teil einfügen → <b>Speichern</b>. Ihr Kind klickt dann <b>Mit TikTok verbinden</b> und meldet sich an.</div></li>
+              </ol>
+            </details>
+          </details>
         </div>
       </div>
       <h2 class="sec-h">Deine Kanäle</h2>
@@ -3073,9 +3213,38 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if (!grid.children.length) grid.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Noch keine Thumbnails" }), "Beim nächsten Upload baut die App die ersten."]));
   }
 
+  function renderVorbilder(d) {
+    var V = d.vorbilder || {}, chans = V.channels || [], trend = V.trend || [];
+    var ok = chans.filter(function (c) { return c.ok; }).length;
+    $("vbStatus").textContent = V.updated ? ok + " von " + chans.length + " gelesen · " + new Date(V.updated).toLocaleString("de-DE", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : chans.length + " Kanäle · lädt bald";
+    var tips = clear($("vbTips"));
+    (V.tips || []).forEach(function (t) { tips.appendChild(h("li", { text: t })); });
+    if (V.muster) tips.appendChild(h("li", { cls: "meta", text: "Titel der Vorbilder: Ø " + nf1.format(V.muster.words) + " Wörter, " + V.muster.question + " % Frage, " + V.muster.emoji + " % mit Emoji" + (V.unsere ? " · unsere: Ø " + nf1.format(V.unsere.words) + " Wörter, " + V.unsere.question + " % Frage, " + V.unsere.emoji + " % Emoji" : "") }));
+    tips.style.display = tips.children.length ? "" : "none";
+    var tb = clear($("vbTrend"));
+    trend.slice(0, 8).forEach(function (v) {
+      tb.appendChild(h("tr", null, [
+        h("td", null, [h("a", { href: "https://www.youtube.com/" + (v.short ? "shorts/" : "watch?v=") + v.id, target: "_blank", rel: "noopener", text: v.title }), h("div", { cls: "label vb-sm", text: v.channel })]),
+        h("td", { cls: "hide-sm", text: v.channel + " · " + v.nische }),
+        h("td", { cls: "r", text: nf.format(v.per_day) })
+      ]));
+    });
+    if (!trend.length) tb.appendChild(h("tr", null, [h("td", { colspan: "3" }, [h("div", { cls: "empty" }, [h("b", { text: "Noch keine Daten" }), "Die App holt die neuesten Vorbild-Videos von selbst, spätestens in einer Stunde."])])]));
+    var body = clear($("vbBody"));
+    chans.forEach(function (c) {
+      body.appendChild(h("tr", null, [
+        h("td", null, [h("a", { href: c.url, target: "_blank", rel: "noopener", text: c.name }), h("div", { cls: "label", text: c.nische + (c.lang === "de" ? " · Deutsch" : " · Englisch") })]),
+        h("td", { cls: "r", text: c.abos }),
+        h("td", { text: c.lernen }),
+        h("td", { cls: "hide-sm label", text: c.anders })
+      ]));
+    });
+  }
+
   function renderLearning(d) {
     renderLooks(d);
     renderHooks(d);
+    renderVorbilder(d);
     renderThumbs(d);
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
@@ -5259,6 +5428,47 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       b.appendChild(h("div", { cls: "acts" }, [go2]));
     }
     g.appendChild(b);
+    // Entspannungskanal: lange Videos (Lagerfeuer, Regen, Pendel), täglich eins
+    var RC = d.relax_channel || {}, rl = d.connect_relax || { status: "idle" }, rch = RC.channel || {};
+    var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Entspannungskanal", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
+    if (RC.connected) {
+      r.appendChild(chNums([[nf.format(rch.subscribers || 0), "Abonnenten"], [nf.format(rch.views || 0), "Aufrufe"], [nf.format(rch.videos || 0), "Videos"]]));
+      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · " + (RC.minutes / 60) + " Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
+      if (RC.error) r.appendChild(h("p", { cls: "msg err", text: "Letzter Versuch fehlgeschlagen: " + RC.error }));
+      var sel = h("select", { "aria-label": "Länge" }, [60, 120, 180, 300, 480].map(function (m) { return h("option", { value: m, text: (m / 60) + " Std." }); }));
+      sel.value = String(RC.minutes); sel.disabled = preview;
+      sel.addEventListener("change", function () { api("api/relax/settings", { minutes: Number(sel.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+      var hs = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
+      hs.value = String(RC.hour); hs.disabled = preview;
+      hs.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hs.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+      r.appendChild(h("div", { cls: "hin" }, [sel, hs]));
+      var tg = h("button", { cls: "btn sm", type: "button", text: RC.on ? "Pausieren" : "Wieder starten" });
+      tg.disabled = preview;
+      tg.addEventListener("click", function () { api("api/relax/settings", { on: !RC.on }).then(soon, function (e) { toast(e.message); }); });
+      var nw = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
+      nw.disabled = preview;
+      nw.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 Minuten"); soon(); }, function (e) { toast(e.message); }); });
+      var offr = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
+      offr.disabled = preview;
+      offr.addEventListener("click", function () { if (offr.dataset.sure) api("api/relax/disconnect").then(soon); else { offr.dataset.sure = "1"; offr.textContent = "Wirklich trennen?"; } });
+      r.appendChild(h("div", { cls: "acts" }, [nw, tg, offr]));
+      (RC.uploads || []).forEach(function (u) {
+        r.appendChild(h("p", { text: u.at + " · " }, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title })]));
+      });
+    } else if (rl.status === "code") {
+      r.appendChild(h("p", { text: "Öffne google.com/device, melde dich an und wähle bei Google deinen neuen Entspannungskanal. Dann diesen Code eingeben:" }));
+      r.appendChild(h("div", { cls: "code", text: rl.user_code }));
+      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: rl.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
+    } else {
+      if (rl.status === "fehler") r.appendChild(h("p", { cls: "msg err", text: rl.message || "Die Verbindung hat nicht geklappt." }));
+      else if (RC.expired) r.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+      r.appendChild(h("p", { text: "Ein dritter YouTube-Kanal nur für lange Videos zum Entspannen und Einschlafen (Lagerfeuer, Regen, Pendel). Die Zentrale baut sie selbst und lädt täglich eins hoch." }));
+      var go3 = h("button", { cls: "btn sm primary", type: "button", text: rl.status === "start" ? "Startet …" : "Entspannungskanal verbinden" });
+      go3.disabled = preview || !d.connected || rl.status === "start";
+      go3.addEventListener("click", function () { api("api/relax/connect").then(function () { poll(3000); }, function (e) { toast(e.message); }); });
+      r.appendChild(h("div", { cls: "acts" }, [go3]));
+    }
+    g.appendChild(r);
     // TikTok und Instagram
     [["tiktok", "tt", "TikTok", "https://www.tiktok.com/@"], ["instagram", "ig", "Instagram", "https://www.instagram.com/"]].forEach(function (P) {
       var name = so[P[0]] || "", done = list.filter(function (x) { return (x[1].shared || {})[P[0]]; }).length;
@@ -5554,6 +5764,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderViewers(d);
     renderComments(d);
     renderSocial(d);
+    renderSocialView(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5657,9 +5868,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       if (ae !== $("so" + k + "Per")) $("so" + k + "Per").value = String(x.per_day || 2);
       $("so" + k + "Now").disabled = !x.connected || !S.live;
       $("so" + k + "Off").hidden = !x.connected;
-      if (!x.connected) $("so" + k + "Setup").open = true;
       var note = [];
-      if (x.connected) note.push(k === "Ig" ? "Verbunden mit @" + (x.username || "?") + (x.page ? " (Seite " + x.page + ")" : "") : "Verbunden" + (x.username ? " als " + x.username : ""));
+      if (x.connected && x.buffer) note.push("Verbunden über Buffer" + (x.username ? " (" + x.username + ")" : ""));
+      else if (x.connected) note.push(k === "Ig" ? "Verbunden mit @" + (x.username || "?") + (x.page ? " (Seite " + x.page + ")" : "") : "Verbunden" + (x.username ? " als " + x.username : ""));
       if (x.last && x.last.at) note.push("Zuletzt: „" + x.last.title + "“ " + fDayS.format(new Date(x.last.at)).replace(/,.*/, "") + " " + fTime.format(new Date(x.last.at)) + (x.last.failed ? " (fehlgeschlagen)" : ""));
       if (x.error) note.push("Fehler: " + x.error);
       $("so" + k + "Note").textContent = note.join(" · ");
@@ -5668,27 +5879,44 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       if (k === "Tt" && ae !== $("soTtKey") && x.client_key) $("soTtKey").value = x.client_key;
       $("so" + k + "Test").disabled = !x.connected || !S.live;
     });
-    if (!S.soWay) soShowWay(/[?&]tiktok=/.test(location.search) ? "auto" : soSavedWay() || (so.instagram.connected || so.tiktok.connected ? "auto" : "leicht"));
+    var bf = so.buffer || {}, bst = $("soBufStatus");
+    bst.className = "pill" + (bf.connected ? " live" : ""); bst.textContent = bf.connected ? "Verbunden" : "Nicht verbunden";
+    $("soBufOff").hidden = !bf.connected;
+    $("soBufSteps").hidden = !!bf.connected; $("soBufIntro").hidden = !!bf.connected; $("soBufOk").hidden = !bf.connected;
+    if (bf.connected) {
+      var parts = [["instagram", "Instagram"], ["tiktok", "TikTok"]].filter(function (P) { return so[P[0]].buffer; }).map(function (P) {
+        var x = so[P[0]], t = P[1] + (x.username ? " (" + x.username + ")" : "") + (x.on ? "" : " ist aus");
+        if (x.error) t += ": Fehler, " + x.error;
+        else if (x.last && x.last.at) t += ", zuletzt „" + x.last.title + "“" + (x.last.failed ? " (fehlgeschlagen)" : "");
+        return t;
+      });
+      $("soBufOk").textContent = "✓ Läuft. Jeden Tag gehen die besten Shorts raus, zwischen 12 und 22 Uhr. " + parts.join(" · ");
+    }
+    if (!S.soAdv) { S.soAdv = 1; if (((so.instagram.connected && !so.instagram.buffer) || (so.tiktok.connected && !so.tiktok.buffer)) || /[?&]tiktok=/.test(location.search)) $("soAdv").open = true; }
   }
-  function soSavedWay() { try { return localStorage.getItem("soWay"); } catch (e) { return null; } }
-  function soShowWay(w) {
-    S.soWay = w;
-    $("soWayEasy").hidden = w !== "leicht"; $("soWayAuto").hidden = w !== "auto";
-    document.querySelectorAll("[data-sow]").forEach(function (o) { o.setAttribute("aria-pressed", o.dataset.sow === w ? "true" : "false"); });
-  }
-  document.querySelectorAll("[data-sow]").forEach(function (b) {
-    b.addEventListener("click", function () { soShowWay(b.dataset.sow); try { localStorage.setItem("soWay", b.dataset.sow); } catch (e) { /* egal */ } });
+  $("soBufForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var m = $("soBufMsg"); m.className = "msg"; m.textContent = "Verbinde …";
+    api("api/social/buffer/connect", { key: $("soBufKey").value }).then(function (r) {
+      var n = r.found.map(function (x) { return x === "instagram" ? "Instagram" : "TikTok"; }).join(" und ");
+      m.className = "msg ok"; m.textContent = "✓ Fertig! " + n + " posten jetzt automatisch."; $("soBufKey").value = "";
+    }, function (er) { m.className = "msg err"; m.textContent = er.message; });
+  });
+  $("soBufOff").addEventListener("click", function () {
+    var b = $("soBufOff");
+    if (!b.dataset.sure) { b.dataset.sure = "1"; b.textContent = "Sicher?"; return; }
+    api("api/social/buffer/disconnect").then(function () { toast("Buffer getrennt"); b.dataset.sure = ""; b.textContent = "Trennen"; }, function (er) { toast(er.message); });
   });
   $("soPack").addEventListener("click", function (e) {
     e.preventDefault();
-    var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Packt die Shorts …";
+    var m = $("soPackMsg"); m.className = "msg"; m.textContent = "Einen Moment …";
     fetch("api/social/paket.zip").then(function (r) {
       if (!r.ok) return r.json().then(function (j) { throw new Error(j.error || "Fehler"); }, function () { throw new Error("Paket gerade nicht möglich (" + r.status + ")"); });
       return r.blob();
     }).then(function (b) {
       var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "shorts-fuer-insta-und-tiktok.zip";
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 60000);
-      m.className = "msg ok"; m.textContent = "✓ Heruntergeladen. Jetzt entpacken und einplanen.";
+      m.className = "msg ok"; m.textContent = "✓ Fertig. Datei öffnen und los.";
     }, function (er) { m.className = "msg err"; m.textContent = er.message; });
   });
   [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (P) {
@@ -5737,6 +5965,141 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var q = new URLSearchParams(location.search).get("tiktok");
     if (q) setTimeout(function () { toast({ ok: "TikTok verbunden", abgebrochen: "TikTok-Anmeldung abgebrochen", ungueltig: "Anmeldung abgelaufen, bitte nochmal", fehler: "TikTok-Verbindung fehlgeschlagen, siehe Protokoll" }[q] || "TikTok"); }, 600);
   })();
+
+  // --- Reiter Insta & TikTok (social.overview) ------------------------------------------
+  var SV_ICON = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="#fff"><path d="M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2-2.8V9a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.6 4.6 0 0 1-4.4-4.7z"/></svg>'
+  };
+  function svWhen(iso) {
+    var t = new Date(iso); if (isNaN(t)) return "";
+    var today = berlin(new Date()).day, dd = berlin(t).day, tm = berlin(new Date(Date.now() + 864e5)).day;
+    var day = dd === today ? "heute" : dd === tm ? "morgen" : dd === berlin(new Date(Date.now() - 864e5)).day ? "gestern" : fDayS.format(t);
+    return day + ", " + fTime.format(t) + " Uhr";
+  }
+  function svNum(v) { return v == null ? "–" : v >= 10000 ? nfc.format(v) : nf.format(v); }
+  function svPlatform(box, plat, x, sv) {
+    clear(box);
+    var name = plat === "instagram" ? "Instagram" : "TikTok";
+    var logo = h("div", { cls: "sv-logo " + (plat === "instagram" ? "ig" : "tt") });
+    if (x.avatar) logo.appendChild(h("img", { src: x.avatar, alt: "", referrerpolicy: "no-referrer" })); else logo.innerHTML = SV_ICON[plat];
+    var pl = h("span", { cls: "pill" });
+    if (!x.connected) pill(pl, "", "Nicht verbunden");
+    else if (x.disconnected) pill(pl, "err", "Verbindung weg");
+    else if (x.error) pill(pl, "err", "Fehler");
+    else if (!x.on) pill(pl, "warn", "Pausiert");
+    else pill(pl, "live", "Läuft");
+    var sub = x.connected ? (x.username ? (plat === "instagram" && !x.buffer ? "@" : "") + x.username : "verbunden") + (x.buffer ? " · über Buffer" : "") : "noch nicht verbunden";
+    var top = h("div", { cls: "sv-top" }, [logo, h("div", { cls: "sv-id" }, [h("b", { text: name }), h("span", { text: sub })]), pl]);
+    box.appendChild(top);
+    if (!x.connected) {
+      box.appendChild(h("div", { cls: "sv-empty" }, [h("b", { text: name + " ist noch nicht verbunden" }),
+        h("p", { text: "Einmal ca. 10 Minuten einrichten, danach postet die Zentrale jeden Tag die besten Shorts von selbst." }),
+        h("a", { cls: "btn primary", href: "#kanal", text: "Jetzt verbinden" })]));
+      return;
+    }
+    var T = x.totals || {};
+    var k = h("div", { cls: "sv-k" });
+    [[x.has_numbers ? (T.views || 0) : null, "Aufrufe", !x.has_numbers],
+     [x.has_numbers ? (T.likes || 0) : null, "Likes", !x.has_numbers],
+     [x.followers != null ? x.followers : x.has_numbers ? (T.comments || 0) : null, x.followers != null ? "Follower" : "Kommentare", x.followers == null && !x.has_numbers],
+     [x.week, "Posts in 7 Tagen", false]].forEach(function (q) {
+      k.appendChild(h("div", null, [h("b", { cls: q[2] ? "na" : "", text: svNum(q[0]) }), h("span", { text: q[1] })]));
+    });
+    box.appendChild(k);
+    var n = x.next;
+    if (n) box.appendChild(h("div", { cls: "sv-next" }, [h("i", { text: "⏭" }), h("div", null, [
+      h("b", { text: "Als Nächstes: " + svWhen(n.at) }),
+      h("div", { cls: "label", text: n.title ? "„" + n.title + "“ (dein bester Short der letzten 2 Tage, der dort noch fehlt)" : "Wartet auf den nächsten neuen Short von YouTube." })])]));
+    else box.appendChild(h("div", { cls: "sv-next off" }, [h("i", { text: "⏸" }), h("div", { text: !x.on ? "Automatik ist aus. Im Reiter Kanäle wieder einschalten." : "Gerade nichts geplant." })]));
+    (x.scheduled || []).forEach(function (p) {
+      box.appendChild(h("div", { cls: "sv-info", text: "In Buffer geplant: „" + (p.title || "Post") + "“ " + (p.due ? svWhen(p.due) : "") }));
+    });
+    var errs = [];
+    if (x.disconnected) errs.push(name + " ist in Buffer getrennt. Bei buffer.com einloggen und den Kanal neu verbinden.");
+    if (x.error) errs.push("Letzter Versuch: " + x.error);
+    (x.failed || []).slice(0, 2).forEach(function (p) { errs.push("„" + (p.title || "Post") + "“ ging nicht raus" + (p.error ? ": " + p.error : ".")); });
+    errs.forEach(function (e) { box.appendChild(h("div", { cls: "sv-err", text: e })); });
+    var info = [];
+    if (!x.has_numbers) info.push(plat === "tiktok" ? "TikTok gibt ohne Buffer keine Zahlen heraus. Verbinde TikTok über Buffer (Reiter Kanäle), dann stehen hier Aufrufe und Likes. Follower zeigt nur die TikTok-App." : "Zahlen gibt es, sobald Instagram über Buffer verbunden ist.");
+    else if (x.followers == null) info.push("Follower gibt Buffer nicht heraus, die siehst du in der " + name + "-App. Aufrufe und Likes holt Buffer einmal am Tag, neue Posts zeigen deshalb erst nach ca. 24 Stunden Zahlen.");
+    else info.push("Aufrufe und Likes kommen von " + name + " selbst und sind höchstens 30 Minuten alt.");
+    box.appendChild(h("p", { cls: "sv-info", text: info.join(" ") }));
+    box.appendChild(h("div", { cls: "sv-h3", text: "Zuletzt gepostet" }));
+    var posts = (x.posts || []).filter(function (p) { return p.status !== "scheduled"; }).slice(0, 8);
+    if (!posts.length) { box.appendChild(h("div", { cls: "sv-empty", text: "Noch nichts gepostet. Der erste Short geht zwischen 12 und 22 Uhr raus." })); return; }
+    var ul = h("ul", { cls: "sv-list" });
+    posts.forEach(function (p) {
+      var m = p.metrics || {}, mt = h("div", { cls: "mt" });
+      mt.appendChild(h("span", { text: svWhen(p.at) }));
+      var badge = p.status === "error" ? ["err", "Fehler"] : p.status === "draft" ? ["wait", "Entwurf in der App"] : p.status === "sending" ? ["wait", "wird gesendet"] : ["", "online"];
+      mt.appendChild(h("span", { cls: "sv-b " + badge[0], text: badge[1] }));
+      if (m.views != null) mt.appendChild(h("span", null, [h("b", { text: svNum(m.views) }), " Aufrufe"]));
+      if (m.likes != null) mt.appendChild(h("span", null, [h("b", { text: svNum(m.likes) }), " Likes"]));
+      if (m.comments) mt.appendChild(h("span", null, [h("b", { text: svNum(m.comments) }), " Kommentare"]));
+      if (p.status === "sent" && x.has_numbers && m.views == null && m.likes == null) mt.appendChild(h("span", { text: "Zahlen folgen" }));
+      var img = p.slug ? h("img", { src: "api/thumb/" + p.slug + ".jpg", alt: "", loading: "lazy" }) : h("span", { cls: "ph" });
+      ul.appendChild(h("li", null, [img, h("div", { style: "min-width:0" }, [h("div", { cls: "tt", text: p.title || "Post" }), mt]),
+        p.link ? h("a", { cls: "btn sm", href: p.link, target: "_blank", rel: "noopener", text: "Ansehen" }) : null]));
+    });
+    box.appendChild(ul);
+  }
+  function renderSocialView(d) {
+    var sv = d.social_view;
+    if (!sv || !$("svIg")) return;
+    svPlatform($("svIg"), "instagram", sv.instagram, sv);
+    svPlatform($("svTt"), "tiktok", sv.tiktok, sv);
+    $("svStand").textContent = sv.stats_at ? "Zahlen von " + svWhen(sv.stats_at) : "";
+    $("svRefresh").hidden = !(sv.instagram.has_numbers || sv.tiktok.has_numbers);
+    $("svRefresh").disabled = !S.live;
+    var note = $("svNote"), e = sv.errors || {};
+    var msg = e.buffer ? "Zahlen von Buffer gerade nicht abrufbar: " + e.buffer : e.instagram ? "Zahlen von Instagram gerade nicht abrufbar: " + e.instagram : "";
+    note.hidden = !msg; note.textContent = msg;
+    renderKit(sv);
+  }
+  function renderKit(sv) {
+    var P = sv.profile;
+    if (!P) return;
+    $("svName").textContent = P.name;
+    var us = clear($("svUsers"));
+    P.usernames.forEach(function (u, i) {
+      var c = h("code", { id: "svU" + i, text: u }), b = h("button", { cls: "btn sm", type: "button", text: "Kopieren" });
+      b.addEventListener("click", function () { copyText(u, b); });
+      us.appendChild(h("div", { cls: "copy" }, [c, b]));
+    });
+    [["Ig", "instagram"], ["Tt", "tiktok"]].forEach(function (q) {
+      var t = P.bio[q[1]], len = Array.from(t).length;
+      $("svBio" + q[0]).textContent = t;
+      $("svBio" + q[0] + "N").textContent = "(" + len + " von " + P.bio_max[q[1]] + " Zeichen)";
+    });
+    $("svLink").textContent = P.link;
+    if (!$("svPics").childNodes.length) P.pictures.forEach(function (pic) {
+      $("svPics").appendChild(h("div", { cls: "sv-pic" }, [h("img", { src: pic.file, alt: "Profilbild " + pic.name }),
+        h("b", { text: pic.name }), h("span", { cls: "label", text: pic.tip }),
+        h("a", { cls: "btn sm", href: pic.file, download: "profilbild-60-sekunden-wissen.png", text: "Herunterladen" })]));
+    });
+    if (!$("svTags").childNodes.length) P.hashtags.forEach(function (t) {
+      var b = h("button", { cls: "btn sm", type: "button", text: "Kopieren" });
+      b.addEventListener("click", function () { copyText(t.tags, b); });
+      $("svTags").appendChild(h("div", { cls: "sv-tag" }, [h("b", { text: t.name }), b, h("code", { text: t.tags })]));
+    });
+    var done = sv.done || [], ul = clear($("svCheck"));
+    P.checklist.forEach(function (c) {
+      var on = done.indexOf(c[0]) !== -1;
+      var cb = h("input", { type: "checkbox" }); cb.checked = on; cb.disabled = !S.live;
+      cb.addEventListener("change", function () {
+        api("api/social/profil", { key: c[0], done: cb.checked }).then(null, function (e) { toast(e.message); cb.checked = !cb.checked; });
+      });
+      ul.appendChild(h("li", null, [h("label", { cls: on ? "on" : "" }, [cb, h("div", null, [h("b", { text: c[1] }), h("span", { cls: "label", text: c[2] })])])]));
+    });
+    var n = P.checklist.filter(function (c) { return done.indexOf(c[0]) !== -1; }).length;
+    pill($("svDonePill"), n === P.checklist.length ? "live" : "warn", n === P.checklist.length ? "Profil fertig" : n + " von " + P.checklist.length + " erledigt");
+  }
+  $("svRefresh").addEventListener("click", function () {
+    var b = $("svRefresh"); b.disabled = true; b.textContent = "Hole Zahlen …";
+    api("api/social/refresh").then(function () { toast("Zahlen aktualisiert"); }, function (e) { toast(e.message); })
+      .then(function () { b.disabled = false; b.textContent = "Zahlen neu holen"; });
+  });
 
   // --- Aktionen ------------------------------------------------------------------------
   function api(url, body) {
@@ -5810,7 +6173,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "community", "plan", "kanal"];
+  var TABS = ["zentrale", "social", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "community", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -5820,6 +6183,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if ($("vs").open) $("vs").close();
     TABS.forEach(function (x) { $("v-" + x).hidden = x !== t; });
     document.querySelectorAll("[data-tab]").forEach(function (a) { if (a.dataset.tab === t) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    var cur = document.querySelector('.nav a[aria-current="page"]');
+    if (cur && matchMedia("(max-width: 860px)").matches) cur.scrollIntoView({ inline: "center", block: "nearest" });
     window.scrollTo(0, 0);
     if (S.d) render();  // Diagramme brauchen die Breite des sichtbaren Bereichs
   }
@@ -5856,8 +6221,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     S.timer = setTimeout(function () {
       load().then(function (d) {
         if (!S.live || !d) return;
-        var c = (d.connect || {}).status;
-        poll(d.busy || c === "code" || c === "start" ? 4000 : 30000);
+        var c = (d.connect || {}).status, c2 = (d.connect_clip || {}).status, c3 = (d.connect_relax || {}).status;
+        var wait = function (x) { return x === "code" || x === "start"; };
+        poll(d.busy || wait(c) || wait(c2) || wait(c3) ? 4000 : 30000);
       });
     }, ms);
   }
@@ -5960,11 +6326,6 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 .cm-wm-b img { width: 96px; height: 96px; flex: none; }
 .cm-wm-b h2 { margin: 0 0 4px; font-size: 18px; }
 @media (max-width: 560px) { .cm-wm-b { flex-direction: column; } }
-@media (max-width: 860px) {  /* elf Reiter: unten seitlich wischbar statt abgeschnitten */
-  .nav { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  .nav::-webkit-scrollbar { display: none; }
-  .nav a { flex: 1 0 auto; min-width: 62px; }
-}
 .shr { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; align-items: center; padding: 10px; border-radius: 16px; background: rgba(255, 255, 255, .03); border: 1px solid var(--line); }
 .shr img { width: 54px; height: 96px; object-fit: cover; border-radius: 10px; background: var(--surface-2); }
 .shr .t { font-weight: 600; font-size: 14px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

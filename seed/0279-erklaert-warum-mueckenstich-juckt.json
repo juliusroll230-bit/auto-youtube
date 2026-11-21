@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-warum-mueckenstich-juckt",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2a14",
+    "#8ad04a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum juckt ein Mückenstich? 🦟",
+  "description": "Was die Mücke beim Stechen in die Haut gibt, warum dein Körper mit Histamin antwortet und was gegen den Juckreiz hilft.\n\n#wissen #mücke #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "mücke",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Mückenstich | Alarm der Haut",
+    "Nicht kratzen"
+  ],
+  "segments": [
+    {
+      "text": "Warum juckt ein Mückenstich eigentlich so stark?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "objekt": "🦟"
+      }
+    },
+    {
+      "text": "Die Mücke spritzt beim Stechen *Speichel* in deine Haut.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🦟",
+        "text": "Mückenspeichel"
+      }
+    },
+    {
+      "text": "Darin stecken Stoffe, die dein Blut flüssig halten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🧬",
+        "text": "Gegen Gerinnung"
+      }
+    },
+    {
+      "text": "Dein Körper hält sie für Eindringlinge und setzt *Histamin* frei.",
+      "szene": {
+        "typ": "akte",
+        "text": "Alarm",
+        "punkte": [
+          "Fremdstoff",
+          "Histamin",
+          "Juckreiz"
+        ]
+      }
+    },
+    {
+      "text": "Kratzen hilft kurz, macht es danach oft schlimmer.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🖐️",
+          "text": "Kratzen: kurz"
+        },
+        "rechts": {
+          "objekt": "🔥",
+          "text": "Danach: mehr"
+        }
+      }
+    },
+    {
+      "text": "Kühlen und Abwarten helfen besser.",
+      "szene": {
+        "typ": "liste",
+        "text": "Hilft besser",
+        "punkte": [
+          "Kühlen",
+          "Nicht kratzen",
+          "Abwarten"
+        ]
+      }
+    },
+    {
+      "text": "Der Juckreiz ist nur der *Alarm* deines Körpers.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🔔",
+        "text": "Nur Alarm"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Stich noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}
