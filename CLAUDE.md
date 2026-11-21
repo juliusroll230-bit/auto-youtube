@@ -143,6 +143,13 @@ keine reinen Feuer-/Regen-Shorts (YouTube wertet sie leicht als wiederholte Inha
   (`relax_token`, wie Clipi). `server.relax_worker` baut täglich ab `relax_hour` (Standard 17 Uhr) ein Video von `relax_minutes`
   (Standard 120) und lädt es hoch, Art reihum Feuer, Regen, Pendel. Keine Skripte dafür schreiben, die tägliche Aufgabe bleibt gleich.
 
+- **Quiet Corner (seit 21.11.2026, Julius: „übernimm du alles“):** Der Entspannungskanal heißt „Quiet Corner“ und läuft
+  komplett von selbst (`entspannung.py`, Szenen in `cartoon/web/quiet.js`, Klang `audio.soundscape`, Reiter „Quiet Corner“ `#ruhe`).
+  15 Ideen in 5 Szenen (Regen-Zimmer, Kamin-Ecke, Café bei Nacht, Fantasy-Bibliothek, Lagerfeuer im Wald), immer mit Pflanzen,
+  1 bis 3 Stunden, Titel/Beschreibung/Tags Englisch, ruhig, ohne Kitsch, Thumbnail höchstens 3 Wörter, nach jedem langen Video ein
+  30-s-Teaser-Short. Lernmodus wählt Szene und Länge nach Aufrufen pro Tag. Neue Ideen nur als Eintrag in `IDEAS` (eigene Zeichnung,
+  eigener Klang), keine fremden Clips, Musik oder Marken. Banner/Profilbild: `python entspannung.py branding ordner` (Varianten A/B/C).
+
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 
 `vorbilder.py` hat 14 erfolgreiche Kanäle in unseren Nischen (Zack D. Films, What If, Unlucky Guy, SONNENSEITE …).

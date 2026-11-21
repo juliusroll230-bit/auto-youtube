@@ -1373,6 +1373,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     <a href="#zentrale" data-tab="zentrale"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 7 18a2.5 2.5 0 0 0 5 .5V5.6A2.5 2.5 0 0 0 9 4.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 17 18a2.5 2.5 0 0 1-5 .5"/><path d="M12 9h2.5M12 13.5h3"/></svg><span>Zentrale</span></a>
     <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
     <a href="#social" data-tab="social"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg><span class="l">Insta &amp; TikTok</span><span class="s" aria-hidden="true">Social</span></a>
+    <a href="#ruhe" data-tab="ruhe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 20c3-4 6-7 10-10"/></svg><span class="l">Quiet Corner</span><span class="s" aria-hidden="true">Ruhe</span></a>
     <a href="#geld" data-tab="geld"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M6.5 10.5h6M6.5 13.5h6"/></svg><span>Geld</span></a>
     <a href="#kampagnen" data-tab="kampagnen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><span class="l">Kampagnen</span><span class="s" aria-hidden="true">Clips</span></a>
     <a href="#uebersicht" data-tab="uebersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Übersicht</span></a>
@@ -1969,6 +1970,45 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     </section>
 
     <!-- KANAL -->
+    <section class="view" id="v-ruhe" hidden>
+      <div class="head">
+        <div>
+          <h1>Quiet Corner</h1>
+          <p>Dein Entspannungskanal. Die Zentrale denkt sich die Videos aus, zeichnet und vertont sie, schreibt Titel und Beschreibung auf Englisch und lädt täglich eins hoch. Du musst nichts tun.</p>
+        </div>
+      </div>
+      <div class="qc-state" id="qcState"></div>
+      <div class="mg-k" id="qcK"></div>
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Als Nächstes</h2><div class="sub" id="qcNextSub">Das nächste Video</div></div></div>
+          <div class="card-b" id="qcNext"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><h2>Plan für 7 Tage</h2><div class="sub">Wählt die Zentrale selbst, nach dem, was am besten läuft</div></div></div>
+          <div class="card-b" id="qcPlan"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><div><h2>Hochgeladen</h2><div class="sub" id="qcUpSub">Alle Videos mit Aufrufen</div></div></div>
+        <div class="card-b" id="qcUps"></div>
+      </div>
+      <div class="grid g-11">
+        <div class="card">
+          <div class="card-h"><div><h2>Was am besten läuft</h2><div class="sub">Aufrufe pro Tag, ab dem 2. Tag nach dem Upload</div></div></div>
+          <div class="card-b" id="qcLearn"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><h2>Ideenliste</h2><div class="sub">15 Ideen in 5 Szenen, alles selbst gezeichnet und vertont</div></div></div>
+          <div class="card-b" id="qcIdeas"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><div><h2>Kanal-Look</h2><div class="sub">Banner und Profilbild, je drei Varianten mit Pflanzen. Zum Herunterladen anklicken.</div></div></div>
+        <div class="card-b" id="qcBrand"></div>
+      </div>
+    </section>
+
     <section class="view" id="v-kanal" hidden>
       <h1 class="sr-only">Kanal</h1>
       <div class="card show" id="showroom">
@@ -5284,18 +5324,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     g.appendChild(b);
     // Entspannungskanal: lange Videos (Lagerfeuer, Regen, Pendel), täglich eins
     var RC = d.relax_channel || {}, rl = d.connect_relax || { status: "idle" }, rch = RC.channel || {};
-    var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Entspannungskanal", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
+    var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Quiet Corner", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
     if (RC.connected) {
       r.appendChild(chNums([[nf.format(rch.subscribers || 0), "Abonnenten"], [nf.format(rch.views || 0), "Aufrufe"], [nf.format(rch.videos || 0), "Videos"]]));
-      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · " + (RC.minutes / 60) + " Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
+      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · 1 bis 3 Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
       if (RC.error) r.appendChild(h("p", { cls: "msg err", text: "Letzter Versuch fehlgeschlagen: " + RC.error }));
-      var sel = h("select", { "aria-label": "Länge" }, [60, 120, 180, 300, 480].map(function (m) { return h("option", { value: m, text: (m / 60) + " Std." }); }));
-      sel.value = String(RC.minutes); sel.disabled = preview;
-      sel.addEventListener("change", function () { api("api/relax/settings", { minutes: Number(sel.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
-      var hs = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
-      hs.value = String(RC.hour); hs.disabled = preview;
-      hs.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hs.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
-      r.appendChild(h("div", { cls: "hin" }, [sel, hs]));
       var tg = h("button", { cls: "btn sm", type: "button", text: RC.on ? "Pausieren" : "Wieder starten" });
       tg.disabled = preview;
       tg.addEventListener("click", function () { api("api/relax/settings", { on: !RC.on }).then(soon, function (e) { toast(e.message); }); });
@@ -5305,7 +5338,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var offr = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
       offr.disabled = preview;
       offr.addEventListener("click", function () { if (offr.dataset.sure) api("api/relax/disconnect").then(soon); else { offr.dataset.sure = "1"; offr.textContent = "Wirklich trennen?"; } });
-      r.appendChild(h("div", { cls: "acts" }, [nw, tg, offr]));
+      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm", href: "#ruhe", text: "Übersicht" }), nw, tg, offr]));
       (RC.uploads || []).forEach(function (u) {
         r.appendChild(h("p", { text: u.at + " · " }, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title })]));
       });
@@ -5316,7 +5349,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     } else {
       if (rl.status === "fehler") r.appendChild(h("p", { cls: "msg err", text: rl.message || "Die Verbindung hat nicht geklappt." }));
       else if (RC.expired) r.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
-      r.appendChild(h("p", { text: "Ein dritter YouTube-Kanal nur für lange Videos zum Entspannen und Einschlafen (Lagerfeuer, Regen, Pendel). Die Zentrale baut sie selbst und lädt täglich eins hoch." }));
+      r.appendChild(h("p", { text: "Dein Entspannungskanal Quiet Corner: lange, gemütliche Videos (Regen-Zimmer, Kamin, Café bei Nacht, Bibliothek, Lagerfeuer). Die Zentrale baut sie selbst und lädt täglich eins hoch." }));
       var go3 = h("button", { cls: "btn sm primary", type: "button", text: rl.status === "start" ? "Startet …" : "Entspannungskanal verbinden" });
       go3.disabled = preview || !d.connected || rl.status === "start";
       go3.addEventListener("click", function () { api("api/relax/connect").then(function () { poll(3000); }, function (e) { toast(e.message); }); });
@@ -5618,6 +5651,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderComments(d);
     renderSocial(d);
     renderSocialView(d);
+    renderQuiet(d);
     renderVideos(d);
     renderPlan(d, sch);
     renderChannel(d);
@@ -5897,6 +5931,96 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
     box.appendChild(ul);
   }
+  // ---------- Quiet Corner (Entspannungskanal) ----------
+  function renderQuiet(d) {
+    if (!$("qcK")) return;
+    var Q = d.relax_channel || {}, ch = Q.channel || {}, ups = Q.uploads || [], live = S.live;
+    var st = clear($("qcState"));
+    if (!Q.connected) {
+      st.appendChild(h("span", { cls: "dot", style: "background:var(--err)" }));
+      st.appendChild(h("p", { cls: "msg", text: Q.expired ? "Die Verbindung zum Kanal ist abgelaufen. Einmal neu verbinden, dann läuft alles weiter." : "Noch nicht verbunden. Unter Kanäle auf „Entspannungskanal verbinden“ klicken und bei Google den Kanal Quiet Corner wählen." }));
+      st.appendChild(h("a", { cls: "btn sm primary", href: "#kanal", text: "Zu Kanäle" }));
+    } else {
+      st.appendChild(h("span", { cls: "dot", style: "background:" + (Q.error_text ? "var(--warn, #e7c98f)" : "var(--ok)") }));
+      st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
+      if (ch.id) st.appendChild(h("a", { cls: "btn sm", href: "https://www.youtube.com/channel/" + ch.id, target: "_blank", rel: "noopener", text: "Kanal ansehen" }));
+    }
+    var views = ups.reduce(function (a, u) { return a + (u.views || 0) + (u.teaser_views || 0); }, 0);
+    var k = clear($("qcK"));
+    [[nf.format(ch.subscribers || 0), "Abonnenten"], [nf.format(ch.views != null ? ch.views : views), "Aufrufe gesamt"],
+     [nf.format(ups.length), "lange Videos"], [nf.format(ups.reduce(function (a, u) { return a + (u.minutes || 0); }, 0) / 60), "Stunden Ruhe online"]
+    ].forEach(function (x) { k.appendChild(h("div", null, [h("b", { text: x[0] }), h("span", { text: x[1] })])); });
+
+    var plan = Q.plan || [], nx = plan[0];
+    var n = clear($("qcNext"));
+    $("qcNextSub").textContent = Q.last === new Date().toISOString().slice(0, 10) ? "Heute ist schon eins online, das nächste kommt morgen ab " + Q.hour + " Uhr" : "Heute ab " + Q.hour + " Uhr";
+    if (nx) {
+      n.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: nx.title }), h("span", { text: nx.scene_name + " · " + (nx.minutes / 60) + " Std." + (Q.shorts ? " · dazu ein Teaser-Short" : "") })])]));
+    }
+    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["60", "1 Std."], ["120", "2 Std."], ["180", "3 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
+    len.value = String(Q.length || "auto");
+    len.addEventListener("change", function () { api("api/relax/settings", { length: len.value }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+    var hr = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
+    hr.value = String(Q.hour);
+    hr.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hr.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+    var sh = h("button", { cls: "btn sm", type: "button", text: Q.shorts ? "Teaser-Shorts: an" : "Teaser-Shorts: aus" });
+    sh.addEventListener("click", function () { api("api/relax/settings", { shorts: !Q.shorts }).then(soon, function (e) { toast(e.message); }); });
+    var on = h("button", { cls: "btn sm", type: "button", text: Q.on ? "Pausieren" : "Wieder starten" });
+    on.addEventListener("click", function () { api("api/relax/settings", { on: !Q.on }).then(soon, function (e) { toast(e.message); }); });
+    var now = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
+    now.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 bis 20 Minuten"); soon(); }, function (e) { toast(e.message); }); });
+    [len, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
+    n.appendChild(h("div", { cls: "qc-set" }, [len, hr, sh, on, now]));
+
+    var pl = clear($("qcPlan"));
+    plan.forEach(function (p, i) {
+      pl.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: p.title }), h("span", { text: (i === 0 ? "Als Nächstes" : fDayS.format(new Date(p.day + "T12:00:00"))) + " · " + p.scene_name })]),
+        h("div", { cls: "n" }, [h("span", { text: (p.minutes / 60) + " Std." })])]));
+    });
+
+    var up = clear($("qcUps"));
+    $("qcUpSub").textContent = Q.stats_at ? "Aufrufe zuletzt geholt: " + new Date(Q.stats_at).toLocaleString("de-DE", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "Aufrufe kommen nach dem ersten Upload";
+    if (!ups.length) up.appendChild(h("p", { cls: "label", text: "Noch keine Videos. Das erste kommt, sobald der Kanal verbunden ist." }));
+    ups.forEach(function (u) {
+      up.appendChild(h("div", { cls: "qc-row" }, [
+        h("img", { src: "https://i.ytimg.com/vi/" + u.video_id + "/mqdefault.jpg", alt: "", loading: "lazy" }),
+        h("div", null, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener" }, [h("b", { text: u.title })]),
+          h("span", { text: fDayS.format(new Date(u.at + "T12:00:00")) + " · " + ((u.minutes || 0) / 60) + " Std." + (u.teaser_id ? " · Teaser: " + nf.format(u.teaser_views || 0) + " Aufrufe" : "") })]),
+        h("div", { cls: "n" }, [h("b", { text: nf.format(u.views || 0) }), h("span", { text: u.per_day != null ? nf.format(Math.round(u.per_day)) + " pro Tag" : "Aufrufe" })])]));
+    });
+
+    var le = clear($("qcLearn")), L = Q.learn || {};
+    [["scene", "Szene"], ["minutes", "Länge"]].forEach(function (g) {
+      var rows = L[g[0]] || [], max = Math.max.apply(null, rows.map(function (r) { return r.per_day || 0; }).concat([1]));
+      le.appendChild(h("p", { cls: "label", style: "margin-top:8px", text: g[1] }));
+      rows.forEach(function (r) {
+        le.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: r.name }), h("div", { cls: "qc-bar" }, [h("i", { style: "width:" + Math.round((r.per_day || 0) / max * 100) + "%" })])]),
+          h("div", { cls: "n" }, [h("b", { text: r.per_day != null ? nf.format(r.per_day) : "–" }), h("span", { text: r.n ? r.n + " bewertet" : "noch offen" })])]));
+      });
+    });
+
+    var id = clear($("qcIdeas"));
+    (Q.ideas || []).forEach(function (i) {
+      id.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: i.title }), h("span", { text: i.scene + " · Ton: " + i.layers })]),
+        h("div", { cls: "n" }, [h("span", { text: i.used ? i.used + "× gezeigt" : "neu" })])]));
+    });
+
+    var br = clear($("qcBrand")), grid = h("div", { cls: "qc-brand" });
+    Object.keys(Q.variants || {}).forEach(function (v) {
+      var set = h("button", { cls: "btn sm" + (Q.banner === v ? " primary" : ""), type: "button", text: Q.banner === v ? "Ist eingestellt" : "Diesen Banner nehmen" });
+      set.disabled = !live || !Q.connected;
+      set.addEventListener("click", function () { api("api/relax/branding", { banner: v }).then(function () { toast("Banner und Beschreibung werden gesetzt"); soon(); }, function (e) { toast(e.message); }); });
+      grid.appendChild(h("figure", { cls: Q.banner === v ? "on" : "" }, [
+        h("div", { cls: "ims" }, [
+          h("a", { href: "relax-brand/quiet-corner-banner-" + v + ".jpg", download: "quiet-corner-banner-" + v + ".jpg" }, [h("img", { src: "relax-brand/quiet-corner-banner-" + v + ".jpg", alt: "Banner " + v, loading: "lazy" })]),
+          h("a", { href: "relax-brand/quiet-corner-profil-" + v + ".png", download: "quiet-corner-profil-" + v + ".png" }, [h("img", { src: "relax-brand/quiet-corner-profil-" + v + ".png", alt: "Profilbild " + v, loading: "lazy" })])]),
+        h("figcaption", { text: v + ": " + Q.variants[v] }), set]));
+    });
+    br.appendChild(grid);
+    br.appendChild(h("p", { cls: "label", style: "margin-top:12px", text: (Q.branded ? "Auf dem Kanal: Banner " + Q.branded.variant + " und die englische Kanalbeschreibung. " : "Banner und Beschreibung setzt die Zentrale selbst, sobald der Kanal verbunden ist. ") + "Das Profilbild lässt YouTube nur von Hand ändern: Bild herunterladen, dann in YouTube Studio unter Anpassung > Branding hochladen." }));
+    br.appendChild(h("a", { cls: "link", href: "relax-brand/quiet-corner-kanaltext.txt", target: "_blank", rel: "noopener", text: "Kanaltext ansehen" }));
+  }
+
   function renderSocialView(d) {
     var sv = d.social_view;
     if (!sv || !$("svIg")) return;
@@ -6026,7 +6150,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   document.querySelectorAll("#vSort button").forEach(function (b) { b.addEventListener("click", function () { S.vsort = b.dataset.s; renderVideos(S.d); }); });
 
   // Reiter
-  var TABS = ["zentrale", "social", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
+  var TABS = ["zentrale", "social", "ruhe", "geld", "clipi", "kampagnen", "uebersicht", "zuschauer", "videos", "plan", "kanal"];
   function showTab() {
     var t = (location.hash || "").slice(1);
     if (t === "gepostet" || t === "bestenliste") t = "videos";
@@ -6346,4 +6470,27 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   .tl li::before { left: 56px; }
   .tl a b, .best a b { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 }
+.qc-state { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; margin-bottom: 18px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); }
+.qc-state .msg { flex: 1 1 260px; }
+.qc-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); min-width: 0; }
+.qc-row:first-child { border-top: 0; }
+.qc-row > div { min-width: 0; flex: 1; }
+.qc-row b { display: block; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qc-row span { color: var(--muted); font-size: 12px; }
+.qc-row .n { flex: none; text-align: right; font-variant-numeric: tabular-nums; }
+.qc-row .n b { font-size: 15px; }
+.qc-row img { width: 96px; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; flex: none; background: var(--surface-2); }
+.qc-bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .06); overflow: hidden; margin-top: 6px; }
+.qc-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.qc-set { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.qc-brand { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.qc-brand figure { margin: 0; padding: 12px; border-radius: 16px; border: 1px solid var(--line); background: rgba(255, 255, 255, .03); display: grid; gap: 10px; }
+.qc-brand figure.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.qc-brand .ims { display: flex; gap: 10px; align-items: center; }
+.qc-brand .ims a:first-child { flex: 1; min-width: 0; }
+.qc-brand .ims img { width: 100%; display: block; border-radius: 10px; }
+.qc-brand .ims a + a { width: 30%; flex: none; }
+.qc-brand .ims a + a img { border-radius: 50%; }
+.qc-brand figcaption { font-size: 12px; color: var(--muted); }
+@media (max-width: 860px) { .qc-brand { grid-template-columns: minmax(0, 1fr); } .qc-row img { width: 72px; } }
 </style>
