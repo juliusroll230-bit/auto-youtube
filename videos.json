@@ -6,11 +6,101 @@
  },
  "videos": [
   {
+   "id": "UZMDe-oCmWE",
+   "title": "Cicada 3301: Das Rätsel, das niemand löst 🦗",
+   "text": "Im Januar 2012 taucht im Internet ein Bild mit einer geheimen Aufgabe auf. Wir erzählen die Geschichte von Cicada 3301, zeigen die Rätsel, das Runenbuch und die Frage, wer dahintersteckt.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-21T19:01:23+00:00",
+   "thumb": "thumbs/UZMDe-oCmWE.jpg"
+  },
+  {
+   "id": "0UqogUFPnSE",
+   "title": "Was passiert, wenn du einen Tag nichts isst? 🍽️",
+   "text": "Erklärt in der Blockwelt: Wie dein Körper erst Zucker, dann Vorrat und dann Fett nutzt, wenn das Essen ausbleibt.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-21T18:36:05+00:00",
+   "thumb": "thumbs/0UqogUFPnSE.jpg"
+  },
+  {
+   "id": "AqELi_tKhn4",
+   "title": "Warum musst du beim Zwiebelschneiden weinen? 🧅",
+   "text": "Erklärt in der Blockwelt: Welches Gas beim Schneiden entsteht, warum deine Augen weinen und wie du es verhinderst.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-21T17:35:50+00:00",
+   "thumb": "thumbs/AqELi_tKhn4.jpg"
+  },
+  {
+   "id": "uEP3SdA9vls",
+   "title": "Der Mord an Ötzi, den niemand klärt 🏔️",
+   "text": "Blockwelt: Im Eis der Alpen liegt ein Mann, der vor etwa 5.300 Jahren starb. Eine Pfeilspitze steckte in seiner Schulter, doch wer ihn tötete, ist unbekannt.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-21T16:36:27+00:00",
+   "thumb": "thumbs/uEP3SdA9vls.jpg"
+  },
+  {
+   "id": "Gj4J3zOJhaQ",
+   "title": "Die Figur, die spielt, wenn niemand online ist 🎮",
+   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Deine Figur ist im Spiel unterwegs, obwohl du offline bist.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-21T15:35:44+00:00",
+   "thumb": "thumbs/Gj4J3zOJhaQ.jpg"
+  },
+  {
+   "id": "Ycb2wtkqg7s",
+   "title": "Das Babyfon, das ein fremdes Lied summt 📻",
+   "text": "Eine ausgedachte Gruselgeschichte: Nachts summt das Babyfon ein Lied, aber im Kinderzimmer ist alles still.",
+   "niche": "Wissen",
+   "views": 443,
+   "published": "2026-11-21T14:35:38+00:00",
+   "thumb": "thumbs/Ycb2wtkqg7s.jpg"
+  },
+  {
+   "id": "KhJKgo1hH_I",
+   "title": "Das Foto, auf dem jede Nacht jemand mehr steht 📱",
+   "text": "Eine ausgedachte Gruselgeschichte: Das Handy macht nachts heimlich Fotos, und auf jedem steht jemand mehr im Zimmer.",
+   "niche": "Wissen",
+   "views": 747,
+   "published": "2026-11-21T13:35:53+00:00",
+   "thumb": "thumbs/KhJKgo1hH_I.jpg"
+  },
+  {
+   "id": "fZYPVQLN2Cc",
+   "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
+   "text": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.",
+   "niche": "Wissen",
+   "views": 1,
+   "published": "2026-11-21T12:36:04+00:00",
+   "thumb": "thumbs/fZYPVQLN2Cc.jpg"
+  },
+  {
+   "id": "2C8Z9cdldr0",
+   "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
+   "text": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.",
+   "niche": "Wissen",
+   "views": 783,
+   "published": "2026-11-21T12:35:43+00:00",
+   "thumb": "thumbs/2C8Z9cdldr0.jpg"
+  },
+  {
+   "id": "0ulU2GEESeA",
+   "title": "Der Spiegel, der eine Sekunde zu spät zeigt 🪞",
+   "text": "Eine ausgedachte Gruselgeschichte: Dein Spiegelbild bewegt sich eine Sekunde später als du.",
+   "niche": "Wissen",
+   "views": 737,
+   "published": "2026-11-21T11:35:42+00:00",
+   "thumb": "thumbs/0ulU2GEESeA.jpg"
+  },
+  {
    "id": "61lrBwMPnnQ",
    "title": "Der Zug, der nur nachts an deinem Haus hält 🚂",
    "text": "Eine ausgedachte Gruselgeschichte: Vor deinem Haus hält jede Nacht ein Zug, obwohl dort nie Schienen lagen.",
    "niche": "Wissen",
-   "views": 168,
+   "views": 616,
    "published": "2026-11-21T10:35:58+00:00",
    "thumb": "thumbs/61lrBwMPnnQ.jpg"
   },
@@ -19,7 +109,7 @@
    "title": "Was passiert, wenn du nicht mehr blinzelst? 👁️",
    "text": "Blinzeln wirkt unwichtig, schützt aber deine Augen. Was passiert, wenn der Tränenfilm austrocknet und warum der Reflex am Ende gewinnt.",
    "niche": "Wissen",
-   "views": 654,
+   "views": 989,
    "published": "2026-11-21T09:35:55+00:00",
    "thumb": "thumbs/oFS_EHDd7DI.jpg"
   },
@@ -28,7 +118,7 @@
    "title": "Warum ist der Nachthimmel dunkel, trotz unzähliger Sterne? 🌌",
    "text": "Das alte Rätsel heißt Olbers-Paradox. Warum die Nacht dunkel ist, obwohl es so viele Sterne gibt, und was das über das Universum verrät.",
    "niche": "Wissen",
-   "views": 299,
+   "views": 466,
    "published": "2026-11-21T08:36:03+00:00",
    "thumb": "thumbs/_3M7KFyv06U.jpg"
   },
@@ -37,7 +127,7 @@
    "title": "Warum hast du Schluckauf, und wozu ist er gut? 😮",
    "text": "Beim Schluckauf zuckt das Zwerchfell und die Stimmbänder schließen sich. Wozu das gut sein soll, weiß bis heute niemand genau.",
    "niche": "Wissen",
-   "views": 606,
+   "views": 852,
    "published": "2026-11-21T07:36:11+00:00",
    "thumb": "thumbs/Rhte7s0w76s.jpg"
   },
@@ -46,99 +136,9 @@
    "title": "Was passiert, wenn dich eine Biene sticht? 🐝",
    "text": "Warum der Stachel stecken bleibt, was die Biene bezahlt und was du nach einem Stich am besten tust.",
    "niche": "Wissen",
-   "views": 778,
+   "views": 891,
    "published": "2026-11-21T06:35:51+00:00",
    "thumb": "thumbs/2y_FHRn92Ik.jpg"
-  },
-  {
-   "id": "Ll9Doydclrk",
-   "title": "Was passiert, wenn dir beim Aufstehen schwarz wird? 😵",
-   "text": "Beim schnellen Aufstehen sackt kurz Blut in die Beine. Warum dir schwindelig wird und was dagegen hilft.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-20T20:35:37+00:00",
-   "thumb": "thumbs/Ll9Doydclrk.jpg"
-  },
-  {
-   "id": "mDxMgRUmcak",
-   "title": "Was passiert, wenn der Blitz in dein Auto einschlägt? ⚡",
-   "text": "Erklärt in der Blockwelt: Warum du im Auto bei einem Blitzschlag meistens sicher bist und welcher Mythos über Gummireifen nicht stimmt.",
-   "niche": "Wissen",
-   "views": 2,
-   "published": "2026-11-20T19:35:47+00:00",
-   "thumb": "thumbs/mDxMgRUmcak.jpg"
-  },
-  {
-   "id": "O_kvzNqGmac",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 3) 🚗",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 152 Mitarbeiter und 32.600 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 1,
-   "published": "2026-11-20T19:12:17+00:00",
-   "thumb": "thumbs/O_kvzNqGmac.jpg"
-  },
-  {
-   "id": "S45tU4ZISsk",
-   "title": "Die Flucht aus Alcatraz, die niemand erklären kann 🏝️",
-   "text": "Im Juni 1962 verschwinden drei Häftlinge aus Alcatraz. Wir erzählen die Geschichte der Flucht, zeigen den Plan, die Spuren und die Frage, ob die Männer das Ufer erreichten.",
-   "niche": "Geschichte",
-   "views": 30,
-   "published": "2026-11-20T19:00:52+00:00",
-   "thumb": "thumbs/S45tU4ZISsk.jpg"
-  },
-  {
-   "id": "ePZsEvjepzA",
-   "title": "Der Tempel, den niemand erklären kann 🪨",
-   "text": "Blockwelt: Göbekli Tepe in der Türkei ist etwa elftausend Jahre alt, älter als jede Stadt. Warum wurde er gebaut und dann begraben?",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-20T18:35:45+00:00",
-   "thumb": "thumbs/ePZsEvjepzA.jpg"
-  },
-  {
-   "id": "rIGsLJQ1qoY",
-   "title": "Die Stadt unter der Erde, die jemand vergaß 🕳️",
-   "text": "Das echte Rätsel von Derinkuyu, nachgespielt in der Blockwelt: Unter der Türkei liegt eine Stadt für tausende Menschen, und wer sie zuerst baute, ist unklar.",
-   "niche": "Geschichte",
-   "views": 0,
-   "published": "2026-11-20T17:36:04+00:00",
-   "thumb": "thumbs/rIGsLJQ1qoY.jpg"
-  },
-  {
-   "id": "lCkmUO47Tcg",
-   "title": "Der Regen, der plötzlich rot war 🔴",
-   "text": "Das echte Rätsel von Kerala, nachgespielt in der Blockwelt: Im Jahr 2001 färbt roter Regen in Indien Kleider und Wände, und eine Frage blieb offen.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-20T16:35:52+00:00",
-   "thumb": "thumbs/lCkmUO47Tcg.jpg"
-  },
-  {
-   "id": "1hXjyGOAoxI",
-   "title": "Die Lichter, die niemand erklären konnte 💡",
-   "text": "Das echte Rätsel von Marfa, nachgespielt in der Blockwelt: Nachts tanzen Lichter über der Wüste in Texas, und ein Teil davon bleibt umstritten.",
-   "niche": "Wissen",
-   "views": 264,
-   "published": "2026-11-20T15:35:39+00:00",
-   "thumb": "thumbs/1hXjyGOAoxI.jpg"
-  },
-  {
-   "id": "tACaszpwr_0",
-   "title": "Das Flugzeug, das mitten in der Nacht vom Radar verschwand ✈️",
-   "text": "Flug MH370 verschwand 2014 mit 239 Menschen an Bord. Wrackteile wurden gefunden, das Flugzeug nie. Was geschah, ist ungeklärt.",
-   "niche": "Wissen",
-   "views": 686,
-   "published": "2026-11-20T14:36:00+00:00",
-   "thumb": "thumbs/tACaszpwr_0.jpg"
-  },
-  {
-   "id": "J-wqq_PQYGs",
-   "title": "Die Grube, die niemand zu Ende graben konnte ⛏️",
-   "text": "Oak Island in Kanada: Seit 1795 suchen Menschen in einer Grube nach einem Schatz. Gefunden wurde bis heute nichts Eindeutiges.",
-   "niche": "Wissen",
-   "views": 642,
-   "published": "2026-11-20T13:36:06+00:00",
-   "thumb": "thumbs/J-wqq_PQYGs.jpg"
   }
  ]
 }
