@@ -1,0 +1,108 @@
+{
+  "slug": "geschichte-block-kiste-vor-der-tuer",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erzählung",
+  "colors": [
+    "#2a3b2a",
+    "#9cc77a"
+  ],
+  "accent": "#ffd27a",
+  "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine Kiste vor der Tür, und niemand will es gewesen sein.\n\n#geschichte #storytime #blockwelt #geschwister #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "blockwelt",
+    "geschwister",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "segments": [
+    {
+      "text": "Jeden Morgen stand plötzlich eine Kiste vor meiner Tür.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📦",
+        "chat": "Server: Neuer Tag"
+      }
+    },
+    {
+      "text": "Darin lagen Äpfel, Holz und einmal sogar ein Diamant.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💎",
+        "text": "Ein Geschenk"
+      }
+    },
+    {
+      "text": "Niemand auf dem Server wollte es gewesen sein.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 4,
+        "gefuehl": "denken",
+        "aktion": "denkt"
+      }
+    },
+    {
+      "text": "Also blieb ich eine ganze Nacht wach und schaute aus dem Fenster.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "versteckt",
+        "kamera": "nah"
+      }
+    },
+    {
+      "text": "Um sechs Uhr kam eine kleine Figur ohne Namen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        },
+        "chat": "???: hallo"
+      }
+    },
+    {
+      "text": "Es war mein kleiner Bruder, der gerade erst spielen gelernt hat.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Er wollte nur, dass ich mich auf dem neuen Server nicht allein fühle.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "❤️",
+        "text": "Nicht allein"
+      }
+    }
+  ],
+  "thumb_text": [
+    "Geschenke | von wem?",
+    "Niemand war es"
+  ]
+}
