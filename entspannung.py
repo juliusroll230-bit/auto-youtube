@@ -443,6 +443,35 @@ BRAND_VARIANTS = {"A": "Regen-Fenster mit Pflanzen (dunkel, gemütlich)",
                   "C": "Grüne Pflanzen-Ranken (hell, salbeigrün)"}
 
 
+def watermark(path, size=600):
+    """Wasserzeichen für YouTube (transparentes PNG, quadratisch): ein cremefarbenes Blatt mit Stiel in einem dünnen Ring."""
+    import math
+    from PIL import Image, ImageDraw
+    k = 4  # Supersampling gegen Zacken
+    S = size * k
+    img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    cream = (255, 246, 228, 255)
+    cx = cy = S / 2
+    d.ellipse([S * .06, S * .06, S * .94, S * .94], outline=cream, width=int(S * .025))
+    # Herzblatt (Monstera-Form), Spitze nach unten
+    pts = []
+    for i in range(361):
+        t = math.radians(i)
+        x = 16 * math.sin(t) ** 3
+        y = 13 * math.cos(t) - 5 * math.cos(2 * t) - 2 * math.cos(3 * t) - math.cos(4 * t)
+        pts.append((cx + x * S * .021, cy - S * .03 - y * S * .021))
+    d.polygon(pts, fill=cream)
+    # Blattadern als transparente Linien
+    for a in (-.9, -.45, 0, .45, .9):
+        x2, y2 = cx + a * S * .2, cy - S * .12 - abs(a) * S * .02
+        d.line([(cx, cy + S * .22), (x2, y2)], fill=(0, 0, 0, 0), width=int(S * .014))
+    d.line([(cx, cy + S * .3), (cx, cy + S * .38)], fill=cream, width=int(S * .03))
+    img = img.resize((size, size), Image.LANCZOS)
+    img.save(path, "PNG")
+    return path
+
+
 def branding(out_dir):
     """Banner (2560x1440) und Profilbild (800x800) in drei Varianten, dazu die Kanalbeschreibung. Gibt Pfade zurück."""
     import base64
@@ -465,6 +494,7 @@ def branding(out_dir):
         finally:
             browser.close()
             pw.stop()
+    out["wasserzeichen"] = watermark(os.path.join(out_dir, "quiet-corner-wasserzeichen.png"))
     p = os.path.join(out_dir, "quiet-corner-kanaltext.txt")
     with open(p, "w", encoding="utf-8") as f:
         f.write(f"Kanalname: {CHANNEL}\n\nBeschreibung:\n{CHANNEL_DESCRIPTION}\n\nStichwörter: {CHANNEL_KEYWORDS}\n")

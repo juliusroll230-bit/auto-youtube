@@ -942,7 +942,10 @@ def relax_brand_files():
     want = [f"quiet-corner-{k}-{v}.{'jpg' if k == 'banner' else 'png'}" for v in entspannung.BRAND_VARIANTS for k in ("banner", "profil")]
     if not all(os.path.exists(os.path.join(folder, f)) for f in want):
         entspannung.branding(folder)
-    return {f: os.path.join(folder, f) for f in want + ["quiet-corner-kanaltext.txt"]}
+    wm = os.path.join(folder, "quiet-corner-wasserzeichen.png")
+    if not os.path.exists(wm):
+        entspannung.watermark(wm)
+    return {f: os.path.join(folder, f) for f in want + ["quiet-corner-kanaltext.txt", "quiet-corner-wasserzeichen.png"]}
 
 
 def relax_apply_branding(variant=None):
@@ -956,6 +959,11 @@ def relax_apply_branding(variant=None):
         files = relax_brand_files()
         yt.set_branding({**cfg, "refresh_token": cfg["relax_token"]}, files[f"quiet-corner-banner-{variant}.jpg"],
                         entspannung.CHANNEL_DESCRIPTION, entspannung.CHANNEL_KEYWORDS, language="en", country="DE")
+        try:
+            yt.set_watermark({**cfg, "refresh_token": cfg["relax_token"]}, files["quiet-corner-wasserzeichen.png"])
+            store.log("ok", "Quiet Corner: Wasserzeichen gesetzt.")
+        except Exception as e:
+            store.log("warn", f"Quiet Corner: Wasserzeichen nicht gesetzt: {e}")
         info = store.read("relax.json", {}) or {}
         info["branded"] = {"variant": variant, "at": store.now().isoformat(timespec="seconds")}
         store.write("relax.json", info)
