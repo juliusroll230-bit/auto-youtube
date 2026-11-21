@@ -5327,7 +5327,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Quiet Corner", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
     if (RC.connected) {
       r.appendChild(chNums([[nf.format(rch.subscribers || 0), "Abonnenten"], [nf.format(rch.views || 0), "Aufrufe"], [nf.format(rch.videos || 0), "Videos"]]));
-      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · 1 bis 3 Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
+      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich lange Videos · 3 bis 10 Std." : "Pausiert" }));
       if (RC.error) r.appendChild(h("p", { cls: "msg err", text: "Letzter Versuch fehlgeschlagen: " + RC.error }));
       var tg = h("button", { cls: "btn sm", type: "button", text: RC.on ? "Pausieren" : "Wieder starten" });
       tg.disabled = preview;
@@ -5953,14 +5953,17 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 
     var plan = Q.plan || [], nx = plan[0];
     var n = clear($("qcNext"));
-    $("qcNextSub").textContent = Q.last === new Date().toISOString().slice(0, 10) ? "Heute ist schon eins online, das nächste kommt morgen ab " + Q.hour + " Uhr" : "Heute ab " + Q.hour + " Uhr";
+    $("qcNextSub").textContent = (Q.per_day || 1) + (Q.per_day === 1 ? " Video" : " Videos") + " am Tag, ab " + (Q.slots || [Q.hour]).join(" und ") + " Uhr";
     if (nx) {
       n.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: nx.title }), h("span", { text: nx.scene_name + " · " + (nx.minutes / 60) + " Std." + (Q.shorts ? " · dazu ein Teaser-Short" : "") })])]));
     }
-    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["60", "1 Std."], ["120", "2 Std."], ["180", "3 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
+    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["180", "3 Std."], ["300", "5 Std."], ["480", "8 Std."], ["600", "10 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
     len.value = String(Q.length || "auto");
     len.addEventListener("change", function () { api("api/relax/settings", { length: len.value }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
-    var hr = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
+    var pd = h("select", { "aria-label": "Videos am Tag" }, [1, 2, 3].map(function (x) { return h("option", { value: x, text: x + (x === 1 ? " Video am Tag" : " Videos am Tag") }); }));
+    pd.value = String(Q.per_day || 2);
+    pd.addEventListener("change", function () { api("api/relax/settings", { per_day: Number(pd.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+    var hr = h("select", { "aria-label": "Uhrzeit" }, [15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "letztes ab " + x + " Uhr" }); }));
     hr.value = String(Q.hour);
     hr.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hr.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
     var sh = h("button", { cls: "btn sm", type: "button", text: Q.shorts ? "Teaser-Shorts: an" : "Teaser-Shorts: aus" });
@@ -5969,12 +5972,12 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     on.addEventListener("click", function () { api("api/relax/settings", { on: !Q.on }).then(soon, function (e) { toast(e.message); }); });
     var now = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
     now.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 bis 20 Minuten"); soon(); }, function (e) { toast(e.message); }); });
-    [len, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
-    n.appendChild(h("div", { cls: "qc-set" }, [len, hr, sh, on, now]));
+    [len, pd, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
+    n.appendChild(h("div", { cls: "qc-set" }, [len, pd, hr, sh, on, now]));
 
     var pl = clear($("qcPlan"));
     plan.forEach(function (p, i) {
-      pl.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: p.title }), h("span", { text: (i === 0 ? "Als Nächstes" : fDayS.format(new Date(p.day + "T12:00:00"))) + " · " + p.scene_name })]),
+      pl.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: p.title }), h("span", { text: (i === 0 ? "Als Nächstes" : fDayS.format(new Date(p.day + "T12:00:00"))) + (p.hour != null ? ", ab " + p.hour + " Uhr" : "") + " · " + p.scene_name })]),
         h("div", { cls: "n" }, [h("span", { text: (p.minutes / 60) + " Std." })])]));
     });
 
