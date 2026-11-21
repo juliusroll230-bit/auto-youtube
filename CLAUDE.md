@@ -156,7 +156,7 @@ keine reinen Feuer-/Regen-Shorts (YouTube wertet sie leicht als wiederholte Inha
 Julius mag schnelle Reels (3D-Sketch und Tipp-Liste, je ca. 22 bis 25 s). Darum als Test, **ohne den Plan oben zu ändern**:
 Die App wählt selbst **2 von 15 Cartoon-Shorts** (`learn.choose_tempo`, `look.tempo`, Lernmerkmal „Tempo (schnell)“):
 Schnitt alle ca. 1,3 s (`make_short.fast_cuts`) mit wechselnder Einstellung (weit, nah, schräg), Stoß-Zoom und kurzem Blitz,
-selbst erzeugter Snap-Ton (`audio.snap`), Stimme ca. 10 % flotter ohne Pausen, große Wort-für-Wort-Untertitel
+selbst erzeugter Snap-Ton (`audio.snap`), immer die klare Stimme in normalem Tempo mit kurzen Pausen (Julius 21.11.: „die Stimme muss klarer sein“), Musik leiser, große Wort-für-Wort-Untertitel
 (Schlüsselwörter gelb) und gelber Fortschrittsbalken oben. Nicht zusammen mit „Spannung“, nie bei langen Videos.
 Zum Ausprobieren im Skript `"tempo": "schnell"`.
 
