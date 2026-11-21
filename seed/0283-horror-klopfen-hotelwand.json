@@ -1,0 +1,95 @@
+{
+  "slug": "horror-klopfen-hotelwand",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#14101a",
+    "#8a5a6a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Wer klopft an die Hotelwand? 🏨",
+  "description": "Eine ausgedachte Gruselgeschichte: Im Hotel klopft es nachts an der Wand, aber das Nachbarzimmer ist seit Jahren leer.\n\n#horror #gruselig #creepy #hotel #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "hotel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Hotelzimmer | Es klopft",
+    "Es antwortet"
+  ],
+  "segments": [
+    {
+      "text": "Niemand wohnt im Zimmer neben mir, doch es klopft an der Wand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🛏️"
+      }
+    },
+    {
+      "text": "Die Rezeption sagt, das *Nachbarzimmer* sei seit Jahren leer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🚪",
+        "text": "Seit Jahren leer"
+      }
+    },
+    {
+      "text": "Das *Klopfen* kommt jede Nacht, drei Mal, immer langsamer.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Ich klopfe zurück, und es antwortet genau so.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👊",
+        "text": "Es antwortet"
+      }
+    },
+    {
+      "text": "Heute Nacht klopft es nur einmal, aber nicht an der Wand.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Es klopft vom *Schrank* neben meinem Bett.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🚪",
+        "text": "Aus dem Schrank"
+      }
+    },
+    {
+      "text": "Und die Tür des Schranks geht langsam auf.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

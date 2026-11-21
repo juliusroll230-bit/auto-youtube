@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-block-eis-kopfschmerz",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#18344a",
+    "#e8a8c8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum tut Eis im Kopf weh? 🍦",
+  "description": "Erklärt in der Blockwelt: Was beim zu schnellen Eisessen am Gaumen passiert und warum der Schmerz im Kopf sitzt.\n\n#wissen #eis #gehirn #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "eis",
+    "gehirn",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Eis | Falscher Alarm",
+    "Kopfschmerz vom Gaumen"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du Eis viel zu schnell isst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🍦",
+        "chat": "Spieler: lecker"
+      }
+    },
+    {
+      "text": "Die Kälte trifft deinen *Gaumen* und kühlt ihn ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "❄️",
+        "text": "Kalter Gaumen"
+      }
+    },
+    {
+      "text": "Die Blutgefäße ziehen sich zusammen und weiten sich schlagartig.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🩸",
+        "text": "Gefäße"
+      }
+    },
+    {
+      "text": "Vermutlich meldet ein Nerv das als Schmerz im *Kopf*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Nach kurzer Zeit ist der Spuk meistens wieder vorbei.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 2,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Gleich vorbei"
+      }
+    },
+    {
+      "text": "Das Gehirn bekommt Alarm, obwohl dein Kopf völlig *unverletzt* ist.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🧠",
+        "text": "Falscher Alarm"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Eis noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

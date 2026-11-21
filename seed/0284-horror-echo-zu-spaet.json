@@ -1,0 +1,95 @@
+{
+  "slug": "horror-echo-zu-spaet",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0c1410",
+    "#4a7a5a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Echo, das zu spät antwortet 🌲",
+  "description": "Eine ausgedachte Gruselgeschichte: Im Wald antwortet ein Echo, aber es ruft Worte, die man noch gar nicht gesagt hat.\n\n#horror #gruselig #creepy #wald #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "wald",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Echo | im Wald",
+    "Es weiß es vorher"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich antwortet mir im Wald ein *Echo* mit anderen Worten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌲"
+      }
+    },
+    {
+      "text": "Ich rufe nur Hallo, und es ruft Hallo zurück.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "🗣️",
+        "text": "Hallo"
+      }
+    },
+    {
+      "text": "Dann rufe ich meinen Namen, und es ruft ihn viel zu spät.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Das Echo klingt zu langsam und nicht mehr wie ich.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "🔊",
+        "text": "Zu spät"
+      }
+    },
+    {
+      "text": "Aus dem Dickicht kommt meine Stimme, immer *näher*.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Es antwortet auf Worte, die ich noch gar nicht *gesagt* habe.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔊",
+        "text": "Es weiß es vorher"
+      }
+    },
+    {
+      "text": "Jetzt ruft es Hilfe, und ich habe noch nichts gesagt.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

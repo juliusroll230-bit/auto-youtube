@@ -1,0 +1,100 @@
+{
+  "slug": "mystery-teufelsspuren-devon",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#101828",
+    "#9ab8e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Spuren, die niemand erklären kann 🐾",
+  "description": "Achtzehnhundertfünfundfünfzig finden Dorfbewohner in Devon Hufspuren im Schnee, die über Mauern und Dächer führen sollen. Bis heute ist nicht geklärt, wer sie hinterließ.\n\n#mystery #rätsel #devon #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "devon",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Hufspuren | im Schnee",
+    "Wer lief dort"
+  ],
+  "segments": [
+    {
+      "text": "Achtzehnhundertfünfundfünfzig finden Dorfbewohner in Devon plötzlich *Hufspuren*, niemand weiß woher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "wetter": "schnee",
+        "objekt": "🐾"
+      }
+    },
+    {
+      "text": "Die Spuren ziehen sich durch viele Dörfer in Südengland.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Devon, England"
+      }
+    },
+    {
+      "text": "Sie sind klein, rund wie Hufe und stehen in einer einzigen Linie.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🐾",
+        "text": "Eine Linie"
+      }
+    },
+    {
+      "text": "Die Spur geht über Mauern, Dächer und durch *Rohre*.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Spur",
+        "punkte": [
+          "Mauern",
+          "Dächer",
+          "Rohre"
+        ]
+      }
+    },
+    {
+      "text": "Sogar über die breite Flussmündung führen die Spuren weiter.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "🌊",
+        "text": "Über den Fluss"
+      }
+    },
+    {
+      "text": "Dachs, Maus oder Ballon? Nichts passt zu *allen* Spuren.",
+      "szene": {
+        "typ": "liste",
+        "text": "Erklärungen",
+        "punkte": [
+          "Dachs",
+          "Maus",
+          "Ballon"
+        ]
+      }
+    },
+    {
+      "text": "Und alles begann im Jahr",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🐾",
+        "text": "Wer war es?"
+      }
+    }
+  ],
+  "ende": "loop"
+}

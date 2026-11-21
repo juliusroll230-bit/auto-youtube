@@ -1,0 +1,103 @@
+{
+  "slug": "erklaert-block-warum-katze-pfoten",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2a3a",
+    "#e8c880"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum landen Katzen auf den Pfoten? 🐈",
+  "description": "Erklärt in der Blockwelt: Wie Gleichgewichtssinn, Wirbelsäule und ein Reflex der Katze beim Fallen die Drehung ermöglichen.\n\n#wissen #katze #tiere #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "katze",
+    "tiere",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Katze | Drehung in der Luft",
+    "Der Reflex"
+  ],
+  "segments": [
+    {
+      "text": "Warum landen Katzen fast immer auf den Pfoten?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐈",
+        "chat": "Spieler: miau"
+      }
+    },
+    {
+      "text": "Dahinter steckt ein *Reflex*, der schon bei jungen Katzen auftritt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🌀",
+        "text": "Aufrichtreflex"
+      }
+    },
+    {
+      "text": "Das *Gleichgewichtsorgan* im Ohr meldet sofort, wo oben ist.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👂",
+        "text": "Gleichgewicht"
+      }
+    },
+    {
+      "text": "Der Kopf dreht sich zuerst, danach folgt der Körper.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "neutral",
+          "aktion": "steht"
+        }
+      }
+    },
+    {
+      "text": "Eine biegsame Wirbelsäule macht die Drehung in der Luft möglich.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Biegsam"
+      }
+    },
+    {
+      "text": "Die Drehung dauert nur Bruchteile einer *Sekunde*, und schon steht sie.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🐾",
+        "text": "Gelandet"
+      }
+    },
+    {
+      "text": "Trotzdem kann ein sehr hoher Sturz gefährlich bleiben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "⚠️"
+      }
+    }
+  ]
+}

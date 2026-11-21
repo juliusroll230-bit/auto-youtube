@@ -1,0 +1,105 @@
+{
+  "slug": "erklaert-extreme-kaelte-koerper",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0a1a2a",
+    "#6ab0e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dir eiskalt wird? 🥶",
+  "description": "Was dein Körper bei extremer Kälte tut, ab wann Unterkühlung beginnt und warum nasse Kleidung besonders gefährlich ist.\n\n#wissen #kälte #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "kälte",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Kälte | Dein Körper wehrt sich",
+    "Nasse Kleidung"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dir extrem kalt wird?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "wetter": "schnee",
+        "objekt": "🥶"
+      }
+    },
+    {
+      "text": "Zuerst zieht dein Körper das Blut aus Händen und Füßen zurück.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🩸",
+        "text": "Blut nach innen"
+      }
+    },
+    {
+      "text": "Dann *zittern* deine Muskeln, damit sie Wärme erzeugen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "💪",
+        "text": "Muskel-Heizung"
+      }
+    },
+    {
+      "text": "Unter fünfunddreißig Grad Körpertemperatur spricht man von Unterkühlung.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 35,
+        "einheit": "Grad",
+        "objekt": "🌡️",
+        "farbcode": "#0a1a2a"
+      }
+    },
+    {
+      "text": "Dann wirst du langsamer, schläfrig und verwirrt.",
+      "szene": {
+        "typ": "liste",
+        "text": "Unterkühlung",
+        "punkte": [
+          "Müdigkeit",
+          "Verwirrung",
+          "Langsam"
+        ]
+      }
+    },
+    {
+      "text": "Nasse Kleidung kühlt dich schneller aus als *trockene*.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧥",
+          "text": "Trocken: warm"
+        },
+        "rechts": {
+          "objekt": "💧",
+          "text": "Nass: kalt"
+        }
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Frieren noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}
