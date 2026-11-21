@@ -136,7 +136,8 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "stil": "Video-Art", "stimmung": "Stimmung", "stimme": "Stimme", "serie": "Serie",
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
-                 "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)"}
+                 "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)",
+                 "tempo": "Tempo (schnell)"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -149,6 +150,11 @@ LAYOUT_SLOTS = {7: "spannung"}        # Platz im 15er-Kreis -> Variante
 LAYOUT_BONUS = (2, 12)                # liegt die Variante klar vorn, bekommt sie diese Plätze dazu
 LAYOUT_MIN = 5                        # so viele bewertete Videos je Seite, bevor eine Variante mehr bekommt
 LAYOUT_LEAD = 1.3                     # ... und mindestens 30 % vorne
+# Tempo (Test seit 21.11.2026, Julius' Vorbild-Reels): 2 von 15 Cartoon-Shorts "schnell" mit Schnitt alle ca. 1,3 s
+# (wechselnde Einstellung, Stoß-Zoom, Snap-Ton), etwas flotterer Stimme, großen Wort-Untertiteln und Fortschrittsbalken.
+TEMPOS = ("normal", "schnell")
+TEMPO_SLOTS = {3: "schnell", 11: "schnell"}   # Plätze im 15er-Kreis (Spannung liegt auf 7)
+TEMPO_BONUS = (0, 5, 9, 13)                   # läuft "schnell" klar besser, bekommt es diese Plätze dazu
 
 
 def default_look(spec):
@@ -248,6 +254,7 @@ def features(spec, look):
         "ende": ending(spec),
         "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
         "aufbau": look.get("aufbau") if spec.get("stil") == "cartoon" else None,
+        "tempo": look.get("tempo") if spec.get("stil") == "cartoon" else None,
     }
 
 
@@ -300,9 +307,9 @@ def choose_effects(fscores, step):
     return choose(EFFECTS, fscores.get("effekte", {}), step)
 
 
-def layout_winner(fscores):
+def layout_winner(fscores, name="aufbau"):
     """Die Variante, die klar besser läuft als normale Shorts (mind. LAYOUT_MIN Videos je Seite, 30 % vorn), sonst None."""
-    vals = fscores.get("aufbau", {})
+    vals = fscores.get(name, {})
     base = vals.get("normal")
     if not base or base["videos"] < LAYOUT_MIN or base["score"] <= 0:
         return None
@@ -321,6 +328,18 @@ def choose_layout(n, fscores):
         return LAYOUT_SLOTS[pos]
     win = layout_winner(fscores)
     return win if win and pos in LAYOUT_BONUS else "normal"
+
+
+def choose_tempo(n, fscores):
+    """Für den n-ten Cartoon-Short: fest 2 "schnell" pro 15 (Test), sonst "normal".
+
+    Liegt "schnell" nach mind. 5 Videos je Seite 30 % vorn, bekommt es 4 Plätze mehr pro 15.
+    """
+    pos = n % LAYOUT_CYCLE
+    if pos in TEMPO_SLOTS:
+        return TEMPO_SLOTS[pos]
+    win = layout_winner(fscores, "tempo")
+    return win if win and pos in TEMPO_BONUS else "normal"
 
 
 def choose_thumb(fscores, step):

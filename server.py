@@ -220,6 +220,10 @@ def render_short(spec):
             if spec.get("format") != "firma":  # Test: Spannung (Herzschlag + Countdown) gegen normale Shorts
                 lay = store.next_layout()
                 look["aufbau"] = spec["aufbau"] if spec.get("aufbau") in learn.LAYOUTS else lay
+                # Test Tempo: schnelle Schnitte wie in Julius' Vorbild-Reels (nicht zusammen mit Spannung)
+                tem = store.next_tempo()
+                look["tempo"] = spec["tempo"] if spec.get("tempo") in learn.TEMPOS else (
+                    "normal" if look["aufbau"] == "spannung" else tem)
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"

@@ -858,6 +858,18 @@ def next_layout(posted=None):
     return learn.choose_layout(n, fs)
 
 
+def next_tempo(posted=None):
+    """"normal" oder "schnell" (Schnitt alle ca. 1,3 s). Eigener Zähler, zählt jeden Cartoon-Short mit."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("tempo_n", 0)
+        st["tempo_n"] = n + 1
+        write("state.json", st)
+    return learn.choose_tempo(n, fs)
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())
