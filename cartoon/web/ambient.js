@@ -59,6 +59,7 @@ function ambFeuer(c, t, w, h) {
   const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#07091a'); g.addColorStop(.7, '#1a0e16'); g.addColorStop(1, '#0c0608');
   c.fillStyle = g; c.fillRect(0, 0, w, h);
   for (const s of AMB.stars) { c.globalAlpha = .4 + .4 * S(t, 1.3, s.p); c.fillStyle = '#fff'; circle(c, s.x * w, s.y * h, s.r); c.fill(); }
+  if (typeof QTREES !== 'undefined' && QTREES) { c.globalAlpha = 1; qTrees(c, w, h); }   // Quiet Corner: Waldrand
   const cx = w / 2, gy = h * .8, fl = 1 + .06 * S(t, 7) + .04 * S(t, 11.3);
   c.globalAlpha = 1; const rg = c.createRadialGradient(cx, gy - 80, 10, cx, gy - 80, 520 * fl);   // warmes Licht
   rg.addColorStop(0, 'rgba(255,150,60,.55)'); rg.addColorStop(1, 'rgba(255,90,20,0)'); c.fillStyle = rg; c.fillRect(0, 0, w, h);

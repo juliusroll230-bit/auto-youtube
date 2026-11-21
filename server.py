@@ -733,6 +733,7 @@ def refresh_stats():
         if cfg["relax_token"]:
             try:
                 store.write("relaxchannel.json", yt.channel({**cfg, "refresh_token": cfg["relax_token"]}))
+                relax_refresh_stats(cfg)
             except Exception as e:
                 if yt.is_expired(e):
                     relax_connection_expired()
@@ -927,15 +928,48 @@ def connect_relax_channel():
         store.save_config(relax_token=token, relax_expired=False)
         status["connect_relax"] = {"status": "verbunden"}
         store.log("ok", f"Entspannungskanal verbunden: {ch.get('title', 'YouTube')}. Ab jetzt kommt dort täglich ein langes Video.")
+        relax_apply_branding()
     except Exception as e:
         status["connect_relax"] = {"status": "fehler", "message": str(e)}
         store.log("error", f"Entspannungskanal-Verbindung fehlgeschlagen: {e}")
 
 
-def post_relax(manual=False):
-    """Baut ein langes Entspannungsvideo (Lagerfeuer, Regen oder Pendel reihum) und lädt es auf den Entspannungskanal.
+def relax_brand_files():
+    """Banner und Profilbilder für Quiet Corner (einmal gebaut, dann aus dem Speicher). Gibt {name: pfad} zurück."""
+    import entspannung
+    folder = store.path("relax-brand")
+    want = [f"quiet-corner-{k}-{v}.{'jpg' if k == 'banner' else 'png'}" for v in entspannung.BRAND_VARIANTS for k in ("banner", "profil")]
+    if not all(os.path.exists(os.path.join(folder, f)) for f in want):
+        entspannung.branding(folder)
+    return {f: os.path.join(folder, f) for f in want + ["quiet-corner-kanaltext.txt"]}
 
-    Rendert nur eine Minute Bild, der Rest ist ffmpeg-Kopie. Braucht kurz den Renderer (work_lock),
+
+def relax_apply_branding(variant=None):
+    """Setzt Banner, Beschreibung und Stichwörter auf dem Entspannungskanal (Profilbild geht nur von Hand in YouTube Studio)."""
+    import entspannung
+    cfg = store.config()
+    if not cfg["relax_token"]:
+        return False
+    variant = variant or cfg.get("relax_banner", "A")
+    try:
+        files = relax_brand_files()
+        yt.set_branding({**cfg, "refresh_token": cfg["relax_token"]}, files[f"quiet-corner-banner-{variant}.jpg"],
+                        entspannung.CHANNEL_DESCRIPTION, entspannung.CHANNEL_KEYWORDS, language="en", country="DE")
+        info = store.read("relax.json", {}) or {}
+        info["branded"] = {"variant": variant, "at": store.now().isoformat(timespec="seconds")}
+        store.write("relax.json", info)
+        store.log("ok", f"Quiet Corner: Banner {variant} und Kanalbeschreibung gesetzt.")
+        return True
+    except Exception as e:
+        traceback.print_exc()
+        store.log("warn", f"Quiet Corner: Banner konnte nicht gesetzt werden: {e}")
+        return False
+
+
+def post_relax(manual=False):
+    """Quiet Corner: wählt die nächste Idee (Lernmodus), baut das lange Video plus Teaser-Short und lädt beides hoch.
+
+    Rendert nur eine Minute Bild (plus 30 s Teaser), der Rest ist ffmpeg-Kopie. Braucht kurz den Renderer (work_lock),
     damit nicht gleichzeitig ein Short rendert. Dateien werden nach dem Upload gelöscht.
     """
     import shutil
@@ -951,18 +985,19 @@ def post_relax(manual=False):
             raise RuntimeError("Der Server rendert gerade einen anderen Short, später noch einmal.")
         try:
             st = store.state()
-            kind = entspannung.next_kind(int(st.get("relax_n", 0)))
-            minutes = int(cfg["relax_minutes"])
+            n = int(st.get("relax_n", 0))
+            ups = (store.read("relax.json", {}) or {}).get("uploads") or []
+            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n)
             shutil.rmtree(folder, ignore_errors=True)
-            status["busy"] = f"Baut Entspannungsvideo: {entspannung.KINDS[kind]['name']}, {entspannung.dauer_text(minutes)}"
+            status["busy"] = f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}"
             with working("studio", task="Baut ein langes Entspannungsvideo"):
-                r = entspannung.build(kind, minutes, folder, seed=int(st.get("relax_n", 0)) + 1)
+                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=bool(cfg.get("relax_shorts", True)))
         finally:
             status["busy"] = ""
             work_lock.release()
-        meta = entspannung.meta(kind, minutes)
-        rcfg = {**cfg, "refresh_token": cfg["relax_token"]}
-        spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "de", "chunksize": 64 * 1024 * 1024}
+        meta = entspannung.meta(idea, minutes, n)
+        rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
+        spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
         with working("publisher", task="Lädt ein Entspannungsvideo hoch"):
             video_id = yt.upload(rcfg, r["video"], spec)
         thumb = False
@@ -971,6 +1006,13 @@ def post_relax(manual=False):
             thumb = True
         except Exception as e:  # Thumbnails brauchen einen bestätigten Kanal (youtube.com/verify)
             store.log("warn", f"Thumbnail für das Entspannungsvideo nicht gesetzt: {e}")
+        teaser_id = None
+        if r.get("teaser"):
+            try:
+                tm = entspannung.teaser_meta(idea, minutes, video_id)
+                teaser_id = yt.upload(rcfg, r["teaser"], {**tm, "footer": "", "category": "22", "language": "en"})
+            except Exception as e:
+                store.log("warn", f"Quiet Corner: Teaser-Short nicht hochgeladen: {e}")
         day = store.now().date().isoformat()
         with store.LOCK:
             st = store.state()
@@ -978,10 +1020,13 @@ def post_relax(manual=False):
             store.write("state.json", st)
         info = store.read("relax.json", {}) or {}
         info["error"] = None
-        info["uploads"] = (info.get("uploads") or [])[-30:] + [{"video_id": video_id, "title": meta["title"], "kind": kind,
-                                                               "minutes": minutes, "at": day, "thumb": thumb}]
+        info["uploads"] = (info.get("uploads") or [])[-200:] + [{
+            "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
+            "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0}]
         store.write("relax.json", info)
-        store.log("ok", f"Entspannungsvideo hochgeladen: {meta['title']}")
+        store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))
+        if not info.get("branded"):
+            relax_apply_branding()
         return True
     except Exception as e:
         traceback.print_exc()
@@ -999,6 +1044,24 @@ def post_relax(manual=False):
     finally:
         shutil.rmtree(folder, ignore_errors=True)
         relax_lock.release()
+
+
+def relax_refresh_stats(cfg):
+    """Aufrufe der Quiet-Corner-Videos (für den Lernmodus und die Übersicht)."""
+    info = store.read("relax.json", {}) or {}
+    ups = info.get("uploads") or []
+    ids = [u["video_id"] for u in ups] + [u["teaser_id"] for u in ups if u.get("teaser_id")]
+    if not ids:
+        return
+    stats = yt.video_stats({**cfg, "refresh_token": cfg["relax_token"]}, ids)
+    info = store.read("relax.json", {}) or {}
+    for u in info.get("uploads") or []:
+        if u["video_id"] in stats:
+            u["views"], u["likes"] = stats[u["video_id"]]["views"], stats[u["video_id"]]["likes"]
+        if u.get("teaser_id") in stats:
+            u["teaser_views"] = stats[u["teaser_id"]]["views"]
+    info["stats_at"] = store.now().isoformat(timespec="seconds")
+    store.write("relax.json", info)
 
 
 def relax_worker():
@@ -1335,6 +1398,16 @@ class Handler(BaseHTTPRequestHandler):
             return self.static_file(p[len("/static/"):])
         if p in ("/icon.png", "/favicon.ico"):
             return self.send(200, open(os.path.join(WEB, "icon.png"), "rb").read(), "image/png", cache="max-age=86400")
+        if p.startswith("/relax-brand/"):
+            name = p[len("/relax-brand/"):]
+            if not re.fullmatch(r"quiet-corner-(banner-[ABC]\.jpg|profil-[ABC]\.png|kanaltext\.txt)", name):
+                return self.send(404, {"error": "Nicht gefunden"})
+            try:
+                file = relax_brand_files()[name]
+            except Exception as e:
+                return self.send(500, {"error": f"Bilder konnten nicht gebaut werden: {e}"})
+            typ = {"jpg": "image/jpeg", "png": "image/png", "txt": "text/plain; charset=utf-8"}[name.rsplit(".", 1)[1]]
+            return self.send(200, open(file, "rb").read(), typ, cache="max-age=3600")
         if p == "/api/dashboard":
             if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
                 _last_refresh[0] = time.time()
@@ -1700,17 +1773,36 @@ class Handler(BaseHTTPRequestHandler):
         if p == "/api/relax/settings":
             import entspannung
             ch = {}
-            if "minutes" in data:
+            if "minutes" in data:   # alt: feste Länge in Minuten
                 if int(data["minutes"]) not in entspannung.MINUTES:
-                    return self.send(400, {"error": "Länge: " + ", ".join(str(m) for m in entspannung.MINUTES) + " Minuten."})
+                    return self.send(400, {"error": "Länge: 1, 2 oder 3 Stunden."})
                 ch["relax_minutes"] = int(data["minutes"])
+                ch["relax_length"] = str(int(data["minutes"]))
+            if "length" in data:
+                v = str(data["length"])
+                if v != "auto" and (not v.isdigit() or int(v) not in entspannung.MINUTES):
+                    return self.send(400, {"error": "Länge: automatisch oder 1, 2, 3 Stunden."})
+                ch["relax_length"] = v
             if "hour" in data:
                 if int(data["hour"]) not in entspannung.HOURS:
                     return self.send(400, {"error": "Uhrzeit von 0 bis 23."})
                 ch["relax_hour"] = int(data["hour"])
             if "on" in data:
                 ch["relax_on"] = bool(data["on"])
+            if "shorts" in data:
+                ch["relax_shorts"] = bool(data["shorts"])
+            if "banner" in data:
+                if data["banner"] not in entspannung.BRAND_VARIANTS:
+                    return self.send(400, {"error": "Banner A, B oder C."})
+                ch["relax_banner"] = data["banner"]
             store.save_config(**ch)
+            return self.send(200, {"ok": True})
+        if p == "/api/relax/branding":
+            if not store.config()["relax_token"]:
+                return self.send(400, {"error": "Der Entspannungskanal ist nicht verbunden."})
+            v = data.get("banner") or store.config().get("relax_banner", "A")
+            store.save_config(relax_banner=v)
+            background(relax_apply_branding, v)
             return self.send(200, {"ok": True})
         if p == "/api/relax/now":
             if not store.config()["relax_token"]:

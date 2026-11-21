@@ -214,7 +214,7 @@ def video_stats(cfg, ids):
     return out
 
 
-def set_branding(cfg, banner_path, description, keywords):
+def set_branding(cfg, banner_path, description, keywords, language="de", country="DE"):
     """Lädt das Kanalbanner hoch und setzt Beschreibung und Stichwörter.
 
     Das Profilbild lässt sich über die YouTube-Schnittstelle nicht ändern, das geht nur in YouTube Studio.
@@ -228,8 +228,8 @@ def set_branding(cfg, banner_path, description, keywords):
     # Beim Speichern ersetzt YouTube alle brandingSettings, darum die bestehenden übernehmen
     branding = ch.get("brandingSettings", {})
     channel_settings = {**branding.get("channel", {}), "description": description, "keywords": keywords}
-    channel_settings.setdefault("defaultLanguage", "de")
-    channel_settings.setdefault("country", "DE")
+    channel_settings.setdefault("defaultLanguage", language)
+    channel_settings.setdefault("country", country)
     body = {"id": ch["id"], "brandingSettings": {"channel": channel_settings,
                                                  "image": {"bannerExternalUrl": banner_url}}}
     yt.channels().update(part="brandingSettings", body=body).execute()

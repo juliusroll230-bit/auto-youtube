@@ -314,6 +314,99 @@ def ambience(kind, seconds, rate, seed, loop=False):
     return (out / max(1e-6, np.abs(out).max())).astype(np.float32)
 
 
+def _loop_env(n, rate, seed, every, lo=0.0, hi=1.0):
+    """Weiche, zufällige Lautstärke-Kurve, die am Ende nahtlos in den Anfang übergeht (ein Wert alle `every` Sekunden)."""
+    k = max(2, int(n / rate / every))
+    pts = np.random.default_rng(seed).uniform(lo, hi, k)
+    x = np.arange(n) / n * k
+    xp = np.arange(k + 1)
+    return np.interp(x, xp, np.append(pts, pts[0]))
+
+
+def soundscape(recipe, seconds, rate, seed, loop=True):
+    """Quiet Corner (seit 21.11.2026): mehrere Geräusch-Schichten, z. B. {"regen": 1, "uhr": .25, "donner": .6}.
+
+    Alles selbst erzeugt, ohne fremde Aufnahmen. Mit loop=True geht das Ende nahtlos in den Anfang über.
+    Schichten: regen, scheibe (dumpfer Regen an der Scheibe), feuer (Lagerfeuer), kamin, donner, uhr, cafe, wind,
+    seiten (Buchseiten), grillen.
+    """
+    n = int(seconds * rate)
+    rng = np.random.default_rng(seed + 77)
+    out = np.zeros(n)
+
+    def put(buf, start, sound):
+        idx = (int(start) + np.arange(len(sound))) % len(buf) if loop else None
+        if loop:
+            np.add.at(buf, idx, sound)
+        else:
+            _add(buf, start, sound)
+
+    def norm(y):
+        return y / max(1e-6, np.abs(y).max())
+
+    for name, gain in recipe.items():
+        if not gain:
+            continue
+        lay = np.zeros(n)
+        sd = seed + sum(map(ord, name))
+        if name in ("regen", "feuer"):
+            lay = ambience(name, seconds, rate, sd, loop=loop).astype(float)
+        elif name == "scheibe":
+            lay += 0.7 * _shaped_noise(n, rate, sd, 120, 5000, tilt=-0.9) * (0.85 + 0.15 * _loop_env(n, rate, sd, 4))
+            tt = np.arange(int(0.05 * rate)) / rate
+            for _ in range(int(seconds * 5)):
+                f = rng.uniform(700, 1500)
+                put(lay, rng.integers(n), rng.uniform(0.05, 0.18) * np.sin(2 * np.pi * f * tt) * np.exp(-tt * 90))
+        elif name == "kamin":
+            lay += 0.45 * _shaped_noise(n, rate, sd, 30, 500, tilt=-1.0) * (0.7 + 0.3 * _loop_env(n, rate, sd, 2))
+            for _ in range(int(seconds * 9)):
+                k = int(rng.uniform(0.006, 0.02) * rate)
+                put(lay, rng.integers(n), rng.uniform(0.15, 0.8) * rng.standard_normal(k) * np.exp(-np.arange(k) / rate * 400))
+            for _ in range(int(seconds / 7)):   # ab und zu ein lauteres Knacken
+                k = int(0.04 * rate)
+                put(lay, rng.integers(n), rng.standard_normal(k) * np.exp(-np.arange(k) / rate * 120))
+        elif name == "donner":   # zu den Blitzen in quiet.js (bei 38 % und 70 % der Schleife, kurz danach)
+            for at, g in ((0.38, 1.0), (0.70, 0.7)):
+                k = int(5.5 * rate)
+                tt = np.arange(k) / rate
+                env = np.minimum(1, tt / 0.35) * np.exp(-tt * 0.75) * (0.7 + 0.3 * np.sin(2 * np.pi * 1.3 * tt))
+                put(lay, (at * seconds + 1.1) * rate, g * _shaped_noise(k, rate, sd + int(at * 100), 25, 220, tilt=-1.2) * env)
+        elif name == "uhr":
+            tt = np.arange(int(0.03 * rate)) / rate
+            for i in range(int(seconds)):
+                f = 2600 if i % 2 else 2100
+                put(lay, i * rate, (0.8 if i % 2 else 0.6) * np.sin(2 * np.pi * f * tt) * np.exp(-tt * 260))
+        elif name == "cafe":   # leises Stimmengewirr ohne Worte, dazu Tassen und Löffel
+            for v in range(7):
+                band = _shaped_noise(n, rate, sd + v, 220 + v * 60, 1400 + v * 150, tilt=-0.6)
+                lay += band * _loop_env(n, rate, sd + 50 + v, rng.uniform(0.25, 0.6), 0.0, 1.0) ** 2
+            lay = 0.6 * norm(lay)
+            tt = np.arange(int(0.5 * rate)) / rate
+            for _ in range(int(seconds / 5)):
+                f = rng.uniform(2800, 4200)
+                clink = (np.sin(2 * np.pi * f * tt) + 0.5 * np.sin(2 * np.pi * f * 2.76 * tt)) * np.exp(-tt * 14)
+                put(lay, rng.integers(n), rng.uniform(0.04, 0.12) * clink)
+        elif name == "wind":
+            lay += _shaped_noise(n, rate, sd, 60, 1100, tilt=-1.1) * (0.25 + 0.75 * _loop_env(n, rate, sd, 5) ** 2)
+        elif name == "seiten":
+            for _ in range(max(1, int(seconds / 14))):
+                k = int(0.4 * rate)
+                env = np.sin(np.linspace(0, np.pi, k)) ** 2
+                put(lay, rng.integers(n), 0.6 * _shaped_noise(k, rate, int(rng.integers(1 << 30)), 1500, 9000, tilt=-0.3) * env)
+        elif name == "grillen":
+            tt = np.arange(int(0.012 * rate)) / rate
+            pulse = np.sin(2 * np.pi * 4600 * tt) * np.sin(np.pi * tt / tt[-1])
+            t0 = 0.0
+            while t0 < seconds - 1:
+                for j in range(3):
+                    put(lay, (t0 + j * 0.03) * rate, 0.3 * pulse)
+                t0 += rng.uniform(0.6, 1.1)
+        else:
+            continue
+        out += gain * norm(lay)
+    return (out / max(1e-6, np.abs(out).max())).astype(np.float32)
+
+
 def heartbeat(rate):
     """Ein Herzschlag (lub-dub): zwei tiefe, dumpfe Schläge kurz hintereinander."""
     n = int(0.5 * rate)
