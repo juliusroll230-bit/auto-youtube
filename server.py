@@ -1145,6 +1145,11 @@ def post_social():
         social.run_once()
     finally:
         social_lock.release()
+    try:  # Zahlen für den Reiter „Insta & TikTok“ (höchstens alle 30 Minuten, siehe social.STATS_EVERY)
+        if social.summary()["buffer"]["connected"] or social.load()["instagram"]["token"]:
+            social.refresh_stats()
+    except Exception as e:  # nie den Planer stören
+        store.log("error", f"Insta/TikTok-Zahlen: {e}")
 
 
 vorbilder_lock = threading.Lock()
@@ -1306,7 +1311,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
-                                                   "social": social.summary(), "vorbilder": vorbilder.summary()},
+                                                   "social": social.summary(), "social_view": social.overview(), "vorbilder": vorbilder.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
             q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
@@ -1691,6 +1696,17 @@ class Handler(BaseHTTPRequestHandler):
         if p == "/api/social/buffer/disconnect":
             social.buffer_disconnect()
             return self.send(200, {"ok": True})
+        if p == "/api/social/refresh":  # Knopf „Zahlen neu holen“ im Reiter Insta & TikTok
+            try:
+                social.refresh_stats(force=True)
+            except Exception as e:
+                return self.send(400, {"error": str(e)[:200]})
+            return self.send(200, {"ok": True})
+        if p == "/api/social/profil":  # Checkliste „Profil fertig?“
+            try:
+                return self.send(200, {"done": social.set_done(str(data.get("key", "")), bool(data.get("done")))})
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
         if p == "/api/social/now":
             plat = str(data.get("platform", ""))
             if plat not in social.DEFAULTS:
