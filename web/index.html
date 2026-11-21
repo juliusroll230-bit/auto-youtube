@@ -5955,7 +5955,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var cw = h("div", { cls: "qc-connect" }); st.appendChild(cw); relaxConnectUI(d, cw);
     } else {
       st.appendChild(h("span", { cls: "dot", style: "background:" + (Q.error_text ? "var(--warn, #e7c98f)" : "var(--ok)") }));
-      st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
+      st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.phase ? "Gerade: " + Q.phase : Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
       if (ch.id) st.appendChild(h("a", { cls: "btn sm", href: "https://www.youtube.com/channel/" + ch.id, target: "_blank", rel: "noopener", text: "Kanal ansehen" }));
     }
     var views = ups.reduce(function (a, u) { return a + (u.views || 0) + (u.teaser_views || 0); }, 0);

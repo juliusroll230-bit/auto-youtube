@@ -60,6 +60,7 @@ VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
 thumb_lock = threading.Lock()  # Thumbnails nacheinander bauen (Chromium)
+relax_waiting = threading.Event()  # Quiet Corner wartet auf den Renderer: andere Aufgaben lassen ihn frei
 relax_lock = threading.Lock()  # Entspannungskanal: baut und lädt ein langes Video, unabhängig vom Hauptkanal
 clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
 status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "connect_relax": {"status": "idle"}, "oauth_states": {}}
@@ -164,7 +165,7 @@ def post_next(slot, manual=False, long=False, firma=False):
             if manual:
                 status["busy"] = ""  # "Startet …" vom Knopf „Jetzt posten“ wieder freigeben
     done = "long_slots" if long else "firma_slots" if firma else "done_slots"
-    if not work_lock.acquire(blocking=False):
+    if relax_waiting.is_set() or not work_lock.acquire(blocking=False):
         return
     try:
         with working("planer", task="Wählt das nächste Video"):
@@ -350,7 +351,7 @@ def prerender():
         return
     if len(store.ready_items()) >= store.READY_MAX:
         return
-    if not work_lock.acquire(blocking=False):
+    if relax_waiting.is_set() or not work_lock.acquire(blocking=False):
         return
     try:
         planned = store.planned_queue(ready_only=True, with_ready=False)
@@ -966,6 +967,14 @@ def relax_apply_branding(variant=None):
         return False
 
 
+def relax_phase(text):
+    """Merkt sich, was Quiet Corner gerade macht, damit die Zentrale es anzeigen kann."""
+    with store.LOCK:
+        st = store.state()
+        st["relax_phase"] = text
+        store.write("state.json", st)
+
+
 def post_relax(manual=False):
     """Quiet Corner: wählt die nächste Idee (Lernmodus), baut das lange Video plus Teaser-Short und lädt beides hoch.
 
@@ -981,9 +990,16 @@ def post_relax(manual=False):
         cfg = store.config()
         if not cfg["relax_token"]:
             return False
-        if not work_lock.acquire(timeout=600 if not manual else 5):
+        relax_phase("Wartet, bis der Server frei ist (ein laufender Short wird noch fertig)")
+        relax_waiting.set()
+        try:
+            got = work_lock.acquire(timeout=4 * 3600 if not manual else 30 * 60)
+        finally:
+            relax_waiting.clear()
+        if not got:
             raise RuntimeError("Der Server rendert gerade einen anderen Short, später noch einmal.")
         try:
+            relax_phase("Baut das Video (ca. 10 bis 20 Minuten)")
             st = store.state()
             n = int(st.get("relax_n", 0))
             ups = (store.read("relax.json", {}) or {}).get("uploads") or []
@@ -998,6 +1014,7 @@ def post_relax(manual=False):
         meta = entspannung.meta(idea, minutes, n)
         rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
         spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
+        relax_phase("Lädt hoch (bei 8 bis 10 Std. dauert das ein paar Stunden)")
         with working("publisher", task="Lädt ein Entspannungsvideo hoch"):
             video_id = yt.upload(rcfg, r["video"], spec)
         thumb = False
@@ -1025,12 +1042,14 @@ def post_relax(manual=False):
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
             "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0}]
         store.write("relax.json", info)
+        relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))
         if not info.get("branded"):
             relax_apply_branding()
         return True
     except Exception as e:
         traceback.print_exc()
+        relax_phase("")
         info = store.read("relax.json", {}) or {}
         info["error"] = str(e)[:300]
         store.write("relax.json", info)
@@ -1068,6 +1087,10 @@ def relax_refresh_stats(cfg):
 def relax_worker():
     """Eigener Faden: einmal pro Tag ab der eingestellten Uhrzeit ein langes Entspannungsvideo."""
     import entspannung
+    try:
+        relax_phase("")  # nach einem Neustart steht nichts mehr „in Arbeit“
+    except Exception:
+        pass
     while True:
         try:
             st = store.state()
