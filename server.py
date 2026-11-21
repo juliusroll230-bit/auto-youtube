@@ -60,6 +60,7 @@ VERSION = {"sha": os.environ.get("APP_VERSION", "dev")[:7], "built": os.environ.
 
 work_lock = threading.Lock()   # es läuft immer nur ein Upload gleichzeitig
 thumb_lock = threading.Lock()  # Thumbnails nacheinander bauen (Chromium)
+relax_waiting = threading.Event()  # Quiet Corner wartet auf den Renderer: andere Aufgaben lassen ihn frei
 relax_lock = threading.Lock()  # Entspannungskanal: baut und lädt ein langes Video, unabhängig vom Hauptkanal
 clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
 status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "connect_relax": {"status": "idle"}, "oauth_states": {}}
@@ -164,7 +165,7 @@ def post_next(slot, manual=False, long=False, firma=False):
             if manual:
                 status["busy"] = ""  # "Startet …" vom Knopf „Jetzt posten“ wieder freigeben
     done = "long_slots" if long else "firma_slots" if firma else "done_slots"
-    if not work_lock.acquire(blocking=False):
+    if relax_waiting.is_set() or not work_lock.acquire(blocking=False):
         return
     try:
         with working("planer", task="Wählt das nächste Video"):
@@ -350,7 +351,7 @@ def prerender():
         return
     if len(store.ready_items()) >= store.READY_MAX:
         return
-    if not work_lock.acquire(blocking=False):
+    if relax_waiting.is_set() or not work_lock.acquire(blocking=False):
         return
     try:
         planned = store.planned_queue(ready_only=True, with_ready=False)
@@ -941,7 +942,10 @@ def relax_brand_files():
     want = [f"quiet-corner-{k}-{v}.{'jpg' if k == 'banner' else 'png'}" for v in entspannung.BRAND_VARIANTS for k in ("banner", "profil")]
     if not all(os.path.exists(os.path.join(folder, f)) for f in want):
         entspannung.branding(folder)
-    return {f: os.path.join(folder, f) for f in want + ["quiet-corner-kanaltext.txt"]}
+    wm = os.path.join(folder, "quiet-corner-wasserzeichen.png")
+    if not os.path.exists(wm):
+        entspannung.watermark(wm)
+    return {f: os.path.join(folder, f) for f in want + ["quiet-corner-kanaltext.txt", "quiet-corner-wasserzeichen.png"]}
 
 
 def relax_apply_branding(variant=None):
@@ -955,6 +959,11 @@ def relax_apply_branding(variant=None):
         files = relax_brand_files()
         yt.set_branding({**cfg, "refresh_token": cfg["relax_token"]}, files[f"quiet-corner-banner-{variant}.jpg"],
                         entspannung.CHANNEL_DESCRIPTION, entspannung.CHANNEL_KEYWORDS, language="en", country="DE")
+        try:
+            yt.set_watermark({**cfg, "refresh_token": cfg["relax_token"]}, files["quiet-corner-wasserzeichen.png"])
+            store.log("ok", "Quiet Corner: Wasserzeichen gesetzt.")
+        except Exception as e:
+            store.log("warn", f"Quiet Corner: Wasserzeichen nicht gesetzt: {e}")
         info = store.read("relax.json", {}) or {}
         info["branded"] = {"variant": variant, "at": store.now().isoformat(timespec="seconds")}
         store.write("relax.json", info)
@@ -964,6 +973,14 @@ def relax_apply_branding(variant=None):
         traceback.print_exc()
         store.log("warn", f"Quiet Corner: Banner konnte nicht gesetzt werden: {e}")
         return False
+
+
+def relax_phase(text):
+    """Merkt sich, was Quiet Corner gerade macht, damit die Zentrale es anzeigen kann."""
+    with store.LOCK:
+        st = store.state()
+        st["relax_phase"] = text
+        store.write("state.json", st)
 
 
 def post_relax(manual=False):
@@ -981,9 +998,16 @@ def post_relax(manual=False):
         cfg = store.config()
         if not cfg["relax_token"]:
             return False
-        if not work_lock.acquire(timeout=600 if not manual else 5):
+        relax_phase("Wartet, bis der Server frei ist (ein laufender Short wird noch fertig)")
+        relax_waiting.set()
+        try:
+            got = work_lock.acquire(timeout=4 * 3600 if not manual else 30 * 60)
+        finally:
+            relax_waiting.clear()
+        if not got:
             raise RuntimeError("Der Server rendert gerade einen anderen Short, später noch einmal.")
         try:
+            relax_phase("Baut das Video (ca. 10 bis 20 Minuten)")
             st = store.state()
             n = int(st.get("relax_n", 0))
             ups = (store.read("relax.json", {}) or {}).get("uploads") or []
@@ -998,6 +1022,7 @@ def post_relax(manual=False):
         meta = entspannung.meta(idea, minutes, n)
         rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
         spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
+        relax_phase("Lädt hoch (bei 8 bis 10 Std. dauert das ein paar Stunden)")
         with working("publisher", task="Lädt ein Entspannungsvideo hoch"):
             video_id = yt.upload(rcfg, r["video"], spec)
         thumb = False
@@ -1016,6 +1041,7 @@ def post_relax(manual=False):
         day = store.now().date().isoformat()
         with store.LOCK:
             st = store.state()
+            st["relax_today_n"] = (int(st.get("relax_today_n", 1)) + 1) if st.get("relax_last") == day else 1
             st["relax_last"], st["relax_n"] = day, int(st.get("relax_n", 0)) + 1
             store.write("state.json", st)
         info = store.read("relax.json", {}) or {}
@@ -1024,12 +1050,14 @@ def post_relax(manual=False):
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
             "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0}]
         store.write("relax.json", info)
+        relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))
         if not info.get("branded"):
             relax_apply_branding()
         return True
     except Exception as e:
         traceback.print_exc()
+        relax_phase("")
         info = store.read("relax.json", {}) or {}
         info["error"] = str(e)[:300]
         store.write("relax.json", info)
@@ -1067,10 +1095,14 @@ def relax_refresh_stats(cfg):
 def relax_worker():
     """Eigener Faden: einmal pro Tag ab der eingestellten Uhrzeit ein langes Entspannungsvideo."""
     import entspannung
+    try:
+        relax_phase("")  # nach einem Neustart steht nichts mehr „in Arbeit“
+    except Exception:
+        pass
     while True:
         try:
             st = store.state()
-            if entspannung.is_due(store.config(), st.get("relax_last"), store.now(), st.get("relax_tried")):
+            if entspannung.is_due(store.config(), st.get("relax_last"), store.now(), st.get("relax_tried"), st.get("relax_today_n")):
                 post_relax()
         except Exception:
             traceback.print_exc()
@@ -1775,13 +1807,13 @@ class Handler(BaseHTTPRequestHandler):
             ch = {}
             if "minutes" in data:   # alt: feste Länge in Minuten
                 if int(data["minutes"]) not in entspannung.MINUTES:
-                    return self.send(400, {"error": "Länge: 1, 2 oder 3 Stunden."})
+                    return self.send(400, {"error": "Länge: 3, 5, 8 oder 10 Stunden."})
                 ch["relax_minutes"] = int(data["minutes"])
                 ch["relax_length"] = str(int(data["minutes"]))
             if "length" in data:
                 v = str(data["length"])
                 if v != "auto" and (not v.isdigit() or int(v) not in entspannung.MINUTES):
-                    return self.send(400, {"error": "Länge: automatisch oder 1, 2, 3 Stunden."})
+                    return self.send(400, {"error": "Länge: automatisch oder 3, 5, 8, 10 Stunden."})
                 ch["relax_length"] = v
             if "hour" in data:
                 if int(data["hour"]) not in entspannung.HOURS:
@@ -1789,6 +1821,10 @@ class Handler(BaseHTTPRequestHandler):
                 ch["relax_hour"] = int(data["hour"])
             if "on" in data:
                 ch["relax_on"] = bool(data["on"])
+            if "per_day" in data:
+                if int(data["per_day"]) not in (1, 2, 3):
+                    return self.send(400, {"error": "1, 2 oder 3 Videos am Tag."})
+                ch["relax_per_day"] = int(data["per_day"])
             if "shorts" in data:
                 ch["relax_shorts"] = bool(data["shorts"])
             if "banner" in data:

@@ -5473,7 +5473,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var r = h("div", { cls: "chc" }, [chTop("yt", RC.connected && rch.thumbnail, "YouTube · Quiet Corner", RC.connected ? (rch.title || "Entspannungskanal") : "Nicht verbunden")]);
     if (RC.connected) {
       r.appendChild(chNums([[nf.format(rch.subscribers || 0), "Abonnenten"], [nf.format(rch.views || 0), "Aufrufe"], [nf.format(rch.videos || 0), "Videos"]]));
-      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich 1 Video · 1 bis 3 Std. · ab " + RC.hour + " Uhr" : "Pausiert" }));
+      r.appendChild(h("span", { cls: "role" + (RC.on ? "" : " off"), text: RC.on ? "Täglich lange Videos · 3 bis 10 Std." : "Pausiert" }));
       if (RC.error) r.appendChild(h("p", { cls: "msg err", text: "Letzter Versuch fehlgeschlagen: " + RC.error }));
       var tg = h("button", { cls: "btn sm", type: "button", text: RC.on ? "Pausieren" : "Wieder starten" });
       tg.disabled = preview;
@@ -5488,18 +5488,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       (RC.uploads || []).forEach(function (u) {
         r.appendChild(h("p", { text: u.at + " · " }, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title })]));
       });
-    } else if (rl.status === "code") {
-      r.appendChild(h("p", { text: "Öffne google.com/device, melde dich an und wähle bei Google deinen neuen Entspannungskanal. Dann diesen Code eingeben:" }));
-      r.appendChild(h("div", { cls: "code", text: rl.user_code }));
-      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: rl.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
     } else {
-      if (rl.status === "fehler") r.appendChild(h("p", { cls: "msg err", text: rl.message || "Die Verbindung hat nicht geklappt." }));
-      else if (RC.expired) r.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
-      r.appendChild(h("p", { text: "Dein Entspannungskanal Quiet Corner: lange, gemütliche Videos (Regen-Zimmer, Kamin, Café bei Nacht, Bibliothek, Lagerfeuer). Die Zentrale baut sie selbst und lädt täglich eins hoch." }));
-      var go3 = h("button", { cls: "btn sm primary", type: "button", text: rl.status === "start" ? "Startet …" : "Entspannungskanal verbinden" });
-      go3.disabled = preview || !d.connected || rl.status === "start";
-      go3.addEventListener("click", function () { api("api/relax/connect").then(function () { poll(3000); }, function (e) { toast(e.message); }); });
-      r.appendChild(h("div", { cls: "acts" }, [go3]));
+      relaxConnectUI(d, r);
     }
     g.appendChild(r);
     // TikTok und Instagram
@@ -6079,17 +6069,40 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     box.appendChild(ul);
   }
   // ---------- Quiet Corner (Entspannungskanal) ----------
+  // Verbinden des Entspannungskanals (Kanäle-Karte und Reiter Quiet Corner): immer sichtbare Rückmeldung
+  function relaxConnectUI(d, into) {
+    var rl = d.connect_relax || { status: "idle" }, RC = d.relax_channel || {}, preview = !S.live;
+    if (rl.status === "code") {
+      into.appendChild(h("p", { text: "Schritt 1: Google-Seite öffnen und anmelden. Schritt 2: Diesen Code eingeben und bei Google deinen neuen Kanal Quiet Corner wählen:" }));
+      into.appendChild(h("div", { cls: "code", text: rl.user_code }));
+      into.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: rl.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
+      into.appendChild(h("p", { cls: "msg", text: "Die Zentrale wartet jetzt und verbindet sich von selbst, sobald du bei Google bestätigt hast." }));
+      return;
+    }
+    if (rl.status === "fehler") into.appendChild(h("p", { cls: "msg err", text: rl.message || "Die Verbindung hat nicht geklappt." }));
+    else if (RC.expired) into.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+    if (!d.connected) into.appendChild(h("p", { cls: "msg err", text: "Zuerst muss der Hauptkanal verbunden sein (Reiter Kanäle, oben). Danach geht dieser Knopf." }));
+    if (preview) into.appendChild(h("p", { cls: "msg err", text: "Die Zentrale ist gerade nicht erreichbar. Seite neu laden oder die App auf dem Server neu starten." }));
+    var go = h("button", { cls: "btn sm primary", type: "button", text: rl.status === "start" ? "Startet …" : "Entspannungskanal verbinden" });
+    go.disabled = preview || !d.connected || rl.status === "start";
+    go.addEventListener("click", function () {
+      go.disabled = true; go.textContent = "Startet …"; toast("Code wird bei Google geholt, einen Moment …");
+      api("api/relax/connect").then(function () { poll(1500); soon(); }, function (e) { toast(e.message); go.disabled = false; go.textContent = "Entspannungskanal verbinden"; });
+    });
+    into.appendChild(h("div", { cls: "acts" }, [go]));
+  }
+
   function renderQuiet(d) {
     if (!$("qcK")) return;
     var Q = d.relax_channel || {}, ch = Q.channel || {}, ups = Q.uploads || [], live = S.live;
     var st = clear($("qcState"));
     if (!Q.connected) {
       st.appendChild(h("span", { cls: "dot", style: "background:var(--err)" }));
-      st.appendChild(h("p", { cls: "msg", text: Q.expired ? "Die Verbindung zum Kanal ist abgelaufen. Einmal neu verbinden, dann läuft alles weiter." : "Noch nicht verbunden. Unter Kanäle auf „Entspannungskanal verbinden“ klicken und bei Google den Kanal Quiet Corner wählen." }));
-      st.appendChild(h("a", { cls: "btn sm primary", href: "#kanal", text: "Zu Kanäle" }));
+      st.appendChild(h("p", { cls: "msg", text: Q.expired ? "Die Verbindung zum Kanal ist abgelaufen. Einmal neu verbinden, dann läuft alles weiter." : "Noch nicht verbunden. Unten auf „Entspannungskanal verbinden“ klicken und bei Google den Kanal Quiet Corner wählen." }));
+      var cw = h("div", { cls: "qc-connect" }); st.appendChild(cw); relaxConnectUI(d, cw);
     } else {
       st.appendChild(h("span", { cls: "dot", style: "background:" + (Q.error_text ? "var(--warn, #e7c98f)" : "var(--ok)") }));
-      st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
+      st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.phase ? "Gerade: " + Q.phase : Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
       if (ch.id) st.appendChild(h("a", { cls: "btn sm", href: "https://www.youtube.com/channel/" + ch.id, target: "_blank", rel: "noopener", text: "Kanal ansehen" }));
     }
     var views = ups.reduce(function (a, u) { return a + (u.views || 0) + (u.teaser_views || 0); }, 0);
@@ -6100,14 +6113,17 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 
     var plan = Q.plan || [], nx = plan[0];
     var n = clear($("qcNext"));
-    $("qcNextSub").textContent = Q.last === new Date().toISOString().slice(0, 10) ? "Heute ist schon eins online, das nächste kommt morgen ab " + Q.hour + " Uhr" : "Heute ab " + Q.hour + " Uhr";
+    $("qcNextSub").textContent = (Q.per_day || 1) + (Q.per_day === 1 ? " Video" : " Videos") + " am Tag, ab " + (Q.slots || [Q.hour]).join(" und ") + " Uhr";
     if (nx) {
       n.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: nx.title }), h("span", { text: nx.scene_name + " · " + (nx.minutes / 60) + " Std." + (Q.shorts ? " · dazu ein Teaser-Short" : "") })])]));
     }
-    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["60", "1 Std."], ["120", "2 Std."], ["180", "3 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
+    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["180", "3 Std."], ["300", "5 Std."], ["480", "8 Std."], ["600", "10 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
     len.value = String(Q.length || "auto");
     len.addEventListener("change", function () { api("api/relax/settings", { length: len.value }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
-    var hr = h("select", { "aria-label": "Uhrzeit" }, [8, 12, 15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "ab " + x + " Uhr" }); }));
+    var pd = h("select", { "aria-label": "Videos am Tag" }, [1, 2, 3].map(function (x) { return h("option", { value: x, text: x + (x === 1 ? " Video am Tag" : " Videos am Tag") }); }));
+    pd.value = String(Q.per_day || 2);
+    pd.addEventListener("change", function () { api("api/relax/settings", { per_day: Number(pd.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
+    var hr = h("select", { "aria-label": "Uhrzeit" }, [15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "letztes ab " + x + " Uhr" }); }));
     hr.value = String(Q.hour);
     hr.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hr.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
     var sh = h("button", { cls: "btn sm", type: "button", text: Q.shorts ? "Teaser-Shorts: an" : "Teaser-Shorts: aus" });
@@ -6116,12 +6132,12 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     on.addEventListener("click", function () { api("api/relax/settings", { on: !Q.on }).then(soon, function (e) { toast(e.message); }); });
     var now = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
     now.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 bis 20 Minuten"); soon(); }, function (e) { toast(e.message); }); });
-    [len, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
-    n.appendChild(h("div", { cls: "qc-set" }, [len, hr, sh, on, now]));
+    [len, pd, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
+    n.appendChild(h("div", { cls: "qc-set" }, [len, pd, hr, sh, on, now]));
 
     var pl = clear($("qcPlan"));
     plan.forEach(function (p, i) {
-      pl.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: p.title }), h("span", { text: (i === 0 ? "Als Nächstes" : fDayS.format(new Date(p.day + "T12:00:00"))) + " · " + p.scene_name })]),
+      pl.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: p.title }), h("span", { text: (i === 0 ? "Als Nächstes" : fDayS.format(new Date(p.day + "T12:00:00"))) + (p.hour != null ? ", ab " + p.hour + " Uhr" : "") + " · " + p.scene_name })]),
         h("div", { cls: "n" }, [h("span", { text: (p.minutes / 60) + " Std." })])]));
     });
 
@@ -6653,6 +6669,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 }
 .qc-state { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; margin-bottom: 18px; border-radius: 16px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); }
 .qc-state .msg { flex: 1 1 260px; }
+.qc-connect { flex: 1 1 100%; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .qc-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); min-width: 0; }
 .qc-row:first-child { border-top: 0; }
 .qc-row > div { min-width: 0; flex: 1; }

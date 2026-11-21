@@ -236,15 +236,12 @@ def set_branding(cfg, banner_path, description, keywords, language="de", country
 
 
 def set_watermark(cfg, png_path):
-    """Setzt das Wasserzeichen des Kanals (Data API watermarks.set). Es erscheint in langen Videos, nicht in Shorts."""
+    """Setzt das Kanal-Wasserzeichen (unten rechts, während des ganzen Videos, YouTube blendet es mit Abo-Knopf ein)."""
     from googleapiclient.http import MediaFileUpload
 
-    yt = client(cfg)
-    ch = yt.channels().list(part="id", mine=True).execute()["items"][0]
-    body = {"timing": {"type": "offsetFromStart", "offsetMs": 0},
-            "position": {"type": "corner", "cornerPosition": "bottomRight"}}
-    yt.watermarks().set(channelId=ch["id"], body=body,
-                        media_body=MediaFileUpload(png_path, mimetype="image/png", resumable=False)).execute()
+    body = {"timing": {"type": "offsetFromStart", "offsetMs": 0}, "position": {"type": "corner", "cornerPosition": "bottomRight"}}
+    client(cfg).watermarks().set(channelId=channel(cfg)["id"], body=body,
+                                 media_body=MediaFileUpload(png_path, mimetype="image/png", resumable=False)).execute()
 
 
 def recent_comments(cfg, channel_id, pages=3):
