@@ -1225,6 +1225,37 @@ def warm_thumbs():
             print(f"Vorschaubild fehlgeschlagen ({f}): {e}", flush=True)
 
 
+def community_posts():
+    import community
+    cfg = store.config()
+    posted = store.posted_items()
+    planned = [sp for _, sp in store.planned_queue(posted)]
+    return community.overview(store, posted, planned, store.read("channel.json", None) or {}, cfg["post_hours"],
+                              firma=cfg.get("firma_hour") is not None)["posts"]
+
+
+def watermark_file():
+    import community
+    file = store.path("branding", "wasserzeichen.png")
+    if not os.path.exists(file):
+        os.makedirs(os.path.dirname(file), exist_ok=True)
+        community.watermark().save(file, optimize=True)
+    return file
+
+
+def set_watermark():
+    """Lädt das Wasserzeichen für lange Videos auf YouTube hoch (nur auf Knopfdruck)."""
+    cfg = store.config()
+    with working("designer", task="Setzt das Wasserzeichen"):
+        yt.set_watermark(cfg, watermark_file())
+    with store.LOCK:
+        st = store.state()
+        st["watermark_at"] = store.now().isoformat(timespec="seconds")
+        store.write("state.json", st)
+    store.log("ok", "Wasserzeichen gesetzt. Es erscheint unten rechts in langen Videos.", agent="designer",
+              kind="branding", source="youtube")
+
+
 def background(fn, *args):
     threading.Thread(target=fn, args=args, daemon=True).start()
 
@@ -1449,6 +1480,11 @@ class Handler(BaseHTTPRequestHandler):
             if not u or not os.path.exists(store.share_path(m.group(1))):
                 return self.send(404, {"error": "Video nicht mehr gespeichert"})
             return self.send_file(store.share_path(m.group(1)), "video/mp4", download=u["title"])
+        m = re.fullmatch(r"/api/community/([a-z]+-[0-9a-f]{10})\.png", p)
+        if m:
+            return self.community_image(m.group(1))
+        if p == "/api/watermark.png":
+            return self.send_png(watermark_file(), "60-sekunden-wissen-wasserzeichen.png")
         m = re.fullmatch(r"/api/thumbx/([a-z0-9-]+)-([AB])\.jpg", p)
         if m:
             return self.custom_thumb(m.group(1), m.group(2))
@@ -1456,6 +1492,30 @@ class Handler(BaseHTTPRequestHandler):
         if m:
             return self.thumb(m.group(1))
         self.send(404, {"error": "Nicht gefunden"})
+
+    def send_png(self, path, name):
+        data = open(path, "rb").read()
+        self.send_response(200)
+        self.send_header("Content-Type", "image/png")
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Disposition", f'attachment; filename="{name}"')
+        self.end_headers()
+        self.wfile.write(data)
+
+    def community_image(self, pid):
+        """Bild eines Community-Post-Vorschlags, zum Herunterladen und in YouTube Studio hochladen."""
+        import community
+
+        post = next((x for x in community_posts() if x["id"] == pid and x["type"] == "bild"), None)
+        if not post:
+            return self.send(404, {"error": "Dieser Vorschlag ist nicht mehr aktuell. Bitte Seite neu laden."})
+        file = store.path("community", pid + ".png")
+        if not os.path.exists(file):
+            os.makedirs(os.path.dirname(file), exist_ok=True)
+            title = (store.read("channel.json", {}) or {}).get("title") or "60 Sekunden Wissen"
+            community.render(post, title).save(file)
+        self.send_png(file, f"community-{post['image']}-{store.now():%Y-%m-%d}.png")
 
     def analytics_callback(self):
         """Google hat über die Weiterleitungsseite einen Code geschickt: gegen einen Zugang tauschen."""
@@ -1644,6 +1704,36 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/whop/logo":
             return self.whop_logo()
         p, data = self.path, self.body()
+        if p == "/api/community/done":
+            import community
+            try:
+                community.mark(store, data.get("id"), bool(data.get("done", True)))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            return self.send(200, {"ok": True})
+        if p == "/api/community/per-day":
+            import community
+            try:
+                community.set_per_day(store, data.get("n"))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            return self.send(200, {"ok": True})
+        if p == "/api/community/shuffle":
+            import community
+            community.reshuffle(store)
+            return self.send(200, {"ok": True})
+        if p == "/api/watermark/set":
+            if not store.config()["refresh_token"]:
+                return self.send(400, {"error": "Bitte zuerst den Kanal verbinden."})
+            try:
+                set_watermark()
+            except Exception as e:  # noqa: BLE001
+                if yt.is_expired(e):
+                    connection_expired()
+                store.log("error", f"Wasserzeichen konnte nicht gesetzt werden: {e}", agent="designer", kind="error")
+                return self.send(502, {"error": "YouTube hat das Wasserzeichen nicht angenommen. Lade die Datei "
+                                                "in YouTube Studio > Anpassung > Branding hoch."})
+            return self.send(200, {"ok": True})
         if p == "/api/settings":
             changes = {}
             if isinstance(data.get("stock_key"), str):
