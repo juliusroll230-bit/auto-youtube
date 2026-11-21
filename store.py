@@ -58,7 +58,7 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # dritter YouTube-Kanal nur für lange Entspannungsvideos (entspannung.py): Länge in Minuten, ab dieser Uhrzeit täglich 1
                   "relax_token": "", "relax_expired": False, "relax_on": True, "relax_minutes": 120, "relax_hour": 17,
                   # Quiet Corner (21.11.): Länge "auto" (Lernmodus, 1 bis 3 Std.) oder Minuten, Teaser-Short an/aus, Banner-Variante A/B/C
-                  "relax_length": "auto", "relax_shorts": True, "relax_banner": "A",
+                  "relax_length": "auto", "relax_shorts": True, "relax_banner": "A", "relax_per_day": 2,
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
                   # Firmen-Spiel (firma.py): eine Folge pro Tag zusätzlich (vier Firmen reihum), ab dieser Uhrzeit, None = aus
@@ -832,7 +832,8 @@ def relax_overview(cfg, st):
             "branded": info.get("branded"), "last": st.get("relax_last"), "error": info.get("error"),
             "error_text": relax_error_text(info.get("error")), "stats_at": info.get("stats_at"),
             "uploads": ups[-60:][::-1], "learn": learnt,
-            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7),
+            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg)),
+            "per_day": int(cfg.get("relax_per_day", 2)), "slots": entspannung.slots(cfg),
             "ideas": [{"id": i["id"], "scene": entspannung.SCENES[i["scene"]], "title": i["title"], "thumb": i["thumb"],
                        "layers": i["layers"], "used": used.get(i["id"], 0)} for i in entspannung.IDEAS],
             "variants": entspannung.BRAND_VARIANTS}

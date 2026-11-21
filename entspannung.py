@@ -32,7 +32,8 @@ FPS = 30
 RATE = 48000
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHANNEL = "Quiet Corner"
-MINUTES = (60, 120, 180)   # 1 bis 3 Stunden; "auto" = Lernmodus wählt
+MINUTES = (180, 300, 480, 600)   # 3, 5, 8, 10 Stunden (Julius 21.11.: „länger“); "auto" = Lernmodus wählt
+SLOTS = (6, 17)   # Standard: 2 lange Videos am Tag (Julius 21.11.: „mehr“), ab 6 und ab 17 Uhr
 HOURS = list(range(0, 24))
 TEASER_S = 30
 
@@ -47,12 +48,12 @@ IDEAS = [
      "text": "Rain runs down the window of a small, warm room. A candle, a cup of tea and a few plants on the sill.",
      "layers": "rain on the glass, steady rainfall outside, a faint clock"},
     {"id": "gewitter-zimmer", "scene": "regenzimmer", "weather": "gewitter", "emoji": "⛈️",
-     "title": "Soft Thunderstorm in a Cozy Room", "sounds": "Thunder & Rain Sounds", "thumb": "Soft Storm",
+     "title": "Soft Thunderstorm in a Cozy Room", "sounds": "Thunderstorm Sounds", "thumb": "Soft Storm",
      "recipe": {"scheibe": 1, "regen": .5, "donner": .55},
      "text": "A gentle storm outside the window, distant thunder and heavy rain, while the room stays warm and quiet.",
      "layers": "heavy rain, rain on the glass, distant rolling thunder"},
     {"id": "schnee-fenster", "scene": "regenzimmer", "weather": "schnee", "emoji": "❄️",
-     "title": "Snowy Evening by the Window", "sounds": "Soft Wind Sounds", "thumb": "Snowy Evening",
+     "title": "Snowy Evening by the Window", "sounds": "Winter Ambience", "thumb": "Snowy Evening",
      "recipe": {"wind": .55, "uhr": .12},
      "text": "Snow falls on the pine trees outside. Inside: a lamp, a candle and a steaming cup.",
      "layers": "soft winter wind, a quiet clock"},
@@ -62,7 +63,7 @@ IDEAS = [
      "text": "A crackling fire in a stone fireplace, plants on the mantel and snow falling outside the window.",
      "layers": "crackling fire, soft wind, a ticking mantel clock"},
     {"id": "kamin-regen", "scene": "kamin", "weather": "regen", "emoji": "🔥",
-     "title": "Fireplace and Rain on the Window", "sounds": "Fire & Rain Sounds", "thumb": "Fire & Rain",
+     "title": "Fireplace and Rain on the Window", "sounds": "Fireplace & Rain Sounds", "thumb": "Fire & Rain",
      "recipe": {"kamin": 1, "scheibe": .5},
      "text": "A warm fire on a rainy evening. The rain taps on the window while the logs crackle.",
      "layers": "crackling fire, rain on the glass"},
@@ -72,17 +73,17 @@ IDEAS = [
      "text": "An armchair, a blanket, a big plant and a fire that never goes out.",
      "layers": "crackling fire, a little wind"},
     {"id": "cafe-regen", "scene": "cafe", "weather": "regen", "emoji": "☕",
-     "title": "Rainy Night Café", "sounds": "Café Ambience & Rain", "thumb": "Night Café",
+     "title": "Rainy Night Café", "sounds": "Coffee Shop Ambience & Rain", "thumb": "Night Café",
      "recipe": {"cafe": .55, "scheibe": .8, "regen": .3},
      "text": "A seat by the window of a small café. Rain on the glass, city lights outside, a warm coffee in front of you.",
      "layers": "quiet café murmur without words, cups and spoons, rain on the window"},
     {"id": "cafe-schnee", "scene": "cafe", "weather": "schnee", "emoji": "☕",
-     "title": "Quiet Café on a Snowy Night", "sounds": "Café Ambience", "thumb": "Snowy Café",
+     "title": "Quiet Café on a Snowy Night", "sounds": "Coffee Shop Ambience", "thumb": "Snowy Café",
      "recipe": {"cafe": .6, "wind": .2},
      "text": "Snow falls past the café window. Warm lamps, a cup of coffee and soft voices in the background.",
      "layers": "quiet café murmur without words, cups and spoons, soft wind"},
     {"id": "cafe-gewitter", "scene": "cafe", "weather": "gewitter", "emoji": "⛈️",
-     "title": "Café Window During a Thunderstorm", "sounds": "Thunder & Café Sounds", "thumb": "Stormy Café",
+     "title": "Café Window During a Thunderstorm", "sounds": "Thunderstorm & Café Sounds", "thumb": "Stormy Café",
      "recipe": {"cafe": .45, "scheibe": .9, "donner": .55},
      "text": "A storm rolls over the city. You sit inside a warm café and watch the rain.",
      "layers": "rain on the glass, distant thunder, quiet café murmur"},
@@ -92,7 +93,7 @@ IDEAS = [
      "text": "Old shelves full of books, candles floating in the air and moonlight falling through a tall window.",
      "layers": "soft fire, turning pages, an old clock, a little wind"},
     {"id": "bibliothek-regen", "scene": "bibliothek", "weather": "regen", "emoji": "📚",
-     "title": "Fantasy Library on a Rainy Night", "sounds": "Rain & Library Sounds", "thumb": "Rainy Library",
+     "title": "Fantasy Library on a Rainy Night", "sounds": "Rain Sounds & Library Ambience", "thumb": "Rainy Library",
      "recipe": {"scheibe": .8, "seiten": .35, "kamin": .3},
      "text": "Rain on the arched window of an old library. Candles float above the shelves while you read.",
      "layers": "rain on the glass, turning pages, a soft fire"},
@@ -102,7 +103,7 @@ IDEAS = [
      "text": "Snowflakes drift past a tall window. Inside it is warm, quiet and full of books.",
      "layers": "winter wind, a soft fire, turning pages"},
     {"id": "bibliothek-gewitter", "scene": "bibliothek", "weather": "gewitter", "emoji": "⛈️",
-     "title": "Old Library in a Gentle Thunderstorm", "sounds": "Thunder & Rain Sounds", "thumb": "Library Storm",
+     "title": "Old Library in a Gentle Thunderstorm", "sounds": "Thunderstorm Sounds", "thumb": "Library Storm",
      "recipe": {"scheibe": .8, "donner": .5, "seiten": .25},
      "text": "Thunder far away, rain on the glass and the calm of an old library at night.",
      "layers": "rain on the glass, distant thunder, turning pages"},
@@ -112,13 +113,13 @@ IDEAS = [
      "text": "A small campfire at the edge of a pine forest. Sparks rise into a sky full of stars.",
      "layers": "crackling campfire, crickets, a light breeze"},
     {"id": "lagerfeuer-wald", "scene": "lagerfeuer", "weather": "klar", "emoji": "🌲",
-     "title": "Quiet Forest Campfire at Night", "sounds": "Fire & Forest Sounds", "thumb": "Night Campfire",
+     "title": "Quiet Forest Campfire at Night", "sounds": "Campfire & Forest Sounds", "thumb": "Night Campfire",
      "recipe": {"feuer": 1, "wind": .35},
      "text": "The forest is dark and still. Only the fire moves.",
      "layers": "crackling campfire, wind in the trees"},
 ]
 IDEA = {i["id"]: i for i in IDEAS}
-USES = ["for Sleep, Study & Relaxation", "for Sleep & Relaxation", "for Reading & Focus", "for Sleep & Study"]
+USES = ["for Sleeping, Studying & Relaxing", "for Deep Sleep & Relaxation", "for Reading, Studying & Focus", "for Sleep & Stress Relief"]
 
 CHANNEL_DESCRIPTION = (
     "Quiet Corner is a small place to slow down.\n\n"
@@ -163,11 +164,24 @@ window.READY = true;
 
 
 # ---------- Planung ----------
-def is_due(cfg, last_date, now, tried_at=None):
-    """True, wenn heute noch kein Video kam, die Uhrzeit erreicht ist und der letzte Versuch eine Stunde her ist."""
+def slots(cfg):
+    """Uhrzeiten der langen Videos: so viele wie relax_per_day (1 bis 3), die erste ab relax_hour."""
+    n = max(1, min(3, int(cfg.get("relax_per_day", len(SLOTS)))))
+    first = int(cfg.get("relax_hour", 17))
+    extra = {1: [], 2: [6], 3: [6, 11]}[n]
+    return sorted(set(extra + [first]))
+
+
+def is_due(cfg, last_date, now, tried_at=None, done_today=None):
+    """True, wenn für heute noch ein Sendeplatz offen ist (Uhrzeit erreicht) und der letzte Versuch eine Stunde her ist.
+
+    last_date: Tag des letzten Uploads, done_today: wie viele es an diesem Tag schon waren (None = 1, wie früher).
+    """
     if not (cfg.get("relax_token") and cfg.get("relax_on", True)):
         return False
-    if last_date == now.date().isoformat() or now.hour < int(cfg.get("relax_hour", 17)):
+    done = (1 if done_today is None else int(done_today)) if last_date == now.date().isoformat() else 0
+    open_slots = [h for h in slots(cfg) if now.hour >= h]
+    if done >= len(open_slots):
         return False
     if tried_at and (now - _dt.datetime.fromisoformat(tried_at)).total_seconds() < 3600:
         return False
@@ -221,45 +235,69 @@ def choose(uploads, length="auto", today=None, n=0):
     count = {i["id"]: sum(1 for u in long_ups if u.get("idea") == i["id"]) for i in ideas}
     last = long_ups[-1]["idea"] if long_ups else None
     idea = min(ideas, key=lambda i: (count[i["id"]], i["id"] == last, ideas.index(i)))
-    minutes = int(length) if str(length).isdigit() else _pick([180, 120, 60], long_ups, "minutes", today, rnd)
+    minutes = int(length) if str(length).isdigit() and int(length) in MINUTES else _pick([480, 600, 300, 180], long_ups, "minutes", today, rnd)
     return idea["id"], minutes
 
 
-def plan(uploads, length="auto", today=None, n=0, days=7):
-    """Vorschau der nächsten Tage (ohne neue Aufrufe): Liste von {day, idea, title, scene, minutes}."""
+def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,)):
+    """Vorschau der nächsten Videos (ohne neue Aufrufe): Liste von {day, hour, idea, title, scene, minutes}."""
     today = today or _dt.date.today()
-    ups, out = list(uploads), []
-    for d in range(days):
-        idea, minutes = choose(ups, length, today, n + d)
+    ups, out, d = list(uploads), [], 0
+    while len(out) < count:
         day = (today + _dt.timedelta(days=d)).isoformat()
-        out.append({"day": day, "idea": idea, "scene": IDEA[idea]["scene"], "scene_name": SCENES[IDEA[idea]["scene"]],
-                    "title": IDEA[idea]["title"], "minutes": minutes})
-        ups.append({"idea": idea, "scene": IDEA[idea]["scene"], "minutes": minutes, "at": day})
+        for hr in hours:
+            if len(out) >= count:
+                break
+            idea, minutes = choose(ups, length, today, n + len(out))
+            out.append({"day": day, "hour": hr, "idea": idea, "scene": IDEA[idea]["scene"],
+                        "scene_name": SCENES[IDEA[idea]["scene"]], "title": IDEA[idea]["title"], "minutes": minutes})
+            ups.append({"idea": idea, "scene": IDEA[idea]["scene"], "minutes": minutes, "at": day})
+        d += 1
     return out
 
 
+KEYWORDS = {   # Suchbegriffe je Szene (das, was Leute bei YouTube eintippen)
+    "regenzimmer": ["rain sounds", "rain sounds for sleeping", "rain on window", "rain on window sounds", "cozy rain",
+                    "rainy night ambience", "cozy room ambience", "heavy rain sounds", "rain ambience"],
+    "kamin": ["fireplace sounds", "crackling fireplace", "fireplace ambience", "cozy fireplace", "fireplace for sleeping",
+              "crackling fire sounds", "fireplace 4k", "cozy winter ambience", "fire sounds for sleep"],
+    "cafe": ["coffee shop ambience", "cafe ambience", "coffee shop sounds", "rainy cafe ambience", "cozy coffee shop",
+             "cafe sounds for studying", "night cafe ambience", "coffee shop background noise", "cafe rain sounds"],
+    "bibliothek": ["library ambience", "fantasy library ambience", "magic library", "cozy library", "library sounds for studying",
+                   "old library ambience", "reading ambience", "candle library ambience", "study ambience"],
+    "lagerfeuer": ["campfire sounds", "campfire ambience", "crackling campfire", "forest night sounds", "campfire for sleeping",
+                   "night forest ambience", "campfire under the stars", "crickets and campfire", "nature sounds for sleep"],
+}
+HASHTAGS = {"regenzimmer": "#rainsounds", "kamin": "#fireplace", "cafe": "#coffeeshopambience",
+            "bibliothek": "#libraryambience", "lagerfeuer": "#campfire"}
+GENERAL = ["sleep sounds", "relaxing sounds", "study ambience", "cozy ambience", "ambience", "white noise",
+           "sounds for sleeping", "deep sleep", "stress relief", "focus", "no music"]
+
+
 def meta(idea_id, minutes, n=0):
-    """Titel, Beschreibung und Tags (Englisch) für das lange Video."""
+    """Titel, Beschreibung und Tags (Englisch) für das lange Video, so aufgebaut wie bei den großen Ambience-Kanälen:
+    Bild + Emoji, dann der Suchbegriff mit Zweck, am Ende die Dauer („Rainy Night Café ☕ Coffee Shop Ambience … | 8 Hours“)."""
     i = IDEA[idea_id]
     hrs = hours_en(minutes)
-    use = USES[n % len(USES)]
-    title = f"{i['title']} {i['emoji']} {hrs} of {i['sounds']} {use}"
+    title = ""
+    for k in range(len(USES)):
+        title = f"{i['title']} {i['emoji']} {i['sounds']} {USES[(n + k) % len(USES)]} | {hrs}"
+        if len(title) <= 100:
+            break
     if len(title) > 100:
-        title = f"{i['title']} {i['emoji']} {hrs} of {i['sounds']}"
-    desc = (f"{i['text']}\n\n"
-            f"{hrs} of calm, without talking and without sudden loud sounds. "
-            "Put it on to fall asleep, to study, to read or to relax after a long day.\n\n"
-            f"What you hear: {i['layers']}.\n\n"
+        title = f"{i['title']} {i['emoji']} {i['sounds']} | {hrs}"
+    kw = KEYWORDS[i["scene"]]
+    desc = (f"{i['sounds']} for sleeping, studying and relaxing: {hrs.lower()} in a cozy, quiet place. {i['text']}\n\n"
+            f"What you hear: {i['layers']}. No talking, no music, no sudden loud sounds, so it is safe to fall asleep to.\n\n"
+            "Good for:\n· falling asleep and deep sleep\n· studying, reading and focus\n· calming down after a long day\n\n"
             "Every picture and every sound in this video was drawn and made by Quiet Corner. "
-            "New cozy ambience every day, subscribe if you want to come back.\n\n"
-            f"#cozy #{i['sounds'].split()[0].lower()}sounds #sleep")
-    base = {"regenzimmer": ["rain sounds", "rain on window", "rainy night", "cozy room"],
-            "kamin": ["fireplace sounds", "crackling fire", "fireplace", "cozy fireplace"],
-            "cafe": ["cafe ambience", "coffee shop ambience", "rainy cafe", "night cafe"],
-            "bibliothek": ["library ambience", "fantasy library", "reading ambience", "candle library"],
-            "lagerfeuer": ["campfire sounds", "campfire", "forest night", "crackling fire"]}[i["scene"]]
-    tags = base + ["cozy ambience", "sleep sounds", "study ambience", "relaxing sounds", "ambience", hrs.lower(),
-                   "white noise", "plants", "no music"]
+            "New cozy ambience every day. Subscribe if you want to come back.\n\n"
+            f"{HASHTAGS[i['scene']]} #sleepsounds #cozyambience")
+    tags, total = [], 0
+    for t in kw + [f"{kw[0]} {hrs.lower()}", f"{hrs.lower()} {kw[0]}", i["title"].lower()] + GENERAL:
+        if t not in tags and total + len(t) + 3 <= 480:   # YouTube erlaubt ca. 500 Zeichen für alle Tags zusammen
+            tags.append(t)
+            total += len(t) + 3
     return {"title": title, "description": desc, "tags": tags, "thumb_text": i["thumb"]}
 
 
@@ -289,7 +327,7 @@ def _render(opt, mp4, wide=True, over=None, start=0.0):
         page.evaluate("document.fonts.load('88px Serif')")
         try:
             ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS),
-                                   "-c:v", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                                   "-c:v", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "23", "-tune", "animation",
                                    "-profile:v", "high", "-g", str(FPS * 2), "-pix_fmt", "yuv420p", "-an", mp4],
                                   stdin=subprocess.PIPE)
             total = page.evaluate("window.TOTAL_FRAMES")

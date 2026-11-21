@@ -1016,6 +1016,7 @@ def post_relax(manual=False):
         day = store.now().date().isoformat()
         with store.LOCK:
             st = store.state()
+            st["relax_today_n"] = (int(st.get("relax_today_n", 1)) + 1) if st.get("relax_last") == day else 1
             st["relax_last"], st["relax_n"] = day, int(st.get("relax_n", 0)) + 1
             store.write("state.json", st)
         info = store.read("relax.json", {}) or {}
@@ -1070,7 +1071,7 @@ def relax_worker():
     while True:
         try:
             st = store.state()
-            if entspannung.is_due(store.config(), st.get("relax_last"), store.now(), st.get("relax_tried")):
+            if entspannung.is_due(store.config(), st.get("relax_last"), store.now(), st.get("relax_tried"), st.get("relax_today_n")):
                 post_relax()
         except Exception:
             traceback.print_exc()
@@ -1685,13 +1686,13 @@ class Handler(BaseHTTPRequestHandler):
             ch = {}
             if "minutes" in data:   # alt: feste Länge in Minuten
                 if int(data["minutes"]) not in entspannung.MINUTES:
-                    return self.send(400, {"error": "Länge: 1, 2 oder 3 Stunden."})
+                    return self.send(400, {"error": "Länge: 3, 5, 8 oder 10 Stunden."})
                 ch["relax_minutes"] = int(data["minutes"])
                 ch["relax_length"] = str(int(data["minutes"]))
             if "length" in data:
                 v = str(data["length"])
                 if v != "auto" and (not v.isdigit() or int(v) not in entspannung.MINUTES):
-                    return self.send(400, {"error": "Länge: automatisch oder 1, 2, 3 Stunden."})
+                    return self.send(400, {"error": "Länge: automatisch oder 3, 5, 8, 10 Stunden."})
                 ch["relax_length"] = v
             if "hour" in data:
                 if int(data["hour"]) not in entspannung.HOURS:
@@ -1699,6 +1700,10 @@ class Handler(BaseHTTPRequestHandler):
                 ch["relax_hour"] = int(data["hour"])
             if "on" in data:
                 ch["relax_on"] = bool(data["on"])
+            if "per_day" in data:
+                if int(data["per_day"]) not in (1, 2, 3):
+                    return self.send(400, {"error": "1, 2 oder 3 Videos am Tag."})
+                ch["relax_per_day"] = int(data["per_day"])
             if "shorts" in data:
                 ch["relax_shorts"] = bool(data["shorts"])
             if "banner" in data:
