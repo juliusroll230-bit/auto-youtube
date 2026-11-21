@@ -6,11 +6,20 @@
  },
  "videos": [
   {
+   "id": "Ll9Doydclrk",
+   "title": "Was passiert, wenn dir beim Aufstehen schwarz wird? 😵",
+   "text": "Beim schnellen Aufstehen sackt kurz Blut in die Beine. Warum dir schwindelig wird und was dagegen hilft.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-20T20:35:37+00:00",
+   "thumb": "thumbs/Ll9Doydclrk.jpg"
+  },
+  {
    "id": "mDxMgRUmcak",
    "title": "Was passiert, wenn der Blitz in dein Auto einschlägt? ⚡",
    "text": "Erklärt in der Blockwelt: Warum du im Auto bei einem Blitzschlag meistens sicher bist und welcher Mythos über Gummireifen nicht stimmt.",
    "niche": "Wissen",
-   "views": 1,
+   "views": 2,
    "published": "2026-11-20T19:35:47+00:00",
    "thumb": "thumbs/mDxMgRUmcak.jpg"
   },
@@ -28,7 +37,7 @@
    "title": "Die Flucht aus Alcatraz, die niemand erklären kann 🏝️",
    "text": "Im Juni 1962 verschwinden drei Häftlinge aus Alcatraz. Wir erzählen die Geschichte der Flucht, zeigen den Plan, die Spuren und die Frage, ob die Männer das Ufer erreichten.",
    "niche": "Geschichte",
-   "views": 3,
+   "views": 19,
    "published": "2026-11-20T19:00:52+00:00",
    "thumb": "thumbs/S45tU4ZISsk.jpg"
   },
@@ -64,7 +73,7 @@
    "title": "Die Lichter, die niemand erklären konnte 💡",
    "text": "Das echte Rätsel von Marfa, nachgespielt in der Blockwelt: Nachts tanzen Lichter über der Wüste in Texas, und ein Teil davon bleibt umstritten.",
    "niche": "Wissen",
-   "views": 89,
+   "views": 222,
    "published": "2026-11-20T15:35:39+00:00",
    "thumb": "thumbs/1hXjyGOAoxI.jpg"
   },
@@ -73,7 +82,7 @@
    "title": "Das Flugzeug, das mitten in der Nacht vom Radar verschwand ✈️",
    "text": "Flug MH370 verschwand 2014 mit 239 Menschen an Bord. Wrackteile wurden gefunden, das Flugzeug nie. Was geschah, ist ungeklärt.",
    "niche": "Wissen",
-   "views": 182,
+   "views": 399,
    "published": "2026-11-20T14:36:00+00:00",
    "thumb": "thumbs/tACaszpwr_0.jpg"
   },
@@ -82,7 +91,7 @@
    "title": "Die Grube, die niemand zu Ende graben konnte ⛏️",
    "text": "Oak Island in Kanada: Seit 1795 suchen Menschen in einer Grube nach einem Schatz. Gefunden wurde bis heute nichts Eindeutiges.",
    "niche": "Wissen",
-   "views": 430,
+   "views": 536,
    "published": "2026-11-20T13:36:06+00:00",
    "thumb": "thumbs/J-wqq_PQYGs.jpg"
   },
@@ -91,7 +100,7 @@
    "title": "Die Mütze am Schulzaun 🧢",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im Winter hängen Mützen am Schulzaun, bis jemand herausfindet, wer sie strickt.",
    "niche": "Geschichte",
-   "views": 987,
+   "views": 1057,
    "published": "2026-11-20T12:36:15+00:00",
    "thumb": "thumbs/xn5PPIiWuG8.jpg"
   },
@@ -100,7 +109,7 @@
    "title": "Warum Mama mir zwei Brote einpackt 🥪",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Mama packt jeden Tag zwei Brote ein, und ich verstehe lange nicht, warum.",
    "niche": "Geschichte",
-   "views": 1523,
+   "views": 1755,
    "published": "2026-11-20T11:36:14+00:00",
    "thumb": "thumbs/7WTEw64hsQY.jpg"
   },
@@ -109,7 +118,7 @@
    "title": "Das Lied, das aus dem leeren Zimmer kommt 🎵",
    "text": "Eine ausgedachte Gruselgeschichte: Nachts singt im Zimmer nebenan eine Kinderstimme, obwohl dort niemand wohnt.",
    "niche": "Wissen",
-   "views": 667,
+   "views": 888,
    "published": "2026-11-20T10:35:47+00:00",
    "thumb": "thumbs/x2NryBdGAWw.jpg"
   },
@@ -118,7 +127,7 @@
    "title": "Die Stufe, die es gestern noch nicht gab 🪜",
    "text": "Eine ausgedachte Gruselgeschichte: Auf deiner Treppe gibt es plötzlich eine Stufe mehr, und nur du siehst sie.",
    "niche": "Wissen",
-   "views": 959,
+   "views": 1043,
    "published": "2026-11-20T09:36:06+00:00",
    "thumb": "thumbs/O-21KzBhwos.jpg"
   },
@@ -127,18 +136,9 @@
    "title": "Wer legt Zettel in mein Mathebuch? 📖",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jede Woche liegt ein Zettel mit einem Mathe-Tipp im Buch aus der Bibliothek. Wer steckt dahinter?",
    "niche": "Geschichte",
-   "views": 961,
+   "views": 1012,
    "published": "2026-11-20T08:36:10+00:00",
    "thumb": "thumbs/LlFXF7_Zrcw.jpg"
-  },
-  {
-   "id": "zCG8V13xczk",
-   "title": "Der Anruf, der von deiner eigenen Nummer kam 📱",
-   "text": "Eine ausgedachte Gruselgeschichte: Mitten in der Nacht ruft dich deine eigene Nummer an.",
-   "niche": "Wissen",
-   "views": 926,
-   "published": "2026-11-20T07:35:43+00:00",
-   "thumb": "thumbs/zCG8V13xczk.jpg"
   }
  ]
 }
