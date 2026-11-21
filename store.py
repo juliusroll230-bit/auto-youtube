@@ -57,6 +57,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "clip_token": "", "clip_expired": False,
                   # dritter YouTube-Kanal nur für lange Entspannungsvideos (entspannung.py): Länge in Minuten, ab dieser Uhrzeit täglich 1
                   "relax_token": "", "relax_expired": False, "relax_on": True, "relax_minutes": 120, "relax_hour": 17,
+                  # Quiet Corner (21.11.): Länge "auto" (Lernmodus, 1 bis 3 Std.) oder Minuten, Teaser-Short an/aus, Banner-Variante A/B/C
+                  "relax_length": "auto", "relax_shorts": True, "relax_banner": "A",
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
                   # Firmen-Spiel (firma.py): eine Folge pro Tag zusätzlich (vier Firmen reihum), ab dieser Uhrzeit, None = aus
@@ -785,13 +787,55 @@ def thumbs_overview(posted, long_queue):
             "recent": [pick(p) for p in reversed(longs + shorts)]}
 
 
+def relax_error_text(err):
+    """Fehler vom Entspannungskanal in einfachem Deutsch."""
+    if not err:
+        return None
+    e = str(err).lower()
+    if "quota" in e or "uploadlimit" in e or "exceeded" in e:
+        return "YouTube lässt heute keine weiteren Uploads zu. Morgen geht es automatisch weiter."
+    if "invalid_grant" in e or "expired" in e or "revoked" in e:
+        return "Die Verbindung zum Kanal ist abgelaufen. Bitte im Reiter Kanäle neu verbinden."
+    if "thumbnail" in e or "forbidden" in e:
+        return "Das Vorschaubild durfte nicht gesetzt werden. Den Kanal einmal auf youtube.com/verify bestätigen."
+    if "rendert" in e or "renderer" in e:
+        return "Der Server war gerade mit einem anderen Video beschäftigt. In einer Stunde versucht er es noch einmal."
+    if "space" in e or "speicher" in e:
+        return "Auf dem Server ist zu wenig Speicherplatz frei."
+    return "Etwas hat nicht geklappt, die Zentrale versucht es in einer Stunde noch einmal. (Technisch: " + str(err)[:140] + ")"
+
+
 def relax_overview(cfg, st):
-    """Für die Karte „Entspannungskanal“: verbunden, Einstellungen, letzte Uploads."""
+    """Für den Reiter Quiet Corner: Verbindung, Einstellungen, Uploads mit Aufrufen, Plan, Ideen, Lernstand."""
+    import entspannung
     info = read("relax.json", {}) or {}
+    ups = info.get("uploads") or []
+    today = now().date()
+    for u in ups:
+        u["per_day"] = entspannung._per_day(u, today)
+    learnt = {}
+    for key, names in (("scene", entspannung.SCENES), ("minutes", {m: entspannung.dauer_text(m) for m in entspannung.MINUTES})):
+        rows = []
+        for k, name in names.items():
+            vals = [u["per_day"] for u in ups if u.get(key) == k and u.get("per_day") is not None]
+            rows.append({"key": k, "name": name, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
+        learnt[key] = rows
+    used = {}
+    for u in ups:
+        if u.get("idea"):
+            used[u["idea"]] = used.get(u["idea"], 0) + 1
+    length = cfg.get("relax_length", "auto")
     return {"connected": bool(cfg["relax_token"]), "expired": bool(cfg["relax_expired"]) and not cfg["relax_token"],
             "channel": read("relaxchannel.json", None) if cfg["relax_token"] else None,
             "on": bool(cfg["relax_on"]), "minutes": cfg["relax_minutes"], "hour": cfg["relax_hour"],
-            "last": st.get("relax_last"), "error": info.get("error"), "uploads": (info.get("uploads") or [])[-5:][::-1]}
+            "length": length, "shorts": bool(cfg.get("relax_shorts", True)), "banner": cfg.get("relax_banner", "A"),
+            "branded": info.get("branded"), "last": st.get("relax_last"), "error": info.get("error"),
+            "error_text": relax_error_text(info.get("error")), "stats_at": info.get("stats_at"),
+            "uploads": ups[-60:][::-1], "learn": learnt,
+            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7),
+            "ideas": [{"id": i["id"], "scene": entspannung.SCENES[i["scene"]], "title": i["title"], "thumb": i["thumb"],
+                       "layers": i["layers"], "used": used.get(i["id"], 0)} for i in entspannung.IDEAS],
+            "variants": entspannung.BRAND_VARIANTS}
 
 
 def next_effects(posted=None):
