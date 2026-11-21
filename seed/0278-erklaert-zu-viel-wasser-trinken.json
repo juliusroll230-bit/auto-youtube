@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-zu-viel-wasser-trinken",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#0a2440",
+    "#4aa8e8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Zu viel Wasser trinken: Was passiert? 💧",
+  "description": "Warum man sich auch an Wasser überfordern kann, was dabei im Blut passiert und wie viel die Nieren pro Stunde schaffen.\n\n#wissen #wasser #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "wasser",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Blut | Salz sinkt",
+    "Deine Nieren"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du viel zu viel Wasser trinkst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "haende",
+        "objekt": "💧"
+      }
+    },
+    {
+      "text": "Dein Blut verdünnt sich, und der *Salzgehalt* sinkt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧂",
+        "text": "Salz sinkt"
+      }
+    },
+    {
+      "text": "Die Zellen nehmen Wasser auf und *schwellen* an.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🧠",
+        "text": "Zellen quellen"
+      }
+    },
+    {
+      "text": "Erst kommen Kopfschmerzen, Übelkeit und Verwirrung.",
+      "szene": {
+        "typ": "liste",
+        "text": "Erste Zeichen",
+        "punkte": [
+          "Kopfschmerz",
+          "Übelkeit",
+          "Verwirrung"
+        ]
+      }
+    },
+    {
+      "text": "Im schlimmsten Fall kann es lebensgefährlich werden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "⚠️"
+      }
+    },
+    {
+      "text": "Das passiert aber nur bei extremen Mengen in kurzer Zeit.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🥛",
+          "text": "Normal: fein"
+        },
+        "rechts": {
+          "objekt": "🚰",
+          "text": "Extrem: Gefahr"
+        }
+      }
+    },
+    {
+      "text": "Deine Nieren schaffen ungefähr einen *Liter* pro Stunde.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 1,
+        "einheit": "Liter pro Stunde",
+        "objekt": "💧",
+        "farbcode": "#0a2440"
+      }
+    },
+    {
+      "text": "Trinken nach Durst reicht für die meisten völlig aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🥤"
+      }
+    }
+  ]
+}

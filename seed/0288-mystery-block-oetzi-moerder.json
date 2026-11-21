@@ -1,0 +1,114 @@
+{
+  "slug": "mystery-block-oetzi-moerder",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#10202e",
+    "#a8c8e0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Der Mord an Ötzi, den niemand klärt 🏔️",
+  "description": "Blockwelt: Im Eis der Alpen liegt ein Mann, der vor etwa 5.300 Jahren starb. Eine Pfeilspitze steckte in seiner Schulter, doch wer ihn tötete, ist unbekannt.\n\n#mystery #ötzi #rätsel #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "ötzi",
+    "rätsel",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Ötzi | Pfeil im Rücken",
+    "Täter unbekannt"
+  ],
+  "segments": [
+    {
+      "text": "Im Eis der Alpen liegt ein Mordopfer, und niemand kennt den Täter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "wetter": "schnee",
+        "objekt": "🧊",
+        "chat": "Spieler: ist das echt?"
+      }
+    },
+    {
+      "text": "Ein Wanderpaar entdeckt ihn neunzehnhunderteinundneunzig in den Ötztaler Alpen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏔️",
+        "text": "Alpen 1991"
+      }
+    },
+    {
+      "text": "Er ist etwa fünftausenddreihundert Jahre alt und erstaunlich gut erhalten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⏳",
+        "text": "5.300 Jahre"
+      }
+    },
+    {
+      "text": "Man nennt ihn *Ötzi*, und Forscher haben seinen Körper genau untersucht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Forscher"
+      }
+    },
+    {
+      "text": "In seiner Schulter steckt eine *Pfeilspitze*, die eine Ader verletzte.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Sein wertvolles Kupferbeil lag noch bei ihm, also wohl kein Raub.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🪓",
+        "text": "Kein Raub?"
+      }
+    },
+    {
+      "text": "Er wurde vermutlich von hinten getroffen und blieb im *Eis* liegen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "denkt",
+        "wetter": "schnee",
+        "objekt": "🏹"
+      }
+    },
+    {
+      "text": "Wer den Bogen spannte, weiß bis heute niemand.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏹",
+        "text": "Täter unbekannt"
+      }
+    }
+  ]
+}

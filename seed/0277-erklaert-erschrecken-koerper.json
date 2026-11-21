@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-erschrecken-koerper",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#14101e",
+    "#8a6ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du dich erschreckst? 😱",
+  "description": "Was in der ersten Sekunde eines Schrecks in deinem Körper passiert und warum du zusammenzuckst, bevor du denken kannst.\n\n#wissen #schreck #gehirn #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schreck",
+    "gehirn",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Schreck | schneller als Denken",
+    "Alarm im Kopf"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du dich plötzlich erschreckst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😱"
+      }
+    },
+    {
+      "text": "Dein Gehirn schlägt Alarm, noch bevor du etwas bewusst erkennst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "🧠",
+        "text": "Alarm"
+      }
+    },
+    {
+      "text": "Die Nebennieren schütten *Adrenalin* aus.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "⚡",
+        "text": "Adrenalin"
+      }
+    },
+    {
+      "text": "Dein Herz schlägt schneller, und die Atmung wird flach.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "❤️",
+          "text": "Herz: schneller"
+        },
+        "rechts": {
+          "objekt": "💨",
+          "text": "Atem: flach"
+        }
+      }
+    },
+    {
+      "text": "Deine Pupillen weiten sich, und die Muskeln spannen sich an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "zittert",
+        "objekt": "👁️"
+      }
+    },
+    {
+      "text": "Dein Körper bereitet sich auf Kampf oder *Flucht* vor.",
+      "szene": {
+        "typ": "liste",
+        "text": "Kampf oder Flucht",
+        "punkte": [
+          "Herz",
+          "Muskeln",
+          "Blick"
+        ]
+      }
+    },
+    {
+      "text": "Das passiert in einem Bruchteil einer *Sekunde*, bevor du denken kannst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "⏱️",
+        "text": "Schneller als Denken"
+      }
+    },
+    {
+      "text": "Darum zuckst du zusammen, bevor du weißt, warum.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "nacht",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Alle zucken"
+      }
+    }
+  ]
+}

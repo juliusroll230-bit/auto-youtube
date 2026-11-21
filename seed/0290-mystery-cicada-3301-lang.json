@@ -1,0 +1,726 @@
+{
+  "slug": "mystery-cicada-3301-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0c0c14",
+    "#40c070"
+  ],
+  "accent": "#c4161c",
+  "title": "Cicada 3301: Das Rätsel, das niemand löst 🦗",
+  "description": "Im Januar 2012 taucht im Internet ein Bild mit einer geheimen Aufgabe auf. Wir erzählen die Geschichte von Cicada 3301, zeigen die Rätsel, das Runenbuch und die Frage, wer dahintersteckt.\n\n#mystery #rätsel #cicada3301 #verschlüsselung #internet",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "cicada3301",
+    "verschlüsselung",
+    "internet"
+  ],
+  "figur": {
+    "farbe": "gruen",
+    "name": "Cipher"
+  },
+  "thumb_text": [
+    "Cicada | Wer steckt dahinter",
+    "Der Buch-Code"
+  ],
+  "segments": [
+    {
+      "text": "Im Januar zweitausendzwölf taucht im Internet ein Bild mit weißem Text auf schwarzem Grund auf, und niemand weiß, wer es dort hinterlassen hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "🖼️"
+      }
+    },
+    {
+      "text": "Der Text sucht hochintelligente Menschen und stellt ihnen eine Aufgabe, und wer sie löst, landet in einer Spur, die um die ganze Welt führt.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Die Aufgabe",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte von Cicada 3301, zeigen die Rätsel dahinter und prüfen, wer so etwas bauen könnte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🦗",
+        "text": "Cicada 3301",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zuerst die Nachricht, dann die Rätsel, dann die Spur um die Welt, dann das Buch und am Ende die Frage, wer dahintersteckt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Am vierten Januar zweitausendzwölf erscheint die Nachricht auf einem Internetforum, und sie ist mit der Zahl dreitausenddreihunderteins unterschrieben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2012",
+        "text": "Die Nachricht",
+        "objekt": "📝"
+      }
+    },
+    {
+      "text": "Darin steht sinngemäß: Wir suchen hochintelligente Menschen, und um sie zu finden, haben wir einen Test gebaut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📄"
+      }
+    },
+    {
+      "text": "Die Zahl dreitausenddreihunderteins ist eine Primzahl, und das ist vermutlich kein Zufall.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 3301,
+        "einheit": "Eine Primzahl",
+        "objekt": "🔢",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Der Name kommt von den Zikaden, die viele Jahre unter der Erde leben und dann plötzlich alle gleichzeitig auftauchen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🦗",
+        "text": "Zikaden",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Warum ausgerechnet Zikaden? Vielleicht, weil die Gruppe lange im Verborgenen arbeitet und dann überraschend sichtbar wird.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🦗",
+        "text": "Warum Zikaden?",
+        "ort": "feld"
+      }
+    },
+    {
+      "text": "Wer das Bild genauer untersucht, entdeckt, dass in der Bilddatei selbst noch eine versteckte Botschaft steckt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔍"
+      }
+    },
+    {
+      "text": "Solche versteckten Daten in Bildern heißen Steganografie, und ohne das passende Werkzeug sieht man sie nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🕵️",
+        "text": "Steganografie",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Wer weitermachen will, muss eine ganze Kette von Methoden kennen, die in der Welt der Geheimschriften üblich sind.",
+      "szene": {
+        "typ": "liste",
+        "text": "Methoden",
+        "punkte": [
+          "Cäsar-Verschlüsselung",
+          "Bilder",
+          "Primzahlen"
+        ]
+      }
+    },
+    {
+      "text": "Eine der ersten Aufgaben nutzt eine alte Verschlüsselung, die schon der römische Feldherr Cäsar benutzt haben soll.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Nach und nach führen die Lösungen zu neuen Webseiten, zu Zahlenreihen und zu Hinweisen auf Bücher und Gedichte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🌐",
+        "text": "Neue Spuren",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Tausende Menschen sitzen nächtelang vor ihren Computern und tauschen sich in Foren aus, um den nächsten Schritt zu finden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💻"
+      }
+    },
+    {
+      "text": "Manche arbeiten allein, andere gründen große Teams und teilen Zwischenergebnisse, damit niemand doppelt arbeitet.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "👥",
+        "text": "Teamarbeit",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Manche Aufgaben lösen Programmierer, andere brauchen Kunstkenntnisse oder Wissen über alte Sprachen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💻",
+          "text": "Code"
+        },
+        "rechts": {
+          "objekt": "🎨",
+          "text": "Kunst und Sprache"
+        }
+      }
+    },
+    {
+      "text": "Doch dann taucht plötzlich eine Telefonnummer auf, und wer anruft, hört nur eine Ansage mit neuen Hinweisen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "☎️",
+        "text": "Die Nummer",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Die Nummer gehört zu einem Anschluss in Texas, und die Stimme am anderen Ende gibt nur ein kurzes Rätsel preis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📞"
+      }
+    },
+    {
+      "text": "Gleichzeitig hängen in mehreren Städten der Welt Zettel mit einem Quadratcode, den man mit dem Handy einlesen kann.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📱",
+        "text": "Quadratcode",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Menschen in verschiedenen Ländern fotografieren die Zettel, laden die Bilder hoch und gehen den Spuren gemeinsam nach.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 4,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Weltweite Suche"
+      }
+    },
+    {
+      "text": "Die Zettel erscheinen in Städten auf mehreren Kontinenten, und jede Spur führt weiter, ohne dass je jemand die Macher sieht.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2012",
+        "text": "Auf der Welt",
+        "objekt": "🌍"
+      }
+    },
+    {
+      "text": "Manche Hinweise sind Koordinaten, die zu bestimmten Orten führen, an denen die nächsten Informationen versteckt sind.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📍"
+      }
+    },
+    {
+      "text": "Wer am Ende durchkommt, so heißt es, landet auf einer geheimen Seite, die nur über ein besonderes Netz erreichbar ist.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🧅",
+        "text": "Geheime Seite",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Dort steht, dass nur wenige so weit gekommen sind, und dass der Test damit endet, dass sich die Gruppe meldet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Danach hört man von den Teilnehmern kaum noch etwas, und die meisten sagen, dass sie nichts weitergeben dürfen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🤐",
+        "text": "Schweigen",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Aus Berichten von Teilnehmern bleibt nur Folgendes, und selbst das ist nicht sicher bestätigt.",
+      "szene": {
+        "typ": "akte",
+        "text": "Berichte",
+        "punkte": [
+          "Wenige am Ziel",
+          "Sie schweigen",
+          "Ziel unklar"
+        ]
+      }
+    },
+    {
+      "text": "Zeit für die zweite Runde, denn im Januar zweitausenddreizehn geht es weiter.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Runde zwei"
+      }
+    },
+    {
+      "text": "Ein Jahr später erscheint eine neue Nachricht, wieder im Januar, wieder mit weißem Text auf schwarzem Grund und derselben Unterschrift.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2013",
+        "text": "Runde zwei",
+        "objekt": "📝"
+      }
+    },
+    {
+      "text": "Dieses Mal sind die Aufgaben noch schwerer, und sie führen wieder zu Orten auf der ganzen Welt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🧩"
+      }
+    },
+    {
+      "text": "Die Nachricht trägt eine digitale Unterschrift, an der man erkennen kann, ob sie wirklich von derselben Gruppe stammt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "✍️",
+        "text": "Digitale Unterschrift",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Eine Unterschrift, die man nicht fälschen kann, ist ein starkes Zeichen, dass dahinter Leute stehen, die sich auskennen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔏",
+        "text": "Echt?",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Auch in dieser Runde geht es um Zahlen, Bücher, alte Sprachen und Schriftzeichen, die viele Teilnehmer noch nie gesehen hatten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Im Januar zweitausendvierzehn folgt die dritte Runde, und sie führt am Ende zu einem ganz besonderen Buch.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2014",
+        "text": "Runde drei",
+        "objekt": "📝"
+      }
+    },
+    {
+      "text": "Es ist ein Buch aus Runenzeichen, das die Gruppe als Teil der Aufgabe herausgibt, und es heißt Liber Primus.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📖",
+        "text": "Liber Primus",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Wer die Runen kennt, kann sie in Buchstaben übersetzen, doch dahinter wartet dann die eigentliche Verschlüsselung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔤"
+      }
+    },
+    {
+      "text": "Das Buch hat viele Seiten voller Zeichen, die mit Bildern, Gedichten und Symbolen vermischt sind.",
+      "szene": {
+        "typ": "liste",
+        "text": "Das Buch",
+        "punkte": [
+          "Runen",
+          "Bilder",
+          "Gedichte"
+        ]
+      }
+    },
+    {
+      "text": "Es besteht aus achtundfünfzig Seiten, und bis heute ist nur ein Teil davon entschlüsselt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 58,
+        "einheit": "Seiten",
+        "objekt": "📖",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Die gelösten Seiten handeln sinngemäß vom Suchen nach Weisheit und davon, selbst zu denken, statt einfach zu glauben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧘"
+      }
+    },
+    {
+      "text": "Und die restlichen Seiten? Sie sind mit einer Verschlüsselung geschützt, die bisher niemand knacken konnte.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔐",
+        "text": "Ungelöst",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Seit Jahren versuchen Teams und Einzelne, die Seiten zu lösen, doch jeder Versuch endet bisher in einer Sackgasse.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🧱"
+      }
+    },
+    {
+      "text": "Viele haben schon versucht, die Seiten zu knacken, und sind an verschiedenen Hindernissen gescheitert.",
+      "szene": {
+        "typ": "liste",
+        "text": "Hürden",
+        "punkte": [
+          "Unbekannter Schlüssel",
+          "Mehrere Schichten",
+          "Kaum Hinweise"
+        ]
+      }
+    },
+    {
+      "text": "Nach dieser Runde werden die Nachrichten seltener, und angebliche neue Spuren stellen sich oft als Fälschungen heraus.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "⚠️",
+        "text": "Fälschungen",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Die echten Nachrichten erkennt man nur an der digitalen Unterschrift, und alles ohne sie gilt als verdächtig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔑"
+      }
+    },
+    {
+      "text": "Bis heute kursieren Gerüchte, Teilnehmer seien von Organisationen angeworben worden, doch keine Quelle konnte das je belegen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📰",
+        "text": "Gerüchte",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zeit, die großen Theorien zu prüfen, wer hinter Cicada 3301 stecken könnte.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Wer dahinter?"
+      }
+    },
+    {
+      "text": "Es gibt drei Hauptideen, und keine davon wurde je bewiesen, auch wenn jede ihre Anhänger hat.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Geheimdienst",
+          "Hacker",
+          "Marketing"
+        ]
+      }
+    },
+    {
+      "text": "Die erste Idee: Ein Geheimdienst sucht auf diese Weise Mitarbeiter, die klug sind und sich nicht von Hürden abschrecken lassen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🕶️"
+      }
+    },
+    {
+      "text": "Dagegen spricht, dass Geheimdienste normalerweise leiser suchen und kaum weltweit Zettel aufhängen würden.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🤷",
+        "text": "Eher unwahrscheinlich",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Die zweite Idee: Eine Gruppe von Hackern und Datenschützern will gleichgesinnte Menschen finden und sich vernetzen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🛡️"
+      }
+    },
+    {
+      "text": "Dafür spricht, dass die Rätsel viel mit Verschlüsselung und Privatsphäre zu tun haben, doch einen Beweis gibt es nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔒",
+        "text": "Privatsphäre",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Auch das Fehlen von Werbung passt dazu, denn nirgendwo steht ein Name, ein Logo oder ein Preis.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚫",
+        "text": "Kein Logo",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Die dritte Idee: Es war ein riesiges Spiel, das eine Firma zu Werbezwecken oder als Experiment gestartet hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🎮"
+      }
+    },
+    {
+      "text": "Dagegen spricht, dass sich nie jemand dazu bekannt hat, und dass es keine Werbung und keinen Verkauf gab.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🚫",
+        "text": "Kein Bekenner",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Eine Firma hätte sich gemeldet, ein Geheimdienst hätte geschwiegen, und die Gruppe schweigt bis heute.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏢",
+          "text": "Firma: meldet sich"
+        },
+        "rechts": {
+          "objekt": "🤐",
+          "text": "Gruppe: schweigt"
+        }
+      }
+    },
+    {
+      "text": "Auch die Frage, was die Gewinner bekommen haben, bleibt offen, denn niemand von ihnen hat darüber öffentlich gesprochen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🎁"
+      }
+    },
+    {
+      "text": "Haben sie eine Aufgabe, eine Stelle oder nur eine Einladung in eine Gemeinschaft erhalten?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🎁",
+        "text": "Was bekamen sie?",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Manche Teilnehmer sagen nur, dass sie bei einem Rätsel gelandet seien, das nie wirklich endet.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "♾️",
+        "text": "Kein Ende",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Fest steht: Diese Aktion war aufwendig, gut geplant und für viele Länder gleichzeitig gedacht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🌍"
+      }
+    },
+    {
+      "text": "Wer investiert so viel Zeit und Geld in ein Rätsel, das keine Werbung macht und niemandem etwas verkauft?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "💰",
+        "text": "Wozu der Aufwand?",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "In Foren und auf Videoseiten wird bis heute gerätselt, und noch immer kommen Menschen hinzu, die sich an dem Buch versuchen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 5,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Bis heute aktiv"
+      }
+    },
+    {
+      "text": "Das zeigt, wie viel Neugier ein einziges Bild auslösen kann, wenn es nur die richtige Frage stellt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔍",
+        "text": "Neugier",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Vielleicht ist genau das die Absicht gewesen: Menschen zusammenzubringen, die gern knobeln und nicht aufgeben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🤝"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt offen?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Bücher, Dokumentationen und viele Foren erzählen die Geschichte, und sie gilt als eines der größten Rätsel des Internets.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎬",
+        "text": "Bis heute",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Auch Fernsehsendungen und Podcasts haben die Spur aufgegriffen, und jedes Mal melden sich neue Rätselfans.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🎙️"
+      }
+    },
+    {
+      "text": "Sicher ist: Eine anonyme Gruppe stellte weltweit Aufgaben, die Wissen über Verschlüsselung und Geschichte verlangten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Anonyme Gruppe",
+          "Weltweit",
+          "Verschlüsselung"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt: Wer steckte dahinter, wozu diente es, und wie viele Seiten des Buches sind je gelöst worden?",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "👤",
+          "🎯",
+          "📖"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist eine Gruppe, die kluge Köpfe finden wollte, auch wenn der genaue Zweck wohl nie ganz klar wird.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Und doch lässt uns die Geschichte nicht los, denn ein einziges Bild hat Tausende Menschen auf der ganzen Welt zusammengebracht.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌑",
+        "text": "Ein Bild",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Wer glaubst du, steckt hinter Cicada 3301, ein Geheimdienst, Hacker oder ein Spiel? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

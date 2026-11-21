@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-warum-himmel-abends-rot",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1030",
+    "#e8704a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum ist der Himmel abends rot? 🌅",
+  "description": "Warum der Himmel abends rot leuchtet: Das Licht nimmt einen längeren Weg, und das Blau geht dabei verloren.\n\n#wissen #himmel #licht #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "himmel",
+    "licht",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Abendrot | Blau fehlt",
+    "Das Licht verliert"
+  ],
+  "segments": [
+    {
+      "text": "Warum ist der Himmel abends oft rot?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🌅"
+      }
+    },
+    {
+      "text": "Am Abend steht die Sonne tief am Horizont.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "☀️",
+        "text": "Tiefer Stand"
+      }
+    },
+    {
+      "text": "Ihr Licht nimmt einen viel längeren Weg durch die Luft.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☀️",
+          "text": "Mittag: kurz"
+        },
+        "rechts": {
+          "objekt": "🌅",
+          "text": "Abend: lang"
+        }
+      }
+    },
+    {
+      "text": "Blaues Licht wird dabei in alle Richtungen *gestreut*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "💙",
+        "text": "Blau streut"
+      }
+    },
+    {
+      "text": "Nur das *Rot* kommt noch bis zu deinen Augen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🔴",
+        "text": "Rot bleibt"
+      }
+    },
+    {
+      "text": "Staub und Wolken können das Rot noch verstärken.",
+      "szene": {
+        "typ": "liste",
+        "text": "Verstärkt Rot",
+        "punkte": [
+          "Staub",
+          "Wolken",
+          "Dunst"
+        ]
+      }
+    },
+    {
+      "text": "Der Abendhimmel ist also das Blau, das *fehlt*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🌇",
+        "text": "Blau fehlt"
+      }
+    },
+    {
+      "text": "Darum schaust du abends auf das, was übrig bleibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "denkt",
+        "objekt": "🌆"
+      }
+    }
+  ]
+}
