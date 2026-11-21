@@ -25,12 +25,14 @@ const FAST = PLAN.tempo === 'schnell' && !WIDE;
 const CUTS = FAST ? [...PLAN.scenes.slice(1).map(s => s.start), ...(PLAN.cuts || [])].sort((a, b) => a - b) : [];
 // z: Zoom, x: seitlich, y: Bildpunkt (Höhe), der in die Mitte kommt (Gesichter sitzen oben), r: Neigung
 const FRAMINGS = [{ z: 1, x: 0, y: .47, r: 0 }, { z: 1.32, x: 0, y: .39, r: 0 }, { z: 1.16, x: -70, y: .43, r: -.035 }, { z: 1.45, x: 40, y: .36, r: .02 }, { z: 1.1, x: 80, y: .45, r: .03 }];
+const TEXTY = new Set(['vergleich', 'liste', 'akte', 'zahl', 'jahr', 'karte', 'titel']);
 function fastCam(t) {
   // Nummer der Einstellung innerhalb der Szene: jede Szene startet weit (man sieht, wo man ist), danach wechselt es
   let k = 0, last = 0; const sc = PLAN.scenes.findLast ? PLAN.scenes.findLast(s => t >= s.start) : PLAN.scenes.filter(s => t >= s.start).pop();
   for (const c of PLAN.cuts || []) { if (c <= t && sc && c > sc.start) k++; }
   for (const c of CUTS) if (c <= t) last = c;
-  const f = k === 0 ? FRAMINGS[(sc && sc.i % 2) ? 4 : 0] : FRAMINGS[1 + ((k - 1 + (sc ? sc.i : 0)) % 4)];
+  let f = k === 0 ? FRAMINGS[(sc && sc.i % 2) ? 4 : 0] : FRAMINGS[1 + ((k - 1 + (sc ? sc.i : 0)) % 4)];
+  if (sc && TEXTY.has(sc.typ)) f = { z: k % 2 ? 1.08 : 1, x: 0, y: .47, r: 0 };   // Schrift-Szenen nur leicht zoomen, sonst wird Text abgeschnitten
   const d = t - last, kick = last > 0 && d < .5 ? .09 * Math.exp(-d * 11) : 0;   // Stoß-Zoom direkt nach dem Schnitt
   return { z: f.z * (1 + kick), x: f.x, y: f.y, r: f.r, flash: last > 0 && d < .07 ? .22 * (1 - d / .07) : 0 };
 }
