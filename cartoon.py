@@ -156,6 +156,12 @@ def layout(spec):
     return "spannung" if spec.get("aufbau") == "spannung" and not is_long(spec) else None
 
 
+# Tempo "schnell": Stimme NICHT schneller (Julius 21.11.2026: „die Stimme muss klarer sein“), dafür kurze Atempause
+# zwischen den Sätzen, damit jedes Wort ankommt. Das Tempo kommt aus den Schnitten, nicht aus der Stimme.
+FAST_PAUSE = 0.12
+FAST_VOICE = "klar"   # Thorsten-high: die deutlichste Stimme
+
+
 def fast(spec):
     """Tempo "schnell" (Test seit 21.11.2026): Schnitt alle ca. 1,3 s, flottere Stimme. Lange Videos nie."""
     return spec.get("tempo") == "schnell" and not is_long(spec)
@@ -259,13 +265,13 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     wav = os.path.join(out_dir, f"{spec['slug']}.wav")
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
-                                           speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 0.9 if fast(spec) else 1),
-                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=0.0 if fast(spec) else PAUSE,
+                                           speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=FAST_PAUSE if fast(spec) else PAUSE,
                                            effects=None if is_long(spec) else spec.get("effekte"),
                                            layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None,
                                            cta=abo(spec)[1] if abo(spec)[0] == "gesprochen" else None,
                                            badge=abo(spec)[0] == "eingeblendet")
-    pause = 0.0 if fast(spec) else PAUSE
+    pause = FAST_PAUSE if fast(spec) else PAUSE
     cta_at = timings[-1][1] + pause if abo(spec)[0] == "gesprochen" else None
     total += make_short.TAIL
     if info is not None:

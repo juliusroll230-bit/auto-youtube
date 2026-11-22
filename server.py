@@ -224,6 +224,9 @@ def render_short(spec):
                 tem = store.next_tempo()
                 look["tempo"] = spec["tempo"] if spec.get("tempo") in learn.TEMPOS else (
                     "normal" if look["aufbau"] == "spannung" else tem)
+                if look["tempo"] == "schnell" and not spec.get("stimme"):
+                    import cartoon
+                    look["stimme"] = cartoon.FAST_VOICE   # schnell geschnitten, aber klar gesprochen (Julius, 21.11.2026)
             if learn.abo_ok(spec):  # Test Abo-Aufruf am Ende (gesprochen / nur eingeblendet / ohne)
                 mode, line = store.next_abo(spec)
                 if spec.get("abo") in learn.ABO_MODES:   # zum Ausprobieren fest im Skript
