@@ -1,0 +1,688 @@
+{
+  "slug": "mystery-fawcett-stadt-z-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#10241a",
+    "#6ab070"
+  ],
+  "accent": "#c4161c",
+  "title": "Fawcett und die Stadt Z: Was geschah im Dschungel? 🌿",
+  "description": "1925 verschwindet der britische Forscher Percy Fawcett mit zwei Begleitern im brasilianischen Urwald. Wir erzählen die Geschichte seiner Suche nach der Stadt Z, die Theorien zu seinem Schicksal und was Archäologen heute dazu sagen.\n\n#mystery #rätsel #fawcett #dschungel #geschichte",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "fawcett",
+    "dschungel",
+    "geschichte"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "muetze",
+    "name": "Fawcett"
+  },
+  "thumb_text": [
+    "Fawcett | Stadt Z",
+    "Nie zurückgekehrt"
+  ],
+  "segments": [
+    {
+      "text": "Im Mai neunzehnhundertfünfundzwanzig verschwinden drei Männer im brasilianischen Dschungel, und niemand hat sie je wiedergesehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🌿"
+      }
+    },
+    {
+      "text": "Der Anführer ist ein berühmter britischer Forscher, der überzeugt war, im Urwald eine verlorene Stadt zu finden. Was geschah mit ihm?",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Was geschah?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte von Percy Fawcett, zeigen seine Spuren und prüfen, was die Forschung heute dazu sagt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧭",
+        "text": "Percy Fawcett",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zuerst der Mann, dann die Stadt Z, dann die letzte Reise, dann die Suche nach ihm und am Ende die Frage, was er wirklich fand.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Percy Fawcett wird im neunzehnten Jahrhundert in England geboren und wird Offizier, Landvermesser und später Forscher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🎖️"
+      }
+    },
+    {
+      "text": "Neunzehnhundertsechs schickt ihn die Königliche Geographische Gesellschaft nach Südamerika, um dort Grenzen zwischen Ländern zu vermessen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1906",
+        "text": "Erste Reise",
+        "objekt": "🗺️"
+      }
+    },
+    {
+      "text": "Der Auftrag führt ihn durch Urwald, Sümpfe und Flüsse, die auf keiner Karte stehen und kaum ein Europäer kennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌿"
+      }
+    },
+    {
+      "text": "Zu seiner Ausrüstung gehören nur wenige Dinge, die in der Wildnis über Leben und Tod entscheiden können.",
+      "szene": {
+        "typ": "liste",
+        "text": "Ausrüstung",
+        "punkte": [
+          "Kompass",
+          "Karte",
+          "Messer"
+        ]
+      }
+    },
+    {
+      "text": "Er kommt zurück, ist berühmt für seinen Mut und wird zu einem der bekanntesten Entdecker seiner Zeit.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🏅",
+        "text": "Berühmt",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Er übersteht Krankheiten, Insekten und Hunger, und er gilt als ungewöhnlich hartnäckig und mutig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "denkt",
+        "objekt": "🐍"
+      }
+    },
+    {
+      "text": "Dabei hört er immer wieder Gerüchte von alten Städten, die tief im brasilianischen Urwald liegen sollen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🏛️",
+        "text": "Alte Städte?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Seine wichtigste Spur ist ein altes Dokument aus Portugal, das in der Nationalbibliothek in Rio de Janeiro liegt.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📜",
+        "text": "Dokument 512",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Es stammt aus dem Jahr siebzehnhundertdreiundfünfzig und beschreibt Männer, die im Landesinneren eine verlassene Stadt aus Stein gefunden haben wollen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1753",
+        "text": "Das Dokument",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Das Dokument ist unvollständig und wirkt wie ein hastiger Bericht, doch für Fawcett ist es der Schlüssel zu allem.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🗝️",
+        "text": "Der Schlüssel",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Fawcett liest den Bericht immer wieder und ist sicher, dass es diese Stadt wirklich gibt, auch wenn niemand sie je gefunden hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Er gibt der Stadt einen kurzen Namen: Z. Für ihn ist sie der Beweis, dass im Urwald einst eine Hochkultur lebte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔤",
+        "text": "Stadt Z",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Die meisten Fachleute seiner Zeit glauben, im Urwald konnten nie große Städte entstehen, Fawcett glaubt das Gegenteil.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🎓",
+          "text": "Fachwelt: unmöglich"
+        },
+        "rechts": {
+          "objekt": "🧭",
+          "text": "Fawcett: möglich"
+        }
+      }
+    },
+    {
+      "text": "Mehrere Reisen führen ihn in den folgenden Jahren immer tiefer ins Landesinnere, doch Z findet er nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🛶"
+      }
+    },
+    {
+      "text": "Warum hört er trotzdem nicht auf? Vielleicht, weil jede Reise neue Hinweise bringt, die ihn noch mehr überzeugen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🔍",
+        "text": "Warum weiter?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Zwischen diesen Reisen kämpft er im Ersten Weltkrieg als Offizier und kehrt danach sofort zu seinen Plänen zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🎖️"
+      }
+    },
+    {
+      "text": "Er ist inzwischen über fünfzig und weiß, dass es seine letzte große Chance sein könnte, die Stadt zu finden.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "⏳",
+        "text": "Letzte Chance",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Neunzehnhundertfünfundzwanzig will er es noch einmal wagen, diesmal mit einer sehr kleinen Gruppe, die schnell und leise reisen soll.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1925",
+        "text": "Letzte Reise",
+        "objekt": "🎒"
+      }
+    },
+    {
+      "text": "Mit ihm gehen sein Sohn Jack und Jacks Freund Raleigh Rimell, und drei Männer brechen zusammen auf.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "text": "Die Drei"
+      }
+    },
+    {
+      "text": "Der Sohn ist Anfang zwanzig, kräftig und trainiert, und er will unbedingt mit seinem Vater auf diese Reise gehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "👨‍👦"
+      }
+    },
+    {
+      "text": "Sie nehmen wenig Gepäck mit, damit sie schnell vorankommen und nicht auffallen, wenn sie an Dörfern vorbeikommen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎒",
+        "text": "Wenig Gepäck",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Ihr Ziel liegt im Bundesstaat Mato Grosso, einem riesigen Gebiet im Westen Brasiliens, das damals kaum erforscht war.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Mato Grosso"
+      }
+    },
+    {
+      "text": "Die Reise beginnt mit Maultieren, Helfern und Vorräten, und sie führt weg von Straßen und Siedlungen tief in unbekanntes Land.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "rennt",
+        "objekt": "🫏"
+      }
+    },
+    {
+      "text": "Im Mai neunzehnhundertfünfundzwanzig erreichen sie ein Lager, das später Campo do Cavalo Morto genannt wird, das Lager des toten Pferdes.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🐴",
+        "text": "Lager Totes Pferd",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Von hier schreibt Fawcett einen letzten Brief an seine Frau und sagt, sie müsse keine Angst vor einem Scheitern haben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Es sind seine letzten bekannten Worte, und danach hört man nie wieder etwas von der kleinen Gruppe.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "✉️",
+        "text": "Letzter Brief",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Die Helfer treten die Rückreise an, und die drei Männer gehen allein weiter, tiefer in unbekanntes Gebiet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🚶"
+      }
+    },
+    {
+      "text": "Von nun an weiß niemand mehr, wo die drei sind, und genau das macht die Geschichte so rätselhaft.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Wo sind sie?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Monate vergehen, dann ein Jahr, dann mehrere, und aus Südamerika kommt keine einzige Nachricht von der Expedition.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📭",
+        "text": "Keine Post",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zuhause in England wächst die Sorge, und die Presse beginnt zu fragen, was mit dem berühmten Forscher passiert ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Neunzehnhundertachtundzwanzig bricht der Forscher George Dyott mit einer Gruppe auf, um nach Fawcett zu suchen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1928",
+        "text": "Erste Suche",
+        "objekt": "🔍"
+      }
+    },
+    {
+      "text": "Dyott reist mit modernen Mitteln und mehr Helfern, und er will die Route der Gruppe so genau wie möglich nachverfolgen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🧳",
+        "text": "Dyott",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Dyott hört Berichte von Stämmen, die Fawcett gesehen haben wollen, doch sichere Beweise findet er nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Weder ein Lager noch ein Grab taucht auf, und jede Spur verliert sich im dichten Urwald.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "❓",
+        "text": "Spur verloren",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "In den folgenden Jahrzehnten brechen viele weitere Gruppen auf, und manche kehren nie zurück oder müssen aufgeben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🥾"
+      }
+    },
+    {
+      "text": "Die Suche nach Fawcett wird selbst zur Legende, und über seine Reise erscheinen Bücher, Zeitungsberichte und Gerüchte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "📚",
+        "text": "Legende",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Zeit, die wichtigsten Theorien über sein Schicksal zu prüfen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Theorien"
+      }
+    },
+    {
+      "text": "Es gibt drei Hauptideen, und keine davon wurde je zweifelsfrei bewiesen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Theorien",
+        "punkte": [
+          "Getötet",
+          "Krankheit, Hunger",
+          "Blieb bei Stamm"
+        ]
+      }
+    },
+    {
+      "text": "Die erste Idee: Ein Stamm hat die Männer getötet, weil sie als Fremde in ein Gebiet kamen, das nicht für sie gedacht war.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🏹"
+      }
+    },
+    {
+      "text": "Neunzehnhunderteinundfünfzig erzählt ein Häuptling der Kalapalo, sein Stamm habe die Männer getötet, und er übergibt Knochen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1951",
+        "text": "Die Knochen",
+        "objekt": "🦴"
+      }
+    },
+    {
+      "text": "Die Knochen werden untersucht, doch Fachleute kommen später zu dem Ergebnis, dass sie nicht zu Fawcett passen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🦴",
+        "text": "Passen nicht",
+        "ort": "labor"
+      }
+    },
+    {
+      "text": "Die zweite Idee: Die Männer sind an Krankheiten, Hunger oder Erschöpfung gestorben, mitten im Urwald, weit von jeder Hilfe.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🦟"
+      }
+    },
+    {
+      "text": "Das wäre plausibel, denn Malaria, schlechtes Wasser und Insekten forderten damals viele Opfer unter Forschern in solchen Gebieten.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🦟",
+        "text": "Gefahren",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Die dritte Idee ist ungewöhnlicher: Fawcett sei bei einem Stamm geblieben und habe sich dort ein neues Leben aufgebaut.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏕️"
+      }
+    },
+    {
+      "text": "Dagegen spricht, dass er seine Familie liebte und dass nie ein Brief oder ein Lebenszeichen von ihm ankam.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "💌",
+        "text": "Kein Lebenszeichen",
+        "ort": "haus"
+      }
+    },
+    {
+      "text": "Gewalt, Krankheit oder Neuanfang: Für jede Idee gibt es Hinweise, aber keinen sicheren Beweis.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⚔️",
+          "text": "Gewalt: Hinweise"
+        },
+        "rechts": {
+          "objekt": "🦟",
+          "text": "Krankheit: möglich"
+        }
+      }
+    },
+    {
+      "text": "Jetzt kommt die überraschende Wendung: Die Stadt Z könnte wirklich existiert haben.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏛️",
+        "text": "Die Wendung"
+      }
+    },
+    {
+      "text": "Archäologen haben in den letzten Jahrzehnten im Süden des Amazonas Spuren großer Siedlungen mit Straßen und Plätzen entdeckt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Diese Siedlungen waren dicht besiedelt und durch Wege verbunden, und sie entstanden Jahrhunderte vor der Ankunft der Europäer.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛣️",
+        "text": "Straßen im Urwald",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Das heißt: Fawcett lag mit seiner Grundidee vermutlich nicht falsch, auch wenn er die Stadt selbst nie fand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Ob eine dieser Siedlungen die Stadt Z war, kann niemand sagen, denn Fawcetts Notizen führen nicht genau dorthin.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🗺️",
+        "text": "War das Z?",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Zweitausendneun erscheint ein Buch über seine Suche, und später entsteht daraus ein Kinofilm, der die Geschichte neu bekannt macht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🎬"
+      }
+    },
+    {
+      "text": "Zeigt der Film alles genau so? Filme spitzen vieles zu, darum lohnt sich ein Blick in die belegten Berichte.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🎬",
+        "text": "Film oder Wahrheit",
+        "ort": "stadt"
+      }
+    },
+    {
+      "text": "Bis heute reisen Abenteurer und Wissenschaftler in das Gebiet, um Spuren der Expedition zu finden oder alte Siedlungen freizulegen.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🔦",
+        "text": "Suche geht weiter",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Auch heute machen sich kleine Teams auf den Weg, getrieben von derselben Neugier wie damals.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wald",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Neugier"
+      }
+    },
+    {
+      "text": "Viele Teile des Amazonas sind bis heute kaum betreten, und auch Satellitenbilder zeigen oft nur ein dichtes grünes Dach.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🛰️",
+        "text": "Satellitenbilder",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Fest steht: Die Gegend ist riesig, dicht bewachsen und schwer zu betreten, sodass ein Lager leicht für immer verloren gehen kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🌳"
+      }
+    },
+    {
+      "text": "Zeit für das Fazit. Was wissen wir sicher, und was bleibt offen?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Fazit"
+      }
+    },
+    {
+      "text": "Bücher, Filme und Dokumentationen erzählen die Geschichte bis heute, und sie gilt als eines der großen Rätsel der Entdeckungsgeschichte.",
+      "szene": {
+        "typ": "objekt",
+        "objekt": "🎬",
+        "text": "Bis heute",
+        "ort": "buero"
+      }
+    },
+    {
+      "text": "Sicher ist: Drei Männer brachen auf, ein letzter Brief kam an, und danach hörte man nie wieder von ihnen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Sicher",
+        "punkte": [
+          "Aufbruch 1925",
+          "Letzter Brief",
+          "Nie wieder gesehen"
+        ]
+      }
+    },
+    {
+      "text": "Offen bleibt: Wo liegt das Lager, was geschah mit den Männern, und gab es die Stadt Z wirklich?",
+      "szene": {
+        "typ": "akte",
+        "text": "Offen",
+        "punkte": [
+          "📍",
+          "❓",
+          "🏛️"
+        ]
+      }
+    },
+    {
+      "text": "Am wahrscheinlichsten ist, dass die Männer irgendwo im Urwald gestorben sind, auch wenn der genaue Ort wohl nie gefunden wird.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Und doch lässt uns die Geschichte nicht los, denn vielleicht liegt im Dschungel noch eine Antwort verborgen.",
+      "szene": {
+        "typ": "raetsel",
+        "objekt": "🌑",
+        "text": "Im Dunkel",
+        "ort": "wald"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du, Fawcett hat die Stadt gefunden, oder ist er unterwegs gescheitert? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

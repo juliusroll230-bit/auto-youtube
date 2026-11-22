@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-handy-dauernd-laden",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#14282a",
+    "#6ad8a8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Handy dauernd am Ladegerät? 🔋",
+  "description": "Erklärt in der Blockwelt: Was der Ladestopp bei 100 Prozent bewirkt und warum Wärme dem Akku mehr schadet als das Dauerladen.\n\n#wissen #handy #akku #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "handy",
+    "akku",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Akku | Wärme schadet",
+    "20 bis 80 Prozent"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dein Handy ständig am Ladegerät hängt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔋",
+        "chat": "Spieler: akku 100%"
+      }
+    },
+    {
+      "text": "Bei hundert Prozent schaltet die *Ladeelektronik* den Strom ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔌",
+        "text": "Ladestopp"
+      }
+    },
+    {
+      "text": "Überladen kann der Chip im Handy also verhindern.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🛡️",
+        "text": "Schutz-Chip"
+      }
+    },
+    {
+      "text": "Wärme und Dauer-Vollladung belasten den Akku trotzdem.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "traurig",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Zwischen zwanzig und achtzig Prozent ist schonender.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "20 bis 80 Prozent"
+      }
+    },
+    {
+      "text": "Am schlimmsten ist ein Handy, das unter dem *Kissen* lädt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🛏️"
+      }
+    },
+    {
+      "text": "Darum schadet *Wärme* dem Akku mehr als das Dauerladen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🌡️",
+        "text": "Wärme schadet"
+      }
+    },
+    {
+      "text": "Lade es also kühl, und der Akku hält länger.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🔋"
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "slug": "mystery-baychimo-geisterschiff",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#0e1a28",
+    "#8ab0d0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Das Geisterschiff, das immer wieder auftauchte 🚢",
+  "description": "Neunzehnhunderteinunddreißig wird die Baychimo im Eis vor Alaska verlassen. Danach wird sie über Jahrzehnte immer wieder treibend gesehen.\n\n#mystery #rätsel #geisterschiff #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geisterschiff",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Baychimo | Schiff ohne Crew",
+    "Es treibt noch"
+  ],
+  "segments": [
+    {
+      "text": "Niemand steuert das Schiff, und trotzdem treibt es weiter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "wetter": "schnee",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Die Baychimo ist ein *Frachtschiff* vor der Küste Alaskas.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Alaska, 1931"
+      }
+    },
+    {
+      "text": "Im Eis steckt sie fest, und die Crew gibt auf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🧊",
+        "text": "Im Eis gefangen"
+      }
+    },
+    {
+      "text": "Nach einem *Sturm* ist das Schiff plötzlich verschwunden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Plötzlich weg"
+      }
+    },
+    {
+      "text": "Doch Fischer sehen es später immer wieder.",
+      "szene": {
+        "typ": "akte",
+        "text": "Gesichtet",
+        "punkte": [
+          "Jahre später",
+          "Nie geborgen",
+          "Treibt weiter"
+        ]
+      }
+    },
+    {
+      "text": "Zuletzt will man sie neunzehnhundertneunundsechzig *gesehen* haben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1969",
+        "text": "Letzte Sichtung",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Bis heute fragt man sich, was mit dem Schiff geschah, denn",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "wetter": "schnee",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

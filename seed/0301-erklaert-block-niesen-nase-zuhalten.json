@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-block-niesen-nase-zuhalten",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1a2a3a",
+    "#8ac0d8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Nase zuhalten beim Niesen? 🤧",
+  "description": "Erklärt in der Blockwelt: Warum Niesen so viel Druck macht und warum es keine gute Idee ist, dabei die Nase zuzuhalten.\n\n#wissen #niesen #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "niesen",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Niesen | Zu viel Druck",
+    "Besser in die Armbeuge"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du beim Niesen die Nase zuhältst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🤧",
+        "chat": "Spieler: hatschi"
+      }
+    },
+    {
+      "text": "Beim Niesen schießt Luft mit hohem *Druck* aus der Nase.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💨",
+        "text": "Hoher Druck"
+      }
+    },
+    {
+      "text": "Hältst du die Nase zu, kann die Luft nirgends hin.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔒",
+        "text": "Kein Ausweg"
+      }
+    },
+    {
+      "text": "Der Druck wandert dann in Ohren und Nebenhöhlen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Im schlimmsten Fall kann das *Trommelfell* verletzt werden.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Gefährlich"
+      }
+    },
+    {
+      "text": "Besser ist es, in die *Armbeuge* zu niesen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💪",
+        "text": "Armbeuge"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Niesen noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "horror-zeichnung-fremder-mann",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#18101c",
+    "#c86a4a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Die Zeichnung mit dem Fremden ✏️",
+  "description": "Eine ausgedachte Gruselgeschichte: Meine kleine Schwester zeichnet einen Mann, den niemand kennt, und er kommt näher.\n\n#horror #gruselig #creepy #zeichnung #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "zeichnung",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Kinderbild | Der fremde Mann",
+    "Wer ist das"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich zeichnet meine Schwester einen *Mann*, den niemand kennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "✏️"
+      }
+    },
+    {
+      "text": "Er steht auf jedem Bild hinter einer anderen Tür.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🖍️",
+        "text": "Hinter der Tür"
+      }
+    },
+    {
+      "text": "Auf dem dritten Bild trägt er meine Kleidung.",
+      "szene": {
+        "typ": "horror",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Ich frage sie, wer das ist, und sie lächelt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "❓",
+        "text": "Wer ist das?"
+      }
+    },
+    {
+      "text": "Er ist nett, sagt sie, er bleibt bei uns.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Heute zeichnet sie zwei Personen, und eine bin *ich*.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "✏️",
+        "text": "Neues Bild"
+      }
+    },
+    {
+      "text": "Und der Mann hält schon meine Hand.",
+      "szene": {
+        "typ": "monster",
+        "ort": "kinderzimmer",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}
