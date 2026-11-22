@@ -1,0 +1,106 @@
+{
+  "slug": "erklaert-warum-muskelkater",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a1020",
+    "#e8507a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum bekommst du Muskelkater? 💪",
+  "description": "Nicht Milchsäure, sondern winzige Risse in den Muskelfasern: Warum Muskelkater erst später kommt und was er mit Kraft zu tun hat.\n\n#wissen #muskeln #sport #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "muskeln",
+    "sport",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Muskelkater | nicht Milchsäure",
+    "Er macht dich stärker"
+  ],
+  "segments": [
+    {
+      "text": "Warum bekommst du Muskelkater nach dem Sport?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "💪"
+      }
+    },
+    {
+      "text": "Bei ungewohnter Belastung entstehen winzige *Risse* in den Muskelfasern.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏋️",
+        "text": "Mikrorisse"
+      }
+    },
+    {
+      "text": "Dein Körper reagiert darauf mit einer Entzündung.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🔥",
+        "text": "Entzündung"
+      }
+    },
+    {
+      "text": "Nicht *Milchsäure* ist schuld, sondern die Mikrorisse.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "❌",
+          "text": "Milchsäure"
+        },
+        "rechts": {
+          "objekt": "✅",
+          "text": "Mikrorisse"
+        }
+      }
+    },
+    {
+      "text": "Er kommt erst Stunden später und heilt von allein.",
+      "szene": {
+        "typ": "liste",
+        "text": "Muskelkater",
+        "punkte": [
+          "Erst später",
+          "Tut weh",
+          "Heilt allein"
+        ]
+      }
+    },
+    {
+      "text": "Die Risse helfen deinem Muskel, *stärker* zu werden.",
+      "szene": {
+        "typ": "akte",
+        "text": "Anpassung",
+        "punkte": [
+          "Risse",
+          "Heilung",
+          "Mehr Kraft"
+        ]
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Training noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}
