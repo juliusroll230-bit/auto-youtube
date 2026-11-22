@@ -6,6 +6,51 @@
  },
  "videos": [
   {
+   "id": "Hh1oK7P8tJE",
+   "title": "Der Monolith, den niemand aufgestellt haben will 🔲",
+   "text": "November 2020: In der Wüste von Utah steht plötzlich eine Metallsäule. Wer sie aufgestellt hat, ist ungeklärt.",
+   "niche": "Wissen",
+   "views": 40,
+   "published": "2026-11-22T10:36:06+00:00",
+   "thumb": "thumbs/Hh1oK7P8tJE.jpg"
+  },
+  {
+   "id": "vhFLcTkMKGM",
+   "title": "Das Echo, das zu spät antwortet 🌲",
+   "text": "Eine ausgedachte Gruselgeschichte: Im Wald antwortet ein Echo, aber es ruft Worte, die man noch gar nicht gesagt hat.",
+   "niche": "Wissen",
+   "views": 224,
+   "published": "2026-11-22T09:35:40+00:00",
+   "thumb": "thumbs/vhFLcTkMKGM.jpg"
+  },
+  {
+   "id": "goF373m3Xrc",
+   "title": "Wer klopft an die Hotelwand? 🏨",
+   "text": "Eine ausgedachte Gruselgeschichte: Im Hotel klopft es nachts an der Wand, aber das Nachbarzimmer ist seit Jahren leer.",
+   "niche": "Wissen",
+   "views": 385,
+   "published": "2026-11-22T08:35:49+00:00",
+   "thumb": "thumbs/goF373m3Xrc.jpg"
+  },
+  {
+   "id": "Rs14F7NbTBc",
+   "title": "Was passiert, wenn du Metall in die Mikrowelle legst? ⚡",
+   "text": "Warum es in der Mikrowelle funkt, wenn eine Gabel drin liegt, was dabei passiert und was du stattdessen nehmen solltest.",
+   "niche": "Wissen",
+   "views": 267,
+   "published": "2026-11-22T07:35:43+00:00",
+   "thumb": "thumbs/Rs14F7NbTBc.jpg"
+  },
+  {
+   "id": "VLDrXnyH4wo",
+   "title": "Die Stadt, aus der hundertdreißig Kinder verschwanden 🎶",
+   "text": "Hameln, 1284: Der Überlieferung nach verschwinden hundertdreißig Kinder. Die Ratten kamen erst später in die Sage, was geschah, ist ungeklärt.",
+   "niche": "Geschichte",
+   "views": 453,
+   "published": "2026-11-22T06:35:51+00:00",
+   "thumb": "thumbs/VLDrXnyH4wo.jpg"
+  },
+  {
    "id": "ox9oqulym7k",
    "title": "Der Schatz, dessen Code seit über hundert Jahren niemand knackt 🔐",
    "text": "Die Beale-Papiere von 1885: drei Geheimcodes, ein angeblicher Schatz in Virginia. Zwei Codes sind bis heute ungelöst, viele halten alles für einen Schwindel.",
@@ -37,7 +82,7 @@
    "title": "Cicada 3301: Das Rätsel, das niemand löst 🦗",
    "text": "Im Januar 2012 taucht im Internet ein Bild mit einer geheimen Aufgabe auf. Wir erzählen die Geschichte von Cicada 3301, zeigen die Rätsel, das Runenbuch und die Frage, wer dahintersteckt.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 4,
    "published": "2026-11-21T19:01:23+00:00",
    "thumb": "thumbs/UZMDe-oCmWE.jpg"
   },
@@ -55,7 +100,7 @@
    "title": "Warum musst du beim Zwiebelschneiden weinen? 🧅",
    "text": "Erklärt in der Blockwelt: Welches Gas beim Schneiden entsteht, warum deine Augen weinen und wie du es verhinderst.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 1,
    "published": "2026-11-21T17:35:50+00:00",
    "thumb": "thumbs/AqELi_tKhn4.jpg"
   },
@@ -82,7 +127,7 @@
    "title": "Das Babyfon, das ein fremdes Lied summt 📻",
    "text": "Eine ausgedachte Gruselgeschichte: Nachts summt das Babyfon ein Lied, aber im Kinderzimmer ist alles still.",
    "niche": "Wissen",
-   "views": 602,
+   "views": 887,
    "published": "2026-11-21T14:35:38+00:00",
    "thumb": "thumbs/Ycb2wtkqg7s.jpg"
   },
@@ -91,54 +136,9 @@
    "title": "Das Foto, auf dem jede Nacht jemand mehr steht 📱",
    "text": "Eine ausgedachte Gruselgeschichte: Das Handy macht nachts heimlich Fotos, und auf jedem steht jemand mehr im Zimmer.",
    "niche": "Wissen",
-   "views": 877,
+   "views": 878,
    "published": "2026-11-21T13:35:53+00:00",
    "thumb": "thumbs/KhJKgo1hH_I.jpg"
-  },
-  {
-   "id": "fZYPVQLN2Cc",
-   "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
-   "text": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.",
-   "niche": "Wissen",
-   "views": 1,
-   "published": "2026-11-21T12:36:04+00:00",
-   "thumb": "thumbs/fZYPVQLN2Cc.jpg"
-  },
-  {
-   "id": "2C8Z9cdldr0",
-   "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
-   "text": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.",
-   "niche": "Wissen",
-   "views": 786,
-   "published": "2026-11-21T12:35:43+00:00",
-   "thumb": "thumbs/2C8Z9cdldr0.jpg"
-  },
-  {
-   "id": "0ulU2GEESeA",
-   "title": "Der Spiegel, der eine Sekunde zu spät zeigt 🪞",
-   "text": "Eine ausgedachte Gruselgeschichte: Dein Spiegelbild bewegt sich eine Sekunde später als du.",
-   "niche": "Wissen",
-   "views": 999,
-   "published": "2026-11-21T11:35:42+00:00",
-   "thumb": "thumbs/0ulU2GEESeA.jpg"
-  },
-  {
-   "id": "61lrBwMPnnQ",
-   "title": "Der Zug, der nur nachts an deinem Haus hält 🚂",
-   "text": "Eine ausgedachte Gruselgeschichte: Vor deinem Haus hält jede Nacht ein Zug, obwohl dort nie Schienen lagen.",
-   "niche": "Wissen",
-   "views": 859,
-   "published": "2026-11-21T10:35:58+00:00",
-   "thumb": "thumbs/61lrBwMPnnQ.jpg"
-  },
-  {
-   "id": "oFS_EHDd7DI",
-   "title": "Was passiert, wenn du nicht mehr blinzelst? 👁️",
-   "text": "Blinzeln wirkt unwichtig, schützt aber deine Augen. Was passiert, wenn der Tränenfilm austrocknet und warum der Reflex am Ende gewinnt.",
-   "niche": "Wissen",
-   "views": 1227,
-   "published": "2026-11-21T09:35:55+00:00",
-   "thumb": "thumbs/oFS_EHDd7DI.jpg"
   }
  ]
 }
