@@ -6,6 +6,33 @@
  },
  "videos": [
   {
+   "id": "ox9oqulym7k",
+   "title": "Der Schatz, dessen Code seit über hundert Jahren niemand knackt 🔐",
+   "text": "Die Beale-Papiere von 1885: drei Geheimcodes, ein angeblicher Schatz in Virginia. Zwei Codes sind bis heute ungelöst, viele halten alles für einen Schwindel.",
+   "niche": "Wissen",
+   "views": 2,
+   "published": "2026-11-21T20:36:03+00:00",
+   "thumb": "thumbs/ox9oqulym7k.jpg"
+  },
+  {
+   "id": "cwraUDOxYKI",
+   "title": "Was passiert, wenn bei Tempo 130 ein Reifen platzt? 💥",
+   "text": "Erklärt in der Blockwelt: Warum das Auto zur Seite zieht, warum voll bremsen schlimmer macht und was du stattdessen tust.",
+   "niche": "Wissen",
+   "views": 1,
+   "published": "2026-11-21T19:35:39+00:00",
+   "thumb": "thumbs/cwraUDOxYKI.jpg"
+  },
+  {
+   "id": "dXbPLGWspBQ",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Burgerladen (Tag 3) 🍔",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Burgerladen „Abo Burger“ ein. Heute: 165 Mitarbeiter und 35.600 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 1,
+   "published": "2026-11-21T19:24:43+00:00",
+   "thumb": "thumbs/dXbPLGWspBQ.jpg"
+  },
+  {
    "id": "UZMDe-oCmWE",
    "title": "Cicada 3301: Das Rätsel, das niemand löst 🦗",
    "text": "Im Januar 2012 taucht im Internet ein Bild mit einer geheimen Aufgabe auf. Wir erzählen die Geschichte von Cicada 3301, zeigen die Rätsel, das Runenbuch und die Frage, wer dahintersteckt.",
@@ -19,7 +46,7 @@
    "title": "Was passiert, wenn du einen Tag nichts isst? 🍽️",
    "text": "Erklärt in der Blockwelt: Wie dein Körper erst Zucker, dann Vorrat und dann Fett nutzt, wenn das Essen ausbleibt.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 1,
    "published": "2026-11-21T18:36:05+00:00",
    "thumb": "thumbs/0UqogUFPnSE.jpg"
   },
@@ -37,7 +64,7 @@
    "title": "Der Mord an Ötzi, den niemand klärt 🏔️",
    "text": "Blockwelt: Im Eis der Alpen liegt ein Mann, der vor etwa 5.300 Jahren starb. Eine Pfeilspitze steckte in seiner Schulter, doch wer ihn tötete, ist unbekannt.",
    "niche": "Geschichte",
-   "views": 0,
+   "views": 2,
    "published": "2026-11-21T16:36:27+00:00",
    "thumb": "thumbs/uEP3SdA9vls.jpg"
   },
@@ -55,7 +82,7 @@
    "title": "Das Babyfon, das ein fremdes Lied summt 📻",
    "text": "Eine ausgedachte Gruselgeschichte: Nachts summt das Babyfon ein Lied, aber im Kinderzimmer ist alles still.",
    "niche": "Wissen",
-   "views": 443,
+   "views": 602,
    "published": "2026-11-21T14:35:38+00:00",
    "thumb": "thumbs/Ycb2wtkqg7s.jpg"
   },
@@ -64,7 +91,7 @@
    "title": "Das Foto, auf dem jede Nacht jemand mehr steht 📱",
    "text": "Eine ausgedachte Gruselgeschichte: Das Handy macht nachts heimlich Fotos, und auf jedem steht jemand mehr im Zimmer.",
    "niche": "Wissen",
-   "views": 747,
+   "views": 877,
    "published": "2026-11-21T13:35:53+00:00",
    "thumb": "thumbs/KhJKgo1hH_I.jpg"
   },
@@ -82,7 +109,7 @@
    "title": "Der Schulbus, der nur nachts durch dein Dorf fährt 🚌",
    "text": "Eine ausgedachte Gruselgeschichte: Nachts fährt ein Schulbus ohne Fahrer durch dein Dorf und hält genau vor deinem Haus.",
    "niche": "Wissen",
-   "views": 783,
+   "views": 786,
    "published": "2026-11-21T12:35:43+00:00",
    "thumb": "thumbs/2C8Z9cdldr0.jpg"
   },
@@ -91,7 +118,7 @@
    "title": "Der Spiegel, der eine Sekunde zu spät zeigt 🪞",
    "text": "Eine ausgedachte Gruselgeschichte: Dein Spiegelbild bewegt sich eine Sekunde später als du.",
    "niche": "Wissen",
-   "views": 737,
+   "views": 999,
    "published": "2026-11-21T11:35:42+00:00",
    "thumb": "thumbs/0ulU2GEESeA.jpg"
   },
@@ -100,7 +127,7 @@
    "title": "Der Zug, der nur nachts an deinem Haus hält 🚂",
    "text": "Eine ausgedachte Gruselgeschichte: Vor deinem Haus hält jede Nacht ein Zug, obwohl dort nie Schienen lagen.",
    "niche": "Wissen",
-   "views": 616,
+   "views": 859,
    "published": "2026-11-21T10:35:58+00:00",
    "thumb": "thumbs/61lrBwMPnnQ.jpg"
   },
@@ -109,36 +136,9 @@
    "title": "Was passiert, wenn du nicht mehr blinzelst? 👁️",
    "text": "Blinzeln wirkt unwichtig, schützt aber deine Augen. Was passiert, wenn der Tränenfilm austrocknet und warum der Reflex am Ende gewinnt.",
    "niche": "Wissen",
-   "views": 989,
+   "views": 1227,
    "published": "2026-11-21T09:35:55+00:00",
    "thumb": "thumbs/oFS_EHDd7DI.jpg"
-  },
-  {
-   "id": "_3M7KFyv06U",
-   "title": "Warum ist der Nachthimmel dunkel, trotz unzähliger Sterne? 🌌",
-   "text": "Das alte Rätsel heißt Olbers-Paradox. Warum die Nacht dunkel ist, obwohl es so viele Sterne gibt, und was das über das Universum verrät.",
-   "niche": "Wissen",
-   "views": 466,
-   "published": "2026-11-21T08:36:03+00:00",
-   "thumb": "thumbs/_3M7KFyv06U.jpg"
-  },
-  {
-   "id": "Rhte7s0w76s",
-   "title": "Warum hast du Schluckauf, und wozu ist er gut? 😮",
-   "text": "Beim Schluckauf zuckt das Zwerchfell und die Stimmbänder schließen sich. Wozu das gut sein soll, weiß bis heute niemand genau.",
-   "niche": "Wissen",
-   "views": 852,
-   "published": "2026-11-21T07:36:11+00:00",
-   "thumb": "thumbs/Rhte7s0w76s.jpg"
-  },
-  {
-   "id": "2y_FHRn92Ik",
-   "title": "Was passiert, wenn dich eine Biene sticht? 🐝",
-   "text": "Warum der Stachel stecken bleibt, was die Biene bezahlt und was du nach einem Stich am besten tust.",
-   "niche": "Wissen",
-   "views": 891,
-   "published": "2026-11-21T06:35:51+00:00",
-   "thumb": "thumbs/2y_FHRn92Ik.jpg"
   }
  ]
 }
