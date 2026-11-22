@@ -442,7 +442,7 @@ def snap(rate):
     return (y / max(1e-6, np.abs(y).max())).astype(np.float32)
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=(), snaps=()):
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=(), snaps=(), bell=None):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
@@ -453,6 +453,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
     keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
     beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser.
     snaps: Zwischenschnitte (Tempo "schnell"): kurzer Snap, Musik etwas lauter.
+    bell: Zeitpunkt (s), an dem der Abo-Knopf erscheint: leiser Klick und Glockenton.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
@@ -497,5 +498,8 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
         hb = heartbeat(rate)
         for i, b in enumerate(beats):   # wird zum Ende hin etwas lauter
             _add(sfx, b * rate, (0.22 + 0.16 * i / max(1, len(beats) - 1)) * hb)
+    if bell is not None:
+        _add(sfx, bell * rate, 0.14 * pop(rate))
+        _add(sfx, (bell + 0.18) * rate, (0.06 if dark else 0.09) * ding(rate))
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

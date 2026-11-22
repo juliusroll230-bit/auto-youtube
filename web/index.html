@@ -3139,7 +3139,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       g.values.forEach(function (x) {
         col.appendChild(h("div", { cls: "lr" + (x.value === best ? " best" : "") }, [
           h("b", { text: nice(x.value) + (x.value === best ? " ★" : "") }),
-          h("span", { cls: "meta", text: nf.format(x.score) + " · " + x.videos + " Vid." + (x.avg_pct != null ? " · " + Math.round(x.avg_pct) + " %" : "") }),
+          h("span", { cls: "meta", text: nf.format(x.score) + " · " + x.videos + " Vid." + (x.avg_pct != null ? " · " + Math.round(x.avg_pct) + " %" : "") + (x.abo_1k != null && (g.key === "abo" || g.key === "abo_text") ? " · " + String(x.abo_1k).replace(".", ",") + " Abos/1.000" : "") }),
           h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.max(2, Math.round(100 * x.score / max)) + "%" })])
         ]));
       });

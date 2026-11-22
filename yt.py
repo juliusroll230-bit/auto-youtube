@@ -126,12 +126,13 @@ def _analytics(cfg):
 
 
 def analytics_summary(cfg, start, end):
-    """Je Video: Aufrufe, Ø Wiedergabedauer (s) und Ø angesehener Anteil (%)."""
+    """Je Video: Aufrufe, Ø Wiedergabedauer (s), Ø angesehener Anteil (%) und neue Abos durch das Video."""
     rows = _analytics(cfg).query(
         ids="channel==MINE", startDate=start, endDate=end, dimensions="video",
-        metrics="views,averageViewDuration,averageViewPercentage", sort="-views", maxResults=200,
+        metrics="views,averageViewDuration,averageViewPercentage,subscribersGained", sort="-views", maxResults=200,
     ).execute().get("rows", [])
-    return {r[0]: {"a_views": int(r[1]), "avg_dur": round(float(r[2]), 1), "avg_pct": round(float(r[3]), 1)}
+    return {r[0]: {"a_views": int(r[1]), "avg_dur": round(float(r[2]), 1), "avg_pct": round(float(r[3]), 1),
+                   "subs_gained": int(r[4]) if len(r) > 4 else None}
             for r in rows}
 
 

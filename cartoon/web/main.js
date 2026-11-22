@@ -101,6 +101,30 @@ function blit(src, dx, blur) {
   for (let k = 0; k < n; k++) { const off = n > 1 ? (k / (n - 1) - .5) * blur : 0; out.globalAlpha = 1 / (k + 1); const x = dx + off; out.drawImage(src, x, 0); if (x > 0) out.drawImage(src, x - W, 0); if (x < 0) out.drawImage(src, x + W, 0); }
   out.restore();
 }
+// Test Abo-Aufruf (seit 22.11.2026): Abo-Knopf mit Glocke am Ende (PLAN.abo). Gesprochen: erscheint mit dem Satz,
+// eingeblendet: ca. 2,6 s vor Schluss während des letzten Satzes. Beim Loop blendet er kurz vor dem Ende aus, damit der Neustart nicht auffällt.
+function aboBadge(t) {
+  const A = PLAN.abo; if (!A || WIDE) return;
+  const q = t - A.start; if (q < 0) return;
+  const k = backOut(clamp(q / .32)), fade = A.loop ? 1 - clamp((t - (DUR - .45)) / .3) : 1;
+  if (fade <= 0) return;
+  out.save(); out.setTransform(1, 0, 0, 1, 0, 0); out.globalCompositeOperation = 'source-over'; out.globalAlpha = fade * clamp(q / .12);
+  const str = A.text, FS = 54; out.font = `700 ${FS}px Poppins`;
+  const tw = Math.min(out.measureText(str).width, 760), fs = FS * tw / Math.max(tw, out.measureText(str).width);
+  const bw = tw + 200, bh = 128, cy = FAST ? 1250 : 1170;
+  const tap = q > .75 && q < 1.1 ? Math.sin((q - .75) / .35 * Math.PI) : 0;   // kurzes "Drücken" des Knopfs
+  out.translate(W / 2, cy + (1 - k) * 60); out.scale(.6 + .4 * k - .05 * tap, .6 + .4 * k - .05 * tap);
+  out.shadowColor = 'rgba(0,0,0,.45)'; out.shadowBlur = 30; out.shadowOffsetY = 10;
+  rrect(out, -bw / 2, -bh / 2, bw, bh, bh / 2); out.fillStyle = 'rgba(14,12,18,.86)'; out.fill();
+  out.shadowColor = 'transparent';
+  out.lineWidth = 3; out.strokeStyle = 'rgba(255,255,255,.22)'; out.stroke();
+  const bx = -bw / 2 + 66;
+  out.fillStyle = '#ff2d4a'; circle(out, bx, 0, 46); out.fill();
+  emoji(out, '🔔', bx, 2, 50, Math.sin(q * 16) * .35 * Math.exp(-q * 2.2), 1);
+  text(out, str, bx + 62 + tw / 2, 3, fs, '#fff', '#111', 0, 'Poppins', 700);
+  if (tap > 0) { out.globalAlpha *= tap * .5; out.lineWidth = 6; out.strokeStyle = '#fff'; rrect(out, -bw / 2 - 10 * tap, -bh / 2 - 10 * tap, bw + 20 * tap, bh + 20 * tap, bh / 2 + 10 * tap); out.stroke(); }
+  out.restore();
+}
 function renderFrame(f) {
   const t = Math.min(f / FPS, DUR - 1e-3);
   let i = SHOTS.findIndex(s => t >= s.start && t < s.end); if (i < 0) i = SHOTS.length - 1;
@@ -140,6 +164,7 @@ function renderFrame(f) {
     out.fillStyle = '#ffd23a'; out.fillRect(0, 0, W * clamp(t / DUR), 14);
     out.restore();
   }
+  aboBadge(t);
   drawCaption(out, t);
 }
 window.renderFrame = renderFrame; window.TOTAL_FRAMES = TOTAL_FRAMES; window.DUR = DUR;

@@ -128,13 +128,16 @@ def load_tts():
 
 
 def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None,
-               layout=None, tempo=None):
+               layout=None, tempo=None, cta=None, badge=False):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
     effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
     layout: "spannung" legt einen Herzschlag bis zur Auflösung darunter (Test).
     tempo: "schnell" legt auf jeden Zwischenschnitt (fast_cuts) einen kurzen Snap (Test seit 21.11.2026).
+    cta: kurzer Abo-Satz, der nach dem letzten Satz gesprochen wird (Test seit 22.11.2026). Er zählt nicht zu den
+    Satz-Zeiten (die Auflösung bleibt der vorletzte Satz), beginnt bei timings[-1][1] + pause und endet bei t - pause.
+    badge: Abo-Knopf nur im Bild (ohne Satz), Klick und Glocke zur Zeit badge_time.
     """
     import audio
 
@@ -142,6 +145,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     pitch, slower, echo = VOICES.get(voice or "klar", VOICES["klar"])
     spoken = None
     import fishtts
+    if cta:
+        segments = list(segments) + [{"text": cta}]
     if isinstance(tts, fishtts.Voice):  # Fish Audio ist eingerichtet
         try:
             # Fish-Stimmen nicht verstellen, nur Tempo und Hall übernehmen
@@ -171,13 +176,17 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(pause * rate), dtype=np.float32)]
         t += dur + pause
+    if cta:   # Abo-Satz: gesprochen und im Ton, aber kein eigener Satz für Schnitte, Untertitel und Auflösung
+        cta_at = timings.pop()[0]
+        segments = segments[:-1]
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
                       accent=accent_time(timings) if effects in ("stark", "voll") else None,
                       keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll",
                       beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else (),
-                      snaps=fast_cuts(timings, t + TAIL) if tempo == "schnell" else ())
+                      snaps=fast_cuts(timings, t + TAIL) if tempo == "schnell" else (),
+                      bell=cta_at if cta else badge_time(timings, t + TAIL) if badge else None)
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -202,6 +211,14 @@ def fast_cuts(timings, total, every=FAST_SHOT):
         step = (end - s) / (n + 1)
         cuts += [round(s + step * k, 3) for k in range(1, n + 1)]
     return cuts
+
+
+BADGE_SHOW = 2.6   # Abo-Knopf ohne Satz: so viele Sekunden vor Schluss erscheint er (während des letzten Satzes)
+
+
+def badge_time(timings, total):
+    """Wann der Abo-Knopf ohne gesprochenen Satz erscheint: ca. 2,6 s vor Schluss, aber nicht vor dem letzten Satz."""
+    return round(max(timings[-1][0] + 0.4, total - BADGE_SHOW), 3) if timings else None
 
 
 def accent_time(timings):

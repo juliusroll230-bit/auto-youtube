@@ -224,6 +224,15 @@ def render_short(spec):
                 tem = store.next_tempo()
                 look["tempo"] = spec["tempo"] if spec.get("tempo") in learn.TEMPOS else (
                     "normal" if look["aufbau"] == "spannung" else tem)
+            if learn.abo_ok(spec):  # Test Abo-Aufruf am Ende (gesprochen / nur eingeblendet / ohne)
+                mode, line = store.next_abo(spec)
+                if spec.get("abo") in learn.ABO_MODES:   # zum Ausprobieren fest im Skript
+                    mode = spec["abo"]
+                    line = line or learn.abo_lines(spec)[0]
+                if mode == "gesprochen" and str(spec.get("ende", "")).lower() == "loop":
+                    mode = "eingeblendet"   # ein gesprochener Satz nach dem offenen Schluss würde den Loop zerstören
+                look["abo"] = mode
+                look["abo_text"] = line if mode != "ohne" else None
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"
