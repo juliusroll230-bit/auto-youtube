@@ -870,6 +870,26 @@ def next_tempo(posted=None):
     return learn.choose_tempo(n, fs)
 
 
+def next_abo(spec, posted=None):
+    """Abo-Aufruf für den nächsten Cartoon-Short: (Variante, Satz). Eigene Zähler, zählt jeden Short mit (auch vorgerenderte),
+    damit die Varianten reihum drankommen und der Satz nie zweimal hintereinander gleich ist."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    loop = str(spec.get("ende", "")).lower() == "loop"
+    with LOCK:
+        st = state()
+        n, k = st.get("abo_n", 0), st.get("abo_line_n", 0)
+        mode = learn.choose_abo(n, fs, loop)
+        st["abo_n"] = n + 1
+        line = None
+        if mode != "ohne":
+            lines = learn.abo_lines(spec)
+            line = lines[k % len(lines)]
+            st["abo_line_n"] = k + 1
+        write("state.json", st)
+    return mode, line
+
+
 def next_voice(spec, posted=None):
     """Stimme für ein Cartoon-Video, nach dem was bisher am besten lief."""
     posted = learnable(posted if posted is not None else posted_items())

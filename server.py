@@ -227,6 +227,15 @@ def render_short(spec):
                 if look["tempo"] == "schnell" and not spec.get("stimme"):
                     import cartoon
                     look["stimme"] = cartoon.FAST_VOICE   # schnell geschnitten, aber klar gesprochen (Julius, 21.11.2026)
+            if learn.abo_ok(spec):  # Test Abo-Aufruf am Ende (gesprochen / nur eingeblendet / ohne)
+                mode, line = store.next_abo(spec)
+                if spec.get("abo") in learn.ABO_MODES:   # zum Ausprobieren fest im Skript
+                    mode = spec["abo"]
+                    line = line or learn.abo_lines(spec)[0]
+                if mode == "gesprochen" and str(spec.get("ende", "")).lower() == "loop":
+                    mode = "eingeblendet"   # ein gesprochener Satz nach dem offenen Schluss würde den Loop zerstören
+                look["abo"] = mode
+                look["abo_text"] = line if mode != "ohne" else None
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"

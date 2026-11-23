@@ -137,7 +137,7 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
                  "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)",
-                 "tempo": "Tempo (schnell)"}
+                 "tempo": "Tempo (schnell)", "abo": "Abo-Aufruf", "abo_text": "Abo-Aufruf (Satz)"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -155,6 +155,49 @@ LAYOUT_LEAD = 1.3                     # ... und mindestens 30 % vorne
 TEMPOS = ("normal", "schnell")
 TEMPO_SLOTS = {3: "schnell", 11: "schnell"}   # Plätze im 15er-Kreis (Spannung liegt auf 7)
 TEMPO_BONUS = (0, 5, 9, 13)                   # läuft "schnell" klar besser, bekommt es diese Plätze dazu
+
+
+# Abo-Aufruf (Test seit 22.11.2026, Julius will mehr Abos): kurzer Satz am Ende des Shorts, ca. 2 s.
+# "gesprochen": die Stimme sagt ihn nach dem letzten Satz, dazu ein Abo-Knopf im Bild. "eingeblendet": nur der Knopf
+# im Bild während des letzten Satzes (für Loop-Shorts, da würde ein gesprochener Satz den Loop zerstören). "ohne": Gegentest.
+# Gelernt wird nach neuen Abos pro 1.000 Aufrufe (YouTube Analytics "subscribersGained").
+ABO_MODES = ("gesprochen", "eingeblendet", "ohne")
+ABO_LOOP = ("eingeblendet", "ohne")
+ABO_MIN = 5          # so viele Videos mit Abo-Zahlen je Variante, bevor der Lernmodus die beste nimmt
+# Sätze je Video-Typ, reihum, damit nicht jedes Video gleich endet. Kurz (bis 6 Wörter), ehrlich (es kommt
+# wirklich jede Stunde ein neues Video), keine Floskeln, keine Gedankenstriche, nichts versprechen, was es nicht gibt.
+ABO_LINES = {
+    "Erklärvideo": ("Folge für die nächste Frage.", "Mehr solche Fragen? Folge uns.",
+                    "Abonnier für mehr davon.", "Die nächste Frage kommt gleich. Folge uns."),
+    "Mystery": ("Folge für das nächste Rätsel.", "Noch ein Rätsel? Abonnier.",
+                "Das nächste Rätsel kommt gleich. Folge uns."),
+    "Horror": ("Folge, wenn du dich traust.", "Noch eine Geschichte? Abonnier.",
+               "Folge für die nächste Gruselgeschichte."),
+    "Erzählte Geschichte": ("Folge für die nächste Geschichte.", "Mehr Geschichten? Folge uns."),
+}
+
+
+def abo_lines(spec):
+    """Die passenden Abo-Sätze für den Video-Typ (Erklärvideos teilen sich eine Liste)."""
+    typ = video_type(spec)
+    return ABO_LINES["Erklärvideo" if typ.startswith("Erklär") else typ if typ in ABO_LINES else "Mystery"]
+
+
+def abo_ok(spec):
+    """Nur Cartoon-Shorts bekommen den Abo-Aufruf (keine langen Videos, nicht das Firmen-Spiel mit eigenem Aufruf)."""
+    return spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" and spec.get("format") != "firma"
+
+
+def choose_abo(n, fscores, loop=False):
+    """Abo-Aufruf für den n-ten Cartoon-Short: erst reihum (fairer Test), danach 3 von 4 die Variante
+    mit den meisten neuen Abos pro 1.000 Aufrufe, jedes 4. Video testet reihum weiter."""
+    opts = ABO_LOOP if loop else ABO_MODES
+    vals = fscores.get("abo", {})
+    rated = {o: vals[o]["abo_1k"] for o in opts
+             if o in vals and vals[o].get("sn", 0) >= ABO_MIN and vals[o].get("abo_1k") is not None}
+    if len(rated) == len(opts) and n % EXPLORE_EVERY != EXPLORE_EVERY - 1:
+        return max(rated, key=rated.get)
+    return opts[n % len(opts)]
 
 
 def default_look(spec):
@@ -255,6 +298,8 @@ def features(spec, look):
         "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
         "aufbau": look.get("aufbau") if spec.get("stil") == "cartoon" else None,
         "tempo": look.get("tempo") if spec.get("stil") == "cartoon" else None,
+        "abo": look.get("abo") if abo_ok(spec) else None,   # nur neue Shorts haben den Wert, alte zählen nicht mit
+        "abo_text": look.get("abo_text") if abo_ok(spec) and look.get("abo") in ("gesprochen", "eingeblendet") else None,
     }
 
 
@@ -271,14 +316,21 @@ def feature_scores(posted, now):
         for name, value in v["features"].items():
             if value is None:
                 continue
-            e = out.setdefault(name, {}).setdefault(value, {"total": 0.0, "videos": 0, "pct": 0.0, "pn": 0})
+            e = out.setdefault(name, {}).setdefault(value, {"total": 0.0, "videos": 0, "pct": 0.0, "pn": 0,
+                                                             "subs": 0, "sviews": 0, "sn": 0})
             e["total"] += score
             e["videos"] += 1
             if v.get("avg_pct"):
                 e["pct"] += v["avg_pct"]
                 e["pn"] += 1
+            if v.get("subs_gained") is not None and v.get("a_views"):   # neue Abos durch dieses Video (YouTube Analytics)
+                e["subs"] += v["subs_gained"]
+                e["sviews"] += v["a_views"]
+                e["sn"] += 1
     return {name: {val: {"score": e["total"] / e["videos"], "videos": e["videos"],
-                         "avg_pct": e["pct"] / e["pn"] if e["pn"] else None} for val, e in vals.items()}
+                         "avg_pct": e["pct"] / e["pn"] if e["pn"] else None,
+                         "abo_1k": 1000 * e["subs"] / e["sviews"] if e["sviews"] else None, "sn": e["sn"]}
+                   for val, e in vals.items()}
             for name, vals in out.items()}
 
 
@@ -351,8 +403,14 @@ def feature_summary(fscores):
     rows = []
     for name, label in FEATURE_NAMES.items():
         vals = fscores.get(name, {})
-        ranked = sorted(vals.items(), key=lambda kv: kv[1]["score"], reverse=True)
+        if name in ("abo", "abo_text"):   # beim Abo-Aufruf zählen neue Abos pro 1.000 Aufrufe, nicht die Aufrufe
+            ranked = sorted(vals.items(), key=lambda kv: (kv[1].get("abo_1k") is not None, kv[1].get("abo_1k") or 0,
+                                                          kv[1]["score"]), reverse=True)
+        else:
+            ranked = sorted(vals.items(), key=lambda kv: kv[1]["score"], reverse=True)
         rows.append({"key": name, "label": label,
                      "values": [{"value": v, "score": round(s["score"]), "videos": s["videos"],
-                                 "avg_pct": round(s["avg_pct"], 1) if s["avg_pct"] else None} for v, s in ranked]})
+                                 "avg_pct": round(s["avg_pct"], 1) if s["avg_pct"] else None,
+                                 "abo_1k": round(s["abo_1k"], 2) if s.get("abo_1k") is not None else None}
+                                for v, s in ranked]})
     return rows

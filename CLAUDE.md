@@ -165,6 +165,27 @@ Zum Ausprobieren im Skript `"tempo": "schnell"`.
   Dann Julius vorschlagen, ob alle Shorts so laufen sollen.
 - Nur Stil gelernt (Tempo, Schnitt, Untertitel), nichts aus den Reels übernommen.
 
+### Test: Abo-Aufruf am Ende (seit 22.11.2026, Julius will mehr Abos)
+
+Die App hängt selbst einen kurzen Abo-Aufruf an die Cartoon-Shorts (nicht lange Videos, nicht Firmen-Spiel, Clipi oder Quiet Corner).
+Drei Varianten reihum (`learn.choose_abo`, `store.next_abo`, `look.abo`, Lernmerkmal „Abo-Aufruf“):
+
+- **gesprochen:** nach dem letzten Satz sagt die Stimme einen Satz wie „Folge für das nächste Rätsel.“ (ca. 2 s), dazu ein Abo-Knopf
+  mit Glocke im Bild, leiser Klick und Glockenton.
+- **eingeblendet:** nur der Knopf, ca. 2,6 s vor Schluss während des letzten Satzes. Loop-Shorts bekommen nie „gesprochen“
+  (der Satz würde den Loop zerstören), dort blendet der Knopf kurz vor dem Ende aus.
+- **ohne:** Gegentest.
+
+Die Sätze stehen in `learn.ABO_LINES` je Video-Typ und wechseln reihum (Merkmal „Abo-Aufruf (Satz)“). Neue Sätze nur dort eintragen:
+höchstens 6 Wörter, ehrlich (keine „Teil 2“-Versprechen, es gibt keine Serien), keine Floskeln, keine Gedankenstriche.
+Gelernt wird nach **neuen Abos pro 1.000 Aufrufe** (YouTube Analytics `subscribersGained`): Haben alle Varianten mind. 5 Videos
+mit Abo-Zahlen, bekommt die beste 3 von 4 Shorts. Die Zentrale zeigt die Zahl unter „Was am besten funktioniert“.
+
+- Die tägliche Skript-Aufgabe ändert sich **nicht**: Skripte enthalten weiterhin **keinen** Abo-Satz und kein „Abonnier“
+  (das macht die App). Zum Ausprobieren im Skript `"abo": "gesprochen"` / `"eingeblendet"` / `"ohne"`.
+- Ca. 1.12. prüfen: Bringt „gesprochen“ oder „eingeblendet“ klar mehr Abos pro 1.000 Aufrufe, ohne dass „Ø angesehen“ fällt,
+  Julius vorschlagen, „ohne“ wegzulassen.
+
 ### Vorbilder (seit 20.11.2026, Julius' Wunsch)
 
 `vorbilder.py` hat 14 erfolgreiche Kanäle in unseren Nischen (Zack D. Films, What If, Unlucky Guy, SONNENSEITE …).

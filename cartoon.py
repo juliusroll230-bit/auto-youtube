@@ -77,6 +77,8 @@ def validate(spec):
         errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
     if spec.get("aufbau") and spec["aufbau"] not in learn.LAYOUTS:
         errs.append(f"Aufbau {spec['aufbau']}, erlaubt: {', '.join(learn.LAYOUTS)}")
+    if spec.get("abo") and spec["abo"] not in learn.ABO_MODES:
+        errs.append(f"Abo-Aufruf {spec['abo']}, erlaubt: {', '.join(learn.ABO_MODES)}")
     if spec.get("tempo") and spec["tempo"] not in learn.TEMPOS:
         errs.append(f"Tempo {spec['tempo']}, erlaubt: {', '.join(learn.TEMPOS)}")
     if spec.get("welt") and spec["welt"] not in WORLDS:
@@ -168,7 +170,17 @@ def fast(spec):
 STICKERS = {"neugierig": "🤯", "gruselig": "😱", "mysterioes": "🤔", "warm": "🥹"}   # Reaktions-Sticker je Stimmung
 
 
-def plan(spec, timings, total):
+def abo(spec):
+    """Abo-Aufruf dieses Shorts: ("gesprochen" | "eingeblendet", Satz) oder (None, None). Lange Videos nie."""
+    mode, line = spec.get("abo"), spec.get("abo_text")
+    if is_long(spec) or mode not in ("gesprochen", "eingeblendet") or not line:
+        return None, None
+    if mode == "gesprochen" and str(spec.get("ende", "")).lower() == "loop":
+        mode = "eingeblendet"   # beim Loop kein Satz nach dem offenen Schluss
+    return mode, line
+
+
+def plan(spec, timings, total, cta_at=None):
     segs = spec["segments"]
     fx = spec.get("effekte") if spec.get("effekte") in ("stark", "voll") and not is_long(spec) and make_short.accent_time(timings) else None
     scenes = []
@@ -195,7 +207,18 @@ def plan(spec, timings, total):
             "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else [],
             # Test Tempo "schnell": Zwischenschnitte (gleiche Zeiten wie die Snaps im Ton)
             "tempo": "schnell" if fast(spec) else "normal",
-            "cuts": make_short.fast_cuts(timings, total) if fast(spec) else []}
+            "cuts": make_short.fast_cuts(timings, total) if fast(spec) else [],
+            # Test Abo-Aufruf: Abo-Knopf mit Satz am Ende (gesprochen ab cta_at, sonst ca. 2,6 s vor Schluss)
+            "abo": abo_plan(spec, timings, total, cta_at)}
+
+
+def abo_plan(spec, timings, total, cta_at=None):
+    mode, line = abo(spec)
+    if not mode:
+        return None
+    start = cta_at if mode == "gesprochen" and cta_at is not None else make_short.badge_time(timings, total)
+    return {"mode": mode, "text": line.rstrip("."), "start": round(start, 3),
+            "loop": str(spec.get("ende", "")).lower() == "loop"}
 
 
 def stage(p, folder):
@@ -245,12 +268,16 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
                                            speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
                                            voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=FAST_PAUSE if fast(spec) else PAUSE,
                                            effects=None if is_long(spec) else spec.get("effekte"),
-                                           layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None)
+                                           layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None,
+                                           cta=abo(spec)[1] if abo(spec)[0] == "gesprochen" else None,
+                                           badge=abo(spec)[0] == "eingeblendet")
+    pause = FAST_PAUSE if fast(spec) else PAUSE
+    cta_at = timings[-1][1] + pause if abo(spec)[0] == "gesprochen" else None
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []
     with tempfile.TemporaryDirectory(prefix="cartoon-") as tmp:
-        p = plan(spec, timings, total)
+        p = plan(spec, timings, total, cta_at)
         stage(p, tmp)
         pw, browser, page = open_page(tmp, p["wide"])
         try:
