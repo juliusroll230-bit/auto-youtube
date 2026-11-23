@@ -1,0 +1,110 @@
+{
+  "slug": "geschichte-brief-unter-der-fussmatte",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Der Brief unter der Fußmatte ✉️",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Montag liegt ein Brief unter unserer Fußmatte, und niemand weiß, von wem.\n\n#geschichte #storytime #nachbarn #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "nachbarn",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Montag | jemand schreibt",
+    "Wer schreibt hier"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich liegt jeden Montag ein *Brief* unter unserer Fußmatte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Darin steht nur ein Satz: Schön, dass ihr hier wohnt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "💌",
+        "text": "Willkommen hier"
+      }
+    },
+    {
+      "text": "Ich suche den Absender und frage alle Nachbarn.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔍"
+      }
+    },
+    {
+      "text": "Keiner will es gewesen sein, nicht mal Frau Brandt.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "dorf",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Im Winter wird der Brief jede Woche etwas länger.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "📜",
+        "text": "Längere Briefe"
+      }
+    },
+    {
+      "text": "Eines Montags warte ich hinter der Tür und sehe *Frau Brandt*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "👵"
+      }
+    },
+    {
+      "text": "Sie zieht bald weg und wollte allen etwas zum Abschied schenken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "📦",
+        "text": "Abschied"
+      }
+    },
+    {
+      "text": "Jetzt schreibe ich ihr jeden Montag zurück.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "✍️"
+      }
+    }
+  ]
+}

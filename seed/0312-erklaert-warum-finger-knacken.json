@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-warum-finger-knacken",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum knackt es in deinen Fingern? 🤞",
+  "description": "Warum Fingergelenke knacken und was dabei im Gelenk passiert. Macht Knacken wirklich kaputt?\n\n#wissen #körper #finger #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "finger",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Fingerknacken | Was knallt",
+    "Gelenke mit Blasen"
+  ],
+  "segments": [
+    {
+      "text": "Warum knackt es in deinen Fingern, wenn du sie biegst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🤞"
+      }
+    },
+    {
+      "text": "In jedem Gelenk gibt es eine glitschige *Gelenkflüssigkeit*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "💧",
+        "text": "Gelenkflüssigkeit"
+      }
+    },
+    {
+      "text": "Darin lösen sich winzige Gasbläschen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🫧",
+        "text": "Gasbläschen"
+      }
+    },
+    {
+      "text": "Ziehst du das Gelenk, entsteht Platz, und das Gas *knallt*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Danach dauert es etwa zwanzig Minuten.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🤞",
+          "text": "Gerade geknackt"
+        },
+        "rechts": {
+          "objekt": "⏳",
+          "text": "Erst später"
+        }
+      }
+    },
+    {
+      "text": "Studien fanden bisher keinen sicheren Hinweis auf Arthrose.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📚",
+        "text": "Keine Beweise"
+      }
+    },
+    {
+      "text": "Das Geräusch ist also nur *Gas*, kein Knochen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🦴"
+      }
+    },
+    {
+      "text": "Tut es weh, geh lieber zum Arzt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🩺",
+        "text": "Bei Schmerz: Arzt"
+      }
+    }
+  ]
+}

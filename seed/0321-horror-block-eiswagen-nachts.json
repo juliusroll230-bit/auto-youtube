@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-eiswagen-nachts",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Geh nachts nie zum Eiswagen 🍦",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine Regel, die jeder kennt. Geh nachts nie zum Eiswagen.\n\n#horror #gruselig #blockwelt #eiswagen #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "eiswagen",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Eiswagen | Regel eins",
+    "Nachts nie hingehen"
+  ],
+  "segments": [
+    {
+      "text": "Geh nachts niemals zum *Eiswagen* auf dem Server.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🍦",
+        "chat": "Server: Regel 1"
+      }
+    },
+    {
+      "text": "Du hörst eine Melodie, obwohl niemand spielt.",
+      "szene": {
+        "typ": "horror",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Eiswagen: da!"
+      }
+    },
+    {
+      "text": "Der Wagen steht da, die Lichter *flackern*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🚚",
+        "text": "Der Wagen"
+      }
+    },
+    {
+      "text": "Am Fenster steht ein Verkäufer ohne Gesicht.",
+      "szene": {
+        "typ": "monster",
+        "ort": "strasse",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Er fragt leise, welche Sorte du willst.",
+      "szene": {
+        "typ": "horror",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "augen": "#ff2a1f",
+        "chat": "Verkäufer: Sorte?"
+      }
+    },
+    {
+      "text": "Wer antwortet, kommt nie wieder *zurück*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🍦",
+        "text": "Antwort verboten"
+      }
+    },
+    {
+      "text": "Dein Name steht plötzlich auf dem Preisschild.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🏷️",
+        "text": "Dein Name"
+      }
+    },
+    {
+      "text": "Merk dir die erste Regel:",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🍦"
+      }
+    }
+  ],
+  "ende": "loop"
+}

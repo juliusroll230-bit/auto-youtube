@@ -1,0 +1,111 @@
+{
+  "slug": "horror-fenster-gegenueber-winkt",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Fenster gegenüber winkt zurück 🪟",
+  "description": "Eine ausgedachte Gruselgeschichte: Im Haus gegenüber steht jemand am Fenster und macht jede Bewegung nach, nur einen Takt später.\n\n#horror #gruselig #fenster #nacht #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "fenster",
+    "nacht",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Fenster | ein Takt später",
+    "Es winkt zurück"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich steht jede Nacht jemand im Fenster gegenüber.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "objekt": "🪟"
+      }
+    },
+    {
+      "text": "Ich winke, und die Gestalt winkt zurück.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "winkt",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Ich hebe den Arm, sie hebt ihn einen *Takt später*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "✋",
+        "text": "Zu spät"
+      }
+    },
+    {
+      "text": "Ich schalte mein Licht aus, ihres bleibt an.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "💡",
+        "text": "Licht an"
+      }
+    },
+    {
+      "text": "Ich schaue genauer hin: Das Zimmer dort sieht aus wie meins.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "versteckt"
+        }
+      }
+    },
+    {
+      "text": "Hinter dem Sofa drüben steht *jemand*, hinter meinem auch.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Das Fenster gegenüber ist gar kein Fenster.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Es sieht dich"
+      }
+    },
+    {
+      "text": "Es ist ein Spiegel, und ich bin nicht allein.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "😰",
+        "text": "Nicht allein"
+      }
+    }
+  ]
+}

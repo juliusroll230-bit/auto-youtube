@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-monatelang-kein-sonnenlicht",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert ohne Sonnenlicht? ☀️",
+  "description": "Was passiert, wenn du monatelang kein Sonnenlicht siehst? Vitamin D, Schlafrhythmus und Stimmung.\n\n#wissen #körper #sonne #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "sonne",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Sonnenlicht | Fehlt Monate",
+    "Der Körper verliert Takt"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du monatelang kein Sonnenlicht siehst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌑"
+      }
+    },
+    {
+      "text": "Deine Haut macht mit Sonne *Vitamin D*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "☀️",
+        "text": "Vitamin D"
+      }
+    },
+    {
+      "text": "Es hält Knochen fest und stark.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🦴",
+          "text": "Mit Sonne"
+        },
+        "rechts": {
+          "objekt": "🦴",
+          "text": "Ohne: weicher"
+        }
+      }
+    },
+    {
+      "text": "Deine innere Uhr verliert ohne Tageslicht den Takt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "⏰",
+        "text": "Innere Uhr"
+      }
+    },
+    {
+      "text": "Du schläfst schlechter, und die Laune sinkt.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Polarforscher nutzen deshalb helle Lampen im Winter.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "💡",
+        "text": "Lichttherapie"
+      }
+    },
+    {
+      "text": "Schon ein Spaziergang am *Tag* hilft dir enorm.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🚶"
+      }
+    },
+    {
+      "text": "Sonnenlicht ist also Futter für deinen Körper.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🌞",
+        "text": "Futter fürs Licht"
+      }
+    }
+  ]
+}

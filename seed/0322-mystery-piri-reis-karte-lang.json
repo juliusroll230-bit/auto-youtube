@@ -1,0 +1,708 @@
+{
+  "slug": "mystery-piri-reis-karte-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#1a2a3a",
+    "#c9a96b"
+  ],
+  "accent": "#ffb703",
+  "title": "Die Piri-Reis-Karte: Zeigt sie mehr, als sie dürfte? 🗺️",
+  "description": "1929 findet ein Forscher im Istanbuler Topkapi-Palast eine Weltkarte von 1513. Wir erzählen die Geschichte des Admirals Piri Reis, die Antarktis-Theorie von Charles Hapgood und was Fachleute heute dazu sagen.\n\n#mystery #rätsel #landkarte #geschichte #piriReis",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "landkarte",
+    "geschichte",
+    "piriReis"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "matrose",
+    "name": "Piri Reis"
+  },
+  "thumb_text": [
+    "Alte Karte | zu genau?",
+    "Antarktis ohne Eis"
+  ],
+  "segments": [
+    {
+      "text": "Im Jahr neunzehnhundertneunundzwanzig findet ein Forscher in Istanbul eine alte Karte, und niemand kann zuerst glauben, wie genau sie aussieht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🗺️"
+      }
+    },
+    {
+      "text": "Ihr Zeichner lebte vor über fünfhundert Jahren, doch sie zeigt Küsten, die in Europa damals kaum jemand kannte. Wie ist das möglich?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Wie möglich?"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte der Piri-Reis-Karte, was auf ihr zu sehen ist und welche Theorien es dazu gibt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🧭",
+        "text": "Piri-Reis-Karte"
+      }
+    },
+    {
+      "text": "Zuerst der Mann, dann die Karte, dann der Fund, dann der große Streit und am Ende, was Fachleute heute dazu sagen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Piri Reis wird im fünfzehnten Jahrhundert im Osmanischen Reich geboren und wächst in einer Familie von Seeleuten auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "⚓"
+      }
+    },
+    {
+      "text": "Sein Onkel Kemal Reis ist ein berühmter Kapitän, und schon als Junge fährt Piri mit ihm über das Mittelmeer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "⛵",
+        "text": "Onkel Kemal"
+      }
+    },
+    {
+      "text": "Er erlebt Seeschlachten und lernt, wie Winde, Strömungen und Küsten im ganzen Mittelmeer zusammenhängen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "meer",
+        "anzahl": 3,
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "text": "Seeschlachten"
+      }
+    },
+    {
+      "text": "Später wird Piri selbst Kapitän und Admiral, und sein Heimathafen ist die Stadt Gelibolu am Marmarameer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🏴"
+      }
+    },
+    {
+      "text": "Er sammelt alles, was er über Küsten findet, und besitzt am Ende ein ganzes Archiv.",
+      "szene": {
+        "typ": "liste",
+        "text": "Seine Quellen",
+        "punkte": [
+          "Seekarten",
+          "Reiseberichte",
+          "Notizen alter Kapitäne"
+        ]
+      }
+    },
+    {
+      "text": "Wer damals Karten wollte, musste sie von Hand abschreiben, und jede Kopie war ein kleines Kunstwerk, das Wochen dauern konnte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "✍️"
+      }
+    },
+    {
+      "text": "Im Jahr fünfzehnhundertdreizehn zeichnet er in Gelibolu eine große Weltkarte, und sie ist heute das, was von ihm am bekanntesten ist.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1513",
+        "text": "Die Karte entsteht",
+        "objekt": "🖋️"
+      }
+    },
+    {
+      "text": "Er malt sie nicht auf Papier, sondern auf *Pergament* aus Gazellenhaut, das sehr lange hält.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📜",
+        "text": "Gazellenhaut"
+      }
+    },
+    {
+      "text": "Erhalten ist nur ein Teil: ungefähr neunzig mal sechzig Zentimeter, vermutlich ein Stück einer größeren Weltkarte.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📜",
+          "text": "Heute erhalten"
+        },
+        "rechts": {
+          "objekt": "🌍",
+          "text": "Einst größer"
+        }
+      }
+    },
+    {
+      "text": "Auf der Karte siehst du den Atlantik mit den Küsten von Europa, Afrika und, ganz rechts, Südamerika.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Die Küsten sind mit roten und schwarzen Namen beschriftet, und Berge, Flüsse und Wälder sind mit Gold und Farben eingezeichnet.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🎨",
+        "text": "Farben und Gold"
+      }
+    },
+    {
+      "text": "Dazwischen schwimmen Schiffe, Seeungeheuer und Inseln, und überall verlaufen feine Linien, die Windrichtungen anzeigen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🧭",
+        "text": "Windlinien"
+      }
+    },
+    {
+      "text": "In kleinen Texten am Rand erklärt Piri Reis, woher er sein Wissen hat, und sie sind fast so wertvoll wie die Karte selbst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "✍️",
+        "text": "Seine Notizen"
+      }
+    },
+    {
+      "text": "Er schreibt, er habe etwa zwanzig ältere Karten benutzt und zusammengefügt.",
+      "szene": {
+        "typ": "akte",
+        "text": "Seine Vorlagen",
+        "punkte": [
+          "Portugiesische Karten",
+          "Arabische Karten",
+          "Alte Weltkarten"
+        ]
+      }
+    },
+    {
+      "text": "Eine davon soll eine Karte von Kolumbus gewesen sein, aber diese Karte ist bis heute nicht aufgetaucht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧭"
+      }
+    },
+    {
+      "text": "Zwischen der ersten Reise des Kolumbus und dieser Karte liegen nur etwa zwanzig Jahre, also eine sehr kurze Zeit.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 20,
+        "einheit": "Jahre Abstand",
+        "objekt": "⏳",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Im Jahr fünfzehnhundertsiebzehn erobert das Osmanische Reich Ägypten, und Piri Reis überreicht die Karte dem Sultan Selim.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1517",
+        "text": "Für den Sultan",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Danach verschwindet sie in der kaiserlichen Bibliothek im Topkapi-Palast, und mehrere hundert Jahre lang sieht sie kaum jemand.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "burg",
+        "objekt": "🏛️",
+        "text": "Topkapi-Palast"
+      }
+    },
+    {
+      "text": "Piri Reis selbst schreibt später ein Buch über das Mittelmeer, das viele Kapitäne nutzen, und wird zu einem anerkannten Kartographen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📖",
+        "text": "Buch der Seefahrt"
+      }
+    },
+    {
+      "text": "Er stirbt, wie überliefert wird, um das Jahr fünfzehnhundertdreiundfünfzig, vermutlich hingerichtet, aber Genaueres wissen wir kaum.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Seine Karte aber überlebt. Und dann kommt das Jahr, in dem plötzlich die ganze Welt über sie spricht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🗺️",
+        "text": "Der Fund"
+      }
+    },
+    {
+      "text": "Neunzehnhundertneunundzwanzig wird der Palast zum Museum, und ein deutscher Theologe soll die alten Bestände ordnen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1929",
+        "text": "Der Palast wird Museum",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Gustav Adolf Deissmann durchsucht Regale und Kisten, bis ihm in einer Ecke eine gerollte Haut mit bunten Zeichnungen auffällt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Er erkennt sofort, dass es sich um eine Karte handelt, und holt Fachleute dazu.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🔍",
+        "text": "Ein Fachmann"
+      }
+    },
+    {
+      "text": "Die Gelehrten prüfen die Schrift und den Stil und stellen fest: Es ist die Karte des Piri Reis von fünfzehnhundertdreizehn.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Prüfung"
+      }
+    },
+    {
+      "text": "Das Alter der Karte beträgt mehr als fünfhundert Jahre, und sie ist in erstaunlich gutem Zustand.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 500,
+        "einheit": "Jahre alt",
+        "objekt": "📜",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Zeitungen weltweit berichten über den Fund, und viele fragen: Woher kannte ein Admiral damals so viele Küsten?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Auf der einen Seite stehen sehr genaue Küstenlinien, auf der anderen auch deutliche Fehler.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "✅",
+          "text": "Genaue Stellen"
+        },
+        "rechts": {
+          "objekt": "❌",
+          "text": "Falsche Stellen"
+        }
+      }
+    },
+    {
+      "text": "Das gilt zum Beispiel für manche Inseln im Atlantik, die er an anderer Stelle zeichnet, als sie wirklich liegen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🏝️",
+        "text": "Inseln verschoben"
+      }
+    },
+    {
+      "text": "Jahrzehnte später greift ein Mann aus den Vereinigten Staaten die Karte wieder auf und stellt eine kühne Behauptung auf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🎓"
+      }
+    },
+    {
+      "text": "Neunzehnhundertsechsundsechzig erscheint das Buch Maps of the Ancient Sea Kings von Charles Hapgood.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1966",
+        "text": "Hapgoods Buch",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Das Buch wird viel gelesen, denn die Idee einer Karte mit eisfreier Antarktis klingt für viele wie ein Krimi.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📖",
+        "text": "Viel gelesen"
+      }
+    },
+    {
+      "text": "Seine Idee: Unten auf der Karte sei die Küste der Antarktis zu sehen, und zwar ohne Eis.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🧊",
+        "text": "Antarktis?"
+      }
+    },
+    {
+      "text": "Die Antarktis wurde aber erst im Jahr achtzehnhundertzwanzig von Seefahrern gesichtet.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🐧",
+        "text": "Entdeckt 1820"
+      }
+    },
+    {
+      "text": "Hapgood fragte deshalb: Hat eine uralte Hochkultur die Küste gezeichnet, bevor das Eis sie bedeckte?",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧊"
+      }
+    },
+    {
+      "text": "Gemeinsam mit seinen Studenten legt er Gitternetze über die Karte und vergleicht die Linien mit modernen Küsten.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Vergleich"
+      }
+    },
+    {
+      "text": "Er behauptet, die Linien passten erstaunlich gut zu Messungen der Antarktis unter dem Eis, und das macht seine Idee für viele glaubhaft.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📏"
+      }
+    },
+    {
+      "text": "Die Küste im Süden reicht auf der Karte weit nach Osten, und das erinnert tatsächlich ein wenig an die Antarktis.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🧭",
+        "text": "Küste im Süden"
+      }
+    },
+    {
+      "text": "Hapgood glaubt außerdem, die Erdkruste habe sich früher verschoben, aber diese Idee lehnen Geologen klar ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🌍",
+        "text": "Verschobene Kruste"
+      }
+    },
+    {
+      "text": "Andere Autoren greifen die Geschichte auf und machen daraus Bücher und Filme über verlorene Hochkulturen und sogar Besucher von außen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Kritiker antworten, dass man auf einer Karte mit etwas Fantasie fast jede Form in fast jede Küste hineinlesen kann.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Doch hält die Idee einer genauen Prüfung stand? Fachleute schauen sich die Karte noch einmal ganz in Ruhe an.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔬",
+        "text": "Die Prüfung"
+      }
+    },
+    {
+      "text": "Ihr Ergebnis: Die Küste im Süden ist sehr wahrscheinlich Südamerika, das auf der Karte einfach nach rechts abknickt.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🗺️",
+          "text": "Auf der Karte"
+        },
+        "rechts": {
+          "objekt": "🌎",
+          "text": "In Wirklichkeit"
+        }
+      }
+    },
+    {
+      "text": "Das passiert, weil das Pergament irgendwann endet und der Zeichner die Küste biegen musste, damit sie noch auf die Haut passt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📐",
+        "text": "Platz gespart"
+      }
+    },
+    {
+      "text": "Solche Tricks waren bei Kartenzeichnern damals ganz normal, und man findet sie auf vielen alten Karten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🖋️"
+      }
+    },
+    {
+      "text": "Dazu kommt: Die echte Küste der Antarktis liegt unter dickem Eis, und Messungen sehen deutlich anders aus als die Linie auf der Karte.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Fachleute nennen mehrere Gründe, die gegen die Antarktis-Idee sprechen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Dagegen spricht",
+        "punkte": [
+          "Küste biegt ab",
+          "Maße stimmen nicht",
+          "Eis-Küste anders"
+        ]
+      }
+    },
+    {
+      "text": "Auch an anderen Stellen ist die Karte nicht so genau, wie manche sagen, etwa bei der Lage mancher Inseln.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Laut Fachleuten liegt zum Beispiel die Mündung des Amazonas auf der Karte nicht dort, wo sie wirklich liegt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Mündung verschoben"
+      }
+    },
+    {
+      "text": "Außerdem zeichnet Piri Reis Fabeltiere an Land, ein Zeichen dafür, dass er alte Berichte und Sagen mit einmischt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🦄",
+        "text": "Fabelwesen"
+      }
+    },
+    {
+      "text": "Fünfzehnhundertdreizehn, nur etwa zwei Jahrzehnte nach Kolumbus, ist Südamerika für Europäer fast neu.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1513",
+        "text": "Südamerika ist neu",
+        "objekt": "🌎"
+      }
+    },
+    {
+      "text": "Piri Reis nutzte also die neuesten Karten und Berichte, und für seine Zeit war das erstaunlich viel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Für Seeleute zählte damals etwas anderes als für uns: Eine Karte musste nützlich sein, nicht auf den Meter genau.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧭",
+          "text": "Damals: nützlich"
+        },
+        "rechts": {
+          "objekt": "📏",
+          "text": "Heute: exakt"
+        }
+      }
+    },
+    {
+      "text": "Der eigentliche Schatz ist, dass seine Karte Wissen aus Quellen bewahrt, die längst verloren sind.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Verlorene Quellen"
+      }
+    },
+    {
+      "text": "Genau deshalb schätzen Forscher die Karte noch heute, denn sie zeigt, wie viel Wissen schon vor fünfhundert Jahren unterwegs war.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Mehr als fünfhundert Jahre nach ihrer Entstehung beschäftigt die Karte noch immer Bücher, Filme und Museen auf der ganzen Welt.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 500,
+        "einheit": "Jahre später",
+        "objekt": "📚",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Vielleicht stammten Teile sogar von der Karte des Kolumbus, die wir nie gefunden haben.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Verlorene Karte"
+      }
+    },
+    {
+      "text": "Piri Reis schrieb dazu, er habe die Karte nur zusammengestellt, die Arbeit stamme von vielen Kartenmachern vor ihm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "👥",
+        "text": "Viele Kartenmacher"
+      }
+    },
+    {
+      "text": "Heute liegt die Karte im Topkapi-Palast in Istanbul und wird nur selten gezeigt, weil Licht die alte Haut schädigt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "burg",
+        "objekt": "🏛️",
+        "text": "Topkapi heute"
+      }
+    },
+    {
+      "text": "Eine uralte Hochkultur braucht man für diese Karte also nicht, es reichen ein kluger Admiral und viele gute Vorlagen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🧠"
+      }
+    },
+    {
+      "text": "Ein einfacher Grund, warum die Idee so beliebt ist: Ein Rätsel klingt immer größer als eine einfache Erklärung.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "💭",
+        "text": "Rätsel wirkt größer"
+      }
+    },
+    {
+      "text": "Und doch bleibt offen, welche Quellen er wirklich hatte und was in den verlorenen Teilen der Karte stand.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🗺️",
+        "text": "Verlorene Teile"
+      }
+    },
+    {
+      "text": "Bis heute suchen Forscher in Archiven nach weiteren Karten des Piri Reis, denn von einer zweiten Weltkarte kennt man nur Reste.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔎",
+        "text": "Die Suche geht weiter"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an einen klugen Admiral mit guten Vorlagen, oder an mehr? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

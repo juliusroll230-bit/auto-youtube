@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-nie-wieder-schwitzen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du nie schwitzt? 🥵",
+  "description": "Was passiert, wenn dein Körper nicht mehr schwitzen kann? Wie Schweiß kühlt und warum Überhitzung gefährlich wird.\n\n#wissen #körper #hitze #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "hitze",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Schwitzen | Notkühlung",
+    "Der Körper kocht"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du nie wieder schwitzen kannst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🥵"
+      }
+    },
+    {
+      "text": "Schweiß ist die Klimaanlage deines Körpers.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "💦",
+        "text": "Klimaanlage"
+      }
+    },
+    {
+      "text": "Normal sind etwa sechsunddreißig bis siebenunddreißig Grad.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 37,
+        "einheit": "Grad Körper",
+        "objekt": "🌡️",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Verdunstet er, kühlt er die Haut.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💦",
+          "text": "Mit Schweiß"
+        },
+        "rechts": {
+          "objekt": "🔥",
+          "text": "Ohne: staut sich"
+        }
+      }
+    },
+    {
+      "text": "Ohne ihn steigt die Temperatur schon bei Sport.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "angst",
+          "aktion": "rennt"
+        }
+      }
+    },
+    {
+      "text": "Ärzte nennen das *Überhitzung* und warnen davor.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Hitzschlag"
+      }
+    },
+    {
+      "text": "Schatten, Wasser und Pausen sind dann *lebenswichtig*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🧊"
+      }
+    },
+    {
+      "text": "Dein Schweiß ist also deine eingebaute Rettung.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "❄️",
+        "text": "Eingebaute Kühlung"
+      }
+    }
+  ]
+}

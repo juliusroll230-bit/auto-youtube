@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-warum-wunde-juckt",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum juckt eine Wunde beim Heilen? 🩹",
+  "description": "Warum eine heilende Wunde juckt: Was dein Körper dort tut und warum Kratzen keine gute Idee ist.\n\n#wissen #körper #wunde #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "wunde",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Wunde | Warum es juckt",
+    "Nicht kratzen"
+  ],
+  "segments": [
+    {
+      "text": "Warum juckt eine Wunde, gerade wenn sie heilt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🩹"
+      }
+    },
+    {
+      "text": "Dein Körper baut dort neue *Haut* und neue Nerven.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧬",
+        "text": "Neue Haut"
+      }
+    },
+    {
+      "text": "Dabei werden Stoffe frei, die den Juckreiz auslösen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Botenstoffe"
+      }
+    },
+    {
+      "text": "Wahrscheinlich spielt auch *Histamin* eine Rolle.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Kratzen fühlt sich gut an, aber stört.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "✋",
+          "text": "Kratzen"
+        },
+        "rechts": {
+          "objekt": "🩹",
+          "text": "Lieber ruhig"
+        }
+      }
+    },
+    {
+      "text": "Besser hilft Kühlen und ein sauberes Pflaster.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🧊",
+        "text": "Kühlen"
+      }
+    },
+    {
+      "text": "Jucken heißt also meistens: Es *heilt*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "✅",
+        "text": "Es heilt"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Pflaster noch mal:",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🩹"
+      }
+    }
+  ],
+  "ende": "loop"
+}
