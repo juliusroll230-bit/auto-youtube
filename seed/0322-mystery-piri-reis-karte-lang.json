@@ -652,11 +652,10 @@
     {
       "text": "Heute liegt die Karte im Topkapi-Palast in Istanbul und wird nur selten gezeigt, weil Licht die alte Haut schädigt.",
       "szene": {
-        "typ": "figur",
+        "typ": "raetsel",
         "ort": "burg",
-        "gefuehl": "denken",
-        "aktion": "zeigt",
-        "objekt": "🏛️"
+        "objekt": "🏛️",
+        "text": "Topkapi heute"
       }
     },
     {
