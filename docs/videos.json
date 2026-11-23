@@ -6,6 +6,15 @@
  },
  "videos": [
   {
+   "id": "EVywDYLDli4",
+   "title": "Was passiert, wenn du im Eis einbrichst? 🧊",
+   "text": "Der Kälteschock ist gefährlicher als die Kälte selbst. Was in der ersten Minute passiert und wie du dich aus dem Eis rettest.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-22T20:35:41+00:00",
+   "thumb": "thumbs/EVywDYLDli4.jpg"
+  },
+  {
    "id": "j5Y5hJYiHpg",
    "title": "Was passiert, wenn dein Fuß einschläft? 🦶",
    "text": "Erklärt in der Blockwelt: Warum ein Nerv bei langem Sitzen gedrückt wird, was das Kribbeln ist und warum es von allein vergeht.",
@@ -55,7 +64,7 @@
    "title": "Warum fliegen Zugvögel im V? 🦆",
    "text": "Erklärt in der Blockwelt: Wie der Luftwirbel des Vordermanns Kraft spart und warum sich die Vögel vorn abwechseln.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 2,
    "published": "2026-11-22T16:35:55+00:00",
    "thumb": "thumbs/gRvvNEckA2s.jpg"
   },
@@ -64,7 +73,7 @@
    "title": "Die Kammer, die niemand betreten hat 🔺",
    "text": "Blockwelt: In der Cheops-Pyramide haben Forscher mit Teilchen aus dem Weltall einen Hohlraum entdeckt. Wozu er diente, weiß bis heute niemand.",
    "niche": "Wissen",
-   "views": 168,
+   "views": 238,
    "published": "2026-11-22T15:35:40+00:00",
    "thumb": "thumbs/2BccF4Zz8n4.jpg"
   },
@@ -73,7 +82,7 @@
    "title": "Die grünen Kinder, die niemand erklären konnte 🟢",
    "text": "Alte Chroniken aus dem England des zwölften Jahrhunderts berichten von zwei Kindern mit grüner Haut. Das Rätsel von Woolpit ist bis heute ungelöst.",
    "niche": "Geschichte",
-   "views": 660,
+   "views": 877,
    "published": "2026-11-22T14:35:50+00:00",
    "thumb": "thumbs/uaXqGJVKb24.jpg"
   },
@@ -82,7 +91,7 @@
    "title": "Die Zeichnung mit dem Fremden ✏️",
    "text": "Eine ausgedachte Gruselgeschichte: Meine kleine Schwester zeichnet einen Mann, den niemand kennt, und er kommt näher.",
    "niche": "Wissen",
-   "views": 739,
+   "views": 952,
    "published": "2026-11-22T13:35:30+00:00",
    "thumb": "thumbs/edU_AAaZceE.jpg"
   },
@@ -91,7 +100,7 @@
    "title": "Das Kellerlicht, das allein angeht 💡",
    "text": "Eine ausgedachte Gruselgeschichte: Im leeren Haus geht im Keller das Licht an, und unten wartet etwas.",
    "niche": "Wissen",
-   "views": 540,
+   "views": 862,
    "published": "2026-11-22T12:35:47+00:00",
    "thumb": "thumbs/5VtcVOvBVQ8.jpg"
   },
@@ -100,7 +109,7 @@
    "title": "Was passiert, wenn du in die Sonne schaust? ☀️",
    "text": "Die Netzhaut spürt keinen Schmerz. Warum ein Blick in die Sonne trotzdem schadet und warum selbst bei einer Sonnenfinsternis Schutz nötig ist.",
    "niche": "Wissen",
-   "views": 763,
+   "views": 891,
    "published": "2026-11-22T11:36:03+00:00",
    "thumb": "thumbs/y7qlZITrWmY.jpg"
   },
@@ -109,7 +118,7 @@
    "title": "Der Monolith, den niemand aufgestellt haben will 🔲",
    "text": "November 2020: In der Wüste von Utah steht plötzlich eine Metallsäule. Wer sie aufgestellt hat, ist ungeklärt.",
    "niche": "Wissen",
-   "views": 139,
+   "views": 180,
    "published": "2026-11-22T10:36:06+00:00",
    "thumb": "thumbs/Hh1oK7P8tJE.jpg"
   },
@@ -118,7 +127,7 @@
    "title": "Das Echo, das zu spät antwortet 🌲",
    "text": "Eine ausgedachte Gruselgeschichte: Im Wald antwortet ein Echo, aber es ruft Worte, die man noch gar nicht gesagt hat.",
    "niche": "Wissen",
-   "views": 629,
+   "views": 718,
    "published": "2026-11-22T09:35:40+00:00",
    "thumb": "thumbs/vhFLcTkMKGM.jpg"
   },
@@ -127,18 +136,9 @@
    "title": "Wer klopft an die Hotelwand? 🏨",
    "text": "Eine ausgedachte Gruselgeschichte: Im Hotel klopft es nachts an der Wand, aber das Nachbarzimmer ist seit Jahren leer.",
    "niche": "Wissen",
-   "views": 866,
+   "views": 883,
    "published": "2026-11-22T08:35:49+00:00",
    "thumb": "thumbs/goF373m3Xrc.jpg"
-  },
-  {
-   "id": "Rs14F7NbTBc",
-   "title": "Was passiert, wenn du Metall in die Mikrowelle legst? ⚡",
-   "text": "Warum es in der Mikrowelle funkt, wenn eine Gabel drin liegt, was dabei passiert und was du stattdessen nehmen solltest.",
-   "niche": "Wissen",
-   "views": 409,
-   "published": "2026-11-22T07:35:43+00:00",
-   "thumb": "thumbs/Rs14F7NbTBc.jpg"
   }
  ]
 }
