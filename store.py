@@ -37,9 +37,13 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
                   # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
                   # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
-                  "post_hours": list(range(8, 23)), "post_hours_weekend": list(range(8, 23)),
+                  # 23.11.: Aufrufe-Einbruch. Auswertung 20. bis 22.11.: Der 1. bis 10. Upload eines Tages bekam ca. 600 bis 900 Aufrufe,
+                  # jeder Upload ab dem 11. am Tag 0 bis 3 (egal ob 2D, Blockwelt, Firma oder lang). Darum 7 Shorts am Tag,
+                  # dazu Firmen-Folge und langes Video = 9 Uploads, mit Luft nach oben (max_shorts_day als Schutz).
+                  "post_hours": [12, 14, 15, 16, 17, 18, 19], "post_hours_weekend": [11, 13, 15, 16, 17, 18, 19],
+                  "max_shorts_day": 7,
                   # davon so viele Blockwelt (3D), der Rest Strichmännchen. 0 = Lernmodus wählt frei.
-                  "block_per_day": 5,
+                  "block_per_day": 2,
                   "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
@@ -135,6 +139,13 @@ def init():
                 if len(cfg.get(key) or []) < len(DEFAULT_CONFIG[key]):
                     cfg[key] = list(DEFAULT_CONFIG[key])
             cfg["hours_v8"] = True
+        # 23.11.: höchstens ca. 9 Uploads am Tag (Shorts + Firma + lang), siehe DEFAULT_CONFIG. Einmalig für alle umstellen.
+        if not cfg.get("hours_v9"):
+            for key in ("post_hours", "post_hours_weekend"):
+                cfg[key] = list(DEFAULT_CONFIG[key])
+            if int(cfg.get("block_per_day") or 0) >= 5:
+                cfg["block_per_day"] = DEFAULT_CONFIG["block_per_day"]
+            cfg["hours_v9"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
@@ -272,6 +283,16 @@ def find_spec(slug):
         if os.path.basename(f)[5:-5] == slug or load_spec(f).get("slug") == slug:
             return load_spec(f)
     return None
+
+
+def shorts_today(at=None):
+    """Wie viele Shorts des Hauptkanals heute schon hochgeladen wurden (ohne Firmen-Folge, lange Videos und Clips)."""
+    at = at or now()
+    day = at.strftime("%Y-%m-%d")
+    firma = set(state().get("firma_slots", []))
+    return sum(1 for u in state()["uploads"]
+               if str(u.get("posted_at", ""))[:10] == day and u.get("kind") != "clip" and not u.get("lang")
+               and u.get("slot") not in firma)
 
 
 def is_weekend(day):

@@ -137,7 +137,8 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "thumbnail": "Thumbnail (Shorts)", "welt": "Look 2D/3D",
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
                  "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)",
-                 "tempo": "Tempo (schnell)", "abo": "Abo-Aufruf", "abo_text": "Abo-Aufruf (Satz)"}
+                 "tempo": "Tempo (schnell)", "abo": "Abo-Aufruf", "abo_text": "Abo-Aufruf (Satz)",
+                 "aktuell": "Aktuelles Thema"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -298,6 +299,7 @@ def features(spec, look):
         "effekte": look.get("effekte") if spec.get("stil") == "cartoon" else None,
         "aufbau": look.get("aufbau") if spec.get("stil") == "cartoon" else None,
         "tempo": look.get("tempo") if spec.get("stil") == "cartoon" else None,
+        "aktuell": ("aktuell" if spec.get("aktuell") else "zeitlos") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
         "abo": look.get("abo") if abo_ok(spec) else None,   # nur neue Shorts haben den Wert, alte zählen nicht mit
         "abo_text": look.get("abo_text") if abo_ok(spec) and look.get("abo") in ("gesprochen", "eingeblendet") else None,
     }

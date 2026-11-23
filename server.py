@@ -158,6 +158,13 @@ def post_next(slot, manual=False, long=False, firma=False):
     firma: die tägliche Folge des Firmen-Spiels, zusätzlich zu den normalen Sendeplätzen (eigener Sendeplan).
     Liegt schon ein fertig gerenderter Short im Vorrat, wird nur der hochgeladen (dauert wenige Minuten).
     """
+    if not long and not firma and not manual:
+        cap = int(store.config().get("max_shorts_day") or 0)   # Schutz: ab dem ca. 11. Upload am Tag sieht niemand das Video mehr
+        if cap and store.shorts_today() >= cap:
+            store.log("warn", f"Sendeplatz ausgelassen: heute sind schon {cap} Shorts online, weitere würden kaum Aufrufe bekommen.")
+            if slot:
+                store.mark_slot(slot, "done_slots")
+            return
     if not long and not firma and store.ready_items():
         try:
             return post_ready(slot, manual)
