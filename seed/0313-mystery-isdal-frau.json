@@ -1,0 +1,106 @@
+{
+  "slug": "mystery-isdal-frau",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Die Frau im Tal, die niemand kannte 🧳",
+  "description": "Norwegen, 1970: Im Isdalen wird eine tote Frau gefunden. Sie hatte viele falsche Namen, und bis heute ist ihre Identität nicht geklärt.\n\n#mystery #rätsel #norwegen #kriminalfall #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "norwegen",
+    "kriminalfall",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Isdal-Tal | Wer war sie",
+    "Viele falsche Namen"
+  ],
+  "segments": [
+    {
+      "text": "Neunzehnhundertsiebzig findet ein Wanderer in Norwegen eine Tote.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1970",
+        "text": "Isdalen bei Bergen",
+        "objekt": "⛰️"
+      }
+    },
+    {
+      "text": "Ihre Kleidung ist verbrannt, und die Etiketten sind *abgeschnitten*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🧥"
+      }
+    },
+    {
+      "text": "Im Bahnhof von Bergen liegen ihre Koffer.",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Koffer",
+        "punkte": [
+          "Falsche Perücken",
+          "Viele Pässe",
+          "Notizen"
+        ]
+      }
+    },
+    {
+      "text": "Hotels kennen sie unter mehreren falschen *Namen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🏨",
+        "text": "Falsche Namen"
+      }
+    },
+    {
+      "text": "Sie reiste durch Europa, aber wohin und warum?",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Viele Städte"
+      }
+    },
+    {
+      "text": "Die Polizei nannte sie später die Isdal-Frau.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "❓",
+        "text": "Wer war sie"
+      }
+    },
+    {
+      "text": "Bis heute ist ihre *Identität* nicht sicher geklärt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "📰",
+        "text": "Ungeklärt"
+      }
+    },
+    {
+      "text": "Und alles begann im Jahr",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📅"
+      }
+    }
+  ],
+  "ende": "loop"
+}

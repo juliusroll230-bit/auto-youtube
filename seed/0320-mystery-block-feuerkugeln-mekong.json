@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-block-feuerkugeln-mekong",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Die Feuerkugeln, die aus dem Fluss steigen 🔥",
+  "description": "Blockwelt: Am Mekong in Thailand steigen jedes Jahr leuchtende Kugeln aus dem Wasser. Woher sie kommen, ist bis heute nicht sicher geklärt.\n\n#mystery #mekong #rätsel #thailand #shorts",
+  "tags": [
+    "mystery",
+    "mekong",
+    "rätsel",
+    "thailand",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Mekong | Feuerkugeln",
+    "Woher kommen sie"
+  ],
+  "segments": [
+    {
+      "text": "Niemand erklärt, warum am Mekong leuchtende *Kugeln* aufsteigen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔥",
+        "chat": "Spieler: was ist das??"
+      }
+    },
+    {
+      "text": "Das passiert in Thailand, meist im Herbst, nach dem Regen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Thailand"
+      }
+    },
+    {
+      "text": "Sie sind rötlich, steigen steil auf und verschwinden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🔴",
+        "text": "Steigen auf"
+      }
+    },
+    {
+      "text": "Tausende Menschen kommen jedes Jahr zum *Zuschauen*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strasse",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Zuschauer"
+      }
+    },
+    {
+      "text": "Vor Ort heißt es, ein Drache lebe im Fluss.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strasse",
+        "objekt": "🐉",
+        "text": "Die Legende"
+      }
+    },
+    {
+      "text": "Forscher vermuten Gase aus dem Schlamm, die brennen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🫧",
+        "text": "Gase im Wasser"
+      }
+    },
+    {
+      "text": "Bewiesen ist das *nicht*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "strasse",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Was dort wirklich leuchtet, bleibt ein Rätsel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strasse",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-warum-schnupfen-nichts-schmeckt",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum schmeckt Essen bei Schnupfen fad? 🤧",
+  "description": "Erklärt in der Blockwelt: Warum Essen bei Schnupfen kaum schmeckt und was deine Nase mit Geschmack zu tun hat.\n\n#wissen #körper #nase #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "nase",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Schnupfen | Essen fad",
+    "Die Nase schmeckt mit"
+  ],
+  "segments": [
+    {
+      "text": "Warum schmeckt Essen bei Schnupfen nach fast nichts?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🤧",
+        "chat": "Spieler: alles fad"
+      }
+    },
+    {
+      "text": "Die Zunge erkennt nur süß, sauer, salzig, bitter und herzhaft.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👅",
+        "text": "Fünf Grundtöne"
+      }
+    },
+    {
+      "text": "Den Rest erledigt deine *Nase*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👃",
+        "text": "Geruch"
+      }
+    },
+    {
+      "text": "Beim Kauen steigen Düfte hinten zur Nase.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Bei Schnupfen kommen sie dort nicht mehr an.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🚧",
+        "text": "Weg versperrt"
+      }
+    },
+    {
+      "text": "Darum schmecken Äpfel und Zwiebeln dann *gleich*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Gleich fad"
+      }
+    },
+    {
+      "text": "Das meiste vom Geschmack ist also *Geruch*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "👃"
+      }
+    },
+    {
+      "text": "Halt dir beim Essen mal die Nase zu.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🍎",
+        "text": "Nase zu, Test"
+      }
+    }
+  ]
+}

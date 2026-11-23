@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-keine-traenen-mehr",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du keine Tränen hast? 😢",
+  "description": "Was passiert, wenn dein Körper keine Tränen mehr macht? Wozu der dünne Film auf dem Auge gut ist und was ohne ihn geschieht.\n\n#wissen #körper #augen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "augen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Tränen | Schutzfilm",
+    "Trocken wie Sand"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dein Körper keine Tränen mehr macht?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "😢"
+      }
+    },
+    {
+      "text": "Bei jedem Blinzeln verteilt sich ein dünner *Tränenfilm*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Tränenfilm"
+      }
+    },
+    {
+      "text": "Er hält das Auge glatt und spült Staub weg.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💧",
+          "text": "Mit Film"
+        },
+        "rechts": {
+          "objekt": "🏜️",
+          "text": "Ohne: sandig"
+        }
+      }
+    },
+    {
+      "text": "Fehlt er, brennt das Auge und wird rot.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "rot",
+          "gefuehl": "traurig",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Die Hornhaut kann kleine *Kratzer* bekommen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Kratzer"
+      }
+    },
+    {
+      "text": "Ärzte helfen dann mit künstlichen Tränen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "💊",
+        "text": "Künstliche Tränen"
+      }
+    },
+    {
+      "text": "Deine Tränen sind vor allem ein *Schutzfilm* für das Auge.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💧"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Blinzeln noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Blinzeln"
+      }
+    }
+  ],
+  "ende": "loop"
+}
