@@ -274,3 +274,23 @@ Jedes neue Skript in `seed/` (vor allem das lange Video) bekommt dafür das Feld
 - keine Marken- oder Firmennamen, keine erfundenen Zahlen.
 
 Fehlt das Feld, baut die App den Text aus dem Titel (Thema + Neugier-Zeile je Video-Typ).
+
+## Quiet Corner: Einschlaf-Geschichten (seit 24.11.2026, Julius' Entscheidung)
+
+Nach der Nischen-Recherche (Einschlaf-Geschichten: wenig Konkurrenz, 5 bis 12 $ pro 1.000 Aufrufe, ruhiges Hören über lange Zeit)
+liest Quiet Corner jetzt eine **ausgedachte englische Geschichte** vor (`sleepstory.py`, Stimme `en_GB-northern_english_male-medium`,
+Julius hat sie am 24.11. aus 4 Hörproben gewählt). Darunter läuft leise die Szene, danach weiter bis zur vollen Stunde.
+Gibt es keine neue Geschichte, läuft wie bisher nur die Szene (`relax_stories` in der Config, Standard an).
+
+- Für die tägliche Aufgabe: **eine neue Geschichte pro Tag** als `sleep/NNNN-kurzer-name.json` (nächste freie Nummer), Felder
+  `id` (= Dateiname ohne .json), `title` (Englisch, 2 bis 6 Wörter), `thumb` (höchstens 3 Wörter), `scene` (eine aus `entspannung.SCENES`:
+  regenzimmer, kamin, cafe, bibliothek, lagerfeuer), `about` (ein Satz, „An invented story about …. Not a true story.“), `text`.
+- Text: Englisch, 2.500 bis 4.000 Wörter (ca. 25 bis 40 Minuten Sprache), Absätze mit Leerzeile, ruhig und gleichmäßig.
+  Anfang: kurzes Willkommen und 2 Atemsätze. Mitte: langsame Bilder, keine Handlung mit Spannung, keine Cliffhanger, kein Streit.
+  Ende: die Figur schlafen legen, dann direkt zu den Hörern („You can rest now.“) und „Goodnight.“
+- **Jede Geschichte anders** (Ort, Figur, Jahreszeit, Rhythmus), nie dieselbe Schablone mit anderem Namen, sonst greift YouTubes Regel gegen
+  Massenware (Stand 07.2026, „inauthentic content“). Vorher `sleep/` ansehen.
+- Keine Ratschläge zu Gesundheit, Geld oder Recht, keine echten Personen, nichts als „wahre Geschichte“ ausgeben.
+  Fakten (z. B. Geschichte eines Ortes) müssen stimmen, sonst nichts behaupten.
+- Die Beschreibung weist selbst darauf hin, dass die Stimme synthetisch und die Geschichte ausgedacht ist (`sleepstory.DISCLOSURE`).
+- Nach ca. 2 Wochen Zahlen ansehen (Aufrufe pro Tag, Wiedergabezeit). Wenn nicht besser als die reinen Szenen, wieder mehr Szenen.

@@ -1042,13 +1042,22 @@ def post_relax(manual=False):
                 traceback.print_exc()
             idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, st.get("relax_cap"))
             shutil.rmtree(folder, ignore_errors=True)
-            status["busy"] = f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}"
+            story = None
+            if cfg.get("relax_stories", True):   # Einschlaf-Geschichten seit 24.11.2026; ohne neue Geschichte läuft nur die Szene
+                import sleepstory
+                if sleepstory.available():
+                    story = sleepstory.pick([u.get("story") for u in ups if u.get("story")])
+                    if story and story.get("scene") in entspannung.SCENES:
+                        idea = next((i["id"] for i in entspannung.IDEAS if i["scene"] == story["scene"]), idea)
+            status["busy"] = (f"Baut Quiet-Corner-Geschichte: {story['title']}" if story else
+                              f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}")
             with working("studio", task="Baut ein langes Entspannungsvideo"):
-                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=bool(cfg.get("relax_shorts", True)))
+                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=bool(cfg.get("relax_shorts", True)), story=story)
+            minutes = r.get("minutes", minutes)
         finally:
             status["busy"] = ""
             work_lock.release()
-        meta = entspannung.meta(idea, minutes, n)
+        meta = entspannung.story_meta(story, idea, minutes, n) if story else entspannung.meta(idea, minutes, n)
         rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
         spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
         relax_phase("Lädt hoch (bei 8 bis 10 Std. dauert das ein paar Stunden)")
@@ -1077,7 +1086,8 @@ def post_relax(manual=False):
         info["error"] = None
         info["uploads"] = (info.get("uploads") or [])[-200:] + [{
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
-            "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0}]
+            "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0,
+            **({"story": story["id"]} if story else {})}]
         store.write("relax.json", info)
         relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))

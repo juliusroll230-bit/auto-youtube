@@ -124,10 +124,10 @@ USES = ["for Sleeping, Studying & Relaxing", "for Deep Sleep & Relaxation", "for
 
 CHANNEL_DESCRIPTION = (
     "Quiet Corner is a small place to slow down.\n\n"
-    "Long, calm videos of cozy rooms on rainy nights, crackling fireplaces, a café after dark, old libraries "
-    "with floating candles and campfires under the stars. Each video plays for 1 to 3 hours without talking "
-    "and without sudden sounds.\n\n"
-    "Use them to fall asleep, to study, to read or just to breathe for a moment.\n\n"
+    "Slow bedtime stories read in a soft voice, over cozy rooms on rainy nights, crackling fireplaces, a café after dark, "
+    "old libraries with floating candles and campfires under the stars. When the story ends, the sounds keep playing "
+    "for the rest of the hour, with no sudden noises.\n\n"
+    "Use them to fall asleep, to wind down or just to breathe for a moment. Stories are invented and narrated with a synthetic voice.\n\n"
     "Every picture and every sound is drawn and made by Quiet Corner. New video every day.")
 CHANNEL_KEYWORDS = "cozy ambience rain sounds fireplace sleep study relax café ambience library ambience"
 
@@ -283,6 +283,32 @@ GENERAL = ["sleep sounds", "relaxing sounds", "study ambience", "cozy ambience",
            "sounds for sleeping", "deep sleep", "stress relief", "focus", "no music"]
 
 
+def story_meta(story, idea_id, minutes, n=0):
+    """Titel, Beschreibung und Tags für eine Einschlaf-Geschichte (Englisch). Die Szene gibt Klang und Suchbegriffe."""
+    import sleepstory
+    i = IDEA[idea_id]
+    hrs = hours_en(minutes)
+    title = f"{story['title']} 🌙 Sleep Story with {i['sounds']} | {hrs}"
+    if len(title) > 100:
+        title = f"{story['title']} 🌙 Sleep Story | {hrs}"
+    kw = KEYWORDS[i["scene"]]
+    desc = (f"{story['title']}: a calm, slow story to fall asleep to, read in a soft voice over {i['sounds'].lower()}.\n\n"
+            f"{story.get('about', 'An invented story.')}\n\n"
+            f"What you hear: a quiet narrator, then {i['layers']} that keep playing after the story ends ({hrs.lower()} in total).\n\n"
+            "Good for:\n· falling asleep\n· winding down after a long day\n· quiet evenings\n\n"
+            f"{sleepstory.DISCLOSURE} Every picture and every sound in this video was made by Quiet Corner. "
+            "A new story every day. Subscribe if you want to come back.\n\n"
+            f"{HASHTAGS[i['scene']]} #sleepstory #bedtimestory")
+    tags, total = [], 0
+    extra = ["sleep story", "bedtime story for adults", "story to fall asleep to", "calm narration", "sleep story for adults",
+             "relaxing story", story["title"].lower()]
+    for t in extra + kw + GENERAL:
+        if t not in tags and total + len(t) + 3 <= 480:
+            tags.append(t)
+            total += len(t) + 3
+    return {"title": title, "description": desc, "tags": tags, "thumb_text": story.get("thumb") or i["thumb"]}
+
+
 def meta(idea_id, minutes, n=0):
     """Titel, Beschreibung und Tags (Englisch) für das lange Video, so aufgebaut wie bei den großen Ambience-Kanälen:
     Bild + Emoji, dann der Suchbegriff mit Zweck, am Ende die Dauer („Rainy Night Café ☕ Coffee Shop Ambience … | 8 Hours“)."""
@@ -363,7 +389,7 @@ def _opt(i):
     return {"scene": i["scene"], "weather": i["weather"]}
 
 
-def thumbnail(idea_id, minutes, loop_mp4, path):
+def thumbnail(idea_id, minutes, loop_mp4, path, text=None):
     """Thumbnail 1280x720: Bild aus der Schleife, links dunkler, 2 bis 3 Wörter in ruhiger Schrift, darunter die Dauer."""
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     i = IDEA[idea_id]
@@ -379,8 +405,9 @@ def thumbnail(idea_id, minutes, loop_mp4, path):
     img = Image.composite(Image.new("RGB", img.size, (12, 9, 8)), img, shade)
     f1 = ImageFont.truetype(os.path.join(HERE, "fonts", "DMSerifDisplay-Regular.ttf"), 124)
     f2 = ImageFont.truetype(os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf"), 40)
-    words = i["thumb"].split()
-    lines = [" ".join(words[:2]), " ".join(words[2:])] if len(words) > 2 else ([words[0], " ".join(words[1:])] if len(words) == 2 and len(i["thumb"]) > 11 else [i["thumb"]])
+    text = text or i["thumb"]
+    words = text.split()
+    lines = [" ".join(words[:2]), " ".join(words[2:])] if len(words) > 2 else ([words[0], " ".join(words[1:])] if len(words) == 2 and len(text) > 11 else [text])
     lines = [x for x in lines if x]
     y0 = 360 - len(lines) * 70
     glow = Image.new("RGBA", img.size, (0, 0, 0, 0))
@@ -400,29 +427,44 @@ def thumbnail(idea_id, minutes, loop_mp4, path):
     img.save(path, "JPEG", quality=90)
 
 
-def build(idea_id, minutes, out_dir, seed=1, teaser=True):
-    """Fertiges Video (mp4), Thumbnail (jpg), Teaser-Short (mp4) und Text (json). Gibt die Pfade zurück."""
+def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None):
+    """Fertiges Video (mp4), Thumbnail (jpg), Teaser-Short (mp4) und Text (json). Gibt die Pfade zurück.
+
+    story (aus sleepstory.stories()): Erzählstimme liest die Geschichte, die Szene läuft leise darunter und danach weiter.
+    Die Länge richtet sich dann nach der Geschichte (out["minutes"]), `minutes` ist nur der Mindestwert."""
     if idea_id not in IDEA:
         raise ValueError(f"Unbekannte Idee {idea_id}, erlaubt: {', '.join(IDEA)}")
     i = IDEA[idea_id]
     os.makedirs(out_dir, exist_ok=True)
     name = f"quiet-{idea_id}-{minutes}min"
     mp4 = os.path.join(out_dir, name + ".mp4")
-    out = {"video": mp4}
+    out = {"video": mp4, "minutes": minutes}
     sound = audio.soundscape(i["recipe"], LOOP_S, RATE, seed, loop=True) * 0.5
     with tempfile.TemporaryDirectory(prefix="quiet-out-") as tmp:
         loop_mp4, loop_wav = os.path.join(tmp, "loop.mp4"), os.path.join(tmp, "loop.wav")
         _render(_opt(i), loop_mp4)
         _wav(loop_wav, sound)
+        if story:
+            import sleepstory
+            narr = os.path.join(tmp, "story.wav")
+            secs = sleepstory.narrate(story["text"], narr, RATE)
+            minutes = sleepstory.total_minutes(secs, 60)
+            out["minutes"], out["story"] = minutes, story["id"]
+            name = f"quiet-{idea_id}-{story['id']}"
+            mp4 = out["video"] = os.path.join(out_dir, name + ".mp4")
         out["thumb"] = os.path.join(out_dir, name + ".jpg")
-        thumbnail(idea_id, minutes, loop_mp4, out["thumb"])
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", loop_mp4,
-                        "-stream_loop", "-1", "-i", loop_wav, "-t", str(minutes * 60), "-map", "0:v", "-map", "1:a",
-                        "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ar", str(RATE), "-movflags", "+faststart", mp4],
-                       check=True)
+        thumbnail(idea_id, minutes, loop_mp4, out["thumb"], text=(story or {}).get("thumb"))
+        if story:
+            sleepstory.mux(loop_mp4, loop_wav, narr, minutes, mp4, RATE)
+        else:
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", loop_mp4,
+                            "-stream_loop", "-1", "-i", loop_wav, "-t", str(minutes * 60), "-map", "0:v", "-map", "1:a",
+                            "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ar", str(RATE), "-movflags", "+faststart", mp4],
+                           check=True)
         if teaser:
             t_mp4, t_wav = os.path.join(tmp, "teaser.mp4"), os.path.join(tmp, "teaser.wav")
-            over = {"dur": TEASER_S, "title": i["title"], "sub": f"{hours_en(minutes).lower()} on the channel"}
+            over = {"dur": TEASER_S, "title": story["title"] if story else i["title"],
+                    "sub": "a sleep story on the channel" if story else f"{hours_en(minutes).lower()} on the channel"}
             _render(_opt(i), t_mp4, wide=False, over=over, start=5.0)
             n = TEASER_S * RATE
             s = np.concatenate([sound, sound])[5 * RATE:5 * RATE + n].copy()
@@ -436,7 +478,7 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True):
                             out["teaser"]], check=True)
     out["info"] = os.path.join(out_dir, name + ".json")
     with open(out["info"], "w", encoding="utf-8") as f:
-        json.dump(meta(idea_id, minutes, seed), f, ensure_ascii=False, indent=2)
+        json.dump(story_meta(story, idea_id, minutes, seed) if story else meta(idea_id, minutes, seed), f, ensure_ascii=False, indent=2)
     return out
 
 
