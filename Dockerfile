@@ -21,9 +21,9 @@ RUN mkdir -p models \
  && tar xjf /tmp/voice.tar.bz2 -C models \
  && rm /tmp/voice.tar.bz2
 
-# Zwei weitere Stimmen (beide CC0) für Geschichten und freundliche Erklärungen, siehe make_short.VOICE_MODELS.
+# Weitere Stimmen (CC0): Geschichten und freundliche Erklärungen (make_short.VOICE_MODELS), dazu die englische Erzählstimme der Einschlaf-Geschichten (sleepstory.py).
 # Klappt der Download nicht, sprechen diese Videos mit der normalen Thorsten-Stimme.
-RUN for v in de_DE-thorsten_emotional-medium de_DE-kerstin-low; do \
+RUN for v in de_DE-thorsten_emotional-medium de_DE-kerstin-low en_GB-northern_english_male-medium; do \
       curl -fsSL --retry 6 --retry-delay 5 --retry-all-errors -o /tmp/v.tar.bz2 \
         https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-$v.tar.bz2 \
       && tar xjf /tmp/v.tar.bz2 -C models && rm /tmp/v.tar.bz2 || echo "Stimme $v fehlt"; \
