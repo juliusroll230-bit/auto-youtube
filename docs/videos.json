@@ -6,11 +6,65 @@
  },
  "videos": [
   {
+   "id": "KNGHAVzvQhk",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 4) 🚗",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 172 Mitarbeiter und 49.400 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 7,
+   "published": "2026-11-24T19:28:00+00:00",
+   "thumb": "thumbs/KNGHAVzvQhk.jpg"
+  },
+  {
+   "id": "wRRLXwrTBME",
+   "title": "Das Grab, das seit 2.200 Jahren niemand öffnet 🏯",
+   "text": "1974 stoßen Bauern bei Xi'an auf eine Armee aus Ton. Wir erzählen die Geschichte des ersten Kaisers von China, seiner Tonkrieger und seines Grabes, das bis heute verschlossen ist, und was Forscher darin vermuten.",
+   "niche": "Geschichte",
+   "views": 5,
+   "published": "2026-11-24T19:00:40+00:00",
+   "thumb": "thumbs/wRRLXwrTBME.jpg"
+  },
+  {
+   "id": "neiA36OHdUQ",
+   "title": "Der Platz neben mir im Bus 🚌",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen setzt sich ein alter Mann im Bus neben mich und sagt kein Wort.",
+   "niche": "Geschichte",
+   "views": 192,
+   "published": "2026-11-24T17:35:53+00:00",
+   "thumb": "thumbs/neiA36OHdUQ.jpg"
+  },
+  {
+   "id": "1CqWkJy-qxE",
+   "title": "Die Schlacht gegen niemand 🔦",
+   "text": "Februar 1942: Über Los Angeles feuert die Flugabwehr eine ganze Nacht lang, doch am Morgen findet man kein feindliches Flugzeug. Was war am Himmel?",
+   "niche": "Geschichte",
+   "views": 176,
+   "published": "2026-11-24T16:35:49+00:00",
+   "thumb": "thumbs/1CqWkJy-qxE.jpg"
+  },
+  {
+   "id": "v2ZymOqx92k",
+   "title": "Die Spuren, die niemand erklären kann 🐾",
+   "text": "Achtzehnhundertfünfundfünfzig finden Dorfbewohner in Devon Hufspuren im Schnee, die über Mauern und Dächer führen sollen. Bis heute ist nicht geklärt, wer sie hinterließ.",
+   "niche": "Geschichte",
+   "views": 802,
+   "published": "2026-11-24T15:35:43+00:00",
+   "thumb": "thumbs/v2ZymOqx92k.jpg"
+  },
+  {
+   "id": "wn26i1TjrEw",
+   "title": "Was passiert, wenn dich eine Strömung wegzieht? 🌊",
+   "text": "Eine Rippströmung zieht dich nicht unter Wasser, sondern hinaus. Woran du sie erkennst und was du tun kannst.",
+   "niche": "Wissen",
+   "views": 735,
+   "published": "2026-11-24T14:36:05+00:00",
+   "thumb": "thumbs/wn26i1TjrEw.jpg"
+  },
+  {
    "id": "_lAfGvW7wOM",
    "title": "Was passiert, wenn du 30 Minuten im Dunkeln bleibst? 🌑",
    "text": "Im Dunkeln stellen sich deine Augen um. Was Stäbchen und Pupillen tun und warum Astronomen rotes Licht nutzen.",
    "niche": "Wissen",
-   "views": 2,
+   "views": 979,
    "published": "2026-11-24T13:35:49+00:00",
    "thumb": "thumbs/_lAfGvW7wOM.jpg"
   },
@@ -19,7 +73,7 @@
    "title": "Was passiert, wenn du eine Nacht nicht schläfst? 🌙",
    "text": "Eine einzige durchwachte Nacht verändert Reaktion, Laune und Hunger. Und warum es morgens wieder besser wird.",
    "niche": "Wissen",
-   "views": 269,
+   "views": 1106,
    "published": "2026-11-24T12:35:55+00:00",
    "thumb": "thumbs/sQx9J5pQ49U.jpg"
   },
@@ -28,7 +82,7 @@
    "title": "Was passiert, wenn du zu viel Kaffee trinkst? ☕",
    "text": "Koffein macht nicht wach, es versteckt die Müdigkeit. Wie Adenosin, Andockstellen und die Halbwertszeit zusammenhängen.",
    "niche": "Wissen",
-   "views": 224,
+   "views": 725,
    "published": "2026-11-24T10:35:51+00:00",
    "thumb": "thumbs/wcYt-qxw8B0.jpg"
   },
@@ -37,7 +91,7 @@
    "title": "Warum siehst du im Winter deinen Atem? ❄️",
    "text": "Dein Atem ist kein Rauch. Warum aus unsichtbarem Wasserdampf bei Kälte eine weiße Wolke wird.",
    "niche": "Wissen",
-   "views": 2,
+   "views": 3,
    "published": "2026-11-23T20:36:06+00:00",
    "thumb": "thumbs/xlpEFclRYg8.jpg"
   },
@@ -46,7 +100,7 @@
    "title": "Warum landen Katzen auf den Pfoten? 🐈",
    "text": "Erklärt in der Blockwelt: Wie Gleichgewichtssinn, Wirbelsäule und ein Reflex der Katze beim Fallen die Drehung ermöglichen.",
    "niche": "Wissen",
-   "views": 3,
+   "views": 6,
    "published": "2026-11-23T19:35:56+00:00",
    "thumb": "thumbs/P_vgjkHEDjo.jpg"
   },
@@ -64,7 +118,7 @@
    "title": "Die Piri-Reis-Karte: Zeigt sie mehr, als sie dürfte? 🗺️",
    "text": "1929 findet ein Forscher im Istanbuler Topkapi-Palast eine Weltkarte von 1513. Wir erzählen die Geschichte des Admirals Piri Reis, die Antarktis-Theorie von Charles Hapgood und was Fachleute heute dazu sagen.",
    "niche": "Geschichte",
-   "views": 32,
+   "views": 86,
    "published": "2026-11-23T18:59:22+00:00",
    "thumb": "thumbs/ZbrhqwJH1mg.jpg"
   },
@@ -73,7 +127,7 @@
    "title": "Geh nachts nie in den Supermarkt 🛒",
    "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Nachts im Supermarkt gelten drei Regeln, und die dritte brichst du zuerst.",
    "niche": "Wissen",
-   "views": 5,
+   "views": 12,
    "published": "2026-11-23T18:35:49+00:00",
    "thumb": "thumbs/0VIrMLNZ8Io.jpg"
   },
@@ -85,60 +139,6 @@
    "views": 2,
    "published": "2026-11-23T17:35:44+00:00",
    "thumb": "thumbs/Iyt9vz4mBNM.jpg"
-  },
-  {
-   "id": "X2KKxNWyZdk",
-   "title": "Der Dorfbewohner, der dich nie aus den Augen lässt 👀",
-   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deinem Dorf starrt ein Bewohner dich an, egal wohin du gehst.",
-   "niche": "Wissen",
-   "views": 4,
-   "published": "2026-11-23T16:35:45+00:00",
-   "thumb": "thumbs/X2KKxNWyZdk.jpg"
-  },
-  {
-   "id": "BCmKVIvl1G4",
-   "title": "Die Tür, die nur nachts in deiner Welt erscheint 🚪",
-   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Jede Nacht steht mitten im Feld eine Tür, die du nie gebaut hast.",
-   "niche": "Wissen",
-   "views": 294,
-   "published": "2026-11-23T15:35:34+00:00",
-   "thumb": "thumbs/BCmKVIvl1G4.jpg"
-  },
-  {
-   "id": "zQfbFYs2nNw",
-   "title": "Das Fenster gegenüber winkt zurück 🪟",
-   "text": "Eine ausgedachte Gruselgeschichte: Im Haus gegenüber steht jemand am Fenster und macht jede Bewegung nach, nur einen Takt später.",
-   "niche": "Wissen",
-   "views": 595,
-   "published": "2026-11-23T14:35:54+00:00",
-   "thumb": "thumbs/zQfbFYs2nNw.jpg"
-  },
-  {
-   "id": "7u9kqHMgnpY",
-   "title": "Die Uhr bleibt um 3:03 stehen 🕒",
-   "text": "Eine ausgedachte Gruselgeschichte: Jede Nacht bleibt die Wanduhr um drei Uhr drei stehen, und jemand im Haus hört dann zu.",
-   "niche": "Wissen",
-   "views": 764,
-   "published": "2026-11-23T13:36:09+00:00",
-   "thumb": "thumbs/7u9kqHMgnpY.jpg"
-  },
-  {
-   "id": "0U0tVztdPok",
-   "title": "Der Brief unter der Fußmatte ✉️",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Montag liegt ein Brief unter unserer Fußmatte, und niemand weiß, von wem.",
-   "niche": "Geschichte",
-   "views": 437,
-   "published": "2026-11-23T12:35:52+00:00",
-   "thumb": "thumbs/0U0tVztdPok.jpg"
-  },
-  {
-   "id": "3Pze2oZkrhY",
-   "title": "Die Kamera, die niemand am Everest fand 📷",
-   "text": "Neunzehnhundertvierundzwanzig verschwinden Mallory und Irvine am Everest. Gefunden wurde nur Mallory, die Kamera fehlt bis heute.",
-   "niche": "Geschichte",
-   "views": 848,
-   "published": "2026-11-23T11:36:06+00:00",
-   "thumb": "thumbs/3Pze2oZkrhY.jpg"
   }
  ]
 }
