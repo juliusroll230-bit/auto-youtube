@@ -5958,6 +5958,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       st.appendChild(h("p", { cls: "msg" + (Q.error_text ? " err" : ""), text: Q.phase ? "Gerade: " + Q.phase : Q.error_text ? Q.error_text : (Q.on ? "Läuft. Verbunden mit " + (ch.title || "Quiet Corner") + ", täglich ab " + Q.hour + " Uhr ein neues Video." : "Pausiert. Es wird nichts hochgeladen.") }));
       if (ch.id) st.appendChild(h("a", { cls: "btn sm", href: "https://www.youtube.com/channel/" + ch.id, target: "_blank", rel: "noopener", text: "Kanal ansehen" }));
     }
+    if (Q.connected && Q.notice) st.appendChild(h("p", { cls: "msg err", style: "flex-basis:100%", text: Q.notice }));
     var views = ups.reduce(function (a, u) { return a + (u.views || 0) + (u.teaser_views || 0); }, 0);
     var k = clear($("qcK"));
     [[nf.format(ch.subscribers || 0), "Abonnenten"], [nf.format(ch.views != null ? ch.views : views), "Aufrufe gesamt"],

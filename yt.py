@@ -215,6 +215,19 @@ def video_stats(cfg, ids):
     return out
 
 
+def upload_states(cfg, ids):
+    """Wie YouTube die Uploads verarbeitet hat: {id: {"upload": uploaded|processed|rejected|failed, "reason": ...}}.
+
+    Zu lange Videos nimmt die Schnittstelle erst an und lehnt sie danach ab (rejectionReason "length").
+    """
+    yt, out = client(cfg), {}
+    for i in range(0, len(ids), 50):
+        for v in yt.videos().list(part="status", id=",".join(ids[i:i + 50])).execute().get("items", []):
+            st = v.get("status", {})
+            out[v["id"]] = {"upload": st.get("uploadStatus", ""), "reason": st.get("rejectionReason") or st.get("failureReason") or ""}
+    return out
+
+
 def set_branding(cfg, banner_path, description, keywords, language="de", country="DE"):
     """Lädt das Kanalbanner hoch und setzt Beschreibung und Stichwörter.
 

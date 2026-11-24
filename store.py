@@ -817,6 +817,8 @@ def relax_error_text(err):
         return "YouTube lässt heute keine weiteren Uploads zu. Morgen geht es automatisch weiter."
     if "invalid_grant" in e or "expired" in e or "revoked" in e:
         return "Die Verbindung zum Kanal ist abgelaufen. Bitte im Reiter Kanäle neu verbinden."
+    if "length" in e or "too long" in e or "toolong" in e:
+        return "YouTube hat ein Video wegen der Länge abgelehnt. Die Zentrale baut jetzt kürzere. Tipp: Kanal auf youtube.com/verify bestätigen."
     if "thumbnail" in e or "forbidden" in e:
         return "Das Vorschaubild durfte nicht gesetzt werden. Den Kanal einmal auf youtube.com/verify bestätigen."
     if "rendert" in e or "renderer" in e:
@@ -851,9 +853,9 @@ def relax_overview(cfg, st):
             "on": bool(cfg["relax_on"]), "minutes": cfg["relax_minutes"], "hour": cfg["relax_hour"],
             "length": length, "shorts": bool(cfg.get("relax_shorts", True)), "banner": cfg.get("relax_banner", "A"),
             "branded": info.get("branded"), "last": st.get("relax_last"), "error": info.get("error"),
-            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "stats_at": info.get("stats_at"),
+            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "cap": st.get("relax_cap"), "notice": info.get("notice") or "", "stats_at": info.get("stats_at"),
             "uploads": ups[-60:][::-1], "learn": learnt,
-            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg)),
+            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg), st.get("relax_cap")),
             "per_day": int(cfg.get("relax_per_day", 2)), "slots": entspannung.slots(cfg),
             "ideas": [{"id": i["id"], "scene": entspannung.SCENES[i["scene"]], "title": i["title"], "thumb": i["thumb"],
                        "layers": i["layers"], "used": used.get(i["id"], 0)} for i in entspannung.IDEAS],

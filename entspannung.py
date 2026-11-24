@@ -32,6 +32,7 @@ FPS = 30
 RATE = 48000
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHANNEL = "Quiet Corner"
+LADDER = (600, 180, 60, 15)   # Notbremse: lehnt YouTube ein Video wegen der Länge ab, geht es in diesen Stufen kürzer weiter
 MINUTES = (180, 300, 480, 600)   # 3, 5, 8, 10 Stunden (Julius 21.11.: „länger“); "auto" = Lernmodus wählt
 SLOTS = (6, 17)   # Standard: 2 lange Videos am Tag (Julius 21.11.: „mehr“), ab 6 und ab 17 Uhr
 HOURS = list(range(0, 24))
@@ -225,8 +226,13 @@ def _pick(options, uploads, key, today, rnd):
     return min(options, key=lambda o: last[o])
 
 
-def choose(uploads, length="auto", today=None, n=0):
-    """Nächste Idee und Länge. uploads: frühere Uploads mit idea, scene, minutes, at, views."""
+def next_cap(minutes):
+    """Nächstkürzere Stufe unter `minutes` (für den Fall, dass YouTube die Länge ablehnt)."""
+    return next((m for m in LADDER if m < minutes), LADDER[-1])
+
+
+def choose(uploads, length="auto", today=None, n=0, cap=None):
+    """Nächste Idee und Länge. uploads: frühere Uploads mit idea, scene, minutes, at, views. cap: längste erlaubte Länge in Minuten."""
     today = today or _dt.date.today()
     rnd = random.Random(1000 + n)
     long_ups = [u for u in uploads if u.get("idea")]
@@ -236,10 +242,13 @@ def choose(uploads, length="auto", today=None, n=0):
     last = long_ups[-1]["idea"] if long_ups else None
     idea = min(ideas, key=lambda i: (count[i["id"]], i["id"] == last, ideas.index(i)))
     minutes = int(length) if str(length).isdigit() and int(length) in MINUTES else _pick([480, 600, 300, 180], long_ups, "minutes", today, rnd)
+    if cap and minutes > cap:
+        options = [m for m in (480, 600, 300, 180) if m <= cap]
+        minutes = _pick(options, long_ups, "minutes", today, rnd) if options else cap
     return idea["id"], minutes
 
 
-def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,)):
+def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,), cap=None):
     """Vorschau der nächsten Videos (ohne neue Aufrufe): Liste von {day, hour, idea, title, scene, minutes}."""
     today = today or _dt.date.today()
     ups, out, d = list(uploads), [], 0
@@ -248,7 +257,7 @@ def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,)):
         for hr in hours:
             if len(out) >= count:
                 break
-            idea, minutes = choose(ups, length, today, n + len(out))
+            idea, minutes = choose(ups, length, today, n + len(out), cap)
             out.append({"day": day, "hour": hr, "idea": idea, "scene": IDEA[idea]["scene"],
                         "scene_name": SCENES[IDEA[idea]["scene"]], "title": IDEA[idea]["title"], "minutes": minutes})
             ups.append({"idea": idea, "scene": IDEA[idea]["scene"], "minutes": minutes, "at": day})
