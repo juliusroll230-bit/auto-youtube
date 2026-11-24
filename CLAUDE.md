@@ -82,8 +82,12 @@ Darum von den 15 Skripten am Tag **4 bis 5 Nachbarthemen der Gewinner** (zählen
 ### Test: erzählte Geschichten mit warmer Stimme (seit 16.11.2026, Julius' Wunsch)
 
 Julius mag ruhige „Storytime“-Videos mit freundlicher Stimme. Darum als Test, **ohne den Plan oben zu ändern**:
-Montag, Mittwoch und Freitag wird **eins der 2 Strichmännchen-Mystery** zu einer erzählten Geschichte
-(also 3 pro Woche, weiterhin 15 Shorts am Tag).
+Montag, Mittwoch und Freitag wird ein Mystery zu einer erzählten Geschichte (3 pro Woche, weiterhin 15 Shorts am Tag),
+in beiden Looks wie der Rest des Plans:
+- **Montag: Strichmännchen** (statt eines der 2 Strichmännchen-Mystery),
+- **Mittwoch: Blockwelt** (`"welt": "block"`, statt des Blockwelt-Mystery),
+- **Freitag: abwechselnd**, in geraden Kalenderwochen Strichmännchen, in ungeraden Blockwelt.
+Die Zentrale vergleicht das unter „Look je Video-Typ“ („Erzählte Geschichte · 2D“ gegen „· 3D“).
 
 - Oben im Skript `"niche": "Erzählung"` (nicht „Geschichte“, so heißt die alte History-Nische) und `"stimmung": "warm"`.
   Dann wählt die App eine der warmen Stimmen (`freundlich`, `erzaehlerin`, `erzaehler`), ruhige Spieluhr-Musik
@@ -93,7 +97,9 @@ Montag, Mittwoch und Freitag wird **eins der 2 Strichmännchen-Mystery** zu eine
   die Beschreibung beginnt mit „Eine ausgedachte Geschichte, ruhig erzählt:“. Keine Serien.
 - „Ich“ am Anfang ist hier erlaubt (Hook-Prüfung kennt das). Erster Satz trotzdem die krasse Lage, höchstens 12 Wörter.
 - Helle Orte (`haus`, `stadt`, `schule`, `dorf`, `feld`, `krankenhaus`), Szenen `figur`, `zwei`, `objekt`. 70 bis 85 Wörter.
-- Vorbilder `seed/0208` bis `0210`. Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
+- Blockwelt-Geschichte: „ich“ ist die Blockfigur, helle Orte (`haus`, `stadt`, `feld`, `dorf`, `schule`; `krankenhaus`
+  und `strasse` sind in 3D nachts), gern 1 bis 2 kurze `"chat"`-Zeilen; erster Satz der Beschreibung mit „Blockwelt“.
+- Vorbilder `seed/0208` bis `0210` (2D) und `seed/0259` (Blockwelt). Läuft „Erzählte Geschichte“ nach 2 Wochen unter Video-Typ besser als Mystery,
   mehr davon vorschlagen (Julius fragen).
 
 ### Test: Loop-Ende (seit 19.11.2026)
