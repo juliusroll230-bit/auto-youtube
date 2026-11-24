@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-aktuell-merkur-sonne",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Merkur: Was passiert, wenn du dort stehst? 🪐",
+  "description": "Aktuell: Die Sonde BepiColombo hat am 22. November 2026 den Merkur erreicht. Was passiert, wenn du dort in der Sonne stehst?\n\n#wissen #merkur #weltraum #aktuell #shorts",
+  "tags": [
+    "wissen",
+    "merkur",
+    "weltraum",
+    "aktuell",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Merkur | Sonne zehnmal stärker",
+    "Ohne Schutz geht nichts"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du auf dem Merkur in der Sonne stehst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🪐"
+      }
+    },
+    {
+      "text": "Am zweiundzwanzigsten November erreicht die Sonde BepiColombo den Merkur.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2026",
+        "text": "Ankunft am Merkur",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Dafür war sie acht Jahre und zehn Milliarden Kilometer unterwegs.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 10,
+        "einheit": "Milliarden km",
+        "objekt": "🛰️",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Der Merkur ist der kleinste Planet und der Sonne am *nächsten*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🪐",
+        "text": "Kleinster Planet"
+      }
+    },
+    {
+      "text": "Dort ist die Sonne mitunter zehnmal stärker als bei uns.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌍",
+          "text": "Erde"
+        },
+        "rechts": {
+          "objekt": "🪐",
+          "text": "Merkur: bis 10×"
+        }
+      }
+    },
+    {
+      "text": "Ein Satellit der Sonde dreht sich fünfzehnmal pro Minute.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🛰️",
+        "text": "Gegen die Hitze"
+      }
+    },
+    {
+      "text": "Ohne *Schutz* hältst du es dort also nicht aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🧴",
+        "text": "Ohne Schutz"
+      }
+    },
+    {
+      "text": "Ob es dort Wasser gibt, soll die Sonde klären.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💧"
+      }
+    }
+  ],
+  "aktuell": true
+}

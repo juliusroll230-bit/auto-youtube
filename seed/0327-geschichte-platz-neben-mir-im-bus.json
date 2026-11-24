@@ -1,0 +1,110 @@
+{
+  "slug": "geschichte-platz-neben-mir-im-bus",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Der Platz neben mir im Bus 🚌",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen setzt sich ein alter Mann im Bus neben mich und sagt kein Wort.\n\n#geschichte #storytime #bus #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "bus",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Bus | jeden Morgen",
+    "Wer ist er"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich setzt sich jeden Morgen derselbe alte Mann neben mich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🚌"
+      }
+    },
+    {
+      "text": "Er sagt nie ein Wort und schaut nur aus dem Fenster.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚌",
+        "text": "Immer derselbe Platz"
+      }
+    },
+    {
+      "text": "Ich werde sauer, denn der Bus ist fast leer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "wut",
+        "aktion": "haende",
+        "objekt": "😠"
+      }
+    },
+    {
+      "text": "Heute holt er einen grauen *Schal* aus der Tasche.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Er legt ihn mir auf den Schoß und steigt aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🧣",
+        "text": "Ein grauer Schal"
+      }
+    },
+    {
+      "text": "Zu Hause erkenne ich Opas Schal, mit seinem Namen darin.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🧣"
+      }
+    },
+    {
+      "text": "Der Mann war Opas bester Freund und saß *jahrelang* neben ihm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "👴",
+        "text": "Opas Freund"
+      }
+    },
+    {
+      "text": "Seitdem sitze ich dort, und wir reden jeden Morgen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🚌"
+      }
+    }
+  ]
+}

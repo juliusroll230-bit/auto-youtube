@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-nur-noch-durch-den-mund-atmen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du nur durch den Mund atmest? 😮",
+  "description": "Was passiert, wenn du nur noch durch den Mund atmest? Was deine Nase für die Luft tut und warum der Mund das schlechter kann.\n\n#wissen #körper #atmen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "atmen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Mundatmung | trockener Hals",
+    "Die Nase filtert"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du nur noch durch den Mund atmest?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "😮"
+      }
+    },
+    {
+      "text": "Deine Nase wärmt die Luft an und macht sie *feucht*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👃",
+        "text": "Nase wärmt an"
+      }
+    },
+    {
+      "text": "Der Mund kann das nicht so gut.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👃",
+          "text": "Nase: filtert"
+        },
+        "rechts": {
+          "objekt": "👄",
+          "text": "Mund: trocken"
+        }
+      }
+    },
+    {
+      "text": "Der Mund trocknet aus, und der Hals kratzt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "objekt": "😮"
+      }
+    },
+    {
+      "text": "Weniger Speichel schützt die Zähne schlechter.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🦷",
+        "text": "Weniger Speichel"
+      }
+    },
+    {
+      "text": "Im Schlaf schnarchen viele dann lauter.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Ist die Nase dauernd zu, hilft der Arzt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🩺",
+        "text": "Arzt fragen"
+      }
+    },
+    {
+      "text": "Deine Nase ist *Filter* und Klimaanlage zugleich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "👃"
+      }
+    }
+  ]
+}
