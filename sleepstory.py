@@ -25,6 +25,7 @@ SENT_PAUSE = 1.2      # Sekunden nach jedem Satz
 PARA_PAUSE = 3.4      # Sekunden nach jedem Absatz
 LEAD_S = 12           # Sekunden Szene allein, bevor die Stimme beginnt
 TAIL_S = 600          # mindestens so lange läuft die Szene nach der Geschichte weiter
+BG_VOL = 0.22         # Lautstärke der Szene unter der Stimme (die Szene selbst ist schon auf 0,5 gemischt)
 DISCLOSURE = "Narrated with a synthetic voice. The story is invented."
 
 
@@ -93,8 +94,10 @@ def mux(video_loop, scene_wav, narration_wav, minutes, out_mp4, rate=48000):
     """Schleifenbild + leise Szene + Stimme (nach LEAD_S) zu einem Video. Stimme laut, Szene leise, am Ende weiches Ausblenden."""
     total = minutes * 60
     delay = int(LEAD_S * 1000)
-    fc = (f"[1:a]volume=0.55[bg];[2:a]adelay={delay}|{delay},volume=1.0[v];"
-          f"[bg][v]amix=inputs=2:duration=first:normalize=0,afade=t=out:st={total - 8}:d=8[a]")
+    # Szene leise (Julius 24.11.: „Hintergrund muss leiser sein“) und zusätzlich noch leiser, solange die Stimme spricht.
+    fc = (f"[1:a]volume={BG_VOL}[bg];[2:a]adelay={delay}|{delay},volume=1.3,asplit=2[v][sc];"
+          f"[bg][sc]sidechaincompress=threshold=0.01:ratio=10:attack=80:release=900:makeup=1[duck];"
+          f"[duck][v]amix=inputs=2:duration=first:normalize=0,afade=t=out:st={total - 8}:d=8[a]")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", video_loop,
                     "-stream_loop", "-1", "-i", scene_wav, "-i", narration_wav, "-t", str(total),
                     "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k",
