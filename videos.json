@@ -6,11 +6,101 @@
  },
  "videos": [
   {
+   "id": "xlpEFclRYg8",
+   "title": "Warum siehst du im Winter deinen Atem? ❄️",
+   "text": "Dein Atem ist kein Rauch. Warum aus unsichtbarem Wasserdampf bei Kälte eine weiße Wolke wird.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-23T20:36:06+00:00",
+   "thumb": "thumbs/xlpEFclRYg8.jpg"
+  },
+  {
+   "id": "P_vgjkHEDjo",
+   "title": "Warum landen Katzen auf den Pfoten? 🐈",
+   "text": "Erklärt in der Blockwelt: Wie Gleichgewichtssinn, Wirbelsäule und ein Reflex der Katze beim Fallen die Drehung ermöglichen.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-23T19:35:56+00:00",
+   "thumb": "thumbs/P_vgjkHEDjo.jpg"
+  },
+  {
+   "id": "TPTEOjkNizo",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 3) 🎮",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 170 Mitarbeiter und 44.200 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-23T19:24:00+00:00",
+   "thumb": "thumbs/TPTEOjkNizo.jpg"
+  },
+  {
+   "id": "ZbrhqwJH1mg",
+   "title": "Die Piri-Reis-Karte: Zeigt sie mehr, als sie dürfte? 🗺️",
+   "text": "1929 findet ein Forscher im Istanbuler Topkapi-Palast eine Weltkarte von 1513. Wir erzählen die Geschichte des Admirals Piri Reis, die Antarktis-Theorie von Charles Hapgood und was Fachleute heute dazu sagen.",
+   "niche": "Geschichte",
+   "views": 31,
+   "published": "2026-11-23T18:59:22+00:00",
+   "thumb": "thumbs/ZbrhqwJH1mg.jpg"
+  },
+  {
+   "id": "0VIrMLNZ8Io",
+   "title": "Geh nachts nie in den Supermarkt 🛒",
+   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Nachts im Supermarkt gelten drei Regeln, und die dritte brichst du zuerst.",
+   "niche": "Wissen",
+   "views": 5,
+   "published": "2026-11-23T18:35:49+00:00",
+   "thumb": "thumbs/0VIrMLNZ8Io.jpg"
+  },
+  {
+   "id": "Iyt9vz4mBNM",
+   "title": "Der Spieler ohne Namen im Nebel 🌫️",
+   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Im dichten Nebel läuft dir ein Spieler ohne Namen nach.",
+   "niche": "Wissen",
+   "views": 2,
+   "published": "2026-11-23T17:35:44+00:00",
+   "thumb": "thumbs/Iyt9vz4mBNM.jpg"
+  },
+  {
+   "id": "X2KKxNWyZdk",
+   "title": "Der Dorfbewohner, der dich nie aus den Augen lässt 👀",
+   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deinem Dorf starrt ein Bewohner dich an, egal wohin du gehst.",
+   "niche": "Wissen",
+   "views": 3,
+   "published": "2026-11-23T16:35:45+00:00",
+   "thumb": "thumbs/X2KKxNWyZdk.jpg"
+  },
+  {
+   "id": "BCmKVIvl1G4",
+   "title": "Die Tür, die nur nachts in deiner Welt erscheint 🚪",
+   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Jede Nacht steht mitten im Feld eine Tür, die du nie gebaut hast.",
+   "niche": "Wissen",
+   "views": 280,
+   "published": "2026-11-23T15:35:34+00:00",
+   "thumb": "thumbs/BCmKVIvl1G4.jpg"
+  },
+  {
+   "id": "zQfbFYs2nNw",
+   "title": "Das Fenster gegenüber winkt zurück 🪟",
+   "text": "Eine ausgedachte Gruselgeschichte: Im Haus gegenüber steht jemand am Fenster und macht jede Bewegung nach, nur einen Takt später.",
+   "niche": "Wissen",
+   "views": 554,
+   "published": "2026-11-23T14:35:54+00:00",
+   "thumb": "thumbs/zQfbFYs2nNw.jpg"
+  },
+  {
+   "id": "7u9kqHMgnpY",
+   "title": "Die Uhr bleibt um 3:03 stehen 🕒",
+   "text": "Eine ausgedachte Gruselgeschichte: Jede Nacht bleibt die Wanduhr um drei Uhr drei stehen, und jemand im Haus hört dann zu.",
+   "niche": "Wissen",
+   "views": 732,
+   "published": "2026-11-23T13:36:09+00:00",
+   "thumb": "thumbs/7u9kqHMgnpY.jpg"
+  },
+  {
    "id": "0U0tVztdPok",
    "title": "Der Brief unter der Fußmatte ✉️",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Montag liegt ein Brief unter unserer Fußmatte, und niemand weiß, von wem.",
    "niche": "Geschichte",
-   "views": 9,
+   "views": 407,
    "published": "2026-11-23T12:35:52+00:00",
    "thumb": "thumbs/0U0tVztdPok.jpg"
   },
@@ -19,7 +109,7 @@
    "title": "Die Kamera, die niemand am Everest fand 📷",
    "text": "Neunzehnhundertvierundzwanzig verschwinden Mallory und Irvine am Everest. Gefunden wurde nur Mallory, die Kamera fehlt bis heute.",
    "niche": "Geschichte",
-   "views": 64,
+   "views": 766,
    "published": "2026-11-23T11:36:06+00:00",
    "thumb": "thumbs/3Pze2oZkrhY.jpg"
   },
@@ -28,7 +118,7 @@
    "title": "Die Insel, die es nie gab 🏝️",
    "text": "Jahrelang zeigten Karten eine Insel im Pazifik. Dann fuhr ein Forschungsschiff hin und fand nur tiefes Meer. Wie sie auf die Karten kam, ist bis heute offen.",
    "niche": "Wissen",
-   "views": 20,
+   "views": 436,
    "published": "2026-11-23T10:35:41+00:00",
    "thumb": "thumbs/JnKH23cI7Ko.jpg"
   },
@@ -37,7 +127,7 @@
    "title": "Die Maya-Städte, die plötzlich leer standen 🏛️",
    "text": "Zwischen dem achten und zehnten Jahrhundert verlassen die Maya viele Städte im Dschungel. Warum, ist bis heute nicht geklärt, doch die Maya selbst sind nie verschwunden.",
    "niche": "Geschichte",
-   "views": 59,
+   "views": 304,
    "published": "2026-11-23T09:36:04+00:00",
    "thumb": "thumbs/ivNDuV011H4.jpg"
   },
@@ -46,99 +136,9 @@
    "title": "Die Steinkugeln, die niemand erklären kann 🪨",
    "text": "Im Dschungel von Costa Rica liegen hunderte fast perfekt runde Steinkugeln. Wer sie machte, ist bekannt, wozu sie dienten, bis heute nicht.",
    "niche": "Geschichte",
-   "views": 102,
+   "views": 459,
    "published": "2026-11-23T08:36:07+00:00",
    "thumb": "thumbs/oR3TScIVZoA.jpg"
-  },
-  {
-   "id": "x3BT2iHh-Ag",
-   "title": "Das Brummen, das niemand erklären kann 🔊",
-   "text": "In Taos in New Mexico hörten Menschen ein tiefes Brummen, das Messgeräte nie fanden. Das Rätsel vom Taos Hum ist bis heute offen.",
-   "niche": "Wissen",
-   "views": 88,
-   "published": "2026-11-23T07:36:04+00:00",
-   "thumb": "thumbs/x3BT2iHh-Ag.jpg"
-  },
-  {
-   "id": "zRfNUdEAoYo",
-   "title": "Warum sind Flamingos eigentlich rosa? 🦩",
-   "text": "Flamingos werden grau geboren. Die rosa Farbe steckt in ihrem Futter, nicht in ihren Genen.",
-   "niche": "Wissen",
-   "views": 208,
-   "published": "2026-11-23T06:36:05+00:00",
-   "thumb": "thumbs/zRfNUdEAoYo.jpg"
-  },
-  {
-   "id": "EVywDYLDli4",
-   "title": "Was passiert, wenn du im Eis einbrichst? 🧊",
-   "text": "Der Kälteschock ist gefährlicher als die Kälte selbst. Was in der ersten Minute passiert und wie du dich aus dem Eis rettest.",
-   "niche": "Wissen",
-   "views": 1,
-   "published": "2026-11-22T20:35:41+00:00",
-   "thumb": "thumbs/EVywDYLDli4.jpg"
-  },
-  {
-   "id": "j5Y5hJYiHpg",
-   "title": "Was passiert, wenn dein Fuß einschläft? 🦶",
-   "text": "Erklärt in der Blockwelt: Warum ein Nerv bei langem Sitzen gedrückt wird, was das Kribbeln ist und warum es von allein vergeht.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-22T19:35:56+00:00",
-   "thumb": "thumbs/j5Y5hJYiHpg.jpg"
-  },
-  {
-   "id": "6FFw3PlIZ6c",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Raketenfirma (Tag 3) 🚀",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Raketenfirma „Abo Space“ ein. Heute: 170 Mitarbeiter und 41.300 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-22T19:26:15+00:00",
-   "thumb": "thumbs/6FFw3PlIZ6c.jpg"
-  },
-  {
-   "id": "u8ESnwxmPSo",
-   "title": "Fawcett und die Stadt Z: Was geschah im Dschungel? 🌿",
-   "text": "1925 verschwindet der britische Forscher Percy Fawcett mit zwei Begleitern im brasilianischen Urwald. Wir erzählen die Geschichte seiner Suche nach der Stadt Z, die Theorien zu seinem Schicksal und was Archäologen heute dazu sagen.",
-   "niche": "Geschichte",
-   "views": 0,
-   "published": "2026-11-22T19:15:53+00:00",
-   "thumb": "thumbs/u8ESnwxmPSo.jpg"
-  },
-  {
-   "id": "xCR3Iv8LBjE",
-   "title": "Warum tut Eis im Kopf weh? 🍦",
-   "text": "Erklärt in der Blockwelt: Was beim zu schnellen Eisessen am Gaumen passiert und warum der Schmerz im Kopf sitzt.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-22T18:36:02+00:00",
-   "thumb": "thumbs/xCR3Iv8LBjE.jpg"
-  },
-  {
-   "id": "U6M5wBdzHMs",
-   "title": "Der Chat, der antwortet, wenn du allein bist 💬",
-   "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Du bist allein auf dem Server, und trotzdem schreibt jemand mit deinem Namen.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-22T17:35:51+00:00",
-   "thumb": "thumbs/U6M5wBdzHMs.jpg"
-  },
-  {
-   "id": "gRvvNEckA2s",
-   "title": "Warum fliegen Zugvögel im V? 🦆",
-   "text": "Erklärt in der Blockwelt: Wie der Luftwirbel des Vordermanns Kraft spart und warum sich die Vögel vorn abwechseln.",
-   "niche": "Wissen",
-   "views": 2,
-   "published": "2026-11-22T16:35:55+00:00",
-   "thumb": "thumbs/gRvvNEckA2s.jpg"
-  },
-  {
-   "id": "2BccF4Zz8n4",
-   "title": "Die Kammer, die niemand betreten hat 🔺",
-   "text": "Blockwelt: In der Cheops-Pyramide haben Forscher mit Teilchen aus dem Weltall einen Hohlraum entdeckt. Wozu er diente, weiß bis heute niemand.",
-   "niche": "Wissen",
-   "views": 269,
-   "published": "2026-11-22T15:35:40+00:00",
-   "thumb": "thumbs/2BccF4Zz8n4.jpg"
   }
  ]
 }
