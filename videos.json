@@ -6,11 +6,38 @@
  },
  "videos": [
   {
+   "id": "_lAfGvW7wOM",
+   "title": "Was passiert, wenn du 30 Minuten im Dunkeln bleibst? 🌑",
+   "text": "Im Dunkeln stellen sich deine Augen um. Was Stäbchen und Pupillen tun und warum Astronomen rotes Licht nutzen.",
+   "niche": "Wissen",
+   "views": 2,
+   "published": "2026-11-24T13:35:49+00:00",
+   "thumb": "thumbs/_lAfGvW7wOM.jpg"
+  },
+  {
+   "id": "sQx9J5pQ49U",
+   "title": "Was passiert, wenn du eine Nacht nicht schläfst? 🌙",
+   "text": "Eine einzige durchwachte Nacht verändert Reaktion, Laune und Hunger. Und warum es morgens wieder besser wird.",
+   "niche": "Wissen",
+   "views": 269,
+   "published": "2026-11-24T12:35:55+00:00",
+   "thumb": "thumbs/sQx9J5pQ49U.jpg"
+  },
+  {
+   "id": "wcYt-qxw8B0",
+   "title": "Was passiert, wenn du zu viel Kaffee trinkst? ☕",
+   "text": "Koffein macht nicht wach, es versteckt die Müdigkeit. Wie Adenosin, Andockstellen und die Halbwertszeit zusammenhängen.",
+   "niche": "Wissen",
+   "views": 224,
+   "published": "2026-11-24T10:35:51+00:00",
+   "thumb": "thumbs/wcYt-qxw8B0.jpg"
+  },
+  {
    "id": "xlpEFclRYg8",
    "title": "Warum siehst du im Winter deinen Atem? ❄️",
    "text": "Dein Atem ist kein Rauch. Warum aus unsichtbarem Wasserdampf bei Kälte eine weiße Wolke wird.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 2,
    "published": "2026-11-23T20:36:06+00:00",
    "thumb": "thumbs/xlpEFclRYg8.jpg"
   },
@@ -19,7 +46,7 @@
    "title": "Warum landen Katzen auf den Pfoten? 🐈",
    "text": "Erklärt in der Blockwelt: Wie Gleichgewichtssinn, Wirbelsäule und ein Reflex der Katze beim Fallen die Drehung ermöglichen.",
    "niche": "Wissen",
-   "views": 0,
+   "views": 3,
    "published": "2026-11-23T19:35:56+00:00",
    "thumb": "thumbs/P_vgjkHEDjo.jpg"
   },
@@ -28,7 +55,7 @@
    "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 3) 🎮",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 170 Mitarbeiter und 44.200 € Spielgeld auf dem Konto (alles nur im Spiel).",
    "niche": "Wissen",
-   "views": 0,
+   "views": 2,
    "published": "2026-11-23T19:24:00+00:00",
    "thumb": "thumbs/TPTEOjkNizo.jpg"
   },
@@ -37,7 +64,7 @@
    "title": "Die Piri-Reis-Karte: Zeigt sie mehr, als sie dürfte? 🗺️",
    "text": "1929 findet ein Forscher im Istanbuler Topkapi-Palast eine Weltkarte von 1513. Wir erzählen die Geschichte des Admirals Piri Reis, die Antarktis-Theorie von Charles Hapgood und was Fachleute heute dazu sagen.",
    "niche": "Geschichte",
-   "views": 31,
+   "views": 32,
    "published": "2026-11-23T18:59:22+00:00",
    "thumb": "thumbs/ZbrhqwJH1mg.jpg"
   },
@@ -64,7 +91,7 @@
    "title": "Der Dorfbewohner, der dich nie aus den Augen lässt 👀",
    "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: In deinem Dorf starrt ein Bewohner dich an, egal wohin du gehst.",
    "niche": "Wissen",
-   "views": 3,
+   "views": 4,
    "published": "2026-11-23T16:35:45+00:00",
    "thumb": "thumbs/X2KKxNWyZdk.jpg"
   },
@@ -73,7 +100,7 @@
    "title": "Die Tür, die nur nachts in deiner Welt erscheint 🚪",
    "text": "Eine ausgedachte Gruselgeschichte aus einer Blockwelt: Jede Nacht steht mitten im Feld eine Tür, die du nie gebaut hast.",
    "niche": "Wissen",
-   "views": 280,
+   "views": 294,
    "published": "2026-11-23T15:35:34+00:00",
    "thumb": "thumbs/BCmKVIvl1G4.jpg"
   },
@@ -82,7 +109,7 @@
    "title": "Das Fenster gegenüber winkt zurück 🪟",
    "text": "Eine ausgedachte Gruselgeschichte: Im Haus gegenüber steht jemand am Fenster und macht jede Bewegung nach, nur einen Takt später.",
    "niche": "Wissen",
-   "views": 554,
+   "views": 595,
    "published": "2026-11-23T14:35:54+00:00",
    "thumb": "thumbs/zQfbFYs2nNw.jpg"
   },
@@ -91,7 +118,7 @@
    "title": "Die Uhr bleibt um 3:03 stehen 🕒",
    "text": "Eine ausgedachte Gruselgeschichte: Jede Nacht bleibt die Wanduhr um drei Uhr drei stehen, und jemand im Haus hört dann zu.",
    "niche": "Wissen",
-   "views": 732,
+   "views": 764,
    "published": "2026-11-23T13:36:09+00:00",
    "thumb": "thumbs/7u9kqHMgnpY.jpg"
   },
@@ -100,7 +127,7 @@
    "title": "Der Brief unter der Fußmatte ✉️",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Montag liegt ein Brief unter unserer Fußmatte, und niemand weiß, von wem.",
    "niche": "Geschichte",
-   "views": 407,
+   "views": 437,
    "published": "2026-11-23T12:35:52+00:00",
    "thumb": "thumbs/0U0tVztdPok.jpg"
   },
@@ -109,36 +136,9 @@
    "title": "Die Kamera, die niemand am Everest fand 📷",
    "text": "Neunzehnhundertvierundzwanzig verschwinden Mallory und Irvine am Everest. Gefunden wurde nur Mallory, die Kamera fehlt bis heute.",
    "niche": "Geschichte",
-   "views": 766,
+   "views": 848,
    "published": "2026-11-23T11:36:06+00:00",
    "thumb": "thumbs/3Pze2oZkrhY.jpg"
-  },
-  {
-   "id": "JnKH23cI7Ko",
-   "title": "Die Insel, die es nie gab 🏝️",
-   "text": "Jahrelang zeigten Karten eine Insel im Pazifik. Dann fuhr ein Forschungsschiff hin und fand nur tiefes Meer. Wie sie auf die Karten kam, ist bis heute offen.",
-   "niche": "Wissen",
-   "views": 436,
-   "published": "2026-11-23T10:35:41+00:00",
-   "thumb": "thumbs/JnKH23cI7Ko.jpg"
-  },
-  {
-   "id": "ivNDuV011H4",
-   "title": "Die Maya-Städte, die plötzlich leer standen 🏛️",
-   "text": "Zwischen dem achten und zehnten Jahrhundert verlassen die Maya viele Städte im Dschungel. Warum, ist bis heute nicht geklärt, doch die Maya selbst sind nie verschwunden.",
-   "niche": "Geschichte",
-   "views": 304,
-   "published": "2026-11-23T09:36:04+00:00",
-   "thumb": "thumbs/ivNDuV011H4.jpg"
-  },
-  {
-   "id": "oR3TScIVZoA",
-   "title": "Die Steinkugeln, die niemand erklären kann 🪨",
-   "text": "Im Dschungel von Costa Rica liegen hunderte fast perfekt runde Steinkugeln. Wer sie machte, ist bekannt, wozu sie dienten, bis heute nicht.",
-   "niche": "Geschichte",
-   "views": 459,
-   "published": "2026-11-23T08:36:07+00:00",
-   "thumb": "thumbs/oR3TScIVZoA.jpg"
   }
  ]
 }
