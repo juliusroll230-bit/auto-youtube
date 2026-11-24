@@ -1034,7 +1034,13 @@ def post_relax(manual=False):
             st = store.state()
             n = int(st.get("relax_n", 0))
             ups = (store.read("relax.json", {}) or {}).get("uploads") or []
-            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n)
+            try:
+                relax_check_uploads(cfg)   # erst nachsehen, ob YouTube die letzten Videos angenommen hat
+                st = store.state()
+                ups = (store.read("relax.json", {}) or {}).get("uploads") or []
+            except Exception:
+                traceback.print_exc()
+            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, st.get("relax_cap"))
             shutil.rmtree(folder, ignore_errors=True)
             status["busy"] = f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}"
             with working("studio", task="Baut ein langes Entspannungsvideo"):
@@ -1097,6 +1103,52 @@ def post_relax(manual=False):
         relax_lock.release()
 
 
+def relax_check_uploads(cfg):
+    """Prüft, ob YouTube die letzten Quiet-Corner-Videos wirklich angenommen hat. Zu lange werden abgelehnt:
+    dann kürzer weitermachen und den Platz des Tages neu vergeben (Neu-Upload in kürzerer Form)."""
+    import entspannung
+    info = store.read("relax.json", {}) or {}
+    today = store.now().date()
+    recent = [u for u in info.get("uploads") or []
+              if (today - dt.date.fromisoformat(u["at"])).days <= 3 and not u.get("ok")]
+    if not recent:
+        return
+    states = yt.upload_states({**cfg, "refresh_token": cfg["relax_token"]}, [u["video_id"] for u in recent])
+    bad = {i: x for i, x in states.items() if x["upload"] in ("rejected", "failed")}
+    info = store.read("relax.json", {}) or {}
+    keep, lost, cap = [], [], None
+    for u in info.get("uploads") or []:
+        x = bad.get(u["video_id"])
+        if x:
+            lost.append(u)
+            if x["reason"] == "length" or x["upload"] == "rejected":
+                cap = min(cap or 10 ** 6, entspannung.next_cap(u.get("minutes") or 600))
+            continue
+        if states.get(u["video_id"], {}).get("upload") == "processed":
+            u["ok"] = True
+        keep.append(u)
+    if not lost:
+        store.write("relax.json", info)
+        return
+    info["uploads"] = keep
+    info["rejected"] = (info.get("rejected") or [])[-20:] + [{"video_id": u["video_id"], "title": u["title"], "minutes": u.get("minutes"), "at": u["at"]} for u in lost]
+    if cap:
+        info["notice"] = (f"YouTube hat ein Video wegen der Länge abgelehnt. Neue Videos sind jetzt höchstens {entspannung.dauer_text(cap)} lang. "
+                          "Wenn du den Kanal auf youtube.com/verify bestätigt hast, in „Länge“ wieder eine längere wählen.")
+    store.write("relax.json", info)
+    with store.LOCK:
+        st = store.state()
+        if cap:
+            st["relax_cap"] = cap
+        for u in lost:   # der Platz zählt nicht als erledigt, dann baut die Zentrale sofort ein neues, kürzeres Video
+            if u["at"] == st.get("relax_last") and int(st.get("relax_today_n", 1)) > 0:
+                st["relax_today_n"] = int(st.get("relax_today_n", 1)) - 1
+        st["relax_tried"] = None
+        store.write("state.json", st)
+    store.log("warn", f"Quiet Corner: {len(lost)} Video(s) von YouTube abgelehnt (zu lang). Es kommt ein kürzeres neu." if cap
+              else f"Quiet Corner: {len(lost)} Video(s) von YouTube nicht angenommen.")
+
+
 def relax_refresh_stats(cfg):
     """Aufrufe der Quiet-Corner-Videos (für den Lernmodus und die Übersicht)."""
     info = store.read("relax.json", {}) or {}
@@ -1104,6 +1156,10 @@ def relax_refresh_stats(cfg):
     ids = [u["video_id"] for u in ups] + [u["teaser_id"] for u in ups if u.get("teaser_id")]
     if not ids:
         return
+    try:
+        relax_check_uploads(cfg)
+    except Exception:
+        traceback.print_exc()
     stats = yt.video_stats({**cfg, "refresh_token": cfg["relax_token"]}, ids)
     info = store.read("relax.json", {}) or {}
     for u in info.get("uploads") or []:
@@ -1744,6 +1800,10 @@ class Handler(BaseHTTPRequestHandler):
                 ch["relax_minutes"] = int(data["minutes"])
                 ch["relax_length"] = str(int(data["minutes"]))
             if "length" in data:
+                with store.LOCK:   # eine neue Wahl hebt die Notbremse wieder auf (z. B. nach youtube.com/verify)
+                    st0 = store.state()
+                    st0["relax_cap"] = None
+                    store.write("state.json", st0)
                 v = str(data["length"])
                 if v != "auto" and (not v.isdigit() or int(v) not in entspannung.MINUTES):
                     return self.send(400, {"error": "Länge: automatisch oder 3, 5, 8, 10 Stunden."})
