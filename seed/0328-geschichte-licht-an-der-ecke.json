@@ -1,0 +1,110 @@
+{
+  "slug": "geschichte-licht-an-der-ecke",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Das Licht an der Ecke 💡",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend brennt an der Ecke ein Küchenlicht, bis es eines Tages dunkel bleibt.\n\n#geschichte #storytime #nachbarn #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "nachbarn",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Küchenlicht | plötzlich aus",
+    "Wer lässt es an"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich ist das Küchenlicht an der Ecke aus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Seit Monaten leuchtet es, wenn ich vom Training komme.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💡",
+        "text": "Jeden Abend an"
+      }
+    },
+    {
+      "text": "Ohne das Licht wirkt der Heimweg ganz dunkel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Ich klingele bei Frau Yilmaz, obwohl ich sie kaum kenne.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Sie liegt mit Fieber im Bett und lächelt müde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "🤒"
+      }
+    },
+    {
+      "text": "Ich koche ihr Tee und mache das *Licht* wieder an.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🍵",
+        "text": "Tee und Licht"
+      }
+    },
+    {
+      "text": "Sie hat es *extra* für mich angelassen, seit dem ersten Abend.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Jetzt bringe ich ihr jeden Freitag Brötchen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🥖",
+        "text": "Brötchen am Freitag"
+      }
+    }
+  ]
+}

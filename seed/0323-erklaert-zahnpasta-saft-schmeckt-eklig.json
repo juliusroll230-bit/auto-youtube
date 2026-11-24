@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-zahnpasta-saft-schmeckt-eklig",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum schmeckt Saft nach Zähneputzen eklig? 🍊",
+  "description": "Warum Orangensaft nach dem Zähneputzen so komisch schmeckt: Was Zahnpasta mit den Geschmackszellen auf deiner Zunge macht.\n\n#wissen #körper #zähne #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "zähne",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zahnpasta | stört den Saft",
+    "Liegt es am Schaum"
+  ],
+  "segments": [
+    {
+      "text": "Warum schmeckt Orangensaft nach dem Zähneputzen so eklig?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🍊"
+      }
+    },
+    {
+      "text": "Viele Zahnpasten enthalten einen *Schaumstoff* gegen Schmutz.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪥",
+        "text": "Der Schaumstoff"
+      }
+    },
+    {
+      "text": "Er stört die Zellen, die Süßes auf der Zunge melden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "👅",
+        "text": "Süß wird leiser"
+      }
+    },
+    {
+      "text": "Dadurch wirken Saures und Bitteres stärker.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍯",
+          "text": "Süß: leiser"
+        },
+        "rechts": {
+          "objekt": "🍋",
+          "text": "Sauer: lauter"
+        }
+      }
+    },
+    {
+      "text": "Viele kennen das: Saft schmeckt dann *schlecht*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Alle kennen es"
+      }
+    },
+    {
+      "text": "Zahnpasta ohne diesen Stoff gibt es auch.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🪥",
+        "text": "Ohne Schaumstoff"
+      }
+    },
+    {
+      "text": "Nicht der Saft ist schuld, sondern der *Schaum* im Mund.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🫧"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Zähneputzen noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪥",
+        "text": "Zähneputzen"
+      }
+    }
+  ],
+  "ende": "loop"
+}
