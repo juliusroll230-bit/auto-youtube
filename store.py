@@ -849,6 +849,17 @@ def relax_overview(cfg, st):
             vals = [u["per_day"] for u in ups if u.get(key) == k and u.get("per_day") is not None]
             rows.append({"key": k, "name": name, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
         learnt[key] = rows
+    for key, names in entspannung.STYLE_KEYS.items():   # Titel-, Vorschaubild- und Klang-Stil (ältere Uploads zählen als Standard)
+        rows = []
+        for k, name in names.items():
+            vals = [u["per_day"] for u in ups if (u.get(key) or entspannung.STYLE_DEFAULT[key]) == k and u.get("per_day") is not None]
+            rows.append({"key": k, "name": name, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
+        learnt[key] = rows
+    rows = []
+    for k in entspannung.LEARN_HOURS:
+        vals = [u["per_day"] for u in ups if u.get("slot_hour") == k and u.get("per_day") is not None]
+        rows.append({"key": k, "name": "%d Uhr" % k, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
+    learnt["slot_hour"] = rows
     used = {}
     for u in ups:
         if u.get("idea"):
