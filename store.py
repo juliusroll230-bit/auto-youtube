@@ -1027,6 +1027,8 @@ def dashboard(extra=None, working=None, repo=True):
             {**row, "key": "thumbnail_lang", "label": "Thumbnail (lange Videos)"} for row in learn.feature_summary(
                 learn.feature_scores([p for p in posted if p.get("lang")], now())) if row["key"] == "thumbnail"],
         "thumbs": _safe(lambda: thumbs_overview(posted, [card(s) for _, s in long_planned]), {}),
+        "kompass": _safe(lambda: __import__("nische").compass(
+            learn.feature_summary(learn.feature_scores(learnable(posted), now()))), {"rows": [], "advice": []}),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),

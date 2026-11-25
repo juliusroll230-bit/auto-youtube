@@ -252,6 +252,32 @@ und der Lernmodus nimmt nur, was bei unseren Zuschauern besser läuft. Alles sel
   trotzdem schreiben, sie wird dann eben später gesendet).
 - Ca. 10.12. unter „Was am besten funktioniert“ ansehen und Julius sagen, welche Taktiken bei uns gewinnen.
 
+### Nischen-Kompass, Titel-Muster und Zwischen-Haken (seit 25.11.2026, Julius' zweites „claude-content-skills“-Paket)
+
+Das Paket (Ootto, MIT, jetzt ca. 60 Skills, fast alles für Instagram) wurde nochmal ausgewertet. Übernommen nur, was zu
+unserem Kanal passt (`nische.py`): **hook-mining** (Titel nach Muster sortieren und an echten Aufrufen messen, nie kopieren),
+**going-viral** (Zwischen-Haken in der Mitte, Einstieg nicht immer gleich) und **content-audit** (stärkstes Themenfeld finden).
+Nicht übernommen: agent-reach/reel-analyzer (laden fremde Videos), alles zu DMs, Leads, Werbung, Karussells, LinkedIn/X, UGC.
+
+- Die Zentrale lernt drei neue Merkmale, aus dem Skript berechnet, also sofort auch für alle alten Shorts:
+  **„Themenfeld“** (`learn.features` → `nische.topic_field`: Körper & Sinne, Weltall, Natur & Erde, Tiere, Technik & Alltag,
+  Echte Rätsel & Geschichte, Grusel, Alltagsgeschichte …), **„Titel-Muster“** (`nische.title_pattern`: Was passiert, wenn …? /
+  Warum …? / Das X, das niemand … / Regel/Countdown / Mitmachen/Wahl / Zahl/Liste / Mythos/Irrtum / Ich-Geschichte …) und
+  **„Zwischen-Haken (Mitte)“** (`nische.rehook`: mit/ohne). Karte **„Nischen-Kompass“** im Reiter Zuschauer zeigt Bestes und
+  Schwächstes je Gruppe mit ehrlichen Hinweisen (auch, wenn Upload 11 bis 15 klar schwächer läuft).
+- GitHub Actions schreibt alle 3 Stunden `docs/nische.json` (`tools/nische_feed.py`, öffentliche Aufrufe nach ca. 1 Tag,
+  gesammelt in `docs/statistik.json`). **Vor dem Schreiben der täglichen Skripte `docs/nische.json` lesen:** Liegt ein
+  Themenfeld oder Titel-Muster mit mindestens 5 Videos klar vorn (Faktor ≥ 1,3), bei den freien Plätzen (Vielfalt,
+  Vorbild-Ideen, Mystery-Themen) dieses Feld/Muster bevorzugen; das schwächste seltener. Der feste Mix oben bleibt.
+- **Zwischen-Haken (Test):** In ungefähr **der Hälfte** der Shorts nach ca. einem Drittel ein Satz, der neu anzieht
+  („Aber dann …“, „Doch das Seltsamste …“, „Und genau da …“), die andere Hälfte ohne, damit die Zentrale vergleichen kann.
+  Kein leerer Füllsatz, er muss eine echte neue Wendung bringen. `hookcheck.py` gibt dazu einen Tipp mit „·“.
+- **Vielfalt beim Einstieg:** `hookcheck.py` vergleicht neue Skripte mit den letzten 40 in `seed/` und meldet mit „·“,
+  wenn zu viele gleich anfangen (Stand 25.11.: „Plötzlich …“ in 10 der letzten 60) oder zu viele Titel „Das X, das niemand …“
+  bzw. „niemand“ enthalten. Dann umschreiben (Regel, Zahl, Frage, mitten in der Handlung). Fragen-Einstiege bei Erklärvideos
+  („Was passiert, wenn du …?“) sind das Format und zählen nicht. Grund: YouTubes Regel gegen Massenware (07.2026).
+- Neue Muster oder Felder nur in `nische.PATTERNS` / `nische.FIELDS` eintragen. Test: `tests/nische_test.py`.
+
 ## Hook-Prüfliste und Humanizer (seit 14.11.2026)
 
 Aus dem Skill-Paket „claude-content-skills“ (virality + humanizer) übernommen.
