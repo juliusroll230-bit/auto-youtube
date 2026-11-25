@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-rongorongo-schrift-osterinsel",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Die Schrift, die niemand mehr lesen kann 🪵",
+  "description": "Auf der Osterinsel gibt es Holztafeln mit einer Schrift namens Rongorongo. Bis heute hat niemand sie nachweislich entziffert.\n\n#mystery #rätsel #osterinsel #schrift #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "osterinsel",
+    "schrift",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Rongorongo | ungelesen",
+    "Was steht dort"
+  ],
+  "segments": [
+    {
+      "text": "Wer kann die geheimnisvolle Schrift der Osterinsel lesen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪵"
+      }
+    },
+    {
+      "text": "Sie heißt *Rongorongo* und stammt von der Insel Rapa Nui.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Rapa Nui"
+      }
+    },
+    {
+      "text": "Kleine Figuren sind in Reihen in Holztafeln geritzt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🪵",
+        "text": "Holztafeln"
+      }
+    },
+    {
+      "text": "Nur etwa zwei Dutzend Objekte sind erhalten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "Objekte erhalten",
+        "objekt": "🪵",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Jede zweite Zeile steht auf dem *Kopf*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🔄",
+        "text": "Zeilen verkehrt"
+      }
+    },
+    {
+      "text": "Die Sprache der Insel ist bekannt, die Schrift nicht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🗣️",
+          "text": "Sprache bekannt"
+        },
+        "rechts": {
+          "objekt": "✍️",
+          "text": "Schrift offen"
+        }
+      }
+    },
+    {
+      "text": "Niemand hat bisher eine Lesung bewiesen.",
+      "szene": {
+        "typ": "akte",
+        "text": "Entschlüsselt?",
+        "punkte": [
+          "Viele Versuche",
+          "Keine Lösung"
+        ]
+      }
+    },
+    {
+      "text": "Und bis heute fragt sich die Welt:",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

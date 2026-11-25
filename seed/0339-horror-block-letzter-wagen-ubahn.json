@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-letzter-wagen-ubahn",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Steig nachts nie in den letzten Wagen 🚇",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine dritte Regel. Steig nachts niemals in den letzten Wagen der U-Bahn.\n\n#horror #gruselig #blockwelt #ubahn #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "ubahn",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "U-Bahn | Regel 3",
+    "Nicht einsteigen"
+  ],
+  "segments": [
+    {
+      "text": "Steig nachts niemals in den letzten Wagen der U-Bahn.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🚇",
+        "chat": "Server: Regel 3"
+      }
+    },
+    {
+      "text": "Die Bahn hält, und alle Türen öffnen sich gleichzeitig.",
+      "szene": {
+        "typ": "horror",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Bahn: Ende der Linie"
+      }
+    },
+    {
+      "text": "Im letzten Wagen sitzen Spieler, die sich nicht *bewegen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚇",
+        "text": "Alle starr"
+      }
+    },
+    {
+      "text": "Einer dreht langsam den Kopf zu dir.",
+      "szene": {
+        "typ": "monster",
+        "ort": "stadt",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Ein Chatfenster flackert: Setz dich zu uns.",
+      "szene": {
+        "typ": "horror",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f",
+        "chat": "Chat: setz dich"
+      }
+    },
+    {
+      "text": "Die Türen schließen sich, und die Bahn *fährt*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🚪",
+        "text": "Türen zu"
+      }
+    },
+    {
+      "text": "Auf dem Plan fehlt die nächste Station.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🗺️",
+        "text": "Station fehlt"
+      }
+    },
+    {
+      "text": "Merk dir die dritte Regel:",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🚇"
+      }
+    }
+  ],
+  "ende": "loop"
+}
