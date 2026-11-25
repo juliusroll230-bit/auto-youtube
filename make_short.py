@@ -19,8 +19,10 @@ W, H, FPS = 1080, 1920, 30
 PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
 SPEED = 0.88      # Sprechtempo der Stimme (kleiner = schneller)
 TAIL = 0.35       # Stille nach dem letzten Satz: kurz, damit das Video sofort wieder von vorn läuft (Schleife)
-# Ton: Brummen weg, Stimme gleichmäßiger (Kompressor), Lautheit auf YouTube-Standard (-14 LUFS)
-AUDIO_FILTER = ("highpass=f=70,acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.5,"
+# Ton: Brummen weg, Stimme gleichmäßiger (Kompressor), Lautheit auf YouTube-Standard (-14 LUFS).
+# Seit 25.11.2026 angenehmer (Julius): etwas mehr Wärme (170 Hz), weniger schrille Höhen (3,2 kHz), weichere S-Laute (De-Esser).
+AUDIO_FILTER = ("highpass=f=75,equalizer=f=170:t=q:w=1:g=2.5,equalizer=f=3200:t=q:w=1.4:g=-3,deesser=i=0.5:m=0.5:f=0.5,"
+                "lowpass=f=12000,acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.5,"
                 "loudnorm=I=-14:TP=-1.5:LRA=8,aresample=48000,apad")
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.environ.get("TTS_MODEL_DIR", os.path.join(HERE, "models", "vits-piper-de_DE-thorsten-high"))
@@ -40,6 +42,9 @@ VOICES = {
     "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
     "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
     "aufgeregt": (1.0, 0.86, 0.0),   # aufgeregt: etwas flotter, mit Betonung (19.11.2026, abends auf Julius' Wunsch etwas zurückgenommen)
+    # Julius 25.11.2026: „die Stimme sollte angenehmer werden“. Etwas ruhiger, minimal tiefer, gleichmäßige Satzmelodie.
+    "sanft": (0.98, 1.08, 0.0),       # Thorsten-high, ruhiger und wärmer
+    "ruhig": (1.0, 1.08, 0.0),        # Thorsten-emotional, Sprecher „neutral“: ruhiger, freundlicher Ton
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -48,9 +53,10 @@ VOICE_MODELS = {
     "freundlich": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
     "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
     "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
+    "ruhig": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 4),  # 4 = neutral
 }
 # Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
-VOICE_NOISE = {"aufgeregt": (0.5, 0.7)}  # niedrig = gleichmäßige Satzmelodie
+VOICE_NOISE = {"aufgeregt": (0.5, 0.7), "sanft": (0.5, 0.6), "ruhig": (0.5, 0.6)}  # niedrig = gleichmäßige Satzmelodie
 _voice_models = {}
 
 
@@ -82,7 +88,8 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
         if src != rate:
             x = np.interp(np.linspace(0, len(x) - 1, int(len(x) * rate / src)), np.arange(len(x)), x).astype(np.float32)
         return x
-    cfg = SynthesisConfig(length_scale=length_scale)
+    ns, nw = VOICE_NOISE.get(voice, (None, None))
+    cfg = SynthesisConfig(length_scale=length_scale, noise_scale=ns, noise_w_scale=nw)
     return np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
 
 
