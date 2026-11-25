@@ -238,7 +238,8 @@ BACKGROUNDS = ("clips", "animation")                   # echte Pexels-Clips (sto
 # Cartoons: Stimme (wie make_short.VOICES), je nach Stimmung passen nur manche
 # "warm": ruhige, freundliche Geschichten (seit 16.11.2026 Test); "freundlich" testet auch bei Erklärvideos mit.
 VOICES_FOR_MOOD = {"gruselig": ("unheimlich", "erzaehler"), "mysterioes": ("erzaehler", "unheimlich"),
-                   "neugierig": ("aufgeregt", "froehlich", "klar", "freundlich"),
+                   # Julius 25.11.2026: „angenehmer“ -> sanft und ruhig neu, froehlich raus (zu hoch)
+                   "neugierig": ("sanft", "ruhig", "aufgeregt", "klar", "freundlich"),
                    "warm": ("freundlich", "erzaehlerin", "erzaehler")}
 FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "Untertitel", "transition": "Übergang", "kopfzeile": "Kopfzeile", "laenge": "Länge",
                  "einstieg": "Erster Satz", "grafik": "Grafik", "hintergrund": "Hintergrund",
