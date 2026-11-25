@@ -227,6 +227,31 @@ lesen selbst Titel und Aufrufe ihrer neuesten Videos. Für die tägliche Skript-
   („Geh nachts nie zum Eiswagen“, „Du hast 60 Sekunden, um …“) an vertrauten Orten (Schule, Bus, Supermarkt);
   ab und zu ein Mitmach-Hook („Teste dich: …“) oder eine Wahl-Frage („Welche Tür würdest du nehmen?“).
 
+### Vorbild-Taktiken und besseres Lernsystem (seit 25.11.2026, Julius' Wunsch)
+
+Julius: „Taktiken der anderen Kanäle übernehmen, Musik und Stimme anpassen, coolere Übergänge, mehr was die Leute dranhält,
+Lernsystem verbessern, auch bei Quiet Corner.“ Was bei mehreren Vorbildern gleich ist, steht in `vorbilder.TAKTIKEN`
+(Karte „Vorbilder“ zeigt dazu den Stand bei uns). Nichts wird fest eingebaut: die App testet jede Taktik als Variante
+und der Lernmodus nimmt nur, was bei unseren Zuschauern besser läuft. Alles selbst erzeugt, keine fremde Musik.
+
+- **Musik** (`look.musik`, `learn.MUSIC_FOR_MOOD`, `audio.tension_music`/`light_music`/`drop_music`): Erklärvideos
+  „beat“ (bisher), „spannung“ (pulsierend mit Ticken), „leicht“ (verspieltes Zupfen), „drop“ (Beat setzt erst auf dem Aha-Moment ein);
+  Mystery „dunkel“ oder „spannung“; Horror bleibt dunkel, Geschichten warm.
+- **Übergang (Cartoon)** (`look.uebergang`, `learn.CARTOON_TRANSITIONS`, `cartoon/web/main.js` trOverlay): „whip“ (bisher), „zoom“,
+  „wisch“ (flüssiger Farb-Wisch), „kreis“, „blitz“. Bei Tempo „schnell“ gibt es nur harte Schnitte.
+- **Dranbleiben** (`look.halten`, `learn.HOLDS`): „frage“ (Titel-Frage oben bis zur Auflösung, dann grüner Haken), „balken“
+  (Fortschrittsbalken), „beides“, „ohne“. Darum: **Titel als echte Frage** formulieren, wo es passt, höchstens ca. 50 Zeichen.
+- Zum Ausprobieren im Skript `"musik"`, `"uebergang"`, `"halten"` (nicht in der täglichen Aufgabe benutzen).
+- **Lernsystem** (`learn.relative`, `learn.thompson`, `learn.chances`): Jedes Video wird mit den Videos aus ±4 Tagen verglichen
+  (Faktor „1,3× Schnitt“), gerechnet im Logarithmus (Ausreißer ziehen nicht allein), Videos von vor 3 Wochen zählen halb.
+  Statt fest 3 von 4 wählt das Thompson-Verfahren: sicherer Gewinner fast immer, knappe Rennen werden weiter getestet.
+  Die Zentrale zeigt „% sicher“. Nur zum Ansehen: „Upload des Tages“ (1. bis 5. / 6. bis 10. / 11. bis 15.) und „Uhrzeit“.
+- **Quiet Corner** (`entspannung.belief`, `_pick`, `learn_rows`, `use_story`): Szene und Länge mit derselben Methode
+  (jedes 8. Video testet trotzdem), dazu Vergleich „Geschichte oder nur Szene“ und „Uhrzeit“. Laufen reine Szenen nach
+  mindestens 4 Videos je Seite zu 80 % sicher besser, kommt die Geschichte nur noch in jedem 2. Video (die tägliche Geschichte
+  trotzdem schreiben, sie wird dann eben später gesendet).
+- Ca. 10.12. unter „Was am besten funktioniert“ ansehen und Julius sagen, welche Taktiken bei uns gewinnen.
+
 ## Hook-Prüfliste und Humanizer (seit 14.11.2026)
 
 Aus dem Skill-Paket „claude-content-skills“ (virality + humanizer) übernommen.
