@@ -16,6 +16,7 @@ Zum Testen: python entspannung.py regen-fenster 2 ordner   (Idee, Minuten, Ordne
 import datetime as _dt
 import json
 import os
+import math
 import random
 import subprocess
 import sys
@@ -209,21 +210,92 @@ def _per_day(u, today):
     return u["views"] / age
 
 
+HALF_LIFE_D = 30   # Lernmodus: ein Video von vor einem Monat zählt halb so viel wie ein neues
+TEST_EVERY = 8     # jedes 8. Video testet trotzdem eine andere Szene oder Länge (Geschmack und YouTube ändern sich)
+
+
+def _age(u, today):
+    try:
+        return (today - _dt.date.fromisoformat(u["at"])).days
+    except (KeyError, ValueError):
+        return 0
+
+
+def belief(uploads, key, value, today):
+    """Was der Lernmodus über einen Wert weiß: (anzahl bewertet, aufrufe pro tag im schnitt, log-mittel, unsicherheit).
+
+    Gerechnet wird mit dem Logarithmus (ein einzelner Glückstreffer zählt nicht wie zehn gute Videos),
+    neuere Videos zählen mehr, und jeder Wert startet mit etwas Unsicherheit."""
+    vals = [(math.log1p(v), 0.5 ** (_age(u, today) / HALF_LIFE_D), v)
+            for u in uploads if u.get(key) == value for v in [_per_day(u, today)] if v is not None]
+    if not vals:
+        return 0, None, None, None
+    w = sum(x[1] for x in vals)
+    mu = sum(x[0] * x[1] for x in vals) / w
+    var = sum(x[1] * (x[0] - mu) ** 2 for x in vals) / w
+    spread = math.sqrt((w * var + 2 * 0.8 ** 2) / (w + 2))
+    return len(vals), sum(x[2] for x in vals) / len(vals), mu, spread / math.sqrt(w + 1)
+
+
+def chances(options, uploads, key, today, draws=400):
+    """Wie sicher ist jeder Wert der beste? {wert: 0..1} für Werte mit mindestens 2 bewerteten Videos."""
+    bel = {o: belief(uploads, key, o, today) for o in options}
+    rated = [o for o in options if bel[o][0] >= 2]
+    if len(rated) < 2:
+        return {o: 1.0 for o in rated}
+    rnd, wins = random.Random(7), dict.fromkeys(rated, 0)
+    for _ in range(draws):
+        wins[max(rated, key=lambda o: rnd.gauss(bel[o][2], bel[o][3]))] += 1
+    return {o: wins[o] / draws for o in rated}
+
+
 def _pick(options, uploads, key, today, rnd):
-    """Lernmodus für eine Eigenschaft (Szene oder Länge): erst jede einmal, dann 3 von 4 Mal die beste, sonst die älteste."""
+    """Lernmodus für eine Eigenschaft (Szene oder Länge), seit 25.11.2026 genauer:
+    erst jede einmal, dann jede mindestens zweimal bewertet. Danach zieht das Thompson-Verfahren für jeden Wert eine
+    plausible Stärke (je unsicherer, desto breiter) und nimmt die höchste: Ist ein Gewinner sicher, kommt er fast immer dran,
+    ist es knapp, wird weiter getestet. Jedes 8. Video testet trotzdem den Wert, der am längsten nicht dran war."""
     used = [u.get(key) for u in uploads]
     fresh = [o for o in options if o not in used]
     if fresh:
         return fresh[0]
-    score = {}
-    for o in options:
-        vals = [v for v in (_per_day(u, today) for u in uploads if u.get(key) == o) if v is not None]
-        if len(vals) >= 2:
-            score[o] = sum(vals) / len(vals)
-    if len(score) >= 2 and rnd.random() < .75:
-        return max(score, key=score.get)
     last = {o: max((i for i, x in enumerate(used) if x == o), default=-1) for o in options}
+    bel = {o: belief(uploads, key, o, today) for o in options}
+    rated = [o for o in options if bel[o][0] >= 2]
+    if len(rated) >= 2 and rnd.random() >= 1 / TEST_EVERY:
+        return max(rated, key=lambda o: rnd.gauss(bel[o][2], bel[o][3]))
     return min(options, key=lambda o: last[o])
+
+
+def use_story(uploads, today=None, n=0):
+    """Einschlaf-Geschichte oder nur die Szene? Standard: Geschichte (Julius, 24.11.2026). Laufen die reinen Szenen nach
+    mindestens 4 bewerteten Videos je Seite sicher besser (80 %), kommt die Geschichte nur noch in jedem 2. Video."""
+    today = today or _dt.date.today()
+    ups = [{**u, "inhalt": "Geschichte" if u.get("story") else "Szene"} for u in uploads if u.get("idea")]
+    if min(belief(ups, "inhalt", o, today)[0] for o in ("Geschichte", "Szene")) < 4:
+        return True
+    return chances(("Geschichte", "Szene"), ups, "inhalt", today).get("Szene", 0) < 0.8 or n % 2 == 0
+
+
+def learn_rows(uploads, today=None):
+    """Für den Reiter Quiet Corner: je Merkmal die Werte mit Aufrufen pro Tag, Anzahl und „x % sicher“."""
+    today = today or _dt.date.today()
+    ups = [{**u, "inhalt": "Geschichte" if u.get("story") else "Szene",
+            "zeit": None if u.get("hour") is None else "morgens" if u["hour"] < 12 else "abends"} for u in uploads]
+    groups = (("scene", SCENES), ("minutes", {m: dauer_text(m) for m in MINUTES}),
+              ("inhalt", {"Geschichte": "Mit Einschlaf-Geschichte", "Szene": "Nur Szene und Klang"}),
+              ("zeit", {"morgens": "Upload morgens", "abends": "Upload abends"}))
+    groups += tuple(STYLE_KEYS.items())   # Titel-, Vorschaubild- und Klang-Stil; ältere Uploads zählen als Standard
+    ups = [{**u, **{k: u.get(k) or STYLE_DEFAULT[k] for k in STYLE_KEYS}} for u in ups]
+    out = {}
+    for key, names in groups:
+        ch = chances(list(names), ups, key, today)
+        rows = []
+        for k, name in names.items():
+            n, per_day, _, _ = belief(ups, key, k, today)
+            rows.append({"key": k, "name": name, "n": n, "per_day": round(per_day, 1) if per_day is not None else None,
+                         "chance": round(100 * ch[k]) if k in ch and len(ch) > 1 else None})
+        out[key] = rows
+    return out
 
 
 def next_cap(minutes):

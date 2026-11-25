@@ -234,6 +234,12 @@ def render_short(spec):
                 if look["tempo"] == "schnell" and not spec.get("stimme"):
                     import cartoon
                     look["stimme"] = cartoon.FAST_VOICE   # schnell geschnitten, aber klar gesprochen (Julius, 21.11.2026)
+                # Vorbild-Taktiken (Test seit 25.11.2026): Musik-Stil, Übergang, Dranbleiben (Frage oben / Balken), gelernt
+                ex = store.next_extras(spec)
+                for k in ("musik", "uebergang", "halten"):
+                    look[k] = spec.get(k) or ex[k]
+                if look["tempo"] == "schnell":
+                    look["uebergang"] = None   # schnell hat eigene harte Schnitte, der Übergang zählt dort nicht
             if learn.abo_ok(spec):  # Test Abo-Aufruf am Ende (gesprochen / nur eingeblendet / ohne)
                 mode, line = store.next_abo(spec)
                 if spec.get("abo") in learn.ABO_MODES:   # zum Ausprobieren fest im Skript
@@ -1044,7 +1050,9 @@ def post_relax(manual=False):
             shutil.rmtree(folder, ignore_errors=True)
             styles = entspannung.choose_style(ups, store.now().date(), n)
             story = None
-            if cfg.get("relax_stories", True):   # Einschlaf-Geschichten seit 24.11.2026; ohne neue Geschichte läuft nur die Szene
+            # Einschlaf-Geschichten seit 24.11.2026; ohne neue Geschichte läuft nur die Szene. Laufen reine Szenen sicher besser,
+            # kommt die Geschichte nur noch in jedem 2. Video (Lernmodus, entspannung.use_story)
+            if cfg.get("relax_stories", True) and entspannung.use_story(ups, store.now().date(), n):
                 import sleepstory
                 if sleepstory.available():
                     story = sleepstory.pick([u.get("story") for u in ups if u.get("story")])
@@ -1087,9 +1095,8 @@ def post_relax(manual=False):
         info["error"] = None
         info["uploads"] = (info.get("uploads") or [])[-200:] + [{
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
-            "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0,
-            "slot_hour": entspannung.slot_hour_now(cfg, store.now()),
-            **({"story": story["id"]} if story else styles)}]
+            "minutes": minutes, "at": day, "hour": store.now().hour, "thumb": thumb, "teaser_id": teaser_id, "views": 0,
+            **({"story": story["id"]} if story else {}), **styles}]
         store.write("relax.json", info)
         relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))

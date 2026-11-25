@@ -128,7 +128,7 @@ def load_tts():
 
 
 def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None,
-               layout=None, tempo=None, cta=None, badge=False):
+               layout=None, tempo=None, cta=None, badge=False, music=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
@@ -138,6 +138,7 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     cta: kurzer Abo-Satz, der nach dem letzten Satz gesprochen wird (Test seit 22.11.2026). Er zählt nicht zu den
     Satz-Zeiten (die Auflösung bleibt der vorletzte Satz), beginnt bei timings[-1][1] + pause und endet bei t - pause.
     badge: Abo-Knopf nur im Bild (ohne Satz), Klick und Glocke zur Zeit badge_time.
+    music: Musik-Stil (learn.MUSIC_FOR_MOOD, Test seit 25.11.2026), None = wie bisher nach Stimmung.
     """
     import audio
 
@@ -186,7 +187,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
                       keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll",
                       beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else (),
                       snaps=fast_cuts(timings, t + TAIL) if tempo == "schnell" else (),
-                      bell=cta_at if cta else badge_time(timings, t + TAIL) if badge else None)
+                      bell=cta_at if cta else badge_time(timings, t + TAIL) if badge else None,
+                      style=music, drop=accent_time(timings) or (timings[-1][0] if timings else None))
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)

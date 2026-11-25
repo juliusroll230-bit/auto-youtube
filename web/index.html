@@ -1890,7 +1890,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       </div>
 
       <div class="card" style="margin-top:22px">
-        <div class="card-h"><div><h2>Was am besten funktioniert</h2><div class="sub">Wert je Merkmal (Aufrufe hochgerechnet, mit Dranbleiben gewichtet). Untertitel und Übergang wählt die App danach selbst, 3 von 4 Videos bekommen den besten.</div></div></div>
+        <div class="card-h"><div><h2>Was am besten funktioniert</h2><div class="sub">Jedes Video wird fair mit den Videos derselben Tage verglichen: „1,3× Schnitt“ heißt 30 % mehr Aufrufe als üblich (mit Dranbleiben gewichtet, neue Videos zählen mehr). „% sicher“ sagt, wie sicher der Wert vorn liegt. Je sicherer, desto öfter nimmt die App ihn, knappe Rennen testet sie weiter.</div></div></div>
         <div class="card-b"><div class="looks" id="looks"></div></div>
       </div>
 
@@ -1898,6 +1898,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="card-h"><div><h2>Vorbilder</h2><div class="sub">Erfolgreiche Kanäle in unseren Nischen. Die App liest alle 12 Stunden selbst Titel und Aufrufe ihrer neuesten Videos und vergleicht den Titelbau mit unserem. Wir lernen nur Stil und Methoden, wir kopieren keine Themen, Texte oder Videos.</div></div><span class="pill" id="vbStatus"></span></div>
         <div class="card-b">
           <ul class="vb-tips" id="vbTips"></ul>
+          <h3 class="label" style="margin:14px 0 6px">Was mehrere Vorbilder gleich machen und wir gerade testen</h3>
+          <div class="looks" id="vbTak"></div>
           <h3 class="vb-h">Läuft gerade bei den Vorbildern</h3>
           <div class="scroll"><table>
             <thead><tr><th>Video</th><th class="hide-sm">Kanal</th><th class="r">Aufrufe/Tag</th></tr></thead>
@@ -3132,15 +3134,16 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var box = clear($("looks")), groups = d.looks || [];
     var nice = function (v) { return v.charAt(0).toUpperCase() + v.slice(1); };
     groups.forEach(function (g) {
-      var max = g.values.reduce(function (a, x) { return Math.max(a, x.score); }, 0) || 1;
+      var val = function (x) { return x.rel != null && g.key !== "abo" && g.key !== "abo_text" ? x.rel : x.score; };
+      var max = g.values.reduce(function (a, x) { return Math.max(a, val(x)); }, 0) || 1;
       var best = g.values.length > 1 && g.values[0].videos >= 2 ? g.values[0].value : null;
       var col = h("div", null, [h("h3", { text: g.label })]);
       if (!g.values.length) col.appendChild(h("div", { cls: "label", text: "Noch keine Daten" }));
       g.values.forEach(function (x) {
         col.appendChild(h("div", { cls: "lr" + (x.value === best ? " best" : "") }, [
           h("b", { text: nice(x.value) + (x.value === best ? " ★" : "") }),
-          h("span", { cls: "meta", text: nf.format(x.score) + " · " + x.videos + " Vid." + (x.avg_pct != null ? " · " + Math.round(x.avg_pct) + " %" : "") + (x.abo_1k != null && (g.key === "abo" || g.key === "abo_text") ? " · " + String(x.abo_1k).replace(".", ",") + " Abos/1.000" : "") }),
-          h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.max(2, Math.round(100 * x.score / max)) + "%" })])
+          h("span", { cls: "meta", text: (x.rel != null && g.key !== "abo" && g.key !== "abo_text" ? String(x.rel).replace(".", ",") + "× Schnitt · " : nf.format(x.score) + " · ") + x.videos + " Vid." + (x.avg_pct != null ? " · " + Math.round(x.avg_pct) + " %" : "") + (x.chance != null && g.key !== "abo" && g.key !== "abo_text" ? " · " + x.chance + " % sicher" : "") + (x.abo_1k != null && (g.key === "abo" || g.key === "abo_text") ? " · " + String(x.abo_1k).replace(".", ",") + " Abos/1.000" : "") }),
+          h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.max(2, Math.round(100 * val(x) / max)) + "%" })])
         ]));
       });
       box.appendChild(col);
@@ -3208,6 +3211,13 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     (V.tips || []).forEach(function (t) { tips.appendChild(h("li", { text: t })); });
     if (V.muster) tips.appendChild(h("li", { cls: "meta", text: "Titel der Vorbilder: Ø " + nf1.format(V.muster.words) + " Wörter, " + V.muster.question + " % Frage, " + V.muster.emoji + " % mit Emoji" + (V.unsere ? " · unsere: Ø " + nf1.format(V.unsere.words) + " Wörter, " + V.unsere.question + " % Frage, " + V.unsere.emoji + " % Emoji" : "") }));
     tips.style.display = tips.children.length ? "" : "none";
+    var tak = clear($("vbTak")), looks = {};
+    (d.looks || []).forEach(function (g) { looks[g.key] = g; });
+    (V.taktiken || []).forEach(function (t) {
+      var g = looks[t.merkmal], top = g && g.values && g.values[0];
+      var stand = top && top.videos >= 2 && g.values.length > 1 ? "Vorn bei uns: " + top.value + (top.rel != null ? " (" + String(top.rel).replace(".", ",") + "× Schnitt" + (top.chance != null ? ", " + top.chance + " % sicher" : "") + ")" : "") : "Test läuft, noch zu wenig Videos";
+      tak.appendChild(h("div", null, [h("h3", { text: t.name }), h("div", { cls: "label", text: t.gesehen }), h("div", { cls: "label", style: "margin-top:4px", text: "Wir testen: " + t.wir }), h("div", { style: "margin-top:4px;font-size:12.5px;color:var(--accent-2)", text: stand })]));
+    });
     var tb = clear($("vbTrend"));
     trend.slice(0, 8).forEach(function (v) {
       tb.appendChild(h("tr", null, [
@@ -3236,7 +3246,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var L = d.learning || { favorite: null, niches: [], min_videos: 2, explore_every: 4 };
     pill($("learnStatus"), L.favorite ? "live" : "warn", L.favorite ? "Aktiv" : "Testphase");
     $("learnText").textContent = L.favorite
-      ? "„" + L.favorite + "“ läuft am besten. " + (L.explore_every - 1) + " von " + L.explore_every + " Videos kommen aus diesem Thema, jedes " + L.explore_every + ". testet ein anderes. Themen, bei denen Zuschauer länger bleiben, zählen mehr."
+      ? "„" + L.favorite + "“ läuft am besten. Je sicherer ein Thema vorn liegt, desto öfter kommt es dran, jedes " + L.explore_every + ". Video testet ein anderes. Verglichen wird fair mit den Videos derselben Tage, Dranbleiben zählt mit."
       : "Die Themen wechseln sich ab, bis jedes mindestens " + L.min_videos + " Videos mit Aufrufen hat. Danach kommt öfter das Thema, das am besten läuft.";
     var body = clear($("learnBody"));
     var max = L.niches.reduce(function (a, n) { return Math.max(a, n.score); }, 0) || 1;
@@ -3244,7 +3254,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       body.appendChild(h("tr", null, [
         h("td", null, [chip(n.niche), n.niche === L.favorite ? h("span", { cls: "label", style: "margin-left:8px;color:var(--accent)", text: "bevorzugt" }) : null]),
         h("td", { cls: "r num hide-sm", text: nf.format(n.videos) }),
-        h("td", { cls: "r num", text: nf.format(n.score) }),
+        h("td", { cls: "r num", text: nf.format(n.score) + (n.rel != null ? " · " + String(n.rel).replace(".", ",") + "×" : "") + (n.chance != null ? " · " + n.chance + " %" : "") }),
         h("td", { cls: "r num", text: pct(n.avg_pct) }),
         h("td", { cls: "hide-sm" }, [h("div", { cls: "keep", style: "height:6px;border-radius:3px" }, [h("i", { style: "width:" + Math.round(100 * n.score / max) + "%;background:" + nicheColor(n.niche) })])])
       ]));
@@ -6007,12 +6017,12 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
 
     var le = clear($("qcLearn")), L = Q.learn || {};
-    [["scene", "Szene"], ["minutes", "Länge"], ["title_style", "Titel-Stil"], ["thumb_style", "Vorschaubild"], ["sound", "Klang"], ["slot_hour", "Uhrzeit"]].forEach(function (g) {
+    [["scene", "Szene"], ["minutes", "Länge"], ["inhalt", "Geschichte oder nur Szene"], ["zeit", "Uhrzeit"], ["title_style", "Titel-Stil"], ["thumb_style", "Vorschaubild"], ["sound", "Klang"]].forEach(function (g) {
       var rows = L[g[0]] || [], max = Math.max.apply(null, rows.map(function (r) { return r.per_day || 0; }).concat([1]));
       le.appendChild(h("p", { cls: "label", style: "margin-top:8px", text: g[1] }));
       rows.forEach(function (r) {
         le.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: r.name }), h("div", { cls: "qc-bar" }, [h("i", { style: "width:" + Math.round((r.per_day || 0) / max * 100) + "%" })])]),
-          h("div", { cls: "n" }, [h("b", { text: r.per_day != null ? nf.format(r.per_day) : "–" }), h("span", { text: r.n ? r.n + " bewertet" : "noch offen" })])]));
+          h("div", { cls: "n" }, [h("b", { text: r.per_day != null ? nf.format(r.per_day) : "–" }), h("span", { text: r.n ? r.n + " bewertet" + (r.chance != null ? " · " + r.chance + " % sicher" : "") : "noch offen" })])]));
       });
     });
 
