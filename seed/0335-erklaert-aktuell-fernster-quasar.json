@@ -1,0 +1,110 @@
+{
+  "slug": "erklaert-aktuell-fernster-quasar",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Fernster Quasar: Was siehst du dort? 🔭",
+  "description": "Aktuell: Das Weltraumteleskop Euclid hat den bisher fernsten bekannten Quasar entdeckt. Was passiert, wenn du fast bis zum Urknall zurückschaust?\n\n#wissen #weltraum #quasar #aktuell #shorts",
+  "tags": [
+    "wissen",
+    "weltraum",
+    "quasar",
+    "aktuell",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Quasar | Rekord",
+    "Licht aus der Urzeit"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du fast bis zum Urknall zurückschaust?",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🔭"
+      }
+    },
+    {
+      "text": "Das Teleskop Euclid entdeckt den fernsten bekannten Quasar.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2026",
+        "text": "Neuer Rekord",
+        "objekt": "🔭"
+      }
+    },
+    {
+      "text": "Wir sehen ihn, wie er sechshundertdreißig Millionen Jahre nach dem Urknall aussah.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 630,
+        "einheit": "Mio. Jahre danach",
+        "objekt": "⚫",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Ein Quasar ist ein Galaxienkern mit einem *Schwarzen Loch*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "⚫",
+        "text": "Galaxienkern"
+      }
+    },
+    {
+      "text": "Sein Gaswirbel leuchtet heller als eine ganze Galaxie.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌌",
+          "text": "Galaxie"
+        },
+        "rechts": {
+          "objekt": "⚫",
+          "text": "Quasar: heller"
+        }
+      }
+    },
+    {
+      "text": "Das Loch wiegt etwa dreihundertsechzig Millionen Sonnen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "☀️",
+        "text": "360 Mio. Sonnen"
+      }
+    },
+    {
+      "text": "Du siehst also uraltes *Licht*, das seit Urzeiten unterwegs ist.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "💡",
+        "text": "Uraltes Licht"
+      }
+    },
+    {
+      "text": "Wie so ein Riese so früh entstand, ist noch offen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "aktuell": true
+}

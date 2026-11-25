@@ -1,0 +1,110 @@
+{
+  "slug": "geschichte-zettel-unter-dem-nachtisch",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Der Zettel unter dem Nachtisch 📝",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: In der Schulmensa liegt jeden Tag ein Zettel unter meinem Nachtisch, und niemand weiß, von wem.\n\n#geschichte #storytime #schule #herz #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "schule",
+    "herz",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Zettel | jeden Tag",
+    "Wer schreibt das"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich liegt ein Zettel unter meinem Nachtisch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📝"
+      }
+    },
+    {
+      "text": "Darauf steht nur: Du schaffst das heute.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "💪",
+        "text": "Du schaffst das"
+      }
+    },
+    {
+      "text": "Ich frage die ganze Klasse, aber niemand war es.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🤔"
+      }
+    },
+    {
+      "text": "Jeden Tag steht ein neuer Satz auf dem Zettel.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Vor der Mathe-Arbeit steht dort sogar: Atme tief durch.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "📝",
+        "text": "Atme tief durch"
+      }
+    },
+    {
+      "text": "Ich erkenne die Schrift von der Speisekarte, sie gehört *Herrn Kunz*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "👨‍🍳"
+      }
+    },
+    {
+      "text": "Er sah mich oft allein essen und wollte *helfen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🍽️",
+        "text": "Allein beim Essen"
+      }
+    },
+    {
+      "text": "Jetzt setze ich mich jeden Tag zu ihm.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🍽️"
+      }
+    }
+  ]
+}

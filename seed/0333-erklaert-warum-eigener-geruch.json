@@ -1,0 +1,109 @@
+{
+  "slug": "erklaert-warum-eigener-geruch",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum riechst du dich selbst nicht? 👃",
+  "description": "Warum du den eigenen Geruch kaum bemerkst: Wie sich die Nase an Dauerreize gewöhnt und warum Neues sofort auffällt.\n\n#wissen #körper #nase #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "nase",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Geruch | wo ist er",
+    "Die Nase blendet aus"
+  ],
+  "segments": [
+    {
+      "text": "Warum riechst du deinen eigenen Geruch kaum?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "👃"
+      }
+    },
+    {
+      "text": "Deine Nase gewöhnt sich schnell an *Dauerreize*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👃",
+        "text": "Gewöhnung"
+      }
+    },
+    {
+      "text": "Nach kurzer Zeit meldet sie den Geruch kaum noch.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "📉",
+        "text": "Signal sinkt"
+      }
+    },
+    {
+      "text": "Neue Gerüche fallen dagegen sofort auf.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🆕",
+          "text": "Neu: laut"
+        },
+        "rechts": {
+          "objekt": "🔁",
+          "text": "Dauer: leise"
+        }
+      }
+    },
+    {
+      "text": "Darum riechst du fremde Wohnungen, die eigene nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Fremde Wohnung"
+      }
+    },
+    {
+      "text": "Nach einer Pause riechst du es wieder.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌬️",
+        "text": "Frische Luft"
+      }
+    },
+    {
+      "text": "Deine Nase *filtert* das Gewohnte einfach weg.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "👃"
+      }
+    },
+    {
+      "text": "So fällt dir das Neue schneller auf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⚠️",
+        "text": "Neues zuerst"
+      }
+    }
+  ]
+}
