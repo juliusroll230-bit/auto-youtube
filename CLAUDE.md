@@ -339,3 +339,6 @@ Die Zentrale lernt bei Quiet Corner jetzt aus den Aufrufen pro Tag (nur Aufrufe,
 (`klassisch`, `dauer`, `suche`), **Vorschaubild-Stil** (`links`, `mitte`), **Klang** (`klar`, `weich`) (Uhrzeit und Geschichte-oder-Szene lernt `learn_rows` ebenfalls).
 Jede Option wird erst probiert, danach bekommt die beste 3 von 4 Videos (`entspannung.choose_style`). Anzeige im Reiter Quiet Corner unter „Was am besten läuft“.
 Neue Stile nur in `entspannung.TITLE_STYLES` / `THUMB_STYLES` / `SOUND_STYLES` eintragen. Test: `tests/style_test.py`.
+
+Teaser (Julius 25.11.2026: „immer Teaser“): Zu jedem langen Quiet-Corner-Video wird immer ein Teaser-Short gebaut (unabhängig von `relax_shorts`).
+Klappt der Upload nicht, gibt es 3 Versuche, danach liegt er in `relax-teasers/` und `relax_retry_teasers` holt ihn bei der nächsten Prüfung nach. Test: `tests/teaser_test.py`.

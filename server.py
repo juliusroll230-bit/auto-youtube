@@ -1061,7 +1061,7 @@ def post_relax(manual=False):
             status["busy"] = (f"Baut Quiet-Corner-Geschichte: {story['title']}" if story else
                               f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}")
             with working("studio", task="Baut ein langes Entspannungsvideo"):
-                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=bool(cfg.get("relax_shorts", True)), story=story, styles=styles)
+                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=True, story=story, styles=styles)
             minutes = r.get("minutes", minutes)
         finally:
             status["busy"] = ""
@@ -1078,13 +1078,24 @@ def post_relax(manual=False):
             thumb = True
         except Exception as e:  # Thumbnails brauchen einen bestätigten Kanal (youtube.com/verify)
             store.log("warn", f"Thumbnail für das Entspannungsvideo nicht gesetzt: {e}")
-        teaser_id = None
-        if r.get("teaser"):
-            try:
-                tm = entspannung.teaser_meta(idea, minutes, video_id)
-                teaser_id = yt.upload(rcfg, r["teaser"], {**tm, "footer": "", "category": "22", "language": "en"})
-            except Exception as e:
-                store.log("warn", f"Quiet Corner: Teaser-Short nicht hochgeladen: {e}")
+        teaser_id, teaser_pending = None, False
+        if r.get("teaser"):   # Julius 25.11.: zu jedem langen Video immer ein Teaser-Short, darum mehrere Versuche und später nachholen
+            tm = entspannung.teaser_meta(idea, minutes, video_id)
+            for attempt in range(3):
+                try:
+                    teaser_id = yt.upload(rcfg, r["teaser"], {**tm, "footer": "", "category": "22", "language": "en"})
+                    break
+                except Exception as e:
+                    store.log("warn", f"Quiet Corner: Teaser-Short nicht hochgeladen (Versuch {attempt + 1} von 3): {e}")
+                    time.sleep(30 * (attempt + 1))
+            if not teaser_id:
+                try:
+                    keep = store.path("relax-teasers")
+                    os.makedirs(keep, exist_ok=True)
+                    shutil.copy(r["teaser"], os.path.join(keep, video_id + ".mp4"))
+                    teaser_pending = True
+                except Exception:
+                    traceback.print_exc()
         day = store.now().date().isoformat()
         with store.LOCK:
             st = store.state()
@@ -1095,7 +1106,7 @@ def post_relax(manual=False):
         info["error"] = None
         info["uploads"] = (info.get("uploads") or [])[-200:] + [{
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
-            "minutes": minutes, "at": day, "hour": store.now().hour, "thumb": thumb, "teaser_id": teaser_id, "views": 0,
+            "minutes": minutes, "at": day, "hour": store.now().hour, "thumb": thumb, "teaser_id": teaser_id, "teaser_pending": teaser_pending, "views": 0,
             **({"story": story["id"]} if story else {}), **styles}]
         store.write("relax.json", info)
         relax_phase("")
@@ -1122,10 +1133,44 @@ def post_relax(manual=False):
         relax_lock.release()
 
 
+def relax_retry_teasers(cfg):
+    """Holt Teaser-Shorts nach, die beim Video-Upload nicht geklappt haben (die Datei liegt in relax-teasers/)."""
+    import entspannung
+    info = store.read("relax.json", {}) or {}
+    todo = [u for u in info.get("uploads") or [] if u.get("teaser_pending") and not u.get("teaser_id")]
+    if not todo:
+        return
+    rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
+    for u in todo:
+        f = os.path.join(store.path("relax-teasers"), u["video_id"] + ".mp4")
+        if not os.path.exists(f):
+            u["teaser_pending"] = False
+            continue
+        try:
+            tm = entspannung.teaser_meta(u.get("idea") or entspannung.IDEAS[0]["id"], u.get("minutes") or 60, u["video_id"])
+            u["teaser_id"] = yt.upload(rcfg, f, {**tm, "footer": "", "category": "22", "language": "en"})
+            u["teaser_pending"] = False
+            os.remove(f)
+            store.log("ok", f"Quiet Corner: Teaser-Short nachgeholt für {u['title']}")
+        except Exception as e:
+            store.log("warn", f"Quiet Corner: Teaser-Short weiter nicht hochladbar: {e}")
+            break
+    cur = store.read("relax.json", {}) or {}
+    by = {u["video_id"]: u for u in todo}
+    for u in cur.get("uploads") or []:
+        if u["video_id"] in by:
+            u["teaser_id"], u["teaser_pending"] = by[u["video_id"]].get("teaser_id"), by[u["video_id"]].get("teaser_pending", False)
+    store.write("relax.json", cur)
+
+
 def relax_check_uploads(cfg):
     """Prüft, ob YouTube die letzten Quiet-Corner-Videos wirklich angenommen hat. Zu lange werden abgelehnt:
     dann kürzer weitermachen und den Platz des Tages neu vergeben (Neu-Upload in kürzerer Form)."""
     import entspannung
+    try:
+        relax_retry_teasers(cfg)
+    except Exception:
+        traceback.print_exc()
     info = store.read("relax.json", {}) or {}
     today = store.now().date()
     recent = [u for u in info.get("uploads") or []
