@@ -15,9 +15,13 @@ Emojis nur als Bild und nicht als Deko. Das gilt auch für Titel, Beschreibung u
 Die App nutzt dasselbe: neue Skripte werden beim Einlesen bereinigt (clean), die Zentrale
 zeigt die Note (check) und der Lernmodus vergleicht starke und schwache Hooks.
 """
+import glob
 import json
+import os
 import re
 import sys
+
+import nische
 
 # --- Humanizer ---------------------------------------------------------------------
 
@@ -176,6 +180,10 @@ def text_tips(spec):
         last = str(segs[-1].get("text", "")).strip()
         if last.endswith((".", "!")):
             tips.append("Loop-Ende: der letzte Satz soll offen enden und in den ersten Satz übergehen (ohne Schlusspunkt).")
+    words = sum(len(str(s.get("text", "")).split()) for s in segs)
+    if words >= 50 and nische.rehook(spec) == "ohne":
+        tips.append("Zwischen-Haken fehlt: nach ca. einem Drittel ein Satz, der neu anzieht (z. B. „Aber dann …“, "
+                    "„Doch das Seltsamste …“), damit niemand in der Mitte wegwischt.")
     return tips
 
 
@@ -311,6 +319,24 @@ def bucket(score):
     return "stark (8 von 8)" if score >= 8 else "gut (6-7 von 8)" if score >= 6 else "schwach (bis 5 von 8)"
 
 
+def _recent_seeds(files, n=40):
+    """Die n Skripte in seed/ vor den geprüften (für die Vielfalt-Tipps beim Einstieg und Titel)."""
+    folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seed")
+    mine = {os.path.abspath(f) for f in files}
+    out = []
+    for path in sorted(glob.glob(os.path.join(folder, "*.json")))[::-1]:
+        if os.path.abspath(path) in mine:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                out.append(json.load(f))
+        except (OSError, ValueError):
+            continue
+        if len(out) >= n:
+            break
+    return out
+
+
 def main(args):
     fix = "--fix" in args
     files = [a for a in args if a != "--fix"]
@@ -318,6 +344,7 @@ def main(args):
         print(__doc__)
         return 1
     worst = 8
+    recent = _recent_seeds(files)
     for name in files:
         with open(name, encoding="utf-8") as f:
             spec = json.load(f)
@@ -332,7 +359,7 @@ def main(args):
         print(f"{r['score']}/{r['max']}  {name}")
         for tip in r["tips"]:
             print("      - " + tip)
-        for tip in r["text_tips"]:
+        for tip in r["text_tips"] + nische.sameness(spec, recent):
             print("      · " + tip)
     return 0 if worst >= 6 else 2
 

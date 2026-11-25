@@ -1889,6 +1889,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         </table></div>
       </div>
 
+      <div class="card" style="margin-top:22px" id="kompass">
+        <div class="card-h"><div><h2>Nischen-Kompass</h2><div class="sub">Welches Themenfeld und welches Titel-Muster bei deinen Zuschauern am besten läuft, fair mit den Videos derselben Tage verglichen. Die App rechnet das für alle Shorts aus dem Skript aus, auch für alte. So siehst du, in welche Nische der Kanal wachsen sollte. Die tägliche Skript-Aufgabe richtet sich danach.</div></div><span class="pill" id="kpStatus"></span></div>
+        <div class="card-b"><ul class="vb-tips" id="kpAdvice"></ul><div class="looks" id="kpRows"></div></div>
+      </div>
+
       <div class="card" style="margin-top:22px">
         <div class="card-h"><div><h2>Was am besten funktioniert</h2><div class="sub">Jedes Video wird fair mit den Videos derselben Tage verglichen: „1,3× Schnitt“ heißt 30 % mehr Aufrufe als üblich (mit Dranbleiben gewichtet, neue Videos zählen mehr). „% sicher“ sagt, wie sicher der Wert vorn liegt. Je sicherer, desto öfter nimmt die App ihn, knappe Rennen testet sie weiter.</div></div></div>
         <div class="card-b"><div class="looks" id="looks"></div></div>
@@ -3150,6 +3155,26 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
   }
 
+  function renderKompass(d) {
+    var K = d.kompass || {}, rows = K.rows || [], adv = clear($("kpAdvice")), box = clear($("kpRows"));
+    var fx = function (x) { return String(x.rel).replace(".", ",") + "×"; };
+    pill($("kpStatus"), rows.length ? "live" : "warn", rows.length ? "Aktiv" : "Sammelt noch");
+    (K.advice || []).forEach(function (t) { adv.appendChild(h("li", { text: t })); });
+    if (!(K.advice || []).length) adv.appendChild(h("li", { cls: "meta", text: rows.length ? "Noch kein klarer Gewinner. Die App testet weiter." : "Sobald je Gruppe mindestens 4 bewertete Shorts da sind, steht hier, was am besten läuft." }));
+    rows.forEach(function (r) {
+      var max = r.values.reduce(function (a, x) { return Math.max(a, x.rel); }, 0) || 1;
+      var col = h("div", null, [h("h3", { text: r.label })]);
+      r.values.forEach(function (x, i) {
+        col.appendChild(h("div", { cls: "lr" + (i === 0 ? " best" : "") }, [
+          h("b", { text: x.value + (i === 0 ? " ★" : "") }),
+          h("span", { cls: "meta", text: fx(x) + " · " + x.videos + " Vid." + (x.chance != null ? " · " + x.chance + " % sicher" : "") }),
+          h("div", { cls: "bar" }, [h("i", { style: "width:" + Math.max(2, Math.round(100 * x.rel / max)) + "%" })])
+        ]));
+      });
+      box.appendChild(col);
+    });
+  }
+
   function renderThumbs(d) {
     var T = d.thumbs || {}, st = T.status || null, grid = clear($("tbGrid")), note = $("tbNote");
     pill($("tbStatus"), !st ? "warn" : st.ok ? "live" : "warn", !st ? "Noch nicht benutzt" : st.ok ? "Aktiv" : "Gesperrt");
@@ -3240,6 +3265,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
 
   function renderLearning(d) {
     renderLooks(d);
+    renderKompass(d);
     renderHooks(d);
     renderVorbilder(d);
     renderThumbs(d);

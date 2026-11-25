@@ -24,6 +24,8 @@ import datetime as dt
 import math
 import random
 
+import nische
+
 MIN_AGE_H = 6       # jüngere Videos haben noch zu wenig Aufrufe für eine Aussage
 FULL_AGE_H = 72     # Hochrechnung auf die ersten 3 Tage
 MIN_VIDEOS = 2      # so viele bewertete Videos braucht ein Thema, bevor es bevorzugt wird
@@ -249,7 +251,9 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)",
                  "tempo": "Tempo (schnell)", "abo": "Abo-Aufruf", "abo_text": "Abo-Aufruf (Satz)",
                  "aktuell": "Aktuelles Thema", "musik": "Musik", "uebergang": "Übergang (Cartoon)",
-                 "halten": "Dranbleiben (Frage oben/Balken)", "platz": "Upload des Tages", "uhrzeit": "Uhrzeit"}
+                 "halten": "Dranbleiben (Frage oben/Balken)", "platz": "Upload des Tages", "uhrzeit": "Uhrzeit",
+                 # Nischen-Kompass (seit 25.11.2026, aus claude-content-skills): aus dem Skript berechnet, gilt auch für alte Videos
+                 "themenfeld": "Themenfeld", "titel_muster": "Titel-Muster", "zwischenhaken": "Zwischen-Haken (Mitte)"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -461,6 +465,10 @@ def features(spec, look):
         "musik": look.get("musik") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
         "uebergang": look.get("uebergang") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
         "halten": look.get("halten") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
+        # Nischen-Kompass: nur Shorts (lange Videos laufen anders und würden den Vergleich verzerren)
+        "themenfeld": nische.topic_field(spec) if spec.get("laenge") != "lang" else None,
+        "titel_muster": nische.title_pattern(spec.get("title"), spec.get("niche", "")) if spec.get("laenge") != "lang" else None,
+        "zwischenhaken": nische.rehook(spec),
     }
 
 
