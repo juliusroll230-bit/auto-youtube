@@ -6017,7 +6017,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
 
     var le = clear($("qcLearn")), L = Q.learn || {};
-    [["scene", "Szene"], ["minutes", "Länge"], ["inhalt", "Geschichte oder nur Szene"], ["zeit", "Uhrzeit"]].forEach(function (g) {
+    [["scene", "Szene"], ["minutes", "Länge"], ["inhalt", "Geschichte oder nur Szene"], ["zeit", "Uhrzeit"], ["title_style", "Titel-Stil"], ["thumb_style", "Vorschaubild"], ["sound", "Klang"]].forEach(function (g) {
       var rows = L[g[0]] || [], max = Math.max.apply(null, rows.map(function (r) { return r.per_day || 0; }).concat([1]));
       le.appendChild(h("p", { cls: "label", style: "margin-top:8px", text: g[1] }));
       rows.forEach(function (r) {
