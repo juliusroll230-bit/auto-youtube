@@ -37,13 +37,14 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
                   # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
                   # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
-                  # 23.11.: Aufrufe-Einbruch. Auswertung 20. bis 22.11.: Der 1. bis 10. Upload eines Tages bekam ca. 600 bis 900 Aufrufe,
-                  # jeder Upload ab dem 11. am Tag 0 bis 3 (egal ob 2D, Blockwelt, Firma oder lang). Darum 7 Shorts am Tag,
-                  # dazu Firmen-Folge und langes Video = 9 Uploads, mit Luft nach oben (max_shorts_day als Schutz).
-                  "post_hours": [12, 14, 15, 16, 17, 18, 19], "post_hours_weekend": [11, 13, 15, 16, 17, 18, 19],
-                  "max_shorts_day": 7,
+                  # 25.11.: Julius will wieder 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt), jede volle Stunde 8 bis 22 Uhr,
+                  # dazu das lange Video. (Am 23.11. waren es wegen des Aufrufe-Einbruchs 7; die Zahlen vom 20. bis 22.11. zeigten,
+                  # dass Uploads ab dem 11. am Tag kaum Aufrufe bekamen. Julius' Entscheidung gilt, die Zentrale zeigt es weiter an.)
+                  "post_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                  "post_hours_weekend": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                  "max_shorts_day": 15,
                   # davon so viele Blockwelt (3D), der Rest Strichmännchen. 0 = Lernmodus wählt frei.
-                  "block_per_day": 2,
+                  "block_per_day": 5,
                   "privacy": "public", "expired": False,
                   # zweiter Zugang nur für Zuschauer-Daten (siehe yt.py, Abschnitt YouTube Analytics)
                   "analytics_client_id": "", "analytics_client_secret": "", "analytics_token": "",
@@ -146,6 +147,11 @@ def init():
             if int(cfg.get("block_per_day") or 0) >= 5:
                 cfg["block_per_day"] = DEFAULT_CONFIG["block_per_day"]
             cfg["hours_v9"] = True
+        # 25.11.: zurück auf 15 Shorts am Tag (10 + 5 Blockwelt), einmalig für alle umstellen.
+        if not cfg.get("hours_v10"):
+            for key in ("post_hours", "post_hours_weekend", "max_shorts_day", "block_per_day"):
+                cfg[key] = DEFAULT_CONFIG[key] if not isinstance(DEFAULT_CONFIG[key], list) else list(DEFAULT_CONFIG[key])
+            cfg["hours_v10"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
