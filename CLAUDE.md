@@ -6,37 +6,44 @@ Diese Regel ist neuer als der Text der täglichen Skript-Aufgabe und gilt vor ih
 Die Zahlen auf YouTube zeigen: Erklärvideos laufen deutlich besser als Einzel-Mystery
 (Erklärvideos im Schnitt ca. 560 Aufrufe, Mystery seit 11.11. ca. 210).
 
-## Wichtig seit 23.11.2026: nur noch 8 Skripte am Tag (Aufrufe-Einbruch, Julius' Auftrag „über 10.000 Aufrufe“)
+## Wieder 15 Shorts am Tag (seit 25.11.2026, Julius' Entscheidung)
 
-Auswertung 20. bis 22.11. (Aufrufe nach 4 bis 5 Stunden): Der **1. bis 10. Upload eines Tages** bekam ca. 450 bis 900 Aufrufe,
-**jeder Upload ab dem 11. am Tag 0 bis 3**, egal ob Strichmännchen, Blockwelt, Firmen-Folge oder lang (genau an 3 Tagen hintereinander).
-Mit 15 Shorts plus Firma plus lang waren das 17 Uploads, also gingen ca. 40 % der Videos ins Leere. Darum:
+Julius will wieder **15 Shorts am Tag plus das lange Video** auf dem Hauptkanal: **10 Strichmännchen und 5 Blockwelt**
+(`block_per_day` 5, `max_shorts_day` 15, Sendezeiten jede volle Stunde 8 bis 22 Uhr, `hours_v10`). Das ersetzt die 8-Skripte-Regel vom 23.11.
+Zur Einordnung (ehrlich): Die Auswertung vom 20. bis 22.11. zeigte, dass Uploads ab dem 11. am Tag kaum Aufrufe bekamen (0 bis 3).
+Die Zentrale vergleicht das weiter („Was am besten funktioniert“); Ende Dezember mit Julius die Zahlen ansehen.
 
-- Jeden Tag genau **8 Cartoon-Skripte** in `seed/` (App sendet 7 Shorts, 1 Reserve; dazu Firmen-Folge und langes Video = 9 Uploads).
-  Gesendet wird Mo bis Fr 12, 14, 15, 16, 17, 18, 19 Uhr, Sa/So 11, 13, 15, 16, 17, 18, 19 Uhr (`hours_v9`, Schutz `max_shorts_day`).
-- Mix der 8: **3 Körper/Alltag-Erklärvideos** („Was passiert, wenn du …?“ / „Warum …?“, Du-Perspektive), **2 erzählte Geschichten**
-  (`"niche": "Erzählung"`, warm, siehe unten: im Schnitt die stärkste Gruppe mit ca. 1.000 bis 1.700 Aufrufen), **1 Mystery**, **1 Horror**,
-  **1 Aktuell-Skript** (siehe unten). Davon **2 in Blockwelt** (`"welt": "block"`, ein Erklärvideo und ein Horror), der Rest Strichmännchen.
-- Bei den Zahlen unter „Aktuell“ und „Loop“ unten gilt: Loop-Ende bekommen 3 der 8 (1 Erklärvideo, 1 Mystery, 1 Horror).
-- Bis Julius etwas anderes sagt. Nach 5 Tagen prüfen, ob die Aufrufe der ersten 7 Uploads wieder im Schnitt über 600 liegen.
+Jeden Tag genau **15 Cartoon-Skripte** in `seed/`:
+
+| Typ | Strichmännchen | Blockwelt | zusammen |
+|---|---|---|---|
+| Körper/Alltag-Erklärvideos („Was passiert, wenn du …?“ / „Warum …?“, Du-Perspektive) | 4 | 2 | 6 |
+| Erzählte Geschichten (`"niche": "Erzählung"`, warm, siehe unten) | 2 | 0 | 2 |
+| Mystery | 2 | 1 | 3 |
+| Horror | 1 | 1 | 2 |
+| Aktuell-Skript (siehe unten, zählt zu den Erklärvideos) | 1 | 0 | 1 |
+| Vielfalt (Technik, Natur, Geschichte) | 1 | 0 | 1 |
+| **Summe** | **10** | **5** | **15** |
+
+Loop-Ende (siehe unten) bekommen 5 der 15 (2 Erklärvideos, 1 Warum, 1 Mystery, 1 Horror).
 
 ### Aktuell-Skript (seit 23.11.2026, Julius' Wunsch nach dem Video „20 NEW Faceless YouTube Niches“)
 
 Das Video (One Person Business, Verkaufsvideo für eine Community, Einkommenszahlen nicht überprüfbar) nennt als wiederkehrende Muster:
-Kanäle explodieren, wenn sie **auf aktuelle Nachrichten aufspringen** (z. B. zum Nvidia-Chef), **Was-wäre-wenn-/Survival-/Geschichts-Erklärer**
+Kanäle explodieren, wenn sie **auf aktuelle Nachrichten aufspringen**, **Was-wäre-wenn-/Survival-/Geschichts-Erklärer**
 mit Animation machen, und **den deutschsprachigen Markt** bedienen (weniger Konkurrenz). Nicht kopieren, nur Muster nehmen. Darum:
 
-- 1 von 8 Skripten pro Tag greift ein **aktuelles Ereignis dieser Woche** auf (Wissenschaft, Natur, Raumfahrt, Technik, Gesundheit, Wetter,
+- 1 von 15 Skripten pro Tag greift ein **aktuelles Ereignis dieser Woche** auf (Wissenschaft, Natur, Raumfahrt, Technik, Gesundheit, Wetter,
   Rekorde; keine Politik, keine Vorwürfe gegen echte Personen, keine Tragödien mit Toten). Vor dem Schreiben mit der Web-Suche
   **zwei unabhängige Quellen** prüfen, nur belegte Fakten verwenden, keine erfundenen Zahlen.
-- Aufbau: Frage in Du-Perspektive zum Ereignis („Was passiert, wenn dein Handy so heiß wird wie bei …?“), Auflösung im vorletzten Satz.
+- Aufbau: Frage in Du-Perspektive zum Ereignis, Auflösung im vorletzten Satz.
   Im Skript `"aktuell": true` setzen (Lernmerkmal „Aktuelles Thema“ in der Zentrale vergleicht mit „zeitlos“).
 - Titel mit dem Ereignis im Kern, aber ohne Clickbait-Lüge. Nach 10 Videos je Seite schauen, ob „aktuell“ klar vorn liegt, dann mehr davon.
 
-Bei 8 Themen am Tag besonders auf Doppelungen achten (nie dasselbe Skript zweimal: am 21.11. lief „Der Schulbus …“ doppelt, das zweite bekam 1 Aufruf) (vorher `seed/` und `docs/videos.json` prüfen).
-Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann zuerst die 2 Blockwelt-Videos und die Erzählungen schreiben.
+Bei 15 Themen am Tag besonders auf Doppelungen achten (nie dasselbe Skript zweimal: am 21.11. lief „Der Schulbus …“ doppelt, das zweite bekam 1 Aufruf) (vorher `seed/` und `docs/videos.json` prüfen).
+Lieber ein schwächeres Thema weglassen als eins doppeln oder Fakten erfinden; dann mindestens die 5 Blockwelt-Videos schreiben.
 
-Die App hält den Mix selbst (seit 18.11.2026): Seit 23.11. sind von 7 Shorts am Tag 2 Blockwelt (`block_per_day` in der Config, vorher 5 von 15,
+Die App hält den Mix selbst (seit 18.11.2026): Seit 25.11. sind wieder von 15 Shorts am Tag 5 Blockwelt (`block_per_day` in der Config,
 Lernmodus wählt nur das Thema innerhalb des Looks). Weil ein Short auf dem Server ca. 1 Stunde rendert, rendert sie
 in freien Minuten (auch nachts) bis zu 6 Shorts vor (`ready/`, Vorrat) und lädt zum Sendeplatz nur noch hoch.
 
@@ -107,8 +114,8 @@ Die Zentrale vergleicht das unter „Look je Video-Typ“ („Erzählte Geschich
 Stand 19.11.: Fast jeder Short bleibt bei ca. 800 bis 1.500 Aufrufen stehen (bester: Schlaf 2.600), egal ob
 Erklärvideo, Mystery, Horror, 2D oder 3D. Das Thema ist also nicht die Grenze. YouTube zeigt jeden Short erst
 einer kleinen Testgruppe und schiebt ihn nur weiter, wenn die Leute bis zum Ende schauen und nochmal schauen.
-Darum als Test: Jeden Tag bekommen **3 der 8 Skripte** (seit 23.11., vorher 5 der 15) `"ende": "loop"`:
-1 Erklärvideo (2D), 1 Mystery (2D), 1 Horror (3D).
+Darum als Test: Jeden Tag bekommen **5 der 15 Skripte** (seit 25.11. wieder, am 23.11. waren es 3 der 8) `"ende": "loop"`:
+2 Erklärvideos (1× 2D, 1× 3D), 1 Warum (2D), 1 Mystery (2D), 1 Horror (3D).
 
 - Der letzte Satz endet offen, ohne Schlusspunkt, und der erste Satz vollendet ihn. Wer nicht aufpasst,
   merkt den Neustart nicht und schaut ein zweites Mal. Beispiele:

@@ -7,7 +7,7 @@ import store  # noqa: E402
 store.DATA = os.environ["DATA_DIR"]
 store.init()
 cfg = store.config()
-assert len(cfg["post_hours"]) == 7 and cfg["max_shorts_day"] == 7 and cfg["block_per_day"] == 2
+assert len(cfg["post_hours"]) == 15 and cfg["max_shorts_day"] == 15 and cfg["block_per_day"] == 5
 today = store.now().strftime("%Y-%m-%dT10:00:00")
 st = store.state()
 st["firma_slots"] = ["F"]
