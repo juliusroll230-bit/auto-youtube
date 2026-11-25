@@ -81,6 +81,12 @@ def validate(spec):
         errs.append(f"Abo-Aufruf {spec['abo']}, erlaubt: {', '.join(learn.ABO_MODES)}")
     if spec.get("tempo") and spec["tempo"] not in learn.TEMPOS:
         errs.append(f"Tempo {spec['tempo']}, erlaubt: {', '.join(learn.TEMPOS)}")
+    if spec.get("musik") and spec["musik"] not in {m for ms in learn.MUSIC_FOR_MOOD.values() for m in ms}:
+        errs.append(f"Musik {spec['musik']}, erlaubt: beat, spannung, leicht, drop, dunkel, warm")
+    if spec.get("uebergang") and spec["uebergang"] not in learn.CARTOON_TRANSITIONS:
+        errs.append(f"Übergang {spec['uebergang']}, erlaubt: {', '.join(learn.CARTOON_TRANSITIONS)}")
+    if spec.get("halten") and spec["halten"] not in learn.HOLDS:
+        errs.append(f"Dranbleiben {spec['halten']}, erlaubt: {', '.join(learn.HOLDS)}")
     if spec.get("welt") and spec["welt"] not in WORLDS:
         errs.append(f"Welt {spec['welt']}, erlaubt: {', '.join(sorted(WORLDS))}")
     if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
@@ -209,7 +215,23 @@ def plan(spec, timings, total, cta_at=None):
             "tempo": "schnell" if fast(spec) else "normal",
             "cuts": make_short.fast_cuts(timings, total) if fast(spec) else [],
             # Test Abo-Aufruf: Abo-Knopf mit Satz am Ende (gesprochen ab cta_at, sonst ca. 2,6 s vor Schluss)
-            "abo": abo_plan(spec, timings, total, cta_at)}
+            "abo": abo_plan(spec, timings, total, cta_at),
+            # Vorbild-Taktiken (Test seit 25.11.2026): Übergang zwischen den Szenen und Dranbleib-Element
+            "uebergang": spec.get("uebergang") if spec.get("uebergang") in learn.CARTOON_TRANSITIONS and not is_long(spec) else "whip",
+            "halten": spec.get("halten") if spec.get("halten") in learn.HOLDS and not is_long(spec) else "ohne",
+            "frage": question(spec) if not is_long(spec) else None,
+            "aufloesung": make_short.accent_time(timings) or (round(timings[-1][0], 3) if timings else None)}
+
+
+def question(spec):
+    """Die Frage des Videos für das Dranbleib-Element „Frage oben“: der Titel ohne Emoji, höchstens 52 Zeichen (zwei Zeilen)."""
+    import re
+    t = re.sub(r"[^\w\s?!.,:;'’„“\"%-]", "", str(spec.get("title") or ""), flags=re.UNICODE).strip()
+    t = re.sub(r"\s+", " ", t).rstrip(".!")
+    if len(t) > 52:
+        cut = t[:52].rsplit(" ", 1)[0]
+        t = cut + " …" if cut else t[:52]
+    return t or None
 
 
 def abo_plan(spec, timings, total, cta_at=None):
@@ -270,6 +292,7 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
                                            effects=None if is_long(spec) else spec.get("effekte"),
                                            layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None,
                                            cta=abo(spec)[1] if abo(spec)[0] == "gesprochen" else None,
+                                           music=None if is_long(spec) else spec.get("musik"),
                                            badge=abo(spec)[0] == "eingeblendet")
     pause = FAST_PAUSE if fast(spec) else PAUSE
     cta_at = timings[-1][1] + pause if abo(spec)[0] == "gesprochen" else None

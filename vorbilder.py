@@ -109,6 +109,38 @@ START_Q = re.compile(r"^(was|warum|wie|wieso|weshalb|wer|wo|welche\w*|kann|könn
 TAGS = re.compile(r"#\w+")
 
 
+# Taktiken, die bei mehreren Vorbildern gleich sind (Recherche 25.11.2026: Zack D. Films, Zeck Felms, What If,
+# The Paint Explainer, SONNENSEITE, Schliingeel Facts u. a.; Analysen ihres Schnitts und Tons). Wir übernehmen nur die
+# Methode, als Test: Der Lernmodus vergleicht jede mit unserer bisherigen Art und nimmt nur, was bei UNS besser läuft.
+# "merkmal" ist der Schlüssel unter „Was am besten funktioniert“ (learn.FEATURE_NAMES).
+TAKTIKEN = [
+    {"name": "Spannungsmusik statt Party-Beat", "merkmal": "musik",
+     "gesehen": "3D-Erklärkanäle legen leise, pulsierende Spannungsmusik mit Ticken unter die Stimme.",
+     "wir": "Musik-Stile „spannung“, „leicht“ (verspielt), „drop“ (Beat erst auf dem Aha-Moment) gegen „beat“."},
+    {"name": "Beat-Drop auf der Auflösung", "merkmal": "musik",
+     "gesehen": "Bis zur Antwort bleibt der Ton zurückhaltend, auf der Antwort kommt der Knall.",
+     "wir": "Musik-Stil „drop“, dazu die Soundeffekte „stark“/„voll“ (Riser, Schlag, Pause)."},
+    {"name": "Schnitt alle 1 bis 2 Sekunden", "merkmal": "tempo",
+     "gesehen": "Fast nie bleibt ein Bild länger als 2 Sekunden stehen, jeder Schnitt mit Geräusch.",
+     "wir": "Tempo „schnell“ (Schnitt alle ca. 1,3 s mit Snap) gegen normal."},
+    {"name": "Auffällige Übergänge", "merkmal": "uebergang",
+     "gesehen": "Zoom durchs Bild, Wischer und Blitze verdecken den Schnitt, das Auge bleibt dran.",
+     "wir": "Übergänge „zoom“, „wisch“ (flüssiger Farb-Wisch), „kreis“, „blitz“ gegen den alten Wisch „whip“."},
+    {"name": "Frage bleibt im Bild", "merkmal": "halten",
+     "gesehen": "Die Frage aus dem Titel steht oben, bis sie beantwortet ist. Wer geht, verpasst die Antwort.",
+     "wir": "„frage“ (Frage oben, Haken bei der Auflösung), „balken“ (Fortschrittsbalken), „beides“, „ohne“."},
+    {"name": "Antwort im vorletzten Satz, Ende führt in den Anfang", "merkmal": "ende",
+     "gesehen": "Kein Abschied, das Video endet so, dass es nahtlos von vorn läuft.",
+     "wir": "Loop-Ende in 5 von 15 Skripten."},
+    {"name": "Kurze Frage im Titel plus 1 Emoji", "merkmal": "typ",
+     "gesehen": "3 bis 6 Wörter, eine Frage zu etwas, das jeder kennt (Körper, Zuhause).",
+     "wir": "Regel für die täglichen Skripte, Titel-Vergleich oben."},
+    {"name": "Klare, ruhige Erzählstimme", "merkmal": "stimme",
+     "gesehen": "Eine gleichbleibende, gut verständliche Stimme, eher trocken als aufgeregt.",
+     "wir": "Stimmen „aufgeregt“, „klar“, „freundlich“ im Vergleich (Lernmodus)."},
+]
+
+
 def clean_title(t):
     return re.sub(r"\s+", " ", TAGS.sub("", t or "")).strip()
 
@@ -197,7 +229,7 @@ def build(feeds, our_titles=(), now=None):
     theirs = pattern([v["title"] for v in recent[:40]])
     ours = pattern(list(our_titles)[:40])
     return {"updated": now.isoformat(timespec="minutes"), "channels": chans, "trend": trend,
-            "muster": theirs, "unsere": ours, "tips": tips(theirs, ours),
+            "muster": theirs, "unsere": ours, "tips": tips(theirs, ours), "taktiken": TAKTIKEN,
             "regel": "Nur Stil und Methoden lernen: Art der Frage, Titelbau, Länge, Rhythmus. "
                      "Keine Themen, Texte, Bilder oder Videos 1:1 übernehmen, keine fremden Videos clippen."}
 
@@ -245,8 +277,8 @@ def summary():
     if not d:
         return {"channels": [dict({k: c[k] for k in ("name", "handle", "lang", "nische", "abos", "top", "anders", "lernen")},
                                   url="https://www.youtube.com/" + c["handle"]) for c in CHANNELS],
-                "trend": [], "tips": [], "updated": None}
-    return d
+                "trend": [], "tips": [], "updated": None, "taktiken": TAKTIKEN}
+    return {**d, "taktiken": TAKTIKEN}
 
 
 if __name__ == "__main__":

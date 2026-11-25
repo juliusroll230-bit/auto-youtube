@@ -572,15 +572,21 @@ def posted_items():
     """Alle Uploads mit Thema und den letzten Zahlen von YouTube, älteste zuerst."""
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     ana = read("analytics.json", {}).get("videos", {})
-    posted = []
+    posted, per_day = [], {}
     for u in state()["uploads"]:
         spec = find_spec(u["slug"])
+        day = str(u.get("posted_at") or "")[:10]
+        if u.get("kind") != "clip" and day and not u.get("lang"):
+            per_day[day] = per_day.get(day, 0) + 1
         base = card(spec) if spec else {"slug": u["slug"], "title": u["title"]}
         item = {**base, **u, **stats["videos"].get(u["video_id"], {}), **ana.get(u["video_id"], {})}
         if spec:  # Satztexte für die Abschalt-Kurve auf der Website
             item["sentences"] = [seg["text"].replace("*", "") for seg in spec.get("segments", [])]
         if spec:  # Merkmale für "Was am besten funktioniert"
             item["features"] = learn.features(spec, u.get("look") or learn.default_look(spec))
+            if u.get("kind") != "clip" and not u.get("lang"):   # nur zum Ansehen: der wievielte Upload des Tages, Uhrzeit
+                item["features"]["platz"] = learn.day_slot(per_day.get(day))
+                item["features"]["uhrzeit"] = learn.hour_group(u.get("posted_at"))
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
@@ -842,13 +848,7 @@ def relax_overview(cfg, st):
     today = now().date()
     for u in ups:
         u["per_day"] = entspannung._per_day(u, today)
-    learnt = {}
-    for key, names in (("scene", entspannung.SCENES), ("minutes", {m: entspannung.dauer_text(m) for m in entspannung.MINUTES})):
-        rows = []
-        for k, name in names.items():
-            vals = [u["per_day"] for u in ups if u.get(key) == k and u.get("per_day") is not None]
-            rows.append({"key": k, "name": name, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
-        learnt[key] = rows
+    learnt = entspannung.learn_rows(ups, today)
     used = {}
     for u in ups:
         if u.get("idea"):
@@ -917,6 +917,20 @@ def next_abo(spec, posted=None):
             st["abo_line_n"] = k + 1
         write("state.json", st)
     return mode, line
+
+
+def next_extras(spec, posted=None):
+    """Vorbild-Taktiken für den nächsten Cartoon-Short (Test seit 25.11.2026): Musik-Stil, Übergang, Dranbleib-Element.
+    Eigener Zähler, damit vorgerenderte Shorts nicht alle dasselbe bekommen."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("extras_n", 0)
+        st["extras_n"] = n + 1
+        write("state.json", st)
+    return {"musik": learn.choose_music(fs, n, spec), "uebergang": learn.choose_transition(fs, n),
+            "halten": learn.choose_hold(fs, n)}
 
 
 def next_voice(spec, posted=None):

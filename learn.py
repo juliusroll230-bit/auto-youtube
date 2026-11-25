@@ -9,8 +9,20 @@ mindestens MIN_VIDEOS bewertete Videos hat. Dann gilt:
 - Jedes 4. Video testet ein anderes Thema, damit neue Gewinner auffallen können.
 
 Solange nichts bewertet ist (Testphase), wechseln sich die Themen gleichmäßig ab.
+
+Seit 25.11.2026 (Julius: „das Lernsystem musst du verbessern“) entscheidet die App fairer und sicherer:
+- Fairer Vergleich: Jedes Video wird mit den Videos verglichen, die in den Tagen um es herum liefen
+  (Faktor zum Kanal-Schnitt). So zählt nicht, ob der Kanal gerade wächst oder ein Tag allgemein schwach war.
+- Ausreißer: Gerechnet wird mit dem typischen Faktor (geometrisches Mittel), ein einzelner Glückstreffer
+  zieht den Schnitt nicht mehr allein hoch.
+- Frische zählt mehr: Ein Video von vor 3 Wochen zählt halb so viel wie ein neues.
+- Sicherheit: Statt fest „3 von 4 das Beste“ rechnet die App aus, wie sicher ein Wert vorn liegt
+  (Thompson-Verfahren). Ist sie sich sicher, nimmt sie fast immer den Gewinner. Ist es knapp, testet sie öfter.
+  Die Zentrale zeigt das als „x % sicher“.
 """
 import datetime as dt
+import math
+import random
 
 MIN_AGE_H = 6       # jüngere Videos haben noch zu wenig Aufrufe für eine Aussage
 FULL_AGE_H = 72     # Hochrechnung auf die ersten 3 Tage
@@ -32,27 +44,120 @@ def video_score(views, age_h, avg_pct=None):
     return score
 
 
-def niche_scores(posted, now):
-    """posted: Liste von {"niche", "views", "posted_at"}. Gibt je Thema Durchschnitt und Anzahl zurück."""
-    sums = {}
+# --- Fairer Vergleich und Sicherheit (seit 25.11.2026) ------------------------
+BASE_DAYS = 4        # verglichen wird mit den Videos aus 4 Tagen vor und nach dem Video
+BASE_MIN = 5         # so viele Nachbarn braucht der Vergleich, sonst zählt der ganze Kanal
+HALF_LIFE_D = 21     # nach 3 Wochen zählt ein Video nur noch halb so viel
+LOG_SD = 0.7         # übliche Streuung der Aufrufe (als Faktor ca. x2), solange es zu wenig Daten gibt
+PRIOR_N = 1.0        # jeder Wert startet wie ein durchschnittliches Video (verhindert Jubel nach 1 Treffer)
+DRAWS = 400          # Zufallsziehungen für „x % sicher“
+
+
+def _rated(posted, now):
+    """Alle bewertbaren Videos: (video, wert, alter in tagen, zeitpunkt). Zu junge Videos fehlen."""
+    out = []
     for v in posted:
-        if v.get("views") is None or not v.get("niche") or not v.get("posted_at"):
+        if v.get("views") is None or not v.get("posted_at"):
             continue
-        age_h = (now - dt.datetime.fromisoformat(v["posted_at"])).total_seconds() / 3600
+        at = dt.datetime.fromisoformat(v["posted_at"])
+        age_h = (now - at).total_seconds() / 3600
         if age_h < MIN_AGE_H:
             continue
-        total, n, pct, pn = sums.get(v["niche"], (0.0, 0, 0.0, 0))
-        has = bool(v.get("avg_pct"))
-        sums[v["niche"]] = (total + video_score(v["views"], age_h, v.get("avg_pct")), n + 1,
-                            pct + (v["avg_pct"] if has else 0), pn + has)
-    return {niche: {"score": total / n, "videos": n, "avg_pct": (pct / pn) if pn else None}
-            for niche, (total, n, pct, pn) in sums.items()}
+        out.append((v, video_score(v["views"], age_h, v.get("avg_pct")), age_h / 24, at))
+    return out
+
+
+def _median(xs):
+    xs = sorted(xs)
+    n = len(xs)
+    return (xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2) if n else None
+
+
+def relative(posted, now):
+    """Je bewertbarem Video: (video, wert, log-faktor zum Kanal-Schnitt der Nachbartage, gewicht nach alter).
+
+    log-faktor 0 = so gut wie die anderen Videos dieser Tage, +0,69 = doppelt so gut, -0,69 = halb so gut.
+    """
+    items = _rated(posted, now)
+    every = [sc for _, sc, _, _ in items]
+    out = []
+    for k, (v, sc, age_d, at) in enumerate(items):
+        near = [s2 for j, (_, s2, _, at2) in enumerate(items)
+                if j != k and abs((at2 - at).total_seconds()) <= BASE_DAYS * 86400]
+        if len(near) < BASE_MIN:
+            near = every[:k] + every[k + 1:]
+        base = _median(near)
+        lr = math.log(max(sc, 1.0) / max(base, 1.0)) if base else 0.0
+        out.append((v, sc, lr, 0.5 ** (age_d / HALF_LIFE_D)))
+    return out
+
+
+def _belief(w, s, q):
+    """Aus Gewicht w, Summe s und Quadratsumme q der log-Faktoren: (mittelwert, unsicherheit)."""
+    mean = s / (w + PRIOR_N)
+    var = max(0.0, q / w - (s / w) ** 2) if w > 0 else 0.0
+    spread = math.sqrt((w * var + 2 * LOG_SD ** 2) / (w + 2))
+    return mean, spread / math.sqrt(w + PRIOR_N)
+
+
+def _acc():
+    return {"total": 0.0, "videos": 0, "pct": 0.0, "pn": 0, "subs": 0, "sviews": 0, "sn": 0, "w": 0.0, "s": 0.0, "q": 0.0}
+
+
+def _add_video(e, v, score, lr, w):
+    e["total"] += score
+    e["videos"] += 1
+    e["w"] += w
+    e["s"] += w * lr
+    e["q"] += w * lr * lr
+    if v.get("avg_pct"):
+        e["pct"] += v["avg_pct"]
+        e["pn"] += 1
+    if v.get("subs_gained") is not None and v.get("a_views"):   # neue Abos durch dieses Video (YouTube Analytics)
+        e["subs"] += v["subs_gained"]
+        e["sviews"] += v["a_views"]
+        e["sn"] += 1
+
+
+def _finish(e):
+    mu, sd = _belief(e["w"], e["s"], e["q"])
+    return {"score": e["total"] / e["videos"], "videos": e["videos"],
+            "avg_pct": e["pct"] / e["pn"] if e["pn"] else None,
+            "abo_1k": 1000 * e["subs"] / e["sviews"] if e["sviews"] else None, "sn": e["sn"],
+            "mu": mu, "sd": sd, "rel": math.exp(mu)}
+
+
+def chances(scores, options=None, seed=0):
+    """Wie sicher ist jeder Wert der beste? {wert: 0..1}, nur Werte mit mindestens MIN_VIDEOS Videos."""
+    opts = [o for o in (options or scores) if o in scores and scores[o]["videos"] >= MIN_VIDEOS and "mu" in scores[o]]
+    if len(opts) < 2:
+        return {o: 1.0 for o in opts}
+    rng, wins = random.Random(seed), dict.fromkeys(opts, 0)
+    for _ in range(DRAWS):
+        wins[max(opts, key=lambda o: rng.gauss(scores[o]["mu"], scores[o]["sd"]))] += 1
+    return {o: wins[o] / DRAWS for o in opts}
+
+
+def thompson(options, scores, seed):
+    """Zieht für jeden Wert eine plausible Stärke (je unsicherer, desto breiter) und nimmt die höchste.
+    Sichere Gewinner kommen fast immer dran, knappe Rennen werden weiter getestet."""
+    rng = random.Random(seed)
+    return max(options, key=lambda o: rng.gauss(scores[o]["mu"], scores[o]["sd"]))
+
+
+def niche_scores(posted, now):
+    """posted: Liste von {"niche", "views", "posted_at"}. Gibt je Thema Durchschnitt, Anzahl und Faktor zurück."""
+    acc = {}
+    for v, sc, lr, w in relative(posted, now):
+        if v.get("niche"):
+            _add_video(acc.setdefault(v["niche"], _acc()), v, sc, lr, w)
+    return {niche: _finish(e) for niche, e in acc.items()}
 
 
 def favorite(scores):
-    """Das beste bewertete Thema, oder None, solange es noch kein klares Signal gibt."""
-    rated = {n: s["score"] for n, s in scores.items() if s["videos"] >= MIN_VIDEOS}
-    if not rated or max(rated.values()) <= 0:
+    """Das beste bewertete Thema (höchster Faktor zum Kanal-Schnitt), oder None, solange es kein Signal gibt."""
+    rated = {n: s.get("mu", s["score"]) for n, s in scores.items() if s["videos"] >= MIN_VIDEOS}
+    if not rated or (max(s["score"] for n, s in scores.items() if n in rated) <= 0):
         return None
     return max(rated, key=rated.get)
 
@@ -94,8 +199,9 @@ def plan(queue, history, scores, explore_every=EXPLORE_EVERY, worlds=None, block
         if explore:
             # das Thema, das am längsten nicht dran war (nie gepostete zuerst)
             pick = min(niches, key=lambda n: (last.get(n, -1), niches.index(n)))
-        else:
-            pick = best
+        else:   # unter den bewerteten Themen: das wahrscheinlich beste (knappe Rennen werden weiter getestet)
+            rated = [n for n in niches if n in scores and scores[n]["videos"] >= MIN_VIDEOS and "mu" in scores[n]]
+            pick = thompson(rated, scores, 7919 * (len(history) + 1) + step) if len(rated) >= 2 else best
         item = next(x for x in pool if x[1]["niche"] == pick)
         remaining.remove(item)
         order.append(item)
@@ -107,13 +213,16 @@ def plan(queue, history, scores, explore_every=EXPLORE_EVERY, worlds=None, block
 
 def summary(scores, explore_every=EXPLORE_EVERY):
     best = favorite(scores)
-    ranked = sorted(scores.items(), key=lambda kv: kv[1]["score"], reverse=True)
+    ranked = sorted(scores.items(), key=lambda kv: (kv[1].get("mu", 0), kv[1]["score"]), reverse=True)
+    ch = chances(scores)
     return {
         "favorite": best,
         "min_videos": MIN_VIDEOS,
         "explore_every": explore_every,
         "niches": [{"niche": n, "score": round(s["score"]), "videos": s["videos"],
-                    "avg_pct": round(s["avg_pct"], 1) if s.get("avg_pct") else None} for n, s in ranked],
+                    "avg_pct": round(s["avg_pct"], 1) if s.get("avg_pct") else None,
+                    "rel": round(s["rel"], 2) if s.get("rel") else None,
+                    "chance": round(100 * ch[n]) if n in ch else None} for n, s in ranked],
     }
 
 
@@ -138,7 +247,8 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "welt_typ": "Look je Video-Typ", "ende": "Ende (Loop)",
                  "effekte": "Soundeffekte", "aufbau": "Spannung (Herzschlag)",
                  "tempo": "Tempo (schnell)", "abo": "Abo-Aufruf", "abo_text": "Abo-Aufruf (Satz)",
-                 "aktuell": "Aktuelles Thema"}
+                 "aktuell": "Aktuelles Thema", "musik": "Musik", "uebergang": "Übergang (Cartoon)",
+                 "halten": "Dranbleiben (Frage oben/Balken)", "platz": "Upload des Tages", "uhrzeit": "Uhrzeit"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -156,6 +266,50 @@ LAYOUT_LEAD = 1.3                     # ... und mindestens 30 % vorne
 TEMPOS = ("normal", "schnell")
 TEMPO_SLOTS = {3: "schnell", 11: "schnell"}   # Plätze im 15er-Kreis (Spannung liegt auf 7)
 TEMPO_BONUS = (0, 5, 9, 13)                   # läuft "schnell" klar besser, bekommt es diese Plätze dazu
+
+
+# Vorbild-Taktiken (Test seit 25.11.2026, Julius: „was auf mehreren Kanälen am besten läuft, bei uns auch machen“).
+# Was bei Zack D. Films, Zeck Felms, What If, SONNENSEITE und Co. gleich ist, testen wir als Varianten. Gewinnen muss es
+# bei UNSEREN Zuschauern: der Lernmodus wählt, nichts wird fest eingebaut. Alles selbst erzeugt, keine fremde Musik.
+# Musik: "beat" (bisher), "spannung" (pulsierende Spannungsmusik mit Ticken wie bei den 3D-Erklärkanälen),
+# "leicht" (verspieltes Zupfen, wie bei den Was-wäre-wenn-Kanälen), "drop" (bis zur Auflösung nur leises Ticken,
+# auf dem Aha-Moment setzt der Beat ein). Grusel bleibt dunkel, Geschichten bleiben warm.
+MUSIC_FOR_MOOD = {"neugierig": ("beat", "spannung", "leicht", "drop"), "mysterioes": ("dunkel", "spannung"),
+                  "gruselig": ("dunkel",), "warm": ("warm",)}
+# Übergänge zwischen den Szenen der Cartoons (vorher immer Wisch mit Unschärfe): "whip" (bisher), "zoom" (Zoom durchs Bild),
+# "wisch" (flüssiger Farb-Wisch), "kreis" (Kreis öffnet die nächste Szene), "blitz" (weißer Blitz mit Stoß).
+CARTOON_TRANSITIONS = ("whip", "zoom", "wisch", "kreis", "blitz")
+# Dranbleiben: "frage" (die Frage des Videos steht oben, bis sie aufgelöst ist, dann ein Haken: offene Schleife),
+# "balken" (Fortschrittsbalken oben: man sieht, es ist gleich vorbei), "beides", "ohne".
+HOLDS = ("frage", "balken", "beides", "ohne")
+
+
+def choose_music(fscores, step, spec):
+    """Musik-Stil für einen Cartoon-Short: passend zur Stimmung, gelernt."""
+    return choose(MUSIC_FOR_MOOD.get(cartoon_mood(spec), ("beat",)), fscores.get("musik", {}), step + 5)
+
+
+def choose_transition(fscores, step):
+    """Übergang zwischen den Szenen eines Cartoon-Shorts, gelernt."""
+    return choose(CARTOON_TRANSITIONS, fscores.get("uebergang", {}), step + 6)
+
+
+def choose_hold(fscores, step):
+    """Dranbleib-Element (Frage oben, Fortschrittsbalken, beides, ohne), gelernt."""
+    return choose(HOLDS, fscores.get("halten", {}), step + 7)
+
+
+def day_slot(n):
+    """Der wievielte Upload des Tages (1, 2, …) als Gruppe, damit man sieht, ab wann es kippt."""
+    return None if not n else "1. bis 5." if n <= 5 else "6. bis 10." if n <= 10 else "11. bis 15." if n <= 15 else "ab 16."
+
+
+def hour_group(posted_at):
+    try:
+        h = dt.datetime.fromisoformat(posted_at).hour
+    except (TypeError, ValueError):
+        return None
+    return "morgens (bis 11)" if h < 12 else "mittags (12 bis 15)" if h < 16 else "nachmittags (16 bis 18)" if h < 19 else "abends (ab 19)"
 
 
 # Abo-Aufruf (Test seit 22.11.2026, Julius will mehr Abos): kurzer Satz am Ende des Shorts, ca. 2 s.
@@ -282,7 +436,7 @@ def features(spec, look):
         "typ": video_type(spec),
         "hook": _hook_bucket(spec),
         "caption_style": look.get("caption_style"),
-        "transition": look.get("transition"),
+        "transition": look.get("transition") if spec.get("stil") != "cartoon" else None,   # Cartoons: "uebergang"
         "kopfzeile": look.get("kopfzeile") or "ohne",
         "hintergrund": look.get("hintergrund") or "animation",
         "laenge": "kurz (bis 60 Wörter)" if total <= 60 else "mittel (61 bis 75)" if total <= 75 else "lang (über 75)",
@@ -302,45 +456,32 @@ def features(spec, look):
         "aktuell": ("aktuell" if spec.get("aktuell") else "zeitlos") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
         "abo": look.get("abo") if abo_ok(spec) else None,   # nur neue Shorts haben den Wert, alte zählen nicht mit
         "abo_text": look.get("abo_text") if abo_ok(spec) and look.get("abo") in ("gesprochen", "eingeblendet") else None,
+        # Vorbild-Taktiken (seit 25.11.2026): nur neue Shorts haben die Werte, alte zählen nicht mit
+        "musik": look.get("musik") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
+        "uebergang": look.get("uebergang") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
+        "halten": look.get("halten") if spec.get("stil") == "cartoon" and spec.get("laenge") != "lang" else None,
     }
 
 
 def feature_scores(posted, now):
-    """Je Merkmal und Wert: Durchschnitt der Video-Werte, Anzahl und Ø angesehen."""
+    """Je Merkmal und Wert: Durchschnitt der Video-Werte, Anzahl, Ø angesehen und Faktor zum Kanal-Schnitt (fair verglichen)."""
     out = {}
-    for v in posted:
-        if v.get("views") is None or not v.get("features") or not v.get("posted_at"):
-            continue
-        age_h = (now - dt.datetime.fromisoformat(v["posted_at"])).total_seconds() / 3600
-        if age_h < MIN_AGE_H:
-            continue
-        score = video_score(v["views"], age_h, v.get("avg_pct"))
-        for name, value in v["features"].items():
+    for v, score, lr, w in relative(posted, now):
+        for name, value in (v.get("features") or {}).items():
             if value is None:
                 continue
-            e = out.setdefault(name, {}).setdefault(value, {"total": 0.0, "videos": 0, "pct": 0.0, "pn": 0,
-                                                             "subs": 0, "sviews": 0, "sn": 0})
-            e["total"] += score
-            e["videos"] += 1
-            if v.get("avg_pct"):
-                e["pct"] += v["avg_pct"]
-                e["pn"] += 1
-            if v.get("subs_gained") is not None and v.get("a_views"):   # neue Abos durch dieses Video (YouTube Analytics)
-                e["subs"] += v["subs_gained"]
-                e["sviews"] += v["a_views"]
-                e["sn"] += 1
-    return {name: {val: {"score": e["total"] / e["videos"], "videos": e["videos"],
-                         "avg_pct": e["pct"] / e["pn"] if e["pn"] else None,
-                         "abo_1k": 1000 * e["subs"] / e["sviews"] if e["sviews"] else None, "sn": e["sn"]}
-                   for val, e in vals.items()}
-            for name, vals in out.items()}
+            _add_video(out.setdefault(name, {}).setdefault(value, _acc()), v, score, lr, w)
+    return {name: {val: _finish(e) for val, e in vals.items()} for name, vals in out.items()}
 
 
 def choose(options, scores, step):
-    """Bester Wert (3 von 4 Mal) oder ein Test: der am wenigsten genutzte Wert."""
-    rated = {o: scores[o]["score"] for o in options if o in scores and scores[o]["videos"] >= MIN_VIDEOS}
-    if rated and len(rated) == len(options) and step % EXPLORE_EVERY != EXPLORE_EVERY - 1:
-        return max(rated, key=rated.get)
+    """Erst bekommt jeder Wert MIN_VIDEOS Videos (der am wenigsten genutzte zuerst). Danach wählt das Thompson-Verfahren:
+    der Wert, der am wahrscheinlichsten vorn liegt, kommt am häufigsten dran, knappe Rennen werden weiter getestet."""
+    options = tuple(options)
+    if len(options) == 1:
+        return options[0]
+    if all(o in scores and scores[o]["videos"] >= MIN_VIDEOS and "mu" in scores[o] for o in options):
+        return thompson(options, scores, 7919 * step + sum(map(ord, "".join(options))))
     return min(options, key=lambda o: (scores.get(o, {}).get("videos", 0), options.index(o)))
 
 
@@ -362,13 +503,15 @@ def choose_effects(fscores, step):
 
 
 def layout_winner(fscores, name="aufbau"):
-    """Die Variante, die klar besser läuft als normale Shorts (mind. LAYOUT_MIN Videos je Seite, 30 % vorn), sonst None."""
+    """Die Variante, die klar besser läuft als normale Shorts (mind. LAYOUT_MIN Videos je Seite, 30 % vorn), sonst None.
+    Verglichen wird fair (Faktor zum Kanal-Schnitt der gleichen Tage), nicht mit rohen Aufrufen."""
     vals = fscores.get(name, {})
     base = vals.get("normal")
     if not base or base["videos"] < LAYOUT_MIN or base["score"] <= 0:
         return None
-    good = {k: v["score"] for k, v in vals.items()
-            if k != "normal" and v["videos"] >= LAYOUT_MIN and v["score"] >= base["score"] * LAYOUT_LEAD}
+    val = lambda v: v.get("rel", v["score"])   # noqa: E731
+    good = {k: val(v) for k, v in vals.items()
+            if k != "normal" and v["videos"] >= LAYOUT_MIN and val(v) >= val(base) * LAYOUT_LEAD}
     return max(good, key=good.get) if good else None
 
 
@@ -409,10 +552,13 @@ def feature_summary(fscores):
             ranked = sorted(vals.items(), key=lambda kv: (kv[1].get("abo_1k") is not None, kv[1].get("abo_1k") or 0,
                                                           kv[1]["score"]), reverse=True)
         else:
-            ranked = sorted(vals.items(), key=lambda kv: kv[1]["score"], reverse=True)
+            ranked = sorted(vals.items(), key=lambda kv: (kv[1].get("mu", 0), kv[1]["score"]), reverse=True)
+        ch = chances(vals, seed=len(name))
         rows.append({"key": name, "label": label,
                      "values": [{"value": v, "score": round(s["score"]), "videos": s["videos"],
                                  "avg_pct": round(s["avg_pct"], 1) if s["avg_pct"] else None,
-                                 "abo_1k": round(s["abo_1k"], 2) if s.get("abo_1k") is not None else None}
+                                 "abo_1k": round(s["abo_1k"], 2) if s.get("abo_1k") is not None else None,
+                                 "rel": round(s["rel"], 2) if s.get("rel") else None,
+                                 "chance": round(100 * ch[v]) if v in ch and len(ch) > 1 else None}
                                 for v, s in ranked]})
     return rows
