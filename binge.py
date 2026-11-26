@@ -195,17 +195,12 @@ def overview(cfg, uploads=None, specs=None, views=None):
 
 
 def posted_specs():
-    """slug → Skript aller hochgeladenen Videos (aus posted/)."""
+    """slug → Skript aller hochgeladenen Videos (aus posted/). Nutzt den Zwischenspeicher von store (nur Lesen)."""
     import glob
-    import json
     import os
     out = {}
     for f in glob.glob(store.path("posted", "*.json")):
-        try:
-            with open(f, encoding="utf-8") as fh:
-                spec = json.load(fh)
-        except (OSError, ValueError):
-            continue
+        spec = store._peek_spec(f)
         if isinstance(spec, dict):
             out[spec.get("slug") or os.path.basename(f)[5:-5]] = spec
     return out

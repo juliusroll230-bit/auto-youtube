@@ -20,6 +20,7 @@ Seit 25.11.2026 (Julius: „das Lernsystem musst du verbessern“) entscheidet d
   (Thompson-Verfahren). Ist sie sich sicher, nimmt sie fast immer den Gewinner. Ist es knapp, testet sie öfter.
   Die Zentrale zeigt das als „x % sicher“.
 """
+import bisect
 import datetime as dt
 import math
 import random
@@ -82,10 +83,14 @@ def relative(posted, now):
     """
     items = _rated(posted, now)
     every = [sc for _, sc, _, _ in items]
+    # nach Zeit sortiert, damit die Nachbartage per Suche statt Vergleich mit allen gefunden werden (schnell bei vielen Videos)
+    order = sorted(range(len(items)), key=lambda j: items[j][3])
+    times = [items[j][3] for j in order]
+    span = dt.timedelta(days=BASE_DAYS)
     out = []
     for k, (v, sc, age_d, at) in enumerate(items):
-        near = [s2 for j, (_, s2, _, at2) in enumerate(items)
-                if j != k and abs((at2 - at).total_seconds()) <= BASE_DAYS * 86400]
+        lo, hi = bisect.bisect_left(times, at - span), bisect.bisect_right(times, at + span)
+        near = [items[j][1] for j in order[lo:hi] if j != k]
         if len(near) < BASE_MIN:
             near = every[:k] + every[k + 1:]
         base = _median(near)

@@ -12,6 +12,7 @@
   posted/        Skripte, die schon online sind
   thumbs/        Vorschaubilder
 """
+import copy
 import datetime as dt
 import glob
 import json
@@ -284,11 +285,58 @@ def load_spec(file):
         return json.load(f)
 
 
-def find_spec(slug):
-    for f in queue_files() + glob.glob(path("posted", "*.json")):
-        if os.path.basename(f)[5:-5] == slug or load_spec(f).get("slug") == slug:
-            return load_spec(f)
-    return None
+_SPEC_CACHE = {}   # Datei -> (Änderungszeit, Größe, Skript): jede Datei nur einmal lesen, solange sie sich nicht ändert
+_SPEC_LOCK = threading.Lock()
+
+
+def _cached_spec(file):
+    """Skript aus dem Zwischenspeicher (als Kopie, damit niemand den Speicher verändert) oder None."""
+    spec = _peek_spec(file)
+    return copy.deepcopy(spec) if spec is not None else None
+
+
+def _peek_spec(file):
+    """Wie _cached_spec, aber ohne Kopie: nur zum Lesen."""
+    try:
+        st = os.stat(file)
+    except OSError:
+        return None
+    key = (st.st_mtime_ns, st.st_size)
+    with _SPEC_LOCK:
+        hit = _SPEC_CACHE.get(file)
+    if not hit or hit[0] != key:
+        try:
+            spec = load_spec(file)
+        except (OSError, ValueError):
+            return None
+        with _SPEC_LOCK:
+            if len(_SPEC_CACHE) > 5000:
+                _SPEC_CACHE.clear()
+            _SPEC_CACHE[file] = hit = (key, spec)
+    return hit[1]
+
+
+def spec_index():
+    """slug -> Datei für alle Skripte in queue/ und posted/ (queue zuerst, wie find_spec).
+
+    Seit 26.11.2026: Vorher las find_spec bei jedem Upload alle Skripte von vorn (bei ca. 1.000 Uploads
+    hunderttausende Dateien pro Seitenaufruf), dadurch lud die Zentrale nicht mehr."""
+    out = {}
+    for f in queue_files() + sorted(glob.glob(path("posted", "*.json"))):
+        name = os.path.basename(f)[5:-5]
+        out.setdefault(name, f)
+        spec = _peek_spec(f)
+        if isinstance(spec, dict) and spec.get("slug"):
+            out.setdefault(spec["slug"], f)
+    return out
+
+
+def find_spec(slug, index=None):
+    f = (index if index is not None else spec_index()).get(slug)
+    if not f:
+        return None
+    spec = _cached_spec(f)
+    return spec if isinstance(spec, dict) else None
 
 
 def shorts_today(at=None):
@@ -564,8 +612,22 @@ def card(spec):
         "car_color": spec.get("car_color", ""), "accent": spec.get("accent", ""),
         "emoji": spec["segments"][0].get("emoji", ""), "hook": spec["segments"][0]["text"].replace("*", ""),
         "seconds": round(words / 2.5 + 0.3 * len(spec["segments"])),
-        "hook_check": _safe(lambda: hookcheck.check(spec), None),
+        "hook_check": _safe(lambda: _hook_check(spec), None),
     }
+
+
+_HOOK_MEMO = {}
+
+
+def _hook_check(spec):
+    """hookcheck.check mit Merkzettel: dasselbe Skript wird nicht bei jedem Seitenaufruf neu geprüft."""
+    key = json.dumps(spec, sort_keys=True, ensure_ascii=False)
+    hit = _HOOK_MEMO.get(key)
+    if hit is None:
+        if len(_HOOK_MEMO) > 3000:
+            _HOOK_MEMO.clear()
+        hit = _HOOK_MEMO[key] = hookcheck.check(spec)
+    return copy.deepcopy(hit)
 
 
 def posted_items():
@@ -573,8 +635,9 @@ def posted_items():
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     ana = read("analytics.json", {}).get("videos", {})
     posted, per_day = [], {}
+    index = spec_index()
     for u in state()["uploads"]:
-        spec = find_spec(u["slug"])
+        spec = find_spec(u["slug"], index)
         day = str(u.get("posted_at") or "")[:10]
         if u.get("kind") != "clip" and day and not u.get("lang"):
             per_day[day] = per_day.get(day, 0) + 1
