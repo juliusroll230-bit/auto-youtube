@@ -144,7 +144,7 @@ def _iso(t):
 def overview(cfg, runs, ctx):
     """Alle Agenten für die Website: Status, Kennzahlen, Einstellungen, nächster Lauf.
 
-    runs: {agent: {"at": iso, "count": n, "error": text|None}}
+    runs: {agent: {"at": iso, "count": n, "day": "JJJJ-MM-TT", "today": n, "error": text|None}}
     ctx:  connected, analytics, working (Menge der Agenten, die gerade arbeiten), queue, posted, favorite,
           next_slot (datetime|None), now (datetime), repo (bool), branding_at,
           tasks ({agent: was er gerade tut}), clips (clips.summary()["totals"])
@@ -211,6 +211,8 @@ def overview(cfg, runs, ctx):
             "task": (ctx.get("tasks") or {}).get(a) or None,
             "settings": s, "last_run": run.get("at"), "next_run": _iso(nxt) if state in ("aktiv", "fehler") else None,
             "tasks": max(run.get("count", 0), ctx["posted"]) if a == "publisher" else run.get("count", 0),
+            "today": ctx.get("posted_today", 0) if a == "publisher" and "posted_today" in ctx
+                     else run.get("today", 0) if run.get("day") == now.date().isoformat() else 0,
             "error": run.get("error"),
             "metrics": [{"label": k, "value": v} for k, v in metrics],
             "can_run": a in ("autor", "publisher", "analyst", "zuschauer", "designer", "sprecher", "studio", "clipper")

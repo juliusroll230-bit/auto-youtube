@@ -188,9 +188,13 @@ def agent_done(agent, error=None):
     with LOCK:
         st = state()
         run = st["agent_runs"].get(agent, {"count": 0})
-        run.update(at=now().isoformat(timespec="seconds"), error=str(error)[:200] if error else None)
+        t = now()
+        run.update(at=t.isoformat(timespec="seconds"), error=str(error)[:200] if error else None)
+        if run.get("day") != t.date().isoformat():  # Zähler für „Was hat er heute geschafft?“
+            run["day"], run["today"] = t.date().isoformat(), 0
         if not error:
             run["count"] = run.get("count", 0) + 1
+            run["today"] = run.get("today", 0) + 1
         st["agent_runs"][agent] = run
         write("state.json", st)
 
@@ -1081,6 +1085,7 @@ def dashboard(extra=None, working=None, repo=True):
         "agents": agents.overview(cfg, st["agent_runs"], {
             "connected": bool(cfg["refresh_token"]), "analytics": bool(cfg["analytics_token"]),
             "working": set(working), "tasks": working, "queue": len(queue), "posted": len(posted),
+            "posted_today": sum(1 for u in st["uploads"] if str(u.get("posted_at") or u.get("slot") or "")[:10] == now().date().isoformat()),
             "favorite": learn.favorite(scores), "next_slot": next_slot(cfg), "now": now(), "repo": repo,
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],

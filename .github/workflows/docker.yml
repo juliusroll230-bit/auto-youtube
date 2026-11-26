@@ -80,6 +80,8 @@ jobs:
         run: docker exec app python tests/whop_test.py
       - name: Einreich-Station (Content-Rewards-Clips)
         run: docker exec app python tests/einreichen_test.py
+      - name: Oberfläche (wenige Knöpfe, Agenten-Tageszähler)
+        run: docker exec app python tests/ui_test.py
       - name: Gesichts-Zuschnitt
         run: docker exec app python tests/facecrop_test.py
       - name: Lange Videos (Regeln, Warteschlange, Wochentage)

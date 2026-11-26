@@ -2245,7 +2245,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
         <div class="card-b shlist" id="shList"></div>
       </div>
-      <h2 class="sec-h">Verbindung und Einstellungen</h2>
+      <h2 class="sec-h">Verbindung</h2>
       <div class="banner" id="previewNote" hidden>
         <div><b>Vorschau.</b> <span class="muted">Einstellungen und Aktionen funktionieren auf deinem Zima-Server.</span></div>
       </div>
@@ -2352,6 +2352,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           </div>
         </div>
       </div>
+      <div class="adv-box" id="advBox"></div>
     </section>
 
     <footer class="foot" style="margin-top:36px">
@@ -3322,10 +3323,12 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           h("div", { cls: "tb-bar" }, bar)]);
       }));
     }
-    if (T.next_long) grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: "Nächstes langes Video: " + T.next_long.title }), pair(T.next_long.slug, false, null, null)]));
+    var rowsT = [];
+    if (T.next_long) rowsT.push(h("div", { cls: "tb-row" }, [h("h3", { text: "Nächstes langes Video: " + T.next_long.title }), pair(T.next_long.slug, false, null, null)]));
     (T.recent || []).forEach(function (r) {
-      grid.appendChild(h("div", { cls: "tb-row" }, [h("h3", { text: (r.lang ? "Lang: " : "Short: ") + r.title }), pair(r.slug, !r.lang, r.set, r.video_id)]));
+      rowsT.push(h("div", { cls: "tb-row" }, [h("h3", { text: (r.lang ? "Lang: " : "Short: ") + r.title }), pair(r.slug, !r.lang, r.set, r.video_id)]));
     });
+    if (rowsT.length) grid.appendChild(uiFold("tb-recent", "Letzte Thumbnails ansehen", rowsT, "selbst wählen geht auch"));
     if (!grid.children.length) grid.appendChild(h("div", { cls: "empty" }, [h("b", { text: "Noch keine Thumbnails" }), "Beim nächsten Upload baut die App die ersten."]));
   }
 
@@ -4212,12 +4215,13 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     document.querySelectorAll("#cmPer button").forEach(function (b) { b.setAttribute("aria-pressed", +b.dataset.n === (C.per_day || 3) ? "true" : "false"); b.disabled = !S.live; });
     var plan = P.filter(function (p) { return p.hour; });
     $("cmPlanH").textContent = "Heute posten" + (plan.length ? ": " + plan.length + (plan.length === 1 ? " Post" : " Posts") : "");
-    $("cmMoreH").hidden = P.length === plan.length;
+    $("cmMoreH").textContent = "Weitere Ideen (" + (P.length - plan.length) + ")";
+    if ($("cmMoreF")) $("cmMoreF").hidden = P.length === plan.length;
     if (!P.length) box.appendChild(h("p", { cls: "label", text: "Noch keine Vorschläge. Sobald Shorts geplant sind, erscheinen sie hier." }));
     P.forEach(function (p) {
       var kids = [h("div", { cls: "cm-top" }, [h("span", { cls: "pill cm-" + p.type, text: p.label }), p.done ? h("span", { cls: "cm-ok", text: "✓ Gepostet" }) : p.hour ? h("span", { cls: "cm-at", text: "um " + p.hour + " Uhr" }) : null]),
         h("h3", { text: p.title }), h("p", { cls: "label", text: p.why })];
-      if (p.type === "bild") kids.push(h("img", { cls: "cm-img", src: "api/community/" + p.id + ".png", alt: "Bild für den Post: " + p.title, loading: "lazy" }));
+      if (p.type === "bild") kids.push(h("a", { cls: "cm-img-a", href: "api/community/" + p.id + ".png", download: "", title: "Bild laden" }, [h("img", { cls: "cm-img", src: "api/community/" + p.id + ".png", alt: "Bild für den Post: " + p.title, loading: "lazy" }), h("span", { cls: "label", text: "Bild antippen zum Laden" })]));
       kids.push(h("pre", { cls: "cm-txt", text: p.text }));
       if (p.options) {
         var ol = h("ol", { cls: "cm-opts" });
@@ -4226,12 +4230,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           b.addEventListener("click", function () { copyText(o, b.querySelector("small")); });
           ol.appendChild(h("li", null, [b]));
         });
-        kids.push(ol);
+        kids.push(uiFold("cmopt-" + p.id, "Antworten einzeln kopieren (" + p.options.length + ")", [ol]));
       }
       var cp = h("button", { cls: "btn sm primary", type: "button", text: "Text kopieren" });
       cp.addEventListener("click", function () { copyText(p.text, cp); });
       var acts = [cp];
-      if (p.type === "bild") acts.push(h("a", { cls: "btn sm", href: "api/community/" + p.id + ".png", download: "", text: "Bild laden" }));
       var t = h("button", { cls: "tog" + (p.done ? " on" : ""), type: "button", "aria-pressed": p.done ? "true" : "false", text: "Gepostet" });
       t.disabled = !S.live;
       t.addEventListener("click", function () {
@@ -4259,6 +4262,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       $(ids[1]).textContent = sub;
       plan.forEach(function (p) {
         var st = p.done ? ["ok", "Gepostet"] : p.hour <= nowH ? ["due", "Jetzt posten"] : ["wait", "Offen"];
+        if (ids[0] === "cmTl") {  // im Community-Reiter nur Anzeige: abgehakt wird direkt am Post darunter
+          ol.appendChild(h("li", { cls: "cm-tr " + st[0] }, [h("b", { cls: "cm-h", text: p.hour + ":00" }), h("span", { cls: "pill cm-" + p.type, text: p.label }),
+            h("span", { cls: "cm-tt", text: p.text.split("\n")[0] }), h("span", { cls: "cm-st", text: p.done ? "✓ Gepostet" : st[1] })]));
+          return;
+        }
         var t = h("button", { cls: "tog" + (p.done ? " on" : ""), type: "button", "aria-pressed": p.done ? "true" : "false", text: p.done ? "✓ Gepostet" : "Abhaken" });
         t.disabled = !S.live;
         t.addEventListener("click", function () {
@@ -4410,7 +4418,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       actBtn("Freigeben", "ok", function () { return clipAct(c, x, "approve"); }),
       actBtn("Ablehnen", "no", function () { return clipAct(c, x, "reject", "Abgelehnt. In der Kampagne kannst du den Clip zurückholen."); }, true)
     ]);
-    else add(acts, [h("span", { cls: "done-tag", text: "✓ Freigegeben" }), actBtn("Jetzt posten", "", function () { return postClip(c, x); }, true)]);
+    else add(acts, [h("span", { cls: "done-tag", text: "✓ Freigegeben" }), uiDots("ap-" + c.id + "-" + x.n, [actBtn("Jetzt posten", "", function () { return postClip(c, x); }, true)], "Mehr zum Clip")]);
     return h("li", { cls: (x.status === "freigegeben" ? "ok" : "") + (fresh ? " new" : "") }, [
       clipThumb(c, x, "t-sm"),
       h("div", { style: "min-width:0" }, [
@@ -4711,15 +4719,28 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     robotIcon($("drBot"), id);
     $("drName").textContent = a.name;
     $("drRole").textContent = a.role;
-    var b = clear($("drBody"));
+    var top = clear($("drBody"));
+    // Zuerst nur das Wichtigste (Julius 26.11.2026): Was macht er, was gerade, was heute. Regler erst nach „Mehr anzeigen“.
+    top.appendChild(h("div", { cls: "dr-q" }, [
+      h("div", null, [h("div", { cls: "k", text: "Was macht er?" }), h("div", { cls: "v", text: AGENT_WHAT[id] || a.desc })]),
+      h("div", null, [h("div", { cls: "k", text: "Was macht er gerade?" }), h("div", { cls: "v", id: "drDoing" }), h("div", { cls: "now-box", id: "drNow", hidden: "" }, [h("span", { cls: "ty" }, [h("b"), h("b"), h("b")]), h("span", { id: "drNowT" })])]),
+      h("div", null, [h("div", { cls: "k", text: "Was hat er heute geschafft?" }), h("div", { cls: "v", id: "drToday" })])
+    ]));
+    top.appendChild(h("div", { cls: "err-box", id: "drErr", hidden: "" }));
+    var more = h("details", { cls: "dr-more", id: "drMore" }, [h("summary", { text: "Mehr anzeigen" })]);
+    if (S.agentMore) more.open = true;
+    S.agentMore = false;
+    more.addEventListener("toggle", function () { more.querySelector("summary").textContent = more.open ? "Weniger anzeigen" : "Mehr anzeigen"; });
+    if (more.open) more.querySelector("summary").textContent = "Weniger anzeigen";
+    var b = h("div", { cls: "dr-more-b" });
+    more.appendChild(b);
+    top.appendChild(more);
     b.appendChild(h("p", { cls: "desc", text: a.desc }));
-    b.appendChild(h("div", { cls: "now-box", id: "drNow", hidden: "" }, [h("span", { cls: "ty" }, [h("b"), h("b"), h("b")]), h("span", { id: "drNowT" })]));
     b.appendChild(h("div", { cls: "mini" }, [
       h("div", null, [h("div", { cls: "k", text: "Erledigt" }), h("div", { cls: "v", id: "drTasks" })]),
       h("div", null, [h("div", { cls: "k", text: "Zuletzt" }), h("div", { cls: "v", id: "drLast" })]),
       h("div", null, [h("div", { cls: "k", text: "Nächster Lauf" }), h("div", { cls: "v", id: "drNext" })])
     ]));
-    b.appendChild(h("div", { cls: "err-box", id: "drErr", hidden: "" }));
     b.appendChild(h("div", { cls: "rows", id: "drMetrics" }));
     if (!S.live) b.appendChild(h("div", { cls: "banner" }, [h("span", null, [h("b", { text: "Vorschau. " }), h("span", { cls: "muted", text: "Einstellungen funktionieren auf deinem Server." })])]));
     (CTL[id] || []).forEach(function (c) {
@@ -4808,6 +4829,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     clear($("drState")).appendChild(stateEl(st));
     $("drNow").hidden = st !== "arbeitet";
     $("drNowT").textContent = task || "Arbeitet …";
+    $("drDoing").textContent = st === "arbeitet" ? "" : agentDoing(a, st);
+    $("drDoing").hidden = st === "arbeitet";
+    $("drToday").textContent = agentToday(a);
     $("drTasks").textContent = nf.format(a.tasks || 0);
     $("drLast").textContent = a.last_run ? fTime.format(new Date(a.last_run)) + " Uhr" : "–";
     $("drNext").textContent = a.next_run ? rel(new Date(a.next_run) - new Date()) : st === "aus" ? "aus" : "–";
@@ -4821,6 +4845,22 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       run.disabled = !S.live || !a.can_run || (st === "arbeitet" && ["sprecher", "studio", "clipper"].indexOf(a.id) === -1);
       run.classList.toggle("going", st === "arbeitet");
     }
+  }
+  function agentDoing(a, st) {
+    if (st === "aus") return "Nichts, er ist ausgeschaltet.";
+    if (st === "fehler") return "Wartet nach einem Fehler auf den nächsten Versuch" + (a.next_run ? ", " + rel(new Date(a.next_run) - new Date()) : "") + ".";
+    if (st === "wartet") return a.id === "zuschauer" ? "Wartet, bis die Zuschauer-Daten verbunden sind." : a.id === "autor" ? "Wartet auf die Verbindung zum Skript-Speicher." : "Wartet, bis der Kanal verbunden ist.";
+    if (a.next_run) return "Gerade nichts. " + (a.id === "publisher" ? "Nächstes Video " : "Nächster Lauf ") + rel(new Date(a.next_run) - new Date()) + ".";
+    return a.id === "clipper" ? "Gerade nichts. Er fängt an, sobald ein neues Video kommt." : a.id === "sprecher" || a.id === "studio" ? "Gerade nichts. Er arbeitet, wenn das nächste Video gebaut wird." : "Gerade nichts, er ist bereit.";
+  }
+  var AGENT_DONE = { publisher: ["Video hochgeladen", "Videos hochgeladen"], clipper: ["Video geschnitten", "Videos geschnitten"], studio: ["Video gebaut", "Videos gebaut"],
+    sprecher: ["Video vertont", "Videos vertont"], autor: ["Mal Skripte abgeholt", "Mal Skripte abgeholt"], analyst: ["Mal Zahlen geholt", "Mal Zahlen geholt"],
+    zuschauer: ["Mal Zuschauer-Daten geholt", "Mal Zuschauer-Daten geholt"], designer: ["Mal Kanal-Design gesetzt", "Mal Kanal-Design gesetzt"], planer: ["Mal ausgewählt", "Mal ausgewählt"] };
+  function agentToday(a) {
+    var n = a.today || 0, w = AGENT_DONE[a.id] || ["Mal erledigt", "Mal erledigt"];
+    var last = a.last_run && berlin(new Date(a.last_run)).day === berlin(new Date()).day ? ", zuletzt um " + fTime.format(new Date(a.last_run)) + " Uhr" : "";
+    if (a.id === "planer" && !n) return (S.d && S.d.learning && S.d.learning.favorite ? "Liebling gerade: " + S.d.learning.favorite : "Sammelt noch Zahlen") + ".";
+    return n ? nf.format(n) + " " + (n === 1 ? w[0] : w[1]) + last + "." : "Heute noch nichts" + (a.tasks ? ", insgesamt " + nf.format(a.tasks) + "×" : "") + ".";
   }
   function closeAgent() {
     if (!S.agent) return;
@@ -4934,14 +4974,15 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     c.clips.forEach(function (x) {
       var th = clipThumb(c, x, "");
       th.append(h("span", { cls: "cst " + x.status, text: CLST[x.status] || x.status }), h("span", { cls: "badge r", text: mmss(x.duration) }));
-      var acts = h("div", { cls: "acts" });
+      var acts = h("div", { cls: "acts" }), more = [];
       if (x.status === "neu") add(acts, [
         actBtn("Freigeben", "ok", function () { return clipAct(c, x, "approve"); }),
         actBtn("Ablehnen", "no", function () { return clipAct(c, x, "reject"); }, true)]);
-      else if (x.status === "freigegeben") add(acts, [actBtn("Jetzt posten", "", function () { return postClip(c, x); }, true)]);
-      else if (x.status === "abgelehnt") add(acts, [actBtn("Zurückholen", "", function () { return clipAct(c, x, "restore"); })]);
-      else if (x.status === "gepostet" && x.video_id) add(acts, [h("a", { cls: "btn sm", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube" }), crSubmit(c, x, "btn sm")]);
-      acts.appendChild(dlLink(c, x));
+      else if (x.status === "freigegeben") more.push(actBtn("Jetzt posten", "", function () { return postClip(c, x); }, true));
+      else if (x.status === "abgelehnt") more.push(actBtn("Zurückholen", "", function () { return clipAct(c, x, "restore"); }));
+      else if (x.status === "gepostet" && x.video_id) more.push(h("a", { cls: "btn sm", href: "https://youtube.com/shorts/" + x.video_id, target: "_blank", rel: "noopener", text: "Auf YouTube" }), crSubmit(c, x, "btn sm"));
+      more.push(dlLink(c, x));
+      acts.appendChild(uiDots("cl-" + c.id + "-" + x.n, more, "Mehr zum Clip"));
       g.appendChild(h("div", { cls: "cl st-" + x.status }, [th, h("div", { cls: "t", text: x.title }), add(h("div", { cls: "m" }), [scoreEl(x), "ab " + mmss(x.start)]), acts]));
     });
     return g;
@@ -4963,9 +5004,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var sum = n ? [n + (n === 1 ? " Clip" : " Clips"), by.neu ? by.neu + " neu" : null, by.freigegeben ? by.freigegeben + " freigegeben" : null, by.gepostet ? by.gepostet + " gepostet" : null].filter(Boolean).join(" · ") : "";
     var right = h("div", { cls: "row" });
     if (c.status === "fehler") right.appendChild(actBtn("Nochmal versuchen", "", function () { return api("api/campaign/retry", { id: c.id }).then(function () { toast("Startet neu."); }); }));
-    if (["laedt", "hoert", "schneidet"].indexOf(c.status) === -1) right.appendChild(actBtn("Löschen", "no", function () {
+    if (["laedt", "hoert", "schneidet"].indexOf(c.status) === -1) right.appendChild(uiDots("camp-" + c.id, [actBtn("Video und Clips löschen", "no", function () {
       return api("api/campaign/delete", { id: c.id }).then(function () { toast("Kampagne gelöscht."); });
-    }, true));
+    }, true)], "Mehr zum Video"));
     return h("section", { cls: "card camp" + (c.status === "hoert" || c.status === "schneidet" ? " glow-b lit" : "") }, [
       h("div", { cls: "card-h" }, [
         h("div", { style: "min-width:0" }, [h("h2", { text: c.name }), h("div", { cls: "sub", text: meta }), wpChip(c, d)]),
@@ -5041,8 +5082,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var late = x.state === "offen" && x.minutes != null && (Date.now() - new Date(x.posted_at).getTime()) / 60000 > ((S.d.einreichen || {}).late_min || 120);
     var img = h("img", { src: "api/clip/" + x.id + "/" + x.n + ".jpg", alt: "", loading: "lazy" });
     img.addEventListener("error", function () { img.remove(); });
-    var linkBtn = h("button", { cls: "er-link", type: "button", title: "Link kopieren", text: x.link.replace("https://", "") });
-    linkBtn.addEventListener("click", function () { copyText(x.link, linkBtn); });
+    var linkBtn = h("span", { cls: "er-linktxt", text: x.link.replace("https://", "") });
     var meta = [h("span", { cls: "chip wpchip", text: x.campaign }), h("span", { text: (x.posted_at ? agoTxt(x.posted_at) + " gepostet" : "gepostet") }), h("span", { text: nf.format(x.views || 0) + " Aufrufe" })];
     var acts = h("div", { cls: "er-acts" });
     if (x.state === "offen") {
@@ -5054,13 +5094,15 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       });
       var no = h("button", { cls: "btn sm ghost", type: "button", text: "Nicht einreichen" });
       no.addEventListener("click", function () { erAct("api/einreichen/skip", x, no); });
-      add(acts, [go, no]);
+      var cp = h("button", { cls: "btn sm", type: "button", text: "Nur Link kopieren" });
+      cp.addEventListener("click", function () { copyText(x.link, cp); });
+      add(acts, [go, uiDots("er-" + x.id + "-" + x.n, [cp, no], "Mehr zum Clip")]);
     } else if (x.state === "eingereicht" || x.state === "nicht") {
       var at = x.eingereicht_at ? new Date(x.eingereicht_at) : null;
       acts.appendChild(h("span", { cls: "er-done " + (x.state === "nicht" ? "skip" : "ok"), text: x.state === "nicht" ? "Nicht einreichen" : "Eingereicht" + (at ? " " + whenTxt(at) : "") }));
       var undo = h("button", { cls: "btn sm", type: "button", text: "Rückgängig" });
       undo.addEventListener("click", function () { erAct("api/einreichen/undo", x, undo); });
-      acts.appendChild(undo);
+      acts.appendChild(uiDots("er-" + x.id + "-" + x.n, [undo], "Mehr zum Clip"));
     } else acts.appendChild(h("span", { cls: "er-done skip", text: "Vor der Einreich-Station gepostet" }));
     return h("li", { cls: "er-row" + (late ? " late" : "") }, [
       h("a", { cls: "er-th", href: x.link, target: "_blank", rel: "noopener", "aria-label": "Auf YouTube ansehen" }, [img]),
@@ -5186,15 +5228,15 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     var stats = [w.videos + (w.videos === 1 ? " Video" : " Videos"), w.clips + " Clips", w.posted + " gepostet"].join(" · ");
     var checked = w.checked_at ? "geprüft " + fTime.format(new Date(w.checked_at)) + " Uhr" : "";
     var open = S.wpOpen === w.id;
-    var btns = h("div", { cls: "row" }, [
+    var btns = h("div", { cls: "row-acts" }, [
       (function () { var b = h("button", { cls: "btn sm" + (open ? "" : " primary"), type: "button", text: open ? "Abbrechen" : "Video hinzufügen" });
         b.disabled = !S.live; b.addEventListener("click", function () { S.wpOpen = open ? null : w.id; renderWhop(S.d, true); }); return b; })(),
-      (function () { var on = S.wpRules === w.id, b = h("button", { cls: "btn sm", type: "button", text: on ? "Vorgaben zuklappen" : (w.rules && (w.rules.caption || w.rules.screen_text || w.has_logo) ? "Vorgaben ändern" : "Vorgaben") });
+      uiDots("wp-" + w.id, [(function () { var on = S.wpRules === w.id, b = h("button", { cls: "btn sm", type: "button", text: on ? "Vorgaben zuklappen" : (w.rules && (w.rules.caption || w.rules.screen_text || w.has_logo) ? "Vorgaben ändern" : "Vorgaben") });
         b.disabled = !S.live; b.addEventListener("click", function () { S.wpRules = on ? null : w.id; renderWhop(S.d, true); }); return b; })(),
       h("a", { cls: "btn sm", href: w.url, target: "_blank", rel: "noopener", text: "Auf Whop öffnen" }),
       actBtn("Aktualisieren", "", function () { return api("api/whop/refresh", { id: w.id }).then(function () { toast("Aktualisiert."); soon(); }); }),
       actBtn("Entfernen", "no", function () { return api("api/whop/delete", { id: w.id }).then(function () { toast("Entfernt. Die Clips bleiben."); soon(); }); }, true)
-    ]);
+    ], "Mehr zur Kampagne")]);
     return h("div", { cls: "wp" }, [
       h("div", { cls: "wp-h" }, [h("div", { style: "min-width:0" }, [h("b", { text: w.title }), h("div", { cls: "sub", text: [w.brand, checked].filter(Boolean).join(" · ") })]),
         h("span", { cls: "pill" }, [h("span", { cls: "dot " + st[0] }), st[1]])]),
@@ -5602,8 +5644,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if (d.connected) a.appendChild(chNums([[nf.format(ch.subscribers || 0), "Abonnenten"], [nf.format(ch.videos || 0), "Videos"]]));
     a.appendChild(h("span", { cls: "role", text: "KI-Shorts · " + d.slots.length + " pro Tag" + (!CC.connected && per ? " + bis zu " + per + " Clips" : "") }));
     var go1 = h("button", { cls: "btn sm", type: "button", text: d.connected ? "Verbindung ansehen" : "Jetzt verbinden" });
-    go1.addEventListener("click", function () { $("conBody").scrollIntoView({ behavior: "smooth", block: "center" }); });
-    a.appendChild(h("div", { cls: "acts" }, [go1]));
+    go1.addEventListener("click", function () { location.hash = "#kanal/verbindung"; setTimeout(function () { $("conBody").scrollIntoView({ behavior: "smooth", block: "center" }); }, 80); });
+    if (!d.connected) go1.classList.add("primary");
+    a.appendChild(h("div", { cls: "acts" }, [d.connected ? uiDots("ch-main", [go1], "Mehr zum Hauptkanal") : go1]));
     g.appendChild(a);
     // Clip-Kanal
     var cch = CC.channel || {};
@@ -5614,7 +5657,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var off = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
       off.disabled = preview;
       off.addEventListener("click", function () { if (off.dataset.sure) api("api/clipchannel/disconnect").then(soon); else { off.dataset.sure = "1"; off.textContent = "Wirklich trennen?"; } });
-      b.appendChild(h("div", { cls: "acts" }, [off]));
+      b.appendChild(h("div", { cls: "acts" }, [uiDots("ch-clip", [off], "Mehr zum Clip-Kanal")]));
     } else if (cc.status === "code") {
       b.appendChild(h("p", { text: "Öffne google.com/device, melde dich an und wähle bei Google deinen Clip-Kanal. Dann diesen Code eingeben:" }));
       b.appendChild(h("div", { cls: "code", text: cc.user_code }));
@@ -5645,7 +5688,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var offr = h("button", { cls: "btn sm danger", type: "button", text: "Trennen" });
       offr.disabled = preview;
       offr.addEventListener("click", function () { if (offr.dataset.sure) api("api/relax/disconnect").then(soon); else { offr.dataset.sure = "1"; offr.textContent = "Wirklich trennen?"; } });
-      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm", href: "#ruhe", text: "Übersicht" }), nw, tg, offr]));
+      nw.classList.remove("primary");
+      r.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm", href: "#ruhe", text: "Übersicht" }), uiDots("ch-relax", [nw, tg, offr], "Mehr zu Quiet Corner")]));
       (RC.uploads || []).forEach(function (u) {
         r.appendChild(h("p", { text: u.at + " · " }, [h("a", { href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title })]));
       });
@@ -5667,7 +5711,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         var body = {}; body[P[0]] = inp.value;
         api("api/socials", body).then(function () { toast(P[2] + " gespeichert"); soon(); }, function (er) { toast(er.message); });
       });
-      c.appendChild(f);
+      c.appendChild(name ? uiFold("ch-name-" + P[0], "Namen ändern", [f]) : f);
       c.appendChild(h("p", { text: "Automatisch posten lässt " + P[2] + " nur geprüfte Firmen-Apps. Du postest die Clips unten mit zwei Klicks selbst." }));
       if (name) c.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm", href: P[3] + name, target: "_blank", rel: "noopener", text: "Profil öffnen" })]));
       g.appendChild(c);
@@ -5820,8 +5864,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       ? "Clip herunterladen, Text kopieren, in der App posten und hier abhaken."
       : "Sobald der Clipper Clips fertig hat, erscheinen sie hier.";
     if (!rows.length) { box.appendChild(h("p", { cls: "shempty", text: list.length ? "Alles gepostet. Stark!" : "Noch keine fertigen Clips. Lade im Reiter Clips ein Video hoch." })); return; }
-    rows.slice(0, 20).forEach(function (r) {
+    var rest = rows.length > 3 ? h("div") : null;
+    if (rest) box.appendChild(uiFold("sh-rest", "Weitere Clips anzeigen (" + (Math.min(rows.length, 20) - 3) + ")", [rest]));
+    rows.slice(0, 20).forEach(function (r, ri) {
       var c = r[0], x = r[1], sh = x.shared || {};
+      var tgt = rest && ri >= 3 ? rest : box;
       var cp = h("button", { cls: "btn sm", type: "button", text: "Text kopieren" });
       cp.addEventListener("click", function () { copyText(x.caption || x.title, cp); });
       var tg = [["tiktok", "TikTok"], ["instagram", "Instagram"]].map(function (P) {
@@ -5834,12 +5881,13 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         });
         return t;
       });
-      box.appendChild(h("div", { cls: "shr" }, [
+      var row = h("div", { cls: "shr" }, [
         h("img", { src: "api/clip/" + c.id + "/" + x.n + ".jpg", alt: "", loading: "lazy" }),
         h("div", { style: "min-width:0" }, [h("div", { cls: "t", text: x.title || "Clip " + x.n }),
           h("div", { cls: "m", text: c.name + (x.duration ? " · " + Math.round(x.duration) + " s" : "") + (x.status === "gepostet" ? " · auf YouTube" : "") })]),
         h("div", { cls: "b" }, [dlLink(c, x), cp].concat(tg))
-      ]));
+      ]);
+      if (tgt === box && rest) box.insertBefore(row, rest.closest("details")); else tgt.appendChild(row);
     });
   }
   document.querySelectorAll("[data-shf]").forEach(function (b) {
@@ -5878,7 +5926,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var off = h("button", { cls: "btn danger", type: "button", text: "Kanal trennen" });
       off.disabled = preview;
       off.addEventListener("click", function () { if (off.dataset.sure) { api("api/disconnect"); } else { off.dataset.sure = "1"; off.textContent = "Wirklich trennen?"; } });
-      body.appendChild(h("div", { cls: "row" }, [off]));
+      body.appendChild(h("div", { cls: "row" }, [uiDots("con-main", [off], "Verbindung trennen")]));
     } else if (c.status === "code") {
       body.appendChild(h("p", { text: "Öffne google.com/device, melde dich mit dem Konto deines Kanals an und gib diesen Code ein:" }));
       body.appendChild(h("div", { cls: "code", text: c.user_code }));
@@ -5907,7 +5955,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       var again = h("button", { cls: "btn", type: "button", text: "Neu verbinden" });
       again.disabled = preview || !A.has_client;
       again.addEventListener("click", startAnalytics);
-      ab.appendChild(h("div", { cls: "row" }, [again, off2]));
+      ab.appendChild(h("div", { cls: "row" }, [uiDots("con-ana", [again, off2], "Mehr zu Zuschauer-Daten")]));
     } else {
       ab.appendChild(h("p", { cls: "muted", text: "Zeigt, an welcher Stelle Zuschauer abschalten, und hilft dem Lernmodus. Einrichtung im Bereich Zuschauer." }));
       ab.appendChild(h("div", { cls: "row" }, [h("a", { cls: "btn primary", href: "#zuschauer", text: "Einrichten" })]));
@@ -5956,6 +6004,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderChannel(d);
     renderHours(d);
     renderKp(d);
+    uiRender(d);
     if (S.pl) fillPlayer();
     var u = new Date(d.updated_at);
     var ver = d.version && d.version.built ? " · Version vom " + fDayS.format(new Date(d.version.built)) + " " + fTime.format(new Date(d.version.built)) + " Uhr" : "";
@@ -6318,23 +6367,19 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     if (nx) {
       n.appendChild(h("div", { cls: "qc-row" }, [h("div", null, [h("b", { text: nx.title }), h("span", { text: nx.scene_name + " · " + (nx.minutes / 60) + " Std." + (Q.shorts ? " · dazu ein Teaser-Short" : "") })])]));
     }
-    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["180", "3 Std."], ["300", "5 Std."], ["480", "8 Std."], ["600", "10 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
-    len.value = String(Q.length || "auto");
-    len.addEventListener("change", function () { api("api/relax/settings", { length: len.value }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
     var pd = h("select", { "aria-label": "Videos am Tag" }, [1, 2, 3].map(function (x) { return h("option", { value: x, text: x + (x === 1 ? " Video am Tag" : " Videos am Tag") }); }));
     pd.value = String(Q.per_day || 2);
     pd.addEventListener("change", function () { api("api/relax/settings", { per_day: Number(pd.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
-    var hr = h("select", { "aria-label": "Uhrzeit" }, [15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "letztes ab " + x + " Uhr" }); }));
-    hr.value = String(Q.hour);
-    hr.addEventListener("change", function () { api("api/relax/settings", { hour: Number(hr.value) }).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); });
     var sh = h("button", { cls: "btn sm", type: "button", text: Q.shorts ? "Teaser-Shorts: an" : "Teaser-Shorts: aus" });
     sh.addEventListener("click", function () { api("api/relax/settings", { shorts: !Q.shorts }).then(soon, function (e) { toast(e.message); }); });
     var on = h("button", { cls: "btn sm", type: "button", text: Q.on ? "Pausieren" : "Wieder starten" });
     on.addEventListener("click", function () { api("api/relax/settings", { on: !Q.on }).then(soon, function (e) { toast(e.message); }); });
-    var now = h("button", { cls: "btn sm primary", type: "button", text: "Jetzt bauen und hochladen" });
+    var now = h("button", { cls: "btn sm", type: "button", text: "Jetzt bauen und hochladen" });
     now.addEventListener("click", function () { api("api/relax/now").then(function () { toast("Wird gebaut, dauert ca. 10 bis 20 Minuten"); soon(); }, function (e) { toast(e.message); }); });
-    [len, pd, hr, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
-    n.appendChild(h("div", { cls: "qc-set" }, [len, pd, hr, sh, on, now]));
+    [pd, sh, on, now].forEach(function (e) { e.disabled = !live || !Q.connected; });
+    // Länge und Uhrzeit regelt die App selbst (Lernmodus): hier nur anzeigen, ändern unter Kanäle > Erweitert
+    n.appendChild(h("p", { cls: "label", text: "Läuft automatisch · Länge " + (Q.length && Q.length !== "auto" ? (Number(Q.length) / 60) + " Std." : "wählt der Lernmodus") + " · letztes Video ab " + Q.hour + " Uhr" }));
+    n.appendChild(uiFold("qc-set", "Einstellungen", [h("div", { cls: "qc-set" }, [pd, sh, on, now]), h("p", { cls: "label" }, [h("span", { text: "Länge und Uhrzeit: " }), h("a", { href: "#kanal/erweitert", text: "Kanäle > Erweitert" })])], (Q.per_day || 1) + " am Tag · " + (Q.on ? "an" : "pausiert")));
 
     var pl = clear($("qcPlan"));
     plan.forEach(function (p, i) {
@@ -6533,7 +6578,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     geld: { name: "Geld" },
     uebersicht: { name: "Übersicht", subs: [["wachstum", "Wachstum", ["@Wachstum", "@Aufrufe je Video"]], ["ziel", "Ziel & Plan", ["@Ziel: Geld", "@Als Nächstes", "#ovShare"]]] },
     zuschauer: { name: "Zuschauer", subs: [["best", "Was am besten funktioniert", ["@Lernmodus", "@Was am besten", "@Thumbnails"]], ["kompass", "Nischen-Kompass", ["#kompass"]], ["vorbilder", "Vorbilder", ["#vorbilder"]], ["hook", "Hook-Prüfung", ["@Hook-Prüfung"]], ["binge", "Mehr Videos am Stück", ["#bgCard", "#kmCard"]], ["abschalten", "Wo sie abschalten", ["#zSetup", "#zData"]]] },
-    kanal: { name: "Kanäle verbinden", subs: [["kanaele", "Deine Kanäle", ["@Deine Kanäle", ".sec-sub", "#chGrid"]], ["social", "Insta & TikTok", ["#soCard", ".shc"]], ["verbindung", "Verbindung", ["@Verbindung und", "#previewNote", "@YouTube-Verbindung"]]] }
+    kanal: { name: "Kanäle verbinden", subs: [["kanaele", "Deine Kanäle", ["@Deine Kanäle", ".sec-sub", "#chGrid"]], ["social", "Insta & TikTok", ["#soCard", ".shc"]], ["verbindung", "Verbindung", ["@Verbindung", "#previewNote", "@YouTube-Verbindung"]], ["erweitert", "Erweitert", ["#advBox"]]] }
   };
   var ALIAS = { plan: "hauptkanal/plan", videos: "hauptkanal/videos", gepostet: "hauptkanal/videos", bestenliste: "hauptkanal/videos", sendeplan: "hauptkanal/plan", einreichen: "kampagnen/einreichen", community: "hauptkanal/community", posts: "hauptkanal/community" };
   var GICON = {
@@ -6567,6 +6612,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   function buildNav() {
     if (NAV.built) return;
     NAV.built = true;
+    uiBuild();
     Object.keys(PAGES).forEach(function (pg) {
       var P = PAGES[pg];
       pageViews(pg).forEach(function (v) {
@@ -6756,6 +6802,454 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       b.title = n + (n === 1 ? " Clip wartet" : " Clips warten") + " aufs Einreichen";
     });
   }
+
+  // --- Einfach-Ebene (seit 26.11.2026 abends, Julius' Wunsch) -------------------------------------
+  // Wenige Knöpfe, jeder Teil erklärt sich in einem Satz:
+  //  A = brauchst du oft: bleibt sichtbar (höchstens 1 bis 2 Hauptknöpfe je Karte)
+  //  B = brauchst du selten: hinter „⋯“ oder im aufklappbaren Bereich „Einstellungen“ unten in der Karte
+  //  C = macht die App selbst: nur als Anzeige, die Regler liegen unter Kanäle > Erweitert
+  // Nichts wird gelöscht: Elemente werden nur verschoben (IDs und Ereignisse bleiben), also funktioniert alles wie vorher.
+  // Liste aller Knöpfe: docs/ui-knoepfe.md. Regel für neue Funktionen: CLAUDE.md „Oberfläche: wenige Knöpfe …“.
+  S.open = {};
+  var INTRO = {
+    "zentrale/heute": "Hier siehst du auf einen Blick, was heute passiert und was als Nächstes kommt.",
+    "zentrale/agenten": "Hier siehst du deine Agenten. Jeder erledigt eine Aufgabe der App von selbst. Tipp einen an, dann siehst du, was er gerade macht.",
+    "zentrale/geld": "Hier siehst du, was deine Kampagnen-Clips ungefähr verdient haben und wie weit Clipi vom Werbegeld weg ist.",
+    "hauptkanal/plan": "Hier siehst du, welche Shorts wann auf deinen Hauptkanal kommen. Das plant die App selbst.",
+    "hauptkanal/videos": "Hier siehst du alle Videos, die schon online sind, mit ihren Aufrufen.",
+    "hauptkanal/community": "Hier siehst du die Community-Posts für heute: Text kopieren, in YouTube posten, hier abhaken.",
+    "clipi": "Hier siehst du deinen Clip-Kanal. Du ziehst Videos rein, Clipi schneidet und postet sie von selbst.",
+    "ruhe/plan": "Hier siehst du, welches lange Entspannungsvideo als Nächstes auf Quiet Corner kommt. Das läuft von selbst.",
+    "ruhe/hoch": "Hier siehst du alle Videos, die Quiet Corner schon hochgeladen hat.",
+    "ruhe/lernen": "Hier siehst du, welche Szenen und Längen bei Quiet Corner die meisten Aufrufe bringen.",
+    "ruhe/look": "Hier siehst du Banner und Profilbild von Quiet Corner.",
+    "social": "Hier siehst du, was auf Instagram und TikTok läuft und wie weit dein Profil eingerichtet ist.",
+    "kampagnen/kampagnen": "Hier verknüpfst du Kampagnen und gibst Videos ab, aus denen der Clipper Clips macht.",
+    "kampagnen/freigabe": "Hier siehst du alle Clips je Video. Neue Clips gibst du frei oder lehnst sie ab.",
+    "kampagnen/einreichen": "Hier siehst du gepostete Clips, die du noch bei Content Rewards einreichen musst.",
+    "kampagnen/statistik": "Hier siehst du je Kampagne, wie viele Clips eingereicht sind und was sie ungefähr bringen.",
+    "geld": "Hier siehst du, was du schon verdient hast und was ungefähr noch kommt.",
+    "uebersicht/wachstum": "Hier siehst du, wie Aufrufe und Abonnenten wachsen und welche Videos am besten laufen.",
+    "uebersicht/ziel": "Hier siehst du, wie weit du vom Geldverdienen mit YouTube weg bist und was als Nächstes kommt.",
+    "zuschauer/best": "Hier siehst du, was bei deinen Zuschauern am besten ankommt. Die App lernt daraus von selbst.",
+    "zuschauer/kompass": "Hier siehst du, welche Themen und Titel bei dir am stärksten laufen.",
+    "zuschauer/vorbilder": "Hier siehst du, was gerade bei großen Kanälen in deinen Nischen gut läuft.",
+    "zuschauer/hook": "Hier siehst du, wie stark die ersten 3 Sekunden der nächsten Shorts sind.",
+    "zuschauer/binge": "Hier siehst du, wie die App Zuschauer zum Weiterschauen bringt und auf Kommentare antwortet.",
+    "zuschauer/abschalten": "Hier siehst du, an welcher Stelle Zuschauer ein Video wegwischen.",
+    "kanal/kanaele": "Hier siehst du alle deine Kanäle und ob sie verbunden sind.",
+    "kanal/social": "Hier verbindest du Instagram und TikTok und siehst, welche Clips noch geteilt werden können.",
+    "kanal/verbindung": "Hier siehst du, ob YouTube und die Zuschauer-Daten verbunden sind.",
+    "kanal/erweitert": "Hier liegen alle Einstellungen, die die App normalerweise selbst regelt. Nur ändern, wenn du etwas Bestimmtes willst."
+  };
+  // Was macht der Agent? (ein Satz, einfache Sprache)
+  var AGENT_WHAT = {
+    planer: "Sucht aus, welches Video als Nächstes kommt, und nimmt öfter, was gut läuft.",
+    autor: "Holt jeden Morgen die neuen Skripte und legt sie in die Warteschlange.",
+    sprecher: "Liest jedes Skript mit der KI-Stimme vor.",
+    studio: "Baut aus Stimme, Bildern und Untertiteln das fertige Video.",
+    clipper: "Schneidet lange Videos in kurze Clips mit Untertiteln.",
+    publisher: "Lädt fertige Videos zu den Sendezeiten auf YouTube hoch.",
+    analyst: "Holt regelmäßig Aufrufe, Likes und Abonnenten von YouTube.",
+    zuschauer: "Holt von YouTube, an welcher Stelle Zuschauer abschalten.",
+    designer: "Hält Banner, Beschreibung und Stichwörter des Kanals aktuell."
+  };
+  // Fachbegriffe: bekommen eine kleine Erklärung (antippen oder mit der Maus drauf)
+  var TERMS = [
+    [/\d+(?:,\d+)?× Schnitt/, "So viel mehr Aufrufe als die Videos aus denselben Tagen. 1,3× heißt 30 % mehr."],
+    [/\d+ % sicher/, "Wie sicher die App ist, dass dieser Wert wirklich vorn liegt. Je sicherer, desto öfter nimmt sie ihn."],
+    [/Thompson(?:-Verfahren)?/, "Rechenweg, mit dem die App abwägt: meistens den Gewinner nehmen, knappe Rennen weiter testen."],
+    [/LUFS/, "Maß für die Lautstärke. YouTube spielt Videos mit etwa −14 LUFS ab."],
+    [/Webhook/, "Eine Web-Adresse, an die andere Programme Videos automatisch schicken können."],
+    [/API-Schlüssel|API Keys?/, "Ein Zugangscode, mit dem die App einen fremden Dienst benutzen darf."],
+    [/Access Token|Token\b/, "Ein Zugangscode, der deine Anmeldung bei einem Dienst speichert."],
+    [/Client-ID|Clientschlüssel|Client Key|Client Secret/, "Zugangsdaten deiner eigenen kleinen Google- oder TikTok-App. Brauchst du nur einmal beim Einrichten."],
+    [/Lernmodus/, "Die App probiert Varianten aus und nimmt danach öfter, was mehr Aufrufe bringt."],
+    [/Hook-Note|Hook-Prüfung|Hook\b/, "Der Einstieg: die ersten 3 Sekunden, die entscheiden, ob jemand weiterschaut."],
+    [/Loop/, "Das Ende geht nahtlos in den Anfang über. So schauen viele ein zweites Mal."],
+    [/Teaser(?:-Shorts?)?/, "Kurzer Short, der neugierig auf das lange Video macht."],
+    [/Buffer/, "Kostenloser Dienst, der für dich auf Instagram und TikTok postet."],
+    [/YouTube Analytics|Zuschauer-Daten/, "Die genauen Zahlen von YouTube: wie lange Leute schauen und wo sie abschalten."],
+    [/Kontingent/, "Wie viel die App pro Tag bei YouTube abfragen und hochladen darf."],
+    [/Thumbnails?/, "Das Vorschaubild, das man vor dem Video sieht."]
+  ];
+
+  function uiFold(key, title, kids, hint, cls) {   // aufklappbarer Bereich, merkt sich offen/zu über Neuzeichnen hinweg
+    var d = h("details", { cls: "c-set" + (cls ? " " + cls : "") });
+    if (S.open[key]) d.open = true;
+    d.appendChild(h("summary", null, [h("span", { text: title }), hint ? h("small", { text: hint }) : null]));
+    d.appendChild(h("div", { cls: "c-set-b" }, kids));
+    d.addEventListener("toggle", function () { S.open[key] = d.open; });
+    return d;
+  }
+  function uiDots(key, kids, label) {               // „⋯“-Menü für seltene Knöpfe
+    var d = h("details", { cls: "dots" });
+    if (S.open[key]) d.open = true;
+    d.appendChild(h("summary", { "aria-label": label || "Mehr", title: label || "Mehr" }, [h("span", { "aria-hidden": "true", text: "⋯" })]));
+    d.appendChild(h("div", { cls: "dots-pop", role: "menu" }, kids));
+    d.addEventListener("toggle", function () { S.open[key] = d.open; });
+    return d;
+  }
+  document.addEventListener("click", function (e) {  // „⋯“ schließt beim Tippen daneben
+    document.querySelectorAll("details.dots[open]").forEach(function (d) { if (!d.contains(e.target)) { d.open = false; } });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll("details.dots[open]").forEach(function (d) { d.open = false; var s = d.querySelector("summary"); if (s) s.focus(); });
+  });
+
+  function uiFind(q) {
+    if (/^#[\w-]+$/.test(q)) return $(q.slice(1));
+    var at = q.indexOf("@");
+    if (at > 0) {
+      var v = $(q.slice(0, at)), t = q.slice(at + 1);
+      if (!v) return null;
+      var hit = Array.prototype.find.call(v.querySelectorAll("h2"), function (x) { return x.textContent.trim().indexOf(t) === 0; });
+      return hit ? hit.closest(".card, details.card, .hm-s") : null;
+    }
+    return document.querySelector(q);
+  }
+  function uiHeadOf(card) {
+    return card.querySelector(":scope > .card-h, :scope > summary.card-h, :scope > .room-h, :scope > .hm-h") || card.querySelector("h2");
+  }
+  function uiMove(card, sels) {
+    var out = [];
+    (sels || []).forEach(function (s) { card.querySelectorAll(s).forEach(function (el) { if (out.indexOf(el) === -1) out.push(el); }); });
+    return out;
+  }
+
+  // Jede Karte: Satz „Was macht das?“, Status in einem Wort mit Farbpunkt, höchstens 2 Kennzahlen.
+  // st(d, el) gibt [Farbe, Wort, Kennzahl 1, Kennzahl 2] zurück. Farbe: ok (Läuft), warn (Wartet), err (Fehler), todo (Zu tun), off (Aus).
+  function stNum(n, one, many) { n = n || 0; return nf.format(n) + " " + (n === 1 ? one : many); }
+  function stAgent(id) { var a = agentById(id); if (!a) return null; var s = effState(a); return s === "fehler" ? "err" : s === "aus" ? "off" : s === "wartet" ? "warn" : "ok"; }
+  var STW = { ok: "Läuft", warn: "Wartet", err: "Fehler", todo: "Zu tun", off: "Aus", done: "Erledigt" };
+  var UI_CARDS = [
+    // Zentrale
+    { q: "#goCard", what: "Zeigt die Schritte, bis Clips und Kanäle ganz von selbst laufen.",
+      st: function (d, el) { var a = el.querySelectorAll("#goList > li").length, b = el.querySelectorAll("#goList > li.done").length; return [b >= a ? "done" : "todo", b >= a ? "Erledigt" : "Zu tun", b + " von " + a + " Schritten"]; } },
+    { q: "v-zentrale@Als Nächstes", what: "Die nächsten Uploads auf allen Kanälen.",
+      st: function () { var s = S.sch || []; return [s.length ? "ok" : "warn", s.length ? "Läuft" : "Wartet", s.length ? "nächster " + whenTxt(s[0].at) : "nichts geplant"]; } },
+    { q: "v-zentrale@Deine besten Shorts", what: "Deine 5 Shorts mit den meisten Aufrufen." },
+    { q: "v-zentrale@Alles im Blick", what: "Jeder Bereich in einer Zeile. Grüner Punkt heißt läuft, gelber Punkt heißt: schau mal rein." },
+    { q: "#room", what: "Neun Helfer, die jede Aufgabe der App von selbst erledigen. Antippen zeigt, was einer gerade macht.", dots: [".room-tr > a.btn"],
+      st: function (d) { var A = d.agents || [], busy = A.filter(function (a) { return effState(a) === "arbeitet"; }).length, err = A.filter(function (a) { return effState(a) === "fehler"; }).length;
+        return [err ? "err" : "ok", err ? "Fehler" : "Läuft", busy ? stNum(busy, "arbeitet gerade", "arbeiten gerade") : "alle bereit", err ? stNum(err, "Agent mit Fehler", "Agenten mit Fehler") : null]; } },
+    { q: "#apCard", what: "Hier entscheidest du über neue Clips und Skripte, bevor sie online gehen.", set: ["#apScripts > .row > .switch"], setTitle: "Einstellungen", setHint: "Freigabe-Pflicht für Skripte",
+      st: function (d) { var w = (d.clip_totals || {}).waiting || 0, s = d.approval ? (d.queue || []).filter(function (v) { return !v.approved; }).length : 0;
+        return [w + s ? "todo" : "done", w + s ? "Zu tun" : "Erledigt", stNum(w, "Clip wartet", "Clips warten"), d.approval ? stNum(s, "Skript wartet", "Skripte warten") : "Skripte gehen von selbst online"]; } },
+    { q: "v-zentrale@Live-Feed", what: "Was die Agenten gerade tun, die neueste Meldung oben.",
+      st: function (d) { var e = (d.events || [])[0]; return [e && e.level === "error" ? "err" : "ok", e && e.level === "error" ? "Fehler" : "Läuft", e ? "zuletzt " + fTime.format(new Date(e.at)) + " Uhr" : "noch nichts"]; } },
+    { q: "#crCard", what: "Zeigt, was deine Kampagnen-Clips bei Content Rewards ungefähr verdient haben.", st: stRewards },
+    { q: "#cmCard2", what: "Zeigt, wie weit Clipi noch vom YouTube-Werbegeld entfernt ist.", st: stClipiMoney },
+    // Hauptkanal
+    { q: "#nx", what: "Das nächste Video, das hochgeladen wird, als kleiner Film.",
+      st: function () { var s = S.sch || []; return [s.length ? "ok" : "warn", s.length ? "Läuft" : "Wartet", s.length ? whenTxt(s[0].at) : "nichts geplant"]; } },
+    { q: "#v-plan > .card.scroll", what: "Alle geplanten Uploads. Die App plant sie selbst nach den Sendezeiten.", headless: true,
+      st: function (d) { var s = S.sch || []; return [s.length ? "ok" : "warn", s.length ? "Läuft automatisch" : "Wartet", stNum(s.length, "Video geplant", "Videos geplant"), hoursText(d)]; } },
+    { q: "v-plan@Community-Posts heute", what: "Die Community-Posts für heute. Nach dem Posten hier abhaken.", st: stPosts },
+    { q: "#v-community > .cm-how", what: "So postest du: Text kopieren, in YouTube Studio einfügen, hier abhaken.", fold: "So geht's in 4 Schritten", foldFrom: ".card-b > ol, #cmInfo", headless: true },
+    { q: "v-community@Sendeplan für Posts", what: "Wann heute welcher Post dran ist. Abhaken machst du direkt am Post darunter.", st: stPosts },
+    { q: "#v-community > .cm-wm", what: "Kleines Abo-Logo unten rechts in langen Videos. Einmal setzen reicht.", fold: "Wasserzeichen laden und setzen", foldFrom: ".cm-wm-b > div > p.label, .cm-wm-b > div > .row",
+      st: function (d) { return d.watermark_at ? ["done", "Erledigt", "gesetzt am " + fDayS.format(new Date(d.watermark_at))] : ["warn", "Offen", "noch nicht auf YouTube gesetzt"]; } },
+    // Clipi
+    { q: "#cmCard", what: "Zeigt, wie weit Clipi noch vom YouTube-Werbegeld entfernt ist.", st: stClipiMoney },
+    { q: "#cqCard", what: "Videos reinziehen: Clipi schneidet sie und postet sie über den Tag verteilt.",
+      set: [".cq-now", ".cq-mode", ".cq-per", ".cq-learn", "#cqForm > p.label:last-child"], setTitle: "Einstellungen", setHint: "Schnitt-Art, Videos pro Tag, sofort posten",
+      st: function (d) { var q = d.clipi || {}, CC = d.clip_channel || {};
+        if (!CC.connected) return ["warn", "Wartet", "Clip-Kanal nicht verbunden"];
+        return [q.waiting ? "ok" : "warn", q.waiting ? "Läuft automatisch" : "Wartet", stNum(q.waiting, "Clip wartet", "Clips warten"), q.next && q.waiting ? "nächster " + whenTxt(new Date(q.next)) : nf.format(q.per_day || 0) + " pro Tag"]; } },
+    // Quiet Corner
+    { q: "v-ruhe@Als Nächstes", what: "Das nächste lange Video. Szene, Länge und Uhrzeit wählt die App selbst.", st: stQuiet },
+    { q: "v-ruhe@Plan für 7 Tage", what: "Was in den nächsten Tagen kommt. Die App wählt nach dem, was am besten läuft." },
+    { q: "v-ruhe@Hochgeladen", what: "Alle langen Videos auf Quiet Corner mit ihren Aufrufen.",
+      st: function (d) { var u = (d.relax_channel || {}).uploads || []; return [u.length ? "ok" : "warn", u.length ? "Läuft" : "Wartet", stNum(u.length, "Video", "Videos"), nf.format(u.reduce(function (a, x) { return a + (x.views || 0); }, 0)) + " Aufrufe"]; } },
+    { q: "v-ruhe@Was am besten läuft", what: "Welche Szene, Länge und Uhrzeit die meisten Aufrufe pro Tag bringt. Die App nimmt davon öfter." },
+    { q: "v-ruhe@Ideenliste", what: "Alle Video-Ideen für Quiet Corner, selbst gezeichnet und vertont." },
+    { q: "v-ruhe@Kanal-Look", what: "Banner und Profilbild. Die App setzt den Banner selbst, das Profilbild lädst du einmal von Hand hoch.", fold: "Banner und Profilbild ansehen",
+      st: function (d) { var Q = d.relax_channel || {}; return Q.branded ? ["done", "Erledigt", "Banner " + Q.branded.variant + " ist gesetzt"] : ["warn", "Wartet", "setzt die App nach dem Verbinden"]; } },
+    // Instagram & TikTok
+    { q: "#svIg", what: "Instagram: was gepostet wurde und wie es läuft.", headless: true, st: function (d) { return stPlat(d, "instagram"); } },
+    { q: "#svTt", what: "TikTok: was gepostet wurde und wie es läuft.", headless: true, st: function (d) { return stPlat(d, "tiktok"); } },
+    { q: "#svKit", what: "Alles fürs Profil zum Kopieren: Name, Bild, Bio und Hashtags. Brauchst du nur einmal beim Einrichten.", fold: "Profil-Paket öffnen",
+      st: function (d, el) { var a = el.querySelectorAll("#svCheck input").length, b = el.querySelectorAll("#svCheck input:checked").length; return [a && b >= a ? "done" : "todo", a && b >= a ? "Erledigt" : "Zu tun", b + " von " + a + " erledigt"]; } },
+    // Kampagnen
+    { q: "#v-kampagnen > .newc", what: "Gib ein Video oder einen Link ab, der Clipper macht daraus kurze Clips.", set: [".nv-more", ".nv-auto", "#nvForm > p.label:last-child"], setTitle: "Einstellungen", setHint: "Name, Original, automatisch posten",
+      st: function (d) { var ct = d.clip_totals || {}; return [stAgent("clipper") || "ok", (stAgent("clipper") === "err" ? "Fehler" : "Läuft"), stNum(ct.campaigns, "Video", "Videos"), stNum(ct.clips, "Clip", "Clips")]; } },
+    { q: "#v-kampagnen > .wpc", what: "Deine verknüpften Content-Rewards-Kampagnen mit Geld pro 1.000 Aufrufe und Budget.", set: ["#wpForm > p.label"], setTitle: "Hilfe zum Link",
+      st: function (d) { var W = d.whop || [], bad = W.filter(function (w) { return w.error; }).length; return [W.length ? (bad ? "err" : "ok") : "warn", W.length ? (bad ? "Fehler" : "Läuft") : "Wartet", stNum(W.length, "Kampagne", "Kampagnen"), bad ? bad + " nicht erreichbar" : null]; } },
+    { q: "#erCard", what: "Ein Klick kopiert den Link und öffnet die Kampagne. Absenden machst du dort selbst.", set: [".cr-note"], setTitle: "Warum von Hand?",
+      st: function (d) { var E = d.einreichen || {}; return [E.late ? "err" : E.open ? "todo" : "done", E.late ? "Eilt" : E.open ? "Zu tun" : "Erledigt", stNum(E.open, "Clip offen", "Clips offen"), stNum(E.submitted, "eingereicht", "eingereicht")]; } },
+    { q: "#erStats", what: "Wie viele Clips je Kampagne eingereicht sind. Geld zählt nur für eingereichte Clips.", st: stRewards },
+    { q: "#erCr", what: "Status, Budget und ungefähres Geld aller Kampagnen bei Content Rewards.", st: stRewards },
+    // Geld
+    { q: "v-geld@Auszahlung eintragen", what: "Trag hier ein, wenn wirklich Geld bei dir angekommen ist.", fold: "Neue Auszahlung eintragen", foldFrom: "#mgForm",
+      st: function (d) { var P = (d.money || {}).payouts || []; return [P.length ? "ok" : "warn", P.length ? "Läuft" : "Wartet", stNum(P.length, "Auszahlung", "Auszahlungen"), P.length ? mgSum(P) + " bekommen" : "noch nichts eingetragen"]; } },
+    { q: "v-geld@Pro Monat", what: "Echt bekommenes Geld, nach Monaten." },
+    { q: "v-geld@Prüfpunkt", what: "Am 30. November schaut ihr, ob der Kanal auf Kurs ist oder die Themen wechseln sollten." },
+    { q: "v-geld@Ziel: Geld mit YouTube", what: "Wie weit du vom YouTube-Partnerprogramm entfernt bist (1.000 Abos und genug Aufrufe)." },
+    { q: "#v-geld > .crc", what: "Ungefähres Geld je Kampagne, nur für eingereichte Clips.", st: stRewards },
+    // Übersicht
+    { q: "v-uebersicht@Wachstum", what: "Wie Aufrufe oder Abonnenten über die Zeit wachsen.",
+      st: function (d) { var dv = histDelta(d, "views", 24); return [d.connected ? "ok" : "warn", d.connected ? "Läuft" : "Wartet", dv != null ? "+" + nf.format(dv) + " Aufrufe in 24 Std." : "noch keine Zahlen"]; } },
+    { q: "v-uebersicht@Nächster Upload", what: "Welches Video als Nächstes online geht." },
+    { q: "v-uebersicht@Aufrufe je Video", what: "Die letzten Uploads im Vergleich. Die Farbe zeigt das Thema." },
+    { q: "v-uebersicht@Themen", what: "Welches Thema wie viele deiner Aufrufe bringt." },
+    { q: "v-uebersicht@Ziel: Geld mit YouTube", what: "Wie weit du vom YouTube-Partnerprogramm entfernt bist." },
+    { q: "v-uebersicht@Aktivität", what: "Was die App zuletzt gemacht hat." },
+    { q: "v-uebersicht@Als Nächstes", what: "Die nächsten Videos im Sendeplan." },
+    { q: "#ovShare", what: "Deine besten Clips zum Posten auf TikTok und Instagram." },
+    // Zuschauer
+    { q: "#zSetup", what: "Einmal einrichten, dann zeigt die App, wo Zuschauer abschalten. Dauert etwa 5 Minuten." },
+    { q: "v-zuschauer@Wo Zuschauer abschalten", what: "Wie viele Zuschauer bei jedem Satz noch dabei sind, im Schnitt aller Videos.",
+      st: function (d) { var A = d.analytics || {}; return [A.connected ? (A.error ? "err" : "ok") : "warn", A.connected ? (A.error ? "Fehler" : "Läuft") : "Wartet", A.connected ? "holt alle 3 Std. neue Daten" : "Zuschauer-Daten nicht verbunden"]; } },
+    { q: "v-zuschauer@Verlust je Satz", what: "Bei welchem Satz die meisten Leute weggehen." },
+    { q: "#oneCard", what: "Tipp ein Video an und sieh, bei welchem Satz die Leute weggewischt haben." },
+    { q: "#kmCard", what: "Die App antwortet selbst kurz und freundlich auf einfache Kommentare. Schwierige zeigt sie dir.",
+      set: [".cm-ctl"], setTitle: "Einstellungen", setHint: "an/aus, wie und wie viele am Tag",
+      st: function (d) { var C = d.comments || {}, st = C.settings || {}, A = C.status || {}, todo = (C.todo || []).length;
+        if (!st.on) return ["off", "Aus", "antwortet nicht automatisch"];
+        if ((C.access && C.access !== "ok") || A.error) return ["err", "Fehler", A.error || "Zugang fehlt, einmal neu verbinden"];
+        return [todo ? "todo" : "ok", todo ? "Zu tun" : "Läuft automatisch", "heute " + (C.today || 0) + " Antworten", todo ? stNum(todo, "Kommentar für dich", "Kommentare für dich") : null]; } },
+    { q: "#bgCard", what: "Unter jeden Upload schreibt die App eine Frage, und erzählte Geschichten kommen in eine Playlist.",
+      set: [".cm-ctl"], setTitle: "Einstellungen", setHint: "Frage-Kommentar, Playlist",
+      st: function (d) { var B = d.binge || {}, st = B.settings || {}, on = st.fragen !== false || st.playlist !== false; return [on ? "ok" : "off", on ? "Läuft automatisch" : "Aus", (B.playlist || {}).count != null ? stNum(B.playlist.count, "Video in der Playlist", "Videos in der Playlist") : null]; } },
+    { q: "v-zuschauer@Lernmodus", what: "Welche Themen die App gerade öfter nimmt, weil sie besser laufen. Das macht sie selbst.",
+      st: function (d) { var L = d.learning || {}; return L.off ? ["off", "Aus", "Videos kommen der Reihe nach"] : ["ok", "Läuft automatisch", L.favorite ? "Liebling: " + L.favorite : "testet noch"]; } },
+    { q: "#kompass", what: "Welches Themenfeld und welcher Titel bei dir am besten läuft, fair mit denselben Tagen verglichen.",
+      st: function (d) { var K = d.kompass || {}; return [(K.rows || []).length ? "ok" : "warn", (K.rows || []).length ? "Läuft" : "Wartet", (K.rows || []).length ? null : "sammelt noch Videos"]; } },
+    { q: "v-zuschauer@Was am besten funktioniert", what: "Jede Sache, die die App testet, mit dem Ergebnis bei deinen Zuschauern. Die beste nimmt sie öfter.",
+      st: function (d) { var g = (d.looks || []).length; return [g ? "ok" : "warn", g ? "Läuft automatisch" : "Wartet", g ? stNum(g, "Test", "Tests") : "noch zu wenig Videos"]; } },
+    { q: "#vorbilder", what: "Was große Kanäle in deinen Nischen gerade machen. Die App liest das alle 12 Stunden selbst.",
+      st: function (d) { var V = d.vorbilder || {}, c = V.channels || [], ok = c.filter(function (x) { return x.ok; }).length; return [ok ? "ok" : "warn", ok ? "Läuft automatisch" : "Wartet", ok + " von " + c.length + " Kanälen gelesen"]; } },
+    { q: "v-zuschauer@Hook-Prüfung", what: "Jeder Short wird vor dem Upload geprüft: Ist der Einstieg stark genug?",
+      st: function (d) { var l = (d.queue || []).filter(function (v) { return v.hook_check; }), weak = l.filter(function (v) { return v.hook_check.score < 7; }).length; return [l.length ? "ok" : "warn", l.length ? "Läuft automatisch" : "Wartet", stNum(l.length, "Skript geprüft", "Skripte geprüft"), weak ? weak + " unter 7 von 8" : null]; } },
+    { q: "v-zuschauer@Thumbnails", what: "Die App baut für jedes Video zwei Vorschaubilder und setzt das, das besser läuft.",
+      st: function (d) { var T = d.thumbs || {}, st = T.status; if (st && !st.ok) return ["err", "Fehler", st.reason === "verify" ? "Kanal noch nicht bestätigt" : "YouTube hat abgelehnt", T.missing ? T.missing + " fehlen" : null];
+        return [st ? "ok" : "warn", st ? "Läuft automatisch" : "Wartet", T.missing ? T.missing + " fehlen noch" : st ? "alle gesetzt" : "noch keins gesetzt"]; } },
+    // Kanäle verbinden
+    { q: "#showroom", what: "Dein Hauptkanal in Zahlen, mit einem kleinen Film aus deinem Sendeplan.",
+      st: function (d) { return [d.connected ? "ok" : "warn", d.connected ? "Verbunden" : "Wartet", d.connected ? nf.format((d.channel || {}).subscribers || 0) + " Abonnenten" : "noch nicht verbunden"]; } },
+    { q: "#soCard", what: "Einmal mit Buffer verbinden, dann gehen deine besten Shorts von selbst auf Instagram und TikTok.",
+      st: function (d) { var so = d.social || {}, b = so.buffer || {}; return b.connected ? ["ok", "Läuft automatisch", "über Buffer verbunden"] : ["warn", "Wartet", "noch nicht verbunden"]; } },
+    { q: "v-kanal@Für TikTok und Instagram", what: "Clips, die du von Hand auf TikTok und Instagram posten kannst. Nach dem Posten abhaken." },
+    { q: "v-kanal@YouTube-Verbindung", what: "Verbindet die App mit deinem Hauptkanal, damit sie hochladen darf.",
+      st: function (d) { return [d.connected ? "ok" : "warn", d.connected ? "Verbunden" : "Wartet", d.connected ? (d.channel || {}).title || null : "noch nicht verbunden"]; } },
+    { q: "v-kanal@Zuschauer-Daten", what: "Holt von YouTube, wie lange Leute schauen. Das hilft dem Lernmodus.",
+      st: function (d) { var A = d.analytics || {}; return [A.connected ? (A.error ? "err" : "ok") : "warn", A.connected ? (A.error ? "Fehler" : "Verbunden") : "Wartet"]; } },
+    { q: "v-kanal@Google-Zugang", what: "Deine eigenen Google-Zugangsdaten. Brauchst du nur einmal beim Einrichten.", fold: "Zugangsdaten ändern", foldFrom: "#credForm",
+      st: function (d) { return d.has_client ? ["done", "Erledigt", "gespeichert"] : ["todo", "Zu tun", "fehlt noch"]; } }
+  ];
+  function stRewards(d) {
+    var W = d.whop || [], E = d.einreichen || {}, cur = (W[0] || {}).currency || "$";
+    var earned = (E.campaigns || []).reduce(function (a, c) { return c.earned == null ? a : a + c.earned; }, 0);
+    return [W.length ? "ok" : "warn", W.length ? "Läuft" : "Wartet", W.length ? stNum(W.length, "Kampagne", "Kampagnen") : "noch keine Kampagne", W.length ? "ca. " + money(earned, cur, true) + " verdient" : null];
+  }
+  function stClipiMoney(d) {
+    var CC = d.clip_channel || {}, subs = (CC.channel || {}).subscribers || 0;
+    return [CC.connected ? "ok" : "warn", CC.connected ? "Läuft" : "Wartet", nf.format(subs) + " von 1.000 Abos", CC.connected ? null : "Clip-Kanal nicht verbunden"];
+  }
+  function stPosts(d) {
+    var P = ((d.community || {}).posts || []).filter(function (p) { return p.hour; }), done = P.filter(function (p) { return p.done; }).length;
+    var due = P.filter(function (p) { return !p.done && p.hour <= new Date().getHours(); }).length;
+    return [due ? "todo" : done >= P.length ? "done" : "ok", due ? "Zu tun" : done >= P.length ? "Erledigt" : "Läuft", done + " von " + P.length + " gepostet", due ? stNum(due, "Post ist dran", "Posts sind dran") : null];
+  }
+  function stQuiet(d) {
+    var Q = d.relax_channel || {}, nx = (Q.plan || [])[0];
+    if (!Q.connected) return ["warn", "Wartet", "Kanal nicht verbunden"];
+    if (Q.error_text) return ["err", "Fehler", Q.error_text.slice(0, 60)];
+    if (!Q.on) return ["off", "Aus", "pausiert"];
+    return ["ok", Q.phase ? "Arbeitet" : "Läuft automatisch", "nächstes ab " + (Q.slots || [Q.hour]).join(" und ") + " Uhr", nx ? (nx.minutes / 60) + " Std. " + (nx.scene_name || "") : null];
+  }
+  function stPlat(d, plat) {
+    var x = ((d.social_view || {})[plat]) || {}, so = (d.social || {})[plat] || {};
+    var on = x.connected || so.connected || so.buffer || ((d.social || {}).buffer || {}).connected;
+    return [on ? "ok" : "warn", on ? "Läuft" : "Wartet", on ? (x.count != null ? stNum(x.count, "Post", "Posts") : null) : "noch nicht verbunden"];
+  }
+
+  // Seiten-Köpfe: seltene Knöpfe oben rechts wandern in ein „⋯“-Menü
+  var UI_HEAD = [
+    ["v-community", [".cm-head-a > *"], "Posts pro Tag und andere Vorschläge"],
+    ["v-kampagnen", ["#kClipper"], "Clipper einstellen"],
+    ["v-social", [".sv-ref > *"], "Zahlen neu holen"],
+    ["v-videos", ["#vSort"], "Sortieren"],
+    ["v-plan", ["#planFilter"], "Nach Thema filtern"]
+  ];
+
+  function uiBuild() {
+    // Kanäle > Erweitert: alles, was die App selbst regelt (C), plus seltene Aktionen
+    var adv = $("advBox");
+    if (adv && !adv.dataset.built) {
+      adv.dataset.built = "1";
+      var plan = $("planForm") && $("planForm").closest(".card"), more = document.querySelector("details.more-set"), acts = $("postNow") && $("postNow").closest(".card");
+      if (plan) adv.appendChild(uiFold("adv-hours", "Sendezeiten und Sichtbarkeit", [plan], "Wann hochgeladen wird", "adv")).id = "advHours";
+      adv.appendChild(uiFold("adv-agents", "Agenten-Einstellungen", [h("div", { cls: "adv-ag", id: "advAgents" })], "Lernmodus, Abfrage-Intervalle, Clipper, Stimme", "adv"));
+      adv.appendChild(uiFold("adv-relax", "Quiet Corner: Länge und Uhrzeit", [h("div", { cls: "qc-set", id: "advRelax" })], "Länge automatisch", "adv"));
+      if (more) adv.appendChild(more);
+      if (acts) adv.appendChild(uiFold("adv-acts", "Von Hand anstoßen", [acts], "Jetzt ein Video posten, alles aktualisieren", "adv"));
+    }
+    UI_HEAD.forEach(function (x) {
+      var v = $(x[0]), head = v && v.querySelector(":scope > .head");
+      if (!head || head.querySelector(":scope > .dots")) return;
+      var kids = [];
+      x[1].forEach(function (s) { head.querySelectorAll(s).forEach(function (el) { kids.push(el); }); });
+      if (!kids.length) return;
+      var dm = uiDots("head-" + x[0], kids, x[2]);
+      dm.classList.add("head-dots");
+      head.appendChild(dm);
+      head.querySelectorAll(".cm-head-a, .sv-ref").forEach(function (e) { if (!e.children.length) e.remove(); });
+    });
+    UI_CARDS.forEach(function (c) {
+      var el = uiFind(c.q);
+      if (!el || el.dataset.ui) return;
+      el.dataset.ui = "1";
+      c.el = el;
+      var head = c.headless ? null : uiHeadOf(el);
+      var info = h("div", { cls: "c-info" });
+      // Ein schon vorhandener fester Untertitel wird zum Satz „Was macht das?“ (dynamische mit id bleiben)
+      var sub = head && head.querySelector(".sub:not([id])");
+      if (sub && c.what) { sub.textContent = c.what; sub.classList.add("c-what"); }
+      else if (c.what) info.appendChild(h("p", { cls: "c-what", text: c.what }));
+      if (c.st) { info.appendChild(h("div", { cls: "c-st", "aria-live": "polite" })); el.classList.add("c-has-st"); }
+      if (info.children.length) {
+        if (head && head.matches(".card-h, summary.card-h, .room-h, .hm-h")) head.after(info);
+        else if (head) head.after(info);
+        else { info.classList.add("top"); el.prepend(info); }
+        c.info = info;
+      }
+      var body = el.querySelector(":scope > .card-b") || el.querySelector(":scope > form.card-b") || el;
+      if (c.set) {
+        var mv = uiMove(el, c.set);
+        if (mv.length) body.appendChild(uiFold("set-" + c.q, c.setTitle || "Einstellungen", mv, c.setHint));
+      }
+      if (c.dots) {
+        var dk = uiMove(el, c.dots);
+        if (dk.length) (el.querySelector(".room-tr") || head || el).appendChild(uiDots("dots-" + c.q, dk));
+      }
+      if (c.fold) {
+        var fk = c.foldFrom ? uiMove(el, [c.foldFrom]) : Array.prototype.filter.call(el.children, function (k) { return k !== head && k !== info; });
+        fk.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+        if (fk.length) {
+          var fold = uiFold("fold-" + c.q, c.fold, []);
+          fk[0].before(fold);
+          fk.forEach(function (k) { fold.lastChild.appendChild(k); });
+        }
+      }
+    });
+    // „Weitere Ideen“ der Community-Posts aufklappbar
+    var mh = $("cmMoreH"), mm = $("cmMore");
+    if (mh && mm && !mm.closest("details")) {
+      var f = uiFold("cm-more", "Weitere Ideen", [mm], "Vorschläge für andere Tage");
+      f.id = "cmMoreF";
+      mh.replaceWith(f);
+      f.querySelector("summary span").id = "cmMoreH";
+    }
+  }
+
+  function uiStatus(el, r) {
+    clear(el);
+    if (!r) { el.hidden = true; return; }
+    el.hidden = false;
+    var cls = { ok: "live", done: "ok", warn: "warn", err: "err", todo: "todo", off: "off" }[r[0]] || "ok";
+    el.append(h("span", { cls: "dot " + cls }), h("b", { text: r[1] || STW[r[0]] || "" }));
+    [r[2], r[3]].forEach(function (k) { if (k) el.appendChild(h("span", { cls: "c-k", text: k })); });
+  }
+  function uiRender(d) {
+    var view = document.querySelector("section.view:not([hidden])");
+    // Zeile „Hier siehst du …“
+    var key = NAV.page + (NAV.sub ? "/" + NAV.sub : ""), txt = INTRO[key] || INTRO[NAV.page];
+    if (view) {
+      var intro = view.querySelector(":scope > .intro");
+      if (!intro) {
+        intro = h("p", { cls: "intro" });
+        var anchor = view.querySelector(":scope > .subnav") || view.querySelector(":scope > .kp4") || view.querySelector(":scope > .head") || view.querySelector(":scope > .hello");
+        if (anchor) anchor.after(intro); else view.prepend(intro);
+      }
+      intro.textContent = txt || "";
+      intro.hidden = !txt;
+    }
+    UI_CARDS.forEach(function (c) {
+      if (!c.info || !c.st || !view || !view.contains(c.el)) return;
+      var box = c.info.querySelector(".c-st"), r = null;
+      try { r = c.st(d, c.el); } catch (e) { r = null; }
+      uiStatus(box, r);
+    });
+    if (NAV.page === "kanal") renderAdvanced(d);
+    if (view) uiTerms(view);
+  }
+
+  // Kanäle > Erweitert: Agenten mit Kurzfassung ihrer Einstellungen, ein Tipp öffnet sie direkt
+  function renderAdvanced(d) {
+    var box = $("advAgents");
+    if (!box) return;
+    var R = d.relax_channel || {};
+    var key = JSON.stringify([(d.agents || []).map(function (a) { return [a.id, a.state, a.settings]; }), R.length, R.hour, R.connected, S.live]);
+    if (box.dataset.k === key) return;
+    box.dataset.k = key;
+    clear(box);
+    (d.agents || []).forEach(function (a) {
+      var m = (a.metrics || []).slice(0, 2).map(function (x) { return x.label + ": " + x.value; }).join(" · ");
+      var b = h("button", { cls: "adv-a", type: "button" }, [h("b", { text: a.name }), h("span", { text: AGENT_WHAT[a.id] || a.desc }), m ? h("small", { text: m }) : null]);
+      b.addEventListener("click", function () { S.agentMore = true; openAgent(a.id); });
+      box.appendChild(b);
+    });
+    relaxAdv(d);
+    var hb = $("advHours");
+    if (hb) { var sm = hb.querySelector("summary small"); if (sm) sm.textContent = hoursText(d); }
+  }
+
+  function relaxAdv(d) {                            // Quiet Corner: Länge und Uhrzeit (regelt sonst die App)
+    var box = $("advRelax"), Q = d.relax_channel || {};
+    if (!box) return;
+    clear(box);
+    var save = function (body) { api("api/relax/settings", body).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); };
+    var len = h("select", { "aria-label": "Länge" }, [["auto", "Länge: automatisch"], ["180", "3 Std."], ["300", "5 Std."], ["480", "8 Std."], ["600", "10 Std."]].map(function (o) { return h("option", { value: o[0], text: o[1] }); }));
+    len.value = String(Q.length || "auto");
+    len.addEventListener("change", function () { save({ length: len.value }); });
+    var hr = h("select", { "aria-label": "Uhrzeit" }, [15, 17, 19, 21].map(function (x) { return h("option", { value: x, text: "letztes ab " + x + " Uhr" }); }));
+    hr.value = String(Q.hour || 17);
+    hr.addEventListener("change", function () { save({ hour: Number(hr.value) }); });
+    len.disabled = hr.disabled = !S.live || !Q.connected;
+    box.appendChild(len); box.appendChild(hr);
+    if (!Q.connected) box.appendChild(h("p", { cls: "label", text: "Erst Quiet Corner verbinden." }));
+    var sm = box.closest("details") && box.closest("details").querySelector("summary small");
+    if (sm) sm.textContent = (Q.length && Q.length !== "auto" ? (Number(Q.length) / 60) + " Std." : "Länge automatisch") + " · ab " + (Q.hour || 17) + " Uhr";
+  }
+
+  // Fachbegriffe im sichtbaren Reiter mit einer kurzen Erklärung versehen (je Begriff und Karte einmal)
+  function uiTerms(root) {
+    var skip = "script,style,code,pre,textarea,input,select,button,summary,h1,h2,h3,abbr,svg,.tick,.ov,.subnav,.kp4,.nav,.c-what,.intro,.cm-txt,.sv-bio";
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || n.nodeValue.length < 3) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p || p.closest(skip)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [], n, run = {};
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (node) {
+      var card = node.parentElement.closest(".card, .hm-s, details") || root;
+      if (!run.cards) run.cards = [];
+      if (run.cards.indexOf(card) === -1) {  // schon erklärte Begriffe dieser Karte nicht doppelt markieren
+        run.cards.push(card);
+        card._terms = {};
+        card.querySelectorAll("abbr.term").forEach(function (a) { TERMS.forEach(function (t, i) { if (t[1] === a.dataset.tip) card._terms[i] = true; }); });
+      }
+      for (var i = 0; i < TERMS.length; i++) {
+        if (card._terms[i]) continue;
+        var m = TERMS[i][0].exec(node.nodeValue);
+        if (!m) continue;
+        card._terms[i] = true;
+        var after = node.splitText(m.index), rest = after.splitText(m[0].length);
+        var ab = h("abbr", { cls: "term", tabindex: "0", "data-tip": TERMS[i][1], title: TERMS[i][1], text: m[0] });
+        after.replaceWith(ab);
+        node = rest;
+        if (!node.nodeValue) break;
+      }
+    });
+  }
+
   window.addEventListener("hashchange", showTab);
   var rz;
   window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (S.d) render(); }, 200); });
@@ -7284,5 +7778,97 @@ details.more-set .more-in { display: flex; flex-direction: column; gap: 16px; pa
   .view, .view.enter, .view.enter-sub > * { animation: none !important; }
   .subnav .glider { transition: none; }
   .btn, .nav a, .subnav button, .tabbar a, .gbar a { transition: none; }
+}
+
+/* ===== Einfach-Ebene (seit 26.11.2026 abends) =================================
+   Wenige Knöpfe, jeder Teil erklärt sich: Satz „Was macht das?“, Status mit Farbpunkt, „⋯“ für Seltenes,
+   aufklappbare „Einstellungen“ unten in der Karte. Gleicher Look wie die Edel-Ebene. */
+.intro { margin: -6px 0 0; font-size: 15px; line-height: 1.45; color: rgba(235, 235, 245, .7); max-width: 70ch; }
+.intro[hidden] { display: none; }
+.c-info { display: flex; flex-direction: column; gap: 8px; padding: 8px 22px 0; min-width: 0; }
+.c-info.top { padding-top: 18px; }
+.hm-s > .c-info, .room > .c-info { padding-left: 0; padding-right: 0; }
+.room > .c-info { padding: 0 0 6px; }
+.c-what, .card-h .sub.c-what { margin: 0; font-size: 13.5px; line-height: 1.45; color: rgba(235, 235, 245, .72); max-width: 68ch; }
+.c-st { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 12.5px; color: var(--muted); min-width: 0; }
+.c-st[hidden] { display: none; }
+.c-st b { color: var(--ink); font-weight: 600; font-size: 13px; }
+.c-st .c-k { padding: 2px 9px; border-radius: 980px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-variant-numeric: tabular-nums; }
+.dot.todo { background: var(--accent); box-shadow: 0 0 0 3px rgba(10, 132, 255, .18); }
+.dot.off { background: rgba(235, 235, 245, .3); }
+.c-has-st > .card-h > .pill, .c-has-st > summary.card-h > .pill { display: none; }
+
+/* Aufklappbar: „Einstellungen“ unten in der Karte */
+details.c-set { margin-top: 14px; border-top: 1px solid var(--line); }
+.card > details.c-set { margin: 14px 22px 18px; }
+details.c-set > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px 0 2px; color: rgba(235, 235, 245, .72); font-size: 13.5px; font-weight: 500; border-radius: 8px; }
+details.c-set > summary::-webkit-details-marker { display: none; }
+details.c-set > summary::before { content: ""; width: 7px; height: 7px; flex: none; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(-45deg); transition: transform .3s var(--ease-out); }
+details.c-set[open] > summary::before { transform: rotate(45deg); }
+details.c-set > summary small { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: auto; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+details.c-set > summary:hover { color: var(--ink); }
+details.c-set > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.c-set-b { display: flex; flex-direction: column; gap: 14px; padding: 12px 0 2px; min-width: 0; }
+details.c-set[open] > .c-set-b { animation: setIn .32s var(--ease-out) both; }
+@keyframes setIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+/* „⋯“-Menü */
+details.dots { position: relative; flex: none; }
+details.dots > summary { list-style: none; cursor: pointer; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); color: rgba(235, 235, 245, .8); font-size: 18px; line-height: 1; letter-spacing: .02em; transition: transform .18s var(--ease-out), background-color .2s var(--ease); }
+details.dots > summary::-webkit-details-marker { display: none; }
+details.dots > summary:hover { background: rgba(255, 255, 255, .1); color: var(--ink); }
+details.dots > summary:active { transform: scale(.94); }
+details.dots > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+details.dots[open] > summary { background: rgba(255, 255, 255, .14); color: var(--ink); }
+.dots-pop { position: absolute; right: 0; top: calc(100% + 8px); z-index: 30; min-width: 220px; max-width: min(340px, calc(100vw - 32px)); display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 10px; border-radius: 16px; background: var(--glass-strong); border: 1px solid var(--line-2); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .8); transform-origin: top right; animation: popIn .22s var(--spring) both; }
+.dots-pop > .btn, .dots-pop > a.btn, .dots-pop .acts > .btn { width: 100%; justify-content: flex-start; }
+.dots-pop .seg { flex-wrap: wrap; }
+.dots-pop .label { white-space: normal; }
+@keyframes popIn { from { opacity: 0; transform: scale(.94) translateY(-4px); } to { opacity: 1; transform: none; } }
+.head { position: relative; }
+.head > .head-dots { align-self: flex-start; margin-left: auto; }
+.room-tr details.dots > summary { width: 30px; height: 30px; }
+.row-acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end; }
+
+/* Kanäle > Erweitert */
+.adv-box { display: flex; flex-direction: column; gap: 14px; }
+.adv-box > details.c-set.adv { margin: 0; padding: 4px 22px 10px; border: 1px solid var(--line); border-radius: var(--r); background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .02)); }
+.adv-box > details.c-set.adv > summary { padding: 16px 0 10px; font: 600 16px/1.2 var(--f-display); color: var(--ink); letter-spacing: -.02em; }
+.adv-box > details.c-set.adv > .c-set-b > .card { background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.adv-box > details.c-set.adv > .c-set-b > .card > .card-h { padding-left: 0; padding-right: 0; }
+.adv-box > details.c-set.adv > .c-set-b > .card > .card-b, .adv-box > details.c-set.adv > .c-set-b > .card > form.card-b { padding-left: 0; padding-right: 0; }
+.adv-ag { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.adv-a { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); background: rgba(255, 255, 255, .03); color: var(--ink); text-align: left; cursor: pointer; min-width: 0; transition: transform .18s var(--ease-out), background-color .2s var(--ease); }
+.adv-a:hover { background: rgba(255, 255, 255, .06); }
+.adv-a:active { transform: scale(.97); }
+.adv-a span { font-size: 13px; color: rgba(235, 235, 245, .72); line-height: 1.4; }
+.adv-a small { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+
+/* Agent antippen: erst das Wichtigste */
+.dr-q { display: flex; flex-direction: column; gap: 10px; }
+.dr-q > div { padding: 12px 14px; border-radius: 14px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); }
+.dr-q .k { font-size: 12px; color: var(--muted); font-weight: 500; }
+.dr-q .v { margin-top: 3px; font-size: 14.5px; line-height: 1.4; color: var(--ink); }
+details.dr-more { border-top: 1px solid var(--line); }
+details.dr-more > summary { list-style: none; cursor: pointer; padding: 14px 0 4px; font-weight: 600; font-size: 14px; color: var(--accent); }
+details.dr-more > summary::-webkit-details-marker { display: none; }
+details.dr-more > .dr-more-b { display: flex; flex-direction: column; gap: 14px; padding-top: 10px; }
+.alist .aw { display: block; font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+
+/* Fachbegriffe */
+abbr.term { text-decoration: underline dotted rgba(235, 235, 245, .45); text-underline-offset: 3px; cursor: help; position: relative; border-radius: 3px; }
+abbr.term:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+abbr.term:hover::after, abbr.term:focus::after { content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 6px); z-index: 40; width: max-content; max-width: min(260px, 70vw); padding: 8px 11px; border-radius: 10px; background: var(--glass-strong); border: 1px solid var(--line-2); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); color: var(--ink); font-size: 12.5px; font-weight: 400; line-height: 1.4; white-space: normal; text-transform: none; letter-spacing: 0; box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .8); pointer-events: none; }
+
+@media (max-width: 860px) {
+  .c-info { padding-left: 18px; padding-right: 18px; }
+  .card > details.c-set { margin-left: 18px; margin-right: 18px; }
+  .adv-box > details.c-set.adv { padding-left: 16px; padding-right: 16px; }
+  .dots-pop { right: -4px; }
+  details.c-set > summary small { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  details.c-set[open] > .c-set-b, .dots-pop { animation: none; }
+  details.c-set > summary::before, details.dots > summary, .adv-a { transition: none; }
 }
 </style>
