@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-tuerklinke-schlag",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum gibt dir die Türklinke einen Schlag? ⚡",
+  "description": "Erklärt in der Blockwelt: Warum es an der Türklinke funkt und was dabei mit deiner Ladung passiert.\n\n#wissen #physik #strom #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "strom",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Türklinke | Funke",
+    "Du lädst dich selbst auf"
+  ],
+  "segments": [
+    {
+      "text": "Warum zuckt es, wenn du die Türklinke anfasst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "⚡",
+        "chat": "Spieler: aua!"
+      }
+    },
+    {
+      "text": "Du hast dich vorher *aufgeladen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🔋",
+        "text": "Aufgeladen"
+      }
+    },
+    {
+      "text": "Schuhe auf Teppich reiben Ladung auf deinen Körper.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👟",
+        "text": "Reibung"
+      }
+    },
+    {
+      "text": "Trockene Winterluft lässt die Ladung nicht entweichen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Dann springt ein kleiner *Funke* zur Klinke.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Funke"
+      }
+    },
+    {
+      "text": "Metall leitet die Ladung blitzschnell ab.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🚪",
+        "text": "Metall leitet"
+      }
+    },
+    {
+      "text": "Der Schlag ist nur deine eigene Ladung, die sich ausgleicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Anfassen noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

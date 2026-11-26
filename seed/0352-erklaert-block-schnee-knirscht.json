@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-schnee-knirscht",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum knirscht Schnee unter deinen Schuhen? ❄️",
+  "description": "Erklärt in der Blockwelt: Warum Schnee beim Draufgehen knirscht und wie das mit Eiskristallen zusammenhängt.\n\n#wissen #winter #schnee #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "winter",
+    "schnee",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Schnee | knirscht",
+    "Kristalle brechen"
+  ],
+  "segments": [
+    {
+      "text": "Warum knirscht Schnee unter deinen Schuhen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "❄️",
+        "chat": "Spieler: hörst du das?"
+      }
+    },
+    {
+      "text": "Schnee besteht aus lauter winzigen *Eiskristallen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "❄️",
+        "text": "Eiskristalle"
+      }
+    },
+    {
+      "text": "Dein Gewicht bricht sie und drückt sie zusammen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "👟",
+        "text": "Gewicht drückt"
+      }
+    },
+    {
+      "text": "Jeder kleine Bruch macht ein leises Knacken.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Sehr viele Knackser ergeben zusammen das *Knirschen*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Viele Knackser"
+      }
+    },
+    {
+      "text": "Bei strengem Frost klingt es meist besonders hell.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🥶",
+        "text": "Frost"
+      }
+    },
+    {
+      "text": "Du hörst also unzählige Kristalle brechen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "✨"
+      }
+    },
+    {
+      "text": "Lausch beim nächsten Spaziergang genau hin.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "👂",
+        "text": "Lauschen"
+      }
+    }
+  ]
+}

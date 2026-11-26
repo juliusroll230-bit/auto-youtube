@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-block-piltdown-urmensch",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Der Urmensch, der nie existierte 🦴",
+  "description": "Blockwelt: 1912 galt ein Fund in England als das fehlende Bindeglied zum Menschen. Vier Jahrzehnte später kam heraus, dass es eine Fälschung war.\n\n#mystery #fälschung #fossil #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "fälschung",
+    "fossil",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Piltdown | Fälschung",
+    "Wer war es?"
+  ],
+  "segments": [
+    {
+      "text": "1912 fand man in England angeblich den Urmenschen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "🦴",
+        "chat": "Spieler: Sensation!"
+      }
+    },
+    {
+      "text": "Der Fund kam aus Piltdown im Süden Englands.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🦴",
+        "text": "Piltdown"
+      }
+    },
+    {
+      "text": "Schädel wie ein Mensch, Kiefer wie ein Affe.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "💀",
+        "text": "Mensch und Affe"
+      }
+    },
+    {
+      "text": "Jahrzehntelang glaubten ihm viele Forscher.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Alle glaubten es"
+      }
+    },
+    {
+      "text": "Dann prüfte man 1953 die *Knochen* neu.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Neue Prüfung"
+      }
+    },
+    {
+      "text": "Sie waren künstlich gefärbt worden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🎨",
+        "text": "Gefärbt"
+      }
+    },
+    {
+      "text": "Der Schädel war menschlich, der Kiefer stammte von einem *Orang-Utan*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "schockiert"
+        }
+      }
+    },
+    {
+      "text": "Wer es tat, ist bis heute nicht sicher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

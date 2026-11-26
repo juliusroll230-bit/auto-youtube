@@ -1,0 +1,110 @@
+{
+  "slug": "mystery-shugborough-inschrift",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Acht Buchstaben, die niemand lesen kann 🔠",
+  "description": "In einem englischen Park steht seit dem 18. Jahrhundert ein Denkmal mit einer Buchstabenfolge. Bis heute hat sie niemand sicher entschlüsselt.\n\n#mystery #code #england #rätsel #shorts",
+  "tags": [
+    "mystery",
+    "code",
+    "england",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Buchstaben | ohne Lösung",
+    "Geheimcode im Stein"
+  ],
+  "segments": [
+    {
+      "text": "Ein Denkmal in England trägt Buchstaben, die niemand entschlüsselt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔠"
+      }
+    },
+    {
+      "text": "Es steht im Park eines alten Landguts.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏛️",
+        "text": "Park in England"
+      }
+    },
+    {
+      "text": "Zwischen einem D und einem M stehen acht Buchstaben.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "🔠",
+        "text": "D O U O S V A V V M"
+      }
+    },
+    {
+      "text": "Der Stein zeigt:",
+      "szene": {
+        "typ": "akte",
+        "text": "Die Inschrift",
+        "punkte": [
+          "Acht Buchstaben",
+          "Zwischen D und M",
+          "Bis heute ungelöst"
+        ]
+      }
+    },
+    {
+      "text": "Man vermutet einen Gruß, ein Grabwort oder einen *Code*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🔐",
+        "text": "Code oder Gruß?"
+      }
+    },
+    {
+      "text": "Auch Fachleute kamen bisher nicht weiter.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Es gibt viele Ideen, aber *keinen* Beweis.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    },
+    {
+      "text": "Die Antwort steckt noch immer im Stein.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🪨",
+        "text": "Im Stein"
+      }
+    }
+  ]
+}
