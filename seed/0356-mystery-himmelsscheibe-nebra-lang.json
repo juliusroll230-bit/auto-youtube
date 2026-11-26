@@ -1,0 +1,666 @@
+{
+  "slug": "mystery-himmelsscheibe-nebra-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#0f1d3a",
+    "#c9a227"
+  ],
+  "accent": "#ffd166",
+  "title": "Die Himmelsscheibe von Nebra: Raub, Fund und Rätsel 🌌",
+  "description": "1999 graben Raubgräber in Sachsen-Anhalt eine grüne Scheibe aus. Wir erzählen die Geschichte der Himmelsscheibe von Nebra, vom Fund über die Hehler bis zur Frage, was sie zeigt.\n\n#mystery #rätsel #archäologie #geschichte #nebra",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "archäologie",
+    "geschichte",
+    "nebra"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "muetze",
+    "name": "Forscher"
+  },
+  "thumb_text": [
+    "Himmelsscheibe | Raub und Rätsel",
+    "Der älteste Himmel"
+  ],
+  "segments": [
+    {
+      "text": "Am vierten Juli neunzehnhundertneunundneunzig gräbt ein Mann im Wald von Sachsen-Anhalt eine grüne Scheibe aus und hält sie für Schrott.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪙"
+      }
+    },
+    {
+      "text": "Heute gilt sie als eine der wichtigsten Entdeckungen der Archäologie, und dazwischen liegen Hehler, ein Hotelzimmer und ein Polizeieinsatz.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "🪙",
+        "text": "Eine grüne Scheibe"
+      }
+    },
+    {
+      "text": "Das ist die Geschichte der Himmelsscheibe von Nebra, und sie ist spannender als jeder Krimi, weil sie wirklich passiert ist.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "🌌",
+        "text": "Himmelsscheibe"
+      }
+    },
+    {
+      "text": "Wir schauen zuerst auf den Fund, dann auf die Hehler, dann auf das Bild auf der Scheibe und zum Schluss auf den Streit der Forscher.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Im Süden von Sachsen-Anhalt liegt ein Hügel namens Mittelberg, nahe der kleinen Stadt Nebra, mitten in einem dichten Wald.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "⛰️"
+      }
+    },
+    {
+      "text": "Der Hügel ist nur gut zweihundertfünfzig Meter hoch, doch von oben sieht man weit über das Land, und das war schon vor Jahrtausenden so.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "⛰️",
+        "text": "Der Mittelberg"
+      }
+    },
+    {
+      "text": "Zwei Männer ziehen an diesem Tag mit einem Metalldetektor los, obwohl sie gar nicht graben dürfen, denn der Boden gehört dem Land.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1999",
+        "text": "Zwei Raubgräber",
+        "objekt": "📟"
+      }
+    },
+    {
+      "text": "Sie heißen Henry Westphal und Mario Renner, und sie suchen nach alten Münzen und Metall, das sie verkaufen können.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "📟"
+      }
+    },
+    {
+      "text": "Der Detektor piept laut, und sie graben ein Loch, das nur einen halben Meter tief ist, bis sie auf etwas Hartes stoßen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "📟",
+        "text": "Es piept"
+      }
+    },
+    {
+      "text": "Zum Vorschein kommt eine grüne, runde Platte, die sie zuerst für den Mittelteil eines alten Schildes halten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🛡️"
+      }
+    },
+    {
+      "text": "Daneben liegen zwei Schwerter, zwei Beile, ein Meißel und Bruchstücke von Armreifen, alles aus Bronze und viele Jahrhunderte alt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "⚔️",
+        "text": "Schwerter und Beile"
+      }
+    },
+    {
+      "text": "Die beiden ahnen nicht, dass sie gerade den Himmel von vor dreieinhalb Jahrtausenden in den Händen halten.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wald",
+        "objekt": "🌌",
+        "text": "Was ist das?"
+      }
+    },
+    {
+      "text": "Sie packen alles ein und verschwinden, denn wer so etwas findet, muss es eigentlich sofort beim Landesamt melden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🎒"
+      }
+    },
+    {
+      "text": "Schon einen Tag später verkaufen sie den ganzen Fund an einen Händler in Köln für einunddreißigtausend D-Mark.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💶",
+        "text": "Verkauft für 31.000 DM"
+      }
+    },
+    {
+      "text": "Das ist ein Bruchteil dessen, was der Fund in Wahrheit wert ist, und der Händler weiß das genau.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💶",
+          "text": "Ihr Preis"
+        },
+        "rechts": {
+          "objekt": "💎",
+          "text": "Der echte Wert"
+        }
+      }
+    },
+    {
+      "text": "Der Händler will die Scheibe weiterverkaufen, doch bald spricht sich herum, dass sie dem Land Sachsen-Anhalt gehört.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📞"
+      }
+    },
+    {
+      "text": "In Sachsen-Anhalt gilt eine Regel: Wer ein Fundstück ausgräbt, darf es nicht behalten, es gehört sofort dem Land.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📜",
+        "text": "Gehört dem Land"
+      }
+    },
+    {
+      "text": "Damit ist die Scheibe für jeden seriösen Kunsthandel wertlos, denn kein Museum und kein Sammler darf sie kaufen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🚫",
+        "text": "Unverkäuflich"
+      }
+    },
+    {
+      "text": "Trotzdem bietet man sie weiter an, in Berlin und in München, und der Preis steigt auf eine Million D-Mark.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "🤫"
+      }
+    },
+    {
+      "text": "Der Fund wechselt mehrmals den Besitzer, immer heimlich, immer unter der Hand, und er verschwindet fast zwei Jahre lang.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🕵️",
+        "text": "Schwarzmarkt"
+      }
+    },
+    {
+      "text": "Am Ende landet er bei einem Paar, das ihn für über zweihunderttausend D-Mark kauft und mit Gewinn weiterverkaufen will.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "neutral",
+        "aktion": "zeigt",
+        "objekt": "💶"
+      }
+    },
+    {
+      "text": "Als Käufer suchen sie jemanden im Ausland, denn dort, hoffen sie, fragt niemand nach der Herkunft: in der Schweiz.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🇨🇭",
+        "text": "Schweiz"
+      }
+    },
+    {
+      "text": "Doch die Polizei in Sachsen-Anhalt hört schon länger mit, und der Landesarchäologe Harald Meller bekommt einen besonderen Auftrag.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Er soll sich als Kaufinteressent ausgeben und die Verkäufer an einem Ort treffen, an dem die Polizei bereitsteht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🎭",
+        "text": "Als Käufer getarnt"
+      }
+    },
+    {
+      "text": "Am dreiundzwanzigsten Februar zweitausendzwei treffen sich alle in einem Hotel in Basel, und niemand ahnt, was gleich geschieht.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2002",
+        "text": "Hotel in Basel",
+        "objekt": "🏨"
+      }
+    },
+    {
+      "text": "Meller sitzt den Verkäufern gegenüber, und seine Hände zittern ein wenig, als sie die Scheibe aus einer Tasche ziehen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "buero",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "neutral",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Im nächsten Moment stürmt die Schweizer Polizei den Raum, nimmt die Hehler fest und stellt die Scheibe sicher.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 4,
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "text": "Festnahme"
+      }
+    },
+    {
+      "text": "Die Scheibe ist gerettet und kommt in das Landesmuseum nach Halle, wo sie bis heute liegt und von Forschern genau untersucht wird.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏛️",
+        "text": "Im Museum"
+      }
+    },
+    {
+      "text": "Auch die Raubgräber werden bald gefasst, und sie zeigen den Ermittlern genau, wo sie die Scheibe gefunden haben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Der Boden an der Scheibe passt zur Erde auf dem Mittelberg, und das beweist: Alles stammt aus demselben Versteck.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Passende Erde"
+      }
+    },
+    {
+      "text": "Doch die eigentliche Frage fängt jetzt erst an: Was zeigt diese Scheibe überhaupt, und wer hat sie gemacht?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Was zeigt sie?"
+      }
+    },
+    {
+      "text": "Die Scheibe misst etwa zweiunddreißig Zentimeter und wiegt gut zwei Kilogramm, sie ist aus Bronze geschmiedet.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 32,
+        "einheit": "Zentimeter Durchmesser",
+        "objekt": "🪙",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Wer die Scheibe sieht, erkennt Gold auf blaugrünem Grund, denn die Bronze ist über die Jahrtausende grün angelaufen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🟢"
+      }
+    },
+    {
+      "text": "Auf ihr kleben runde, goldene Zeichen: eine große Scheibe, eine Sichel und viele kleine Punkte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🌙",
+        "text": "Sonne, Mond, Sterne"
+      }
+    },
+    {
+      "text": "Die goldenen Zeichen auf der Scheibe deuten Forscher so:",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Zeichen",
+        "punkte": [
+          "Sonne oder Vollmond",
+          "Zunehmender Mond",
+          "Sterne"
+        ]
+      }
+    },
+    {
+      "text": "Die kleine Gruppe aus sieben Punkten, glauben viele, sind die Plejaden, ein berühmter Sternhaufen im Sternbild Stier.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "✨"
+      }
+    },
+    {
+      "text": "Mit bloßem Auge sieht man sie als Pünktchen-Gruppe am Nachthimmel, und viele Völker kannten sie schon früh.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "✨",
+        "text": "Plejaden"
+      }
+    },
+    {
+      "text": "Das Erstaunliche: Vor dreieinhalb Jahrtausenden hat jemand den Himmel so genau beobachtet, dass er ihn aufs Metall brachte.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🔭",
+        "text": "Himmelsbeobachter"
+      }
+    },
+    {
+      "text": "Und die Scheibe wurde nicht auf einmal gemacht, denn Fachleute erkennen mehrere Phasen, in denen sie über lange Zeit immer wieder verändert wurde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔨"
+      }
+    },
+    {
+      "text": "Zuerst gab es Sonne oder Vollmond, die Sichel und die Sterne, später kamen zwei goldene Bögen am Rand dazu.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1600 v. Chr.",
+        "text": "Erste Phasen",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Diese Bögen zeigen vermutlich den Weg der Sonne am Horizont, vom Sonnenaufgang bis zum Sonnenuntergang im Lauf eines Jahres.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🌅",
+        "text": "Horizontbögen"
+      }
+    },
+    {
+      "text": "Am unteren Rand sitzt ein dritter, gebogener Bogen mit feinen Strichen an den Kanten, den man Sonnenbarke nennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Er erinnert an ein Boot mit Rudern und könnte die nächtliche Reise der Sonne von Westen nach Osten darstellen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "⛵",
+        "text": "Sonnenbarke"
+      }
+    },
+    {
+      "text": "Doch was war der Zweck der Scheibe: Kalender, Karte, Götterbild oder alles zugleich? Das weiß bis heute niemand sicher.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❓",
+        "text": "Wozu diente sie?"
+      }
+    },
+    {
+      "text": "Forscher wie Harald Meller meinen, sie half Bauern, den richtigen Zeitpunkt für Aussaat und Ernte zu bestimmen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Ein Bauernkalender?"
+      }
+    },
+    {
+      "text": "Dafür brauchte man ein Jahr mit zwölf Monden, und das ist elf Tage kürzer als das Sonnenjahr.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "📅",
+        "text": "Mondjahr, Sonnenjahr"
+      }
+    },
+    {
+      "text": "Wer beides ausgleichen will, muss ab und zu einen Monat einschieben, und die Plejaden könnten dafür das Zeichen gewesen sein.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📅"
+      }
+    },
+    {
+      "text": "Andere Fachleute halten das für zu gewagt und sagen, die Scheibe sei eher ein religiöses Bild als ein Rechengerät.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "📅",
+          "text": "Kalender"
+        },
+        "rechts": {
+          "objekt": "⛪",
+          "text": "Heiliges Bild"
+        }
+      }
+    },
+    {
+      "text": "Fest steht nur: Die Scheibe wurde später absichtlich vergraben, vermutlich vor etwa dreitausendsechshundert Jahren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "⛏️",
+        "text": "Absichtlich vergraben"
+      }
+    },
+    {
+      "text": "Warum jemand sie versteckte, weiß man nicht: Wollte man sie schützen, oder war ihre Zeit als heiliger Gegenstand zu Ende?",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🔒"
+      }
+    },
+    {
+      "text": "Auch woher das Material stammt, haben Forscher untersucht, und die Spur führt weit weg, bis nach England.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Cornwall"
+      }
+    },
+    {
+      "text": "Das Gold stammt demnach aus einem Fluss in Cornwall, und auch das Zinn in der Bronze soll von dort kommen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🥇",
+        "text": "Gold aus England"
+      }
+    },
+    {
+      "text": "Das Kupfer dagegen kommt aus einer Mine in den Alpen, im heutigen Österreich, also ebenfalls von weit her.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Das zeigt, dass die Menschen der Bronzezeit sehr weite Handelswege kannten und Rohstoffe über Hunderte Kilometer tauschten.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Ein Stück Birkenrinde an einem der Schwerter hilft bei der Datierung, und es stammt aus der Zeit um sechzehnhundert vor Christus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🪵"
+      }
+    },
+    {
+      "text": "Doch im Jahr zweitausendzwanzig gibt es Streit: Zwei Forscher sagen, die Scheibe sei viel jünger, vielleicht aus der Eisenzeit.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⚠️",
+        "text": "Streit um das Alter"
+      }
+    },
+    {
+      "text": "Sie meinen, die Funde im Versteck gehörten nicht sicher zusammen, und bei der Ausgrabung sei vieles nicht sauber dokumentiert worden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📋",
+        "text": "Schlecht dokumentiert"
+      }
+    },
+    {
+      "text": "Ein Team um Ernst Pernicka widerspricht schon wenige Wochen später und nennt die Kritik unvollständig und teils falsch, denn mehrere Messungen stützen das hohe Alter.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "wut",
+        "aktion": "zeigt",
+        "objekt": "⚖️"
+      }
+    },
+    {
+      "text": "Die meisten Fachleute halten die Scheibe weiterhin für bronzezeitlich, und die Untersuchungen des Metalls stützen das.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Meist: bronzezeitlich"
+      }
+    },
+    {
+      "text": "Dafür hat sie große Ehren bekommen: Seit Juni zweitausenddreizehn gehört die Scheibe zum Weltdokumentenerbe der UNESCO, als die älteste bekannte konkrete Himmelsdarstellung.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏆",
+        "text": "UNESCO-Erbe"
+      }
+    },
+    {
+      "text": "Heute kannst du sie im Landesmuseum in Halle ganz in Ruhe ansehen, und nahe dem Fundort steht ein Besucherzentrum mit Aussichtsturm.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Und auf dem Mittelberg überwölbt eine runde Scheibe aus Edelstahl, das Himmelsauge, die Stelle, wo sie dreitausendsechshundert Jahre lag.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wald",
+        "objekt": "👁️",
+        "text": "Das Himmelsauge"
+      }
+    },
+    {
+      "text": "Zwei Räuber, die nur Geld wollten, haben so ungewollt einen der größten Schätze Europas ans Licht geholt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wald",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💎"
+      }
+    },
+    {
+      "text": "Und die Rätsel bleiben: Wer machte sie, wozu diente sie, und warum musste sie unter die Erde?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "❓",
+        "text": "Offene Fragen"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an den Bauernkalender oder an das heilige Bild? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

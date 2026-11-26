@@ -42,6 +42,34 @@ Nur eigene Videos oder Videos mit Erlaubnis verwenden: Beim Hochladen und bei Or
 
 **Webhook:** `POST http://<server>:8090/webhook/video?name=<Name>&rights=1` mit dem Header `X-Webhook-Token: <Schlüssel>` und der Videodatei als Inhalt, oder als JSON `{"url": "https://…/video.mp4", "name": "…", "rights": true}`. Ohne `rights` muss man die Rechte auf der Website bestätigen. Der Schlüssel und ein fertiges curl-Beispiel stehen im Reiter **Kampagnen**.
 
+## Aufbau der Zentrale (seit 26.11.2026)
+
+Die Seitenleiste hat 5 Gruppen statt 11 Reitern untereinander:
+
+| Gruppe | Reiter |
+|---|---|
+| Start | Zentrale (Unterreiter Heute, Agenten, Geld & Clips) |
+| Kanäle | Hauptkanal (Sendeplan, Videos), Clipi, Quiet Corner, Insta & TikTok |
+| Geld | Kampagnen (Kampagnen, Freigabe, Einreichen, Statistik), Einreichen, Geld |
+| Auswertung | Übersicht (Wachstum, Ziel & Plan), Zuschauer (Was am besten funktioniert, Nischen-Kompass, Vorbilder, Hook-Prüfung, Mehr Videos am Stück, Wo sie abschalten) |
+| Einstellungen | Kanäle verbinden (Deine Kanäle, Insta & TikTok, Verbindung, darin „Mehr Einstellungen“ zum Aufklappen) |
+
+- Jeder Reiter beginnt mit 3 bis 4 großen Kennzahlen, darunter ein Segment-Schalter für die Unterreiter.
+- Die Adresse merkt sich Reiter und Unterreiter, z. B. `#zuschauer/vorbilder`. Alte Links wie `#kampagnen`, `#ruhe`, `#plan` oder `#videos` gehen weiter.
+- Am Handy wird die Seitenleiste zur Leiste unten mit den 5 Gruppen. Oben stehen die Reiter der Gruppe zum Wischen.
+- Es wird nur der sichtbare Reiter gezeichnet (Diagramme, Agenten-Dorf, Video-Galerie). Das hält die Seite schnell.
+- Neue Karten: im HTML in den passenden `<section class="view">` legen und in `PAGES` (web/index.html) einem Unterreiter zuordnen (`"#id"`, `".klasse"` oder `"@Überschrift"`). Karten ohne Zuordnung sind in jedem Unterreiter zu sehen.
+
+## Einreich-Station (Content Rewards)
+
+Postet der Publisher einen Clip einer Whop-Kampagne (Clip mit `program`), steht er unter **Kampagnen > Einreichen** und im Live-Feed kommt „Clip bereit zum Einreichen“. Eine Zahl an „Einreichen“, an der Gruppe Geld und am Video-Clipper zeigt, wie viele offen sind. Clips, die länger als 2 Stunden offen sind, werden orange.
+
+- **Einreichen** kopiert den Shorts-Link, öffnet die Kampagnenseite in einem neuen Tab und merkt sich die Zeit (`eingereicht_at` in `einreichen.json`). Dort den Link einfügen und selbst absenden.
+- **Rückgängig** macht ihn wieder offen, **Nicht einreichen** nimmt ihn aus der Liste.
+- **Statistik** zeigt je Kampagne eingereicht, offen und geschätztes Geld (nur eingereichte Clips).
+- Absichtlich **nicht** automatisch: Bei Content Rewards darf kein Bot teilnehmen und für Clipper gibt es keinen offiziellen Zugang zum Einreichen. Keine Browser-Automatisierung, keine inoffizielle API. Content Rewards ist ab 18 (Konto der Eltern).
+- Code: `einreichen.py`, Endpunkte `POST /api/einreichen/submit`, `/undo`, `/skip` mit `{"id": <Kampagne>, "n": <Clip>}`. Test: `tests/einreichen_test.py`.
+
 ## Dateien
 
 | Datei | Zweck |
@@ -50,6 +78,7 @@ Nur eigene Videos oder Videos mit Erlaubnis verwenden: Beim Hochladen und bei Or
 | `store.py` | Speichert Einstellungen, Warteschlange und Statistiken in `/data` |
 | `agents.py` | Die Agenten der Zentrale: Einstellungen, Status und Kennzahlen |
 | `learn.py` | Lernmodus: wählt Thema und Look nach Erfolg |
+| `einreichen.py` | Einreich-Station: gepostete Content-Rewards-Clips, eingereicht / offen / nicht einreichen |
 | `clips.py` | Kampagnen: Mitschrift, beste Stellen finden, Clips schneiden, Clips für den Sendeplan |
 | `yt.py` | YouTube: Anmeldung per Geräte-Code, Upload, Statistiken, Zuschauer-Daten (Analytics) |
 | `make_short.py` | Baut aus einem Skript ein 1080x1920-Video |

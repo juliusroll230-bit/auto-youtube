@@ -12,6 +12,7 @@
   posted/        Skripte, die schon online sind
   thumbs/        Vorschaubilder
 """
+import copy
 import datetime as dt
 import glob
 import json
@@ -38,7 +39,12 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # 15.11.: nach YouTube Studio "Wann deine Zuschauer auf YouTube sind" (28 Tage):
                   # werktags ab 15 Uhr viel los, Spitze 16 bis 21 Uhr; Sa/So schon ab ca. 10 Uhr stark.
                   # 16.11.: Julius will 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt): jede volle Stunde 8 bis 22 Uhr.
-                  "post_hours": list(range(8, 23)), "post_hours_weekend": list(range(8, 23)),
+                  # 25.11.: Julius will wieder 15 Shorts am Tag (10 Strichmännchen, 5 Blockwelt), jede volle Stunde 8 bis 22 Uhr,
+                  # dazu das lange Video. (Am 23.11. waren es wegen des Aufrufe-Einbruchs 7; die Zahlen vom 20. bis 22.11. zeigten,
+                  # dass Uploads ab dem 11. am Tag kaum Aufrufe bekamen. Julius' Entscheidung gilt, die Zentrale zeigt es weiter an.)
+                  "post_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                  "post_hours_weekend": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                  "max_shorts_day": 15,
                   # davon so viele Blockwelt (3D), der Rest Strichmännchen. 0 = Lernmodus wählt frei.
                   "block_per_day": 5,
                   "privacy": "public", "expired": False,
@@ -136,6 +142,18 @@ def init():
                 if len(cfg.get(key) or []) < len(DEFAULT_CONFIG[key]):
                     cfg[key] = list(DEFAULT_CONFIG[key])
             cfg["hours_v8"] = True
+        # 23.11.: höchstens ca. 9 Uploads am Tag (Shorts + Firma + lang), siehe DEFAULT_CONFIG. Einmalig für alle umstellen.
+        if not cfg.get("hours_v9"):
+            for key in ("post_hours", "post_hours_weekend"):
+                cfg[key] = list(DEFAULT_CONFIG[key])
+            if int(cfg.get("block_per_day") or 0) >= 5:
+                cfg["block_per_day"] = DEFAULT_CONFIG["block_per_day"]
+            cfg["hours_v9"] = True
+        # 25.11.: zurück auf 15 Shorts am Tag (10 + 5 Blockwelt), einmalig für alle umstellen.
+        if not cfg.get("hours_v10"):
+            for key in ("post_hours", "post_hours_weekend", "max_shorts_day", "block_per_day"):
+                cfg[key] = DEFAULT_CONFIG[key] if not isinstance(DEFAULT_CONFIG[key], list) else list(DEFAULT_CONFIG[key])
+            cfg["hours_v10"] = True
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
@@ -268,11 +286,68 @@ def load_spec(file):
         return json.load(f)
 
 
-def find_spec(slug):
-    for f in queue_files() + glob.glob(path("posted", "*.json")):
-        if os.path.basename(f)[5:-5] == slug or load_spec(f).get("slug") == slug:
-            return load_spec(f)
-    return None
+_SPEC_CACHE = {}   # Datei -> (Änderungszeit, Größe, Skript): jede Datei nur einmal lesen, solange sie sich nicht ändert
+_SPEC_LOCK = threading.Lock()
+
+
+def _cached_spec(file):
+    """Skript aus dem Zwischenspeicher (als Kopie, damit niemand den Speicher verändert) oder None."""
+    spec = _peek_spec(file)
+    return copy.deepcopy(spec) if spec is not None else None
+
+
+def _peek_spec(file):
+    """Wie _cached_spec, aber ohne Kopie: nur zum Lesen."""
+    try:
+        st = os.stat(file)
+    except OSError:
+        return None
+    key = (st.st_mtime_ns, st.st_size)
+    with _SPEC_LOCK:
+        hit = _SPEC_CACHE.get(file)
+    if not hit or hit[0] != key:
+        try:
+            spec = load_spec(file)
+        except (OSError, ValueError):
+            return None
+        with _SPEC_LOCK:
+            if len(_SPEC_CACHE) > 5000:
+                _SPEC_CACHE.clear()
+            _SPEC_CACHE[file] = hit = (key, spec)
+    return hit[1]
+
+
+def spec_index():
+    """slug -> Datei für alle Skripte in queue/ und posted/ (queue zuerst, wie find_spec).
+
+    Seit 26.11.2026: Vorher las find_spec bei jedem Upload alle Skripte von vorn (bei ca. 1.000 Uploads
+    hunderttausende Dateien pro Seitenaufruf), dadurch lud die Zentrale nicht mehr."""
+    out = {}
+    for f in queue_files() + sorted(glob.glob(path("posted", "*.json"))):
+        name = os.path.basename(f)[5:-5]
+        out.setdefault(name, f)
+        spec = _peek_spec(f)
+        if isinstance(spec, dict) and spec.get("slug"):
+            out.setdefault(spec["slug"], f)
+    return out
+
+
+def find_spec(slug, index=None):
+    f = (index if index is not None else spec_index()).get(slug)
+    if not f:
+        return None
+    spec = _cached_spec(f)
+    return spec if isinstance(spec, dict) else None
+
+
+def shorts_today(at=None):
+    """Wie viele Shorts des Hauptkanals heute schon hochgeladen wurden (ohne Firmen-Folge, lange Videos und Clips)."""
+    at = at or now()
+    day = at.strftime("%Y-%m-%d")
+    firma = set(state().get("firma_slots", []))
+    return sum(1 for u in state()["uploads"]
+               if str(u.get("posted_at", ""))[:10] == day and u.get("kind") != "clip" and not u.get("lang")
+               and u.get("slot") not in firma)
 
 
 def is_weekend(day):
@@ -538,23 +613,44 @@ def card(spec):
         "car_color": spec.get("car_color", ""), "accent": spec.get("accent", ""),
         "emoji": spec["segments"][0].get("emoji", ""), "hook": spec["segments"][0]["text"].replace("*", ""),
         "seconds": round(words / 2.5 + 0.3 * len(spec["segments"])),
-        "hook_check": _safe(lambda: hookcheck.check(spec), None),
+        "hook_check": _safe(lambda: _hook_check(spec), None),
     }
+
+
+_HOOK_MEMO = {}
+
+
+def _hook_check(spec):
+    """hookcheck.check mit Merkzettel: dasselbe Skript wird nicht bei jedem Seitenaufruf neu geprüft."""
+    key = json.dumps(spec, sort_keys=True, ensure_ascii=False)
+    hit = _HOOK_MEMO.get(key)
+    if hit is None:
+        if len(_HOOK_MEMO) > 3000:
+            _HOOK_MEMO.clear()
+        hit = _HOOK_MEMO[key] = hookcheck.check(spec)
+    return copy.deepcopy(hit)
 
 
 def posted_items():
     """Alle Uploads mit Thema und den letzten Zahlen von YouTube, älteste zuerst."""
     stats = read("stats.json", {"videos": {}, "updated_at": None})
     ana = read("analytics.json", {}).get("videos", {})
-    posted = []
+    posted, per_day = [], {}
+    index = spec_index()
     for u in state()["uploads"]:
-        spec = find_spec(u["slug"])
+        spec = find_spec(u["slug"], index)
+        day = str(u.get("posted_at") or "")[:10]
+        if u.get("kind") != "clip" and day and not u.get("lang"):
+            per_day[day] = per_day.get(day, 0) + 1
         base = card(spec) if spec else {"slug": u["slug"], "title": u["title"]}
         item = {**base, **u, **stats["videos"].get(u["video_id"], {}), **ana.get(u["video_id"], {})}
         if spec:  # Satztexte für die Abschalt-Kurve auf der Website
             item["sentences"] = [seg["text"].replace("*", "") for seg in spec.get("segments", [])]
         if spec:  # Merkmale für "Was am besten funktioniert"
             item["features"] = learn.features(spec, u.get("look") or learn.default_look(spec))
+            if u.get("kind") != "clip" and not u.get("lang"):   # nur zum Ansehen: der wievielte Upload des Tages, Uhrzeit
+                item["features"]["platz"] = learn.day_slot(per_day.get(day))
+                item["features"]["uhrzeit"] = learn.hour_group(u.get("posted_at"))
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
@@ -669,6 +765,13 @@ def ready_failed(item):
     data = {k: v for k, v in item.items() if k != "meta"}
     with open(item["meta"], "w", encoding="utf-8") as f:
         json.dump({**data, "tries": tries}, f, ensure_ascii=False)
+
+
+def _binge_overview(cfg, st):
+    """Geschichten-Playlist, Frage-Kommentare und die aktuellen Gewinner (binge.py)."""
+    import binge
+    views = {k: (v or {}).get("views", 0) for k, v in read("stats.json", {"videos": {}})["videos"].items()}
+    return binge.overview(cfg, st["uploads"], binge.posted_specs(), views)
 
 
 def read_json(file):
@@ -797,6 +900,8 @@ def relax_error_text(err):
         return "YouTube lässt heute keine weiteren Uploads zu. Morgen geht es automatisch weiter."
     if "invalid_grant" in e or "expired" in e or "revoked" in e:
         return "Die Verbindung zum Kanal ist abgelaufen. Bitte im Reiter Kanäle neu verbinden."
+    if "length" in e or "too long" in e or "toolong" in e:
+        return "YouTube hat ein Video wegen der Länge abgelehnt. Die Zentrale baut jetzt kürzere. Tipp: Kanal auf youtube.com/verify bestätigen."
     if "thumbnail" in e or "forbidden" in e:
         return "Das Vorschaubild durfte nicht gesetzt werden. Den Kanal einmal auf youtube.com/verify bestätigen."
     if "rendert" in e or "renderer" in e:
@@ -814,13 +919,7 @@ def relax_overview(cfg, st):
     today = now().date()
     for u in ups:
         u["per_day"] = entspannung._per_day(u, today)
-    learnt = {}
-    for key, names in (("scene", entspannung.SCENES), ("minutes", {m: entspannung.dauer_text(m) for m in entspannung.MINUTES})):
-        rows = []
-        for k, name in names.items():
-            vals = [u["per_day"] for u in ups if u.get(key) == k and u.get("per_day") is not None]
-            rows.append({"key": k, "name": name, "n": len(vals), "per_day": round(sum(vals) / len(vals), 1) if vals else None})
-        learnt[key] = rows
+    learnt = entspannung.learn_rows(ups, today)
     used = {}
     for u in ups:
         if u.get("idea"):
@@ -831,9 +930,9 @@ def relax_overview(cfg, st):
             "on": bool(cfg["relax_on"]), "minutes": cfg["relax_minutes"], "hour": cfg["relax_hour"],
             "length": length, "shorts": bool(cfg.get("relax_shorts", True)), "banner": cfg.get("relax_banner", "A"),
             "branded": info.get("branded"), "last": st.get("relax_last"), "error": info.get("error"),
-            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "stats_at": info.get("stats_at"),
+            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "cap": st.get("relax_cap"), "notice": info.get("notice") or "", "stats_at": info.get("stats_at"),
             "uploads": ups[-60:][::-1], "learn": learnt,
-            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg)),
+            "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg), st.get("relax_cap")),
             "per_day": int(cfg.get("relax_per_day", 2)), "slots": entspannung.slots(cfg),
             "ideas": [{"id": i["id"], "scene": entspannung.SCENES[i["scene"]], "title": i["title"], "thumb": i["thumb"],
                        "layers": i["layers"], "used": used.get(i["id"], 0)} for i in entspannung.IDEAS],
@@ -857,6 +956,52 @@ def next_layout(posted=None):
         st["aufbau_n"] = n + 1
         write("state.json", st)
     return learn.choose_layout(n, fs)
+
+
+def next_tempo(posted=None):
+    """"normal" oder "schnell" (Schnitt alle ca. 1,3 s). Eigener Zähler, zählt jeden Cartoon-Short mit."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("tempo_n", 0)
+        st["tempo_n"] = n + 1
+        write("state.json", st)
+    return learn.choose_tempo(n, fs)
+
+
+def next_abo(spec, posted=None):
+    """Abo-Aufruf für den nächsten Cartoon-Short: (Variante, Satz). Eigene Zähler, zählt jeden Short mit (auch vorgerenderte),
+    damit die Varianten reihum drankommen und der Satz nie zweimal hintereinander gleich ist."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    loop = str(spec.get("ende", "")).lower() == "loop"
+    with LOCK:
+        st = state()
+        n, k = st.get("abo_n", 0), st.get("abo_line_n", 0)
+        mode = learn.choose_abo(n, fs, loop)
+        st["abo_n"] = n + 1
+        line = None
+        if mode != "ohne":
+            lines = learn.abo_lines(spec)
+            line = lines[k % len(lines)]
+            st["abo_line_n"] = k + 1
+        write("state.json", st)
+    return mode, line
+
+
+def next_extras(spec, posted=None):
+    """Vorbild-Taktiken für den nächsten Cartoon-Short (Test seit 25.11.2026): Musik-Stil, Übergang, Dranbleib-Element.
+    Eigener Zähler, damit vorgerenderte Shorts nicht alle dasselbe bekommen."""
+    posted = learnable(posted if posted is not None else posted_items())
+    fs = learn.feature_scores(posted, now())
+    with LOCK:
+        st = state()
+        n = st.get("extras_n", 0)
+        st["extras_n"] = n + 1
+        write("state.json", st)
+    return {"musik": learn.choose_music(fs, n, spec), "uebergang": learn.choose_transition(fs, n),
+            "halten": learn.choose_hold(fs, n)}
 
 
 def next_voice(spec, posted=None):
@@ -941,6 +1086,7 @@ def dashboard(extra=None, working=None, repo=True):
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
+        "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
         "community": _safe(lambda: __import__("community").overview(
             sys.modules[__name__], posted, [sp for _, sp in planned], read("channel.json", None) or {},
@@ -957,6 +1103,8 @@ def dashboard(extra=None, working=None, repo=True):
             {**row, "key": "thumbnail_lang", "label": "Thumbnail (lange Videos)"} for row in learn.feature_summary(
                 learn.feature_scores([p for p in posted if p.get("lang")], now())) if row["key"] == "thumbnail"],
         "thumbs": _safe(lambda: thumbs_overview(posted, [card(s) for _, s in long_planned]), {}),
+        "kompass": _safe(lambda: __import__("nische").compass(
+            learn.feature_summary(learn.feature_scores(learnable(posted), now()))), {"rows": [], "advice": []}),
         "history": read("history.json", []),
         "analytics": {
             "connected": bool(cfg["analytics_token"]),

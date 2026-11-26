@@ -16,6 +16,7 @@ Zum Testen: python entspannung.py regen-fenster 2 ordner   (Idee, Minuten, Ordne
 import datetime as _dt
 import json
 import os
+import math
 import random
 import subprocess
 import sys
@@ -32,6 +33,7 @@ FPS = 30
 RATE = 48000
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHANNEL = "Quiet Corner"
+LADDER = (600, 180, 60, 15)   # Notbremse: lehnt YouTube ein Video wegen der Länge ab, geht es in diesen Stufen kürzer weiter
 MINUTES = (180, 300, 480, 600)   # 3, 5, 8, 10 Stunden (Julius 21.11.: „länger“); "auto" = Lernmodus wählt
 SLOTS = (6, 17)   # Standard: 2 lange Videos am Tag (Julius 21.11.: „mehr“), ab 6 und ab 17 Uhr
 HOURS = list(range(0, 24))
@@ -123,10 +125,10 @@ USES = ["for Sleeping, Studying & Relaxing", "for Deep Sleep & Relaxation", "for
 
 CHANNEL_DESCRIPTION = (
     "Quiet Corner is a small place to slow down.\n\n"
-    "Long, calm videos of cozy rooms on rainy nights, crackling fireplaces, a café after dark, old libraries "
-    "with floating candles and campfires under the stars. Each video plays for 1 to 3 hours without talking "
-    "and without sudden sounds.\n\n"
-    "Use them to fall asleep, to study, to read or just to breathe for a moment.\n\n"
+    "Slow bedtime stories read in a soft voice, over cozy rooms on rainy nights, crackling fireplaces, a café after dark, "
+    "old libraries with floating candles and campfires under the stars. When the story ends, the sounds keep playing "
+    "for the rest of the hour, with no sudden noises.\n\n"
+    "Use them to fall asleep, to wind down or just to breathe for a moment. Stories are invented and narrated with a synthetic voice.\n\n"
     "Every picture and every sound is drawn and made by Quiet Corner. New video every day.")
 CHANNEL_KEYWORDS = "cozy ambience rain sounds fireplace sleep study relax café ambience library ambience"
 
@@ -208,25 +210,101 @@ def _per_day(u, today):
     return u["views"] / age
 
 
+HALF_LIFE_D = 30   # Lernmodus: ein Video von vor einem Monat zählt halb so viel wie ein neues
+TEST_EVERY = 8     # jedes 8. Video testet trotzdem eine andere Szene oder Länge (Geschmack und YouTube ändern sich)
+
+
+def _age(u, today):
+    try:
+        return (today - _dt.date.fromisoformat(u["at"])).days
+    except (KeyError, ValueError):
+        return 0
+
+
+def belief(uploads, key, value, today):
+    """Was der Lernmodus über einen Wert weiß: (anzahl bewertet, aufrufe pro tag im schnitt, log-mittel, unsicherheit).
+
+    Gerechnet wird mit dem Logarithmus (ein einzelner Glückstreffer zählt nicht wie zehn gute Videos),
+    neuere Videos zählen mehr, und jeder Wert startet mit etwas Unsicherheit."""
+    vals = [(math.log1p(v), 0.5 ** (_age(u, today) / HALF_LIFE_D), v)
+            for u in uploads if u.get(key) == value for v in [_per_day(u, today)] if v is not None]
+    if not vals:
+        return 0, None, None, None
+    w = sum(x[1] for x in vals)
+    mu = sum(x[0] * x[1] for x in vals) / w
+    var = sum(x[1] * (x[0] - mu) ** 2 for x in vals) / w
+    spread = math.sqrt((w * var + 2 * 0.8 ** 2) / (w + 2))
+    return len(vals), sum(x[2] for x in vals) / len(vals), mu, spread / math.sqrt(w + 1)
+
+
+def chances(options, uploads, key, today, draws=400):
+    """Wie sicher ist jeder Wert der beste? {wert: 0..1} für Werte mit mindestens 2 bewerteten Videos."""
+    bel = {o: belief(uploads, key, o, today) for o in options}
+    rated = [o for o in options if bel[o][0] >= 2]
+    if len(rated) < 2:
+        return {o: 1.0 for o in rated}
+    rnd, wins = random.Random(7), dict.fromkeys(rated, 0)
+    for _ in range(draws):
+        wins[max(rated, key=lambda o: rnd.gauss(bel[o][2], bel[o][3]))] += 1
+    return {o: wins[o] / draws for o in rated}
+
+
 def _pick(options, uploads, key, today, rnd):
-    """Lernmodus für eine Eigenschaft (Szene oder Länge): erst jede einmal, dann 3 von 4 Mal die beste, sonst die älteste."""
+    """Lernmodus für eine Eigenschaft (Szene oder Länge), seit 25.11.2026 genauer:
+    erst jede einmal, dann jede mindestens zweimal bewertet. Danach zieht das Thompson-Verfahren für jeden Wert eine
+    plausible Stärke (je unsicherer, desto breiter) und nimmt die höchste: Ist ein Gewinner sicher, kommt er fast immer dran,
+    ist es knapp, wird weiter getestet. Jedes 8. Video testet trotzdem den Wert, der am längsten nicht dran war."""
     used = [u.get(key) for u in uploads]
     fresh = [o for o in options if o not in used]
     if fresh:
         return fresh[0]
-    score = {}
-    for o in options:
-        vals = [v for v in (_per_day(u, today) for u in uploads if u.get(key) == o) if v is not None]
-        if len(vals) >= 2:
-            score[o] = sum(vals) / len(vals)
-    if len(score) >= 2 and rnd.random() < .75:
-        return max(score, key=score.get)
     last = {o: max((i for i, x in enumerate(used) if x == o), default=-1) for o in options}
+    bel = {o: belief(uploads, key, o, today) for o in options}
+    rated = [o for o in options if bel[o][0] >= 2]
+    if len(rated) >= 2 and rnd.random() >= 1 / TEST_EVERY:
+        return max(rated, key=lambda o: rnd.gauss(bel[o][2], bel[o][3]))
     return min(options, key=lambda o: last[o])
 
 
-def choose(uploads, length="auto", today=None, n=0):
-    """Nächste Idee und Länge. uploads: frühere Uploads mit idea, scene, minutes, at, views."""
+def use_story(uploads, today=None, n=0):
+    """Einschlaf-Geschichte oder nur die Szene? Standard: Geschichte (Julius, 24.11.2026). Laufen die reinen Szenen nach
+    mindestens 4 bewerteten Videos je Seite sicher besser (80 %), kommt die Geschichte nur noch in jedem 2. Video."""
+    today = today or _dt.date.today()
+    ups = [{**u, "inhalt": "Geschichte" if u.get("story") else "Szene"} for u in uploads if u.get("idea")]
+    if min(belief(ups, "inhalt", o, today)[0] for o in ("Geschichte", "Szene")) < 4:
+        return True
+    return chances(("Geschichte", "Szene"), ups, "inhalt", today).get("Szene", 0) < 0.8 or n % 2 == 0
+
+
+def learn_rows(uploads, today=None):
+    """Für den Reiter Quiet Corner: je Merkmal die Werte mit Aufrufen pro Tag, Anzahl und „x % sicher“."""
+    today = today or _dt.date.today()
+    ups = [{**u, "inhalt": "Geschichte" if u.get("story") else "Szene",
+            "zeit": None if u.get("hour") is None else "morgens" if u["hour"] < 12 else "abends"} for u in uploads]
+    groups = (("scene", SCENES), ("minutes", {m: dauer_text(m) for m in MINUTES}),
+              ("inhalt", {"Geschichte": "Mit Einschlaf-Geschichte", "Szene": "Nur Szene und Klang"}),
+              ("zeit", {"morgens": "Upload morgens", "abends": "Upload abends"}))
+    groups += tuple(STYLE_KEYS.items())   # Titel-, Vorschaubild- und Klang-Stil; ältere Uploads zählen als Standard
+    ups = [{**u, **{k: u.get(k) or STYLE_DEFAULT[k] for k in STYLE_KEYS}} for u in ups]
+    out = {}
+    for key, names in groups:
+        ch = chances(list(names), ups, key, today)
+        rows = []
+        for k, name in names.items():
+            n, per_day, _, _ = belief(ups, key, k, today)
+            rows.append({"key": k, "name": name, "n": n, "per_day": round(per_day, 1) if per_day is not None else None,
+                         "chance": round(100 * ch[k]) if k in ch and len(ch) > 1 else None})
+        out[key] = rows
+    return out
+
+
+def next_cap(minutes):
+    """Nächstkürzere Stufe unter `minutes` (für den Fall, dass YouTube die Länge ablehnt)."""
+    return next((m for m in LADDER if m < minutes), LADDER[-1])
+
+
+def choose(uploads, length="auto", today=None, n=0, cap=None):
+    """Nächste Idee und Länge. uploads: frühere Uploads mit idea, scene, minutes, at, views. cap: längste erlaubte Länge in Minuten."""
     today = today or _dt.date.today()
     rnd = random.Random(1000 + n)
     long_ups = [u for u in uploads if u.get("idea")]
@@ -236,10 +314,57 @@ def choose(uploads, length="auto", today=None, n=0):
     last = long_ups[-1]["idea"] if long_ups else None
     idea = min(ideas, key=lambda i: (count[i["id"]], i["id"] == last, ideas.index(i)))
     minutes = int(length) if str(length).isdigit() and int(length) in MINUTES else _pick([480, 600, 300, 180], long_ups, "minutes", today, rnd)
+    if cap and minutes > cap:
+        options = [m for m in (480, 600, 300, 180) if m <= cap]
+        minutes = _pick(options, long_ups, "minutes", today, rnd) if options else cap
     return idea["id"], minutes
 
 
-def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,)):
+# ---------- Lernmodus für Stil (Titel, Thumbnail, Klang, Uhrzeit) ----------
+TITLE_STYLES = {"klassisch": "Bild, Suchbegriff und Zweck, Dauer am Ende", "dauer": "Dauer zuerst („10 Hours of …“)",
+                "suche": "Suchbegriff und Zweck zuerst"}
+THUMB_STYLES = {"links": "Text links, Dauer als goldene Plakette", "mitte": "Text groß in der Mitte, Dauer darunter"}
+SOUND_STYLES = {"klar": "Klang klar und natürlich", "weich": "Klang weich (hohe Töne gedämpft)"}
+STYLE_DEFAULT = {"title_style": "klassisch", "thumb_style": "links", "sound": "klar"}
+STYLE_KEYS = {"title_style": TITLE_STYLES, "thumb_style": THUMB_STYLES, "sound": SOUND_STYLES}
+LEARN_HOURS = (15, 17, 19, 21)   # mögliche Uhrzeiten für das letzte Video des Tages
+
+
+def choose_style(uploads, today=None, n=0):
+    """Wählt Titel-, Thumbnail- und Klang-Stil: erst jeden Stil einmal, dann 3 von 4 Mal den mit den meisten Aufrufen pro Tag.
+    Ältere Uploads ohne Angabe zählen als Standard-Stil."""
+    today = today or _dt.date.today()
+    rnd = random.Random(2000 + n)
+    ups = [u for u in uploads if u.get("idea") and not u.get("story")]
+    out = {}
+    for key, options in STYLE_KEYS.items():
+        norm = [{**u, key: u.get(key) or STYLE_DEFAULT[key]} for u in ups]
+        out[key] = _pick(list(options), norm, key, today, rnd)
+    return out
+
+
+def learned_hour(uploads, today=None, n=0):
+    """Uhrzeit für das letzte Video des Tages (15, 17, 19 oder 21 Uhr) nach den Aufrufen pro Tag der bisherigen Uploads."""
+    today = today or _dt.date.today()
+    rnd = random.Random(3000 + n)
+    ups = [u for u in uploads if u.get("slot_hour") in LEARN_HOURS]
+    return _pick(list(LEARN_HOURS), ups, "slot_hour", today, rnd)
+
+
+def slot_hour_now(cfg, now):
+    """Zu welchem Sendeplatz gehört `now` (größte Uhrzeit, die schon erreicht ist)?"""
+    return max((h for h in slots(cfg) if now.hour >= h), default=None)
+
+
+def soften(sound, rate=RATE, cutoff=3500):
+    """Dämpft hohe Töne (Tiefpass über FFT, passt zur nahtlosen Schleife, weil die ganze Schleife auf einmal gefiltert wird)."""
+    spec = np.fft.rfft(sound)
+    freq = np.fft.rfftfreq(len(sound), 1 / rate)
+    spec *= 1 / (1 + (freq / cutoff) ** 4)
+    return np.fft.irfft(spec, len(sound))
+
+
+def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,), cap=None):
     """Vorschau der nächsten Videos (ohne neue Aufrufe): Liste von {day, hour, idea, title, scene, minutes}."""
     today = today or _dt.date.today()
     ups, out, d = list(uploads), [], 0
@@ -248,7 +373,7 @@ def plan(uploads, length="auto", today=None, n=0, count=7, hours=(17,)):
         for hr in hours:
             if len(out) >= count:
                 break
-            idea, minutes = choose(ups, length, today, n + len(out))
+            idea, minutes = choose(ups, length, today, n + len(out), cap)
             out.append({"day": day, "hour": hr, "idea": idea, "scene": IDEA[idea]["scene"],
                         "scene_name": SCENES[IDEA[idea]["scene"]], "title": IDEA[idea]["title"], "minutes": minutes})
             ups.append({"idea": idea, "scene": IDEA[idea]["scene"], "minutes": minutes, "at": day})
@@ -274,14 +399,46 @@ GENERAL = ["sleep sounds", "relaxing sounds", "study ambience", "cozy ambience",
            "sounds for sleeping", "deep sleep", "stress relief", "focus", "no music"]
 
 
-def meta(idea_id, minutes, n=0):
+def story_meta(story, idea_id, minutes, n=0):
+    """Titel, Beschreibung und Tags für eine Einschlaf-Geschichte (Englisch). Die Szene gibt Klang und Suchbegriffe."""
+    import sleepstory
+    i = IDEA[idea_id]
+    hrs = hours_en(minutes)
+    title = f"{story['title']} 🌙 Sleep Story with {i['sounds']} | {hrs}"
+    if len(title) > 100:
+        title = f"{story['title']} 🌙 Sleep Story | {hrs}"
+    kw = KEYWORDS[i["scene"]]
+    desc = (f"{story['title']}: a calm, slow story to fall asleep to, read in a soft voice over {i['sounds'].lower()}.\n\n"
+            f"{story.get('about', 'An invented story.')}\n\n"
+            f"What you hear: a quiet narrator, then {i['layers']} that keep playing after the story ends ({hrs.lower()} in total).\n\n"
+            "Good for:\n· falling asleep\n· winding down after a long day\n· quiet evenings\n\n"
+            f"{sleepstory.DISCLOSURE} Every picture and every sound in this video was made by Quiet Corner. "
+            "A new story every day. Subscribe if you want to come back.\n\n"
+            f"{HASHTAGS[i['scene']]} #sleepstory #bedtimestory")
+    tags, total = [], 0
+    extra = ["sleep story", "bedtime story for adults", "story to fall asleep to", "calm narration", "sleep story for adults",
+             "relaxing story", story["title"].lower()]
+    for t in extra + kw + GENERAL:
+        if t not in tags and total + len(t) + 3 <= 480:
+            tags.append(t)
+            total += len(t) + 3
+    return {"title": title, "description": desc, "tags": tags, "thumb_text": story.get("thumb") or i["thumb"]}
+
+
+def meta(idea_id, minutes, n=0, title_style="klassisch"):
     """Titel, Beschreibung und Tags (Englisch) für das lange Video, so aufgebaut wie bei den großen Ambience-Kanälen:
     Bild + Emoji, dann der Suchbegriff mit Zweck, am Ende die Dauer („Rainy Night Café ☕ Coffee Shop Ambience … | 8 Hours“)."""
     i = IDEA[idea_id]
     hrs = hours_en(minutes)
     title = ""
     for k in range(len(USES)):
-        title = f"{i['title']} {i['emoji']} {i['sounds']} {USES[(n + k) % len(USES)]} | {hrs}"
+        use = USES[(n + k) % len(USES)]
+        if title_style == "dauer":
+            title = f"{hrs} of {i['sounds']} {i['emoji']} {i['title']} | {use.replace('for ', '', 1)}"
+        elif title_style == "suche":
+            title = f"{i['sounds']} {use} | {i['title']} {i['emoji']} | {hrs}"
+        else:
+            title = f"{i['title']} {i['emoji']} {i['sounds']} {use} | {hrs}"
         if len(title) <= 100:
             break
     if len(title) > 100:
@@ -354,7 +511,7 @@ def _opt(i):
     return {"scene": i["scene"], "weather": i["weather"]}
 
 
-def thumbnail(idea_id, minutes, loop_mp4, path):
+def thumbnail(idea_id, minutes, loop_mp4, path, text=None, style="links"):
     """Thumbnail 1280x720: Bild aus der Schleife, links dunkler, 2 bis 3 Wörter in ruhiger Schrift, darunter die Dauer."""
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     i = IDEA[idea_id]
@@ -365,55 +522,85 @@ def thumbnail(idea_id, minutes, loop_mp4, path):
     os.remove(still)
     shade = Image.new("L", (1280, 720))
     sd = ImageDraw.Draw(shade)
-    for x in range(1280):
-        sd.line([(x, 0), (x, 720)], fill=int(170 * max(0, 1 - x / 760) ** 1.5))
+    if style == "mitte":
+        for x in range(1280):
+            sd.line([(x, 0), (x, 720)], fill=int(150 * (1 - min(1, abs(x - 640) / 640) ** 0.6)))
+    else:
+        for x in range(1280):
+            sd.line([(x, 0), (x, 720)], fill=int(170 * max(0, 1 - x / 760) ** 1.5))
     img = Image.composite(Image.new("RGB", img.size, (12, 9, 8)), img, shade)
     f1 = ImageFont.truetype(os.path.join(HERE, "fonts", "DMSerifDisplay-Regular.ttf"), 124)
     f2 = ImageFont.truetype(os.path.join(HERE, "fonts", "InterDisplay-SemiBold.otf"), 40)
-    words = i["thumb"].split()
-    lines = [" ".join(words[:2]), " ".join(words[2:])] if len(words) > 2 else ([words[0], " ".join(words[1:])] if len(words) == 2 and len(i["thumb"]) > 11 else [i["thumb"]])
+    text = text or i["thumb"]
+    words = text.split()
+    lines = [" ".join(words[:2]), " ".join(words[2:])] if len(words) > 2 else ([words[0], " ".join(words[1:])] if len(words) == 2 and len(text) > 11 else [text])
     lines = [x for x in lines if x]
     y0 = 360 - len(lines) * 70
+    centered = style == "mitte"
     glow = Image.new("RGBA", img.size, (0, 0, 0, 0))
     gd = ImageDraw.Draw(glow)
+    d0 = ImageDraw.Draw(img)
+
+    def tx(ln, font):
+        return (1280 - d0.textlength(ln, font=font)) / 2 if centered else 84
+
     for k, ln in enumerate(lines):
-        gd.text((84, y0 + k * 132 + 6), ln, font=f1, fill=(0, 0, 0, 210))
+        gd.text((tx(ln, f1), y0 + k * 132 + 6), ln, font=f1, fill=(0, 0, 0, 210))
     glow = glow.filter(ImageFilter.GaussianBlur(10))
     img.paste(glow, (0, 0), glow)
     d = ImageDraw.Draw(img)
     for k, ln in enumerate(lines):
-        d.text((80, y0 + k * 132), ln, font=f1, fill=(248, 240, 228))
+        d.text((tx(ln, f1) - (4 if not centered else 0), y0 + k * 132), ln, font=f1, fill=(248, 240, 228))
     pill = f"{minutes // 60} HOURS" if minutes >= 120 else "1 HOUR"
     py = y0 + len(lines) * 132 + 28
     w = d.textlength(pill, font=f2)
-    d.rounded_rectangle((80, py, 80 + w + 44, py + 64), radius=32, fill=(232, 199, 140))
-    d.text((102, py + 9), pill, font=f2, fill=(40, 28, 20))
+    px = (1280 - (w + 44)) / 2 if centered else 80
+    d.rounded_rectangle((px, py, px + w + 44, py + 64), radius=32, fill=(232, 199, 140))
+    d.text((px + 22, py + 9), pill, font=f2, fill=(40, 28, 20))
     img.save(path, "JPEG", quality=90)
 
 
-def build(idea_id, minutes, out_dir, seed=1, teaser=True):
-    """Fertiges Video (mp4), Thumbnail (jpg), Teaser-Short (mp4) und Text (json). Gibt die Pfade zurück."""
+def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=None):
+    """Fertiges Video (mp4), Thumbnail (jpg), Teaser-Short (mp4) und Text (json). Gibt die Pfade zurück.
+
+    story (aus sleepstory.stories()): Erzählstimme liest die Geschichte, die Szene läuft leise darunter und danach weiter.
+    Die Länge richtet sich dann nach der Geschichte (out["minutes"]), `minutes` ist nur der Mindestwert."""
     if idea_id not in IDEA:
         raise ValueError(f"Unbekannte Idee {idea_id}, erlaubt: {', '.join(IDEA)}")
     i = IDEA[idea_id]
     os.makedirs(out_dir, exist_ok=True)
     name = f"quiet-{idea_id}-{minutes}min"
     mp4 = os.path.join(out_dir, name + ".mp4")
-    out = {"video": mp4}
+    out = {"video": mp4, "minutes": minutes}
+    styles = {**STYLE_DEFAULT, **(styles or {})}
     sound = audio.soundscape(i["recipe"], LOOP_S, RATE, seed, loop=True) * 0.5
+    if styles["sound"] == "weich":
+        sound = soften(sound)
     with tempfile.TemporaryDirectory(prefix="quiet-out-") as tmp:
         loop_mp4, loop_wav = os.path.join(tmp, "loop.mp4"), os.path.join(tmp, "loop.wav")
         _render(_opt(i), loop_mp4)
         _wav(loop_wav, sound)
+        if story:
+            import sleepstory
+            narr = os.path.join(tmp, "story.wav")
+            secs = sleepstory.narrate(story["text"], narr, RATE)
+            minutes = sleepstory.total_minutes(secs, 60)
+            out["minutes"], out["story"] = minutes, story["id"]
+            name = f"quiet-{idea_id}-{story['id']}"
+            mp4 = out["video"] = os.path.join(out_dir, name + ".mp4")
         out["thumb"] = os.path.join(out_dir, name + ".jpg")
-        thumbnail(idea_id, minutes, loop_mp4, out["thumb"])
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", loop_mp4,
-                        "-stream_loop", "-1", "-i", loop_wav, "-t", str(minutes * 60), "-map", "0:v", "-map", "1:a",
-                        "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ar", str(RATE), "-movflags", "+faststart", mp4],
-                       check=True)
+        thumbnail(idea_id, minutes, loop_mp4, out["thumb"], text=(story or {}).get("thumb"), style=styles["thumb_style"])
+        if story:
+            sleepstory.mux(loop_mp4, loop_wav, narr, minutes, mp4, RATE)
+        else:
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", loop_mp4,
+                            "-stream_loop", "-1", "-i", loop_wav, "-t", str(minutes * 60), "-map", "0:v", "-map", "1:a",
+                            "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ar", str(RATE), "-movflags", "+faststart", mp4],
+                           check=True)
         if teaser:
             t_mp4, t_wav = os.path.join(tmp, "teaser.mp4"), os.path.join(tmp, "teaser.wav")
-            over = {"dur": TEASER_S, "title": i["title"], "sub": f"{hours_en(minutes).lower()} on the channel"}
+            over = {"dur": TEASER_S, "title": story["title"] if story else i["title"],
+                    "sub": "a sleep story on the channel" if story else f"{hours_en(minutes).lower()} on the channel"}
             _render(_opt(i), t_mp4, wide=False, over=over, start=5.0)
             n = TEASER_S * RATE
             s = np.concatenate([sound, sound])[5 * RATE:5 * RATE + n].copy()
@@ -427,7 +614,7 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True):
                             out["teaser"]], check=True)
     out["info"] = os.path.join(out_dir, name + ".json")
     with open(out["info"], "w", encoding="utf-8") as f:
-        json.dump(meta(idea_id, minutes, seed), f, ensure_ascii=False, indent=2)
+        json.dump(story_meta(story, idea_id, minutes, seed) if story else meta(idea_id, minutes, seed, styles["title_style"]), f, ensure_ascii=False, indent=2)
     return out
 
 

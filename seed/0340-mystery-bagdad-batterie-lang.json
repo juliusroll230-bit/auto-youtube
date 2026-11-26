@@ -1,0 +1,710 @@
+{
+  "slug": "mystery-bagdad-batterie-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#2a2214",
+    "#d8b36a"
+  ],
+  "accent": "#ffb703",
+  "title": "Die Bagdad-Batterie: Strom vor 2.000 Jahren? 🔋",
+  "description": "1936 finden Arbeiter bei Bagdad einen Tonkrug mit Kupferrohr und Eisenstab. Wir erzählen die Geschichte der Bagdad-Batterie, die Idee dahinter und was Fachleute dagegen sagen.\n\n#mystery #rätsel #archäologie #geschichte #bagdad",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "archäologie",
+    "geschichte",
+    "bagdad"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "zylinder",
+    "name": "König"
+  },
+  "thumb_text": [
+    "Tonkrug | Batterie oder nicht",
+    "Strom vor Volta?"
+  ],
+  "segments": [
+    {
+      "text": "Im Jahr neunzehnhundertsechsunddreißig finden Arbeiter bei Bagdad einen unscheinbaren Tonkrug, und niemand ahnt zuerst, was für Streit er auslösen wird.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Er ist knapp so groß wie eine Hand, und doch sagen manche, er sei vor fast zweitausend Jahren eine Batterie gewesen. Stimmt das?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔋",
+        "text": "Eine Batterie?"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte der Bagdad-Batterie, was im Krug steckt und was Forscher dazu sagen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏺",
+        "text": "Der Krug"
+      }
+    },
+    {
+      "text": "Zuerst der Fund, dann der Krug selbst, dann die Batterie-Idee, dann die Einwände und am Ende die Frage, wozu er wirklich diente.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Bagdad ist heute die Hauptstadt des Iraks, doch vor Jahrtausenden lagen in dieser Gegend einige der ältesten Städte der Welt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🏙️"
+      }
+    },
+    {
+      "text": "Im Jahr neunzehnhundertsechsunddreißig stoßen Arbeiter bei Bauarbeiten südöstlich von Bagdad auf ein altes Dorf mit einem Grab.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1936",
+        "text": "Der Fund",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Dort finden sie Alltagsgegenstände, und darunter ist ein Tonkrug mit einem seltsamen Inhalt, der später berühmt wird.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "⚱️",
+        "text": "Alltagsfunde"
+      }
+    },
+    {
+      "text": "Der Krug kommt ins Museum von Bagdad, wo ein österreichischer Archäologe namens Wilhelm König arbeitet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "König untersucht die Funde, schreibt sie auf und stellt später eine Behauptung auf, die um die ganze Welt geht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Das Museum"
+      }
+    },
+    {
+      "text": "Doch was genau hat er in dem Krug gesehen? Das schauen wir uns jetzt Stück für Stück an.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔍",
+        "text": "Was ist drin?"
+      }
+    },
+    {
+      "text": "Der Krug besteht aus drei Teilen, die ineinander stecken.",
+      "szene": {
+        "typ": "liste",
+        "text": "Der Aufbau",
+        "punkte": [
+          "Tonkrug",
+          "Kupferrohr",
+          "Eisenstab"
+        ]
+      }
+    },
+    {
+      "text": "Der Tonkrug ist ungefähr vierzehn Zentimeter hoch, hat eine Öffnung oben und ist aus gebranntem Ton gemacht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏺",
+        "text": "Tonkrug"
+      }
+    },
+    {
+      "text": "Solche Tonkrüge waren damals in der ganzen Gegend verbreitet und dienten oft zum Aufbewahren von Vorräten.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "wueste",
+        "anzahl": 3,
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "text": "Alltagskrüge"
+      }
+    },
+    {
+      "text": "In seinem Inneren steckt ein dünner Zylinder aus Kupfer, der am Boden mit einem Pfropfen aus Asphalt verschlossen ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🟤"
+      }
+    },
+    {
+      "text": "In der Mitte des Kupferrohrs ragt ein Stab aus Eisen nach oben, der von Asphalt gehalten wird.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔩",
+        "text": "Eisenstab"
+      }
+    },
+    {
+      "text": "Das Kupfer und das Eisen berühren sich nicht, und das ist der Teil, der die Fachleute so neugierig macht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🟤",
+          "text": "Kupfer"
+        },
+        "rechts": {
+          "objekt": "🔩",
+          "text": "Eisen"
+        }
+      }
+    },
+    {
+      "text": "Nach den Fundumständen stammt der Krug aus der Zeit der Parther oder Sassaniden, also aus etwa zweitausend Jahren bis eintausendfünfhundert Jahren vor heute.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 2000,
+        "einheit": "Jahre alt, etwa",
+        "objekt": "🏺",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "König schaut auf die Bauteile und denkt an etwas, das er vom Gold- und Silberschmuck seiner Zeit kennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Wenn man Kupfer und Eisen in eine saure Flüssigkeit stellt, kann zwischen ihnen ein schwacher elektrischer Strom entstehen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "⚡",
+        "text": "Strom aus Metall"
+      }
+    },
+    {
+      "text": "Das ist das Prinzip einer einfachen Batterie, und König fragt sich, ob die Menschen damals das schon wussten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🔋"
+      }
+    },
+    {
+      "text": "Mit zwei verschiedenen Metallen und einer sauren Flüssigkeit lässt sich das sogar zu Hause mit einer Zitrone ausprobieren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🍋",
+        "text": "Zitronen-Batterie"
+      }
+    },
+    {
+      "text": "Neunzehnhundertachtunddreißig veröffentlicht er seine Idee: Der Krug könnte zum Vergolden oder Versilbern von Schmuck gedient haben.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1938",
+        "text": "Königs Idee",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Das wäre ein Paukenschlag, denn der Strom aus einer Batterie wurde in Europa erst viele Jahrhunderte später entdeckt.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⚡",
+        "text": "Zu früh entdeckt?"
+      }
+    },
+    {
+      "text": "Die Idee verbreitet sich rasch, und bald steht die Bagdad-Batterie in Zeitungen, Büchern und in Dokumentarfilmen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Der Italiener Alessandro Volta baut siebzehnhundertneunundneunzig die erste bekannte Batterie, die Voltasche Säule.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔋",
+        "text": "Volta, 1799"
+      }
+    },
+    {
+      "text": "Die Bagdad-Batterie wäre also mehr als tausend Jahre älter als alles, was man in Europa kannte.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Aber hält die Idee einer Prüfung stand? Das haben viele Leute getestet, und die Ergebnisse sind überraschend.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧪"
+      }
+    },
+    {
+      "text": "Schon neunzehnhundertvierzig baut der Amerikaner Willard Gray einen Nachbau und füllt ihn mit einer sauren Flüssigkeit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🧪",
+        "text": "Nachbau, 1940"
+      }
+    },
+    {
+      "text": "Spätere Tests mit Essig, Wein oder Traubensaft lieferten eine schwache Spannung, ungefähr ein bis zwei Volt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⚡",
+        "text": "Etwa 1 bis 2 Volt"
+      }
+    },
+    {
+      "text": "Es funktioniert also, aber nur ein bisschen: Der Strom reicht, um eine kleine Lampe nicht anzuschalten, doch er ist messbar.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📟"
+      }
+    },
+    {
+      "text": "Einige Forscher haben mit solchen Nachbauten sogar dünne Schichten aus Silber auf kleine Gegenstände aufgetragen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🥈",
+        "text": "Dünne Silberschicht"
+      }
+    },
+    {
+      "text": "Die Idee lebt auf, und viele sagen: Der Krug war wirklich eine Batterie, und wir haben es nur vergessen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🔋"
+      }
+    },
+    {
+      "text": "Doch dann melden sich Fachleute, die sagen: Moment, es gibt einige gewichtige Gründe, die gegen diese Idee sprechen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⚠️",
+        "text": "Einwände"
+      }
+    },
+    {
+      "text": "Archäologen nennen vor allem diese Punkte.",
+      "szene": {
+        "typ": "akte",
+        "text": "Was dagegen spricht",
+        "punkte": [
+          "Keine Drähte",
+          "Keine Geräte",
+          "Keine Silberobjekte"
+        ]
+      }
+    },
+    {
+      "text": "Erstens: In der ganzen Gegend hat man keine Kabel, Drähte oder Anschlüsse gefunden, die zu einer Batterie gehört hätten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🔌",
+        "text": "Keine Drähte"
+      }
+    },
+    {
+      "text": "Zweitens: Man kennt keine Schmuckstücke aus dieser Zeit, die durch Strom vergoldet oder versilbert wurden.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💍"
+      }
+    },
+    {
+      "text": "Die Goldschmiede der Antike nutzten stattdessen andere Verfahren, zum Beispiel das Feuervergolden mit Quecksilber.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔥",
+          "text": "Feuervergoldung"
+        },
+        "rechts": {
+          "objekt": "⚡",
+          "text": "Strom-Vergoldung"
+        }
+      }
+    },
+    {
+      "text": "Drittens: Der Asphalt am Rand hält den Krug zwar dicht, aber das spricht eher für einen Behälter als für ein Gerät.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Viele Forscher glauben deshalb, dass in dem Kupferzylinder eine Schriftrolle aus Papyrus oder Leder aufbewahrt wurde.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "📜",
+        "text": "Schriftrolle"
+      }
+    },
+    {
+      "text": "Der Eisenstab wäre dann ein Teil der Halterung, und die saure Flüssigkeit im Krug hätte das Metall später angegriffen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Gegen diese Idee sagen andere, dass man Schriftrollen nicht mit Asphalt versiegelt, wenn man sie wieder herausholen will.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Wer hat recht?"
+      }
+    },
+    {
+      "text": "Zusätzlich fanden Forscher in ähnlichen Krügen aus anderen Orten oft Spuren von Papier oder Resten einer Rolle, aber nicht sicher.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "📜",
+        "text": "Spuren von Papier"
+      }
+    },
+    {
+      "text": "Bei einigen Krügen deuten Rückstände darauf hin, dass dort etwas Organisches lag, aber ob es eine Schrift war, ist unklar.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Eine weitere Spur ist die Korrosion, also der Rost im Krug, den manche als Zeichen für eine Säure deuten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🧪",
+        "text": "Spuren im Krug"
+      }
+    },
+    {
+      "text": "Andere Forscher sagen, auch Wasser oder Feuchtigkeit aus dem Boden kann ein Metall nach Jahrhunderten so zerfressen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "💧"
+      }
+    },
+    {
+      "text": "Das Problem: Der Krug wurde nicht unter genauen Bedingungen ausgegraben, und niemand dokumentierte genau, wie er lag.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "📋",
+        "text": "Schlecht dokumentiert"
+      }
+    },
+    {
+      "text": "Als das Museum in Bagdad im Jahr zweitausenddrei geplündert wurde, sollen viele Funde verschwunden sein.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Museum geplündert"
+      }
+    },
+    {
+      "text": "Ob der Krug darunter war, wird in Berichten unterschiedlich gesagt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Neue Untersuchungen sind deshalb schwierig, und vieles stützt sich auf alte Fotos und Beschreibungen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📷",
+        "text": "Alte Fotos"
+      }
+    },
+    {
+      "text": "Es ist also schwer, den Fund noch einmal genau zu prüfen, und so bleibt vieles Theorie.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "🔍"
+      }
+    },
+    {
+      "text": "Der Fall zeigt auch, wie wichtig genaue Dokumentation bei Ausgrabungen ist, damit spätere Forscher wirklich prüfen können.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📋",
+        "text": "Genaue Dokumentation"
+      }
+    },
+    {
+      "text": "Eine Frage bleibt: Kannten die Menschen damals überhaupt Strom? Die Antwort ist überraschend, aber anders.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⚡",
+        "text": "Kannten sie Strom?"
+      }
+    },
+    {
+      "text": "Bereits im ersten Jahrhundert nach Christus empfahl der römische Arzt Scribonius Largus Zitterrochen gegen Kopfschmerzen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐟"
+      }
+    },
+    {
+      "text": "Der Rochen kann elektrische Schläge austeilen, und die Menschen kannten diese Wirkung also schon sehr lange.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🐟",
+        "text": "Elektrische Fische"
+      }
+    },
+    {
+      "text": "Schon im alten Griechenland wusste man, dass Bernstein kleine Federn anzieht, wenn man ihn reibt.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "600 v. Chr.",
+        "text": "Bernstein zieht an",
+        "objekt": "🟡"
+      }
+    },
+    {
+      "text": "Strom in der Natur kannte man also, doch ihn in einem Gerät dauerhaft zu nutzen, ist etwas ganz anderes.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⚡"
+      }
+    },
+    {
+      "text": "Die Wahrheit liegt vermutlich irgendwo dazwischen, und der Krug bleibt ein Gegenstand, über den Fachleute streiten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "⚖️",
+        "text": "Streit der Fachleute"
+      }
+    },
+    {
+      "text": "Neue Untersuchungen mit modernen Methoden könnten Spuren im Metall genauer zeigen, doch dafür müsste man den Krug erst einmal wieder untersuchen dürfen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔬",
+        "text": "Neue Methoden"
+      }
+    },
+    {
+      "text": "Auf der einen Seite stehen die Nachbauten, auf der anderen die fehlenden Beweise aus der Zeit selbst.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧪",
+          "text": "Nachbauten"
+        },
+        "rechts": {
+          "objekt": "📜",
+          "text": "Keine Belege"
+        }
+      }
+    },
+    {
+      "text": "Wäre der Krug eine Batterie gewesen, hätte man sie wohl in großer Zahl gefunden, doch es gibt nur wenige Exemplare.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🏺",
+        "text": "Nur wenige Krüge"
+      }
+    },
+    {
+      "text": "Ein Erfinder hätte vermutlich Kabel, Lampen oder Magnete gebaut, doch dazu gibt es aus dieser Zeit nichts.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🧲",
+        "text": "Keine Geräte"
+      }
+    },
+    {
+      "text": "Dass ein Ding aus Metall und Ton Strom erzeugen kann, heißt nicht, dass jemand es damals dafür benutzt hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🤔"
+      }
+    },
+    {
+      "text": "Jedes neue Wissen über die Antike entsteht Stück für Stück, und oft korrigieren spätere Funde frühere Deutungen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📚",
+        "text": "Wissen wächst"
+      }
+    },
+    {
+      "text": "Der Streit zeigt, wie schnell aus einem Fund eine große Geschichte wird, wenn sie gut klingt und sich leicht erzählen lässt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📰",
+        "text": "Eine gute Geschichte"
+      }
+    },
+    {
+      "text": "Mehrere Museen haben seitdem Nachbauten gezeigt, und jedes Mal diskutieren Besucher, ob sie das glauben.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏛️",
+        "text": "Nachbauten im Museum"
+      }
+    },
+    {
+      "text": "Vielleicht war der Krug nur ein ganz gewöhnlicher Behälter, und wir wollten in ihm ein Wunder sehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Fachleute betonen, dass ein Rätsel nicht dadurch bewiesen wird, dass es sich gut erzählen lässt, sondern durch Belege.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "⚖️",
+        "text": "Belege zählen"
+      }
+    },
+    {
+      "text": "Vielleicht aber lag in ihm wirklich etwas, das wir noch nicht verstehen, und eine neue Untersuchung könnte das ändern.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Neue Tests?"
+      }
+    },
+    {
+      "text": "Bis dahin bleibt die Bagdad-Batterie eines der bekanntesten Rätsel der Archäologie, auch wenn die Mehrheit der Fachleute skeptisch ist.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏺",
+        "text": "Offenes Rätsel"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an die Batterie oder an die Schriftrolle? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

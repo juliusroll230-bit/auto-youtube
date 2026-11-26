@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-regentropfen-kopf",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Regentropfen auf dem Kopf: Tut das weh? 💧",
+  "description": "Erklärt in der Blockwelt: Wie schnell ein Regentropfen fällt, warum er dich nicht verletzt und wie die Luft ihn bremst.\n\n#wissen #regen #physik #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "regen",
+    "physik",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Regentropfen | wie schnell",
+    "Ein Tropfen bremst"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dir ein Regentropfen auf den Kopf fällt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "💧",
+        "chat": "Spieler: Regen!"
+      }
+    },
+    {
+      "text": "Er fällt aus Wolken, die oft *kilometerhoch* hängen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "☁️",
+        "text": "Hohe Wolken"
+      }
+    },
+    {
+      "text": "Trotzdem wird er in der Luft nicht immer schneller.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "💨",
+        "text": "Luft bremst"
+      }
+    },
+    {
+      "text": "Bei etwa neun Metern pro Sekunde ist *Schluss*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Das spürst du nur als kleines Tippen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💧",
+        "text": "Nur ein Tippen"
+      }
+    },
+    {
+      "text": "Ein Hagelkorn dagegen kann echt wehtun.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Hagel"
+      }
+    },
+    {
+      "text": "Die Luft bremst jeden Tropfen von selbst *ab*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🌧️",
+        "text": "Luft bremst"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Gewitter noch mal:",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "⛈️"
+      }
+    }
+  ],
+  "ende": "loop"
+}

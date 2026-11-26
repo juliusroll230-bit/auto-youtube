@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-warum-fliegt-flugzeug",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum fällt ein Flugzeug nicht vom Himmel? ✈️",
+  "description": "Erklärt in der Blockwelt: Wie ein tonnenschweres Flugzeug in der Luft bleibt, durch Flügel, Tempo und Auftrieb.\n\n#wissen #technik #flugzeug #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "technik",
+    "flugzeug",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Flugzeug | wie fliegt es",
+    "Luft trägt es"
+  ],
+  "segments": [
+    {
+      "text": "Wie bleibt ein *tonnenschweres* Flugzeug einfach in der Luft?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "✈️",
+        "chat": "Spieler: wie??"
+      }
+    },
+    {
+      "text": "Die Flügel sind schräg gestellt und lenken Luft nach unten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "✈️",
+        "text": "Luft nach unten"
+      }
+    },
+    {
+      "text": "Die Luft drückt als Gegenkraft den Flügel nach oben.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⬆️",
+        "text": "Auftrieb"
+      }
+    },
+    {
+      "text": "Dazu braucht es nur genug *Tempo*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Darum rollt jedes Flugzeug erst schnell über die Bahn.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "rennt",
+        "text": "Anlauf"
+      }
+    },
+    {
+      "text": "Ohne Tempo gäbe es keinen Auftrieb.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🛫",
+        "text": "Kein Tempo"
+      }
+    },
+    {
+      "text": "Das Flugzeug liegt also auf Luft, die es nach unten schiebt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Luft trägt mehr, als man denkt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "☁️",
+        "text": "Luft trägt"
+      }
+    }
+  ]
+}

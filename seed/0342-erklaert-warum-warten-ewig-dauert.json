@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-warten-ewig-dauert",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum dauert Warten gefühlt ewig? ⏳",
+  "description": "Erklärt: Warum eine Minute im Wartezimmer länger wirkt als eine Minute beim Spielen.\n\n#wissen #gehirn #zeit #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "gehirn",
+    "zeit",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Warten | dehnt die Zeit",
+    "Zeit schaut zu"
+  ],
+  "segments": [
+    {
+      "text": "Warum kommt dir Warten *ewig* vor?",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Du schaust ständig auf die Uhr.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "⏰",
+        "text": "Uhr im Blick"
+      }
+    },
+    {
+      "text": "Wer auf die Zeit achtet, erlebt sie länger.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⏳",
+        "text": "Aufmerksamkeit"
+      }
+    },
+    {
+      "text": "Beim Spielen fliegt die Zeit dagegen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🎮",
+          "text": "Beschäftigt"
+        },
+        "rechts": {
+          "objekt": "⏰",
+          "text": "Wartend"
+        }
+      }
+    },
+    {
+      "text": "Dein Gehirn zählt jeden Moment mit.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Langeweile macht jede Sekunde sichtbar.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "text": "Langeweile"
+      }
+    },
+    {
+      "text": "Die Zeit dehnt sich, weil du ihr *zuschaust*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Und genau deshalb fragst du dich beim Warten:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

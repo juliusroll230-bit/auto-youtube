@@ -19,8 +19,10 @@ W, H, FPS = 1080, 1920, 30
 PAUSE = 0.18      # Sekunden Stille nach jedem Satz (kurz halten: Pausen kosten Zuschauer)
 SPEED = 0.88      # Sprechtempo der Stimme (kleiner = schneller)
 TAIL = 0.35       # Stille nach dem letzten Satz: kurz, damit das Video sofort wieder von vorn läuft (Schleife)
-# Ton: Brummen weg, Stimme gleichmäßiger (Kompressor), Lautheit auf YouTube-Standard (-14 LUFS)
-AUDIO_FILTER = ("highpass=f=70,acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.5,"
+# Ton: Brummen weg, Stimme gleichmäßiger (Kompressor), Lautheit auf YouTube-Standard (-14 LUFS).
+# Seit 25.11.2026 angenehmer (Julius): etwas mehr Wärme (170 Hz), weniger schrille Höhen (3,2 kHz), weichere S-Laute (De-Esser).
+AUDIO_FILTER = ("highpass=f=75,equalizer=f=170:t=q:w=1:g=2.5,equalizer=f=3200:t=q:w=1.4:g=-3,deesser=i=0.5:m=0.5:f=0.5,"
+                "lowpass=f=12000,acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.5,"
                 "loudnorm=I=-14:TP=-1.5:LRA=8,aresample=48000,apad")
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.environ.get("TTS_MODEL_DIR", os.path.join(HERE, "models", "vits-piper-de_DE-thorsten-high"))
@@ -40,6 +42,9 @@ VOICES = {
     "freundlich": (1.0, 1.02, 0.0),   # warm und freundlich: Thorsten mit lächelnder Betonung (eigenes Modell, siehe unten)
     "erzaehlerin": (1.0, 1.06, 0.0),  # weibliche Erzählstimme (Kerstin), ruhig, für Geschichten
     "aufgeregt": (1.0, 0.86, 0.0),   # aufgeregt: etwas flotter, mit Betonung (19.11.2026, abends auf Julius' Wunsch etwas zurückgenommen)
+    # Julius 25.11.2026: „die Stimme sollte angenehmer werden“. Etwas ruhiger, minimal tiefer, gleichmäßige Satzmelodie.
+    "sanft": (0.98, 1.08, 0.0),       # Thorsten-high, ruhiger und wärmer
+    "ruhig": (1.0, 1.08, 0.0),        # Thorsten-emotional, Sprecher „neutral“: ruhiger, freundlicher Ton
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -48,9 +53,10 @@ VOICE_MODELS = {
     "freundlich": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
     "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
     "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
+    "ruhig": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 4),  # 4 = neutral
 }
 # Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
-VOICE_NOISE = {"aufgeregt": (0.5, 0.7)}  # niedrig = gleichmäßige Satzmelodie
+VOICE_NOISE = {"aufgeregt": (0.5, 0.7), "sanft": (0.5, 0.6), "ruhig": (0.5, 0.6)}  # niedrig = gleichmäßige Satzmelodie
 _voice_models = {}
 
 
@@ -82,7 +88,8 @@ def speak_piper(tts, text, voice=None, length_scale=1.0):
         if src != rate:
             x = np.interp(np.linspace(0, len(x) - 1, int(len(x) * rate / src)), np.arange(len(x)), x).astype(np.float32)
         return x
-    cfg = SynthesisConfig(length_scale=length_scale)
+    ns, nw = VOICE_NOISE.get(voice, (None, None))
+    cfg = SynthesisConfig(length_scale=length_scale, noise_scale=ns, noise_w_scale=nw)
     return np.concatenate([c.audio_float_array for c in tts.synthesize(text, syn_config=cfg)])
 
 
@@ -128,12 +135,17 @@ def load_tts():
 
 
 def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=None, pause=PAUSE, effects=None,
-               layout=None):
+               layout=None, tempo=None, cta=None, badge=False, music=None):
     """Spricht alle Sätze ein, legt Musik und Effekte darunter und gibt Start/Ende jedes Satzes zurück.
 
     voice: Stimme aus VOICES (nur Cartoons), mood: Stimmung für die Musik (siehe audio.mix),
     effects: "stark" setzt Riser, Schlag und Musikpause auf die Auflösung (siehe accent_time).
     layout: "spannung" legt einen Herzschlag bis zur Auflösung darunter (Test).
+    tempo: "schnell" legt auf jeden Zwischenschnitt (fast_cuts) einen kurzen Snap (Test seit 21.11.2026).
+    cta: kurzer Abo-Satz, der nach dem letzten Satz gesprochen wird (Test seit 22.11.2026). Er zählt nicht zu den
+    Satz-Zeiten (die Auflösung bleibt der vorletzte Satz), beginnt bei timings[-1][1] + pause und endet bei t - pause.
+    badge: Abo-Knopf nur im Bild (ohne Satz), Klick und Glocke zur Zeit badge_time.
+    music: Musik-Stil (learn.MUSIC_FOR_MOOD, Test seit 25.11.2026), None = wie bisher nach Stimmung.
     """
     import audio
 
@@ -141,6 +153,8 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
     pitch, slower, echo = VOICES.get(voice or "klar", VOICES["klar"])
     spoken = None
     import fishtts
+    if cta:
+        segments = list(segments) + [{"text": cta}]
     if isinstance(tts, fishtts.Voice):  # Fish Audio ist eingerichtet
         try:
             # Fish-Stimmen nicht verstellen, nur Tempo und Hall übernehmen
@@ -170,12 +184,18 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         timings.append((t, t + dur))
         chunks += [samples, np.zeros(int(pause * rate), dtype=np.float32)]
         t += dur + pause
+    if cta:   # Abo-Satz: gesprochen und im Ton, aber kein eigener Satz für Schnitte, Untertitel und Auflösung
+        cta_at = timings.pop()[0]
+        segments = segments[:-1]
     tail = np.zeros(int(TAIL * rate), dtype=np.float32)  # kurzer Ausklang
     voice_track = np.concatenate(chunks + [tail])
     track = audio.mix(voice_track, rate, [s for s, _ in timings[1:]], seed, pops=number_hits(segments, timings), mood=mood,
                       accent=accent_time(timings) if effects in ("stark", "voll") else None,
                       keys=key_hits(segments, timings) if effects == "voll" else (), sticker=effects == "voll",
-                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else ())
+                      beats=audio.tension_beats(accent_time(timings)) if layout == "spannung" else (),
+                      snaps=fast_cuts(timings, t + TAIL) if tempo == "schnell" else (),
+                      bell=cta_at if cta else badge_time(timings, t + TAIL) if badge else None,
+                      style=music, drop=accent_time(timings) or (timings[-1][0] if timings else None))
     pcm = (np.clip(track, -1, 1) * 32767).astype(np.int16)
     with wave.open(wav_path, "wb") as f:
         f.setnchannels(1)
@@ -183,6 +203,31 @@ def synthesize(tts, segments, wav_path, seed=0, speed=SPEED, voice=None, mood=No
         f.setframerate(rate)
         f.writeframes(pcm.tobytes())
     return timings, t
+
+
+FAST_SHOT = 1.3   # Tempo "schnell": so lange (s) bleibt eine Einstellung ungefähr stehen
+
+
+def fast_cuts(timings, total, every=FAST_SHOT):
+    """Zwischenschnitte innerhalb der Sätze für Tempo "schnell": ca. alle 1,3 s eine neue Einstellung,
+    aber nie kurz vor dem nächsten Satz (der bringt selbst einen Schnitt)."""
+    cuts = []
+    for i, (s, _) in enumerate(timings):
+        end = timings[i + 1][0] if i + 1 < len(timings) else total
+        n = int((end - s) / every)
+        if n >= 1 and (end - s) / (n + 1) < 0.75:   # Stücke nicht kürzer als 0,75 s
+            n -= 1
+        step = (end - s) / (n + 1)
+        cuts += [round(s + step * k, 3) for k in range(1, n + 1)]
+    return cuts
+
+
+BADGE_SHOW = 2.6   # Abo-Knopf ohne Satz: so viele Sekunden vor Schluss erscheint er (während des letzten Satzes)
+
+
+def badge_time(timings, total):
+    """Wann der Abo-Knopf ohne gesprochenen Satz erscheint: ca. 2,6 s vor Schluss, aber nicht vor dem letzten Satz."""
+    return round(max(timings[-1][0] + 0.4, total - BADGE_SHOW), 3) if timings else None
 
 
 def accent_time(timings):

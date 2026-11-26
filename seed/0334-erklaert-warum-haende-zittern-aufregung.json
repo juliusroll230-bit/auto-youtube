@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-warum-haende-zittern-aufregung",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum zittern deine Hände bei Aufregung? 🤲",
+  "description": "Warum die Hände zittern, wenn du aufgeregt bist: Was Adrenalin im Körper macht und warum das normal ist.\n\n#wissen #körper #aufregung #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "aufregung",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zittern | Energie ohne Ziel",
+    "Das ist normal"
+  ],
+  "segments": [
+    {
+      "text": "Warum zittern deine Hände, wenn du aufgeregt bist?",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🤲"
+      }
+    },
+    {
+      "text": "Dein Körper schüttet *Adrenalin* aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "⚡",
+        "text": "Adrenalin"
+      }
+    },
+    {
+      "text": "Es macht dich bereit zum Kämpfen oder Fliehen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "🏃",
+        "text": "Kampf oder Flucht"
+      }
+    },
+    {
+      "text": "Muskeln spannen sich an, das Herz schlägt schneller.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "💪",
+          "text": "Muskeln: Spannung"
+        },
+        "rechts": {
+          "objekt": "❤️",
+          "text": "Herz: schneller"
+        }
+      }
+    },
+    {
+      "text": "Dabei zittern kleine Muskeln in den Fingern leicht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Ruhiges Atmen kann das Zittern oft mildern.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌬️",
+        "text": "Ruhig atmen"
+      }
+    },
+    {
+      "text": "Das Zittern ist also *Energie* ohne Ausgang.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⚡"
+      }
+    },
+    {
+      "text": "Es ist völlig normal und geht vorbei.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "✅",
+        "text": "Völlig normal"
+      }
+    }
+  ]
+}

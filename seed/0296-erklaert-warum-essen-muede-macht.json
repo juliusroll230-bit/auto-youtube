@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-warum-essen-muede-macht",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#2a2010",
+    "#d8a850"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum macht Essen müde? 😴",
+  "description": "Warum du nach dem Mittagessen schläfrig wirst: Verdauung, Insulin und das Mittagstief der inneren Uhr.\n\n#wissen #essen #müde #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "essen",
+    "müde",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Mittagstief | Innere Uhr",
+    "Kurzer Spaziergang"
+  ],
+  "segments": [
+    {
+      "text": "Warum macht dich Essen so müde?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zittert",
+        "objekt": "😴"
+      }
+    },
+    {
+      "text": "Nach dem Essen arbeitet deine *Verdauung* auf Hochtouren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🍽️",
+        "text": "Verdauung"
+      }
+    },
+    {
+      "text": "Dafür fließt mehr Blut in den Bauch.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🩸",
+        "text": "Blut zum Bauch"
+      }
+    },
+    {
+      "text": "Dein Blutzucker steigt, und *Insulin* wird ausgeschüttet.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍬",
+          "text": "Blutzucker hoch"
+        },
+        "rechts": {
+          "objekt": "💉",
+          "text": "Insulin"
+        }
+      }
+    },
+    {
+      "text": "Das macht viele schläfrig, besonders nach schwerem Essen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "text": "Schläfrig"
+      }
+    },
+    {
+      "text": "Auch der Tagesrhythmus sorgt mittags für ein kleines Tief.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mitverantwortlich",
+        "punkte": [
+          "Verdauung",
+          "Insulin",
+          "Mittagstief"
+        ]
+      }
+    },
+    {
+      "text": "Das Mittagstief kommt zum Teil von deiner inneren *Uhr*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⏰",
+        "text": "Innere Uhr"
+      }
+    },
+    {
+      "text": "Ein kurzer Spaziergang weckt den Kreislauf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🚶"
+      }
+    }
+  ]
+}

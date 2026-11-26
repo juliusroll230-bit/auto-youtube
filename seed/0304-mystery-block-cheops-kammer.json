@@ -1,0 +1,112 @@
+{
+  "slug": "mystery-block-cheops-kammer",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#2a2014",
+    "#e8c060"
+  ],
+  "accent": "#ffe14d",
+  "title": "Die Kammer, die niemand betreten hat 🔺",
+  "description": "Blockwelt: In der Cheops-Pyramide haben Forscher mit Teilchen aus dem Weltall einen Hohlraum entdeckt. Wozu er diente, weiß bis heute niemand.\n\n#mystery #pyramide #ägypten #rätsel #shorts",
+  "tags": [
+    "mystery",
+    "pyramide",
+    "ägypten",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Pyramide | Versteckter Raum",
+    "Wozu diente er"
+  ],
+  "segments": [
+    {
+      "text": "In der Cheops-Pyramide steckt eine Kammer, die niemand je betreten hat.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔺",
+        "chat": "Spieler: ein Hohlraum??"
+      }
+    },
+    {
+      "text": "Die Pyramide ist etwa viereinhalbtausend Jahre alt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🔺",
+        "text": "4.500 Jahre"
+      }
+    },
+    {
+      "text": "Forscher durchleuchten sie mit Teilchen aus dem Weltall.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "📡",
+        "text": "Myonen"
+      }
+    },
+    {
+      "text": "Zweitausendsiebzehn finden sie einen *Hohlraum* über der Großen Galerie.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Neuer Fund"
+      }
+    },
+    {
+      "text": "Er ist mindestens *dreißig* Meter lang.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Man will die Pyramide nicht beschädigen, also bleibt er zu.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "🔒",
+        "text": "Bleibt geschlossen"
+      }
+    },
+    {
+      "text": "Eine Idee: Er half beim Bau, das Gewicht zu *verteilen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "🧱",
+        "text": "Eine Idee"
+      }
+    },
+    {
+      "text": "Was dort wirklich liegt, bleibt bis heute ein Rätsel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

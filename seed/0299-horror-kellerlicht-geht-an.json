@@ -1,0 +1,95 @@
+{
+  "slug": "horror-kellerlicht-geht-an",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#0e0e14",
+    "#8a7a3a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Das Kellerlicht, das allein angeht 💡",
+  "description": "Eine ausgedachte Gruselgeschichte: Im leeren Haus geht im Keller das Licht an, und unten wartet etwas.\n\n#horror #gruselig #creepy #keller #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "creepy",
+    "keller",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Keller | Licht an",
+    "Wer drückte den Schalter"
+  ],
+  "segments": [
+    {
+      "text": "Niemand ist zu Hause, doch im Keller geht das *Licht* an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Die Lampe hängt an einer Schnur, und sie schwingt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "keller",
+        "objekt": "💡",
+        "text": "Die Schnur schwingt"
+      }
+    },
+    {
+      "text": "Ich gehe leise die Stufen hinunter, und es wird kälter.",
+      "szene": {
+        "typ": "horror",
+        "ort": "keller",
+        "gefuehl": "angst",
+        "aktion": "schlurft",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Unten steht mein Fahrrad, aber der *Sattel* ist warm.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "keller",
+        "objekt": "🚲",
+        "text": "Sattel warm"
+      }
+    },
+    {
+      "text": "Dann sehe ich einen Schatten, und er bewegt sich nicht.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "steht"
+      }
+    },
+    {
+      "text": "Der Lichtschalter ist oben, und jemand hat ihn eben *gedrückt*.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "💡",
+        "text": "Schalter oben"
+      }
+    },
+    {
+      "text": "Hinter mir schließt sich langsam die Kellertür.",
+      "szene": {
+        "typ": "monster",
+        "ort": "keller",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schockiert"
+      }
+    }
+  ]
+}

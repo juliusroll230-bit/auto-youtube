@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-warum-lachen-ansteckt",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum musst du lachen, wenn andere lachen? 😂",
+  "description": "Erklärt: Warum Lachen ansteckt, selbst wenn du den Witz nicht gehört hast.\n\n#wissen #gehirn #lachen #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "gehirn",
+    "lachen",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Lachen | steckt an",
+    "Ohne Witz"
+  ],
+  "segments": [
+    {
+      "text": "Warum musst du lachen, wenn andere lachen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😂"
+      }
+    },
+    {
+      "text": "Lachen steckt an, noch bevor du den Witz verstehst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "😂",
+        "text": "Lachen steckt an"
+      }
+    },
+    {
+      "text": "Studien zeigen: Dein Gehirn bereitet das *Lächeln* vor.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🧠",
+        "text": "Gesicht bereit"
+      }
+    },
+    {
+      "text": "In der Gruppe lachen wir viel häufiger.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 4,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Gruppe lacht"
+      }
+    },
+    {
+      "text": "Allein ist es leiser, zusammen lauter.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🙂",
+          "text": "Allein"
+        },
+        "rechts": {
+          "objekt": "😂",
+          "text": "Zusammen"
+        }
+      }
+    },
+    {
+      "text": "Es sagt: Ich gehöre *dazu*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "zweite": {
+          "farbe": "gruen",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Lachen verbindet Menschen, auch ohne guten Witz.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "❤️"
+      }
+    },
+    {
+      "text": "Lach beim nächsten Mal einfach mit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "😄",
+        "text": "Mitlachen"
+      }
+    }
+  ]
+}

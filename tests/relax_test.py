@@ -61,3 +61,15 @@ import yt
 src = open(os.path.join(os.path.dirname(yt.__file__), "yt.py")).read()
 assert 'spec.get("footer", FOOTER)' in src and 'spec.get("chunksize", -1)' in src
 print("ok")
+
+# Notbremse: YouTube lehnt zu lange Videos ab -> kürzere Stufen
+assert entspannung.next_cap(600) == 180 and entspannung.next_cap(180) == 60 and entspannung.next_cap(60) == 15 and entspannung.next_cap(15) == 15
+assert entspannung.choose([], "auto", D, 3, 180)[1] <= 180
+assert entspannung.choose([], "600", D, 3, 60)[1] == 60
+assert entspannung.choose([], "auto", D, 3, 15)[1] == 15
+for cap in (60, 15):
+    i, m = entspannung.choose([], "auto", D, 1, cap)
+    t = entspannung.meta(i, m, 1)
+    assert len(t["title"]) <= 100 and "|" in t["title"], t["title"]
+assert all(p["minutes"] <= 60 for p in entspannung.plan([], "auto", D, 0, 4, (6, 17), 60))
+print("ok cap")

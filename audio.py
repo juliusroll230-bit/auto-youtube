@@ -253,6 +253,89 @@ def warm_music(seconds, rate, seed):
     return out.astype(np.float32)
 
 
+def tension_music(seconds, rate, seed):
+    """Spannungsmusik wie bei den großen 3D-Erklärkanälen (Vorbild-Taktik, Test seit 25.11.2026):
+    pulsierender tiefer Synth in Achteln, leises Uhr-Ticken, dunkle Fläche, die langsam anschwillt. Kein Schlagzeug."""
+    rng = np.random.default_rng(seed)
+    bpm = float(rng.choice([112, 118, 124]))
+    root = int(rng.choice([-5, -3, -2, 0]))
+    eighth = 30 / bpm
+    n = int(seconds * rate)
+    out = np.zeros(n, dtype=np.float64)
+    prog = [0, 0, -4, -2] if rng.random() < .5 else [0, 1, 0, -2]
+    m = int(eighth * 0.85 * rate)
+    tt = np.arange(m) / rate
+    env = _env(m, rate, 0.004, 0.12)
+    tick_n = rng.standard_normal(int(0.02 * rate))
+    tk = np.diff(tick_n, prepend=0) * _env(len(tick_n), rate, 0.0005, 0.006)
+    for k in range(int(seconds / eighth) + 1):
+        bar = k // 16   # alle 2 Takte ein neuer Ton
+        semi = root + prog[bar % len(prog)]
+        f = _note_hz(semi - 12)
+        accent = 1.0 if k % 4 == 0 else 0.7
+        saw = sum(np.sin(2 * np.pi * f * h * tt) / h for h in (1, 2, 3, 4))
+        _add(out, k * eighth * rate, 0.22 * accent * _lowpass(saw, 0.25) * env)
+        if k % 2 == 0:   # Uhr-Ticken auf jedem Viertel, das zweite leiser
+            _add(out, k * eighth * rate, (0.10 if k % 4 == 0 else 0.06) * tk)
+    t = np.arange(n) / rate
+    swell = np.clip(t / max(1.0, seconds), 0, 1)   # wird bis zum Ende langsam dichter
+    for iv, ph in ((0, 0), (3, 1), (7, 2)):
+        out += (0.03 + 0.05 * swell) * np.sin(2 * np.pi * _note_hz(root + iv) * t + ph)
+    out /= max(1e-6, np.abs(out).max())
+    fade = int(0.8 * rate)
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out.astype(np.float32)
+
+
+def light_music(seconds, rate, seed):
+    """Verspielte, neugierige Musik (Vorbild-Taktik der Was-wäre-wenn-Kanäle, Test seit 25.11.2026):
+    gezupfte Töne in Dur, leichter Shaker, weicher Bass. Kein Kick, damit die Stimme frei bleibt."""
+    rng = np.random.default_rng(seed)
+    bpm = float(rng.choice([100, 106, 112]))
+    root = int(rng.choice([0, 2, 5, 7]))
+    beat = 60 / bpm
+    n = int(seconds * rate)
+    out = np.zeros(n, dtype=np.float64)
+    prog = [(0, 4, 7), (5, 9, 12), (7, 11, 14), (0, 4, 7)] if rng.random() < .5 else [(0, 4, 7), (-3, 0, 4), (5, 9, 12), (7, 11, 14)]
+    pattern = [0, 2, 1, 2, 0, 2, 1, None]   # Akkordton je Achtel (None = Pause)
+    shaker_n = rng.standard_normal(int(0.05 * rate))
+    shaker = np.diff(shaker_n, prepend=0) * _env(len(shaker_n), rate, 0.004, 0.02)
+    m = int(beat / 2 * rate)
+    tt = np.arange(m) / rate
+    for k in range(int(seconds / (beat / 2)) + 1):
+        chord = prog[(k // 8) % len(prog)]
+        at = k * beat / 2 * rate
+        idx = pattern[k % 8]
+        if idx is not None:
+            f = _note_hz(root + 24 + chord[idx])
+            pl = (np.sin(2 * np.pi * f * tt) + 0.35 * np.sin(4 * np.pi * f * tt)) * _env(m, rate, 0.002, 0.07)
+            _add(out, at, 0.16 * pl)
+        _add(out, at, (0.05 if k % 2 else 0.03) * shaker)
+        if k % 4 == 0:   # weicher Bass auf 1 und 3
+            f = _note_hz(root - 12 + chord[0])
+            bm = int(beat * 0.9 * rate)
+            bt = np.arange(bm) / rate
+            _add(out, at, 0.22 * np.sin(2 * np.pi * f * bt) * _env(bm, rate, 0.006, 0.3))
+    out /= max(1e-6, np.abs(out).max())
+    fade = int(0.8 * rate)
+    out[-fade:] *= np.linspace(1, 0, fade)
+    return out.astype(np.float32)
+
+
+def drop_music(seconds, rate, seed, drop):
+    """Bis zum Aha-Moment nur leises Ticken und eine Fläche, auf dem Aha-Moment setzt der volle Beat ein
+    (Vorbild-Taktik „Beat-Drop auf der Auflösung“, Test seit 25.11.2026)."""
+    beat_track = music(seconds, rate, seed)
+    calm = tension_music(seconds, rate, seed + 1)
+    n = min(len(beat_track), len(calm))
+    d = int(max(0.0, min(seconds, drop or seconds * .7)) * rate)
+    x = np.zeros(n, dtype=np.float32)
+    x[d:] = 1.0
+    win = int(0.05 * rate)
+    x = np.convolve(x, np.ones(win) / win, mode="same")
+    return (calm[:n] * 0.55 * (1 - x) + beat_track[:n] * x).astype(np.float32)
+
+
 def boom(rate):
     """Tiefer, dumpfer Schlag für den Einstieg bei Grusel-Videos."""
     n = int(0.9 * rate)
@@ -431,7 +514,19 @@ def tension_beats(reveal, start=0.4):
     return beats
 
 
-def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=()):
+def snap(rate):
+    """Sehr kurzer, trockener Klick mit Luft: der Schnitt-Ton im Tempo "schnell" (selbst erzeugt)."""
+    n = int(0.09 * rate)
+    t = np.arange(n) / rate
+    rng = np.random.default_rng(7)
+    click = np.sin(2 * np.pi * (1400 - 6000 * t) * t) * np.exp(-t * 90)
+    air = rng.standard_normal(n) * np.exp(-t * 60) * 0.5
+    y = click + _lowpass(air, 0.35)
+    return (y / max(1e-6, np.abs(y).max())).astype(np.float32)
+
+
+def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), sticker=False, beats=(), snaps=(), bell=None,
+        style=None, drop=None):
     """Legt Musik (leiser, wenn gesprochen wird) und Effekte unter die Stimme.
 
     voice: Sprachspur als float32, cuts: Zeitpunkte (s) der Satzwechsel für die Whooshes,
@@ -441,11 +536,24 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
     setzt kurz aus (Test "Soundeffekte: stark" seit 19.11.2026),
     keys: Zeitpunkte der Schlüsselwörter (kurzer steigender Ton), sticker: Glockenton auf der Auflösung ("voll").
     beats: Herzschläge (Variante "Spannung"), dann ist die Musik leiser.
+    snaps: Zwischenschnitte (Tempo "schnell"): kurzer Snap, Musik leiser, damit die Stimme klar bleibt.
+    bell: Zeitpunkt (s), an dem der Abo-Knopf erscheint: leiser Klick und Glockenton.
+    style: Musik-Stil (learn.MUSIC_FOR_MOOD): "beat", "spannung", "leicht", "drop", "dunkel", "warm". None = nach Stimmung.
+    drop: Zeitpunkt (s) der Auflösung, auf dem bei "drop" der Beat einsetzt.
     """
     n = len(voice)
     dark = mood in DARK_MOODS
     warm = mood == "warm"
-    bed = (dark_music if dark else warm_music if warm else music)(n / rate + 0.1, rate, seed)[:n]
+    secs = n / rate + 0.1
+    if style == "spannung":
+        bed = tension_music(secs, rate, seed)
+    elif style == "leicht" and not dark and not warm:
+        bed = light_music(secs, rate, seed)
+    elif style == "drop" and not dark and not warm:
+        bed = drop_music(secs, rate, seed, drop)
+    else:
+        bed = (dark_music if dark else warm_music if warm else music)(secs, rate, seed)
+    bed = bed[:n]
     if len(bed) < n:
         bed = np.pad(bed, (0, n - len(bed)))
     # Ducking: Musik geht runter, sobald die Stimme spricht
@@ -458,7 +566,7 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
         gap = np.ones(n, dtype=np.float32)
         gap[max(0, a):max(0, min(n, b))] = 0.0
         duck = duck * np.convolve(gap, np.ones(win) / win, mode="same")
-    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 1.0) * duck
+    out = voice * 1.0 + bed * (0.3 if dark else 0.2 if warm else 0.22) * (0.55 if beats else 0.8 if snaps else 1.0) * duck
     sfx = np.zeros(n, dtype=np.float32)
     _add(sfx, 0, 0.5 * boom(rate) if dark else 0.35 * pop(rate))
     for p in pops:
@@ -476,9 +584,17 @@ def mix(voice, rate, cuts, seed, pops=(), mood=None, accent=None, keys=(), stick
             _add(sfx, (accent + 0.12) * rate, (0.10 if dark else 0.16) * ding(rate))
     for k in keys:
         _add(sfx, k * rate, (0.07 if warm else 0.12) * bloop(rate))
+    if snaps:
+        sn = snap(rate)
+        for c in snaps:
+            if accent is None or abs(c - accent) > 0.3:
+                _add(sfx, c * rate, (0.05 if dark else 0.07) * sn)
     if beats:
         hb = heartbeat(rate)
         for i, b in enumerate(beats):   # wird zum Ende hin etwas lauter
             _add(sfx, b * rate, (0.22 + 0.16 * i / max(1, len(beats) - 1)) * hb)
+    if bell is not None:
+        _add(sfx, bell * rate, 0.14 * pop(rate))
+        _add(sfx, (bell + 0.18) * rate, (0.06 if dark else 0.09) * ding(rate))
     out = out + sfx
     return (out / max(1.0, np.abs(out).max() / 0.95)).astype(np.float32)

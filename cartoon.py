@@ -77,6 +77,16 @@ def validate(spec):
         errs.append(f"Stimmung {spec['stimmung']}, erlaubt: {', '.join(sorted(MOODS_VIDEO))}")
     if spec.get("aufbau") and spec["aufbau"] not in learn.LAYOUTS:
         errs.append(f"Aufbau {spec['aufbau']}, erlaubt: {', '.join(learn.LAYOUTS)}")
+    if spec.get("abo") and spec["abo"] not in learn.ABO_MODES:
+        errs.append(f"Abo-Aufruf {spec['abo']}, erlaubt: {', '.join(learn.ABO_MODES)}")
+    if spec.get("tempo") and spec["tempo"] not in learn.TEMPOS:
+        errs.append(f"Tempo {spec['tempo']}, erlaubt: {', '.join(learn.TEMPOS)}")
+    if spec.get("musik") and spec["musik"] not in {m for ms in learn.MUSIC_FOR_MOOD.values() for m in ms}:
+        errs.append(f"Musik {spec['musik']}, erlaubt: beat, spannung, leicht, drop, dunkel, warm")
+    if spec.get("uebergang") and spec["uebergang"] not in learn.CARTOON_TRANSITIONS:
+        errs.append(f"Übergang {spec['uebergang']}, erlaubt: {', '.join(learn.CARTOON_TRANSITIONS)}")
+    if spec.get("halten") and spec["halten"] not in learn.HOLDS:
+        errs.append(f"Dranbleiben {spec['halten']}, erlaubt: {', '.join(learn.HOLDS)}")
     if spec.get("welt") and spec["welt"] not in WORLDS:
         errs.append(f"Welt {spec['welt']}, erlaubt: {', '.join(sorted(WORLDS))}")
     if spec.get("stimme") and spec["stimme"] not in make_short.VOICES:
@@ -134,13 +144,13 @@ def word_times(segments, timings):
     """Wort-Zeiten für die Untertitel: jeder Satz bekommt seine Zeit, die Wörter teilen sie nach Länge."""
     words = []
     for li, (seg, (s0, s1)) in enumerate(zip(segments, timings)):
-        toks = seg["text"].replace("*", "").split()
+        toks = re.sub(r"\*([^*]+)\*", lambda m: " ".join("*" + x for x in m.group(1).split()), seg["text"]).split()
         weights = [len(re.sub(r"\W", "", w)) + 2 + (4 if re.search(r"[,.:;?!]$", w) else 0) for w in toks]
         total, acc = sum(weights) or 1, 0
         for w, x in zip(toks, weights):
             st = s0 + (s1 - s0) * acc / total
             acc += x
-            words.append({"w": numerals.display_word(w), "s": round(st, 3), "line": li})
+            words.append({"w": numerals.display_word(w.replace("*", "")), "s": round(st, 3), "line": li, "k": "*" in w})
     for i, w in enumerate(words):
         nxt = words[i + 1]["s"] if i + 1 < len(words) else timings[-1][1]
         w["e"] = round(min(nxt, w["s"] + 1.2), 3)
@@ -152,10 +162,31 @@ def layout(spec):
     return "spannung" if spec.get("aufbau") == "spannung" and not is_long(spec) else None
 
 
+# Tempo "schnell": Stimme NICHT schneller (Julius 21.11.2026: „die Stimme muss klarer sein“), dafür kurze Atempause
+# zwischen den Sätzen, damit jedes Wort ankommt. Das Tempo kommt aus den Schnitten, nicht aus der Stimme.
+FAST_PAUSE = 0.12
+FAST_VOICE = "klar"   # Thorsten-high: die deutlichste Stimme
+
+
+def fast(spec):
+    """Tempo "schnell" (Test seit 21.11.2026): Schnitt alle ca. 1,3 s, flottere Stimme. Lange Videos nie."""
+    return spec.get("tempo") == "schnell" and not is_long(spec)
+
+
 STICKERS = {"neugierig": "🤯", "gruselig": "😱", "mysterioes": "🤔", "warm": "🥹"}   # Reaktions-Sticker je Stimmung
 
 
-def plan(spec, timings, total):
+def abo(spec):
+    """Abo-Aufruf dieses Shorts: ("gesprochen" | "eingeblendet", Satz) oder (None, None). Lange Videos nie."""
+    mode, line = spec.get("abo"), spec.get("abo_text")
+    if is_long(spec) or mode not in ("gesprochen", "eingeblendet") or not line:
+        return None, None
+    if mode == "gesprochen" and str(spec.get("ende", "")).lower() == "loop":
+        mode = "eingeblendet"   # beim Loop kein Satz nach dem offenen Schluss
+    return mode, line
+
+
+def plan(spec, timings, total, cta_at=None):
     segs = spec["segments"]
     fx = spec.get("effekte") if spec.get("effekte") in ("stark", "voll") and not is_long(spec) and make_short.accent_time(timings) else None
     scenes = []
@@ -179,7 +210,37 @@ def plan(spec, timings, total):
             # Test Spannung: Herzschlag-Puls und Countdown bis zur Auflösung
             "aufbau": layout(spec),
             "reveal": make_short.accent_time(timings) if layout(spec) == "spannung" else None,
-            "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else []}
+            "beats": audio.tension_beats(make_short.accent_time(timings)) if layout(spec) == "spannung" else [],
+            # Test Tempo "schnell": Zwischenschnitte (gleiche Zeiten wie die Snaps im Ton)
+            "tempo": "schnell" if fast(spec) else "normal",
+            "cuts": make_short.fast_cuts(timings, total) if fast(spec) else [],
+            # Test Abo-Aufruf: Abo-Knopf mit Satz am Ende (gesprochen ab cta_at, sonst ca. 2,6 s vor Schluss)
+            "abo": abo_plan(spec, timings, total, cta_at),
+            # Vorbild-Taktiken (Test seit 25.11.2026): Übergang zwischen den Szenen und Dranbleib-Element
+            "uebergang": spec.get("uebergang") if spec.get("uebergang") in learn.CARTOON_TRANSITIONS and not is_long(spec) else "whip",
+            "halten": spec.get("halten") if spec.get("halten") in learn.HOLDS and not is_long(spec) else "ohne",
+            "frage": question(spec) if not is_long(spec) else None,
+            "aufloesung": make_short.accent_time(timings) or (round(timings[-1][0], 3) if timings else None)}
+
+
+def question(spec):
+    """Die Frage des Videos für das Dranbleib-Element „Frage oben“: der Titel ohne Emoji, höchstens 52 Zeichen (zwei Zeilen)."""
+    import re
+    t = re.sub(r"[^\w\s?!.,:;'’„“\"%-]", "", str(spec.get("title") or ""), flags=re.UNICODE).strip()
+    t = re.sub(r"\s+", " ", t).rstrip(".!")
+    if len(t) > 52:
+        cut = t[:52].rsplit(" ", 1)[0]
+        t = cut + " …" if cut else t[:52]
+    return t or None
+
+
+def abo_plan(spec, timings, total, cta_at=None):
+    mode, line = abo(spec)
+    if not mode:
+        return None
+    start = cta_at if mode == "gesprochen" and cta_at is not None else make_short.badge_time(timings, total)
+    return {"mode": mode, "text": line.rstrip("."), "start": round(start, 3),
+            "loop": str(spec.get("ende", "")).lower() == "loop"}
 
 
 def stage(p, folder):
@@ -227,14 +288,19 @@ def build_video(spec, out_dir, tts, stock_key=None, info=None):
     mp4 = os.path.join(out_dir, f"{spec['slug']}.mp4")
     timings, total = make_short.synthesize(tts, spec["segments"], wav, seed=sum(map(ord, spec["slug"])),
                                            speed=(spec.get("voice_speed") or make_short.SPEED) * (0.9 if is_long(spec) else 1),
-                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=PAUSE,
+                                           voice=spec.get("stimme") or "erzaehler", mood=mood(spec), pause=FAST_PAUSE if fast(spec) else PAUSE,
                                            effects=None if is_long(spec) else spec.get("effekte"),
-                                           layout=layout(spec))
+                                           layout=layout(spec), tempo=spec.get("tempo") if fast(spec) else None,
+                                           cta=abo(spec)[1] if abo(spec)[0] == "gesprochen" else None,
+                                           music=None if is_long(spec) else spec.get("musik"),
+                                           badge=abo(spec)[0] == "eingeblendet")
+    pause = FAST_PAUSE if fast(spec) else PAUSE
+    cta_at = timings[-1][1] + pause if abo(spec)[0] == "gesprochen" else None
     total += make_short.TAIL
     if info is not None:
         info["stock"] = []
     with tempfile.TemporaryDirectory(prefix="cartoon-") as tmp:
-        p = plan(spec, timings, total)
+        p = plan(spec, timings, total, cta_at)
         stage(p, tmp)
         pw, browser, page = open_page(tmp, p["wide"])
         try:

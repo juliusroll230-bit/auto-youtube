@@ -1,0 +1,109 @@
+{
+  "slug": "mystery-kailasa-tempel-ellora",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Der Tempel, den man aus einem Felsen schlug 🛕",
+  "description": "In Ellora in Indien steht ein Tempel, der von oben nach unten aus einem einzigen Felsen geschlagen wurde. Wie genau das gelang, ist bis heute offen.\n\n#mystery #rätsel #indien #tempel #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "indien",
+    "tempel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Ellora | ein einziger Fels",
+    "Wie ging das"
+  ],
+  "segments": [
+    {
+      "text": "Wie schlägt man einen ganzen Tempel aus einem einzigen Felsen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🛕"
+      }
+    },
+    {
+      "text": "Er steht in Indien und ist über tausend Jahre alt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Ellora, Indien"
+      }
+    },
+    {
+      "text": "Die Bauleute haben ihn von *oben* nach unten aus dem Berg geschlagen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "⛰️",
+        "text": "Von oben nach unten"
+      }
+    },
+    {
+      "text": "Schätzungen: rund zweihunderttausend Tonnen Gestein.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 200000,
+        "einheit": "Tonnen Gestein",
+        "objekt": "🪨",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Ein einziger Fehler, und alles wäre *verloren* gewesen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "wueste",
+        "objekt": "⚠️",
+        "text": "Kein Fehler erlaubt"
+      }
+    },
+    {
+      "text": "Wie lange der Bau dauerte, ist umstritten.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⏳",
+          "text": "Jahre?"
+        },
+        "rechts": {
+          "objekt": "📜",
+          "text": "Jahrzehnte?"
+        }
+      }
+    },
+    {
+      "text": "Der genaue Plan ist kaum überliefert.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "wueste",
+        "objekt": "📐",
+        "text": "Plan fehlt"
+      }
+    },
+    {
+      "text": "Und bis heute weiß niemand genau, wie",
+      "szene": {
+        "typ": "figur",
+        "ort": "wueste",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

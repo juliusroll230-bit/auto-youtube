@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-zunge-an-metall",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Zunge am Metall im Winter? 🥶",
+  "description": "Erklärt in der Blockwelt: Warum die Zunge an kaltem Metall kleben bleibt und was du dann tun solltest.\n\n#wissen #winter #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "winter",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Zunge | am Metall",
+    "Nicht ziehen"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du im Winter die Zunge an Metall hältst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🥶",
+        "chat": "Spieler: mach das nicht"
+      }
+    },
+    {
+      "text": "Die Zunge ist feucht, das Metall ist eiskalt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🪝",
+        "text": "Eiskaltes Metall"
+      }
+    },
+    {
+      "text": "Die Feuchtigkeit gefriert und klebt fest.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "🧊",
+        "text": "Festgefroren"
+      }
+    },
+    {
+      "text": "Wer jetzt zieht, kann sich die *Haut* abreißen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "😖"
+      }
+    },
+    {
+      "text": "Besser holst du jemanden zu Hilfe.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Mit *warmem Wasser* löst sich der Frost sofort.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Warmes Wasser"
+      }
+    },
+    {
+      "text": "Dann bleibt nur der Schreck übrig.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "😅"
+      }
+    },
+    {
+      "text": "Kaltes Metall und Zunge gehören also nicht zusammen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚫",
+        "text": "Lieber nicht"
+      }
+    }
+  ]
+}

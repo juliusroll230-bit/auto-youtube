@@ -1,0 +1,107 @@
+{
+  "slug": "mystery-52-hertz-wal",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#08182a",
+    "#3a8ac8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Der Wal, den niemand je sah 🐋",
+  "description": "Seit 1989 nehmen Unterwassermikrofone einen Ruf bei 52 Hertz auf, höher als bei Blauwalen. Gesehen hat dieses Tier bisher niemand.\n\n#mystery #rätsel #wal #ozean #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "wal",
+    "ozean",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Wal | 52 Hertz",
+    "Nur gehört, nie gesehen"
+  ],
+  "segments": [
+    {
+      "text": "Seit neunzehnhundertneunundachtzig hört die *Marine* einen Wal, den niemand je sah.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐋"
+      }
+    },
+    {
+      "text": "Unterwassermikrofone fangen einen seltsamen Ruf auf.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1989",
+        "text": "Erste Aufnahme",
+        "objekt": "🎧"
+      }
+    },
+    {
+      "text": "Sein Ruf liegt bei zweiundfünfzig *Hertz*.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 52,
+        "einheit": "Hertz",
+        "objekt": "🔊",
+        "farbcode": "#08182a"
+      }
+    },
+    {
+      "text": "Blauwale singen tiefer, bei etwa zehn bis vierzig Hertz.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🐋",
+          "text": "Blauwal: tief"
+        },
+        "rechts": {
+          "objekt": "❓",
+          "text": "Dieser: höher"
+        }
+      }
+    },
+    {
+      "text": "Ob andere Wale ihn verstehen, weiß niemand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Versteht ihn jemand?"
+      }
+    },
+    {
+      "text": "Seine Route kennt man nur aus den Aufnahmen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Nur Töne"
+      }
+    },
+    {
+      "text": "Bis heute hat ihn niemand *gesehen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "👁️",
+        "text": "Nie gesehen"
+      }
+    },
+    {
+      "text": "Ob er einsam ist oder nur anders singt, bleibt offen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Einsam?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "horror-uhr-stoppt-um-drei-uhr-drei",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Die Uhr bleibt um 3:03 stehen 🕒",
+  "description": "Eine ausgedachte Gruselgeschichte: Jede Nacht bleibt die Wanduhr um drei Uhr drei stehen, und jemand im Haus hört dann zu.\n\n#horror #gruselig #nacht #uhr #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "nacht",
+    "uhr",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Uhr | 3:03",
+    "Wer steht dort"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich bleibt unsere Uhr jede Nacht um drei Uhr drei stehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🕒"
+      }
+    },
+    {
+      "text": "Ich stelle sie neu, am Morgen zeigt sie *drei Uhr drei*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🕰️",
+        "text": "3:03"
+      }
+    },
+    {
+      "text": "Heute Nacht bleibe ich wach und starre auf den Zeiger.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Der Sekundenzeiger zuckt, dann steht er still.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "⏱️",
+        "text": "Stillstand"
+      }
+    },
+    {
+      "text": "Im Flur hört man ein *Atmen*, ganz leise.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Auf dem Zifferblatt klebt ein Fingerabdruck, von innen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🖐️",
+        "text": "Von innen"
+      }
+    },
+    {
+      "text": "Dann flüstert es: Danke, dass du aufgepasst hast.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Uhr: 3:03"
+      }
+    },
+    {
+      "text": "Ab jetzt zeigt jede Uhr im Haus *meine* Zeit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "⏰"
+      }
+    }
+  ]
+}

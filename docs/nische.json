@@ -1,0 +1,53 @@
+{
+ "videos": 5,
+ "median": 248,
+ "titel_muster": [],
+ "themenfeld": [
+  {
+   "value": "Echte Rätsel & Geschichte",
+   "videos": 3,
+   "median": 248,
+   "faktor": 1.0
+  }
+ ],
+ "zwischenhaken": [
+  {
+   "value": "ohne",
+   "videos": 3,
+   "median": 828,
+   "faktor": 3.34
+  }
+ ],
+ "gewinner": [
+  {
+   "title": "Die Spuren, die niemand erklären kann 🐾",
+   "views": 836,
+   "typ": "Mystery",
+   "skript": "seed/0281-mystery-teufelsspuren-devon.json",
+   "welt": "Strichmännchen"
+  },
+  {
+   "title": "Was passiert, wenn dich eine Strömung wegzieht? 🌊",
+   "views": 828,
+   "typ": "Erklärvideo: Was passiert, wenn",
+   "skript": "seed/0262-erklaert-rippstroemung.json",
+   "welt": "Strichmännchen"
+  },
+  {
+   "title": "Die Schlacht gegen niemand 🔦",
+   "views": 248,
+   "typ": "Mystery",
+   "skript": "seed/0282-mystery-schlacht-los-angeles-1942.json",
+   "welt": "Strichmännchen"
+  },
+  {
+   "title": "Der Platz neben mir im Bus 🚌",
+   "views": 227,
+   "typ": "Erzählte Geschichte",
+   "skript": "seed/0327-geschichte-platz-neben-mir-im-bus.json",
+   "welt": "Strichmännchen"
+  }
+ ],
+ "updated_at": "2026-11-26T06:30:00+00:00",
+ "hinweis": "Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass."
+}

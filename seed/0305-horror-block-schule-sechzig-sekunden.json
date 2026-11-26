@@ -1,0 +1,101 @@
+{
+  "slug": "horror-block-schule-sechzig-sekunden",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Schule: 60 Sekunden bis zur Glocke 🔔",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Die Schule ist leer, und du hast nur sechzig Sekunden, bis die Glocke läutet.\n\n#horror #gruselig #blockwelt #schule #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "schule",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Schule | Countdown",
+    "Die Glocke läutet"
+  ],
+  "segments": [
+    {
+      "text": "Du hast nur noch *sechzig* Sekunden, bevor die Schulglocke läutet.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "chat": "Server: Glocke in 60 s",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Die Schule ist leer, und alle Türen stehen offen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🚪",
+        "text": "Leere Schule"
+      }
+    },
+    {
+      "text": "Du rennst los, aber der *Flur* wird länger.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🏃"
+      }
+    },
+    {
+      "text": "Hinter dir hörst du Schritte, und sie rennen mit.",
+      "szene": {
+        "typ": "monster",
+        "ort": "schule",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "Auf der Uhr stehen plötzlich nur noch zehn Sekunden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "⏱️",
+        "text": "Noch 10 Sekunden"
+      }
+    },
+    {
+      "text": "Die Glocke läutet nicht für Schüler, sie läutet für *dich*.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "chat": "Glocke: Pause beendet",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Lauf los, denn gleich sind es wieder",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🔔"
+      }
+    }
+  ],
+  "ende": "loop"
+}

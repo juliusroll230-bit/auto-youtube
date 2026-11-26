@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-nie-wieder-salz",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du nie Salz isst? 🧂",
+  "description": "Was passiert, wenn du lange kein Salz isst? Warum der Körper Natrium braucht und wie ein Mangel sich anfühlt.\n\n#wissen #körper #salz #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "salz",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Salz | Funken im Körper",
+    "Ohne Salz geht nichts"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du nie wieder Salz isst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧂"
+      }
+    },
+    {
+      "text": "Salz enthält *Natrium*, und dein Körper braucht es.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🧂",
+        "text": "Natrium"
+      }
+    },
+    {
+      "text": "Nerven und Muskeln arbeiten mit winzigen Strömen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "⚡",
+        "text": "Kleine Ströme"
+      }
+    },
+    {
+      "text": "Natrium hilft, diese Signale zu schicken.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧂",
+          "text": "Genug: Signal"
+        },
+        "rechts": {
+          "objekt": "🥀",
+          "text": "Wenig: schwach"
+        }
+      }
+    },
+    {
+      "text": "Fehlt es, werden Menschen müde und bekommen Krämpfe.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Zu wenig kann sogar gefährlich werden.",
+      "szene": {
+        "typ": "liste",
+        "text": "Mangel macht",
+        "punkte": [
+          "Krämpfe",
+          "Kopfweh",
+          "Schwäche"
+        ]
+      }
+    },
+    {
+      "text": "Meist reicht dir aber das Salz im normalen *Essen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🍞"
+      }
+    },
+    {
+      "text": "Ein bisschen Salz ist also lebenswichtig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🥣",
+        "text": "Ein bisschen"
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-verschlucken-husten",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#201020",
+    "#d86a8a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du dich verschluckst? 😮",
+  "description": "Warum Essen manchmal in den falschen Hals gerät, wie der Hustenreflex arbeitet und wann man den Notruf wählt.\n\n#wissen #körper #husten #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "husten",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Verschlucken | Dein Reflex",
+    "Kehldeckel"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du dich plötzlich verschluckst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😮"
+      }
+    },
+    {
+      "text": "Beim Schlucken verschließt der *Kehldeckel* die Luftröhre.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🫁",
+        "text": "Kehldeckel"
+      }
+    },
+    {
+      "text": "Manchmal gerät Essen trotzdem in den falschen Weg.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❌",
+        "text": "Falscher Weg"
+      }
+    },
+    {
+      "text": "Sofort löst dein Körper einen Hustenreflex aus.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 2,
+        "gefuehl": "wut",
+        "aktion": "zittert",
+        "text": "Hustenreflex"
+      }
+    },
+    {
+      "text": "Der Husten schleudert die Krümel mit Luft hinaus.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🍞",
+          "text": "Krümel"
+        },
+        "rechts": {
+          "objekt": "💨",
+          "text": "Luftstoß"
+        }
+      }
+    },
+    {
+      "text": "Wichtig ist, ruhig zu bleiben und weiter zu husten.",
+      "szene": {
+        "typ": "liste",
+        "text": "Was hilft",
+        "punkte": [
+          "Ruhig bleiben",
+          "Husten",
+          "Vorbeugen"
+        ]
+      }
+    },
+    {
+      "text": "Dein *Reflex* ist schneller, als du denken kannst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⚡",
+        "text": "Reflex"
+      }
+    },
+    {
+      "text": "Bei Atemnot rufst du sofort den *Notruf*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zeigt",
+        "objekt": "📞"
+      }
+    }
+  ]
+}

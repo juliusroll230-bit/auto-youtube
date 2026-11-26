@@ -35,6 +35,8 @@ import fishtts
 v = fishtts.Voice(None, "k", "normal", "dunkel", "warm")
 assert v.pick("warm") == "warm" and v.pick("neugierig", "freundlich") == "warm" and v.pick("gruselig") == "dunkel"
 assert v.pick("neugierig", "klar") == "normal" and fishtts.Voice(None, "k", "normal").pick("warm") == "normal"
+assert learn.world_by_type({**g, "welt": "block"}) == "Erzählte Geschichte · 3D"
+assert learn.world_by_type(g) == "Erzählte Geschichte · 2D"
 # Loop-Ende (Test seit 19.11.2026): nur Cartoon-Shorts, lange Videos und alte Shorts zählen nicht mit
 assert learn.ending({"stil": "cartoon", "ende": "loop"}) == "Loop"
 assert learn.ending({"stil": "cartoon"}) == "normal"
@@ -60,8 +62,10 @@ assert make_short.key_hits([{"text": "Ohne Sternchen hier"}], [(0, 2)]) == []
 import audio, numpy as np
 mixed = audio.mix(np.zeros(48000 * 8, dtype=np.float32), 48000, [2, 4, 6], 1, accent=6.0, keys=[1.0, 3.0], sticker=True)
 assert mixed.shape == (48000 * 8,) and np.abs(mixed).max() > 0.1
-# Stimme "aufgeregt" (19.11.2026): für Erklärvideos zuerst, mit Satzmelodie
-assert learn.VOICES_FOR_MOOD["neugierig"][0] == "aufgeregt" and "aufgeregt" in make_short.VOICES
-assert learn.choose_voice({}, 0, {"stimmung": "neugierig", "slug": "x"}) == "aufgeregt"
+# Stimme "aufgeregt" (19.11.2026) bleibt im Test, seit 25.11.2026 kommt zuerst "sanft" (Julius: „angenehmer“)
+assert learn.VOICES_FOR_MOOD["neugierig"][0] == "sanft" and "aufgeregt" in learn.VOICES_FOR_MOOD["neugierig"]
+assert all(v in make_short.VOICES for v in learn.VOICES_FOR_MOOD["neugierig"])
+assert learn.choose_voice({}, 0, {"stimmung": "neugierig", "slug": "x"}) == "sanft"
+assert "ruhig" in make_short.VOICE_MODELS and "froehlich" not in learn.VOICES_FOR_MOOD["neugierig"]
 assert "aufgeregt" in make_short.LIVELY and "aufgeregt" in make_short.VOICE_MODELS and "aufgeregt" in make_short.VOICE_NOISE
 print("ok")

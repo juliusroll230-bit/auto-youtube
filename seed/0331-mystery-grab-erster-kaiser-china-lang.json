@@ -1,0 +1,734 @@
+{
+  "slug": "mystery-grab-erster-kaiser-china-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#2a1f14",
+    "#c9a96b"
+  ],
+  "accent": "#c4161c",
+  "title": "Das Grab, das seit 2.200 Jahren niemand öffnet 🏯",
+  "description": "1974 stoßen Bauern bei Xi'an auf eine Armee aus Ton. Wir erzählen die Geschichte des ersten Kaisers von China, seiner Tonkrieger und seines Grabes, das bis heute verschlossen ist, und was Forscher darin vermuten.\n\n#mystery #rätsel #china #geschichte #archäologie",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "china",
+    "geschichte",
+    "archäologie"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "krone",
+    "name": "Kaiser Qin"
+  },
+  "thumb_text": [
+    "Kaisergrab | Flüsse aus Quecksilber",
+    "Wer liegt darin"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich stoßen Bauern in China beim Brunnenbau im Jahr neunzehnhundertvierundsiebzig auf den Kopf eines Tonsoldaten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🗿"
+      }
+    },
+    {
+      "text": "Heute wissen wir: Er gehört zu einer Armee, die über zweitausend Jahre unter der Erde stand. Doch das größte Geheimnis liegt noch tiefer.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Das Geheimnis"
+      }
+    },
+    {
+      "text": "Heute erzählen wir die Geschichte des ersten Kaisers von China, seiner Tonarmee und seines Grabes, das bis heute niemand geöffnet hat.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🏯",
+        "text": "Der erste Kaiser"
+      }
+    },
+    {
+      "text": "Zuerst der Kaiser, dann seine Armee, dann der Fund, dann das verschlossene Grab und am Ende, was Forscher darin vermuten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Vor über zweitausendzweihundert Jahren besteht China aus mehreren Reichen, die sich gegenseitig bekriegen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "⚔️"
+      }
+    },
+    {
+      "text": "Im Jahr zweihunderteinundzwanzig vor Christus besiegt der König von Qin die anderen Reiche und einigt das Land zum ersten Mal.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "221 v. Chr.",
+        "text": "Das Reich wird eins",
+        "objekt": "👑"
+      }
+    },
+    {
+      "text": "Er nennt sich nun Qin Shi Huang, das heißt erster erhabener Kaiser, und ordnet alles neu.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "burg",
+        "objekt": "👑",
+        "text": "Qin Shi Huang"
+      }
+    },
+    {
+      "text": "Sein Name Qin ist übrigens vermutlich der Ursprung des Wortes China, so vermuten viele Sprachforscher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🌏"
+      }
+    },
+    {
+      "text": "Er führt einheitliche Regeln ein, damit das riesige Reich zusammenhält.",
+      "szene": {
+        "typ": "liste",
+        "text": "Seine Neuerungen",
+        "punkte": [
+          "Eine Schrift",
+          "Ein Geldsystem",
+          "Gleiche Maße"
+        ]
+      }
+    },
+    {
+      "text": "Selbst die Achsbreite der Wagen soll vereinheitlicht worden sein, damit sie auf allen Straßen in dieselben Spuren passen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🛞",
+        "text": "Gleiche Achsen"
+      }
+    },
+    {
+      "text": "Er lässt Straßen, Kanäle und große Mauern bauen, und dafür arbeiten viele hunderttausend Menschen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🧱"
+      }
+    },
+    {
+      "text": "Doch je mächtiger er wird, desto größer wird seine Angst vor etwas, das auch ein Kaiser nicht besiegen kann: dem Tod.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "burg",
+        "objekt": "💀",
+        "text": "Angst vor dem Tod"
+      }
+    },
+    {
+      "text": "Er schickt Boten los, die ein Mittel gegen den Tod suchen sollen, einen Trank, der ewig leben lässt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "burg",
+        "objekt": "🧪",
+        "text": "Trank des Lebens"
+      }
+    },
+    {
+      "text": "Eine der Reisen soll zu Inseln im Meer geführt haben, doch von dort kehrte angeblich kaum jemand zurück.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🏝️",
+        "text": "Inseln im Meer"
+      }
+    },
+    {
+      "text": "Einer alten Überlieferung nach nimmt er dafür Pillen mit Quecksilber, was heute als Gift bekannt ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "objekt": "💊"
+      }
+    },
+    {
+      "text": "Im Jahr zweihundertzehn vor Christus stirbt er auf einer Reise, vermutlich mit nur neunundvierzig Jahren.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "210 v. Chr.",
+        "text": "Der Kaiser stirbt",
+        "objekt": "🕯️"
+      }
+    },
+    {
+      "text": "Sein Grab hat er schon als junger König planen lassen, und es wird das größte Bauwerk dieser Art, das man kennt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "⛰️",
+        "text": "Das Grab"
+      }
+    },
+    {
+      "text": "Zusammen mit dem Grabhügel erstreckt sich die ganze Anlage über viele Quadratkilometer, und überall liegen weitere Gruben und Gebäude.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Riesige Anlage"
+      }
+    },
+    {
+      "text": "Nach einem alten Bericht sollen dort etwa siebenhunderttausend Arbeiter geschuftet haben.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 700000,
+        "einheit": "Arbeiter, überliefert",
+        "objekt": "👷",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Der Bericht stammt von dem Geschichtsschreiber Sima Qian, der rund hundert Jahre später lebt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Er beschreibt, was im Inneren des Grabes liegen soll, und seine Worte sind der Grund für viele Rätsel.",
+      "szene": {
+        "typ": "akte",
+        "text": "Sima Qians Bericht",
+        "punkte": [
+          "Flüsse aus Quecksilber",
+          "Sternenhimmel",
+          "Fallen mit Armbrüsten"
+        ]
+      }
+    },
+    {
+      "text": "Die Flüsse und Meere im Grab sollen aus flüssigem *Quecksilber* bestehen und das ganze Reich im Kleinen nachbilden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🌊",
+        "text": "Quecksilber-Flüsse"
+      }
+    },
+    {
+      "text": "Über der Anlage soll ein Himmel mit Sternen aus glänzenden Steinen leuchten, als würde der Kaiser im Weltall ruhen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "✨"
+      }
+    },
+    {
+      "text": "Wer in die Kammer eindringen will, soll von Fallen mit automatischen Armbrüsten getroffen werden. Stimmt das alles wirklich?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🏹",
+        "text": "Fallen?"
+      }
+    },
+    {
+      "text": "Und dann, neunzehnhundertvierundsiebzig, passiert das, womit niemand gerechnet hat.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1974",
+        "text": "Der Zufallsfund",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Bauern bei Xi'an in der Provinz Shaanxi graben einen Brunnen, und im Boden finden sie Bruchstücke aus gebranntem Ton.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⛏️"
+      }
+    },
+    {
+      "text": "Archäologen kommen, graben weiter, und unter der Erde taucht eine ganze Armee aus lebensgroßen Figuren auf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🗿",
+        "text": "Eine Tonarmee"
+      }
+    },
+    {
+      "text": "Jede Figur wurde aus Ton geformt und danach bei hoher Hitze gebrannt, ganz ohne moderne Maschinen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Mehrere Gruben liegen etwa anderthalb Kilometer vom Grabhügel entfernt, und in ihnen stehen Soldaten in Reih und Glied.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Soldaten in Reihen"
+      }
+    },
+    {
+      "text": "Schätzungen gehen von mehreren tausend Kriegern aus, von denen bis heute viele noch gar nicht freigelegt sind.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 8000,
+        "einheit": "Krieger geschätzt",
+        "objekt": "🗿",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Jede Figur hat ein eigenes Gesicht, und kein Soldat sieht genau aus wie der nächste.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🙂"
+      }
+    },
+    {
+      "text": "Es gibt Fußsoldaten, Bogenschützen, Offiziere und sogar Pferde und Streitwagen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏹",
+          "text": "Bogenschützen"
+        },
+        "rechts": {
+          "objekt": "🐎",
+          "text": "Pferde"
+        }
+      }
+    },
+    {
+      "text": "Auch Waffen aus Bronze sind erhalten, etwa Schwerter, Speerspitzen und Teile von Armbrüsten, und sie sind erstaunlich gut gearbeitet.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🗡️",
+        "text": "Bronzewaffen"
+      }
+    },
+    {
+      "text": "Ursprünglich waren die Figuren bunt bemalt, aber die Farbe löste sich nach dem Ausgraben schnell von der Oberfläche.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🎨",
+        "text": "Farbe verblasst"
+      }
+    },
+    {
+      "text": "Archäologen arbeiten seitdem vorsichtiger, und manche Gruben bleiben absichtlich geschlossen, bis es bessere Methoden gibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Neue Methoden wie Laserscans und Röntgenbilder helfen, ohne dass man Fundstücke berühren muss.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🔬",
+        "text": "Scan statt Spaten"
+      }
+    },
+    {
+      "text": "Der Hügel mit dem eigentlichen Grab des Kaisers liegt ganz in der Nähe, und er ist bis heute nicht geöffnet worden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⛰️",
+        "text": "Das ungeöffnete Grab"
+      }
+    },
+    {
+      "text": "Man weiß ungefähr, wo die Kammer liegt, aber den Eingang hat noch niemand betreten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📍",
+        "text": "Kammer unter dem Hügel"
+      }
+    },
+    {
+      "text": "Der Grabhügel ist heute noch etwa fünfzig Meter hoch und wirkt wie ein ganz normaler grüner Berg.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 50,
+        "einheit": "Meter hoch",
+        "objekt": "⛰️",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Forscher haben den Boden des Hügels untersucht und dort ungewöhnlich viel *Quecksilber* gefunden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🧪",
+        "text": "Viel Quecksilber"
+      }
+    },
+    {
+      "text": "Das passt zu dem alten Bericht, denn Quecksilber ist ein Metall, das bei Zimmertemperatur flüssig ist.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌡️"
+      }
+    },
+    {
+      "text": "Manche Fachleute sagen deshalb, der Bericht könnte stimmen, andere glauben, die Werte hätten natürliche Gründe.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "denken",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Messungen mit Radar und Bodenwellen zeigen außerdem, dass unter dem Hügel eine große Kammer mit Mauern liegen dürfte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "📡",
+        "text": "Radar-Messungen"
+      }
+    },
+    {
+      "text": "Solche Messungen sind aber keine Beweise, sondern nur Hinweise, die ein Fachteam erst sorgfältig deuten muss.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "📈",
+        "text": "Nur Hinweise"
+      }
+    },
+    {
+      "text": "Es gibt also vermutlich einen Palast unter der Erde, und was darin liegt, weiß niemand.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Warum öffnet man das Grab dann nicht einfach? Dafür gibt es mehrere gute Gründe.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔒",
+        "text": "Warum geschlossen?"
+      }
+    },
+    {
+      "text": "Fachleute und Behörden nennen vor allem diese Gründe.",
+      "szene": {
+        "typ": "akte",
+        "text": "Warum zu bleibt",
+        "punkte": [
+          "Funde würden verfallen",
+          "Gift im Inneren",
+          "Respekt vor dem Grab"
+        ]
+      }
+    },
+    {
+      "text": "Wenn Luft an alte Stoffe, Lack und Holz kommt, können sie in kurzer Zeit zerfallen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "objekt": "💨"
+      }
+    },
+    {
+      "text": "Archäologen kennen das von der Tonarmee, deren Farben nach dem Ausgraben in kurzer Zeit verblassten.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Dazu kommt die Gefahr durch das Quecksilber, denn die Dämpfe sind giftig für Menschen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "☠️",
+        "text": "Giftige Dämpfe"
+      }
+    },
+    {
+      "text": "Und die chinesische Seite will warten, bis es Technik gibt, die nichts zerstört.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "⏳"
+      }
+    },
+    {
+      "text": "Dafür muss eine Technik erst entwickelt werden, die in eine Kammer blicken kann, ohne sie zu betreten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🤖",
+        "text": "Neue Technik"
+      }
+    },
+    {
+      "text": "Zweitausendzweihundert Jahre lang blieb das Grab unberührt, und wenige Orte der Welt können das von sich sagen.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "210 v. Chr.",
+        "text": "Über 2.200 Jahre zu",
+        "objekt": "🔒"
+      }
+    },
+    {
+      "text": "Dabei hat der Kaiser selbst nie erlebt, dass sein Reich ihn überlebt, denn es zerfällt nur wenige Jahre nach seinem Tod.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "traurig",
+        "aktion": "denkt",
+        "objekt": "🏯"
+      }
+    },
+    {
+      "text": "Seine Dynastie hielt nur etwa fünfzehn Jahre, das ist eine sehr kurze Zeit für ein so riesiges Reich.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⏳",
+        "text": "Nur 15 Jahre"
+      }
+    },
+    {
+      "text": "Sein jüngerer Sohn kommt an die Macht, es gibt Aufstände, und die Herrschaft der Qin-Familie endet schon nach wenigen Jahren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "burg",
+        "objekt": "🔥",
+        "text": "Das Ende der Qin"
+      }
+    },
+    {
+      "text": "Die Armee aus Ton sollte ihn im Jenseits beschützen, doch sie stand in der Erde und nützte ihm nichts.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "zeigt",
+        "objekt": "🗿"
+      }
+    },
+    {
+      "text": "Vielleicht war die Armee nur der äußere Ring, und der innere Teil der Anlage ist viel größer, als wir heute ahnen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⭕",
+        "text": "Noch größer?"
+      }
+    },
+    {
+      "text": "Archäologen vermuten, dass es weitere Gruben mit Musikern, Beamten und sogar Tieren geben könnte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🎺",
+        "text": "Weitere Gruben"
+      }
+    },
+    {
+      "text": "Einige Figuren zeigen sogar Akrobaten und Beamte, was zeigt, dass der Kaiser sein ganzes Hofleben mitnehmen wollte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🤹"
+      }
+    },
+    {
+      "text": "Heute besuchen viele Millionen Menschen die Anlage, und sie gehört zum Welterbe der Menschheit.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Welterbe"
+      }
+    },
+    {
+      "text": "Wer vor den Gruben steht, sieht Reihe um Reihe aus Gesichtern, und jedes wirkt, als würde es auf einen Befehl warten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "👀",
+        "text": "Reihe um Reihe"
+      }
+    },
+    {
+      "text": "Auf der einen Seite steht das, was wir wissen, und auf der anderen das, was noch unter dem Hügel liegt.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "✅",
+          "text": "Bekannt"
+        },
+        "rechts": {
+          "objekt": "❓",
+          "text": "Noch unbekannt"
+        }
+      }
+    },
+    {
+      "text": "Wir kennen die Armee, den Bericht und den Ort der Kammer, aber nicht, ob die Quecksilberflüsse wirklich existieren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🌊",
+        "text": "Wirklich da?"
+      }
+    },
+    {
+      "text": "Selbst dass der Kaiser wirklich im Grab liegt, ist bisher nur durch den alten Bericht belegt und nicht durch einen Fund.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "⚰️",
+        "text": "Nur ein Bericht"
+      }
+    },
+    {
+      "text": "Auch die Sterne an der Decke, die Fallen und die Schätze sind bisher nur Worte aus einem alten Buch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Vielleicht ist das Grab leer geplündert, aber die Messungen sprechen eher dafür, dass es noch unberührt ist.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Geplündert?"
+      }
+    },
+    {
+      "text": "Eine spätere Dynastie berichtet zwar von Plünderern, doch die Spuren dazu sind am Hügel offenbar nicht sicher belegt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Das alles macht das Grab zu einem der größten ungelösten Rätsel der Archäologie, direkt vor unseren Augen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏯",
+        "text": "Ein offenes Rätsel"
+      }
+    },
+    {
+      "text": "Vielleicht wird eine künftige Technik hineinschauen können, ohne etwas zu berühren, und dann bekommen wir endlich Antworten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🔭"
+      }
+    },
+    {
+      "text": "Bis dahin bleibt ein Kaiser unter einem grünen Hügel liegen, bewacht von einer Armee, die niemand je gebraucht hat.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🗿",
+        "text": "Bewacht von Ton"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Würdest du das Grab öffnen oder lieber verschlossen lassen? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-extreme-hitze-koerper",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#3a1408",
+    "#f0803a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn dir heiß wird? 🥵",
+  "description": "Was dein Körper bei extremer Hitze tut, ab wann es gefährlich wird und warum Schwüle das Abkühlen erschwert.\n\n#wissen #hitze #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "hitze",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Hitze | Dein Körper kocht",
+    "Schwüle ist Gift"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn dir extrem heiß wird?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🥵"
+      }
+    },
+    {
+      "text": "Zuerst *schwitzt* du, damit die Haut sich abkühlt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "💦",
+        "text": "Schwitzen"
+      }
+    },
+    {
+      "text": "Deine Gefäße weiten sich, und das Herz schlägt schneller.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🩸",
+        "text": "Herz wird schneller"
+      }
+    },
+    {
+      "text": "Über vierzig Grad Körpertemperatur wird es *gefährlich*.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 40,
+        "einheit": "Grad",
+        "objekt": "🌡️",
+        "farbcode": "#3a1408"
+      }
+    },
+    {
+      "text": "Dann drohen Schwindel, Übelkeit und Verwirrung.",
+      "szene": {
+        "typ": "liste",
+        "text": "Hitzschlag",
+        "punkte": [
+          "Schwindel",
+          "Übelkeit",
+          "Verwirrung"
+        ]
+      }
+    },
+    {
+      "text": "Dein Körper kühlt nur, wenn Schweiß *verdunsten* kann.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌵",
+          "text": "Trocken: kühlt"
+        },
+        "rechts": {
+          "objekt": "💧",
+          "text": "Schwül: kühlt kaum"
+        }
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Schwitzen noch mal",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

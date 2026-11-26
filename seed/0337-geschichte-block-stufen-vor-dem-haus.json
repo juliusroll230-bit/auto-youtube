@@ -1,0 +1,114 @@
+{
+  "slug": "geschichte-block-stufen-vor-dem-haus",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Wer baut mir jeden Tag eine Stufe? 🪜",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine neue Stufe vor meinem Haus auf dem Felsen, und niemand will es gewesen sein.\n\n#geschichte #storytime #blockwelt #dorf #shorts",
+  "tags": [
+    "geschichte",
+    "storytime",
+    "blockwelt",
+    "dorf",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Stufen | von wem?",
+    "Wer baut sie"
+  ],
+  "segments": [
+    {
+      "text": "Plötzlich steht jeden Morgen eine neue *Stufe* vor meinem Haus.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪜",
+        "chat": "Server: Neuer Tag"
+      }
+    },
+    {
+      "text": "Mein Haus steht ganz allein hoch auf einem Felsen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "⛰️",
+        "text": "Allein auf dem Fels"
+      }
+    },
+    {
+      "text": "Ich bin schon oft heruntergefallen, wenn ich zum Markt wollte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "faellt",
+        "objekt": "🪨"
+      }
+    },
+    {
+      "text": "Niemand im Dorf will die Stufen gebaut haben.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "dorf",
+        "anzahl": 4,
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "text": "Niemand war es"
+      }
+    },
+    {
+      "text": "Also warte ich eine Nacht am Fenster auf den Bauherrn.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "versteckt",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Bei Sonnenaufgang kommt ein alter Spieler mit Holz.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Er hat mich mal fallen sehen und wollte *helfen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪵",
+        "text": "Er wollte helfen"
+      }
+    },
+    {
+      "text": "Jetzt bringe ich ihm jeden Tag einen Apfel.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🍎"
+      }
+    }
+  ]
+}

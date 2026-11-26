@@ -122,9 +122,9 @@ _d = tempfile.mkdtemp()
 store.DATA = _d
 store.write("config.json", {"post_hours": [7, 9, 11, 13, 14, 15, 17, 18, 19, 21]})
 store.init()
-assert store.config()["post_hours"] == list(range(8, 23))
-assert store.config()["post_hours_weekend"] == list(range(8, 23))
-store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True, "hours_v8": True})
+assert store.config()["post_hours"] == store.DEFAULT_CONFIG["post_hours"]
+assert store.config()["post_hours_weekend"] == store.DEFAULT_CONFIG["post_hours_weekend"]
+store.write("config.json", {"post_hours": [9, 12], "hours_v2": True, "hours_v4": True, "hours_v8": True, "hours_v9": True, "hours_v10": True})
 store.init()
 assert store.config()["post_hours"] == [9, 12]
 assert store.config()["post_hours_weekend"] == [9, 12]  # eigene Zeiten gelten auch am Wochenende
@@ -132,7 +132,7 @@ assert store.config()["post_hours_weekend"] == [9, 12]  # eigene Zeiten gelten a
 store.write("config.json", {"post_hours": [8, 11, 13, 16, 18], "hours_v2": True, "hours_v4": True, "hours_v5": True})
 store.init()
 cfg_h = store.config()
-assert cfg_h["post_hours"] == list(range(8, 23)) and cfg_h["post_hours_weekend"] == list(range(8, 23))
+assert cfg_h["post_hours"] == store.DEFAULT_CONFIG["post_hours"] and cfg_h["post_hours_weekend"] == store.DEFAULT_CONFIG["post_hours_weekend"]
 # 16.11.: 15 Shorts am Tag, eigene Zuschauer-Zeiten (Werktag/Wochenende getrennt) bleiben wie gehabt prüfbar
 cfg_h = {"post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18]}
 store.write("config.json", {**store.config(), **cfg_h})
@@ -147,14 +147,14 @@ assert store.next_slot(cfg_h, dt.datetime(2026, 11, 13, 19, 0, tzinfo=store.TZ))
 store.write("config.json", {"post_hours": [12, 15, 16, 17, 18], "post_hours_weekend": [11, 13, 15, 17, 18],
                             "hours_v2": True, "hours_v4": True, "hours_v5": True, "hours_v6": True})
 store.init()
-assert store.config()["post_hours"] == list(range(8, 23)) and store.config()["post_hours_weekend"] == list(range(8, 23))
+assert store.config()["post_hours"] == store.DEFAULT_CONFIG["post_hours"] and store.config()["post_hours_weekend"] == store.DEFAULT_CONFIG["post_hours_weekend"]
 store.write("config.json", {"post_hours": [9, 12], "post_hours_weekend": [10], "hours_v2": True, "hours_v4": True,
-                            "hours_v5": True, "hours_v6": True, "hours_v7": True, "hours_v8": True})
+                            "hours_v5": True, "hours_v6": True, "hours_v7": True, "hours_v8": True, "hours_v9": True, "hours_v10": True})
 store.init()
 assert store.config()["post_hours"] == [9, 12] and store.config()["post_hours_weekend"] == [10]  # eigene bleiben
-# 19.11. (hours_v8): weniger als 15 Plätze werden einmal auf jede Stunde 8 bis 22 Uhr umgestellt
+# 19.11. (hours_v8) , 23.11. (hours_v9) und 25.11. (hours_v10): alte Zeiten werden einmal auf die 15 Standardzeiten umgestellt
 store.write("config.json", {"post_hours": [9, 12], "post_hours_weekend": [10], "hours_v2": True, "hours_v4": True,
                             "hours_v5": True, "hours_v6": True, "hours_v7": True})
 store.init()
-assert store.config()["post_hours"] == list(range(8, 23)) and store.config()["post_hours_weekend"] == list(range(8, 23))
+assert store.config()["post_hours"] == store.DEFAULT_CONFIG["post_hours"] and store.config()["post_hours_weekend"] == store.DEFAULT_CONFIG["post_hours_weekend"]
 print("Zeiten ok")

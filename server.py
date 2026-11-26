@@ -32,6 +32,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
+import binge
 import clips
 import comments
 import learn
@@ -40,6 +41,7 @@ import social
 import vorbilder
 import store
 import whop
+import einreichen
 import yt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -158,6 +160,13 @@ def post_next(slot, manual=False, long=False, firma=False):
     firma: die tägliche Folge des Firmen-Spiels, zusätzlich zu den normalen Sendeplätzen (eigener Sendeplan).
     Liegt schon ein fertig gerenderter Short im Vorrat, wird nur der hochgeladen (dauert wenige Minuten).
     """
+    if not long and not firma and not manual:
+        cap = int(store.config().get("max_shorts_day") or 0)   # Schutz: ab dem ca. 11. Upload am Tag sieht niemand das Video mehr
+        if cap and store.shorts_today() >= cap:
+            store.log("warn", f"Sendeplatz ausgelassen: heute sind schon {cap} Shorts online, weitere würden kaum Aufrufe bekommen.")
+            if slot:
+                store.mark_slot(slot, "done_slots")
+            return
     if not long and not firma and store.ready_items():
         try:
             return post_ready(slot, manual)
@@ -220,6 +229,28 @@ def render_short(spec):
             if spec.get("format") != "firma":  # Test: Spannung (Herzschlag + Countdown) gegen normale Shorts
                 lay = store.next_layout()
                 look["aufbau"] = spec["aufbau"] if spec.get("aufbau") in learn.LAYOUTS else lay
+                # Test Tempo: schnelle Schnitte wie in Julius' Vorbild-Reels (nicht zusammen mit Spannung)
+                tem = store.next_tempo()
+                look["tempo"] = spec["tempo"] if spec.get("tempo") in learn.TEMPOS else (
+                    "normal" if look["aufbau"] == "spannung" else tem)
+                if look["tempo"] == "schnell" and not spec.get("stimme"):
+                    import cartoon
+                    look["stimme"] = cartoon.FAST_VOICE   # schnell geschnitten, aber klar gesprochen (Julius, 21.11.2026)
+                # Vorbild-Taktiken (Test seit 25.11.2026): Musik-Stil, Übergang, Dranbleiben (Frage oben / Balken), gelernt
+                ex = store.next_extras(spec)
+                for k in ("musik", "uebergang", "halten"):
+                    look[k] = spec.get(k) or ex[k]
+                if look["tempo"] == "schnell":
+                    look["uebergang"] = None   # schnell hat eigene harte Schnitte, der Übergang zählt dort nicht
+            if learn.abo_ok(spec):  # Test Abo-Aufruf am Ende (gesprochen / nur eingeblendet / ohne)
+                mode, line = store.next_abo(spec)
+                if spec.get("abo") in learn.ABO_MODES:   # zum Ausprobieren fest im Skript
+                    mode = spec["abo"]
+                    line = line or learn.abo_lines(spec)[0]
+                if mode == "gesprochen" and str(spec.get("ende", "")).lower() == "loop":
+                    mode = "eingeblendet"   # ein gesprochener Satz nach dem offenen Schluss würde den Loop zerstören
+                look["abo"] = mode
+                look["abo_text"] = line if mode != "ohne" else None
     key = store.config().get("stock_key", "")
     if not key:
         look["hintergrund"] = "animation"
@@ -517,6 +548,11 @@ def post_clip(item, slot, manual=False, done="done_slots", busy=True):
             raise RuntimeError("Die Verbindung zum Clip-Kanal ist abgelaufen.") from e
         raise
     clips.mark_posted(c["id"], clip["n"], video_id)
+    if c.get("program"):  # Content-Rewards-Clip: steht jetzt in der Einreich-Station (Absenden macht Julius selbst)
+        try:
+            einreichen.ready(c, {**clip, "video_id": video_id})
+        except Exception as e:  # noqa: BLE001  (darf den Upload nie scheitern lassen)
+            print("Einreich-Station:", repr(e), flush=True)
     record = clips.upload_record(c, clip, slot, video_id)
     if own:
         record["channel"] = "clips"
@@ -707,6 +743,141 @@ def _download(url, rights, credit, name, source="webhook", program=None):
 
 
 _last_refresh = [0.0]
+
+
+binge_lock = threading.Lock()
+
+
+def run_binge():
+    """Frage-Kommentar unter neuen Uploads und Geschichten-Playlist pflegen (binge.py). Läuft im eigenen Faden."""
+    if not binge_lock.acquire(blocking=False):
+        return
+    try:
+        cfg = store.config()
+        if not cfg["refresh_token"]:
+            return
+        with store.LOCK:
+            d = binge.load()
+            if not store.read(binge.FILE, {}).get("since"):
+                binge.save(d)   # Startzeit merken: nur Uploads ab jetzt bekommen eine Frage
+        uploads = store.state()["uploads"]
+        specs = binge.posted_specs()
+        if d["settings"]["fragen"]:
+            binge_questions(cfg, d, uploads, specs)
+        if d["settings"]["playlist"]:
+            binge_playlist(cfg, uploads, specs)
+    except Exception as e:
+        if not yt.is_expired(e):
+            traceback.print_exc()
+    finally:
+        binge_lock.release()
+
+
+def binge_questions(cfg, d, uploads, specs):
+    todo = binge.pending_questions(d, uploads, specs)
+    if not todo:
+        return
+    if not (cfg.get("analytics_token") and "youtube.force-ssl" in cfg.get("analytics_scopes", "")):
+        with store.LOCK:
+            d = binge.load()
+            d["status"]["fragen_error"] = ("Für den Frage-Kommentar im Reiter Zuschauer einmal neu verbinden "
+                                           "(Google fragt nach dem Recht, Kommentare zu schreiben).")
+            binge.save(d)
+        return
+    client = yt.reply_client(cfg)
+    for i, (u, spec) in enumerate(todo):
+        with store.LOCK:
+            d = binge.load()
+            text = binge.question(spec, learn.video_type(spec), d["step"], playlist=bool(d["playlist"].get("id")))
+        try:
+            cid = yt.post_comment(client, u["video_id"], text)
+        except Exception as e:
+            reason, msg = comments.error_text(e)
+            with store.LOCK:
+                d = binge.load()
+                if reason in ("aus", "text"):   # Kommentare aus oder Text abgelehnt: nicht nochmal versuchen
+                    d["asked"][u["video_id"]] = {"id": None, "text": text, "title": u.get("title", ""), "skip": msg,
+                                                 "at": store.now().isoformat(timespec="seconds")}
+                else:
+                    d["status"]["fragen_error"] = msg
+                binge.save(d)
+            if reason not in ("aus", "text"):
+                store.log("warn", "Frage-Kommentar: " + msg, kind="comments")
+                return
+            continue
+        with store.LOCK:
+            d = binge.load()
+            d["asked"][u["video_id"]] = {"id": cid, "text": text, "title": u.get("title", ""),
+                                         "video_id": u["video_id"], "at": store.now().isoformat(timespec="seconds")}
+            if not clean_own(spec):
+                d["step"] += 1
+            d["status"].pop("fragen_error", None)
+            binge.save(d)
+        store.log("ok", f"Frage unter „{u.get('title', '')}“ geschrieben.", kind="comments")
+        if i + 1 < len(todo):
+            time.sleep(random.uniform(15, 40))
+
+
+def clean_own(spec):
+    return bool(binge.clean_question(spec.get("frage")))
+
+
+def binge_playlist(cfg, uploads, specs):
+    ids = binge.story_ids(uploads, specs)
+    with store.LOCK:
+        pl = binge.load()["playlist"]
+    if not ids and not pl.get("id"):
+        return   # noch keine Geschichte online: keine leere Playlist anlegen
+    pid = pl.get("id")
+    if pid and not pl.get("checked") == store.now().date().isoformat():
+        if not yt.playlist_exists(cfg, pid):   # von Hand gelöscht: neu anlegen
+            pid = None
+        _binge_pl(checked=store.now().date().isoformat())
+    if not pid:
+        pid = yt.create_playlist(cfg, binge.PLAYLIST_TITLE, binge.PLAYLIST_DESC)
+        _binge_pl(id=pid, items={}, section=None, ordered_at=None)
+        store.log("ok", "Playlist „" + binge.PLAYLIST_TITLE + "“ angelegt.", kind="posted")
+    with store.LOCK:
+        pl = binge.load()["playlist"]
+    if not pl.get("section") and not pl.get("section_error"):
+        try:
+            _binge_pl(section=yt.add_channel_section(cfg, pid))
+        except Exception as e:   # z. B. schon 12 Abschnitte: Playlist gibt es trotzdem
+            _binge_pl(section_error=str(e)[:200])
+    items = dict(pl.get("items", {}))
+    added = 0
+    for vid in ids:
+        if vid in items or added >= binge.MAX_ADD_PER_RUN:
+            continue
+        try:
+            items[vid] = yt.playlist_add(cfg, pid, vid)
+        except Exception as e:
+            if "videoNotFound" in str(e) or "notFound" in str(e):
+                items[vid] = None   # Video gelöscht: überspringen
+                continue
+            raise
+        added += 1
+        _binge_pl(items=items)
+    today = store.now().date().isoformat()
+    if pl.get("ordered_at") != today and len([v for v in items.values() if v]) > 1:
+        views = store.read("stats.json", {"videos": {}})["videos"]
+        live = yt.playlist_items(cfg, pid)   # echte Reihenfolge (Julius kann die Playlist von Hand ändern)
+        order = binge.wanted_order([v for v in live if v in ids], {k: (views.get(k) or {}).get("views", 0) for k in ids})
+        current = list(live)
+        for pos, vid in enumerate(order[:binge.TOP_ORDER]):
+            if pos < len(current) and current[pos] == vid:
+                continue
+            yt.playlist_move(cfg, pid, live[vid], vid, pos)
+            current.remove(vid)
+            current.insert(pos, vid)
+        _binge_pl(items={**items, **live}, ordered_at=today)
+
+
+def _binge_pl(**changes):
+    with store.LOCK:
+        d = binge.load()
+        d["playlist"].update(changes)
+        binge.save(d)
 
 
 def refresh_stats():
@@ -1011,15 +1182,33 @@ def post_relax(manual=False):
             st = store.state()
             n = int(st.get("relax_n", 0))
             ups = (store.read("relax.json", {}) or {}).get("uploads") or []
-            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n)
+            try:
+                relax_check_uploads(cfg)   # erst nachsehen, ob YouTube die letzten Videos angenommen hat
+                st = store.state()
+                ups = (store.read("relax.json", {}) or {}).get("uploads") or []
+            except Exception:
+                traceback.print_exc()
+            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, st.get("relax_cap"))
             shutil.rmtree(folder, ignore_errors=True)
-            status["busy"] = f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}"
+            styles = entspannung.choose_style(ups, store.now().date(), n)
+            story = None
+            # Einschlaf-Geschichten seit 24.11.2026; ohne neue Geschichte läuft nur die Szene. Laufen reine Szenen sicher besser,
+            # kommt die Geschichte nur noch in jedem 2. Video (Lernmodus, entspannung.use_story)
+            if cfg.get("relax_stories", True) and entspannung.use_story(ups, store.now().date(), n):
+                import sleepstory
+                if sleepstory.available():
+                    story = sleepstory.pick([u.get("story") for u in ups if u.get("story")])
+                    if story and story.get("scene") in entspannung.SCENES:
+                        idea = next((i["id"] for i in entspannung.IDEAS if i["scene"] == story["scene"]), idea)
+            status["busy"] = (f"Baut Quiet-Corner-Geschichte: {story['title']}" if story else
+                              f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}")
             with working("studio", task="Baut ein langes Entspannungsvideo"):
-                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=bool(cfg.get("relax_shorts", True)))
+                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=True, story=story, styles=styles)
+            minutes = r.get("minutes", minutes)
         finally:
             status["busy"] = ""
             work_lock.release()
-        meta = entspannung.meta(idea, minutes, n)
+        meta = entspannung.story_meta(story, idea, minutes, n) if story else entspannung.meta(idea, minutes, n, styles["title_style"])
         rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
         spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
         relax_phase("Lädt hoch (bei 8 bis 10 Std. dauert das ein paar Stunden)")
@@ -1031,13 +1220,24 @@ def post_relax(manual=False):
             thumb = True
         except Exception as e:  # Thumbnails brauchen einen bestätigten Kanal (youtube.com/verify)
             store.log("warn", f"Thumbnail für das Entspannungsvideo nicht gesetzt: {e}")
-        teaser_id = None
-        if r.get("teaser"):
-            try:
-                tm = entspannung.teaser_meta(idea, minutes, video_id)
-                teaser_id = yt.upload(rcfg, r["teaser"], {**tm, "footer": "", "category": "22", "language": "en"})
-            except Exception as e:
-                store.log("warn", f"Quiet Corner: Teaser-Short nicht hochgeladen: {e}")
+        teaser_id, teaser_pending = None, False
+        if r.get("teaser"):   # Julius 25.11.: zu jedem langen Video immer ein Teaser-Short, darum mehrere Versuche und später nachholen
+            tm = entspannung.teaser_meta(idea, minutes, video_id)
+            for attempt in range(3):
+                try:
+                    teaser_id = yt.upload(rcfg, r["teaser"], {**tm, "footer": "", "category": "22", "language": "en"})
+                    break
+                except Exception as e:
+                    store.log("warn", f"Quiet Corner: Teaser-Short nicht hochgeladen (Versuch {attempt + 1} von 3): {e}")
+                    time.sleep(30 * (attempt + 1))
+            if not teaser_id:
+                try:
+                    keep = store.path("relax-teasers")
+                    os.makedirs(keep, exist_ok=True)
+                    shutil.copy(r["teaser"], os.path.join(keep, video_id + ".mp4"))
+                    teaser_pending = True
+                except Exception:
+                    traceback.print_exc()
         day = store.now().date().isoformat()
         with store.LOCK:
             st = store.state()
@@ -1048,7 +1248,8 @@ def post_relax(manual=False):
         info["error"] = None
         info["uploads"] = (info.get("uploads") or [])[-200:] + [{
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
-            "minutes": minutes, "at": day, "thumb": thumb, "teaser_id": teaser_id, "views": 0}]
+            "minutes": minutes, "at": day, "hour": store.now().hour, "thumb": thumb, "teaser_id": teaser_id, "teaser_pending": teaser_pending, "views": 0,
+            **({"story": story["id"]} if story else {}), **styles}]
         store.write("relax.json", info)
         relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))
@@ -1074,6 +1275,86 @@ def post_relax(manual=False):
         relax_lock.release()
 
 
+def relax_retry_teasers(cfg):
+    """Holt Teaser-Shorts nach, die beim Video-Upload nicht geklappt haben (die Datei liegt in relax-teasers/)."""
+    import entspannung
+    info = store.read("relax.json", {}) or {}
+    todo = [u for u in info.get("uploads") or [] if u.get("teaser_pending") and not u.get("teaser_id")]
+    if not todo:
+        return
+    rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
+    for u in todo:
+        f = os.path.join(store.path("relax-teasers"), u["video_id"] + ".mp4")
+        if not os.path.exists(f):
+            u["teaser_pending"] = False
+            continue
+        try:
+            tm = entspannung.teaser_meta(u.get("idea") or entspannung.IDEAS[0]["id"], u.get("minutes") or 60, u["video_id"])
+            u["teaser_id"] = yt.upload(rcfg, f, {**tm, "footer": "", "category": "22", "language": "en"})
+            u["teaser_pending"] = False
+            os.remove(f)
+            store.log("ok", f"Quiet Corner: Teaser-Short nachgeholt für {u['title']}")
+        except Exception as e:
+            store.log("warn", f"Quiet Corner: Teaser-Short weiter nicht hochladbar: {e}")
+            break
+    cur = store.read("relax.json", {}) or {}
+    by = {u["video_id"]: u for u in todo}
+    for u in cur.get("uploads") or []:
+        if u["video_id"] in by:
+            u["teaser_id"], u["teaser_pending"] = by[u["video_id"]].get("teaser_id"), by[u["video_id"]].get("teaser_pending", False)
+    store.write("relax.json", cur)
+
+
+def relax_check_uploads(cfg):
+    """Prüft, ob YouTube die letzten Quiet-Corner-Videos wirklich angenommen hat. Zu lange werden abgelehnt:
+    dann kürzer weitermachen und den Platz des Tages neu vergeben (Neu-Upload in kürzerer Form)."""
+    import entspannung
+    try:
+        relax_retry_teasers(cfg)
+    except Exception:
+        traceback.print_exc()
+    info = store.read("relax.json", {}) or {}
+    today = store.now().date()
+    recent = [u for u in info.get("uploads") or []
+              if (today - dt.date.fromisoformat(u["at"])).days <= 3 and not u.get("ok")]
+    if not recent:
+        return
+    states = yt.upload_states({**cfg, "refresh_token": cfg["relax_token"]}, [u["video_id"] for u in recent])
+    bad = {i: x for i, x in states.items() if x["upload"] in ("rejected", "failed")}
+    info = store.read("relax.json", {}) or {}
+    keep, lost, cap = [], [], None
+    for u in info.get("uploads") or []:
+        x = bad.get(u["video_id"])
+        if x:
+            lost.append(u)
+            if x["reason"] == "length" or x["upload"] == "rejected":
+                cap = min(cap or 10 ** 6, entspannung.next_cap(u.get("minutes") or 600))
+            continue
+        if states.get(u["video_id"], {}).get("upload") == "processed":
+            u["ok"] = True
+        keep.append(u)
+    if not lost:
+        store.write("relax.json", info)
+        return
+    info["uploads"] = keep
+    info["rejected"] = (info.get("rejected") or [])[-20:] + [{"video_id": u["video_id"], "title": u["title"], "minutes": u.get("minutes"), "at": u["at"]} for u in lost]
+    if cap:
+        info["notice"] = (f"YouTube hat ein Video wegen der Länge abgelehnt. Neue Videos sind jetzt höchstens {entspannung.dauer_text(cap)} lang. "
+                          "Wenn du den Kanal auf youtube.com/verify bestätigt hast, in „Länge“ wieder eine längere wählen.")
+    store.write("relax.json", info)
+    with store.LOCK:
+        st = store.state()
+        if cap:
+            st["relax_cap"] = cap
+        for u in lost:   # der Platz zählt nicht als erledigt, dann baut die Zentrale sofort ein neues, kürzeres Video
+            if u["at"] == st.get("relax_last") and int(st.get("relax_today_n", 1)) > 0:
+                st["relax_today_n"] = int(st.get("relax_today_n", 1)) - 1
+        st["relax_tried"] = None
+        store.write("state.json", st)
+    store.log("warn", f"Quiet Corner: {len(lost)} Video(s) von YouTube abgelehnt (zu lang). Es kommt ein kürzeres neu." if cap
+              else f"Quiet Corner: {len(lost)} Video(s) von YouTube nicht angenommen.")
+
+
 def relax_refresh_stats(cfg):
     """Aufrufe der Quiet-Corner-Videos (für den Lernmodus und die Übersicht)."""
     info = store.read("relax.json", {}) or {}
@@ -1081,6 +1362,10 @@ def relax_refresh_stats(cfg):
     ids = [u["video_id"] for u in ups] + [u["teaser_id"] for u in ups if u.get("teaser_id")]
     if not ids:
         return
+    try:
+        relax_check_uploads(cfg)
+    except Exception:
+        traceback.print_exc()
     stats = yt.video_stats({**cfg, "refresh_token": cfg["relax_token"]}, ids)
     info = store.read("relax.json", {}) or {}
     for u in info.get("uploads") or []:
@@ -1295,7 +1580,7 @@ def refresh_vorbilder():
 
 
 def scheduler():
-    last_stats = last_sync = last_analytics = last_whop = last_social = 0.0
+    last_stats = last_sync = last_analytics = last_whop = last_social = last_binge = 0.0
     while True:
         try:
             if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
@@ -1324,6 +1609,9 @@ def scheduler():
                     last_stats = time.time()
             if comments.load()["settings"]["on"]:
                 background(check_comments)
+            if cfg["refresh_token"] and time.time() - last_binge > 5 * 60:  # Frage-Kommentar + Geschichten-Playlist
+                last_binge = time.time()
+                background(run_binge)
             if vorbilder.due() and time.time() - _vb_try[0] > 3600:  # Vorbilder: neueste Titel und Aufrufe (öffentlicher RSS-Feed, keine Quote)
                 background(refresh_vorbilder)
             if time.time() - last_social > 5 * 60:  # die besten Shorts zu Instagram (Reel) und TikTok (Entwurf)
@@ -1446,7 +1734,7 @@ class Handler(BaseHTTPRequestHandler):
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
-                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
+                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(), "einreichen": store._safe(einreichen.overview, {}),
                                                    "social": social.summary(), "social_view": social.overview(), "vorbilder": vorbilder.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
@@ -1811,6 +2099,10 @@ class Handler(BaseHTTPRequestHandler):
                 ch["relax_minutes"] = int(data["minutes"])
                 ch["relax_length"] = str(int(data["minutes"]))
             if "length" in data:
+                with store.LOCK:   # eine neue Wahl hebt die Notbremse wieder auf (z. B. nach youtube.com/verify)
+                    st0 = store.state()
+                    st0["relax_cap"] = None
+                    store.write("state.json", st0)
                 v = str(data["length"])
                 if v != "auto" and (not v.isdigit() or int(v) not in entspannung.MINUTES):
                     return self.send(400, {"error": "Länge: automatisch oder 3, 5, 8, 10 Stunden."})
@@ -1973,6 +2265,10 @@ class Handler(BaseHTTPRequestHandler):
             if s["on"]:
                 background(check_comments, True)
             return self.send(200, {"ok": True, "settings": s})
+        if p == "/api/binge/settings":
+            s = binge.set_settings(fragen=data.get("fragen"), playlist=data.get("playlist"))
+            background(run_binge)
+            return self.send(200, {"ok": True, "settings": s})
         if p == "/api/comments/check":
             background(check_comments, True)
             return self.send(200, {"ok": True})
@@ -2074,6 +2370,13 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "item": item})
+        if p in ("/api/einreichen/submit", "/api/einreichen/undo", "/api/einreichen/skip"):
+            fn = {"submit": einreichen.submit, "undo": einreichen.undo, "skip": einreichen.skip}[p.rsplit("/", 1)[1]]
+            try:
+                entry = fn(str(data.get("id") or ""), data.get("n"))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            return self.send(200, {"ok": True, "entry": entry})
         if p == "/api/whop/rules":
             try:
                 rules = whop.set_rules(str(data.get("id") or ""), data)

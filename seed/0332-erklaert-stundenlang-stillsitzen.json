@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-stundenlang-stillsitzen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn du stundenlang sitzt? 🪑",
+  "description": "Was passiert, wenn du stundenlang ohne Pause stillsitzt? Was mit Blut, Rücken und Beinen geschieht und warum kurze Wege helfen.\n\n#wissen #körper #bewegung #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "bewegung",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Sitzen | Stunden ohne Pause",
+    "Die Beine schlafen"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du stundenlang ohne Pause stillsitzt?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🪑"
+      }
+    },
+    {
+      "text": "Deine Beine arbeiten dann kaum noch mit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪑",
+        "text": "Kaum Bewegung"
+      }
+    },
+    {
+      "text": "Das *Blut* sammelt sich in Füßen und Waden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🦶",
+        "text": "Blut staut sich"
+      }
+    },
+    {
+      "text": "Gehen pumpt es dagegen zurück zum Herzen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🚶",
+          "text": "Gehen: pumpt"
+        },
+        "rechts": {
+          "objekt": "🪑",
+          "text": "Sitzen: staut"
+        }
+      }
+    },
+    {
+      "text": "Nach Stunden werden Rücken und Nacken steif.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Ein kurzer Gang pro Stunde soll schon helfen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "⏰",
+        "text": "Pause pro Stunde"
+      }
+    },
+    {
+      "text": "Dein Körper ist zum *Bewegen* gebaut, nicht zum Sitzen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🏃",
+        "text": "Gebaut zum Gehen"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Sitzen noch mal:",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🪑"
+      }
+    }
+  ],
+  "ende": "loop"
+}

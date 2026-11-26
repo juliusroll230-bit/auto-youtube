@@ -14,6 +14,7 @@ import store  # noqa: E402
 store.DATA = os.environ["DATA_DIR"]
 for d in ("queue", "ready", "out", "posted"):
     os.makedirs(store.path(d), exist_ok=True)
+store.save_config(post_hours=list(range(8, 23)), post_hours_weekend=list(range(8, 23)), block_per_day=5)   # 15 Plätze, 5 Blockwelt
 
 # 30 alte Strichmännchen-Erklärvideos (die beste Nische) vor 10 Blockwelt-Skripten in der Dateireihenfolge
 n = 0

@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-see-nachts-mitte",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Schwimm nachts nie bis zur Mitte 🌊",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine zweite Regel. Schwimm nachts niemals bis zur Mitte des Sees.\n\n#horror #gruselig #blockwelt #see #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "see",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "See | Regel 2",
+    "Wer ruft dich"
+  ],
+  "segments": [
+    {
+      "text": "Schwimm nachts niemals bis zur *Mitte* des Sees.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🌊",
+        "chat": "Server: Regel 2"
+      }
+    },
+    {
+      "text": "Der See ist ruhig, der Mond spiegelt sich im Wasser.",
+      "szene": {
+        "typ": "horror",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f",
+        "chat": "Server: 1 Spieler online"
+      }
+    },
+    {
+      "text": "Am Ufer liegen viele Paare Schuhe, alle *nass*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "👟",
+        "text": "Viele Schuhe"
+      }
+    },
+    {
+      "text": "Unter dem Wasser bewegt sich ein langer Schatten.",
+      "szene": {
+        "typ": "monster",
+        "ort": "meer",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Eine Stimme ruft deinen Namen, mitten vom See.",
+      "szene": {
+        "typ": "horror",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Stimme: komm näher"
+      }
+    },
+    {
+      "text": "Wer antwortet, hört das Wasser *lachen*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🌊",
+        "text": "Das Wasser lacht"
+      }
+    },
+    {
+      "text": "Am Ufer liegen jetzt auch deine Schuhe.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "👟",
+        "text": "Deine Schuhe"
+      }
+    },
+    {
+      "text": "Und merk dir die zweite Regel:",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌊"
+      }
+    }
+  ],
+  "ende": "loop"
+}

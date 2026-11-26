@@ -1,0 +1,124 @@
+{
+  "slug": "geschichte-parkbank-mein-name",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Auf der Parkbank steht mein Name 🌳",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Im Park steht eine Bank mit meinem Namen, und ich weiß nicht, woher sie kommt.\n\n#geschichte #erzählung #familie #warm #shorts",
+  "tags": [
+    "geschichte",
+    "erzählung",
+    "familie",
+    "warm",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Die Bank | mein Name",
+    "Wer wartete dort?"
+  ],
+  "segments": [
+    {
+      "text": "Auf einer Parkbank steht mein *Name*, und ich kenne sie nicht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌳"
+      }
+    },
+    {
+      "text": "Dort steht: Für Mia, auf die wir warteten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🪑",
+        "text": "Für Mia"
+      }
+    },
+    {
+      "text": "Ich frage Oma, wer das war.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Sie lächelt und zeigt aufs Krankenhaus gegenüber.",
+      "szene": {
+        "typ": "figur",
+        "ort": "krankenhaus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏥"
+      }
+    },
+    {
+      "text": "Dort bin ich geboren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "krankenhaus",
+        "objekt": "👶",
+        "text": "Hier geboren"
+      }
+    },
+    {
+      "text": "Opa saß die ganze Nacht auf dieser Bank und wartete.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Am Morgen kam die Nachricht, und er stiftete die *Bank*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎉"
+      }
+    },
+    {
+      "text": "Sie soll allen *Wartenden* einen Platz geben.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🪑",
+        "text": "Platz zum Warten"
+      }
+    },
+    {
+      "text": "Jetzt setze ich mich dazu.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💛"
+      }
+    }
+  ]
+}

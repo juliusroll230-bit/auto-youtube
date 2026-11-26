@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-sonnenbrand-haut",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#3a2208",
+    "#f0b83a"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert bei einem Sonnenbrand? ☀️",
+  "description": "Wie UV-Strahlen die Zellen der Haut schädigen, warum die Haut erst Stunden später rot wird und warum sie sich schält.\n\n#wissen #sonne #haut #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "sonne",
+    "haut",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Sonnenbrand | Schaden zuerst",
+    "Rot kommt zu spät"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du einen Sonnenbrand bekommst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "☀️"
+      }
+    },
+    {
+      "text": "Die *UV-Strahlen* treffen die Zellen deiner Haut.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "☀️",
+        "text": "UV-Strahlen"
+      }
+    },
+    {
+      "text": "Sie beschädigen das *Erbgut* der Zellen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "🧬",
+        "text": "Erbgut-Schaden"
+      }
+    },
+    {
+      "text": "Dein Körper schickt mehr Blut dorthin, die Haut wird heiß.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🩸",
+          "text": "Mehr Blut"
+        },
+        "rechts": {
+          "objekt": "🔴",
+          "text": "Haut rot"
+        }
+      }
+    },
+    {
+      "text": "Geschädigte Zellen sterben ab, und die Haut schält sich.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "text": "Zellen sterben"
+      }
+    },
+    {
+      "text": "Der Schmerz kommt erst Stunden später und heilt allein.",
+      "szene": {
+        "typ": "liste",
+        "text": "Verlauf",
+        "punkte": [
+          "Rötung",
+          "Schmerz",
+          "Schälen"
+        ]
+      }
+    },
+    {
+      "text": "Der Schaden entsteht schon, bevor die Haut *rot* wird.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "⏳",
+        "text": "Rot kommt später"
+      }
+    },
+    {
+      "text": "Darum schützt du dich vorher, nicht erst hinterher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🧴"
+      }
+    }
+  ]
+}

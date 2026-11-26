@@ -1,0 +1,104 @@
+{
+  "slug": "erklaert-block-warum-eis-schwimmt",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#10304a",
+    "#8ad8f0"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum schwimmt Eis oben? 🧊",
+  "description": "Erklärt in der Blockwelt: Warum Wasser beim Gefrieren Platz braucht, Eis leichter ist und Seen von oben zufrieren.\n\n#wissen #eis #wasser #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "eis",
+    "wasser",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Eis | Es schwimmt oben",
+    "Fische überleben"
+  ],
+  "segments": [
+    {
+      "text": "Warum schwimmt Eis eigentlich oben im Glas?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🧊",
+        "chat": "Spieler: komisch"
+      }
+    },
+    {
+      "text": "Fast alle Stoffe werden beim *Gefrieren* dichter und sinken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "💧",
+        "text": "Meist: sinkt"
+      }
+    },
+    {
+      "text": "Wasser macht es anders: Es *dehnt* sich beim Gefrieren aus.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "❄️",
+        "text": "Wasser dehnt sich"
+      }
+    },
+    {
+      "text": "Seine Moleküle ordnen sich dabei zu einem weiten Gitter.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "lila",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Im Gitter ist mehr Platz, also ist Eis *leichter*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Mehr Platz"
+      }
+    },
+    {
+      "text": "Darum frieren Seen von oben zu, und unten bleibt es flüssig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🐟",
+        "text": "Fische überleben"
+      }
+    },
+    {
+      "text": "Im Winter schwimmen die Fische also unter einer Eisdecke.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "wetter": "schnee",
+        "objekt": "🐟"
+      }
+    }
+  ]
+}

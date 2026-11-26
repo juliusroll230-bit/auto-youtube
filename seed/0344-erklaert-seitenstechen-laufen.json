@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-seitenstechen-laufen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was ist Seitenstechen eigentlich? 🏃",
+  "description": "Erklärt: Warum es beim Laufen in der Seite sticht und was dagegen hilft.\n\n#wissen #körper #sport #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "sport",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Seitenstechen | unklare Ursache",
+    "Atme tief aus"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert in dir, wenn du Seitenstechen bekommst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🏃"
+      }
+    },
+    {
+      "text": "Plötzlich sticht es *seitlich* unter den Rippen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "😖",
+        "text": "Stich in der Seite"
+      }
+    },
+    {
+      "text": "Genau weiß es die Forschung nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❓",
+        "text": "Ursache offen"
+      }
+    },
+    {
+      "text": "Vermutet wird oft:",
+      "szene": {
+        "typ": "liste",
+        "text": "Mögliche Gründe",
+        "punkte": [
+          "Gereiztes Bauchfell",
+          "Zwerchfell-Krampf",
+          "Volles Essen"
+        ]
+      }
+    },
+    {
+      "text": "Wer vorher viel isst, bekommt es öfter.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Hilfreich: langsamer werden und tief *ausatmen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "💨"
+      }
+    },
+    {
+      "text": "Meist vergeht es nach ein paar Minuten.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Vergeht von selbst"
+      }
+    },
+    {
+      "text": "Atme beim nächsten Lauf gleichmäßig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "👟",
+        "text": "Gleichmäßig atmen"
+      }
+    }
+  ]
+}
