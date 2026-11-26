@@ -32,6 +32,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import agents
+import binge
 import clips
 import comments
 import learn
@@ -738,6 +739,141 @@ def _download(url, rights, credit, name, source="webhook", program=None):
 _last_refresh = [0.0]
 
 
+binge_lock = threading.Lock()
+
+
+def run_binge():
+    """Frage-Kommentar unter neuen Uploads und Geschichten-Playlist pflegen (binge.py). Läuft im eigenen Faden."""
+    if not binge_lock.acquire(blocking=False):
+        return
+    try:
+        cfg = store.config()
+        if not cfg["refresh_token"]:
+            return
+        with store.LOCK:
+            d = binge.load()
+            if not store.read(binge.FILE, {}).get("since"):
+                binge.save(d)   # Startzeit merken: nur Uploads ab jetzt bekommen eine Frage
+        uploads = store.state()["uploads"]
+        specs = binge.posted_specs()
+        if d["settings"]["fragen"]:
+            binge_questions(cfg, d, uploads, specs)
+        if d["settings"]["playlist"]:
+            binge_playlist(cfg, uploads, specs)
+    except Exception as e:
+        if not yt.is_expired(e):
+            traceback.print_exc()
+    finally:
+        binge_lock.release()
+
+
+def binge_questions(cfg, d, uploads, specs):
+    todo = binge.pending_questions(d, uploads, specs)
+    if not todo:
+        return
+    if not (cfg.get("analytics_token") and "youtube.force-ssl" in cfg.get("analytics_scopes", "")):
+        with store.LOCK:
+            d = binge.load()
+            d["status"]["fragen_error"] = ("Für den Frage-Kommentar im Reiter Zuschauer einmal neu verbinden "
+                                           "(Google fragt nach dem Recht, Kommentare zu schreiben).")
+            binge.save(d)
+        return
+    client = yt.reply_client(cfg)
+    for i, (u, spec) in enumerate(todo):
+        with store.LOCK:
+            d = binge.load()
+            text = binge.question(spec, learn.video_type(spec), d["step"], playlist=bool(d["playlist"].get("id")))
+        try:
+            cid = yt.post_comment(client, u["video_id"], text)
+        except Exception as e:
+            reason, msg = comments.error_text(e)
+            with store.LOCK:
+                d = binge.load()
+                if reason in ("aus", "text"):   # Kommentare aus oder Text abgelehnt: nicht nochmal versuchen
+                    d["asked"][u["video_id"]] = {"id": None, "text": text, "title": u.get("title", ""), "skip": msg,
+                                                 "at": store.now().isoformat(timespec="seconds")}
+                else:
+                    d["status"]["fragen_error"] = msg
+                binge.save(d)
+            if reason not in ("aus", "text"):
+                store.log("warn", "Frage-Kommentar: " + msg, kind="comments")
+                return
+            continue
+        with store.LOCK:
+            d = binge.load()
+            d["asked"][u["video_id"]] = {"id": cid, "text": text, "title": u.get("title", ""),
+                                         "video_id": u["video_id"], "at": store.now().isoformat(timespec="seconds")}
+            if not clean_own(spec):
+                d["step"] += 1
+            d["status"].pop("fragen_error", None)
+            binge.save(d)
+        store.log("ok", f"Frage unter „{u.get('title', '')}“ geschrieben.", kind="comments")
+        if i + 1 < len(todo):
+            time.sleep(random.uniform(15, 40))
+
+
+def clean_own(spec):
+    return bool(binge.clean_question(spec.get("frage")))
+
+
+def binge_playlist(cfg, uploads, specs):
+    ids = binge.story_ids(uploads, specs)
+    with store.LOCK:
+        pl = binge.load()["playlist"]
+    if not ids and not pl.get("id"):
+        return   # noch keine Geschichte online: keine leere Playlist anlegen
+    pid = pl.get("id")
+    if pid and not pl.get("checked") == store.now().date().isoformat():
+        if not yt.playlist_exists(cfg, pid):   # von Hand gelöscht: neu anlegen
+            pid = None
+        _binge_pl(checked=store.now().date().isoformat())
+    if not pid:
+        pid = yt.create_playlist(cfg, binge.PLAYLIST_TITLE, binge.PLAYLIST_DESC)
+        _binge_pl(id=pid, items={}, section=None, ordered_at=None)
+        store.log("ok", "Playlist „" + binge.PLAYLIST_TITLE + "“ angelegt.", kind="posted")
+    with store.LOCK:
+        pl = binge.load()["playlist"]
+    if not pl.get("section") and not pl.get("section_error"):
+        try:
+            _binge_pl(section=yt.add_channel_section(cfg, pid))
+        except Exception as e:   # z. B. schon 12 Abschnitte: Playlist gibt es trotzdem
+            _binge_pl(section_error=str(e)[:200])
+    items = dict(pl.get("items", {}))
+    added = 0
+    for vid in ids:
+        if vid in items or added >= binge.MAX_ADD_PER_RUN:
+            continue
+        try:
+            items[vid] = yt.playlist_add(cfg, pid, vid)
+        except Exception as e:
+            if "videoNotFound" in str(e) or "notFound" in str(e):
+                items[vid] = None   # Video gelöscht: überspringen
+                continue
+            raise
+        added += 1
+        _binge_pl(items=items)
+    today = store.now().date().isoformat()
+    if pl.get("ordered_at") != today and len([v for v in items.values() if v]) > 1:
+        views = store.read("stats.json", {"videos": {}})["videos"]
+        live = yt.playlist_items(cfg, pid)   # echte Reihenfolge (Julius kann die Playlist von Hand ändern)
+        order = binge.wanted_order([v for v in live if v in ids], {k: (views.get(k) or {}).get("views", 0) for k in ids})
+        current = list(live)
+        for pos, vid in enumerate(order[:binge.TOP_ORDER]):
+            if pos < len(current) and current[pos] == vid:
+                continue
+            yt.playlist_move(cfg, pid, live[vid], vid, pos)
+            current.remove(vid)
+            current.insert(pos, vid)
+        _binge_pl(items={**items, **live}, ordered_at=today)
+
+
+def _binge_pl(**changes):
+    with store.LOCK:
+        d = binge.load()
+        d["playlist"].update(changes)
+        binge.save(d)
+
+
 def refresh_stats():
     cfg = store.config()
     if not cfg["refresh_token"]:
@@ -1407,7 +1543,7 @@ def refresh_vorbilder():
 
 
 def scheduler():
-    last_stats = last_sync = last_analytics = last_whop = last_social = 0.0
+    last_stats = last_sync = last_analytics = last_whop = last_social = last_binge = 0.0
     while True:
         try:
             if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
@@ -1436,6 +1572,9 @@ def scheduler():
                     last_stats = time.time()
             if comments.load()["settings"]["on"]:
                 background(check_comments)
+            if cfg["refresh_token"] and time.time() - last_binge > 5 * 60:  # Frage-Kommentar + Geschichten-Playlist
+                last_binge = time.time()
+                background(run_binge)
             if vorbilder.due() and time.time() - _vb_try[0] > 3600:  # Vorbilder: neueste Titel und Aufrufe (öffentlicher RSS-Feed, keine Quote)
                 background(refresh_vorbilder)
             if time.time() - last_social > 5 * 60:  # die besten Shorts zu Instagram (Reel) und TikTok (Entwurf)
@@ -2029,6 +2168,10 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": str(e)})
             if s["on"]:
                 background(check_comments, True)
+            return self.send(200, {"ok": True, "settings": s})
+        if p == "/api/binge/settings":
+            s = binge.set_settings(fragen=data.get("fragen"), playlist=data.get("playlist"))
+            background(run_binge)
             return self.send(200, {"ok": True, "settings": s})
         if p == "/api/comments/check":
             background(check_comments, True)

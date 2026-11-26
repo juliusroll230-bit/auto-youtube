@@ -703,6 +703,13 @@ def ready_failed(item):
         json.dump({**data, "tries": tries}, f, ensure_ascii=False)
 
 
+def _binge_overview(cfg, st):
+    """Geschichten-Playlist, Frage-Kommentare und die aktuellen Gewinner (binge.py)."""
+    import binge
+    views = {k: (v or {}).get("views", 0) for k, v in read("stats.json", {"videos": {}})["videos"].items()}
+    return binge.overview(cfg, st["uploads"], binge.posted_specs(), views)
+
+
 def read_json(file):
     with open(file, encoding="utf-8") as f:
         return json.load(f)
@@ -1015,6 +1022,7 @@ def dashboard(extra=None, working=None, repo=True):
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
+        "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
         "clip_totals": camp["totals"],
         "clips_running": camp["running"],

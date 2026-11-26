@@ -328,3 +328,52 @@ def reply(yt, parent_id, text):
     """Antwortet auf einen Kommentar (kostet 50 Einheiten API-Quote)."""
     body = {"snippet": {"parentId": parent_id, "textOriginal": text}}
     return yt.comments().insert(part="snippet", body=body).execute()["id"]
+
+
+# --- Mehr Videos am Stück (binge.py) ------------------------------------------------
+
+def create_playlist(cfg, title, description):
+    """Legt eine öffentliche Playlist an (kostet 50 Einheiten). Gibt die ID zurück."""
+    body = {"snippet": {"title": title, "description": description, "defaultLanguage": "de"},
+            "status": {"privacyStatus": "public"}}
+    return client(cfg).playlists().insert(part="snippet,status", body=body).execute()["id"]
+
+
+def playlist_exists(cfg, playlist_id):
+    return bool(client(cfg).playlists().list(part="id", id=playlist_id).execute().get("items"))
+
+
+def playlist_add(cfg, playlist_id, video_id):
+    """Hängt ein Video an die Playlist (50 Einheiten). Gibt die ID des Eintrags zurück."""
+    body = {"snippet": {"playlistId": playlist_id, "resourceId": {"kind": "youtube#video", "videoId": video_id}}}
+    return client(cfg).playlistItems().insert(part="snippet", body=body).execute()["id"]
+
+
+def playlist_items(cfg, playlist_id):
+    """video_id → Eintrag-ID in der Reihenfolge der Playlist (1 Einheit je 50)."""
+    yt, out, token = client(cfg), {}, None
+    while True:
+        res = yt.playlistItems().list(part="snippet", playlistId=playlist_id, maxResults=50, pageToken=token).execute()
+        for it in res.get("items", []):
+            out[it["snippet"]["resourceId"]["videoId"]] = it["id"]
+        token = res.get("nextPageToken")
+        if not token:
+            return out
+
+
+def playlist_move(cfg, playlist_id, item_id, video_id, position):
+    body = {"id": item_id, "snippet": {"playlistId": playlist_id, "position": position,
+                                       "resourceId": {"kind": "youtube#video", "videoId": video_id}}}
+    client(cfg).playlistItems().update(part="snippet", body=body).execute()
+
+
+def add_channel_section(cfg, playlist_id):
+    """Zeigt die Playlist als Abschnitt auf der Kanalseite (50 Einheiten)."""
+    body = {"snippet": {"type": "singlePlaylist"}, "contentDetails": {"playlists": [playlist_id]}}
+    return client(cfg).channelSections().insert(part="snippet,contentDetails", body=body).execute()["id"]
+
+
+def post_comment(yt, video_id, text):
+    """Eigener Kommentar unter einem Video (50 Einheiten, braucht youtube.force-ssl, siehe reply_client)."""
+    body = {"snippet": {"videoId": video_id, "topLevelComment": {"snippet": {"textOriginal": text}}}}
+    return yt.commentThreads().insert(part="snippet", body=body).execute()["id"]

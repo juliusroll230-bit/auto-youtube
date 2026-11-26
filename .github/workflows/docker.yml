@@ -92,6 +92,8 @@ jobs:
         run: docker exec app python tests/social_view_test.py
       - name: Vorbilder testen
         run: docker exec app python tests/vorbilder_test.py
+      - name: Mehr Videos am Stück (Frage-Kommentar, Playlist, Gewinner)
+        run: docker exec app python tests/binge_test.py
       - name: Log bei Fehler
         if: failure()
         run: docker logs app

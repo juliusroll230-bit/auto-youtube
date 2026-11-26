@@ -1881,6 +1881,21 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           <div class="cm-log" id="kmLog"></div>
         </div>
       </div>
+      <div class="card" id="bgCard" style="margin-bottom:22px">
+        <div class="card-h"><div><h2>Mehr Videos am Stück</h2><div class="sub">Unter jeden neuen Upload schreibt der Kanal selbst eine Frage an die Zuschauer. Das bringt mehr Kommentare, und die beantwortet die App oben wie gewohnt. Alle erzählten Geschichten landen in einer Playlist, die meistgesehenen stehen oben. Anpinnen erlaubt YouTube nur von Hand in YouTube Studio.</div></div><span class="pill" id="bgStatus"></span></div>
+        <div class="card-b">
+          <div class="cm-ctl">
+            <label class="switch"><input type="checkbox" id="bgAsk"><span class="tr"></span><span>Frage-Kommentar unter jedem Upload</span></label>
+            <label class="switch"><input type="checkbox" id="bgPl"><span class="tr"></span><span>Geschichten-Playlist pflegen</span></label>
+          </div>
+          <p class="tb-note" id="bgNote" hidden></p>
+          <div class="cm-stats" id="bgStats"></div>
+          <h3 class="cm-h">Gewinner, die nachgebaut werden</h3>
+          <div class="cm-log" id="bgWin"></div>
+          <h3 class="cm-h">Letzte Fragen</h3>
+          <div class="cm-log" id="bgLog"></div>
+        </div>
+      </div>
       <div class="card">
         <div class="card-h"><div><h2>Lernmodus</h2><div class="sub" id="learnText"></div></div><span class="pill" id="learnStatus"></span></div>
         <div class="scroll" style="margin-top:8px"><table>
@@ -5675,6 +5690,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderOverview(d, sch);
     renderViewers(d);
     renderComments(d);
+    renderBinge(d);
     renderSocial(d);
     renderSocialView(d);
     renderQuiet(d);
@@ -5765,6 +5781,43 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
   });
   $("kmCheck").addEventListener("click", function () { api("api/comments/check").then(function () { toast("Prüft jetzt die neuen Kommentare"); setTimeout(load, 8000); }, function (e) { toast(e.message); }); });
+
+  // --- Mehr Videos am Stück: Frage-Kommentar, Geschichten-Playlist, Gewinner (binge.py) ---------------
+  function renderBinge(d) {
+    var B = d.binge || {}, st = B.settings || {}, P = B.playlist || {}, A = B.status || {};
+    if (!$("bgCard")) return;
+    $("bgAsk").checked = st.fragen !== false; $("bgAsk").disabled = !S.live;
+    $("bgPl").checked = st.playlist !== false; $("bgPl").disabled = !S.live;
+    var problem = A.fragen_error || (st.fragen !== false && B.can_ask === false ? "Für den Frage-Kommentar im Reiter Zuschauer einmal neu verbinden (Google fragt nach dem Recht, Kommentare zu schreiben)." : "");
+    pill($("bgStatus"), problem ? "warn" : "live", problem ? "Zugang fehlt" : "Aktiv");
+    var note = clear($("bgNote"));
+    note.hidden = !problem;
+    if (problem) note.append(h("b", { text: problem }));
+    var stats = clear($("bgStats"));
+    stats.append(h("span", { text: "Heute " + (B.asked_today || 0) + " Fragen" }), h("span", { text: "Insgesamt " + (B.asked_total || 0) }));
+    if (P.url) stats.append(h("a", { href: P.url, target: "_blank", rel: "noopener", text: "Playlist öffnen (" + (P.count || 0) + " Geschichten)" }));
+    else stats.append(h("span", { text: "Playlist entsteht mit der nächsten Geschichte" }));
+    if (P.section) stats.append(h("span", { text: "Auf der Kanalseite sichtbar" }));
+    var win = clear($("bgWin"));
+    (B.winners || []).forEach(function (w) {
+      win.appendChild(h("div", { cls: "cm-l" }, [h("span", { cls: "t", text: svNum(w.views) }),
+        h("div", { cls: "c" }, [h("span", { cls: "label", text: w.type }), h("div", { text: w.title })])]));
+    });
+    if (!(B.winners || []).length) win.appendChild(h("div", { cls: "label", text: "Noch keine Zahlen. Die tägliche Skript-Aufgabe baut die meistgesehenen Shorts mit neuem Thema nach." }));
+    var log = clear($("bgLog"));
+    (B.asked || []).forEach(function (a) {
+      var at = new Date(a.at);
+      log.appendChild(h("div", { cls: "cm-l" }, [h("span", { cls: "t", text: fDayS.format(at).replace(/,.*/, "") + " " + fTime.format(at) }),
+        h("div", { cls: "c" }, [h("span", { cls: "label", text: a.title || "" }), h("div", { text: a.skip ? "Nicht geschrieben: " + a.skip : a.text.split("\n")[0] })])]));
+    });
+    if (!(B.asked || []).length) log.appendChild(h("div", { cls: "label", text: "Noch keine. Die erste Frage kommt ein paar Minuten nach dem nächsten Upload." }));
+  }
+  ["bgAsk", "bgPl"].forEach(function (id) {
+    $(id).addEventListener("change", function () {
+      api("api/binge/settings", { fragen: $("bgAsk").checked, playlist: $("bgPl").checked })
+        .then(function () { toast(id === "bgAsk" ? ($("bgAsk").checked ? "Frage-Kommentar an" : "Frage-Kommentar aus") : ($("bgPl").checked ? "Playlist an" : "Playlist aus")); }, function (e) { toast(e.message); });
+    });
+  });
 
   // --- Automatisch auf Instagram und TikTok (social.py) ---------------------------------
   function renderSocial(d) {
