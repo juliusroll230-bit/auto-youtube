@@ -44,6 +44,7 @@ import social
 import vorbilder
 import store
 import whop
+import zusammenschnitt
 import einreichen
 import yt
 
@@ -305,6 +306,10 @@ def publish(file, spec, video, total, timings, look, slot, manual, done, long, s
             store.keep_for_share(video, video_id)  # für TikTok und Instagram, bevor die Datei gelöscht wird
         except OSError as e:
             store.log("warn", f"Kopie für TikTok/Instagram nicht gespeichert: {e}")
+        try:
+            zusammenschnitt.keep(video, video_id, spec)  # für den Sonntags-Zusammenschnitt (8 Tage, die besten)
+        except Exception as e:  # noqa: BLE001
+            store.log("warn", f"Kopie für den Zusammenschnitt nicht gespeichert: {e}")
     try:
         os.remove(video)
     except OSError:
@@ -421,6 +426,35 @@ def make_thumbs(spec):
         traceback.print_exc()
         store.log("warn", f"Thumbnail nicht erstellt, YouTube nimmt ein Bild aus dem Video: {e}", agent="studio")
         return None
+
+
+def speak_klar(text):
+    """Ein Satz mit der Stimme „klar“ (Intro und Überleitungen im Zusammenschnitt): (samples, rate)."""
+    import make_short
+    t = tts()
+    pitch, speed, _ = make_short.VOICES["klar"]
+    x = make_short._repitch(make_short.speak_piper(t, text, "klar", length_scale=speed), pitch)
+    return x, t.config.sample_rate
+
+
+def wochen_thumbs(spec, video_id):
+    files = make_thumbs(spec)
+    if not files:
+        return None
+    choice = _safe_variant(True)
+    return choice if apply_thumb(video_id, files, choice[:1]) else None
+
+
+def run_wochenschnitt():
+    """Sonntags-Zusammenschnitt: ab 14 Uhr bauen, ab 17 Uhr hochladen (statt des langen Videos um 19 Uhr)."""
+    def upload(path, spec):
+        yt.check(store.config())
+        with working("publisher", task="Lädt den Zusammenschnitt hoch"):
+            return yt.upload(store.config(), path, spec)
+    with working("studio", task="Baut den Zusammenschnitt der Woche"):
+        zusammenschnitt.run(speak=speak_klar, upload=upload, thumbs=wochen_thumbs)
+    if zusammenschnitt.load()["status"] == "hochgeladen":
+        refresh_stats()
 
 
 def _safe_variant(long):
@@ -1660,6 +1694,8 @@ def scheduler():
                 if fslot and not status["busy"] and not work_lock.locked():
                     background(post_next, fslot, False, False, True)  # Firmen-Spiel: zusätzlich zu den normalen
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
+                if ag["publisher"]["on"] and zusammenschnitt.due():
+                    background(run_wochenschnitt)  # Sonntag: Zusammenschnitt der besten Shorts statt des langen Videos
                 if lslot and not fslot and not status["busy"] and not work_lock.locked():
                     background(post_next, lslot, False, True)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
@@ -2451,6 +2487,8 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:  # noqa: BLE001
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             return self.send(200, {"ok": True})
+        if p == "/api/wochenschnitt/settings":
+            return self.send(200, {"ok": True, **zusammenschnitt.save(on=bool(data.get("on")))})
         if p == "/api/vorschlaege/refresh":
             background(vorschlaege.refresh)
             return self.send(200, {"ok": True})

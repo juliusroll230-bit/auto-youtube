@@ -662,6 +662,9 @@ def posted_items():
             if u.get("kind") != "clip" and not u.get("lang"):   # nur zum Ansehen: der wievielte Upload des Tages, Uhrzeit
                 item["features"]["platz"] = learn.day_slot(per_day.get(day))
                 item["features"]["uhrzeit"] = learn.hour_group(u.get("posted_at"))
+        if u.get("lang"):   # lange Videos: Sonntags-Zusammenschnitt gegen eigene lange Videos (seit 26.11.2026)
+            item.setdefault("features", {})["zusammenschnitt"] = (
+                "Zusammenschnitt" if u.get("zusammenschnitt") else "eigenes langes Video")
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
@@ -1099,6 +1102,7 @@ def dashboard(extra=None, working=None, repo=True):
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
         "abgabe": _safe(lambda: __import__("abgabe").overview(cfg, st), {}),
         "push": _safe(lambda: __import__("push").overview(cfg), {}),
+        "wochenschnitt": _safe(lambda: __import__("zusammenschnitt").overview(posted), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),

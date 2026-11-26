@@ -115,6 +115,21 @@ Die Zentrale schickt kostenlos Push-Nachrichten über [ntfy.sh](https://ntfy.sh)
 - **„Nachrichten aus“** schaltet alles ab. Ohne Thema wird nie etwas gesendet.
 - **Code:** `push.py`, `server.push_worker`. Test: `tests/push_test.py` (mit vorgetäuschtem HTTP).
 
+## Sonntags-Zusammenschnitt (seit 26.11.2026)
+
+Sonntags um 17 Uhr lädt die Zentrale statt des normalen langen Videos einen Zusammenschnitt deiner besten Shorts der Woche hoch.
+Die Karte steht unter Hauptkanal > Sendeplan.
+
+- **Auswahl:** fair nach „Was am besten funktioniert“ (jeder Short gegen die Shorts der Nachbartage). Nur eigene KI-Shorts vom Hauptkanal,
+  keine Kampagnen-Clips, keine Clipi-Uploads, keine Firmen-Folgen.
+- **Länge:** mindestens die 8 besten, aufgefüllt bis ca. 8 Minuten (höchstens 10). 8 Shorts allein wären nur ca. 3 bis 4 Minuten;
+  ab 8 Minuten darf YouTube später Werbung in der Mitte zeigen.
+- **Bild:** Querformat. Jeder Short läuft in der Mitte, dahinter dieselbe Szene groß und weich gezeichnet (keine schwarzen Balken).
+  Intro mit der Stimme „klar“, vor jedem Short eine Karte „Platz N“, Platz 1 zum Schluss, am Ende eine Frage für die Kommentare.
+- **Kapitel** in der Beschreibung, eigenes Thumbnail, Lern-Merkmal „Zusammenschnitt (lange Videos)“.
+- Dafür bleiben die Shorts 8 Tage in `data/woche/` liegen (nur die besten ca. 30, ca. 0,3 bis 0,5 GB).
+- Klappt etwas nicht (zu wenig Shorts, Fehler), kommt um 19 Uhr wie immer das normale lange Video.
+
 ## Kampagnen-Vorschläge (seit 26.11.2026)
 
 Unter Kampagnen > Kampagnen zeigt die Karte „Vorschläge für neue Kampagnen“, welche Content-Rewards-Kampagnen zu dir passen.

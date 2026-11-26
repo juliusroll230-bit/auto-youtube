@@ -88,6 +88,8 @@ jobs:
         run: docker exec app python tests/push_test.py
       - name: Kampagnen-Vorschläge (öffentliche Übersicht, ohne Netz)
         run: docker exec app python tests/vorschlaege_test.py
+      - name: Sonntags-Zusammenschnitt (Auswahl, ffmpeg, Ablauf)
+        run: docker exec app python tests/zusammenschnitt_test.py
       - name: Gesichts-Zuschnitt
         run: docker exec app python tests/facecrop_test.py
       - name: Lange Videos (Regeln, Warteschlange, Wochentage)
