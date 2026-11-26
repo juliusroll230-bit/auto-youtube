@@ -41,6 +41,7 @@ import social
 import vorbilder
 import store
 import whop
+import einreichen
 import yt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -547,6 +548,11 @@ def post_clip(item, slot, manual=False, done="done_slots", busy=True):
             raise RuntimeError("Die Verbindung zum Clip-Kanal ist abgelaufen.") from e
         raise
     clips.mark_posted(c["id"], clip["n"], video_id)
+    if c.get("program"):  # Content-Rewards-Clip: steht jetzt in der Einreich-Station (Absenden macht Julius selbst)
+        try:
+            einreichen.ready(c, {**clip, "video_id": video_id})
+        except Exception as e:  # noqa: BLE001  (darf den Upload nie scheitern lassen)
+            print("Einreich-Station:", repr(e), flush=True)
     record = clips.upload_record(c, clip, slot, video_id)
     if own:
         record["channel"] = "clips"
@@ -1697,7 +1703,7 @@ class Handler(BaseHTTPRequestHandler):
                 background(refresh_stats)
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
-                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(),
+                                                   "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(), "einreichen": store._safe(einreichen.overview, {}),
                                                    "social": social.summary(), "social_view": social.overview(), "vorbilder": vorbilder.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
@@ -2274,6 +2280,13 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "item": item})
+        if p in ("/api/einreichen/submit", "/api/einreichen/undo", "/api/einreichen/skip"):
+            fn = {"submit": einreichen.submit, "undo": einreichen.undo, "skip": einreichen.skip}[p.rsplit("/", 1)[1]]
+            try:
+                entry = fn(str(data.get("id") or ""), data.get("n"))
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            return self.send(200, {"ok": True, "entry": entry})
         if p == "/api/whop/rules":
             try:
                 rules = whop.set_rules(str(data.get("id") or ""), data)
