@@ -1,24 +1,50 @@
 {
- "videos": 5,
- "median": 248,
- "titel_muster": [],
+ "videos": 11,
+ "median": 700,
+ "titel_muster": [
+  {
+   "value": "Regel/Countdown",
+   "videos": 3,
+   "median": 782,
+   "faktor": 1.12
+  },
+  {
+   "value": "Das X, das niemand …",
+   "videos": 3,
+   "median": 434,
+   "faktor": 0.62
+  }
+ ],
  "themenfeld": [
   {
-   "value": "Echte Rätsel & Geschichte",
+   "value": "Grusel (ausgedacht)",
    "videos": 3,
-   "median": 248,
-   "faktor": 1.0
+   "median": 782,
+   "faktor": 1.12
+  },
+  {
+   "value": "Echte Rätsel & Geschichte",
+   "videos": 4,
+   "median": 434,
+   "faktor": 0.62
   }
  ],
  "zwischenhaken": [
   {
    "value": "ohne",
-   "videos": 3,
-   "median": 828,
-   "faktor": 3.34
+   "videos": 8,
+   "median": 782,
+   "faktor": 1.12
   }
  ],
  "gewinner": [
+  {
+   "title": "Schule: 60 Sekunden bis zur Glocke 🔔",
+   "views": 1103,
+   "typ": "Horror",
+   "skript": "seed/0305-horror-block-schule-sechzig-sekunden.json",
+   "welt": "Blockwelt"
+  },
   {
    "title": "Die Spuren, die niemand erklären kann 🐾",
    "views": 836,
@@ -34,11 +60,25 @@
    "welt": "Strichmännchen"
   },
   {
-   "title": "Die Schlacht gegen niemand 🔦",
-   "views": 248,
+   "title": "Schwimm nachts nie bis zur Mitte 🌊",
+   "views": 782,
+   "typ": "Horror",
+   "skript": "seed/0330-horror-block-see-nachts-mitte.json",
+   "welt": "Blockwelt"
+  },
+  {
+   "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
+   "views": 759,
+   "typ": "Erzählte Geschichte",
+   "skript": "seed/0259-geschichte-block-kiste-vor-der-tuer.json",
+   "welt": "Blockwelt"
+  },
+  {
+   "title": "Die Feuerkugeln, die aus dem Fluss steigen 🔥",
+   "views": 434,
    "typ": "Mystery",
-   "skript": "seed/0282-mystery-schlacht-los-angeles-1942.json",
-   "welt": "Strichmännchen"
+   "skript": "seed/0320-mystery-block-feuerkugeln-mekong.json",
+   "welt": "Blockwelt"
   },
   {
    "title": "Der Platz neben mir im Bus 🚌",
@@ -48,6 +88,6 @@
    "welt": "Strichmännchen"
   }
  ],
- "updated_at": "2026-11-26T06:30:00+00:00",
+ "updated_at": "2026-11-26T16:58:58+00:00",
  "hinweis": "Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass."
 }
