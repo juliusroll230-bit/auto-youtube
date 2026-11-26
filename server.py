@@ -31,6 +31,7 @@ import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+import abgabe
 import agents
 import binge
 import clips
@@ -530,7 +531,7 @@ def clip_target():
     return ({**cfg, "refresh_token": cfg["clip_token"]}, True) if cfg["clip_token"] else (cfg, False)
 
 
-def post_clip(item, slot, manual=False, done="done_slots", busy=True):
+def post_clip(item, slot, manual=False, done="done_slots", busy=True, extra=None):
     """Lädt einen freigegebenen Clip hoch (läuft innerhalb von post_next bzw. mit work_lock).
     busy=False: Clipi-Upload nebenher, die Anzeige „beschäftigt“ des Hauptkanals bleibt unberührt."""
     c, clip = item
@@ -556,6 +557,7 @@ def post_clip(item, slot, manual=False, done="done_slots", busy=True):
     record = clips.upload_record(c, clip, slot, video_id)
     if own:
         record["channel"] = "clips"
+    record.update(extra or {})
     store.mark_clip_posted(slot, record, done=done)
     store.agent_done("publisher")
     store.log("ok", f"Clip gepostet{' auf dem Clip-Kanal' if own else ''}: {clip['title']}" + (" (manuell)" if manual else ""),
@@ -606,6 +608,36 @@ def post_clip_slot(slot, manual=False):
         traceback.print_exc()
         store.agent_done("publisher", error=e)
         store.log("error", f"Clipi-Upload fehlgeschlagen: {e}", agent="publisher", kind="error")
+        return False
+    finally:
+        clipi_lock.release()
+
+
+def post_abgabe(slot):
+    """Sendeplatz ab Nr. X (Publisher-Einstellung, Standard 11): Clipi lädt statt eines KI-Shorts den
+    wertvollsten freigegebenen Content-Rewards-Clip hoch (abgabe.py). Danach steht er in der Einreich-Station,
+    absenden macht Julius selbst. True: Platz erledigt. False: der Hauptkanal lädt wie immer."""
+    try:
+        cfg = store.config()
+        item = abgabe.choose(slot, cfg)
+    except Exception:  # noqa: BLE001  (darf den Sendeplatz nie blockieren)
+        traceback.print_exc()
+        return False
+    if not item or not clipi_lock.acquire(timeout=300):
+        return False
+    try:
+        c, clip, camp = item
+        extra = abgabe.record_extra(cfg, slot)
+        post_clip((c, clip), slot, done="done_slots", busy=False, extra=extra)
+        store.log("info", f"Platz Nr. {extra['slot_nr']} an Clipi abgegeben: „{clip['title']}“ ({camp.get('title') or 'Kampagne'}). "
+                  "Jetzt unter Kampagnen > Einreichen einreichen.", agent="publisher", kind="input")
+        return True
+    except Exception as e:  # noqa: BLE001
+        if yt.is_limit(e):
+            until = (store.now() + dt.timedelta(days=1)).replace(hour=9, minute=30, second=0, microsecond=0)
+            store.pause_clipi(until)
+        traceback.print_exc()
+        store.log("warn", f"Platz konnte nicht an Clipi gehen ({e}). Er bleibt beim Hauptkanal.", agent="publisher")
         return False
     finally:
         clipi_lock.release()
@@ -1591,7 +1623,9 @@ def scheduler():
             ag = agents.settings(cfg)
             if cfg["refresh_token"]:
                 slot = store.due_slot() if ag["publisher"]["on"] else None
-                if slot and store.ready_items():
+                if slot and post_abgabe(slot):
+                    pass  # Platz ab Nr. X ging an Clipi (Content-Rewards-Clip)
+                elif slot and store.ready_items():
                     post_ready(slot)  # fertiger Short aus dem Vorrat: nur hochladen, auch wenn gerade etwas rendert
                 elif slot and not status["busy"]:
                     post_next(slot)

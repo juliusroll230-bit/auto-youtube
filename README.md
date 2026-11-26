@@ -72,6 +72,27 @@ Jede Karte erklärt sich in einem Satz und zeigt nur die Knöpfe, die man oft br
 - Fachbegriffe (Thompson, 1,3× Schnitt, LUFS, Webhook, Token …) sind gepunktet unterstrichen. Antippen zeigt eine kurze Erklärung.
 - Code: alles in `web/index.html`, Abschnitt „Einfach-Ebene“ (`UI_CARDS`, `UI_HEAD`, `INTRO`, `TERMS`, `uiBuild`, `uiRender`). Test: `tests/ui_test.py`.
 
+## Späte Plätze an Clipi (seit 26.11.2026)
+
+Uploads ab ungefähr dem 11. am Tag bekommen auf dem Hauptkanal kaum Aufrufe. Darum gibt der Publisher die späten Sendeplätze an Clipi ab.
+
+- **Einstellung:** Agent Publisher > Mehr anzeigen > „Plätze an Clipi abgeben ab Nr.“. Standard ist 11, also bei stündlich 8 bis 22 Uhr die Plätze von 18 bis 22 Uhr. 0 schaltet es aus.
+- **Was passiert:** Auf diesen Plätzen lädt Clipi statt eines KI-Shorts einen freigegebenen Content-Rewards-Clip hoch.
+  - Der wertvollste kommt zuerst: Wert = YouTube-Rate × Restbudget.
+  - Danach steht der Clip unter **Kampagnen > Einreichen**. Absenden machst du selbst.
+- **Übersprungen werden:**
+  - Kampagnen, die nicht „läuft“ sind.
+  - Kampagnen ohne YouTube-Rate.
+  - Kampagnen mit weniger als 10 % Budget übrig.
+  - Kampagnen ohne eingetragene Vorgaben.
+  - Clips, die kürzer als die Mindestlänge sind, denen der Pflicht-Text fehlt oder die ein verbotenes Wort enthalten.
+- **Ohne passenden Clip oder ohne Clip-Kanal** bleibt der Platz beim Hauptkanal.
+- **Karte „Späte Plätze für Kampagnen-Clips“** unter Hauptkanal > Sendeplan:
+  - Sie zeigt die heute abgegebenen Plätze, den nächsten Clip und warum etwas übersprungen wurde.
+  - Nach 14 Tagen vergleicht sie: Ø Aufrufe und geschätztes Geld der Clips gegen die gleichen Plätze auf dem Hauptkanal in den 14 Tagen davor.
+- **Wichtig:** Content Rewards will den Link kurz nach dem Posten. Die Plätze liegen darum abends, und die Einreich-Station markiert offene Clips nach 2 Stunden orange.
+- **Code:** `abgabe.py`, `server.post_abgabe`, Test: `tests/abgabe_test.py`.
+
 ## Einreich-Station (Content Rewards)
 
 Postet der Publisher einen Clip einer Whop-Kampagne (Clip mit `program`), steht er unter **Kampagnen > Einreichen** und im Live-Feed kommt „Clip bereit zum Einreichen“. Eine Zahl an „Einreichen“, an der Gruppe Geld und am Video-Clipper zeigt, wie viele offen sind. Clips, die länger als 2 Stunden offen sind, werden orange.

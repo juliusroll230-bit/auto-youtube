@@ -2066,6 +2066,10 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
           <tbody id="planBody"></tbody>
         </table>
       </div>
+      <div class="card" id="abCard">
+        <div class="card-h"><div><h2>Späte Plätze für Kampagnen-Clips</h2><div class="sub" id="abSub"></div></div></div>
+        <div class="card-b" id="abBody"></div>
+      </div>
       <div class="card cm-plan">
         <div class="card-h"><div><h2>Community-Posts heute</h2><div class="sub" id="cmPlanSub2"></div></div><a class="link" href="#community">Alle Posts</a></div>
         <div class="card-b"><ol class="cm-tl" id="cmTl2"></ol></div>
@@ -3434,6 +3438,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     publisher: [
       { k: "on", type: "switch", label: "Uploads an", hint: "Aus: Zu den Sendezeiten wird nichts gepostet. Die Sendezeiten stellst du im Bereich Kanal ein." },
       { k: "clips_per_day", type: "range", min: 0, max: 10, step: 1, label: "Clips pro Tag", fmt: function (v) { return v ? "bis zu " + v : "keine"; }, hint: "So viele Sendeplätze am Tag bekommen einen freigegebenen Clip statt eines KI-Shorts, gleichmäßig über den Tag verteilt." },
+      { k: "abgabe_ab", type: "range", min: 0, max: 15, step: 1, label: "Plätze an Clipi abgeben ab Nr.", fmt: function (v) { return v ? "ab Nr. " + v : "aus"; }, hint: "Ab diesem Sendeplatz des Tages lädt Clipi einen freigegebenen Content-Rewards-Clip hoch statt eines KI-Shorts (der wertvollste zuerst: YouTube-Rate mal Restbudget). Ohne passenden Clip bleibt der Platz beim Hauptkanal. Einreichen machst du selbst unter Kampagnen > Einreichen." },
       { k: "long_per_week", type: "range", min: 0, max: 7, step: 1, label: "Lange Videos pro Woche", fmt: function (v) { return v ? v + " pro Woche" : "keine"; }, hint: "Querformat-Erklärvideos (7 bis 12 Minuten), abends um 19 Uhr. Sie zählen nicht zu den Shorts am Tag." },
       { type: "info", label: "Ziel-Plattformen", rows: [["YouTube Shorts", "automatisch", true], ["TikTok", "per Download"], ["Instagram Reels", "per Download"]], hint: "TikTok und Instagram erlauben automatisches Posten nur für geprüfte Firmen-Apps. Lade den Clip im Bereich Kampagnen herunter und poste ihn in der App." }
     ],
@@ -5561,6 +5566,38 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       { hook: hook || "Ein Fakt.", claim: dayTxt + " um " + fTime.format(x.at) + " Uhr." }, (x.v.niche || "Neuer Short") + ".");
   }
 
+  // Späte Plätze an Clipi (abgabe.py): heute abgegeben, nächster Clip, Gründe, Vergleich nach 14 Tagen
+  function renderAbgabe(d) {
+    var A = d.abgabe || {}, box = $("abBody");
+    if (!box) return;
+    clear(box);
+    $("abSub").textContent = A.on ? "Ab Platz Nr. " + A.from + (A.slots && A.slots.length ? " (heute " + A.slots.join(", ") + " Uhr)" : "") : "Ausgeschaltet";
+    var line = function (t, cls) { box.appendChild(h("p", { cls: cls || "label", text: t })); };
+    if (!A.on) { line("Einschalten: Agent Publisher > Mehr anzeigen > „Plätze an Clipi abgeben ab Nr.“."); return; }
+    if (!A.connected) line("Erst den Clip-Kanal (Clipi) unter Kanäle verbinden. Bis dahin lädt der Hauptkanal alle Plätze.");
+    box.appendChild(h("div", { cls: "kv2" }, [h("b", { text: nf.format(A.today || 0) }), h("span", { text: (A.today === 1 ? " Platz" : " Plätze") + " heute an Clipi abgegeben · " + nf.format(A.total || 0) + " insgesamt" })]));
+    if (A.next) {
+      var ab = A.next;
+      line("Als Nächstes: „" + ab.title + "“ aus " + ab.campaign + " (" + ab.currency + nf1.format(ab.rate || 0) + " pro 1.000 Aufrufe" + (ab.left != null ? ", noch " + ab.currency + nf.format(Math.round(ab.left)) + " Budget" : "") + ").");
+    } else if (A.connected) {
+      line("Gerade kein passender Clip. Die späten Plätze bleiben beim Hauptkanal, bis du in der Freigabe einen Kampagnen-Clip freigibst.");
+    }
+    if ((A.skipped || []).length) {
+      box.appendChild(uiFold("ab-skip", "Übersprungen (" + A.skipped.length + ")", A.skipped.map(function (x) { return h("p", { cls: "label", text: x.what + ": " + x.why }); }), "Budget, Status oder Vorgaben"));
+    }
+    var C = A.compare;
+    if (C && !C.ready) line("Vergleich mit dem Hauptkanal ab " + fDayS.format(new Date(C.ready_on + "T12:00:00")) + " (nach 14 Tagen).");
+    if (C && C.ready) {
+      var row = function (label, x, money) { return h("div", { cls: "ab-cmp" }, [h("b", { text: label }), h("span", { text: nf.format(x.n) + " Uploads · Ø " + nf.format(x.avg) + " Aufrufe" }), h("span", { text: money })]); };
+      var win = C.clips.money > (C.main.money[1] || 0);
+      box.appendChild(h("div", { cls: "ab-cmpw" }, [
+        h("p", { cls: "eyebrow", text: "Vergleich der letzten " + C.days + " Tage" }),
+        row("Clipi (Kampagnen-Clips)", C.clips, "ca. $" + nf1.format(C.clips.money) + " geschätzt"),
+        row("Hauptkanal davor (gleiche Plätze)", C.main, "ca. " + nf1.format(C.main.money[0]) + " bis " + nf1.format(C.main.money[1]) + " € Werbegeld"),
+        h("p", { cls: "label", text: win ? "Die abgegebenen Plätze bringen mehr Geld. So lassen." : "Der Hauptkanal lag auf diesen Plätzen gleichauf oder vorn. Überlege, die Zahl im Publisher höher zu setzen." })
+      ]));
+    }
+  }
   function renderPlan(d, sch) {
     renderNext(sch);
     var nClips = sch.filter(function (x) { return x.clip; }).length;
@@ -6000,7 +6037,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderSocial(d);
     renderSocialView(d);
     if (pg === "ruhe") renderQuiet(d);
-    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else renderPlan(d, sch); }
+    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); } }
     renderChannel(d);
     renderHours(d);
     renderKp(d);
@@ -6815,7 +6852,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     "zentrale/heute": "Hier siehst du auf einen Blick, was heute passiert und was als Nächstes kommt.",
     "zentrale/agenten": "Hier siehst du deine Agenten. Jeder erledigt eine Aufgabe der App von selbst. Tipp einen an, dann siehst du, was er gerade macht.",
     "zentrale/geld": "Hier siehst du, was deine Kampagnen-Clips ungefähr verdient haben und wie weit Clipi vom Werbegeld weg ist.",
-    "hauptkanal/plan": "Hier siehst du, welche Shorts wann auf deinen Hauptkanal kommen. Das plant die App selbst.",
+    "hauptkanal/plan": "Hier siehst du, welche Shorts wann auf deinen Hauptkanal kommen. Das plant die App selbst, späte Plätze gehen an Clipi für Kampagnen-Clips.",
     "hauptkanal/videos": "Hier siehst du alle Videos, die schon online sind, mit ihren Aufrufen.",
     "hauptkanal/community": "Hier siehst du die Community-Posts für heute: Text kopieren, in YouTube posten, hier abhaken.",
     "clipi": "Hier siehst du deinen Clip-Kanal. Du ziehst Videos rein, Clipi schneidet und postet sie von selbst.",
@@ -6925,6 +6962,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   var STW = { ok: "Läuft", warn: "Wartet", err: "Fehler", todo: "Zu tun", off: "Aus", done: "Erledigt" };
   var UI_CARDS = [
     // Zentrale
+    { q: "#abCard", what: "Späte Sendeplätze, die auf dem Hauptkanal kaum Aufrufe bekommen, gehen an Clipi für Kampagnen-Clips, die Geld bringen.",
+      st: function (d) { var A = d.abgabe || {}; if (!A.on) return ["off", "Aus", "Einstellung im Publisher"]; if (!A.connected) return ["warn", "Wartet", "Clip-Kanal fehlt"];
+        return [A.ready ? "ok" : "warn", A.ready ? "Läuft" : "Wartet", stNum(A.ready, "Clip bereit", "Clips bereit"), A.slots && A.slots.length ? "ab " + A.slots[0] + " Uhr" : null]; } },
     { q: "#goCard", what: "Zeigt die Schritte, bis Clips und Kanäle ganz von selbst laufen.",
       st: function (d, el) { var a = el.querySelectorAll("#goList > li").length, b = el.querySelectorAll("#goList > li.done").length; return [b >= a ? "done" : "todo", b >= a ? "Erledigt" : "Zu tun", b + " von " + a + " Schritten"]; } },
     { q: "v-zentrale@Als Nächstes", what: "Die nächsten Uploads auf allen Kanälen.",
@@ -7871,4 +7911,11 @@ abbr.term:hover::after, abbr.term:focus::after { content: attr(data-tip); positi
   details.c-set[open] > .c-set-b, .dots-pop { animation: none; }
   details.c-set > summary::before, details.dots > summary, .adv-a { transition: none; }
 }
+/* Späte Plätze an Clipi */
+.kv2 { display: flex; align-items: baseline; gap: 6px; margin: 2px 0 8px; }
+.kv2 b { font-size: 28px; letter-spacing: -.02em; }
+.ab-cmpw { margin-top: 12px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
+.ab-cmp { display: grid; grid-template-columns: 1.3fr 1.4fr 1fr; gap: 8px; padding: 6px 0; border-top: 1px solid rgba(255,255,255,.06); font-size: 14px; }
+.ab-cmp span { color: var(--muted, #9a9aa0); }
+@media (max-width: 640px) { .ab-cmp { grid-template-columns: 1fr; gap: 2px; } }
 </style>

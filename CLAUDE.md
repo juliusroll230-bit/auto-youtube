@@ -424,3 +424,26 @@ Liste aller Knöpfe mit Gruppe: `docs/ui-knoepfe.md` (bei neuen Knöpfen dort na
 - Nach Änderungen alle Reiter am PC (1366 px) und Handy (390 px) laden: keine Konsolenfehler, kein seitliches Scrollen, Knöpfe zählen
   (sichtbare button, a.btn, input, select, summary außerhalb geschlossener `details`), die Zahl darf nicht wieder steigen.
 
+## Späte Plätze an Clipi für Content-Rewards-Clips (seit 26.11.2026, Julius' Phase D)
+
+Publisher-Einstellung `abgabe_ab` (Standard 11, 0 = aus): Ab diesem Sendeplatz des Tages lädt **Clipi** statt eines KI-Shorts den wertvollsten
+freigegebenen Content-Rewards-Clip hoch (`abgabe.py`, `server.post_abgabe`, läuft im Scheduler vor dem normalen Upload).
+
+- **Reihenfolge:** Wert = YouTube-Rate × Restbudget. Kampagnen ohne Budget-Angabe kommen nach denen mit Budget.
+- **Kampagnen raus:**
+  - Status nicht „läuft“.
+  - Keine YouTube-Rate.
+  - Unter 10 % Budget übrig.
+  - Keine Vorgaben eingetragen (`rules` fehlt).
+- **Clips raus:**
+  - Kürzer als `min_len`.
+  - Pflicht-Text fehlt in der Beschreibung.
+  - Verbotenes Wort in Titel, Beschreibung oder Text.
+- **Ohne passenden Clip oder Clip-Kanal bleibt der Platz beim Hauptkanal.** Fehler beim Upload ebenso: Der Hauptkanal lädt dann wie immer.
+- **Eintrag in `uploads`:** `abgabe: true`, `slot_nr`, `channel: "clips"`. Danach steht der Clip in der Einreich-Station.
+  Einreichen macht weiterhin **nur Julius** (keine Bots bei Content Rewards).
+- Das ist die einzige Stelle, an der Content-Rewards-Clips von selbst gepostet werden. `clips.auto_allowed` bleibt für alle anderen Wege bei Nein.
+- **Karte „Späte Plätze für Kampagnen-Clips“** (Hauptkanal > Sendeplan): heute abgegeben, nächster Clip, Gründe fürs Überspringen.
+  Nach 14 Tagen kommt der Vergleich `abgabe.compare`: Clips gegen dieselben Plätze auf dem Hauptkanal in den 14 Tagen davor.
+  Liegt der Hauptkanal dort gleichauf oder vorn, Julius vorschlagen, die Zahl höher zu setzen.
+
