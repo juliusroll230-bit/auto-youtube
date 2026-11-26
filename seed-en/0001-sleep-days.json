@@ -1,0 +1,112 @@
+{
+  "slug": "en-sleep-days",
+  "quelle": "erklaert-woche-wach",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#14142a",
+    "#c4841c"
+  ],
+  "accent": "#ffe14d",
+  "title": "What happens if you don't sleep for days? 😵",
+  "description": "What sleep loss does to your body and brain, and Randy Gardner's record from 1964. Don't try this at home.\n\n#science #sleep #brain #body #shorts",
+  "tags": [
+    "science",
+    "sleep",
+    "brain",
+    "body",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila",
+    "hut": "keiner"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "NO SLEEP | day four",
+    "Your brain glitches"
+  ],
+  "segments": [
+    {
+      "text": "Day four without sleep: you see things that aren't there.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "👁️"
+      }
+    },
+    {
+      "text": "After one night awake, your focus already drops.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 24,
+        "einheit": "hours awake",
+        "objekt": "⏰",
+        "farbcode": "#3a1d24"
+      }
+    },
+    {
+      "text": "After two days, your brain nods off for *seconds* without warning.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "😴",
+        "text": "Microsleep"
+      }
+    },
+    {
+      "text": "By day three, shadows start to look like shapes.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "zittert"
+      }
+    },
+    {
+      "text": "In nineteen sixty-four, a student named Randy Gardner stayed awake for *eleven days*.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": 1964,
+        "text": "Record",
+        "objekt": "🏆",
+        "stempel": "verified"
+      }
+    },
+    {
+      "text": "He got moody, forgetful, and at times saw things that weren't there.",
+      "szene": {
+        "typ": "akte",
+        "text": "Effects",
+        "punkte": [
+          "😵",
+          "🫥",
+          "😡",
+          "🧠"
+        ]
+      }
+    },
+    {
+      "text": "Then he slept about fourteen hours and soon seemed fine again.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "k_o",
+        "aktion": "faellt",
+        "objekt": "🛏️"
+      }
+    },
+    {
+      "text": "So why do we need sleep at all? Scientists still don't *fully know*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "❓",
+        "text": "Why sleep?"
+      }
+    }
+  ]
+}

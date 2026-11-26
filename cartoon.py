@@ -140,8 +140,10 @@ def mood(spec):
     return learn.cartoon_mood(spec)
 
 
-def word_times(segments, timings):
-    """Wort-Zeiten für die Untertitel: jeder Satz bekommt seine Zeit, die Wörter teilen sie nach Länge."""
+def word_times(segments, timings, lang="de"):
+    """Wort-Zeiten für die Untertitel: jeder Satz bekommt seine Zeit, die Wörter teilen sie nach Länge.
+    Deutsche Zahlwörter werden als Ziffern gezeigt; englische Skripte (EN-Kanal) bleiben, wie sie sind."""
+    show = numerals.display_word if lang == "de" else (lambda w: w)
     words = []
     for li, (seg, (s0, s1)) in enumerate(zip(segments, timings)):
         toks = re.sub(r"\*([^*]+)\*", lambda m: " ".join("*" + x for x in m.group(1).split()), seg["text"]).split()
@@ -150,7 +152,7 @@ def word_times(segments, timings):
         for w, x in zip(toks, weights):
             st = s0 + (s1 - s0) * acc / total
             acc += x
-            words.append({"w": numerals.display_word(w.replace("*", "")), "s": round(st, 3), "line": li, "k": "*" in w})
+            words.append({"w": show(w.replace("*", "")), "s": round(st, 3), "line": li, "k": "*" in w})
     for i, w in enumerate(words):
         nxt = words[i + 1]["s"] if i + 1 < len(words) else timings[-1][1]
         w["e"] = round(min(nxt, w["s"] + 1.2), 3)
@@ -198,7 +200,7 @@ def plan(spec, timings, total, cta_at=None):
         scenes.append(sc)
     for sc in scenes:  # gleiche Figur im ganzen Video, wenn die Szene nichts anderes sagt
         sc.setdefault("figur", spec.get("figur") or {"farbe": "rot"})
-    return {"scenes": scenes, "words": word_times(segs, timings), "dur": round(total, 3), "stimmung": mood(spec),
+    return {"scenes": scenes, "words": word_times(segs, timings, spec.get("language") or "de"), "dur": round(total, 3), "stimmung": mood(spec),
             "welt": spec.get("welt") or "strich", "figur": spec.get("figur") or {},  # "block": 3D-Blockwelt
             "wide": is_long(spec),  # lange Videos: Querformat 1920x1080
             # Soundeffekte "stark": Bild-Stoß mit kurzem Aufblitzen auf der Auflösung

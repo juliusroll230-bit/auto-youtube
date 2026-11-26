@@ -130,6 +130,21 @@ Die Karte steht unter Hauptkanal > Sendeplan.
 - Dafür bleiben die Shorts 8 Tage in `data/woche/` liegen (nur die besten ca. 30, ca. 0,3 bis 0,5 GB).
 - Klappt etwas nicht (zu wenig Shorts, Fehler), kommt um 19 Uhr wie immer das normale lange Video.
 
+## Englischer Kanal (seit 26.11.2026)
+
+Ein eigener YouTube-Kanal bekommt englische Fassungen der deutschen Shorts, die schon gut liefen. Reiter Kanäle > Englisch (EN).
+
+- **Verbinden:** englischen Kanal auf YouTube anlegen (gleiches Google-Konto, „Kanal erstellen“), dann im Reiter auf „Englischen Kanal verbinden“.
+  Ohne verbundenen Kanal passiert nichts.
+- **Vorlagen:** deutsche Shorts mit mindestens 1.500 Aufrufen oder unter den besten 10 %. Keine erzählten Ich-Geschichten
+  (zu deutsch), keine Kampagnen-Clips, keine Firmen-Folgen. Die Liste steht im Reiter unter „Gute Vorlagen“ und in `docs/nische.json` (`en_quellen`).
+- **Skripte:** die tägliche Skript-Aufgabe schreibt höchstens 2 am Tag nach `seed-en/` (Regeln in CLAUDE.md). Sie kommen mit dem nächtlichen Update auf den Server.
+- **Video:** englische Piper-Stimme (wie die Einschlaf-Geschichten), englische Untertitel, kein Abo-Satz.
+- **Sendezeiten:** 2 am Tag, 21 Uhr (20 Uhr London, 15 Uhr New York) und 1 Uhr (19 Uhr New York, 16 Uhr Los Angeles).
+- **Lernmodus:** eigener, nur aus den EN-Uploads (Soundeffekte, Musik, Übergang, Dranbleiben). EN-Uploads zählen nicht zum Hauptkanal.
+- **Beschreibung:** sagt immer, dass die Stimme synthetisch ist.
+- Fehlt die englische Stimme auf dem Server, rendert die Zentrale nichts Englisches und zeigt einen Hinweis.
+
 ## Kampagnen-Vorschläge (seit 26.11.2026)
 
 Unter Kampagnen > Kampagnen zeigt die Karte „Vorschläge für neue Kampagnen“, welche Content-Rewards-Kampagnen zu dir passen.

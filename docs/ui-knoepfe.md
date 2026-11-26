@@ -156,6 +156,8 @@ Reiter mit 0 Knöpfen (Quiet Corner > Hochgeladen und Lernen, Übersicht > Ziel,
 | Kampagnen-Vorschläge: „Auf Content Rewards ansehen“, „Nicht interessant“ | B | ⋯ am Vorschlag |
 | Kampagnen-Vorschläge: „Jetzt neu prüfen“ | B | aufklappbar „Einstellungen“ unten in der Karte |
 | Sonntags-Zusammenschnitt: Ein-/Ausschalten | B | aufklappbar „Einstellungen“ unten in der Karte (Sendeplan) |
+| Englischer Kanal: „Englischen Kanal verbinden“ | A | Reiter Kanäle > Englisch (EN), nur solange nicht verbunden |
+| Englischer Kanal: Pausieren, Trennen | B | ⋯ oben im Reiter Englisch (EN) |
 
 ## Was jede Karte neu zeigt
 

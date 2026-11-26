@@ -75,6 +75,12 @@ def main(now=None):
     specs = specs_by_title()
     out = nische.public_stats(rated, specs)
     out["gewinner"] = winners(rated, specs)
+    try:   # Vorlagen für den englischen Kanal (en.py): ab 1.500 Aufrufen oder beste 10 %, ohne Ich-Geschichten
+        import en
+        out["en_quellen"] = en.sources(rated, lambda v: specs.get(nische.plain_title(v.get("title")).lower()),
+                                       en.used_sources())
+    except Exception as e:  # noqa: BLE001
+        print("en_quellen nicht berechnet:", e)
     out["updated_at"] = now.isoformat(timespec="seconds")
     out["hinweis"] = ("Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. "
                       "Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass.")
