@@ -259,7 +259,9 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "halten": "Dranbleiben (Frage oben/Balken)", "platz": "Upload des Tages", "uhrzeit": "Uhrzeit",
                  # Nischen-Kompass (seit 25.11.2026, aus claude-content-skills): aus dem Skript berechnet, gilt auch für alte Videos
                  "themenfeld": "Themenfeld", "titel_muster": "Titel-Muster", "zwischenhaken": "Zwischen-Haken (Mitte)",
-                 "nachbau": "Gewinner-Nachbau"}
+                 "nachbau": "Gewinner-Nachbau",
+                 # lange Videos (seit 26.11.2026): Sonntags-Zusammenschnitt der besten Shorts gegen eigene lange Videos
+                 "zusammenschnitt": "Zusammenschnitt (lange Videos)"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")

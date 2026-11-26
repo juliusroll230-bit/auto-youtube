@@ -475,3 +475,18 @@ freigegebenen Content-Rewards-Clip hoch (`abgabe.py`, `server.post_abgabe`, läu
 - Baut Content Rewards die Seite um (kein JSON-LD mehr), zeigt die Karte den Fehler und die alten Vorschläge bleiben. Dann `parse_overview` anpassen.
 - Test: `tests/vorschlaege_test.py` (nachgebaute Seiten, kein Netz).
 
+## Sonntags-Zusammenschnitt (seit 26.11.2026, Julius' Phase G)
+
+`zusammenschnitt.py`, aus dem Scheduler (`server.run_wochenschnitt`). Sonntag ab 14 Uhr bauen, ab 17 Uhr hochladen; danach steht der Tag
+in `long_slots`, das normale lange Video (19 Uhr) entfällt. Ohne Erfolg (zu wenig Shorts, Fehler) läuft das lange Video wie immer.
+
+- **Auswahl** (`pick`): `learn.relative` der letzten 7 Tage, nur eigene KI-Shorts des Hauptkanals (`eligible`: kein `kind: clip`,
+  kein `channel: clips`, kein `abgabe`, kein `lang`, kein Firmen-Spiel). Mindestens 8 (`MIN_CLIPS`), aufgefüllt bis ca. 8 Minuten, höchstens 10.
+- **Bild:** Neu rendern im Querformat würde den Server viele Stunden blockieren, darum 9:16 in der Mitte, dahinter dieselbe Szene
+  groß + weich + dunkler (ffmpeg, `clip_video`). Intro, Karten „Platz N“ und Schluss-Frage mit der Stimme „klar“ (`server.speak_klar`).
+  Platz 1 zum Schluss. Kapitel in der Beschreibung (ab 0:00), Thumbnail mit Figur des besten Shorts.
+- **Aufbewahren:** `publish` legt jeden KI-Short in `data/woche/` ab (`keep`), `prune` löscht nach 8 Tagen und behält von den
+  bewerteten nur die besten `KEEP_TOP` (30).
+- Upload-Eintrag: `lang: true`, `zusammenschnitt: true`, `sources`. Lern-Merkmal „Zusammenschnitt (lange Videos)“ (`store.posted_items`).
+- Keine neuen Skripte nötig, die tägliche Aufgabe ändert sich nicht. Test: `tests/zusammenschnitt_test.py` (echtes ffmpeg, kein Netz).
+

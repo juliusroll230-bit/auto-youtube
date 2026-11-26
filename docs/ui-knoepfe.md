@@ -155,6 +155,7 @@ Reiter mit 0 Knöpfen (Quiet Corner > Hochgeladen und Lernen, Übersicht > Ziel,
 | Kampagnen-Vorschläge: „Verknüpfen“ | A | bleibt für 3 Vorschläge, weitere unter „Weitere Vorschläge“ |
 | Kampagnen-Vorschläge: „Auf Content Rewards ansehen“, „Nicht interessant“ | B | ⋯ am Vorschlag |
 | Kampagnen-Vorschläge: „Jetzt neu prüfen“ | B | aufklappbar „Einstellungen“ unten in der Karte |
+| Sonntags-Zusammenschnitt: Ein-/Ausschalten | B | aufklappbar „Einstellungen“ unten in der Karte (Sendeplan) |
 
 ## Was jede Karte neu zeigt
 

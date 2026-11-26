@@ -2074,6 +2074,10 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="card-h"><div><h2>Späte Plätze für Kampagnen-Clips</h2><div class="sub" id="abSub"></div></div></div>
         <div class="card-b" id="abBody"></div>
       </div>
+      <div class="card" id="zsCard">
+        <div class="card-h"><div><h2>Sonntags-Zusammenschnitt</h2><div class="sub" id="zsSub"></div></div></div>
+        <div class="card-b" id="zsBody"></div>
+      </div>
       <div class="card cm-plan">
         <div class="card-h"><div><h2>Community-Posts heute</h2><div class="sub" id="cmPlanSub2"></div></div><a class="link" href="#community">Alle Posts</a></div>
         <div class="card-b"><ol class="cm-tl" id="cmTl2"></ol></div>
@@ -5645,6 +5649,31 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       ]));
     }
   }
+  function renderWochenschnitt(d) {
+    var Z = d.wochenschnitt || {}, box = $("zsBody");
+    if (!box) return;
+    var key = JSON.stringify(Z);
+    if (box.dataset.key === key) return;
+    box.dataset.key = key;
+    clear(box);
+    var nxt = Z.next ? new Date(Z.next) : null;
+    $("zsSub").textContent = Z.on ? "Läuft automatisch · nächster " + (nxt ? fDayS.format(nxt) + " " + fTime.format(nxt) + " Uhr" : "Sonntag 17:00 Uhr") : "Ausgeschaltet";
+    var line = function (t) { box.appendChild(h("p", { cls: "label", text: t })); };
+    if (Z.on) {
+      if ((Z.preview || []).length) line("Gerade vorn: " + Z.preview.map(function (t) { return "„" + t + "“"; }).join(", ") + ".");
+      else line("Noch nicht genug Shorts dieser Woche aufbewahrt. Es braucht mindestens 8 und zusammen ca. 8 Minuten.");
+      if (Z.status === "übersprungen" || Z.status === "fehler") line("Letzten Sonntag ausgelassen: " + (Z.reason || "") + ". Dafür lief das normale lange Video.");
+    }
+    if (Z.last) {
+      box.appendChild(h("p", { cls: "label" }, [h("span", { text: "Zuletzt: " }),
+        h("a", { cls: "link", href: "https://youtu.be/" + Z.last.video_id, target: "_blank", rel: "noopener", text: Z.last.title }),
+        h("span", { text: Z.last.views != null ? ", " + nf.format(Z.last.views) + " Aufrufe" : "" })]));
+    }
+    box.appendChild(uiFold("zs-set", "Einstellungen", [
+      h("p", { cls: "label", text: "Aufbewahrt: " + nf.format(Z.kept || 0) + " Shorts (8 Tage, nur die besten)." }),
+      actBtn(Z.on ? "Ausschalten" : "Einschalten", "", function () { return api("api/wochenschnitt/settings", { on: !Z.on }).then(soon); })
+    ], "an oder aus"));
+  }
   function renderPlan(d, sch) {
     renderNext(sch);
     var nClips = sch.filter(function (x) { return x.clip; }).length;
@@ -6111,7 +6140,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderSocial(d);
     renderSocialView(d);
     if (pg === "ruhe") renderQuiet(d);
-    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); } }
+    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); renderWochenschnitt(d); } }
     renderChannel(d);
     renderHours(d);
     renderKp(d);
@@ -7043,6 +7072,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     { q: "#abCard", what: "Späte Sendeplätze, die auf dem Hauptkanal kaum Aufrufe bekommen, gehen an Clipi für Kampagnen-Clips, die Geld bringen.",
       st: function (d) { var A = d.abgabe || {}; if (!A.on) return ["off", "Aus", "Einstellung im Publisher"]; if (!A.connected) return ["warn", "Wartet", "Clip-Kanal fehlt"];
         return [A.ready ? "ok" : "warn", A.ready ? "Läuft" : "Wartet", stNum(A.ready, "Clip bereit", "Clips bereit"), A.slots && A.slots.length ? "ab " + A.slots[0] + " Uhr" : null]; } },
+    { q: "#zsCard", what: "Sonntags um 17 Uhr kommt statt des langen Videos ein Zusammenschnitt deiner besten Shorts der Woche, Platz 1 zum Schluss.",
+      st: function (d) { var Z = d.wochenschnitt || {}; if (!Z.on) return ["off", "Aus", "langes Video wie immer"];
+        return [Z.status === "fehler" ? "warn" : "ok", Z.status === "fehler" ? "Wartet" : "Läuft", "Sonntag 17 Uhr", Z.last && Z.last.views != null ? nf.format(Z.last.views) + " Aufrufe zuletzt" : null]; } },
     { q: "#goCard", what: "Zeigt die Schritte, bis Clips und Kanäle ganz von selbst laufen.",
       st: function (d, el) { var a = el.querySelectorAll("#goList > li").length, b = el.querySelectorAll("#goList > li.done").length; return [b >= a ? "done" : "todo", b >= a ? "Erledigt" : "Zu tun", b + " von " + a + " Schritten"]; } },
     { q: "v-zentrale@Als Nächstes", what: "Die nächsten Uploads auf allen Kanälen.",
