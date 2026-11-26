@@ -407,3 +407,20 @@ Klappt der Upload nicht, gibt es 3 Versuche, danach liegt er in `relax-teasers/`
   und öffnet die Kampagne, **absenden macht Julius selbst** (Content Rewards erlaubt keine Bots, keine Clipper-API). Nie automatisch einreichen,
   keine Browser-Automatisierung, keine inoffizielle API. Stand je Clip in `einreichen.json` (`eingereicht_at`, `skip`), Clips von vor dem
   26.11. ohne Eintrag zählen nicht als offen. Test: `tests/einreichen_test.py`.
+
+## Oberfläche: wenige Knöpfe, jeder Teil erklärt sich in einem Satz (seit 26.11.2026, Julius' Wunsch)
+
+Liste aller Knöpfe mit Gruppe: `docs/ui-knoepfe.md` (bei neuen Knöpfen dort nachtragen). Sichtbar waren 268, jetzt 121.
+
+- Jeder neue Knopf bekommt eine Gruppe. **A (oft)** bleibt sichtbar, höchstens 1 bis 2 Hauptknöpfe je Karte, als klarer Apple-Knopf.
+  **B (selten)** kommt in `uiDots(key, [knöpfe], label)` („⋯“) oder `uiFold(key, "Einstellungen", [...], hinweis)` unten in der Karte.
+  **C (macht die App selbst)** wird nur als Satz angezeigt („Läuft automatisch · nächster Upload 18:00“); der Regler gehört
+  unter Kanäle > Erweitert (`#advBox`, aufgebaut in `uiBuild`) oder in den Agenten hinter „Mehr anzeigen“.
+- Jede neue Karte bekommt einen Eintrag in `UI_CARDS` (web/index.html): `what` (ein Satz „Was macht das?“), `st` (Status in einem Wort:
+  ok/warn/err/todo/off/done plus höchstens 2 Kennzahlen), optional `set`/`fold`/`dots`. Jeder neue Reiter oder Unterreiter einen Satz
+  „Hier siehst du …“ in `INTRO` (sonst schlägt `tests/ui_test.py` fehl). Neue Agenten einen Satz in `AGENT_WHAT`.
+- Fachbegriffe in `TERMS` mit einem Satz Erklärung eintragen (zeigt die App einmal je Karte als Tooltip).
+- Nichts löschen, nur umziehen. Alte `#reiter`-Links müssen weiter gehen (`ALIAS`). Offen/zu von „⋯“ und „Einstellungen“ merkt sich `S.open`.
+- Nach Änderungen alle Reiter am PC (1366 px) und Handy (390 px) laden: keine Konsolenfehler, kein seitliches Scrollen, Knöpfe zählen
+  (sichtbare button, a.btn, input, select, summary außerhalb geschlossener `details`), die Zahl darf nicht wieder steigen.
+

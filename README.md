@@ -52,13 +52,25 @@ Die Seitenleiste hat 5 Gruppen statt 11 Reitern untereinander:
 | Kanäle | Hauptkanal (Sendeplan, Videos), Clipi, Quiet Corner, Insta & TikTok |
 | Geld | Kampagnen (Kampagnen, Freigabe, Einreichen, Statistik), Einreichen, Geld |
 | Auswertung | Übersicht (Wachstum, Ziel & Plan), Zuschauer (Was am besten funktioniert, Nischen-Kompass, Vorbilder, Hook-Prüfung, Mehr Videos am Stück, Wo sie abschalten) |
-| Einstellungen | Kanäle verbinden (Deine Kanäle, Insta & TikTok, Verbindung, darin „Mehr Einstellungen“ zum Aufklappen) |
+| Einstellungen | Kanäle verbinden (Deine Kanäle, Insta & TikTok, Verbindung, Erweitert) |
 
 - Jeder Reiter beginnt mit 3 bis 4 großen Kennzahlen, darunter ein Segment-Schalter für die Unterreiter.
 - Die Adresse merkt sich Reiter und Unterreiter, z. B. `#zuschauer/vorbilder`. Alte Links wie `#kampagnen`, `#ruhe`, `#plan` oder `#videos` gehen weiter.
 - Am Handy wird die Seitenleiste zur Leiste unten mit den 5 Gruppen. Oben stehen die Reiter der Gruppe zum Wischen.
 - Es wird nur der sichtbare Reiter gezeichnet (Diagramme, Agenten-Dorf, Video-Galerie). Das hält die Seite schnell.
 - Neue Karten: im HTML in den passenden `<section class="view">` legen und in `PAGES` (web/index.html) einem Unterreiter zuordnen (`"#id"`, `".klasse"` oder `"@Überschrift"`). Karten ohne Zuordnung sind in jedem Unterreiter zu sehen.
+
+## Wenige Knöpfe (seit 26.11.2026)
+
+Jede Karte erklärt sich in einem Satz und zeigt nur die Knöpfe, die man oft braucht. Die ganze Liste steht in [docs/ui-knoepfe.md](docs/ui-knoepfe.md). Sichtbare Knöpfe: vorher 268, jetzt 121.
+
+- **Oft (A):** bleibt sichtbar, höchstens 1 bis 2 Hauptknöpfe je Karte (Einreichen, Freigeben/Ablehnen, Verknüpfen).
+- **Selten (B):** liegt im „⋯“-Menü an der Karte oder oben rechts im Reiter, oder im Bereich „Einstellungen“ unten in der Karte.
+- **Macht die App selbst (C):** wird nur angezeigt („Läuft automatisch · …“). Ändern kann man es unter **Kanäle verbinden > Erweitert** (Sendezeiten, Agenten-Einstellungen, Quiet Corner Länge und Uhrzeit, Mehr Einstellungen, Von Hand anstoßen).
+- Jede Karte hat oben „Was macht das?“ und einen Status in einem Wort mit Farbpunkt (Läuft, Wartet, Fehler, Zu tun …) plus höchstens 2 Kennzahlen. Jeder Reiter beginnt mit „Hier siehst du …“.
+- Ein Agent zeigt beim Antippen zuerst „Was macht er“, „Was macht er gerade“ und „Was hat er heute geschafft“. Schalter und Regler kommen erst nach „Mehr anzeigen“.
+- Fachbegriffe (Thompson, 1,3× Schnitt, LUFS, Webhook, Token …) sind gepunktet unterstrichen. Antippen zeigt eine kurze Erklärung.
+- Code: alles in `web/index.html`, Abschnitt „Einfach-Ebene“ (`UI_CARDS`, `UI_HEAD`, `INTRO`, `TERMS`, `uiBuild`, `uiRender`). Test: `tests/ui_test.py`.
 
 ## Einreich-Station (Content Rewards)
 
