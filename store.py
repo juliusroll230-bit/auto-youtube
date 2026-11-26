@@ -69,7 +69,11 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   # Profile auf TikTok und Instagram (nur zum Verlinken, dort wird von Hand gepostet)
                   "socials": {"tiktok": "", "instagram": ""},
                   # Firmen-Spiel (firma.py): eine Folge pro Tag zusätzlich (vier Firmen reihum), ab dieser Uhrzeit, None = aus
-                  "firma_hour": 20}
+                  "firma_hour": 20,
+                  # Push-Nachrichten über ntfy.sh (push.py): Thema entsteht beim ersten Start, Tagesbericht ab dieser Uhrzeit
+                  "ntfy_topic": "", "ntfy_on": True, "ntfy_hour": 19,
+                  # Adresse der Zentrale für Links in Nachrichten (merkt sich der Server beim Öffnen der Website)
+                  "base_url": ""}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
 LISTENERS = []     # bekommen jedes neue Ereignis aus log() (server.py: Live-Animation in der Zentrale)
 PAUSE_S = 0.18     # wie make_short.PAUSE; für geschätzte Satzanfänge älterer Videos
@@ -157,6 +161,9 @@ def init():
         if not cfg.get("webhook_token"):
             import secrets
             cfg["webhook_token"] = secrets.token_urlsafe(18)
+        if not cfg.get("ntfy_topic"):
+            import push
+            cfg["ntfy_topic"] = push.new_topic()
         write("config.json", cfg)
         try:
             os.chmod(path("config.json"), 0o600)
@@ -1091,6 +1098,7 @@ def dashboard(extra=None, working=None, repo=True):
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
         "abgabe": _safe(lambda: __import__("abgabe").overview(cfg, st), {}),
+        "push": _safe(lambda: __import__("push").overview(cfg), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),

@@ -33,6 +33,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import abgabe
 import agents
+import push
 import binge
 import clips
 import comments
@@ -641,6 +642,26 @@ def post_abgabe(slot):
         return False
     finally:
         clipi_lock.release()
+
+
+def remember_base(host):
+    """Merkt sich die Adresse der Zentrale (für Links in Push-Nachrichten), z. B. http://192.168.178.98:8090."""
+    if not host or not re.fullmatch(r"[A-Za-z0-9.\-]+(:\d{1,5})?", host) or host.split(":")[0] in ("localhost", "127.0.0.1"):
+        return
+    base = "http://" + host
+    if store.config().get("base_url") != base:
+        store.save_config(base_url=base)
+
+
+def push_worker():
+    """Eigener Faden: jede Minute Push-Prüfungen, Sofort-Meldungen (max. 1/Std.), Tages- und Wochenbericht."""
+    store.LISTENERS.append(push.on_log)
+    while True:
+        try:
+            push.tick()
+        except Exception:  # noqa: BLE001
+            traceback.print_exc()
+        time.sleep(60)
 
 
 def clipi_worker():
@@ -1763,6 +1784,7 @@ class Handler(BaseHTTPRequestHandler):
             typ = {"jpg": "image/jpeg", "png": "image/png", "txt": "text/plain; charset=utf-8"}[name.rsplit(".", 1)[1]]
             return self.send(200, open(file, "rb").read(), typ, cache="max-age=3600")
         if p == "/api/dashboard":
+            remember_base(self.headers.get("Host"))
             if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
@@ -1805,6 +1827,11 @@ class Handler(BaseHTTPRequestHandler):
         m = re.fullmatch(r"/api/community/([a-z]+-[0-9a-f]{10})\.png", p)
         if m:
             return self.community_image(m.group(1))
+        if p == "/api/push/qr.svg":
+            topic = push.settings()["topic"]
+            if not topic:
+                return self.send(404, {"error": "Noch kein Thema"})
+            return self.send(200, push.qr_svg(push.subscribe_url(topic)), "image/svg+xml")
         if p == "/api/watermark.png":
             return self.send_png(watermark_file(), "60-sekunden-wissen-wasserzeichen.png")
         m = re.fullmatch(r"/api/thumbx/([a-z0-9-]+)-([AB])\.jpg", p)
@@ -2404,6 +2431,31 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "item": item})
+        if p == "/api/push/settings":
+            changes = {}
+            if "on" in data:
+                changes["ntfy_on"] = bool(data["on"])
+            if "hour" in data:
+                try:
+                    hour = int(data["hour"])
+                except (TypeError, ValueError):
+                    return self.send(400, {"error": "Bitte eine Uhrzeit angeben."})
+                if not 6 <= hour <= 23:
+                    return self.send(400, {"error": "Die Uhrzeit muss zwischen 6 und 23 Uhr liegen."})
+                changes["ntfy_hour"] = hour
+            if data.get("new_topic"):
+                changes["ntfy_topic"] = push.new_topic()
+            store.save_config(**changes)
+            return self.send(200, {"ok": True, "push": push.overview(store.config())})
+        if p == "/api/push/test":
+            try:
+                ok = push.send("Test aus der Shorts-Zentrale", "Klappt! Ab jetzt kommen hier Tagesbericht und wichtige Meldungen.",
+                               tags=["white_check_mark"], click=push.link(push.settings()["base"], "#kanal"), force=True)
+            except Exception as e:  # noqa: BLE001
+                return self.send(502, {"error": f"ntfy.sh war nicht erreichbar: {e}"})
+            if not ok:
+                return self.send(400, {"error": "Noch kein Thema."})
+            return self.send(200, {"ok": True})
         if p in ("/api/einreichen/submit", "/api/einreichen/undo", "/api/einreichen/skip"):
             fn = {"submit": einreichen.submit, "undo": einreichen.undo, "skip": einreichen.skip}[p.rsplit("/", 1)[1]]
             try:
@@ -2632,6 +2684,7 @@ def main():
     threading.Thread(target=scheduler, daemon=True).start()
     threading.Thread(target=clip_worker, daemon=True).start()
     threading.Thread(target=clipi_worker, daemon=True).start()
+    threading.Thread(target=push_worker, daemon=True).start()
     threading.Thread(target=relax_worker, daemon=True).start()
     threading.Thread(target=ready_worker, daemon=True).start()
     background(warm_thumbs)
