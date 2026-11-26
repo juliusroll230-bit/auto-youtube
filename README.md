@@ -115,6 +115,21 @@ Die Zentrale schickt kostenlos Push-Nachrichten über [ntfy.sh](https://ntfy.sh)
 - **„Nachrichten aus“** schaltet alles ab. Ohne Thema wird nie etwas gesendet.
 - **Code:** `push.py`, `server.push_worker`. Test: `tests/push_test.py` (mit vorgetäuschtem HTTP).
 
+## Kampagnen-Vorschläge (seit 26.11.2026)
+
+Unter Kampagnen > Kampagnen zeigt die Karte „Vorschläge für neue Kampagnen“, welche Content-Rewards-Kampagnen zu dir passen.
+
+- Alle 6 Stunden liest die Zentrale die **öffentliche** Übersicht der Clipping-Kampagnen (ohne Anmeldung) und höchstens 8 Kampagnenseiten, mit Pause dazwischen.
+- Vorher prüft sie `robots.txt`. Verbietet die Seite das Lesen, holt sie nichts.
+- Ein Vorschlag muss passen:
+  - Shorts erlaubt, mindestens 1 $ pro 1.000 Aufrufe auf YouTube.
+  - Weniger als 50 % vom Budget verbraucht, Kampagne nimmt Clips an.
+  - Material wird gestellt.
+  - Kein Pflicht-Anteil an US-Publikum.
+- Deutsche Kampagnen und unsere Nischen (Gaming, Wissen, Mystery, Geschichten) stehen oben.
+- **„Verknüpfen“** legt die Kampagne nur in der Zentrale an. **Beitreten machst du selbst** auf Content Rewards. Die Zentrale tritt nie bei und reicht nie ein.
+- Zahlt eine neue Kampagne mindestens 2 $ pro 1.000 Aufrufe, kommt eine Push-Nachricht (einmal je Kampagne).
+
 ## Einreich-Station (Content Rewards)
 
 Postet der Publisher einen Clip einer Whop-Kampagne (Clip mit `program`), steht er unter **Kampagnen > Einreichen** und im Live-Feed kommt „Clip bereit zum Einreichen“. Eine Zahl an „Einreichen“, an der Gruppe Geld und am Video-Clipper zeigt, wie viele offen sind. Clips, die länger als 2 Stunden offen sind, werden orange.

@@ -461,3 +461,17 @@ freigegebenen Content-Rewards-Clip hoch (`abgabe.py`, `server.post_abgabe`, läu
 - **`ntfy_on: false` oder kein Thema:** Es wird nichts gesendet. Der Test-Knopf ist die Ausnahme.
 - **Test:** `tests/push_test.py` ersetzt HTTP über `push._send_impl`. Nie echte Nachrichten aus Tests senden.
 
+## Kampagnen-Vorschläge aus der öffentlichen Übersicht (seit 26.11.2026, Julius' Phase F)
+
+`vorschlaege.py`, alle 6 Stunden aus dem Scheduler (`server.py`, erster Lauf ca. 6 Minuten nach dem Start). Karte `#vsCard` unter Kampagnen > Kampagnen.
+
+- **Gelesen wird nur Öffentliches:** die Übersicht `contentrewards.com/c/discover/clipping` (Liste aus dem JSON-LD der Seite) und höchstens
+  `MAX_DETAILS` (8) Kampagnenseiten pro Lauf, 2 s Pause dazwischen. Vor jedem Lauf `robots.txt` prüfen (`allowed`); verbietet sie es, nichts lesen.
+  Keine Anmeldung, keine Browser-Automatisierung, keine API von Content Rewards.
+- **Filter:** YouTube-Rate ≥ 1 $/1k, Budget unter 50 % verbraucht, „Accepting clips“, Material gestellt („Reference materials N files“),
+  kein Pflicht-Anteil an US-Publikum (`US_ONLY`). Sortierung: Deutsch, dann Nische, dann Rate.
+- **„Verknüpfen“** ruft nur `whop.add` auf. **Nie beitreten, nie einreichen**, das macht Julius selbst.
+- Push über `push.alert("camp:<id>", …)`, nur ab 2 $/1k (`PUSH_RATE`) und nur einmal je Kampagne (`notified`).
+- Baut Content Rewards die Seite um (kein JSON-LD mehr), zeigt die Karte den Fehler und die alten Vorschläge bleiben. Dann `parse_overview` anpassen.
+- Test: `tests/vorschlaege_test.py` (nachgebaute Seiten, kein Netz).
+

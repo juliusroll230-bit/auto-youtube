@@ -1743,6 +1743,10 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         </form>
         <div class="wplist" id="wpList"></div>
       </div>
+      <div class="card vsc" id="vsCard">
+        <div class="card-h"><div><h2>Vorschläge für neue Kampagnen</h2><div class="sub" id="vsSub"></div></div></div>
+        <div class="card-b" id="vsList"></div>
+      </div>
       <details class="card more">
         <summary class="card-h"><div><h2>Weitere Wege</h2><div class="sub">Ordner auf dem Server, Webhook, TikTok und Instagram</div></div></summary>
           <div class="card-b ways">
@@ -5035,6 +5039,35 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       h("div", { cls: "foot-a" }, [h("span", { cls: "label", text: sum }), right])
     ]);
   }
+  // Kampagnen-Vorschläge aus der öffentlichen Übersicht (vorschlaege.py): nur verknüpfen, beitreten macht Julius selbst
+  function renderVorschlaege(d) {
+    var V = d.vorschlaege || {}, box = $("vsList");
+    if (!box) return;
+    var key = JSON.stringify([V.items, V.error, V.checked_at, S.live]);
+    if (box.dataset.k === key) return;
+    box.dataset.k = key;
+    clear(box);
+    $("vsSub").textContent = V.checked_at ? "Zuletzt geprüft " + whenTxt(new Date(V.checked_at)) + ", alle " + (V.every_hours || 6) + " Stunden neu" : "Die erste Prüfung kommt in ein paar Minuten";
+    if (V.error) box.appendChild(h("p", { cls: "msg err", text: V.error }));
+    var items = V.items || [];
+    if (!items.length && !V.error) box.appendChild(h("p", { cls: "label", text: "Gerade passt keine neue Kampagne: Shorts erlaubt, mindestens $1 pro 1.000 Aufrufe, unter 50 % Budget verbraucht, Material gestellt und kein US-Publikum Pflicht." }));
+    items.forEach(function (x, i) {
+      var link = actBtn("Verknüpfen", "primary", function () { return api("api/vorschlaege/link", { id: x.id }).then(function () { toast("Verknüpft. Beitreten machst du selbst auf Content Rewards."); soon(); }); });
+      var hide = actBtn("Nicht interessant", "", function () { return api("api/vorschlaege/hide", { id: x.id }).then(soon); });
+      var open = h("a", { cls: "btn sm", href: x.url, target: "_blank", rel: "noopener", text: "Auf Content Rewards ansehen" });
+      var tags = [x.german ? "Deutsch" : null, x.niche ? "passt zu uns" : null, x.materials ? x.materials + (x.materials === 1 ? " Datei" : " Dateien") + " gestellt" : null].filter(Boolean).join(" · ");
+      var row = h("div", { cls: "vs-row" }, [
+        h("div", { style: "min-width:0" }, [h("b", { text: x.title }),
+          h("span", { text: x.currency + (x.rate || 0).toFixed(2).replace(".", ",") + " pro 1.000 Aufrufe auf YouTube" + (x.left != null ? " · noch " + x.currency + nf.format(Math.round(x.left)) + " Budget" : "") + (tags ? " · " + tags : "") }),
+          x.about ? h("small", { text: x.about }) : null]),
+        h("div", { cls: "row-acts" }, [link, uiDots("vs-" + x.id, [open, hide], "Mehr zu dieser Kampagne")])
+      ]);
+      if (i < 3) box.appendChild(row);
+      else { if (!box.querySelector("#vsMore")) { var f = uiFold("vs-more", "Weitere Vorschläge (" + (items.length - 3) + ")", [h("div", { id: "vsMore" })]); box.appendChild(f); } $("vsMore").appendChild(row); }
+    });
+    var re = actBtn("Jetzt neu prüfen", "", function () { return api("api/vorschlaege/refresh", {}).then(function () { toast("Prüft gerade, dauert ca. 30 Sekunden."); setTimeout(soon, 30000); }); });
+    box.appendChild(uiFold("vs-set", "Einstellungen", [h("p", { cls: "label", text: "Gelesen wird nur die öffentliche Übersicht auf Content Rewards, so wie robots.txt es erlaubt. Die Zentrale tritt nie selbst bei und reicht nie selbst ein." }), re], "neu prüfen"));
+  }
   function renderCampaigns(d) {
     var box = $("camps"), ae = document.activeElement;
     var ct = d.clip_totals || {}, cl = (agentById("clipper") || {}).settings || {};
@@ -6072,7 +6105,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderMoney(d);
     renderCommunity(d);
     renderClipiMoney(d);
-    if (pg === "kampagnen") { renderCampaigns(d); renderEinreichen(d); }
+    if (pg === "kampagnen") { renderCampaigns(d); renderEinreichen(d); renderVorschlaege(d); }
     if (pg === "uebersicht") renderOverview(d, sch);
     if (pg === "zuschauer") { renderViewers(d); renderComments(d); renderBinge(d); }
     renderSocial(d);
@@ -6652,7 +6685,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     clipi: { name: "Clipi" },
     ruhe: { name: "Quiet Corner", subs: [["plan", "Als Nächstes", ["@Als Nächstes"]], ["hoch", "Hochgeladen", ["@Hochgeladen"]], ["lernen", "Was am besten läuft", ["@Was am besten läuft"]], ["look", "Kanal-Look", ["@Kanal-Look"]]] },
     social: { name: "Insta & TikTok" },
-    kampagnen: { name: "Kampagnen", subs: [["kampagnen", "Kampagnen", [".newc", ".wpc", ".more"]], ["freigabe", "Freigabe", ["#camps"]], ["einreichen", "Einreichen", ["#erCard"]], ["statistik", "Statistik", ["#erStats", "#erCr"]]] },
+    kampagnen: { name: "Kampagnen", subs: [["kampagnen", "Kampagnen", [".newc", ".wpc", ".vsc", ".more"]], ["freigabe", "Freigabe", ["#camps"]], ["einreichen", "Einreichen", ["#erCard"]], ["statistik", "Statistik", ["#erStats", "#erCr"]]] },
     geld: { name: "Geld" },
     uebersicht: { name: "Übersicht", subs: [["wachstum", "Wachstum", ["@Wachstum", "@Aufrufe je Video"]], ["ziel", "Ziel & Plan", ["@Ziel: Geld", "@Als Nächstes", "#ovShare"]]] },
     zuschauer: { name: "Zuschauer", subs: [["best", "Was am besten funktioniert", ["@Lernmodus", "@Was am besten", "@Thumbnails"]], ["kompass", "Nischen-Kompass", ["#kompass"]], ["vorbilder", "Vorbilder", ["#vorbilder"]], ["hook", "Hook-Prüfung", ["@Hook-Prüfung"]], ["binge", "Mehr Videos am Stück", ["#bgCard", "#kmCard"]], ["abschalten", "Wo sie abschalten", ["#zSetup", "#zData"]]] },
@@ -7003,6 +7036,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   var STW = { ok: "Läuft", warn: "Wartet", err: "Fehler", todo: "Zu tun", off: "Aus", done: "Erledigt" };
   var UI_CARDS = [
     // Zentrale
+    { q: "#vsCard", what: "Sucht alle 6 Stunden in der öffentlichen Übersicht von Content Rewards nach Kampagnen, die zu dir passen. Beitreten machst du selbst.",
+      st: function (d) { var V = d.vorschlaege || {}; return V.error ? ["warn", "Wartet", "Übersicht gerade nicht lesbar"] : [(V.items || []).length ? "todo" : "ok", (V.items || []).length ? "Zu tun" : "Läuft", stNum((V.items || []).length, "Vorschlag", "Vorschläge")]; } },
     { q: "#pushCard", what: "Schickt dir Tagesbericht und wichtige Meldungen kostenlos aufs Handy, über die App ntfy.",
       st: function (d) { var P = d.push || {}; return P.on && P.topic ? ["ok", "Läuft", "Bericht um " + P.hour + " Uhr", P.pending ? stNum(P.pending, "Meldung wartet", "Meldungen warten") : null] : ["off", "Aus", "nichts wird gesendet"]; } },
     { q: "#abCard", what: "Späte Sendeplätze, die auf dem Hauptkanal kaum Aufrufe bekommen, gehen an Clipi für Kampagnen-Clips, die Geld bringen.",
@@ -7968,4 +8003,11 @@ abbr.term:hover::after, abbr.term:focus::after { content: attr(data-tip); positi
 .push-steps { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; font-size: 14px; }
 .push-steps code { word-break: break-all; background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 6px; }
 @media (max-width: 640px) { .push-b { grid-template-columns: 1fr; } .push-qr { margin: 0 auto; } }
+/* Kampagnen-Vorschläge */
+.vs-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+.vs-row:first-child { border-top: 0; }
+.vs-row b { display: block; overflow: hidden; text-overflow: ellipsis; }
+.vs-row span, .vs-row small { display: block; color: var(--muted, #9a9aa0); font-size: 13px; }
+.vs-row small { margin-top: 2px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+@media (max-width: 640px) { .vs-row { flex-direction: column; align-items: stretch; } }
 </style>

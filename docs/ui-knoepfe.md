@@ -152,6 +152,9 @@ Reiter mit 0 Knöpfen (Quiet Corner > Hochgeladen und Lernen, Übersicht > Ziel,
 | Agenten-Einstellungen | C | Kanäle > Erweitert > „Agenten-Einstellungen“ |
 | Mehr Einstellungen (echte Videoclips, Stimme von Fish Audio) | C | Kanäle > Erweitert |
 | „Jetzt ein Video posten“, „Alles aktualisieren“ | B | Kanäle > Erweitert > „Von Hand anstoßen“ |
+| Kampagnen-Vorschläge: „Verknüpfen“ | A | bleibt für 3 Vorschläge, weitere unter „Weitere Vorschläge“ |
+| Kampagnen-Vorschläge: „Auf Content Rewards ansehen“, „Nicht interessant“ | B | ⋯ am Vorschlag |
+| Kampagnen-Vorschläge: „Jetzt neu prüfen“ | B | aufklappbar „Einstellungen“ unten in der Karte |
 
 ## Was jede Karte neu zeigt
 
