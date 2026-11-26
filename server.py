@@ -34,6 +34,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import abgabe
 import agents
 import push
+import vorschlaege
 import binge
 import clips
 import comments
@@ -1634,12 +1635,16 @@ def refresh_vorbilder():
 
 def scheduler():
     last_stats = last_sync = last_analytics = last_whop = last_social = last_binge = 0.0
+    last_vorschlag = time.time() - (vorschlaege.EVERY_HOURS - 0.1) * 3600  # erster Lauf ca. 6 Min. nach dem Start
     while True:
         try:
             if time.time() - last_whop > whop.REFRESH_HOURS * 3600:
                 last_whop = time.time()
                 if whop.load():
                     background(whop.refresh)
+            if time.time() - last_vorschlag > vorschlaege.EVERY_HOURS * 3600:
+                last_vorschlag = time.time()
+                background(vorschlaege.refresh)
             cfg = store.config()
             ag = agents.settings(cfg)
             if cfg["refresh_token"]:
@@ -1791,6 +1796,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(), "einreichen": store._safe(einreichen.overview, {}),
+                                                   "vorschlaege": store._safe(vorschlaege.overview, {}),
                                                    "social": social.summary(), "social_view": social.overview(), "vorbilder": vorbilder.summary()},
                                                   working=tasks_now(), repo=bool(SCRIPTS_REPO)))
         if p == "/api/live":
@@ -2431,6 +2437,23 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             store.log("info", f"Whop-Kampagne verknüpft: {item['title']}", agent="clipper", kind="input")
             return self.send(200, {"ok": True, "item": item})
+        if p in ("/api/vorschlaege/link", "/api/vorschlaege/hide"):
+            pid = str(data.get("id") or "")
+            try:
+                if p.endswith("/link"):
+                    item = vorschlaege.link(pid)
+                    store.log("info", f"Kampagne aus den Vorschlägen verknüpft: {item['title']}. Beitreten machst du selbst auf Content Rewards.",
+                              agent="clipper", kind="input")
+                    return self.send(200, {"ok": True, "item": item})
+                vorschlaege.hide(pid)
+            except ValueError as e:
+                return self.send(400, {"error": str(e)})
+            except Exception:  # noqa: BLE001
+                return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
+            return self.send(200, {"ok": True})
+        if p == "/api/vorschlaege/refresh":
+            background(vorschlaege.refresh)
+            return self.send(200, {"ok": True})
         if p == "/api/push/settings":
             changes = {}
             if "on" in data:

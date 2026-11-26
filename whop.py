@@ -17,7 +17,8 @@ import store
 FILE = "whop.json"
 URL_RE = re.compile(r"https?://(?:www\.)?contentrewards\.com/(?:c/)?(?:campaigns|discover)/([0-9a-fA-F-]{36})")
 PLATFORMS = ("TikTok", "Instagram", "YouTube", "Facebook", "Snapchat", "Twitter", "X")
-STATUS = {"active": "läuft", "live": "läuft", "paused": "pausiert", "ended": "beendet", "completed": "beendet"}
+STATUS = {"active": "läuft", "live": "läuft", "accepting clips": "läuft", "not accepting clips": "pausiert",
+          "paused": "pausiert", "ended": "beendet", "completed": "beendet"}
 MONEY = r"([$€£])\s?([\d][\d.,]*)"
 REFRESH_HOURS = 3
 
@@ -78,7 +79,7 @@ def parse(page):
     one = lambda label: re.search(label + r"\s*" + MONEY, text)
     mn, mx = one("Min payout"), one("Max payout")
     bud = re.search(r"Budget\s*" + MONEY + r"\s*/\s*" + MONEY, text)
-    st = re.search(r"\b(Active|Live|Paused|Ended|Completed)\b", text)
+    st = re.search(r"\b(Not accepting clips|Accepting clips|Active|Live|Paused|Ended|Completed)\b", text)
     return {
         "title": title.strip()[:120],
         "brand": brand.strip()[:60],
