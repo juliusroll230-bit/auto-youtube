@@ -61,6 +61,7 @@ Reiter mit 0 Knöpfen (Quiet Corner > Hochgeladen und Lernen, Übersicht > Ziel,
 | Element | Gruppe | Wo jetzt |
 |---|---|---|
 | Sendeplan: Themen-Filter (6 Knöpfe) | B | ⋯ oben rechts |
+| Späte Plätze für Kampagnen-Clips (Phase D) | C | nur Anzeige. Die Zahl „ab Nr.“ steht im Agenten Publisher unter „Mehr anzeigen“. |
 | Community-Posts heute: „Abhaken“ | A | bleibt |
 | Videos: Sortieren (Neueste, Aufrufe, Likes, Dranbleiben) | B | ⋯ oben rechts |
 | Community: Anzahl pro Tag (1–5), „Andere Vorschläge“ | B | ⋯ oben rechts |
