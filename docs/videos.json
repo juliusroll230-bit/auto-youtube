@@ -6,11 +6,47 @@
  },
  "videos": [
   {
+   "id": "HNLTUagAuiM",
+   "title": "Wer baut mir jeden Tag eine Stufe? 🪜",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine neue Stufe vor meinem Haus auf dem Felsen, und niemand will es gewesen sein.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-26T20:35:31+00:00",
+   "thumb": "thumbs/HNLTUagAuiM.jpg"
+  },
+  {
+   "id": "vNd-7qMZZ5I",
+   "title": "Die Frau im Tal, die niemand kannte 🧳",
+   "text": "Norwegen, 1970: Im Isdalen wird eine tote Frau gefunden. Sie hatte viele falsche Namen, und bis heute ist ihre Identität nicht geklärt.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-26T19:35:32+00:00",
+   "thumb": "thumbs/vNd-7qMZZ5I.jpg"
+  },
+  {
+   "id": "MG5f_2UjzlI",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Raketenfirma (Tag 4) 🚀",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Raketenfirma „Abo Space“ ein. Heute: 189 Mitarbeiter und 59.700 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 290,
+   "published": "2026-11-26T19:08:56+00:00",
+   "thumb": "thumbs/MG5f_2UjzlI.jpg"
+  },
+  {
+   "id": "gzj1tVPHL5I",
+   "title": "Der Wal, den niemand je sah 🐋",
+   "text": "Seit 1989 nehmen Unterwassermikrofone einen Ruf bei 52 Hertz auf, höher als bei Blauwalen. Gesehen hat dieses Tier bisher niemand.",
+   "niche": "Wissen",
+   "views": 309,
+   "published": "2026-11-26T18:35:41+00:00",
+   "thumb": "thumbs/gzj1tVPHL5I.jpg"
+  },
+  {
    "id": "2s3nb0x1YSs",
    "title": "Auf der Parkbank steht mein Name 🌳",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im Park steht eine Bank mit meinem Namen, und ich weiß nicht, woher sie kommt.",
    "niche": "Geschichte",
-   "views": 5,
+   "views": 315,
    "published": "2026-11-26T14:36:42+00:00",
    "thumb": "thumbs/2s3nb0x1YSs.jpg"
   },
@@ -19,7 +55,7 @@
    "title": "Der Nachbar will jeden Abend ein Ei 🥚",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend klingelt der neue Nachbar, und erst am Ende verstehe ich, warum.",
    "niche": "Geschichte",
-   "views": 560,
+   "views": 927,
    "published": "2026-11-26T13:55:43+00:00",
    "thumb": "thumbs/DBX5NhQsbRM.jpg"
   },
@@ -28,7 +64,7 @@
    "title": "Was passiert, wenn du dich erschreckst? 😱",
    "text": "Was in der ersten Sekunde eines Schrecks in deinem Körper passiert und warum du zusammenzuckst, bevor du denken kannst.",
    "niche": "Wissen",
-   "views": 357,
+   "views": 496,
    "published": "2026-11-26T12:35:53+00:00",
    "thumb": "thumbs/1PBCTQQg4Pg.jpg"
   },
@@ -37,7 +73,7 @@
    "title": "Was passiert, wenn du nie Zähne putzt? 🦷",
    "text": "Wie Bakterien aus Zucker Säure machen, warum Zahnfleisch blutet und was zwei Minuten am Tag verhindern.",
    "niche": "Wissen",
-   "views": 273,
+   "views": 404,
    "published": "2026-11-26T10:35:55+00:00",
    "thumb": "thumbs/73OOd0N0JlM.jpg"
   },
@@ -46,7 +82,7 @@
    "title": "Was passiert, wenn dir eiskalt wird? 🥶",
    "text": "Was dein Körper bei extremer Kälte tut, ab wann Unterkühlung beginnt und warum nasse Kleidung besonders gefährlich ist.",
    "niche": "Wissen",
-   "views": 444,
+   "views": 866,
    "published": "2026-11-26T09:35:38+00:00",
    "thumb": "thumbs/EOyWBgUPPVw.jpg"
   },
@@ -55,7 +91,7 @@
    "title": "Warum haben Zebras Streifen? 🦓",
    "text": "Tarnung, Hitze oder Schutz? Was Studien über Zebrastreifen und Fliegen herausgefunden haben.",
    "niche": "Wissen",
-   "views": 245,
+   "views": 269,
    "published": "2026-11-26T08:36:01+00:00",
    "thumb": "thumbs/dDSFHJzspk4.jpg"
   },
@@ -64,7 +100,7 @@
    "title": "Warum wird dir schwindelig, wenn du dich drehst? 🌀",
    "text": "Dein Innenohr meldet Drehung, deine Augen sehen Stillstand. Warum dieser Streit im Kopf Schwindel auslöst.",
    "niche": "Wissen",
-   "views": 963,
+   "views": 972,
    "published": "2026-11-26T07:36:08+00:00",
    "thumb": "thumbs/GarEKvPl2Uw.jpg"
   },
@@ -73,7 +109,7 @@
    "title": "Der Zettel unter dem Nachtisch 📝",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt: In der Schulmensa liegt jeden Tag ein Zettel unter meinem Nachtisch, und niemand weiß, von wem.",
    "niche": "Geschichte",
-   "views": 174,
+   "views": 193,
    "published": "2026-11-26T06:36:04+00:00",
    "thumb": "thumbs/OM697BKdkkI.jpg"
   },
@@ -100,45 +136,9 @@
    "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine Kiste vor der Tür, und niemand will es gewesen sein.",
    "niche": "Geschichte",
-   "views": 759,
+   "views": 852,
    "published": "2026-11-25T17:35:46+00:00",
    "thumb": "thumbs/tnv4NUFUENU.jpg"
-  },
-  {
-   "id": "jTUMV8LcrX4",
-   "title": "Schwimm nachts nie bis zur Mitte 🌊",
-   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine zweite Regel. Schwimm nachts niemals bis zur Mitte des Sees.",
-   "niche": "Wissen",
-   "views": 774,
-   "published": "2026-11-25T16:35:51+00:00",
-   "thumb": "thumbs/jTUMV8LcrX4.jpg"
-  },
-  {
-   "id": "OLACtdrtbk4",
-   "title": "Geh nachts nie zum Eiswagen 🍦",
-   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine Regel, die jeder kennt. Geh nachts nie zum Eiswagen.",
-   "niche": "Wissen",
-   "views": 700,
-   "published": "2026-11-25T15:35:35+00:00",
-   "thumb": "thumbs/OLACtdrtbk4.jpg"
-  },
-  {
-   "id": "6Qo5ikqNUBM",
-   "title": "Schule: 60 Sekunden bis zur Glocke 🔔",
-   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Die Schule ist leer, und du hast nur sechzig Sekunden, bis die Glocke läutet.",
-   "niche": "Wissen",
-   "views": 1103,
-   "published": "2026-11-25T14:35:59+00:00",
-   "thumb": "thumbs/6Qo5ikqNUBM.jpg"
-  },
-  {
-   "id": "qTzgth99uVk",
-   "title": "Die Feuerkugeln, die aus dem Fluss steigen 🔥",
-   "text": "Blockwelt: Am Mekong in Thailand steigen jedes Jahr leuchtende Kugeln aus dem Wasser. Woher sie kommen, ist bis heute nicht sicher geklärt.",
-   "niche": "Wissen",
-   "views": 434,
-   "published": "2026-11-25T13:35:38+00:00",
-   "thumb": "thumbs/qTzgth99uVk.jpg"
   }
  ]
 }

@@ -33,8 +33,8 @@
   {
    "value": "ohne",
    "videos": 8,
-   "median": 782,
-   "faktor": 1.12
+   "median": 828,
+   "faktor": 1.18
   }
  ],
  "gewinner": [
@@ -43,6 +43,13 @@
    "views": 1103,
    "typ": "Horror",
    "skript": "seed/0305-horror-block-schule-sechzig-sekunden.json",
+   "welt": "Blockwelt"
+  },
+  {
+   "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
+   "views": 852,
+   "typ": "Erzählte Geschichte",
+   "skript": "seed/0259-geschichte-block-kiste-vor-der-tuer.json",
    "welt": "Blockwelt"
   },
   {
@@ -67,13 +74,6 @@
    "welt": "Blockwelt"
   },
   {
-   "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
-   "views": 759,
-   "typ": "Erzählte Geschichte",
-   "skript": "seed/0259-geschichte-block-kiste-vor-der-tuer.json",
-   "welt": "Blockwelt"
-  },
-  {
    "title": "Die Feuerkugeln, die aus dem Fluss steigen 🔥",
    "views": 434,
    "typ": "Mystery",
@@ -88,6 +88,6 @@
    "welt": "Strichmännchen"
   }
  ],
- "updated_at": "2026-11-26T16:58:58+00:00",
+ "updated_at": "2026-11-26T21:19:10+00:00",
  "hinweis": "Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass."
 }
