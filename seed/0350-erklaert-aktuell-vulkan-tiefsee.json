@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-aktuell-vulkan-tiefsee",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Vulkanausbruch in 6.000 Metern Tiefe? 🌋",
+  "description": "Aktuell: Forschende haben im Marianengraben Spuren eines explosiven Vulkanausbruchs in über 6.000 Metern Tiefe gefunden. Erklärt, wie das trotz des Drucks geht.\n\n#wissen #aktuell #vulkan #tiefsee #shorts",
+  "tags": [
+    "wissen",
+    "aktuell",
+    "vulkan",
+    "tiefsee",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Tiefsee-Vulkan | neu entdeckt",
+    "Ausbruch unter Druck"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn ein Vulkan 6.000 Meter unter Wasser ausbricht?",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🌋"
+      }
+    },
+    {
+      "text": "Forscher fanden Spuren davon im Marianengraben.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Marianengraben"
+      }
+    },
+    {
+      "text": "Dort herrscht ein Druck von über 600 *Bar*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🗜️",
+        "text": "Riesiger Druck"
+      }
+    },
+    {
+      "text": "Gase können sich dort kaum ausdehnen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "💨",
+        "text": "Gas bleibt dicht"
+      }
+    },
+    {
+      "text": "Am Ufer dehnt sich Gas aus, in der Tiefe bleibt es dicht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌋",
+          "text": "An Land"
+        },
+        "rechts": {
+          "objekt": "🌊",
+          "text": "In der Tiefe"
+        }
+      }
+    },
+    {
+      "text": "Die Gase werden zu *superkritischen* Fluiden.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "So bleibt die Glut heiß, und Gestein verschweißt wieder.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Wo genau der Ausbruch war, ist noch unbekannt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "❓",
+        "text": "Ort unbekannt"
+      }
+    }
+  ],
+  "aktuell": true
+}

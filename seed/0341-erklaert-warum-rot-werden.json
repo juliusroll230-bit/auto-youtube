@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-rot-werden",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum wirst du rot, wenn es peinlich ist? 😳",
+  "description": "Erklärt: Warum dir bei Peinlichkeit das Blut in die Wangen schießt und was dein Körper damit meldet.\n\n#wissen #körper #psychologie #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "psychologie",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Rotwerden | Alarm im Körper",
+    "Du kannst es nicht steuern"
+  ],
+  "segments": [
+    {
+      "text": "Warum wirst du rot, wenn dir etwas peinlich ist?",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😳"
+      }
+    },
+    {
+      "text": "Dein Körper schüttet *Adrenalin* aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "⚡",
+        "text": "Adrenalin"
+      }
+    },
+    {
+      "text": "Kleine Gefäße im Gesicht weiten sich.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "🩸",
+        "text": "Gefäße weiten"
+      }
+    },
+    {
+      "text": "Mehr Blut fließt in die Wangen.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "😐",
+          "text": "Ruhig"
+        },
+        "rechts": {
+          "objekt": "😳",
+          "text": "Peinlich"
+        }
+      }
+    },
+    {
+      "text": "Steuern kannst du das einfach *nicht*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Andere bemerken es meist weniger als du.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "schule",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "text": "Fällt kaum auf"
+      }
+    },
+    {
+      "text": "Dein Körper meldet nur Aufregung, keine Schuld.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Erröten noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

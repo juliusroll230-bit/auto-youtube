@@ -1,0 +1,124 @@
+{
+  "slug": "geschichte-nachbar-will-ein-ei",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Der Nachbar will jeden Abend ein Ei 🥚",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend klingelt der neue Nachbar, und erst am Ende verstehe ich, warum.\n\n#geschichte #erzählung #nachbarn #warm #shorts",
+  "tags": [
+    "geschichte",
+    "erzählung",
+    "nachbarn",
+    "warm",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Das Ei | Nachbar",
+    "Er klingelt jeden Abend"
+  ],
+  "segments": [
+    {
+      "text": "Jeden Abend klingelt der neue Nachbar und will ein *Ei*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🥚"
+      }
+    },
+    {
+      "text": "Erst denke ich, er ist nur vergesslich.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🥚",
+        "text": "Schon wieder"
+      }
+    },
+    {
+      "text": "Am dritten Abend frage ich: Wofür brauchst du es?",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "blau",
+          "gefuehl": "traurig",
+          "aktion": "haende"
+        }
+      }
+    },
+    {
+      "text": "Er schaut auf seine Schuhe und schweigt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "👞"
+      }
+    },
+    {
+      "text": "Hinter ihm brennt kein Licht, der Tisch ist leer.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🕯️",
+        "text": "Leerer Tisch"
+      }
+    },
+    {
+      "text": "Da verstehe ich: Er wollte nur *klingeln* dürfen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔔"
+      }
+    },
+    {
+      "text": "Heute essen wir zusammen, und er bringt den Nachtisch.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Das Ei hat er nie *gebraucht*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🥚",
+        "text": "Nie gebraucht"
+      }
+    },
+    {
+      "text": "Seitdem kocht keiner von uns mehr allein.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "❤️"
+      }
+    }
+  ]
+}

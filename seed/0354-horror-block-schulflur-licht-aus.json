@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-schulflur-licht-aus",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Wenn das Licht ausgeht, bleib stehen 🔦",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Im Schulflur gibt es eine einzige Regel, wenn das Licht ausgeht.\n\n#horror #gruselig #blockwelt #schule #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "schule",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Licht aus | Regel",
+    "Bleib stehen"
+  ],
+  "segments": [
+    {
+      "text": "Wenn im Schulflur das Licht ausgeht, bleib *stehen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔦",
+        "chat": "Server: Regel 1"
+      }
+    },
+    {
+      "text": "Schritte kommen näher, doch du hörst keinen Atem.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Hausmeister: wo?"
+      }
+    },
+    {
+      "text": "Die Taschenlampe zeigt nur eine leere Tür.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🚪",
+        "text": "Leere Tür"
+      }
+    },
+    {
+      "text": "Hinter der Tür steht ein Schatten ohne Gesicht.",
+      "szene": {
+        "typ": "monster",
+        "ort": "schule",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Er bewegt sich nur, wenn du dich *bewegst*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "👁️",
+        "text": "Bleib still"
+      }
+    },
+    {
+      "text": "Du hältst die Luft an und zählst bis sechzig.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f",
+        "chat": "Chat: 59, 60"
+      }
+    },
+    {
+      "text": "Das Licht geht an, und er steht neben dir.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "💡",
+        "text": "Direkt neben dir"
+      }
+    },
+    {
+      "text": "Merk dir die einzige Regel:",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔦"
+      }
+    }
+  ],
+  "ende": "loop"
+}

@@ -1,0 +1,110 @@
+{
+  "slug": "horror-hund-treppe-nachts",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Mein Hund wartet nachts auf der Treppe 🐕",
+  "description": "Eine ausgedachte Gruselgeschichte: Mein Hund wedelt jede Nacht vor der Treppe, auf der niemand steht.\n\n#horror #gruselig #hund #treppe #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "hund",
+    "treppe",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Der Hund | wedelt",
+    "Auf der leeren Treppe"
+  ],
+  "segments": [
+    {
+      "text": "Mein Hund wedelt nachts vor einer Treppe, auf der *niemand* steht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🐕"
+      }
+    },
+    {
+      "text": "Er legt den Kopf schief, als würde jemand sprechen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🐕",
+        "text": "Er hört zu"
+      }
+    },
+    {
+      "text": "Im Flur knarrt die dritte Stufe.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Ich zähle: Er schaut jede Nacht höher hinauf.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "👀",
+        "text": "Immer höher"
+      }
+    },
+    {
+      "text": "Am Treppenende steht ein heller Schatten.",
+      "szene": {
+        "typ": "monster",
+        "ort": "haus",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Ich flüstere: Wer ist da?",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Mein Hund hört auf zu wedeln und *knurrt*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🐕",
+        "text": "Er knurrt"
+      }
+    },
+    {
+      "text": "Die Stufe knarrt, und jetzt kommt es runter.",
+      "szene": {
+        "typ": "horror",
+        "ort": "haus",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f"
+      }
+    }
+  ]
+}

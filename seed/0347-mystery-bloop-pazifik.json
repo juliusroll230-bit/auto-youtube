@@ -1,0 +1,113 @@
+{
+  "slug": "mystery-bloop-pazifik",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Das Geräusch, das niemand erklären konnte 🌊",
+  "description": "Im Jahr 1997 hörten Messgeräte im Pazifik ein extrem lautes Geräusch. Woher es kam, wurde erst Jahre später ungefähr geklärt.\n\n#mystery #ozean #rätsel #bloop #shorts",
+  "tags": [
+    "mystery",
+    "ozean",
+    "rätsel",
+    "bloop",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Bloop | aus der Tiefe",
+    "Was brüllte dort?"
+  ],
+  "segments": [
+    {
+      "text": "Was brüllte 1997 im Pazifik so laut?",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Zwei Messgeräte hörten es weit voneinander entfernt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Pazifik"
+      }
+    },
+    {
+      "text": "Der Ton war tief, kaum hörbar und sehr laut.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🔊",
+        "text": "Ton aus der Tiefe"
+      }
+    },
+    {
+      "text": "Akte Bloop:",
+      "szene": {
+        "typ": "akte",
+        "text": "Akte Bloop",
+        "punkte": [
+          "Aufgezeichnet 1997",
+          "Quelle unbekannt",
+          "Lauter als ein Tier"
+        ]
+      }
+    },
+    {
+      "text": "Manche dachten an ein riesiges *Meerestier*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🐙",
+        "text": "Riesiges Tier?"
+      }
+    },
+    {
+      "text": "Doch kein Tier ist so laut.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Später passte es zu *Eisbeben*, wenn Gletscher brechen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "meer",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Brechendes Eis"
+      }
+    },
+    {
+      "text": "Und trotzdem fragen sich viele bis heute:",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}
