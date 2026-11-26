@@ -394,3 +394,16 @@ Neue Stile nur in `entspannung.TITLE_STYLES` / `THUMB_STYLES` / `SOUND_STYLES` e
 
 Teaser (Julius 25.11.2026: „immer Teaser“): Zu jedem langen Quiet-Corner-Video wird immer ein Teaser-Short gebaut (unabhängig von `relax_shorts`).
 Klappt der Upload nicht, gibt es 3 Versuche, danach liegt er in `relax-teasers/` und `relax_retry_teasers` holt ihn bei der nächsten Prüfung nach. Test: `tests/teaser_test.py`.
+
+## Zentrale: Aufbau und Einreich-Station (seit 26.11.2026, Julius' Wunsch)
+
+- **Seitenleiste in 5 Gruppen** (Start, Kanäle, Geld, Auswertung, Einstellungen), große Reiter mit **Unterreitern** als Segment-Schalter,
+  oben in jedem Reiter 3 bis 4 Kennzahlen. Adresse `#reiter/unterreiter` (alte Links wie `#kampagnen`, `#plan` gehen weiter, `ALIAS`).
+  Neue Karten in `PAGES` (web/index.html) einem Unterreiter zuordnen, sonst stehen sie in allen. Unterreiter blenden mit Klasse `sub-off` aus,
+  nie mit `hidden` (das setzen viele Karten selbst). Nur der sichtbare Reiter rendert (`render()` fragt `NAV.page`).
+  Design: Hintergrund #0B0B0C, Glas-Karten mit Haarlinie, eine Akzentfarbe (Blau), Animationen nur transform/opacity, `prefers-reduced-motion` beachten.
+  Nach Änderungen alle Reiter und Unterreiter am PC (1366 px) und Handy (390 px) laden: keine Konsolenfehler, kein seitliches Scrollen.
+- **Einreich-Station** (`einreichen.py`): Gepostete Clips von Whop-Kampagnen stehen unter Kampagnen > Einreichen. Ein Klick kopiert den Link
+  und öffnet die Kampagne, **absenden macht Julius selbst** (Content Rewards erlaubt keine Bots, keine Clipper-API). Nie automatisch einreichen,
+  keine Browser-Automatisierung, keine inoffizielle API. Stand je Clip in `einreichen.json` (`eingereicht_at`, `skip`), Clips von vor dem
+  26.11. ohne Eintrag zählen nicht als offen. Test: `tests/einreichen_test.py`.
