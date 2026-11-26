@@ -447,3 +447,17 @@ freigegebenen Content-Rewards-Clip hoch (`abgabe.py`, `server.post_abgabe`, läu
   Nach 14 Tagen kommt der Vergleich `abgabe.compare`: Clips gegen dieselben Plätze auf dem Hauptkanal in den 14 Tagen davor.
   Liegt der Hauptkanal dort gleichauf oder vorn, Julius vorschlagen, die Zahl höher zu setzen.
 
+## Push-Nachrichten über ntfy.sh (seit 26.11.2026, Julius' Phase E)
+
+`push.py` schickt kostenlos über ntfy.sh. `server.push_worker` ruft jede Minute `push.tick()` auf.
+
+- **Thema** (`ntfy_topic`): entsteht in `store.init` als langer Zufallsname. Nie ins Repo, in Logs oder in Nachrichten an andere schreiben.
+- **Inhalt:** nur Zahlen und Titel, keine Zugangsdaten. Links gehen auf `base_url`; die merkt sich der Server beim Öffnen der Zentrale.
+- **Sofort-Meldungen** laufen über `push.alert(key, text)`. Jede Sache wird nur einmal gemeldet (`key`), gesammelt und höchstens 1 pro Stunde gesendet (`flush`).
+  Neue Anlässe nur so einbauen, nie `send` direkt für Warnungen nutzen.
+- **Berichte:**
+  - Tagesbericht ab `ntfy_hour` (Standard 19).
+  - Wochenbericht sonntags 18 Uhr mit den Schwellen des Partnerprogramms aus `push.YPP`. Ab 01.02.2027 gelten die doppelten Werte laut blog.youtube.
+- **`ntfy_on: false` oder kein Thema:** Es wird nichts gesendet. Der Test-Knopf ist die Ausnahme.
+- **Test:** `tests/push_test.py` ersetzt HTTP über `push._send_impl`. Nie echte Nachrichten aus Tests senden.
+

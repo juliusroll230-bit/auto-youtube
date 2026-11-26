@@ -7,3 +7,4 @@ tzdata
 faster-whisper==1.2.1
 opencv-python-headless>=4.10,<5
 playwright==1.64.1
+segno>=1.6

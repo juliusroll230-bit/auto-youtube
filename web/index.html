@@ -2244,6 +2244,20 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       <h2 class="sec-h">Deine Kanäle</h2>
       <p class="sec-sub">Ein Ort für alle Kanäle. KI-Shorts laufen auf dem Hauptkanal, Clips auf Wunsch auf einem eigenen Kanal.</p>
       <div class="chg" id="chGrid"></div>
+      <div class="card" id="pushCard">
+        <div class="card-h"><div><h2>Nachrichten aufs Handy</h2><div class="sub" id="pushSub"></div></div></div>
+        <div class="card-b push-b">
+          <div class="push-qr" id="pushQr"></div>
+          <div style="min-width:0">
+            <ol class="push-steps">
+              <li>Die kostenlose App <b>ntfy</b> installieren (Play Store oder App Store). Kein Konto nötig.</li>
+              <li>In der App auf „+“ tippen und dieses Thema eintragen: <code id="pushTopic"></code> Oder den QR-Code mit der Handy-Kamera scannen, das öffnet das Thema direkt.</li>
+              <li>Hier auf „Test senden“ tippen. Kommt die Nachricht an, bist du fertig.</li>
+            </ol>
+            <div class="row" id="pushActs"></div>
+          </div>
+        </div>
+      </div>
       <div class="card shc">
         <div class="card-h"><div><h2>Für TikTok und Instagram</h2><div class="sub" id="shcSub">Clip herunterladen, Text kopieren, in der App posten und hier abhaken.</div></div>
           <div class="seg" role="group" aria-label="Clips filtern"><button type="button" aria-pressed="true" data-shf="offen">Offen</button><button type="button" aria-pressed="false" data-shf="alle">Alle</button></div></div>
@@ -5754,6 +5768,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       g.appendChild(c);
     });
     renderShareList(d, list);
+    renderPush(d);
     renderClipi(d);
   }
 
@@ -5890,6 +5905,32 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
     if (!(q.items || []).length) box.appendChild(h("p", { cls: "shempty", text: "Noch nichts in der Warteschlange." }));
     cqCheck();
+  }
+  // Push-Nachrichten über ntfy.sh (push.py): QR-Code, 3 Schritte, Test, Einstellungen
+  function renderPush(d) {
+    var P = d.push || {}, acts = $("pushActs");
+    if (!acts) return;
+    $("pushSub").textContent = P.on ? "Tagesbericht um " + P.hour + " Uhr, Wichtiges sofort (höchstens 1 pro Stunde), sonntags um 18 Uhr der Wochenbericht" : "Ausgeschaltet. Es wird nichts gesendet.";
+    $("pushTopic").textContent = P.topic || "–";
+    var qr = $("pushQr");
+    if (P.topic && qr.dataset.t !== P.topic) { qr.dataset.t = P.topic; clear(qr).appendChild(h("img", { src: "api/push/qr.svg?t=" + encodeURIComponent(P.topic), alt: "QR-Code zum Abonnieren in der ntfy-App", width: 168, height: 168 })); }
+    var key = [P.on, P.hour, P.topic, S.live].join("|");
+    if (acts.dataset.k === key) return;
+    acts.dataset.k = key;
+    clear(acts);
+    var test = h("button", { cls: "btn primary", type: "button", text: "Test senden" });
+    test.disabled = !S.live || !P.topic;
+    test.addEventListener("click", function () { test.disabled = true; api("api/push/test", {}).then(function () { toast("Gesendet. Schau aufs Handy."); test.disabled = false; }, function (e) { toast(e.message); test.disabled = false; }); });
+    var save = function (body) { api("api/push/settings", body).then(function () { toast("Gespeichert"); soon(); }, function (e) { toast(e.message); }); };
+    var sw = h("button", { cls: "btn sm", type: "button", text: P.on ? "Nachrichten aus" : "Nachrichten an" });
+    sw.addEventListener("click", function () { save({ on: !P.on }); });
+    var hr = h("select", { "aria-label": "Uhrzeit Tagesbericht" }, [17, 18, 19, 20, 21, 22].map(function (x) { return h("option", { value: x, text: "Tagesbericht um " + x + " Uhr" }); }));
+    hr.value = String(P.hour || 19);
+    hr.addEventListener("change", function () { save({ hour: Number(hr.value) }); });
+    var nt = actBtn("Neues Thema erzeugen", "", function () { return api("api/push/settings", { new_topic: true }).then(function () { toast("Neues Thema. Bitte in der App neu abonnieren."); soon(); }); }, "Sicher? Dann in der App neu abonnieren");
+    [sw, hr, nt].forEach(function (e) { e.disabled = !S.live; });
+    acts.appendChild(test);
+    acts.appendChild(uiFold("push-set", "Einstellungen", [h("div", { cls: "row" }, [sw, hr, nt])], P.on ? "an · " + P.hour + " Uhr" : "aus"));
   }
   function renderShareList(d, list) {
     var box = $("shList"), ae = document.activeElement;
@@ -6615,7 +6656,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     geld: { name: "Geld" },
     uebersicht: { name: "Übersicht", subs: [["wachstum", "Wachstum", ["@Wachstum", "@Aufrufe je Video"]], ["ziel", "Ziel & Plan", ["@Ziel: Geld", "@Als Nächstes", "#ovShare"]]] },
     zuschauer: { name: "Zuschauer", subs: [["best", "Was am besten funktioniert", ["@Lernmodus", "@Was am besten", "@Thumbnails"]], ["kompass", "Nischen-Kompass", ["#kompass"]], ["vorbilder", "Vorbilder", ["#vorbilder"]], ["hook", "Hook-Prüfung", ["@Hook-Prüfung"]], ["binge", "Mehr Videos am Stück", ["#bgCard", "#kmCard"]], ["abschalten", "Wo sie abschalten", ["#zSetup", "#zData"]]] },
-    kanal: { name: "Kanäle verbinden", subs: [["kanaele", "Deine Kanäle", ["@Deine Kanäle", ".sec-sub", "#chGrid"]], ["social", "Insta & TikTok", ["#soCard", ".shc"]], ["verbindung", "Verbindung", ["@Verbindung", "#previewNote", "@YouTube-Verbindung"]], ["erweitert", "Erweitert", ["#advBox"]]] }
+    kanal: { name: "Kanäle verbinden", subs: [["kanaele", "Deine Kanäle", ["@Deine Kanäle", ".sec-sub", "#chGrid", "#pushCard"]], ["social", "Insta & TikTok", ["#soCard", ".shc"]], ["verbindung", "Verbindung", ["@Verbindung", "#previewNote", "@YouTube-Verbindung"]], ["erweitert", "Erweitert", ["#advBox"]]] }
   };
   var ALIAS = { plan: "hauptkanal/plan", videos: "hauptkanal/videos", gepostet: "hauptkanal/videos", bestenliste: "hauptkanal/videos", sendeplan: "hauptkanal/plan", einreichen: "kampagnen/einreichen", community: "hauptkanal/community", posts: "hauptkanal/community" };
   var GICON = {
@@ -6962,6 +7003,8 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   var STW = { ok: "Läuft", warn: "Wartet", err: "Fehler", todo: "Zu tun", off: "Aus", done: "Erledigt" };
   var UI_CARDS = [
     // Zentrale
+    { q: "#pushCard", what: "Schickt dir Tagesbericht und wichtige Meldungen kostenlos aufs Handy, über die App ntfy.",
+      st: function (d) { var P = d.push || {}; return P.on && P.topic ? ["ok", "Läuft", "Bericht um " + P.hour + " Uhr", P.pending ? stNum(P.pending, "Meldung wartet", "Meldungen warten") : null] : ["off", "Aus", "nichts wird gesendet"]; } },
     { q: "#abCard", what: "Späte Sendeplätze, die auf dem Hauptkanal kaum Aufrufe bekommen, gehen an Clipi für Kampagnen-Clips, die Geld bringen.",
       st: function (d) { var A = d.abgabe || {}; if (!A.on) return ["off", "Aus", "Einstellung im Publisher"]; if (!A.connected) return ["warn", "Wartet", "Clip-Kanal fehlt"];
         return [A.ready ? "ok" : "warn", A.ready ? "Läuft" : "Wartet", stNum(A.ready, "Clip bereit", "Clips bereit"), A.slots && A.slots.length ? "ab " + A.slots[0] + " Uhr" : null]; } },
@@ -7918,4 +7961,11 @@ abbr.term:hover::after, abbr.term:focus::after { content: attr(data-tip); positi
 .ab-cmp { display: grid; grid-template-columns: 1.3fr 1.4fr 1fr; gap: 8px; padding: 6px 0; border-top: 1px solid rgba(255,255,255,.06); font-size: 14px; }
 .ab-cmp span { color: var(--muted, #9a9aa0); }
 @media (max-width: 640px) { .ab-cmp { grid-template-columns: 1fr; gap: 2px; } }
+/* Push-Nachrichten */
+.push-b { display: grid; grid-template-columns: 168px 1fr; gap: 18px; align-items: start; }
+.push-qr { width: 168px; height: 168px; border-radius: 14px; overflow: hidden; background: #fff; }
+.push-qr img { display: block; width: 100%; height: 100%; }
+.push-steps { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; font-size: 14px; }
+.push-steps code { word-break: break-all; background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 6px; }
+@media (max-width: 640px) { .push-b { grid-template-columns: 1fr; } .push-qr { margin: 0 auto; } }
 </style>

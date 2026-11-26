@@ -93,6 +93,28 @@ Uploads ab ungefähr dem 11. am Tag bekommen auf dem Hauptkanal kaum Aufrufe. Da
 - **Wichtig:** Content Rewards will den Link kurz nach dem Posten. Die Plätze liegen darum abends, und die Einreich-Station markiert offene Clips nach 2 Stunden orange.
 - **Code:** `abgabe.py`, `server.post_abgabe`, Test: `tests/abgabe_test.py`.
 
+## Nachrichten aufs Handy (ntfy.sh, seit 26.11.2026)
+
+Die Zentrale schickt kostenlos Push-Nachrichten über [ntfy.sh](https://ntfy.sh). Dafür braucht es kein Konto und keine Kosten.
+
+- **Einrichten:** unter Kanäle verbinden > Deine Kanäle > „Nachrichten aufs Handy“.
+  1. App **ntfy** installieren.
+  2. In der App auf „+“ tippen und das Thema eintragen, oder den QR-Code mit der Handy-Kamera scannen.
+  3. „Test senden“ drücken.
+- **Thema:** ein langer Zufallsname, der beim ersten Start entsteht (`ntfy_topic`). Wer das Thema kennt, kann mitlesen. Darum stehen in den Nachrichten nur Zahlen, nie Zugangsdaten. „Neues Thema erzeugen“ macht ein neues.
+- **Tagesbericht** um 19 Uhr (einstellbar): Uploads, Abos, offene Clips zum Einreichen, geschätztes Kampagnen-Geld. Ein Tipp auf die Nachricht öffnet Kampagnen.
+- **Sofort-Meldungen**, höchstens 1 pro Stunde (mehrere werden gesammelt):
+  - Upload fehlgeschlagen.
+  - Clip seit über 2 Stunden nicht eingereicht.
+  - Kampagnen-Budget über 80 % verbraucht oder Kampagne beendet.
+  - Gewinner: ein Short der letzten 7 Tage mit mindestens doppelt so vielen Aufrufen wie üblich und mindestens 1.500.
+- **Wochenbericht** sonntags um 18 Uhr: Weg zum Partnerprogramm.
+  - Bis 31.01.2027 gilt: 1.000 Abos und 4.000 Stunden in 12 Monaten oder 10 Mio. Shorts-Aufrufe in 90 Tagen.
+  - Ab 01.02.2027 gilt für neue Kanäle: 8.000 Stunden oder 20 Mio. Shorts-Aufrufe.
+  - Die Stunden kommen aus YouTube Analytics, wenn die Zuschauer-Daten verbunden sind.
+- **„Nachrichten aus“** schaltet alles ab. Ohne Thema wird nie etwas gesendet.
+- **Code:** `push.py`, `server.push_worker`. Test: `tests/push_test.py` (mit vorgetäuschtem HTTP).
+
 ## Einreich-Station (Content Rewards)
 
 Postet der Publisher einen Clip einer Whop-Kampagne (Clip mit `program`), steht er unter **Kampagnen > Einreichen** und im Live-Feed kommt „Clip bereit zum Einreichen“. Eine Zahl an „Einreichen“, an der Gruppe Geld und am Video-Clipper zeigt, wie viele offen sind. Clips, die länger als 2 Stunden offen sind, werden orange.

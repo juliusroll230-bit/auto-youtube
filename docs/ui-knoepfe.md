@@ -138,6 +138,8 @@ Reiter mit 0 Knöpfen (Quiet Corner > Hochgeladen und Lernen, Übersicht > Ziel,
 
 | Element | Gruppe | Wo jetzt |
 |---|---|---|
+| Nachrichten aufs Handy: „Test senden“ | A | bleibt |
+| Nachrichten an/aus, Uhrzeit Tagesbericht, Neues Thema erzeugen | B | Bereich „Einstellungen“ der Karte |
 | Hauptkanal: „Jetzt verbinden“ | A | bleibt, solange nicht verbunden |
 | Hauptkanal: „Verbindung ansehen“ | B | ⋯ an der Karte |
 | Clip-Kanal und Quiet Corner: Trennen, Pausieren, „Jetzt bauen und hochladen“ | B | ⋯ an der Karte |

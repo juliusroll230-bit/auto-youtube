@@ -136,6 +136,23 @@ def analytics_summary(cfg, start, end):
             for r in rows}
 
 
+def _by_content_type(cfg, start, end, metrics):
+    rows = _analytics(cfg).query(ids="channel==MINE", startDate=start, endDate=end,
+                                 dimensions="creatorContentType", metrics=metrics).execute().get("rows", [])
+    return {str(r[0]).upper(): [float(x) for x in r[1:]] for r in rows}
+
+
+def watch_hours(cfg, start, end):
+    """Wiedergabestunden ohne Shorts (für das Partnerprogramm zählen nur lange Videos und Livestreams)."""
+    rows = _by_content_type(cfg, start, end, "estimatedMinutesWatched")
+    return round(sum(v[0] for k, v in rows.items() if k != "SHORTS") / 60)
+
+
+def shorts_views(cfg, start, end):
+    """Aufrufe der Shorts im Zeitraum."""
+    return int(_by_content_type(cfg, start, end, "views").get("SHORTS", [0])[0])
+
+
 def retention_curve(cfg, video_id, start, end):
     """Zuschauerbindung über die Videolänge: [(anteil 0..1, zuschauer_anteil), ...]. Leer, wenn noch keine Daten."""
     rows = _analytics(cfg).query(
