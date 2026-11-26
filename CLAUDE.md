@@ -279,6 +279,31 @@ Nicht übernommen: agent-reach/reel-analyzer (laden fremde Videos), alles zu DMs
   („Was passiert, wenn du …?“) sind das Format und zählen nicht. Grund: YouTubes Regel gegen Massenware (07.2026).
 - Neue Muster oder Felder nur in `nische.PATTERNS` / `nische.FIELDS` eintragen. Test: `tests/nische_test.py`.
 
+### Gewinner nachbauen, Frage-Kommentar, Geschichten-Playlist (seit 26.11.2026, Julius' Wunsch)
+
+Der meistgesehene Short ist die erzählte Geschichte „Warum Mama mir zwei Brote einpackt“ (`seed/0234`, 2.800 Aufrufe),
+danach „Was passiert, wenn du tagelang nicht schläfst?“ (2.600). Darum baut die tägliche Aufgabe Gewinner nach:
+
+- **Vor dem Schreiben** `docs/nische.json` → `gewinner` lesen (meistgesehene Shorts je Video-Typ mit Skript-Datei,
+  öffentliche Aufrufe nach ca. 1 Tag). Die Zentrale zeigt dieselbe Liste genauer (Reiter Zuschauer > „Mehr Videos am Stück“).
+  Steht dort noch nichts Besseres, gelten die beiden oben.
+- **Jeden Tag 3 Nachbauten**, die zu den Plätzen der Tabelle oben zählen (kein Extra-Skript, der Mix bleibt):
+  **2 der 3 erzählten Geschichten** nach dem Aufbau der besten Geschichte und **1 Erklärvideo** nach dem Aufbau des besten Erklärvideos.
+- „Gleicher Aufbau“ heißt: dieselbe Art von Titel (z. B. „Warum Mama mir …“ → „Warum Opa jeden Abend …“), derselbe Rhythmus
+  (kleines Rätsel im Alltag, das sich jeden Tag wiederholt, ein unauffälliges Detail in der Mitte, Wendung im vorletzten Satz, die alles
+  in warmes Licht rückt), ähnliche Länge und Szenenfolge. **Neue** Figuren, neuer Ort, neues Rätsel und neue Wendung. Nie dieselbe
+  Geschichte mit anderen Namen (YouTubes Regel gegen Massenware), nicht beide Nachbauten des Tages mit derselben Wendung.
+- Im Skript `"nachbau": "<slug des Gewinners>"` setzen (z. B. `"geschichte-zwei-brote"`). Lernmerkmal „Gewinner-Nachbau“ unter
+  „Was am besten funktioniert“. Liegt „Gewinner nachgebaut“ ca. 10.12. bei mind. 5 Videos je Seite klar vorn, Julius vorschlagen, mehr davon.
+- **Frage-Kommentar:** Die App schreibt kurz nach jedem Upload selbst einen Kommentar mit einer Frage (`binge.py`, reihum je Video-Typ).
+  Besser ist eine Frage, die genau zum Video passt: in **jedem** Skript `"frage"` setzen, eine Zeile, höchstens ca. 80 Zeichen,
+  echte Frage an die Zuschauer, die man in einem Satz beantworten kann (Geschichte: „Wem hättest du das zweite Brot gegeben?“,
+  Horror: „Hättest du dich umgedreht?“, Mystery: „Was glaubst du, war es?“, Erklärvideo: „Wie lange warst du schon mal wach?“).
+  Kein Link, kein „Abonnier“, kein Gedankenstrich, höchstens 1 Emoji, nichts, was die Auflösung verrät. Anpinnen geht per API nicht.
+- **Geschichten-Playlist:** Jede erzählte Geschichte kommt von selbst in die Playlist „Ruhige Geschichten zum Zuhören“, die
+  meistgesehenen oben, Playlist auch als Abschnitt auf der Kanalseite. Ehrlich bleiben: kein „Teil 2“, keine Serien (siehe oben).
+  Die Skripte ändern sich dafür nicht.
+
 ## Hook-Prüfliste und Humanizer (seit 14.11.2026)
 
 Aus dem Skill-Paket „claude-content-skills“ (virality + humanizer) übernommen.

@@ -28,11 +28,28 @@ def load(path, default):
 
 def specs_by_title():
     out = {}
-    for path in glob.glob(os.path.join(ROOT, "seed", "*.json")):
+    for path in sorted(glob.glob(os.path.join(ROOT, "seed", "*.json"))):
         spec = load(path, None)
         if isinstance(spec, dict) and spec.get("title") and spec.get("laenge") != "lang":
-            out[nische.plain_title(spec["title"]).lower()] = spec
+            out[nische.plain_title(spec["title"]).lower()] = {**spec, "_file": "seed/" + os.path.basename(path)}
     return out
+
+
+def winners(rated, specs, per_type=2, top=8):
+    """Meistgesehene Shorts je Video-Typ mit Skript-Datei: Vorlage für „Gewinner nachbauen“ (CLAUDE.md)."""
+    import learn
+    groups = {}
+    for v in rated:
+        spec = specs.get(nische.plain_title(v.get("title")).lower())
+        if not spec or not v.get("views"):
+            continue
+        groups.setdefault(learn.video_type(spec), []).append(
+            {"title": v["title"], "views": int(v["views"]), "typ": learn.video_type(spec), "skript": spec["_file"],
+             "welt": "Blockwelt" if spec.get("welt") == "block" else "Strichmännchen"})
+    out = []
+    for rows in groups.values():
+        out += sorted(rows, key=lambda r: -r["views"])[:per_type]
+    return sorted(out, key=lambda r: -r["views"])[:top]
 
 
 def main(now=None):
@@ -55,7 +72,9 @@ def main(now=None):
             continue
         if age >= MIN_AGE_H:
             rated.append(v)
-    out = nische.public_stats(rated, specs_by_title())
+    specs = specs_by_title()
+    out = nische.public_stats(rated, specs)
+    out["gewinner"] = winners(rated, specs)
     out["updated_at"] = now.isoformat(timespec="seconds")
     out["hinweis"] = ("Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. "
                       "Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass.")

@@ -253,7 +253,8 @@ FEATURE_NAMES = {"typ": "Video-Typ", "hook": "Hook-Prüfung", "caption_style": "
                  "aktuell": "Aktuelles Thema", "musik": "Musik", "uebergang": "Übergang (Cartoon)",
                  "halten": "Dranbleiben (Frage oben/Balken)", "platz": "Upload des Tages", "uhrzeit": "Uhrzeit",
                  # Nischen-Kompass (seit 25.11.2026, aus claude-content-skills): aus dem Skript berechnet, gilt auch für alte Videos
-                 "themenfeld": "Themenfeld", "titel_muster": "Titel-Muster", "zwischenhaken": "Zwischen-Haken (Mitte)"}
+                 "themenfeld": "Themenfeld", "titel_muster": "Titel-Muster", "zwischenhaken": "Zwischen-Haken (Mitte)",
+                 "nachbau": "Gewinner-Nachbau"}
 # stark: Riser, Schlag, Musikpause und Bild-Stoß auf der Auflösung; voll: dazu Ton + Zoom auf Schlüsselwörtern,
 # langsamer Kamera-Zug und Reaktions-Sticker; dezent: wie vorher. Alles selbst erzeugt (Test seit 19.11.2026).
 EFFECTS = ("stark", "voll", "dezent")
@@ -469,6 +470,8 @@ def features(spec, look):
         "themenfeld": nische.topic_field(spec) if spec.get("laenge") != "lang" else None,
         "titel_muster": nische.title_pattern(spec.get("title"), spec.get("niche", "")) if spec.get("laenge") != "lang" else None,
         "zwischenhaken": nische.rehook(spec),
+        # Gewinner nachbauen (seit 26.11.2026): Skript mit dem Aufbau eines meistgesehenen Shorts (Feld "nachbau")
+        "nachbau": __import__("binge").nachbau(spec),
     }
 
 
