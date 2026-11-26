@@ -1,0 +1,106 @@
+{
+  "slug": "en-dizzy-spin",
+  "quelle": "erklaert-warum-schwindel-drehen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1a1240",
+    "#8a5ad8"
+  ],
+  "accent": "#ffe14d",
+  "title": "Why do you get dizzy when you spin? 🌀",
+  "description": "Your inner ear reports spinning, your eyes report standing still. Why that conflict in your head makes you dizzy.\n\n#science #dizzy #ear #explained #shorts",
+  "tags": [
+    "science",
+    "dizzy",
+    "inner ear",
+    "explained",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "ende": "loop",
+  "thumb_text": [
+    "DIZZY | ear vs eyes",
+    "Your ear lies"
+  ],
+  "segments": [
+    {
+      "text": "Why do you get dizzy when you spin around?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "rennt",
+        "objekt": "🌀"
+      }
+    },
+    {
+      "text": "Inside your inner ear, fluid sits in three tiny loops.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "👂",
+        "text": "Canals"
+      }
+    },
+    {
+      "text": "When you spin, it sloshes along and signals *spinning*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌀",
+        "text": "Spinning!"
+      }
+    },
+    {
+      "text": "When you stop, the fluid keeps on moving.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 2,
+        "gefuehl": "staunen",
+        "aktion": "faellt",
+        "text": "Still moving"
+      }
+    },
+    {
+      "text": "Your ear says spinning, your eyes say standing still.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👂",
+          "text": "Ear: spinning"
+        },
+        "rechts": {
+          "objekt": "👀",
+          "text": "Eyes: still"
+        }
+      }
+    },
+    {
+      "text": "That *fight* inside your head feels like dizziness.",
+      "szene": {
+        "typ": "akte",
+        "text": "Dizzy",
+        "punkte": [
+          "Ear: spinning",
+          "Eyes: still",
+          "Brain: chaos"
+        ]
+      }
+    },
+    {
+      "text": "So next time you spin, ask yourself again",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

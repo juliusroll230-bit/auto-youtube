@@ -90,6 +90,8 @@ jobs:
         run: docker exec app python tests/vorschlaege_test.py
       - name: Sonntags-Zusammenschnitt (Auswahl, ffmpeg, Ablauf)
         run: docker exec app python tests/zusammenschnitt_test.py
+      - name: Englischer Kanal (seed-en, Sendeplätze, Ablauf ohne YouTube)
+        run: docker exec app python tests/en_test.py
       - name: Gesichts-Zuschnitt
         run: docker exec app python tests/facecrop_test.py
       - name: Lange Videos (Regeln, Warteschlange, Wochentage)

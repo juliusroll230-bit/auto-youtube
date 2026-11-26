@@ -72,6 +72,8 @@ DEFAULT_CONFIG = {"client_id": "", "client_secret": "", "refresh_token": "",
                   "firma_hour": 20,
                   # Push-Nachrichten über ntfy.sh (push.py): Thema entsteht beim ersten Start, Tagesbericht ab dieser Uhrzeit
                   "ntfy_topic": "", "ntfy_on": True, "ntfy_hour": 19,
+                  # Englischer Kanal „EN“ (en.py): eigener Token, an/aus, Sendezeiten (Berlin) für US/UK-Abende
+                  "en_token": "", "en_expired": False, "en_on": True, "en_hours": [21, 1],
                   # Adresse der Zentrale für Links in Nachrichten (merkt sich der Server beim Öffnen der Website)
                   "base_url": ""}
 FILE_RE = re.compile(r"\d{4}-[a-z0-9-]+\.json")
@@ -1103,6 +1105,7 @@ def dashboard(extra=None, working=None, repo=True):
         "abgabe": _safe(lambda: __import__("abgabe").overview(cfg, st), {}),
         "push": _safe(lambda: __import__("push").overview(cfg), {}),
         "wochenschnitt": _safe(lambda: __import__("zusammenschnitt").overview(posted), {}),
+        "en": _safe(lambda: __import__("en").overview(cfg, posted), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),

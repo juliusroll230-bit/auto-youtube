@@ -1378,6 +1378,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       <a href="#hauptkanal/community" data-tab="hauptkanal" data-sub="community"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 12.5v-2M12 12.5V7.5M15.5 12.5V9.5"/></svg><span>Community-Posts</span></a>
       <a href="#clipi" data-tab="clipi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="3.5"/><path d="m10.5 9 4 3-4 3z"/><path d="M9 5.5h6"/></svg><span>Clipi</span></a>
       <a href="#ruhe" data-tab="ruhe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 20c3-4 6-7 10-10"/></svg><span>Quiet Corner</span></a>
+      <a href="#en" data-tab="en"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg><span>Englisch (EN)</span></a>
       <a href="#social" data-tab="social"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg><span>Insta &amp; TikTok</span></a>
     </div>
     <div class="ng" data-g="geld"><div class="ng-h">Geld</div>
@@ -2121,6 +2122,31 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       <div class="card">
         <div class="card-h"><div><h2>Kanal-Look</h2><div class="sub">Banner und Profilbild, je drei Varianten mit Pflanzen. Zum Herunterladen anklicken.</div></div></div>
         <div class="card-b" id="qcBrand"></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-en" hidden>
+      <div class="head">
+        <div>
+          <h1>Englischer Kanal</h1>
+          <p>Deine besten deutschen Shorts auf Englisch, mit englischer Stimme und Untertiteln. 2 am Tag zu US- und UK-Abendzeiten, alles von selbst.</p>
+        </div>
+      </div>
+      <div class="qc-state" id="enState"></div>
+      <div class="mg-k" id="enK"></div>
+      <div class="grid g-11">
+        <div class="card" id="enNextCard">
+          <div class="card-h"><div><h2>Als Nächstes</h2><div class="sub" id="enNextSub"></div></div></div>
+          <div class="card-b" id="enNext"></div>
+        </div>
+        <div class="card" id="enLearnCard">
+          <div class="card-h"><div><h2>Was auf Englisch am besten läuft</h2><div class="sub">Lernt nur aus den Videos dieses Kanals</div></div></div>
+          <div class="card-b" id="enLearn"></div>
+        </div>
+      </div>
+      <div class="card" id="enUpsCard">
+        <div class="card-h"><div><h2>Hochgeladen</h2><div class="sub" id="enUpSub"></div></div></div>
+        <div class="card-b" id="enUps"></div>
       </div>
     </section>
 
@@ -6140,6 +6166,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderSocial(d);
     renderSocialView(d);
     if (pg === "ruhe") renderQuiet(d);
+    if (pg === "en") renderEn(d);
     if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); renderWochenschnitt(d); } }
     renderChannel(d);
     renderHours(d);
@@ -6457,6 +6484,74 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     });
     box.appendChild(ul);
   }
+  // ---------- Englischer Kanal (EN) ----------
+  function enConnectUI(d, into) {
+    var cs = d.connect_en || { status: "idle" }, E = d.en || {}, preview = !S.live;
+    if (cs.status === "code") {
+      into.appendChild(h("p", { text: "Schritt 1: Google-Seite öffnen und anmelden. Schritt 2: Diesen Code eingeben und bei Google deinen englischen Kanal wählen:" }));
+      into.appendChild(h("div", { cls: "code", text: cs.user_code }));
+      into.appendChild(h("div", { cls: "acts" }, [h("a", { cls: "btn sm primary", href: cs.verification_url || "https://www.google.com/device", target: "_blank", rel: "noopener", text: "google.com/device öffnen" })]));
+      into.appendChild(h("p", { cls: "msg", text: "Die Zentrale wartet und verbindet sich von selbst, sobald du bei Google bestätigt hast." }));
+      return;
+    }
+    if (cs.status === "fehler") into.appendChild(h("p", { cls: "msg err", text: cs.message || "Die Verbindung hat nicht geklappt." }));
+    else if (E.expired) into.appendChild(h("p", { cls: "msg err", text: "Die Verbindung ist abgelaufen. Einfach neu verbinden." }));
+    if (!d.connected) into.appendChild(h("p", { cls: "msg err", text: "Zuerst muss der Hauptkanal verbunden sein. Danach geht dieser Knopf." }));
+    var go = h("button", { cls: "btn sm primary", type: "button", text: cs.status === "start" ? "Startet …" : "Englischen Kanal verbinden" });
+    go.disabled = preview || !d.connected || cs.status === "start";
+    go.addEventListener("click", function () {
+      go.disabled = true; go.textContent = "Startet …"; toast("Code wird bei Google geholt, einen Moment …");
+      api("api/en/connect").then(function () { poll(1500); soon(); }, function (e) { toast(e.message); go.disabled = false; go.textContent = "Englischen Kanal verbinden"; });
+    });
+    into.appendChild(h("div", { cls: "acts" }, [go]));
+  }
+  function renderEn(d) {
+    if (!$("enK")) return;
+    var E = d.en || {}, ch = E.channel || {}, ups = E.uploads || [];
+    var st = clear($("enState"));
+    if (!E.connected) {
+      st.appendChild(h("span", { cls: "dot", style: "background:var(--err)" }));
+      st.appendChild(h("p", { cls: "msg", text: "Noch nicht verbunden. Lege bei YouTube einen neuen Kanal an (z. B. „60 Second Facts“), dann hier verbinden. Bis dahin passiert nichts." }));
+      var cw = h("div", { cls: "qc-connect" }); st.appendChild(cw); enConnectUI(d, cw);
+    } else {
+      st.appendChild(h("span", { cls: "dot", style: "background:" + (E.error ? "var(--warn, #e7c98f)" : E.on ? "var(--ok)" : "var(--err)") }));
+      st.appendChild(h("p", { cls: "msg" + (E.error ? " err" : ""), text: E.error ? E.error : E.on ? "Läuft. Verbunden mit " + (ch.title || "deinem englischen Kanal") + ", täglich um " + (E.hours || []).join(" und ") + " Uhr." : "Pausiert. Es wird nichts hochgeladen." }));
+      var acts = [];
+      if (ch.id) acts.push(h("a", { cls: "btn sm", href: "https://www.youtube.com/channel/" + ch.id, target: "_blank", rel: "noopener", text: "Kanal ansehen" }));
+      acts.push(uiDots("en-ch", [
+        actBtn(E.on ? "Pausieren" : "Weiterlaufen lassen", "", function () { return api("api/en/settings", { on: !E.on }).then(soon); }),
+        actBtn("Kanal trennen", "", function () { return api("api/en/disconnect").then(soon); }, "Englischen Kanal wirklich trennen? Danach wird dort nichts mehr hochgeladen.")
+      ], "Mehr zum englischen Kanal"));
+      st.appendChild(h("div", { cls: "acts" }, acts));
+    }
+    var k = clear($("enK"));
+    [[nf.format(ch.subscribers || 0), "Abonnenten"], [nf.format(ch.views != null ? ch.views : (E.views || 0)), "Aufrufe gesamt"],
+     [nf.format(E.total || 0), "Shorts online"], [nf.format(E.waiting || 0), "Skripte warten"]
+    ].forEach(function (x) { k.appendChild(h("div", null, [h("b", { text: x[0] }), h("span", { text: x[1] })])); });
+
+    var n = clear($("enNext")), nx = E.next ? new Date(E.next) : null;
+    $("enNextSub").textContent = "2 am Tag: " + (E.hours || [21, 1]).map(function (x) { return x + " Uhr"; }).join(" und ") + " (Abend in London und New York)";
+    if (E.ready) n.appendChild(h("p", { cls: "label", text: "Fertig gerendert: „" + E.ready + "“" + (nx ? ", kommt " + whenTxt(nx) : "") + "." }));
+    else if (E.waiting) n.appendChild(h("p", { cls: "label", text: E.connected ? "Das nächste Skript wird gerade oder bald gerendert (ca. 1 Stunde)." : nf.format(E.waiting) + " englische Skripte liegen bereit und warten auf den Kanal." }));
+    else n.appendChild(h("p", { cls: "label", text: "Keine englischen Skripte. Die tägliche Skript-Aufgabe schreibt bis zu 2 am Tag aus deinen besten deutschen Shorts." }));
+    if ((E.sources || []).length) {
+      n.appendChild(uiFold("en-src", "Gute Vorlagen (" + E.sources.length + ")", E.sources.map(function (x) {
+        return h("p", { cls: "label", text: "„" + x.title + "“ · " + nf.format(x.views) + " Aufrufe · " + x.typ });
+      }), "ab 1.500 Aufrufen oder beste 10 %, ohne Ich-Geschichten"));
+    }
+    var L = clear($("enLearn"));
+    if (!(E.learn || []).length) L.appendChild(h("p", { cls: "label", text: "Noch nichts gelernt. Ab dem ersten Tag nach dem Upload zählen die Aufrufe." }));
+    (E.learn || []).forEach(function (r) {
+      L.appendChild(h("div", { cls: "kv" }, [h("span", { text: r.label }), h("b", { text: r.best + " (" + r.videos + (r.videos === 1 ? " Video)" : " Videos)") })]));
+    });
+    var U = clear($("enUps"));
+    $("enUpSub").textContent = ups.length ? "Die letzten " + ups.length + " mit Aufrufen" : "Noch nichts hochgeladen";
+    ups.forEach(function (u) {
+      U.appendChild(h("div", { cls: "kv" }, [h("a", { cls: "link", href: "https://youtu.be/" + u.video_id, target: "_blank", rel: "noopener", text: u.title }),
+        h("b", { text: u.views != null ? nf.format(u.views) : "–" })]));
+    });
+  }
+
   // ---------- Quiet Corner (Entspannungskanal) ----------
   // Verbinden des Entspannungskanals (Kanäle-Karte und Reiter Quiet Corner): immer sichtbare Rückmeldung
   function relaxConnectUI(d, into) {
@@ -6703,7 +6798,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
   // weil viele Karten ihr hidden selbst setzen). Treffer: "#id", ".klasse" oder "@Überschrift" (erste h2 der Karte).
   var GROUPS = [
     { id: "start", name: "Start", pages: ["zentrale"] },
-    { id: "kanaele", name: "Kanäle", pages: ["hauptkanal", "clipi", "ruhe", "social"] },
+    { id: "kanaele", name: "Kanäle", pages: ["hauptkanal", "clipi", "ruhe", "en", "social"] },
     { id: "geld", name: "Geld", pages: ["kampagnen", "geld"] },
     { id: "auswertung", name: "Auswertung", pages: ["uebersicht", "zuschauer"] },
     { id: "einstellungen", name: "Einstellungen", pages: ["kanal"] }
@@ -6712,6 +6807,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     zentrale: { name: "Zentrale", subs: [["heute", "Heute", ["#goCard", ".hm", ".hm-tick", "#tick"]], ["agenten", "Agenten", ["#room", "@Freigabe-Station"]], ["geld", "Geld & Clips", ["#crCard", "#cmCard2"]]] },
     hauptkanal: { name: "Hauptkanal", views: { plan: "plan", videos: "videos", community: "community" }, subs: [["plan", "Sendeplan"], ["videos", "Videos"], ["community", "Community-Posts"]] },
     clipi: { name: "Clipi" },
+    en: { name: "Englisch (EN)" },
     ruhe: { name: "Quiet Corner", subs: [["plan", "Als Nächstes", ["@Als Nächstes"]], ["hoch", "Hochgeladen", ["@Hochgeladen"]], ["lernen", "Was am besten läuft", ["@Was am besten läuft"]], ["look", "Kanal-Look", ["@Kanal-Look"]]] },
     social: { name: "Insta & TikTok" },
     kampagnen: { name: "Kampagnen", subs: [["kampagnen", "Kampagnen", [".newc", ".wpc", ".vsc", ".more"]], ["freigabe", "Freigabe", ["#camps"]], ["einreichen", "Einreichen", ["#erCard"]], ["statistik", "Statistik", ["#erStats", "#erCr"]]] },
@@ -6963,6 +7059,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     "ruhe/hoch": "Hier siehst du alle Videos, die Quiet Corner schon hochgeladen hat.",
     "ruhe/lernen": "Hier siehst du, welche Szenen und Längen bei Quiet Corner die meisten Aufrufe bringen.",
     "ruhe/look": "Hier siehst du Banner und Profilbild von Quiet Corner.",
+    "en": "Hier siehst du deinen englischen Kanal: was als Nächstes kommt, was schon online ist und was dort am besten läuft.",
     "social": "Hier siehst du, was auf Instagram und TikTok läuft und wie weit dein Profil eingerichtet ist.",
     "kampagnen/kampagnen": "Hier verknüpfst du Kampagnen und gibst Videos ab, aus denen der Clipper Clips macht.",
     "kampagnen/freigabe": "Hier siehst du alle Clips je Video. Neue Clips gibst du frei oder lehnst sie ab.",
@@ -7072,6 +7169,11 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     { q: "#abCard", what: "Späte Sendeplätze, die auf dem Hauptkanal kaum Aufrufe bekommen, gehen an Clipi für Kampagnen-Clips, die Geld bringen.",
       st: function (d) { var A = d.abgabe || {}; if (!A.on) return ["off", "Aus", "Einstellung im Publisher"]; if (!A.connected) return ["warn", "Wartet", "Clip-Kanal fehlt"];
         return [A.ready ? "ok" : "warn", A.ready ? "Läuft" : "Wartet", stNum(A.ready, "Clip bereit", "Clips bereit"), A.slots && A.slots.length ? "ab " + A.slots[0] + " Uhr" : null]; } },
+    { q: "#enNextCard", what: "Der nächste englische Short. Skripte schreibt die tägliche Aufgabe, rendern und hochladen macht die App.",
+      st: function (d) { var E = d.en || {}; if (!E.connected) return ["off", "Aus", "Kanal nicht verbunden"]; if (!E.on) return ["off", "Aus", "pausiert"];
+        return [E.ready || E.waiting ? "ok" : "warn", E.ready || E.waiting ? "Läuft" : "Wartet", stNum(E.waiting || 0, "Skript wartet", "Skripte warten")]; } },
+    { q: "#enLearnCard", what: "Welche Effekte, Musik und Übergänge auf dem englischen Kanal die meisten Aufrufe bringen. Die App nimmt davon öfter." },
+    { q: "#enUpsCard", what: "Alle englischen Shorts mit ihren Aufrufen." },
     { q: "#zsCard", what: "Sonntags um 17 Uhr kommt statt des langen Videos ein Zusammenschnitt deiner besten Shorts der Woche, Platz 1 zum Schluss.",
       st: function (d) { var Z = d.wochenschnitt || {}; if (!Z.on) return ["off", "Aus", "langes Video wie immer"];
         return [Z.status === "fehler" ? "warn" : "ok", Z.status === "fehler" ? "Wartet" : "Läuft", "Sonntag 17 Uhr", Z.last && Z.last.views != null ? nf.format(Z.last.views) + " Aufrufe zuletzt" : null]; } },
@@ -7433,9 +7535,9 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     S.timer = setTimeout(function () {
       load().then(function (d) {
         if (!S.live || !d) return;
-        var c = (d.connect || {}).status, c2 = (d.connect_clip || {}).status, c3 = (d.connect_relax || {}).status;
+        var c = (d.connect || {}).status, c2 = (d.connect_clip || {}).status, c3 = (d.connect_relax || {}).status, c4 = (d.connect_en || {}).status;
         var wait = function (x) { return x === "code" || x === "start"; };
-        poll(d.busy || wait(c) || wait(c2) || wait(c3) ? 4000 : 30000);
+        poll(d.busy || wait(c) || wait(c2) || wait(c3) || wait(c4) ? 4000 : 30000);
       });
     }, ms);
   }
@@ -8038,6 +8140,10 @@ abbr.term:hover::after, abbr.term:focus::after { content: attr(data-tip); positi
 /* Kampagnen-Vorschläge */
 .vs-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.06); }
 .vs-row:first-child { border-top: 0; }
+#v-en .kv { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; padding: 9px 0; border-top: 1px solid rgba(255,255,255,.06); font-size: 14px; min-width: 0; }
+#v-en .kv:first-child { border-top: 0; }
+#v-en .kv > :first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#v-en .kv b { flex: none; }
 .vs-row b { display: block; overflow: hidden; text-overflow: ellipsis; }
 .vs-row span, .vs-row small { display: block; color: var(--muted, #9a9aa0); font-size: 13px; }
 .vs-row small { margin-top: 2px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }

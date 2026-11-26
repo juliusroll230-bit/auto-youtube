@@ -45,6 +45,7 @@ VOICES = {
     # Julius 25.11.2026: „die Stimme sollte angenehmer werden“. Etwas ruhiger, minimal tiefer, gleichmäßige Satzmelodie.
     "sanft": (0.98, 1.08, 0.0),       # Thorsten-high, ruhiger und wärmer
     "ruhig": (1.0, 1.08, 0.0),        # Thorsten-emotional, Sprecher „neutral“: ruhiger, freundlicher Ton
+    "english": (1.0, 0.95, 0.0),      # EN-Kanal: englische Piper-Stimme (en_GB), etwas flotter
 }
 
 # Stimmen mit eigenem Piper-Modell (alle CC0): Ordner, Datei, Sprecher-Nummer im Modell.
@@ -54,6 +55,8 @@ VOICE_MODELS = {
     "erzaehlerin": ("vits-piper-de_DE-kerstin-low", "de_DE-kerstin-low.onnx", None),
     "aufgeregt": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 0),  # 0 = amused
     "ruhig": ("vits-piper-de_DE-thorsten_emotional-medium", "de_DE-thorsten_emotional-medium.onnx", 4),  # 4 = neutral
+    # Englischer Kanal (seit 26.11.2026): dieselbe englische Stimme wie die Einschlaf-Geschichten von Quiet Corner
+    "english": ("vits-piper-en_GB-northern_english_male-medium", "en_GB-northern_english_male-medium.onnx", None),
 }
 # Mehr Schwankung in Tonhöhe und Tempo (noise_scale, noise_w_scale), damit die Stimme lebendiger klingt als Piper-Standard (0.667, 0.8)
 VOICE_NOISE = {"aufgeregt": (0.5, 0.7), "sanft": (0.5, 0.6), "ruhig": (0.5, 0.6)}  # niedrig = gleichmäßige Satzmelodie

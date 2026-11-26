@@ -44,6 +44,7 @@ import social
 import vorbilder
 import store
 import whop
+import en
 import zusammenschnitt
 import einreichen
 import yt
@@ -69,7 +70,7 @@ thumb_lock = threading.Lock()  # Thumbnails nacheinander bauen (Chromium)
 relax_waiting = threading.Event()  # Quiet Corner wartet auf den Renderer: andere Aufgaben lassen ihn frei
 relax_lock = threading.Lock()  # Entspannungskanal: baut und lädt ein langes Video, unabhängig vom Hauptkanal
 clipi_lock = threading.Lock()  # Clipi lädt auf den eigenen Clip-Kanal hoch, unabhängig vom Hauptkanal
-status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "connect_relax": {"status": "idle"}, "oauth_states": {}}
+status = {"busy": "", "connect": {"status": "idle"}, "connect_clip": {"status": "idle"}, "connect_relax": {"status": "idle"}, "connect_en": {"status": "idle"}, "oauth_states": {}}
 _tts = None
 _tts_lock = threading.Lock()
 
@@ -387,6 +388,8 @@ def prerender():
     if not cfg["refresh_token"] or not ag["publisher"]["on"] or status["busy"]:
         return
     if store.due_long(ag["publisher"].get("long_per_week", 0)) or store.due_firma(cfg.get("firma_hour")):
+        return
+    if en.wants_render(cfg):   # englischer Kanal hat keinen fertigen Short: der kommt zuerst dran
         return
     if len(store.ready_items()) >= store.READY_MAX:
         return
@@ -1194,6 +1197,154 @@ def connect_relax_channel():
         store.log("error", f"Entspannungskanal-Verbindung fehlgeschlagen: {e}")
 
 
+def en_connection_expired():
+    store.save_config(en_token="", en_expired=True)
+    status["connect_en"] = {"status": "idle"}
+    store.log("warn", "Die Verbindung zum englischen Kanal ist abgelaufen. Bitte unter Kanäle > Englisch neu verbinden.")
+
+
+def connect_en_channel():
+    cfg = store.config()
+    try:
+        code = yt.device_start(cfg["client_id"])
+        status["connect_en"] = {"status": "code", "user_code": code["user_code"],
+                                "verification_url": code.get("verification_url", "https://www.google.com/device"),
+                                "expires_at": code["expires_at"]}
+        token = yt.device_wait(cfg["client_id"], cfg["client_secret"], code)
+        ch = yt.channel({**cfg, "refresh_token": token})
+        others = [(store.read(f, {}) or {}).get("id") for f in ("channel.json", "clipchannel.json", "relaxchannel.json")]
+        if ch["id"] in [o for o in others if o]:
+            raise RuntimeError("Das ist ein Kanal, der schon verbunden ist. Wähle bei Google den neuen englischen Kanal aus.")
+        store.write("enchannel.json", ch)
+        store.save_config(en_token=token, en_expired=False)
+        status["connect_en"] = {"status": "verbunden"}
+        store.log("ok", f"Englischer Kanal verbunden: {ch.get('title', 'YouTube')}. Ab jetzt kommen dort 2 Shorts am Tag.")
+    except Exception as e:
+        status["connect_en"] = {"status": "fehler", "message": str(e)}
+        store.log("error", f"Verbindung zum englischen Kanal fehlgeschlagen: {e}")
+
+
+def en_cfg():
+    cfg = store.config()
+    return {**cfg, "refresh_token": cfg["en_token"], "privacy": "public"}
+
+
+def render_en(name, spec):
+    """Rendert ein englisches Skript (englische Stimme und Untertitel, eigener Lernmodus) in den EN-Vorrat."""
+    from make_short import build_video
+    ag = agents.settings(store.config())
+    look = en.choose_look(spec)
+    with working("sprecher", task="Spricht ein Video für den englischen Kanal"), \
+            working("studio", task="Rendert ein Video für den englischen Kanal"):
+        video, total, timings = build_video({**spec, **look, "voice_speed": agents.voice_speed(ag)},
+                                            store.path("out-en"), tts())
+    d = en.load()
+    d["ready"] = {"name": name, "title": spec["title"], "video": video, "total": total, "look": look,
+                  "timings": [list(t) for t in timings]}
+    d["error"] = None
+    en.save(d)
+    store.log("info", f"Englischer Short fertig gerendert: {spec['title']}", agent="studio")
+
+
+def upload_en(slot):
+    """Lädt den fertigen englischen Short auf den EN-Kanal (eigener Token), mit eigenem Thumbnail."""
+    d = en.load()
+    r = d.get("ready") or {}
+    spec = next((s for n, s in en.scripts() if n == r.get("name")), None)
+    if not spec or not os.path.exists(r.get("video") or ""):
+        d["ready"] = None
+        en.save(d)
+        return
+    cfg = en_cfg()
+    up = en.upload_spec(spec)
+    with working("publisher", task="Lädt auf den englischen Kanal hoch"):
+        video_id = yt.upload(cfg, r["video"], up)
+    thumb = None
+    try:
+        files = make_thumbs(spec)
+        if files:
+            yt.set_thumbnail(cfg, video_id, files["A"])
+            thumb = "A"
+    except Exception as e:  # noqa: BLE001  ohne eigenes Bild nimmt YouTube eins aus dem Video
+        print("EN-Thumbnail:", repr(e), flush=True)
+    en.record(r["name"], spec, video_id, slot, r["look"], round(r["total"], 1), thumb)
+    try:
+        os.remove(r["video"])
+    except OSError:
+        pass
+    store.log("ok", f"Gepostet (Englisch): {spec['title']}", agent="publisher", kind="posted", source="youtube")
+
+
+def en_refresh_stats(cfg):
+    ids = [u["video_id"] for u in en.load()["uploads"] if u.get("video_id")]
+    if ids:
+        en.set_stats(yt.video_stats({**cfg, "refresh_token": cfg["en_token"]}, ids))
+
+
+def en_step():
+    """Ein Durchgang des EN-Kanals: vorrendern, wenn nichts bereit ist; hochladen, wenn ein Platz offen ist."""
+    cfg = store.config()
+    if not en.active(cfg) or not cfg.get("client_id"):
+        return
+    d = en.load()
+    slot = en.due_slot(cfg, d=d)
+    if d.get("ready") and slot:
+        try:
+            upload_en(slot)
+        except Exception as e:  # noqa: BLE001
+            if yt.is_expired(e):
+                en_connection_expired()
+                return
+            traceback.print_exc()
+            store.log("error", f"Upload fehlgeschlagen (englischer Kanal): {e}", agent="publisher", kind="error")
+            en.mark_done(slot)
+        return
+    if slot and not d.get("ready") and not en.next_script(d):
+        en.mark_done(slot)
+        store.log("warn", "Englischer Kanal: kein neues Skript in seed-en/. Platz ausgelassen.", agent="publisher")
+        return
+    nxt = None if d.get("ready") else en.next_script(d)
+    if nxt:
+        import make_short
+        if make_short.voice_model(en.VOICE) is None:   # sonst läse die deutsche Stimme englischen Text vor
+            if d.get("error") != en.NO_VOICE:
+                d["error"] = en.NO_VOICE
+                en.save(d)
+                store.log("warn", en.NO_VOICE, agent="studio")
+            return
+    if nxt and not relax_waiting.is_set() and work_lock.acquire(blocking=False):
+        try:
+            render_en(*nxt)
+        except Exception as e:  # noqa: BLE001
+            traceback.print_exc()
+            d = en.load()
+            d["failed"] = (d.get("failed") or []) + [nxt[0]]
+            d["error"] = f"„{nxt[1].get('title')}“ ließ sich nicht rendern: {e}"[:300]
+            en.save(d)
+            store.log("warn", f"Englischer Short nicht gerendert: {e}", agent="studio")
+        finally:
+            work_lock.release()
+
+
+def en_worker():
+    last_stats = 0.0
+    while True:
+        try:
+            en_step()
+            cfg = store.config()
+            if cfg.get("en_token") and time.time() - last_stats > 3600:
+                last_stats = time.time()
+                try:
+                    store.write("enchannel.json", yt.channel({**cfg, "refresh_token": cfg["en_token"]}))
+                    en_refresh_stats(cfg)
+                except Exception as e:  # noqa: BLE001
+                    if yt.is_expired(e):
+                        en_connection_expired()
+        except Exception:
+            traceback.print_exc()
+        time.sleep(30)
+
+
 def relax_brand_files():
     """Banner und Profilbilder für Quiet Corner (einmal gebaut, dann aus dem Speicher). Gibt {name: pfad} zurück."""
     import entspannung
@@ -1829,7 +1980,7 @@ class Handler(BaseHTTPRequestHandler):
             if time.time() - _last_refresh[0] > 5 * 60:  # Website offen: Aufrufe frisch holen
                 _last_refresh[0] = time.time()
                 background(refresh_stats)
-            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"],
+            return self.send(200, store.dashboard({"busy": status["busy"], "connect": status["connect"], "connect_clip": status["connect_clip"], "connect_relax": status["connect_relax"], "connect_en": status["connect_en"],
                                                    "version": VERSION, "oauth_page": OAUTH_PAGE,
                                                    "live_seq": live_since(10 ** 12)["seq"], "whop": whop.summary(), "einreichen": store._safe(einreichen.overview, {}),
                                                    "vorschlaege": store._safe(vorschlaege.overview, {}),
@@ -2186,6 +2337,22 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(400, {"error": "Bitte zuerst deinen Hauptkanal verbinden."})
             status["connect_relax"] = {"status": "start"}
             background(connect_relax_channel)
+            return self.send(200, {"ok": True})
+        if p == "/api/en/connect":
+            cfg = store.config()
+            if not (cfg["client_id"] and cfg["client_secret"] and cfg["refresh_token"]):
+                return self.send(400, {"error": "Bitte zuerst deinen Hauptkanal verbinden."})
+            status["connect_en"] = {"status": "start"}
+            background(connect_en_channel)
+            return self.send(200, {"ok": True})
+        if p == "/api/en/disconnect":
+            store.save_config(en_token="", en_expired=False)
+            store.write("enchannel.json", None)
+            status["connect_en"] = {"status": "idle"}
+            store.log("warn", "Englischer Kanal getrennt.")
+            return self.send(200, {"ok": True})
+        if p == "/api/en/settings":
+            store.save_config(en_on=bool(data.get("on")))
             return self.send(200, {"ok": True})
         if p == "/api/relax/disconnect":
             store.save_config(relax_token="", relax_expired=False)
@@ -2747,6 +2914,7 @@ def main():
     threading.Thread(target=clipi_worker, daemon=True).start()
     threading.Thread(target=push_worker, daemon=True).start()
     threading.Thread(target=relax_worker, daemon=True).start()
+    threading.Thread(target=en_worker, daemon=True).start()
     threading.Thread(target=ready_worker, daemon=True).start()
     background(warm_thumbs)
     print(f"Shorts-Zentrale läuft auf Port {PORT}", flush=True)

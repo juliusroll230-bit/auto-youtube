@@ -490,3 +490,23 @@ in `long_slots`, das normale lange Video (19 Uhr) entfällt. Ohne Erfolg (zu wen
 - Upload-Eintrag: `lang: true`, `zusammenschnitt: true`, `sources`. Lern-Merkmal „Zusammenschnitt (lange Videos)“ (`store.posted_items`).
 - Keine neuen Skripte nötig, die tägliche Aufgabe ändert sich nicht. Test: `tests/zusammenschnitt_test.py` (echtes ffmpeg, kein Netz).
 
+
+## Englischer Kanal „EN“ (seit 26.11.2026, Julius' Phase H)
+
+`en.py`, eigener Token `en_token` (Reiter Kanäle > Englisch), `server.en_worker`. Uploads stehen in `en.json`, **nicht** in `state.json`
+(sonst verfälschen sie Lernmodus und 15-am-Tag-Grenze des Hauptkanals). 2 am Tag um 21 und 1 Uhr (`en_hours`), Stimme `english`
+(Piper `en_GB-northern_english_male-medium`), englische Untertitel (`cartoon.word_times(..., "en")`), kein Abo-Aufruf, eigener Lernmodus.
+
+Für die tägliche Skript-Aufgabe (zusätzlich zu den 15 deutschen, zählt nicht zum Mix):
+
+- **Höchstens 2 Skripte am Tag** nach `seed-en/NNNN-kurzer-name.json` (nächste freie Nummer). Nur solange weniger als 6 Skripte
+  in `seed-en/` noch nicht hochgeladen sind (sonst stauen sie sich, solange der Kanal nicht verbunden ist), sonst den Tag auslassen.
+- **Vorlage:** aus `docs/nische.json` → `en_quellen` (deutsche Shorts mit mind. 1.500 Aufrufen oder beste 10 %). Nie eine Vorlage zweimal:
+  `"quelle"` = slug des deutschen Shorts, vorher in `seed-en/` prüfen. Keine erzählten Ich-Geschichten, keine Firmen-Folgen, keine Clips.
+- **Neu auf Englisch schreiben, nicht Wort für Wort übersetzen:** gleicher Aufbau und gleiche Fakten, aber natürliches Englisch,
+  kurze Sätze, erster Satz höchstens 12 Wörter, 40 bis 85 Wörter, Auflösung im vorletzten Satz, 2 bis 4 `*keywords*`.
+  Deutsche Beispiele (Euro, deutsche Orte, deutsche Schulfächer) auf englische umstellen, wenn die Fakten das erlauben.
+- Felder wie im deutschen Skript (`segments`, `title`, `description`, `tags`, `thumb_text` auf Englisch, `frage` auf Englisch), dazu
+  `"slug": "en-…"` (eindeutig) und `"quelle"`. `"ende": "loop"` übernehmen, wenn die Vorlage es hat. `welt`/`stil` wie die Vorlage.
+- Titel höchstens 60 Zeichen, kein Gedankenstrich, kein „subscribe“ im Text (die App setzt die Fußzeile), keine erfundenen Zahlen.
+- Test: `tests/en_test.py` prüft jedes Skript in `seed-en/` (gültig, englisch, Quelle, Thumbnail-Text).
