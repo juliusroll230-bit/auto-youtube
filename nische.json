@@ -88,6 +88,15 @@
    "welt": "Strichmännchen"
   }
  ],
- "updated_at": "2026-11-26T21:48:32+00:00",
+ "en_quellen": [
+  {
+   "slug": "horror-block-schule-sechzig-sekunden",
+   "title": "Schule: 60 Sekunden bis zur Glocke 🔔",
+   "views": 1103,
+   "typ": "Horror",
+   "skript": "seed/0305-horror-block-schule-sechzig-sekunden.json"
+  }
+ ],
+ "updated_at": "2026-11-26T22:00:40+00:00",
  "hinweis": "Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass."
 }
