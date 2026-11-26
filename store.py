@@ -1090,6 +1090,7 @@ def dashboard(extra=None, working=None, repo=True):
             "branding_at": st.get("branding_at"), "clips": camp["totals"]}),
         "campaigns": camp["campaigns"],
         "clipi": _safe(lambda: clipi_overview(cfg, st), {}),
+        "abgabe": _safe(lambda: __import__("abgabe").overview(cfg, st), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "binge": _safe(lambda: _binge_overview(cfg, st), {}),
         "money": _safe(lambda: __import__("money").load(), {"payouts": []}),
