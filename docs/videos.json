@@ -6,6 +6,78 @@
  },
  "videos": [
   {
+   "id": "2s3nb0x1YSs",
+   "title": "Auf der Parkbank steht mein Name 🌳",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im Park steht eine Bank mit meinem Namen, und ich weiß nicht, woher sie kommt.",
+   "niche": "Geschichte",
+   "views": 5,
+   "published": "2026-11-26T14:36:42+00:00",
+   "thumb": "thumbs/2s3nb0x1YSs.jpg"
+  },
+  {
+   "id": "DBX5NhQsbRM",
+   "title": "Der Nachbar will jeden Abend ein Ei 🥚",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend klingelt der neue Nachbar, und erst am Ende verstehe ich, warum.",
+   "niche": "Geschichte",
+   "views": 560,
+   "published": "2026-11-26T13:55:43+00:00",
+   "thumb": "thumbs/DBX5NhQsbRM.jpg"
+  },
+  {
+   "id": "1PBCTQQg4Pg",
+   "title": "Was passiert, wenn du dich erschreckst? 😱",
+   "text": "Was in der ersten Sekunde eines Schrecks in deinem Körper passiert und warum du zusammenzuckst, bevor du denken kannst.",
+   "niche": "Wissen",
+   "views": 357,
+   "published": "2026-11-26T12:35:53+00:00",
+   "thumb": "thumbs/1PBCTQQg4Pg.jpg"
+  },
+  {
+   "id": "73OOd0N0JlM",
+   "title": "Was passiert, wenn du nie Zähne putzt? 🦷",
+   "text": "Wie Bakterien aus Zucker Säure machen, warum Zahnfleisch blutet und was zwei Minuten am Tag verhindern.",
+   "niche": "Wissen",
+   "views": 273,
+   "published": "2026-11-26T10:35:55+00:00",
+   "thumb": "thumbs/73OOd0N0JlM.jpg"
+  },
+  {
+   "id": "EOyWBgUPPVw",
+   "title": "Was passiert, wenn dir eiskalt wird? 🥶",
+   "text": "Was dein Körper bei extremer Kälte tut, ab wann Unterkühlung beginnt und warum nasse Kleidung besonders gefährlich ist.",
+   "niche": "Wissen",
+   "views": 444,
+   "published": "2026-11-26T09:35:38+00:00",
+   "thumb": "thumbs/EOyWBgUPPVw.jpg"
+  },
+  {
+   "id": "dDSFHJzspk4",
+   "title": "Warum haben Zebras Streifen? 🦓",
+   "text": "Tarnung, Hitze oder Schutz? Was Studien über Zebrastreifen und Fliegen herausgefunden haben.",
+   "niche": "Wissen",
+   "views": 245,
+   "published": "2026-11-26T08:36:01+00:00",
+   "thumb": "thumbs/dDSFHJzspk4.jpg"
+  },
+  {
+   "id": "GarEKvPl2Uw",
+   "title": "Warum wird dir schwindelig, wenn du dich drehst? 🌀",
+   "text": "Dein Innenohr meldet Drehung, deine Augen sehen Stillstand. Warum dieser Streit im Kopf Schwindel auslöst.",
+   "niche": "Wissen",
+   "views": 963,
+   "published": "2026-11-26T07:36:08+00:00",
+   "thumb": "thumbs/GarEKvPl2Uw.jpg"
+  },
+  {
+   "id": "OM697BKdkkI",
+   "title": "Der Zettel unter dem Nachtisch 📝",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: In der Schulmensa liegt jeden Tag ein Zettel unter meinem Nachtisch, und niemand weiß, von wem.",
+   "niche": "Geschichte",
+   "views": 174,
+   "published": "2026-11-26T06:36:04+00:00",
+   "thumb": "thumbs/OM697BKdkkI.jpg"
+  },
+  {
    "id": "VB9LXGmr-FY",
    "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Burgerladen (Tag 4) 🍔",
    "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Burgerladen „Abo Burger“ ein. Heute: 182 Mitarbeiter und 53.300 € Spielgeld auf dem Konto (alles nur im Spiel).",
@@ -19,7 +91,7 @@
    "title": "Die Bagdad-Batterie: Strom vor 2.000 Jahren? 🔋",
    "text": "1936 finden Arbeiter bei Bagdad einen Tonkrug mit Kupferrohr und Eisenstab. Wir erzählen die Geschichte der Bagdad-Batterie, die Idee dahinter und was Fachleute dagegen sagen.",
    "niche": "Geschichte",
-   "views": 2,
+   "views": 3,
    "published": "2026-11-25T19:01:25+00:00",
    "thumb": "thumbs/sm9IAlHwsKs.jpg"
   },
@@ -28,7 +100,7 @@
    "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
    "text": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine Kiste vor der Tür, und niemand will es gewesen sein.",
    "niche": "Geschichte",
-   "views": 653,
+   "views": 759,
    "published": "2026-11-25T17:35:46+00:00",
    "thumb": "thumbs/tnv4NUFUENU.jpg"
   },
@@ -37,7 +109,7 @@
    "title": "Schwimm nachts nie bis zur Mitte 🌊",
    "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine zweite Regel. Schwimm nachts niemals bis zur Mitte des Sees.",
    "niche": "Wissen",
-   "views": 782,
+   "views": 774,
    "published": "2026-11-25T16:35:51+00:00",
    "thumb": "thumbs/jTUMV8LcrX4.jpg"
   },
@@ -46,7 +118,7 @@
    "title": "Geh nachts nie zum Eiswagen 🍦",
    "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine Regel, die jeder kennt. Geh nachts nie zum Eiswagen.",
    "niche": "Wissen",
-   "views": 679,
+   "views": 700,
    "published": "2026-11-25T15:35:35+00:00",
    "thumb": "thumbs/OLACtdrtbk4.jpg"
   },
@@ -55,7 +127,7 @@
    "title": "Schule: 60 Sekunden bis zur Glocke 🔔",
    "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Die Schule ist leer, und du hast nur sechzig Sekunden, bis die Glocke läutet.",
    "niche": "Wissen",
-   "views": 1088,
+   "views": 1103,
    "published": "2026-11-25T14:35:59+00:00",
    "thumb": "thumbs/6Qo5ikqNUBM.jpg"
   },
@@ -64,81 +136,9 @@
    "title": "Die Feuerkugeln, die aus dem Fluss steigen 🔥",
    "text": "Blockwelt: Am Mekong in Thailand steigen jedes Jahr leuchtende Kugeln aus dem Wasser. Woher sie kommen, ist bis heute nicht sicher geklärt.",
    "niche": "Wissen",
-   "views": 426,
+   "views": 434,
    "published": "2026-11-25T13:35:38+00:00",
    "thumb": "thumbs/qTzgth99uVk.jpg"
-  },
-  {
-   "id": "Qd4sA5175Jg",
-   "title": "Das Geisterschiff, das immer wieder auftauchte 🚢",
-   "text": "Neunzehnhunderteinunddreißig wird die Baychimo im Eis vor Alaska verlassen. Danach wird sie über Jahrzehnte immer wieder treibend gesehen.",
-   "niche": "Geschichte",
-   "views": 610,
-   "published": "2026-11-25T12:36:06+00:00",
-   "thumb": "thumbs/Qd4sA5175Jg.jpg"
-  },
-  {
-   "id": "v7SjSDfpeiU",
-   "title": "Das Licht an der Ecke 💡",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend brennt an der Ecke ein Küchenlicht, bis es eines Tages dunkel bleibt.",
-   "niche": "Geschichte",
-   "views": 369,
-   "published": "2026-11-25T10:36:07+00:00",
-   "thumb": "thumbs/v7SjSDfpeiU.jpg"
-  },
-  {
-   "id": "KNGHAVzvQhk",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Autofirma (Tag 4) 🚗",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Autofirma „Abo Motors“ ein. Heute: 172 Mitarbeiter und 49.400 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 7,
-   "published": "2026-11-24T19:28:00+00:00",
-   "thumb": "thumbs/KNGHAVzvQhk.jpg"
-  },
-  {
-   "id": "wRRLXwrTBME",
-   "title": "Das Grab, das seit 2.200 Jahren niemand öffnet 🏯",
-   "text": "1974 stoßen Bauern bei Xi'an auf eine Armee aus Ton. Wir erzählen die Geschichte des ersten Kaisers von China, seiner Tonkrieger und seines Grabes, das bis heute verschlossen ist, und was Forscher darin vermuten.",
-   "niche": "Geschichte",
-   "views": 21,
-   "published": "2026-11-24T19:00:40+00:00",
-   "thumb": "thumbs/wRRLXwrTBME.jpg"
-  },
-  {
-   "id": "neiA36OHdUQ",
-   "title": "Der Platz neben mir im Bus 🚌",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Morgen setzt sich ein alter Mann im Bus neben mich und sagt kein Wort.",
-   "niche": "Geschichte",
-   "views": 227,
-   "published": "2026-11-24T17:35:53+00:00",
-   "thumb": "thumbs/neiA36OHdUQ.jpg"
-  },
-  {
-   "id": "1CqWkJy-qxE",
-   "title": "Die Schlacht gegen niemand 🔦",
-   "text": "Februar 1942: Über Los Angeles feuert die Flugabwehr eine ganze Nacht lang, doch am Morgen findet man kein feindliches Flugzeug. Was war am Himmel?",
-   "niche": "Geschichte",
-   "views": 248,
-   "published": "2026-11-24T16:35:49+00:00",
-   "thumb": "thumbs/1CqWkJy-qxE.jpg"
-  },
-  {
-   "id": "v2ZymOqx92k",
-   "title": "Die Spuren, die niemand erklären kann 🐾",
-   "text": "Achtzehnhundertfünfundfünfzig finden Dorfbewohner in Devon Hufspuren im Schnee, die über Mauern und Dächer führen sollen. Bis heute ist nicht geklärt, wer sie hinterließ.",
-   "niche": "Geschichte",
-   "views": 836,
-   "published": "2026-11-24T15:35:43+00:00",
-   "thumb": "thumbs/v2ZymOqx92k.jpg"
-  },
-  {
-   "id": "wn26i1TjrEw",
-   "title": "Was passiert, wenn dich eine Strömung wegzieht? 🌊",
-   "text": "Eine Rippströmung zieht dich nicht unter Wasser, sondern hinaus. Woran du sie erkennst und was du tun kannst.",
-   "niche": "Wissen",
-   "views": 828,
-   "published": "2026-11-24T14:36:05+00:00",
-   "thumb": "thumbs/wn26i1TjrEw.jpg"
   }
  ]
 }
