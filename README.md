@@ -145,6 +145,35 @@ Ein eigener YouTube-Kanal bekommt englische Fassungen der deutschen Shorts, die 
 - **Beschreibung:** sagt immer, dass die Stimme synthetisch ist.
 - Fehlt die englische Stimme auf dem Server, rendert die Zentrale nichts Englisches und zeigt einen Hinweis.
 
+## Die ganze Geschichte (seit 27.11.2026)
+
+Ein neues Format für lange Videos: eine große Geschichte komplett und mit Kapiteln erzählt. Nur Stoffe ohne Urheberrecht
+(Mythologie, echte Geschichte, Märchen und Sagen, echte Rätsel). Alles selbst gezeichnet und vertont, keine fremden Clips, Bilder oder Musik.
+
+**Hauptkanal: „Die GANZE Geschichte von … in X Minuten“** (Deutsch, spannend)
+
+- **Wann:** samstags statt des normalen langen Videos. Rendern ab 6 Uhr (dauert Stunden), Upload um 19 Uhr.
+  Gibt es kein Skript oder klappt etwas nicht, kommt das normale lange Video.
+- **Video:** 15 bis 40 Minuten, Strichmännchen oder Blockwelt, Stimme „klar“, Kapitel mit Zeitmarken in der Beschreibung,
+  Thumbnail mit dem Thema riesig und der Minutenzahl. Sagen sind als Sagen gekennzeichnet, Quellen stehen in der Beschreibung.
+- **5 Shorts daraus:** die App sucht die 5 stärksten Kapitel-Momente (Hook-Prüfung wie bei normalen Shorts, 18 bis 42 s)
+  und schneidet sie im Hochformat aus. Sie laufen ab dem Tag danach, höchstens 1 am Tag ab 12 Uhr, auf einem normalen Sendeplatz.
+  Im Bild steht „Ganze Geschichte auf dem Kanal“, in der Beschreibung der Link zum langen Video.
+  YouTube erlaubt das „verknüpfte Video“ bei Shorts nicht per API, darum nur der Link (verknüpfen geht in YouTube Studio von Hand).
+- **Lernen:** Merkmal „Ganze Geschichte (lange Videos)“ gegen normale lange Videos (Aufrufe und Wiedergabezeit), Karte im Sendeplan.
+- Skripte: `seed-long/` (1 pro Woche über die tägliche Skript-Aufgabe). Das erste: „Die GANZE Geschichte der griechischen Götter“.
+
+**Quiet Corner: „Sleep History“** (Englisch, ruhig)
+
+- „The Entire Story of … to Fall Asleep To“, 1 bis 3 Stunden, die ruhige englische Stimme der Einschlaf-Geschichten, langsam,
+  ohne Spannungsspitzen und ohne brutale Details.
+- **Bild:** eine ruhige Szene aus Quiet Corner, dazu blendet zu jedem Kapitel langsam eine selbst gezeichnete Kapitel-Karte ein
+  (Kapitelname und ein einfaches Bild). Kapitel mit Zeitmarken in der Beschreibung.
+- **Wie oft:** am Anfang ca. alle 3 Tage statt einer Einschlaf-Geschichte. Der Lernmodus vergleicht „Sleep History“ mit
+  Geschichte und reiner Szene (Aufrufe pro Tag). Nach 4 Videos je Seite: klar vorn (80 % sicher) alle 2 Tage, klar hinten nur noch 1 pro Woche.
+- Skripte: `sleep-history/` (2 pro Woche über die tägliche Skript-Aufgabe). Das erste: „The Entire Story of Ancient Rome“.
+- Ausschalten: `relax_history` in der Config auf `false`.
+
 ## Kampagnen-Vorschläge (seit 26.11.2026)
 
 Unter Kampagnen > Kampagnen zeigt die Karte „Vorschläge für neue Kampagnen“, welche Content-Rewards-Kampagnen zu dir passen.

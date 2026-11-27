@@ -90,12 +90,12 @@ def total_minutes(narration_s, floor=60):
     return max(floor, hours * 60)
 
 
-def mux(video_loop, scene_wav, narration_wav, minutes, out_mp4, rate=48000):
+def mux(video_loop, scene_wav, narration_wav, minutes, out_mp4, rate=48000, lead=LEAD_S):
     """Schleifenbild + leise Szene + Stimme (nach LEAD_S) zu einem Video. Stimme laut, Szene leise, am Ende weiches Ausblenden."""
     total = minutes * 60
-    delay = int(LEAD_S * 1000)
+    delay = int(lead * 1000)
     # Szene leise (Julius 24.11.: „Hintergrund muss leiser sein“) und zusätzlich noch leiser, solange die Stimme spricht.
-    fc = (f"[1:a]volume={BG_VOL}[bg];[2:a]adelay={delay}|{delay},volume=1.3,asplit=2[v][sc];"
+    fc = (f"[1:a]volume={BG_VOL}[bg];[2:a]" + (f"adelay={delay}|{delay}," if delay else "") + "volume=1.3,asplit=2[v][sc];"
           f"[bg][sc]sidechaincompress=threshold=0.01:ratio=10:attack=80:release=900:makeup=1[duck];"
           f"[duck][v]amix=inputs=2:duration=first:normalize=0,afade=t=out:st={total - 8}:d=8[a]")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", video_loop,

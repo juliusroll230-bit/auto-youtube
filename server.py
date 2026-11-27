@@ -46,6 +46,7 @@ import store
 import whop
 import en
 import zusammenschnitt
+import ganze
 import einreichen
 import yt
 
@@ -458,6 +459,52 @@ def run_wochenschnitt():
         zusammenschnitt.run(speak=speak_klar, upload=upload, thumbs=wochen_thumbs)
     if zusammenschnitt.load()["status"] == "hochgeladen":
         refresh_stats()
+
+
+def run_ganze():
+    """„Die ganze Geschichte“ am Samstag: ab 6 Uhr rendern (wartet auf den Renderer), ab 19 Uhr hochladen, 5 Ausschnitte."""
+    def render(spec):
+        relax_waiting.set()   # kein neuer Short fängt an, solange die ganze Geschichte auf den Renderer wartet
+        try:
+            got = work_lock.acquire(timeout=3 * 3600)
+        finally:
+            relax_waiting.clear()
+        if not got:
+            raise RuntimeError("Der Renderer war 3 Stunden belegt")
+        try:
+            status["busy"] = f"Rendert die ganze Geschichte: {spec.get('thema') or spec['title']}"
+            with working("studio", task="Rendert die ganze Geschichte (dauert Stunden)"):
+                return render_short(spec)
+        finally:
+            status["busy"] = ""
+            work_lock.release()
+
+    def upload(path, spec):
+        yt.check(store.config())
+        with working("publisher", task="Lädt die ganze Geschichte hoch"):
+            return yt.upload(store.config(), path, spec)
+
+    def thumbs(spec, vid):
+        files = make_thumbs(spec)
+        return apply_thumb(vid, files, _safe_variant(True)[:1]) if files else None
+
+    ganze.run(render=render, upload=upload, thumbs=thumbs)
+    if ganze.load()["status"] == "hochgeladen":
+        refresh_stats()
+
+
+def post_ganze_cut(slot):
+    """Ein Ausschnitt aus der ganzen Geschichte auf einem normalen Sendeplatz (1 pro Tag ab 12 Uhr). True: Platz erledigt."""
+    def upload(path, spec):
+        yt.check(store.config())
+        with working("publisher", task="Lädt einen Ausschnitt der ganzen Geschichte hoch"):
+            return yt.upload(store.config(), path, spec)
+    try:
+        return ganze.post_cut(slot, upload)
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        store.log("warn", f"Ausschnitt nicht hochgeladen ({e}). Der Platz bleibt beim normalen Short.", agent="publisher")
+        return False
 
 
 def _safe_variant(long):
@@ -1430,24 +1477,37 @@ def post_relax(manual=False):
             idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, st.get("relax_cap"))
             shutil.rmtree(folder, ignore_errors=True)
             styles = entspannung.choose_style(ups, store.now().date(), n)
-            story = None
+            story = history = None
+            # Sleep History seit 26.11.2026 (Phase I): ca. 2 pro Woche, Häufigkeit lernt sleephistory.gap_days
+            if cfg.get("relax_history", True):
+                import sleephistory
+                import sleepstory
+                if sleepstory.available() and sleephistory.due(ups, store.now().date()):
+                    history = sleephistory.pick([u.get("history") for u in ups if u.get("history")])
+                    if history and history.get("scene") in entspannung.SCENES:
+                        idea = next((i["id"] for i in entspannung.IDEAS if i["scene"] == history["scene"]), idea)
             # Einschlaf-Geschichten seit 24.11.2026; ohne neue Geschichte läuft nur die Szene. Laufen reine Szenen sicher besser,
             # kommt die Geschichte nur noch in jedem 2. Video (Lernmodus, entspannung.use_story)
-            if cfg.get("relax_stories", True) and entspannung.use_story(ups, store.now().date(), n):
+            if not history and cfg.get("relax_stories", True) and entspannung.use_story(ups, store.now().date(), n):
                 import sleepstory
                 if sleepstory.available():
                     story = sleepstory.pick([u.get("story") for u in ups if u.get("story")])
                     if story and story.get("scene") in entspannung.SCENES:
                         idea = next((i["id"] for i in entspannung.IDEAS if i["scene"] == story["scene"]), idea)
-            status["busy"] = (f"Baut Quiet-Corner-Geschichte: {story['title']}" if story else
+            status["busy"] = (f"Baut Quiet-Corner-Sleep-History: {history['title']}" if history else
+                              f"Baut Quiet-Corner-Geschichte: {story['title']}" if story else
                               f"Baut Quiet-Corner-Video: {entspannung.IDEA[idea]['title']}, {entspannung.dauer_text(minutes)}")
             with working("studio", task="Baut ein langes Entspannungsvideo"):
-                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=True, story=story, styles=styles)
+                r = entspannung.build(idea, minutes, folder, seed=n + 1, teaser=True, story=story, styles=styles, history=history)
             minutes = r.get("minutes", minutes)
         finally:
             status["busy"] = ""
             work_lock.release()
-        meta = entspannung.story_meta(story, idea, minutes, n) if story else entspannung.meta(idea, minutes, n, styles["title_style"])
+        if history:
+            with open(r["info"], encoding="utf-8") as f:
+                meta = json.load(f)   # Titel, Kapitel mit Zeitmarken, Quellen (sleephistory.meta)
+        else:
+            meta = entspannung.story_meta(story, idea, minutes, n) if story else entspannung.meta(idea, minutes, n, styles["title_style"])
         rcfg = {**cfg, "refresh_token": cfg["relax_token"], "privacy": "public"}
         spec = {**meta, "laenge": "lang", "footer": "", "category": "22", "language": "en", "chunksize": 64 * 1024 * 1024}
         relax_phase("Lädt hoch (bei 8 bis 10 Std. dauert das ein paar Stunden)")
@@ -1488,7 +1548,7 @@ def post_relax(manual=False):
         info["uploads"] = (info.get("uploads") or [])[-200:] + [{
             "video_id": video_id, "title": meta["title"], "idea": idea, "scene": entspannung.IDEA[idea]["scene"],
             "minutes": minutes, "at": day, "hour": store.now().hour, "thumb": thumb, "teaser_id": teaser_id, "teaser_pending": teaser_pending, "views": 0,
-            **({"story": story["id"]} if story else {}), **styles}]
+            **({"story": story["id"]} if story else {}), **({"history": history["id"]} if history else {}), **styles}]
         store.write("relax.json", info)
         relax_phase("")
         store.log("ok", f"Quiet Corner: hochgeladen: {meta['title']}" + (" (plus Teaser-Short)" if teaser_id else ""))
@@ -1836,6 +1896,8 @@ def scheduler():
                 slot = store.due_slot() if ag["publisher"]["on"] else None
                 if slot and post_abgabe(slot):
                     pass  # Platz ab Nr. X ging an Clipi (Content-Rewards-Clip)
+                elif slot and ganze.cut_due() and post_ganze_cut(slot):
+                    pass  # Ausschnitt aus der ganzen Geschichte (1 pro Tag)
                 elif slot and store.ready_items():
                     post_ready(slot)  # fertiger Short aus dem Vorrat: nur hochladen, auch wenn gerade etwas rendert
                 elif slot and not status["busy"]:
@@ -1847,6 +1909,10 @@ def scheduler():
                 lslot = store.due_long(ag["publisher"].get("long_per_week", 0)) if ag["publisher"]["on"] else None
                 if ag["publisher"]["on"] and zusammenschnitt.due():
                     background(run_wochenschnitt)  # Sonntag: Zusammenschnitt der besten Shorts statt des langen Videos
+                if ag["publisher"]["on"] and ganze.due():
+                    background(run_ganze)  # Samstag: die ganze Geschichte statt des normalen langen Videos
+                if lslot and ganze.active():
+                    lslot = None   # gehört heute der ganzen Geschichte (klappt sie nicht, kommt das normale lange Video)
                 if lslot and not fslot and not status["busy"] and not work_lock.locked():
                     background(post_next, lslot, False, True)
                 if time.time() - last_stats > ag["analyst"]["minutes"] * 60:  # kostet kaum API-Quote
@@ -2654,6 +2720,8 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:  # noqa: BLE001
                 return self.send(502, {"error": "Die Kampagnen-Seite war gerade nicht erreichbar. Bitte gleich nochmal."})
             return self.send(200, {"ok": True})
+        if p == "/api/ganze/settings":
+            return self.send(200, {"ok": True, **ganze.save(on=bool(data.get("on")))})
         if p == "/api/wochenschnitt/settings":
             return self.send(200, {"ok": True, **zusammenschnitt.save(on=bool(data.get("on")))})
         if p == "/api/vorschlaege/refresh":

@@ -53,7 +53,12 @@ def validate(spec):
     errs = []
     segs = spec.get("segments") or []
     words = sum(len(str(s.get("text", "")).split()) for s in segs)
-    if is_long(spec):
+    if is_long(spec) and spec.get("format") == "ganze":   # „Die ganze Geschichte“ (samstags): 15 bis 40 Minuten
+        if not 120 <= len(segs) <= 450:
+            errs.append(f"{len(segs)} Segmente, erlaubt sind 120 bis 450 (ganze Geschichte)")
+        if not 2700 <= words <= 7500:
+            errs.append(f"{words} Wörter, die ganze Geschichte braucht 2700 bis 7500 (ca. 15 bis 40 Minuten)")
+    elif is_long(spec):
         if not 40 <= len(segs) <= 140:
             errs.append(f"{len(segs)} Segmente, erlaubt sind 40 bis 140 (lange Videos)")
         if not 1200 <= words <= 2600:

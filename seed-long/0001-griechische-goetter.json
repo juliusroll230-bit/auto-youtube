@@ -1,0 +1,1640 @@
+{
+ "slug": "ganze-geschichte-griechische-goetter",
+ "thema": "Griechische Götter",
+ "stil": "cartoon",
+ "laenge": "lang",
+ "format": "ganze",
+ "niche": "Geschichte",
+ "stimmung": "neugierig",
+ "colors": [
+  "#14213d",
+  "#c9a227"
+ ],
+ "accent": "#ffd166",
+ "figur": {
+  "farbe": "blau",
+  "name": "Erzähler"
+ },
+ "title": "Die GANZE Geschichte der griechischen Götter in {min} Minuten ⚡",
+ "description": "Vom Chaos über Uranos, Kronos und den Krieg der Titanen bis zu Zeus, den zwölf Göttern vom Olymp, Prometheus und Persephone: die griechische Göttersage an einem Stück. Das sind Sagen, keine Geschichtsbücher, so wie sie Hesiod und Homer aufgeschrieben haben.\n\n#griechischemythologie #götter #zeus #sagen #geschichte",
+ "tags": [
+  "griechische Mythologie",
+  "griechische Götter",
+  "Zeus",
+  "Titanen",
+  "Olymp",
+  "Sagen",
+  "Mythologie erklärt",
+  "ganze Geschichte"
+ ],
+ "quellen": [
+  "Hesiod, Theogonie",
+  "Homerische Hymnen (an Hermes, an Demeter)",
+  "Homer, Ilias 15",
+  "Encyclopaedia Britannica: Greek mythology"
+ ],
+ "frage": "Welcher Gott wärst du am liebsten gewesen?",
+ "kapitel": [
+  {
+   "titel": "Am Anfang war das Chaos",
+   "segments": [
+    {
+     "text": "Bevor es Götter, Menschen oder auch nur einen Himmel gab, war da nach der griechischen Sage nur ein riesiges, dunkles Nichts.",
+     "szene": {
+      "typ": "figur",
+      "ort": "weltall",
+      "gefuehl": "staunen",
+      "aktion": "zeigt",
+      "objekt": "🌌"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Die alten Griechen nannten dieses Nichts *Chaos*, und das Wort bedeutete damals so viel wie eine gähnende Leere.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌌",
+      "text": "Das Chaos"
+     }
+    },
+    {
+     "text": "Aufgeschrieben hat diese Geschichte ein Dichter namens Hesiod, ungefähr siebenhundert Jahre vor Christus.",
+     "szene": {
+      "typ": "jahr",
+      "jahr": "700 v. Chr.",
+      "text": "Hesiod schreibt",
+      "objekt": "📜"
+     }
+    },
+    {
+     "text": "Hesiod war kein Forscher, sondern ein Bauer und Sänger, der die Sagen seines Volkes in Verse gefasst hat.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "denken",
+      "aktion": "denkt",
+      "objekt": "📜"
+     }
+    },
+    {
+     "text": "Wichtig ist also gleich am Anfang: Das hier ist keine Geschichte, die wirklich passiert ist, sondern eine Sage.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "📖",
+      "text": "Eine Sage"
+     }
+    },
+    {
+     "text": "Aber es ist die Sage, an die Millionen Menschen über tausend Jahre lang geglaubt haben.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🏛️",
+      "text": "Tausend Jahre"
+     }
+    },
+    {
+     "text": "Aus dem Chaos entstand zuerst *Gaia*, die Erde, breit und fest, damit alles einen Boden hatte.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌍",
+      "text": "Gaia, die Erde"
+     }
+    },
+    {
+     "text": "Tief unter ihr lag der Tartaros, ein dunkler Abgrund, so tief, dass ein Amboss neun Tage lang hinunterfallen würde.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🕳️",
+      "text": "Der Tartaros"
+     }
+    },
+    {
+     "text": "Das ist kein Witz, genau so beschreibt Hesiod die Tiefe des Tartaros, mit einem fallenden Amboss.",
+     "szene": {
+      "typ": "figur",
+      "ort": "nacht",
+      "gefuehl": "staunen",
+      "aktion": "schockiert",
+      "objekt": "🔨"
+     }
+    },
+    {
+     "text": "Dann kamen die Nacht und der Tag, das Licht und die Dunkelheit, eins nach dem anderen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌗",
+      "text": "Nacht und Tag"
+     }
+    },
+    {
+     "text": "Und Gaia brachte aus sich selbst einen Sohn hervor, der so groß war wie sie selbst: *Uranos*, den Himmel.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "✨",
+      "text": "Uranos, der Himmel"
+     }
+    },
+    {
+     "text": "Der Himmel lag nun wie eine Decke über der Erde, und die beiden wurden ein Paar.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "objekt": "⭐"
+     }
+    },
+    {
+     "text": "Gaia schuf außerdem die Berge und das Meer, und damit sah die Welt schon fast so aus, wie wir sie kennen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛰️",
+      "text": "Berge und Meer"
+     }
+    },
+    {
+     "text": "Nur eines fehlte noch: jemand, der über diese Welt herrscht. Und genau darum geht es in dieser ganzen Geschichte.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "👑",
+      "text": "Wer herrscht?"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Uranos und die Titanen",
+   "segments": [
+    {
+     "text": "Was passiert, wenn ein Vater Angst vor seinen eigenen Kindern hat?",
+     "szene": {
+      "typ": "figur",
+      "ort": "nacht",
+      "gefuehl": "angst",
+      "aktion": "zittert",
+      "objekt": "✨"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Uranos und Gaia bekamen zuerst zwölf Kinder, die *Titanen*, riesige und mächtige Wesen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🗿",
+      "text": "Zwölf Titanen"
+     }
+    },
+    {
+     "text": "Unter ihnen waren Okeanos, der Weltstrom, Rhea, Themis und der jüngste von allen, Kronos.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Okeanos",
+       "Rhea",
+       "Themis",
+       "Kronos"
+      ],
+      "text": "Einige Titanen"
+     }
+    },
+    {
+     "text": "Danach kamen drei Kyklopen zur Welt, Riesen mit nur einem einzigen, runden Auge mitten auf der Stirn.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "👁️",
+      "text": "Die Kyklopen"
+     }
+    },
+    {
+     "text": "Und dann noch drei Geschwister, die wohl seltsamsten der ganzen Sage: Jeder von ihnen hatte hundert Arme und fünfzig Köpfe.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "staunen",
+      "aktion": "schockiert",
+      "objekt": "🙌"
+     }
+    },
+    {
+     "text": "Uranos gefiel nicht, was er sah, denn diese Kinder waren stark, und vielleicht eines Tages stärker als er.",
+     "szene": {
+      "typ": "figur",
+      "ort": "weltall",
+      "gefuehl": "wut",
+      "aktion": "zeigt",
+      "objekt": "✨"
+     }
+    },
+    {
+     "text": "Darum stieß er die Kyklopen und die Hundertarmigen zurück in die Tiefe der Erde, wo kein Licht hinkam.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🕳️",
+      "text": "Zurück in die Tiefe"
+     }
+    },
+    {
+     "text": "Für Gaia war das, als würde man ihr selbst wehtun, denn die Kinder steckten ja in ihrem Inneren.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "traurig",
+      "aktion": "haende",
+      "objekt": "🌍"
+     }
+    },
+    {
+     "text": "Sie formte aus grauem Metall eine große Sichel und rief ihre Kinder, die Titanen, zu sich.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌙",
+      "text": "Eine Sichel"
+     }
+    },
+    {
+     "text": "Wer von euch hilft mir, fragte sie. Die meisten Titanen schwiegen, denn sie fürchteten ihren Vater.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "burg",
+      "gefuehl": "angst",
+      "objekt": "😶"
+     }
+    },
+    {
+     "text": "Nur einer trat vor: Kronos, der Jüngste, der schon lange heimlich davon träumte, selbst zu herrschen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "cool",
+      "aktion": "zeigt",
+      "objekt": "🌙"
+     }
+    },
+    {
+     "text": "In der Nacht, als Uranos sich über die Erde legte, schlug Kronos mit der Sichel zu und stürzte seinen Vater vom Thron.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⚔️",
+      "text": "Der Sturz"
+     }
+    },
+    {
+     "text": "Uranos zog sich verletzt weit hinauf, und seitdem, so sagt die Sage, sind Himmel und Erde getrennt.",
+     "szene": {
+      "typ": "figur",
+      "ort": "weltall",
+      "gefuehl": "traurig",
+      "aktion": "faellt",
+      "objekt": "✨"
+     }
+    },
+    {
+     "text": "Doch bevor er verschwand, rief Uranos seinem Sohn einen Fluch hinterher, und der sollte sich erfüllen.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🔮",
+      "text": "Der Fluch"
+     }
+    },
+    {
+     "text": "Auch du wirst eines Tages von deinem eigenen Kind gestürzt werden, so lautete die Weissagung.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🔮",
+      "text": "Die Weissagung"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Kronos verschluckt seine Kinder",
+   "segments": [
+    {
+     "text": "Kronos war jetzt der König der Welt, aber er konnte nachts nicht mehr ruhig schlafen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "angst",
+      "aktion": "zittert",
+      "objekt": "👑"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Er hatte den Thron, er hatte die Macht, und doch ging ihm dieser eine Satz seines Vaters nicht aus dem Kopf.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "👑",
+      "text": "König Kronos"
+     }
+    },
+    {
+     "text": "Kronos heiratete seine Schwester Rhea, auch eine Titanin, und bald bekamen die beiden ein Kind.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "burg",
+      "gefuehl": "freude",
+      "objekt": "👶"
+     }
+    },
+    {
+     "text": "Und jetzt kommt der Teil der Sage, den sich viele Kinder seit Jahrtausenden mit großen Augen anhören.",
+     "szene": {
+      "typ": "figur",
+      "ort": "haus",
+      "gefuehl": "staunen",
+      "aktion": "schockiert",
+      "objekt": "😮"
+     }
+    },
+    {
+     "text": "Kronos nahm das Neugeborene und verschluckte es im Ganzen, damit es niemals groß werden konnte.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "😮",
+      "text": "Verschluckt"
+     }
+    },
+    {
+     "text": "Das passierte fünf Mal hintereinander: Hestia, Demeter, Hera, Hades und Poseidon.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Hestia",
+       "Demeter",
+       "Hera",
+       "Hades und Poseidon"
+      ],
+      "text": "Fünf Kinder"
+     }
+    },
+    {
+     "text": "Wichtig dabei: Die Kinder starben nicht. Sie waren Götter, und Götter sterben in diesen Sagen nicht.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "✨",
+      "text": "Sie leben"
+     }
+    },
+    {
+     "text": "Sie saßen gefangen im Bauch ihres Vaters und wuchsen dort, ohne je die Sonne zu sehen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌑",
+      "text": "Gefangen"
+     }
+    },
+    {
+     "text": "Rhea war verzweifelt. Jedes Mal, wenn sie ein Kind bekam, war es kurz darauf verschwunden.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "traurig",
+      "aktion": "haende",
+      "objekt": "💔"
+     }
+    },
+    {
+     "text": "Als sie zum sechsten Mal ein Kind erwartete, ging sie zu ihren eigenen Eltern, zu Gaia und Uranos, und bat um Rat.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "denken",
+      "objekt": "🌍"
+     }
+    },
+    {
+     "text": "Die beiden kannten die Zukunft. Sie wussten, dass dieses sechste Kind der König der Götter werden würde.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🔮",
+      "text": "Das sechste Kind"
+     }
+    },
+    {
+     "text": "Sie verrieten Rhea einen Plan, so einfach, dass es kaum zu glauben ist, dass er funktioniert hat.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "cool",
+      "aktion": "zeigt",
+      "objekt": "🪨"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Zeus wächst heimlich auf",
+   "segments": [
+    {
+     "text": "Wie versteckt man ein Baby vor einem Vater, der alles sieht?",
+     "szene": {
+      "typ": "figur",
+      "ort": "nacht",
+      "gefuehl": "denken",
+      "aktion": "denkt",
+      "objekt": "👶"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Rhea reiste in der Nacht zur Insel Kreta, weit weg im Süden, mitten im Meer.",
+     "szene": {
+      "typ": "karte",
+      "objekt": "🗺️",
+      "text": "Insel Kreta"
+     }
+    },
+    {
+     "text": "Dort, in einer Höhle in den Bergen, kam ihr jüngster Sohn zur Welt: *Zeus*.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛰️",
+      "text": "Zeus wird geboren"
+     }
+    },
+    {
+     "text": "Dann wickelte Rhea einen großen Stein in Windeln, so wie man ein Baby einwickelt.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🪨",
+      "text": "Ein Stein in Windeln"
+     }
+    },
+    {
+     "text": "Sie brachte das Bündel zu Kronos, und der verschluckte es sofort, ohne genau hinzusehen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "neutral",
+      "aktion": "zeigt",
+      "objekt": "🪨"
+     }
+    },
+    {
+     "text": "Kronos glaubte jetzt, er habe auch sein sechstes Kind besiegt. In Wahrheit hatte er gerade einen Stein gegessen.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🪨",
+      "text": "Ein Stein!"
+     }
+    },
+    {
+     "text": "Auf Kreta wurde der kleine Zeus von Nymphen versorgt, freundlichen Naturgeistern der Berge.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🧚",
+      "text": "Die Nymphen"
+     }
+    },
+    {
+     "text": "Er trank die Milch einer Ziege namens *Amaltheia*, und von Bienen bekam er Honig.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐐",
+      "text": "Ziege Amaltheia"
+     }
+    },
+    {
+     "text": "Damit Kronos das Weinen des Babys nicht hörte, tanzten junge Krieger vor der Höhle und schlugen laut mit Speeren gegen ihre Schilde.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "dorf",
+      "gefuehl": "freude",
+      "objekt": "🛡️"
+     }
+    },
+    {
+     "text": "Stell dir das vor: Ein ganzer Tanz, nur damit niemand hört, dass in einer Höhle ein Baby schreit.",
+     "szene": {
+      "typ": "figur",
+      "ort": "dorf",
+      "gefuehl": "staunen",
+      "aktion": "jubelt",
+      "objekt": "🥁"
+     }
+    },
+    {
+     "text": "So wuchs Zeus Jahr um Jahr heran, stark und klug, und er wusste genau, wer sein Vater war.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⚡",
+      "text": "Zeus wird groß"
+     }
+    },
+    {
+     "text": "Als er erwachsen war, holte er sich Hilfe bei Metis, einer weisen Titanin, die sich mit Tränken auskannte.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "wald",
+      "gefuehl": "denken",
+      "objekt": "🧪"
+     }
+    },
+    {
+     "text": "Metis mischte einen Trank, der Kronos so übel machen sollte, dass er alles wieder ausspucken musste.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🧪",
+      "text": "Ein Zaubertrank"
+     }
+    },
+    {
+     "text": "Zeus mischte sich als Mundschenk an den Hof seines Vaters und reichte ihm den Becher.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "cool",
+      "aktion": "zeigt",
+      "objekt": "🍷"
+     }
+    },
+    {
+     "text": "Kronos trank, und dann spuckte er alles wieder aus: zuerst den Stein, danach die fünf Geschwister.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🪨",
+      "text": "Alles kommt raus"
+     }
+    },
+    {
+     "text": "Den Stein stellte Zeus später in Delphi auf, und man zeigte ihn dort noch zu Zeiten der alten Griechen.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🪨",
+      "text": "Der Stein von Delphi"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Der Krieg der Titanen",
+   "segments": [
+    {
+     "text": "Sechs junge Götter gegen ihren Vater und die meisten Titanen: Wer würde gewinnen?",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "wut",
+      "aktion": "rennt",
+      "objekt": "⚔️"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Zeus und seine Geschwister Hestia, Demeter, Hera, Hades und Poseidon waren nun frei und wieder zusammen.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "burg",
+      "gefuehl": "freude",
+      "objekt": "⚡"
+     }
+    },
+    {
+     "text": "Sie bauten ihr Lager auf dem höchsten Berg Griechenlands, dem *Olymp*.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🏔️",
+      "text": "Der Olymp"
+     }
+    },
+    {
+     "text": "Kronos und die Titanen stellten sich auf einem anderen Berg auf, dem Othrys, gegenüber.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛰️",
+      "text": "Berg Othrys"
+     }
+    },
+    {
+     "text": "Zehn Jahre lang dauerte dieser Krieg, sagt die Sage, und keine Seite konnte die andere besiegen.",
+     "szene": {
+      "typ": "jahr",
+      "jahr": "10 Jahre",
+      "text": "Ein langer Krieg",
+      "objekt": "⏳"
+     }
+    },
+    {
+     "text": "Dann erinnerte Gaia ihren Enkel Zeus an jemanden, den alle anderen längst vergessen hatten.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🕳️",
+      "text": "Vergessene Riesen"
+     }
+    },
+    {
+     "text": "Tief im Tartaros saßen immer noch die Kyklopen und die Hundertarmigen, eingesperrt seit der Zeit des Uranos.",
+     "szene": {
+      "typ": "figur",
+      "ort": "keller",
+      "gefuehl": "traurig",
+      "aktion": "zittert",
+      "objekt": "⛓️"
+     }
+    },
+    {
+     "text": "Zeus stieg hinab, öffnete ihre Ketten und brachte sie zurück ans Licht.",
+     "szene": {
+      "typ": "figur",
+      "ort": "keller",
+      "gefuehl": "cool",
+      "aktion": "zeigt",
+      "objekt": "🔓"
+     }
+    },
+    {
+     "text": "Die Kyklopen waren geschickte Schmiede, und zum Dank schmiedeten sie Geschenke für die drei Brüder.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🔨",
+      "text": "Die Schmiede"
+     }
+    },
+    {
+     "text": "Für Zeus den Donner und den Blitz, für Poseidon einen Dreizack, für Hades einen Helm, der unsichtbar macht.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Zeus: Blitz",
+       "Poseidon: Dreizack",
+       "Hades: Tarnhelm"
+      ],
+      "text": "Drei Geschenke"
+     }
+    },
+    {
+     "text": "Mit dem Blitz in der Hand war Zeus plötzlich der stärkste Kämpfer der ganzen Welt.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⚡",
+      "text": "Der Blitz"
+     }
+    },
+    {
+     "text": "Die Hundertarmigen warfen gleich hunderte Felsen auf einmal, und die Erde bebte bis hinunter in den Tartaros.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "burg",
+      "gefuehl": "angst",
+      "objekt": "🪨"
+     }
+    },
+    {
+     "text": "Am Ende gaben die Titanen auf, und Zeus sperrte die meisten von ihnen dort ein, wo sie vorher ihre Geschwister eingesperrt hatten.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛓️",
+      "text": "Die Titanen fallen"
+     }
+    },
+    {
+     "text": "Der Titan Atlas bekam eine besondere Strafe: Er musste für immer den Himmel auf seinen Schultern tragen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "traurig",
+      "aktion": "haende",
+      "objekt": "🌍"
+     }
+    },
+    {
+     "text": "Darum heißt ein Buch voller Landkarten bis heute *Atlas*, nach dem Riesen, der die Welt trägt.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🗺️",
+      "text": "Ein Atlas"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Drei Brüder teilen die Welt",
+   "segments": [
+    {
+     "text": "Wie teilt man die ganze Welt gerecht unter drei Brüdern auf?",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "denken",
+      "aktion": "denkt",
+      "objekt": "🎲"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Zeus, Poseidon und Hades hatten zusammen gewonnen, und jetzt musste jemand über die Welt herrschen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "👑",
+      "text": "Wer herrscht?"
+     }
+    },
+    {
+     "text": "Statt sich zu streiten, losten sie, so erzählt es Homer, der berühmteste Dichter der Griechen.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "burg",
+      "gefuehl": "neutral",
+      "objekt": "🎲"
+     }
+    },
+    {
+     "text": "Zeus zog den Himmel. Er wurde der Herr über Wolken, Wind, Regen und natürlich den Blitz.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛈️",
+      "text": "Zeus: der Himmel"
+     }
+    },
+    {
+     "text": "Poseidon zog das Meer. Er lebte in einem Palast unter den Wellen und konnte mit seinem Dreizack Stürme und Erdbeben machen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌊",
+      "text": "Poseidon: das Meer"
+     }
+    },
+    {
+     "text": "Hades zog das, was unter der Erde liegt: das Reich der Toten, das später einfach nach ihm benannt wurde.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🕯️",
+      "text": "Hades: die Unterwelt"
+     }
+    },
+    {
+     "text": "Hades war übrigens kein Teufel und nicht böse. Er war streng, aber gerecht, und er passte nur auf sein Reich auf.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "⚖️",
+      "text": "Nicht böse"
+     }
+    },
+    {
+     "text": "Vor dem Tor der Unterwelt wachte ein Hund mit drei Köpfen, *Kerberos*, damit niemand hinein- und vor allem niemand hinauslief.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐕",
+      "text": "Kerberos"
+     }
+    },
+    {
+     "text": "Die Erde selbst und der Olymp gehörten allen drei Brüdern gemeinsam.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "aktion": "winkt",
+      "objekt": "🌍"
+     }
+    },
+    {
+     "text": "Zeus war aber der Älteste im Herzen der Sage, auch wenn er als Letzter geboren wurde, und so wurde er der König der Götter.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "👑",
+      "text": "König Zeus"
+     }
+    },
+    {
+     "text": "Er heiratete Hera, die Göttin der Ehe und Familie, und sie wurde die Königin auf dem Olymp.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "burg",
+      "gefuehl": "freude",
+      "objekt": "💍"
+     }
+    },
+    {
+     "text": "Ganz ehrlich: Glücklich war diese Ehe in den Sagen fast nie, denn Zeus verliebte sich ständig in andere.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "💔",
+      "text": "Viel Streit"
+     }
+    },
+    {
+     "text": "Auch die Götter stritten um Land, und einmal ging es um eine ganze Stadt.",
+     "szene": {
+      "typ": "figur",
+      "ort": "stadt",
+      "gefuehl": "wut",
+      "aktion": "zeigt",
+      "objekt": "🏛️"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Poseidon und Athena wollten beide die Schutzgottheit einer jungen Stadt werden, die später Athen heißen sollte.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "stadt",
+      "gefuehl": "wut",
+      "objekt": "🏛️"
+     }
+    },
+    {
+     "text": "Man einigte sich auf einen Wettbewerb: Wer der Stadt das bessere Geschenk macht, gewinnt.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🎁",
+      "text": "Der Wettbewerb"
+     }
+    },
+    {
+     "text": "Poseidon schlug mit dem Dreizack auf einen Felsen, und eine Quelle sprudelte heraus. Doch das Wasser war salzig.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌊",
+      "text": "Salzwasser"
+     }
+    },
+    {
+     "text": "Athena pflanzte einen kleinen Baum in den Boden: den ersten *Olivenbaum*.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🫒",
+      "text": "Der Olivenbaum"
+     }
+    },
+    {
+     "text": "Oliven zum Essen, Öl für Lampen und Holz zum Bauen: Die Menschen wählten Athena.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "stadt",
+      "gefuehl": "freude",
+      "objekt": "🫒"
+     }
+    },
+    {
+     "text": "Darum heißt die Stadt Athen, so erzählt es die Sage, und Olivenbäume wachsen dort bis heute überall.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🫒",
+      "text": "Athen"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Die Götter vom Olymp",
+   "segments": [
+    {
+     "text": "Zwölf Götter auf einem Berg, und jeder hat seinen eigenen Job: Wer war wer?",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "staunen",
+      "aktion": "zeigt",
+      "objekt": "🏔️"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Auf dem Olymp wohnten die wichtigsten Götter in Palästen aus Gold, über den Wolken.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🏛️",
+      "text": "Paläste im Himmel"
+     }
+    },
+    {
+     "text": "Sie aßen Ambrosia und tranken Nektar, und genau das hielt sie für immer jung.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍯",
+      "text": "Ambrosia"
+     }
+    },
+    {
+     "text": "Meistens zählt man zwölf: Zeus, Hera, Poseidon und Demeter gehören immer dazu.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Zeus",
+       "Hera",
+       "Poseidon",
+       "Demeter"
+      ],
+      "text": "Die Zwölf"
+     }
+    },
+    {
+     "text": "Dann Athena, Apollon, Artemis und Ares, der Gott des Krieges.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Athena",
+       "Apollon",
+       "Artemis",
+       "Ares"
+      ],
+      "text": "Die Zwölf"
+     }
+    },
+    {
+     "text": "Und schließlich Aphrodite, Hephaistos, Hermes und, je nach Liste, Hestia oder Dionysos.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Aphrodite",
+       "Hephaistos",
+       "Hermes",
+       "Hestia/Dionysos"
+      ],
+      "text": "Die Zwölf"
+     }
+    },
+    {
+     "text": "Die Griechen waren sich bei der Liste übrigens selbst nicht immer einig, je nach Stadt und Zeit.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "📜",
+      "text": "Nicht immer gleich"
+     }
+    },
+    {
+     "text": "*Athena* kam auf die seltsamste Art zur Welt: Sie sprang erwachsen und mit Rüstung aus dem Kopf von Zeus.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🦉",
+      "text": "Athena"
+     }
+    },
+    {
+     "text": "Sie war die Göttin der Weisheit, und ihr heiliges Tier war die Eule, die man auf griechischen Münzen findet.",
+     "szene": {
+      "typ": "figur",
+      "ort": "stadt",
+      "gefuehl": "denken",
+      "aktion": "zeigt",
+      "objekt": "🦉"
+     }
+    },
+    {
+     "text": "Apollon war der Gott des Lichts, der Musik und der Weissagung, seine Zwillingsschwester Artemis die Göttin der Jagd und des Mondes.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "☀️",
+      "text": "Apollon und Artemis"
+     }
+    },
+    {
+     "text": "Hephaistos war der Schmied der Götter, er arbeitete in einer Werkstatt voller Feuer und baute sogar Diener aus Gold.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🔨",
+      "text": "Hephaistos"
+     }
+    },
+    {
+     "text": "Aphrodite war die Göttin der Liebe und Schönheit. Nach Hesiod stieg sie aus dem Schaum des Meeres bei der Insel Zypern.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐚",
+      "text": "Aphrodite"
+     }
+    },
+    {
+     "text": "Ares, der Gott des Krieges, war bei den anderen Göttern ziemlich unbeliebt, weil er ständig Streit suchte.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "wut",
+      "aktion": "zeigt",
+      "objekt": "🛡️"
+     }
+    },
+    {
+     "text": "Hestia hütete das Feuer im Herd, das Herz jedes Hauses. Sie war die ruhigste von allen und mischte sich kaum in Streit ein.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🔥",
+      "text": "Hestia"
+     }
+    },
+    {
+     "text": "Dionysos war der Gott des Weines und der Feste, und aus seinen Festen entstand später das Theater.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍇",
+      "text": "Dionysos"
+     }
+    },
+    {
+     "text": "Ein Theater mit Bühne und Zuschauerrängen haben also, so gesehen, Feste für einen Gott erfunden.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🎭",
+      "text": "Das Theater"
+     }
+    },
+    {
+     "text": "Und dann gab es *Hermes*, der schon am Tag seiner Geburt mehr Unsinn angestellt hat als andere in einem ganzen Leben.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "aktion": "rennt",
+      "objekt": "🪽"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Am Morgen geboren, baute er aus einem Schildkrötenpanzer die erste Leier, ein Musikinstrument mit Saiten.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐢",
+      "text": "Die erste Leier"
+     }
+    },
+    {
+     "text": "Am Nachmittag schlich er los und stahl seinem großen Bruder Apollon fünfzig Rinder.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "cool",
+      "aktion": "schlurft",
+      "objekt": "🐄"
+     }
+    },
+    {
+     "text": "Damit niemand die Spur fand, trieb er die Rinder rückwärts, so dass die Hufspuren in die falsche Richtung zeigten.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "👣",
+      "text": "Rückwärts!"
+     }
+    },
+    {
+     "text": "Apollon fand ihn trotzdem, doch als er die Musik der Leier hörte, war er so begeistert, dass er die Rinder gegen das Instrument tauschte.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "objekt": "🎵"
+     }
+    },
+    {
+     "text": "So wurde Hermes der Bote der Götter, mit Flügeln an den Sandalen, und der Gott der Reisenden und der Händler.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🪽",
+      "text": "Der Götterbote"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Herakles und die zwölf Aufgaben",
+   "segments": [
+    {
+     "text": "Ein Baby, das mit bloßen Händen zwei Schlangen besiegt: So beginnt die Sage vom stärksten Helden Griechenlands.",
+     "szene": {
+      "typ": "figur",
+      "ort": "haus",
+      "gefuehl": "staunen",
+      "aktion": "schockiert",
+      "objekt": "🐍"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Herakles war ein Sohn von Zeus und einer Menschenfrau namens Alkmene, also halb Gott, halb Mensch.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "haus",
+      "gefuehl": "freude",
+      "objekt": "👶"
+     }
+    },
+    {
+     "text": "Hera war darüber so wütend, dass sie zwei Schlangen in seine Wiege schickte. Doch das Baby packte sie einfach.",
+     "szene": {
+      "typ": "figur",
+      "ort": "haus",
+      "gefuehl": "cool",
+      "aktion": "haende",
+      "objekt": "🐍"
+     }
+    },
+    {
+     "text": "Herakles wurde riesig und stark, aber Hera ließ ihn nie in Ruhe, sein ganzes Leben lang.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "💪",
+      "text": "Der Stärkste"
+     }
+    },
+    {
+     "text": "Nach einem schweren Unglück musste er zur Buße einem König dienen, Eurystheus, und zwölf Aufgaben erfüllen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "📜",
+      "text": "Zwölf Aufgaben"
+     }
+    },
+    {
+     "text": "Er besiegte einen Löwen, dessen Fell kein Pfeil durchdringen konnte, und trug es danach selbst als Umhang.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Der Löwe",
+       "Fell als Umhang"
+      ],
+      "text": "Aufgabe 1"
+     }
+    },
+    {
+     "text": "Er kämpfte gegen die *Hydra*, eine Wasserschlange mit vielen Köpfen, denen immer wieder neue nachwuchsen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐉",
+      "text": "Die Hydra"
+     }
+    },
+    {
+     "text": "Eine Aufgabe sollte ihn demütigen: Er musste an einem einzigen Tag einen riesigen Rinderstall säubern, voller Mist von Jahren.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🐄",
+      "text": "Der Stall"
+     }
+    },
+    {
+     "text": "Herakles nahm keine Schaufel. Er grub zwei Flüsse um, und das Wasser spülte den ganzen Stall an einem Tag sauber.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "aktion": "jubelt",
+      "objekt": "🌊"
+     }
+    },
+    {
+     "text": "Er fing einen Eber, eine goldene Hirschkuh und einen wilden Stier, und er vertrieb Vögel mit Federn aus Metall.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Eber",
+       "Hirschkuh",
+       "Stier",
+       "Metallvögel"
+      ],
+      "text": "Weitere Aufgaben"
+     }
+    },
+    {
+     "text": "Für eine Aufgabe sollte er goldene Äpfel holen, die im Garten der Hesperiden am Rand der Welt wuchsen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍏",
+      "text": "Goldene Äpfel"
+     }
+    },
+    {
+     "text": "Und jetzt trifft er einen alten Bekannten aus dieser Geschichte: Atlas, der immer noch den Himmel trägt.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "staunen",
+      "aktion": "zeigt",
+      "objekt": "🌍"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Atlas bot an, die Äpfel zu holen, wenn Herakles so lange den Himmel hält. Herakles nahm den Himmel auf die Schultern.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "neutral",
+      "objekt": "🌍"
+     }
+    },
+    {
+     "text": "Als Atlas zurückkam, wollte er den Himmel nicht wiederhaben. Herakles bat ihn, ihn nur kurz zu halten, damit er sein Polster richten kann.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🌍",
+      "text": "Ein Trick"
+     }
+    },
+    {
+     "text": "Atlas nahm den Himmel zurück, und Herakles ging mit den Äpfeln davon.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍏",
+      "text": "Geschafft"
+     }
+    },
+    {
+     "text": "Die letzte Aufgabe war die schwerste: Er sollte Kerberos, den dreiköpfigen Hund, aus der Unterwelt holen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐕",
+      "text": "Kerberos"
+     }
+    },
+    {
+     "text": "Hades erlaubte es, solange Herakles keine Waffe benutzte. Also trug er den Hund mit bloßen Händen hinauf und brachte ihn danach zurück.",
+     "szene": {
+      "typ": "figur",
+      "ort": "keller",
+      "gefuehl": "cool",
+      "aktion": "haende",
+      "objekt": "🐕"
+     }
+    },
+    {
+     "text": "Nach seinem Tod nahmen die Götter Herakles auf den Olymp auf, und er wurde selbst ein Gott.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⭐",
+      "text": "Ein neuer Gott"
+     }
+    },
+    {
+     "text": "Bei den Römern hieß er Herkules, und so kennen ihn viele bis heute, als Wort für jemanden, der sehr stark ist.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "💪",
+      "text": "Herkules"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Prometheus bringt das Feuer",
+   "segments": [
+    {
+     "text": "Was wäre, wenn die Menschen nie ein Feuer bekommen hätten?",
+     "szene": {
+      "typ": "figur",
+      "ort": "nacht",
+      "gefuehl": "denken",
+      "aktion": "denkt",
+      "objekt": "🔥"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Die Menschen lebten in dieser Sage am Anfang in Kälte und Dunkelheit, ohne Feuer, mit dem man kocht und sich wärmt.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🥶",
+      "text": "Kalt und dunkel"
+     }
+    },
+    {
+     "text": "Ein Titan mochte die Menschen besonders gern: *Prometheus*, dessen Name so viel wie der Vorausdenkende bedeutet.",
+     "szene": {
+      "typ": "figur",
+      "ort": "dorf",
+      "gefuehl": "freude",
+      "aktion": "winkt",
+      "objekt": "🔥"
+     }
+    },
+    {
+     "text": "Zeus aber wollte den Menschen das Feuer nicht geben, denn mit Feuer würden sie zu mächtig werden.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⚡",
+      "text": "Zeus sagt Nein"
+     }
+    },
+    {
+     "text": "Prometheus schlich sich heimlich an das Feuer der Götter und versteckte eine Glut in einem hohlen Pflanzenstängel.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "cool",
+      "aktion": "versteckt",
+      "objekt": "🌿"
+     }
+    },
+    {
+     "text": "So trug er das Feuer hinunter zu den Menschen, und zum ersten Mal leuchtete in ihren Hütten ein warmes Licht.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🔥",
+      "text": "Das Feuer"
+     }
+    },
+    {
+     "text": "Die Menschen lernten zu kochen, Metall zu schmelzen und Werkzeuge zu bauen.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "dorf",
+      "gefuehl": "freude",
+      "objekt": "🔥"
+     }
+    },
+    {
+     "text": "Als Zeus nachts vom Olymp herabsah und überall kleine Feuer brennen sah, wurde er wütend.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "wut",
+      "aktion": "zeigt",
+      "objekt": "⚡"
+     }
+    },
+    {
+     "text": "Prometheus wurde zur Strafe an einen Felsen im Kaukasus gekettet, ganz weit im Osten.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛓️",
+      "text": "Am Felsen"
+     }
+    },
+    {
+     "text": "Erst viele Jahre später kam der Held *Herakles* vorbei und befreite ihn. So erzählt es die Sage.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "💪",
+      "text": "Befreit"
+     }
+    },
+    {
+     "text": "Auch die Menschen bekamen eine Strafe: Hephaistos formte aus Lehm eine Frau namens Pandora.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🏺",
+      "text": "Pandora"
+     }
+    },
+    {
+     "text": "Pandora bekam ein großes Tongefäß mit, und man sagte ihr, sie dürfe es niemals öffnen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "haus",
+      "gefuehl": "neutral",
+      "aktion": "zeigt",
+      "objekt": "🏺"
+     }
+    },
+    {
+     "text": "Natürlich öffnete sie es doch. Heraus flogen Krankheit, Sorgen und Mühe und verteilten sich über die ganze Welt.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🏺",
+      "text": "Der Deckel geht auf"
+     }
+    },
+    {
+     "text": "Nur eine Sache blieb ganz unten im Gefäß zurück, als Pandora schnell den Deckel schloss: die *Hoffnung*.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🕊️",
+      "text": "Die Hoffnung"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Demeter, Persephone und die Jahreszeiten",
+   "segments": [
+    {
+     "text": "Warum gibt es Winter? Die alten Griechen hatten dafür eine eigene Geschichte.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "denken",
+      "aktion": "denkt",
+      "objekt": "❄️"
+     },
+     "kurz": true
+    },
+    {
+     "text": "Demeter war die Göttin der Felder und des Getreides, und sie hatte eine Tochter, Persephone.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "freude",
+      "objekt": "🌾"
+     }
+    },
+    {
+     "text": "Wo Persephone über die Wiesen lief, wuchsen Blumen, und die Felder standen voller Korn.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🌸",
+      "text": "Persephone"
+     }
+    },
+    {
+     "text": "Eines Tages pflückte sie Blumen, als sich plötzlich die Erde vor ihr öffnete.",
+     "szene": {
+      "typ": "figur",
+      "ort": "feld",
+      "gefuehl": "angst",
+      "aktion": "schockiert",
+      "objekt": "🌸"
+     }
+    },
+    {
+     "text": "Aus der Tiefe fuhr Hades in einem Wagen herauf und nahm Persephone mit hinunter in sein Reich.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🕳️",
+      "text": "Hinab in die Tiefe"
+     }
+    },
+    {
+     "text": "Demeter suchte ihre Tochter überall, neun Tage lang, mit Fackeln in der Hand.",
+     "szene": {
+      "typ": "figur",
+      "ort": "nacht",
+      "gefuehl": "traurig",
+      "aktion": "rennt",
+      "objekt": "🔥"
+     }
+    },
+    {
+     "text": "Sie war so traurig, dass sie aufhörte, sich um die Felder zu kümmern. Nichts wuchs mehr.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍂",
+      "text": "Nichts wächst"
+     }
+    },
+    {
+     "text": "Die Menschen hatten Hunger, und auch die Götter bekamen keine Opfergaben mehr.",
+     "szene": {
+      "typ": "gruppe",
+      "ort": "dorf",
+      "gefuehl": "traurig",
+      "objekt": "🍂"
+     }
+    },
+    {
+     "text": "Da schickte Zeus den Götterboten Hermes in die Unterwelt, um Persephone zurückzuholen.",
+     "szene": {
+      "typ": "figur",
+      "ort": "keller",
+      "gefuehl": "cool",
+      "aktion": "rennt",
+      "objekt": "🪽"
+     }
+    },
+    {
+     "text": "Aber es gab eine alte Regel: Wer in der Unterwelt etwas isst, muss dort bleiben.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "⚖️",
+      "text": "Die Regel"
+     }
+    },
+    {
+     "text": "Persephone hatte ein paar Kerne von einem *Granatapfel* gegessen, nur ein paar.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🍎",
+      "text": "Granatapfelkerne"
+     }
+    },
+    {
+     "text": "Darum fand man einen Kompromiss: Einen Teil des Jahres lebt sie unten bei Hades, den Rest oben bei ihrer Mutter.",
+     "szene": {
+      "typ": "zwei",
+      "ort": "feld",
+      "gefuehl": "neutral",
+      "objekt": "🤝"
+     }
+    },
+    {
+     "text": "Solange Persephone unten ist, trauert Demeter, und auf den Feldern ist Winter.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "❄️",
+      "text": "Der Winter"
+     }
+    },
+    {
+     "text": "Kommt sie im Frühling zurück, freut sich ihre Mutter, und alles fängt wieder an zu blühen.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🌷",
+      "text": "Der Frühling"
+     }
+    }
+   ]
+  },
+  {
+   "titel": "Warum wir die Götter heute noch kennen",
+   "segments": [
+    {
+     "text": "Niemand betet heute noch zu Zeus. Und trotzdem begegnen dir die Götter jeden Tag.",
+     "szene": {
+      "typ": "figur",
+      "ort": "stadt",
+      "gefuehl": "staunen",
+      "aktion": "zeigt",
+      "objekt": "🏛️"
+     },
+     "kurz": true
+    },
+    {
+     "text": "In Olympia, einem Ort für Zeus, fanden zu Ehren der Götter die ersten Olympischen Spiele statt, nach alter Zählung siebenhundertsechsundsiebzig vor Christus.",
+     "szene": {
+      "typ": "jahr",
+      "jahr": "776 v. Chr.",
+      "text": "Olympia",
+      "objekt": "🏅"
+     }
+    },
+    {
+     "text": "Die Römer übernahmen viele der griechischen Götter und gaben ihnen neue Namen.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🏛️",
+      "text": "Neue Namen"
+     }
+    },
+    {
+     "text": "Aus Zeus wurde Jupiter, aus Ares wurde Mars, aus Aphrodite wurde Venus und aus Hermes Merkur.",
+     "szene": {
+      "typ": "liste",
+      "punkte": [
+       "Zeus: Jupiter",
+       "Ares: Mars",
+       "Aphrodite: Venus",
+       "Hermes: Merkur"
+      ],
+      "text": "Griechisch, römisch"
+     }
+    },
+    {
+     "text": "Und genau so heißen heute unsere Planeten. Wenn du nachts den Mars siehst, siehst du einen alten Kriegsgott.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "🪐",
+      "text": "Planeten"
+     }
+    },
+    {
+     "text": "Auch Wörter sind geblieben: *Panik* kommt vom Hirtengott Pan, der Menschen im Wald erschrecken konnte.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🐐",
+      "text": "Panik"
+     }
+    },
+    {
+     "text": "Und das Echo war in der Sage eine Bergnymphe, die nur noch die letzten Worte anderer wiederholen konnte.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "🗣️",
+      "text": "Echo"
+     }
+    },
+    {
+     "text": "Hesiod und Homer schrieben vor fast dreitausend Jahren, und trotzdem lesen Menschen ihre Verse bis heute.",
+     "szene": {
+      "typ": "figur",
+      "ort": "schule",
+      "gefuehl": "denken",
+      "aktion": "zeigt",
+      "objekt": "📜"
+     }
+    },
+    {
+     "text": "Die Sagen sind nicht wahr, das wussten auch viele Griechen schon. Aber sie erklären, wie Menschen damals die Welt verstanden haben.",
+     "szene": {
+      "typ": "raetsel",
+      "objekt": "📖",
+      "text": "Sagen, keine Fakten"
+     }
+    },
+    {
+     "text": "Gewitter waren der Zorn des Zeus, Erdbeben das Werk Poseidons, und der Winter die Trauer einer Mutter.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "⛈️",
+      "text": "Die Welt erklärt"
+     }
+    },
+    {
+     "text": "Vom Chaos über die Titanen bis zum Feuer des Prometheus: Das war die ganze Geschichte der griechischen Götter.",
+     "szene": {
+      "typ": "figur",
+      "ort": "burg",
+      "gefuehl": "freude",
+      "aktion": "winkt",
+      "objekt": "⚡"
+     }
+    },
+    {
+     "text": "Welcher Gott wärst du am liebsten gewesen? Schreib es in die Kommentare.",
+     "szene": {
+      "typ": "objekt",
+      "objekt": "💬",
+      "text": "Dein Gott?"
+     }
+    }
+   ]
+  }
+ ]
+}

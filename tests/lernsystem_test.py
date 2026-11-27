@@ -104,7 +104,7 @@ for k in range(24):
 rowz = entspannung.learn_rows(ups, D)
 kam = next(x for x in rowz["scene"] if x["key"] == "kamin")
 assert kam["chance"] >= 90 and kam["per_day"] > 500
-assert {x["key"] for x in rowz["inhalt"]} == {"Geschichte", "Szene"} and rowz["zeit"][0]["n"] > 0
+assert {x["key"] for x in rowz["inhalt"]} == {"History", "Geschichte", "Szene"} and rowz["zeit"][0]["n"] > 0
 import random  # noqa: E402
 picks = [entspannung._pick(list(entspannung.SCENES), ups, "scene", D, random.Random(i)) for i in range(80)]
 assert 60 <= picks.count("kamin") <= 79, picks.count("kamin")

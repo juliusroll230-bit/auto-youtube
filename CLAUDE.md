@@ -510,3 +510,44 @@ Für die tägliche Skript-Aufgabe (zusätzlich zu den 15 deutschen, zählt nicht
   `"slug": "en-…"` (eindeutig) und `"quelle"`. `"ende": "loop"` übernehmen, wenn die Vorlage es hat. `welt`/`stil` wie die Vorlage.
 - Titel höchstens 60 Zeichen, kein Gedankenstrich, kein „subscribe“ im Text (die App setzt die Fußzeile), keine erfundenen Zahlen.
 - Test: `tests/en_test.py` prüft jedes Skript in `seed-en/` (gültig, englisch, Quelle, Thumbnail-Text).
+
+## Die ganze Geschichte (seit 27.11.2026, Julius' Phase I)
+
+Format für lange Videos: eine große Geschichte komplett und mit Kapiteln. **Nur Stoffe ohne Urheberrecht:** Mythologie (griechisch,
+nordisch, ägyptisch), echte Geschichte (Römisches Reich, Wikinger, Titanic, Pyramiden), Märchen und Sagen (Grimm, Nibelungen) und echte Rätsel.
+Keine Filme, Serien, Spiele oder Bücher mit Urheberrecht, keine fremden Clips, Bilder oder Musik, nur das Format ist übernommen.
+Fakten mit **zwei unabhängigen Quellen** prüfen (Web-Suche), Quellen ins Skript schreiben, **Sagen als Sagen kennzeichnen**
+(„Die Sage erzählt …“, „Laut der Legende …“), nichts erfinden.
+
+### Teil 1: Quiet Corner „Sleep History“ (`sleephistory.py`)
+
+- Für die tägliche Aufgabe: **2 Mal pro Woche** (Montag und Donnerstag) ein Skript nach `sleep-history/NNNN-kurzer-name.json`
+  (nächste freie Nummer). Nur solange höchstens 3 Skripte noch nicht gesendet sind (stehen nicht in `relax_uploads` mit `history`), sonst auslassen.
+- Felder: `id` (= Dateiname ohne .json), `title` (**„The Entire Story of <Topic>“**, die App hängt „to Fall Asleep To 🌙 | N Hours“ an),
+  `topic`, `thumb` (höchstens 3 Wörter), `scene` (eine aus `entspannung.SCENES`: regenzimmer, kamin, cafe, bibliothek, lagerfeuer),
+  `about` (ein Satz), `sources` (mind. 2), `chapters` (mind. 3, besser 8 bis 12) mit je `title`, `icon` (1 Emoji) und `text`
+  (**400 bis 900 Wörter** je Kapitel, Englisch, Absätze mit Leerzeile).
+- Ton: ruhig, langsam, gleichmäßig. Erstes Kapitel mit kurzem Willkommen und 2 Atemsätzen, letztes endet mit „You can rest now.“ und „Goodnight.“
+  **Keine Spannungsspitzen, keine brutalen Details**, Schlachten, Tode und Katastrophen nur kurz und ruhig zusammenfassen. Keine Cliffhanger.
+- Themenliste (je Thema nur einmal, vorher `sleep-history/` prüfen): Ancient Rome (erledigt), Ancient Egypt, the Pyramids of Giza,
+  the Vikings, Norse Mythology, Greek Mythology, Ancient Greece, the Byzantine Empire, the Silk Road, the Titanic (ruhig, ohne Todesszenen),
+  Medieval Castles, the Hanseatic League, the Library of Alexandria, the Brothers Grimm and their tales, the Nibelungenlied,
+  the Celts, Ancient Mesopotamia, the Maya, the Great Wall of China, the Age of Sail.
+- Die App: Szene als Endlosbild, Kapitel-Karten blenden ein, Kapitel beginnen auf vollen Minuten, Länge auf volle Stunde (1 bis 3 h).
+  Lernmodus vergleicht „Sleep History“ mit „Geschichte“ und „Szene“ (`learn_rows`, `sleephistory.gap_days`): Start alle 3 Tage,
+  bei 4 Videos je Seite und 80 % sicher vorn alle 2 Tage, hinten alle 7. Test: `tests/sleephistory_test.py`.
+
+### Teil 2: Hauptkanal „Die ganze Geschichte“ (`ganze.py`)
+
+- Für die tägliche Aufgabe: **1 pro Woche** (Mittwoch, damit es bis Samstag auf dem Server ist) nach `seed-long/NNNN-kurzer-name.json`.
+  Nur wenn kein ungesendetes Skript mehr in `seed-long/` liegt.
+- Felder wie ein langes Cartoon-Skript (`stil` cartoon, `laenge` lang, `welt` optional block), dazu `"format": "ganze"`, `thema` (1 bis 3 Wörter,
+  wird riesig im Thumbnail), `title` mit Platzhalter **„Die GANZE Geschichte von/der … in {min} Minuten“** (die App setzt die echte Minutenzahl),
+  `quellen` (mind. 2), `frage`, und `kapitel`: Liste mit `titel` (höchstens ca. 30 Zeichen) und `segments` (wie sonst, Szenen-Wortschatz aus `cartoon.py`).
+- Länge: 2.700 bis 7.500 Wörter (ca. 15 bis 40 Minuten), 8 bis 14 Kapitel. Stimme setzt die App auf „klar“. Spannend erzählt, aber ehrlich.
+- In jedem Kapitel 1 bis 2 Sätze mit `"kurz": true` markieren: der stärkste Einstieg für einen Short (krasse Lage oder Frage, höchstens 12 Wörter).
+  Daraus schneidet die App 5 Shorts (`ganze.moments`, Hook-Prüfung), 1 am Tag ab dem Sonntag.
+- Themen (je einmal, vorher `seed-long/` prüfen): Griechische Götter (erledigt), Römisches Reich, Wikinger, Nordische Götter, Ägyptische Götter,
+  Pyramiden, Titanic, Nibelungen, Grimms Märchen und woher sie kommen, Troja, Kolumbus' Fahrt, Pompeji, Atlantis (als Sage), Djatlow-Pass (echtes Rätsel).
+- Merkmal „Ganze Geschichte (lange Videos)“ vergleicht mit normalen langen Videos (Aufrufe, Wiedergabezeit). Ca. nach 4 Wochen Julius die Zahlen zeigen.
+- Test: `tests/ganze_test.py`.
