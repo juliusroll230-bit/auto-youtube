@@ -183,8 +183,8 @@ def set_settings(on=None, mode=None, per_day=None):
         return s
 
 
-def replied_today(d):
-    today = store.now().date().isoformat()
+def replied_today(d, now=None):
+    today = (now or store.now()).date().isoformat()
     return sum(1 for e in d["log"] if e.get("sent") and e.get("at", "")[:10] == today)
 
 
@@ -239,7 +239,7 @@ def process(threads, d, own_channel, vids, now=None):
     """
     now = now or store.now()
     s = d["settings"]
-    budget = min(MAX_PER_RUN, max(0, s["per_day"] - replied_today(d)))
+    budget = min(MAX_PER_RUN, max(0, s["per_day"] - replied_today(d, now)))
     oldest = (now - dt.timedelta(days=MAX_AGE_DAYS)).isoformat()
     recent = [e.get("reply", "") for e in d["log"][:20]]
     today = now.date().isoformat()
