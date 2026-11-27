@@ -1,7 +1,19 @@
 {
- "videos": 11,
+ "videos": 16,
  "median": 700,
  "titel_muster": [
+  {
+   "value": "Ich-Geschichte",
+   "videos": 4,
+   "median": 854,
+   "faktor": 1.22
+  },
+  {
+   "value": "Was passiert, wenn …?",
+   "videos": 4,
+   "median": 828,
+   "faktor": 1.18
+  },
   {
    "value": "Regel/Countdown",
    "videos": 3,
@@ -17,10 +29,22 @@
  ],
  "themenfeld": [
   {
+   "value": "Alltagsgeschichte (ausgedacht)",
+   "videos": 4,
+   "median": 854,
+   "faktor": 1.22
+  },
+  {
    "value": "Grusel (ausgedacht)",
    "videos": 3,
    "median": 782,
    "faktor": 1.12
+  },
+  {
+   "value": "Körper & Sinne",
+   "videos": 3,
+   "median": 517,
+   "faktor": 0.74
   },
   {
    "value": "Echte Rätsel & Geschichte",
@@ -32,9 +56,9 @@
  "zwischenhaken": [
   {
    "value": "ohne",
-   "videos": 8,
-   "median": 828,
-   "faktor": 1.18
+   "videos": 12,
+   "median": 782,
+   "faktor": 1.12
   }
  ],
  "gewinner": [
@@ -44,6 +68,20 @@
    "typ": "Horror",
    "skript": "seed/0305-horror-block-schule-sechzig-sekunden.json",
    "welt": "Blockwelt"
+  },
+  {
+   "title": "Der Nachbar will jeden Abend ein Ei 🥚",
+   "views": 973,
+   "typ": "Erzählte Geschichte",
+   "skript": "seed/0345-geschichte-nachbar-will-ein-ei.json",
+   "welt": "Strichmännchen"
+  },
+  {
+   "title": "Was passiert, wenn dir eiskalt wird? 🥶",
+   "views": 890,
+   "typ": "Erklärvideo: Was passiert, wenn",
+   "skript": "seed/0275-erklaert-extreme-kaelte-koerper.json",
+   "welt": "Strichmännchen"
   },
   {
    "title": "Wer stellt mir jeden Morgen eine Kiste hin? 📦",
@@ -79,13 +117,6 @@
    "typ": "Mystery",
    "skript": "seed/0320-mystery-block-feuerkugeln-mekong.json",
    "welt": "Blockwelt"
-  },
-  {
-   "title": "Der Platz neben mir im Bus 🚌",
-   "views": 227,
-   "typ": "Erzählte Geschichte",
-   "skript": "seed/0327-geschichte-platz-neben-mir-im-bus.json",
-   "welt": "Strichmännchen"
   }
  ],
  "en_quellen": [
@@ -97,6 +128,6 @@
    "skript": "seed/0305-horror-block-schule-sechzig-sekunden.json"
   }
  ],
- "updated_at": "2026-11-27T01:58:12+00:00",
+ "updated_at": "2026-11-27T12:33:13+00:00",
  "hinweis": "Grob: öffentliche Aufrufe nach ca. 1 Tag, Median je Gruppe. Faktor 1,3 = 30 % mehr als der Kanal-Median. Erst ab 3 Videos je Gruppe gelistet. Genauer: Zentrale > Nischen-Kompass."
 }
