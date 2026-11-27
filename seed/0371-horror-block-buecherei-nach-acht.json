@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-buecherei-nach-acht",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Bleib nie nach acht in der Bücherei 📚",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: In der Bücherei auf dem Server gibt es eine einzige Regel, wenn sie schließt.\n\n#horror #gruselig #blockwelt #bücherei #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "bücherei",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Bücherei | nach acht",
+    "Die erste Regel"
+  ],
+  "segments": [
+    {
+      "text": "Wenn die Bücherei schließt, geh *sofort* nach Hause.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📚",
+        "chat": "Server: Regel 1"
+      }
+    },
+    {
+      "text": "Nach acht blättert jemand in den Regalen.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Bibliothekarin: Psst"
+      }
+    },
+    {
+      "text": "Eine Lampe geht an, doch niemand ist da.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "💡",
+        "text": "Lampe an"
+      }
+    },
+    {
+      "text": "Zwischen den Regalen steht ein Schatten mit Buch.",
+      "szene": {
+        "typ": "monster",
+        "ort": "schule",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Er liest nur Seiten, die *du* schon gelesen hast.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "📖",
+        "text": "Deine Seiten"
+      }
+    },
+    {
+      "text": "Du hörst deinen Namen, geflüstert von Seite zu Seite.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f",
+        "chat": "Buch: ...dein Name"
+      }
+    },
+    {
+      "text": "Die Tür fällt zu, und das Licht geht aus.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🚪",
+        "text": "Tür zu"
+      }
+    },
+    {
+      "text": "Merk dir die erste Regel:",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "📚"
+      }
+    }
+  ],
+  "ende": "loop"
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-bauchplatscher",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum tut ein Bauchplatscher so weh? 💦",
+  "description": "Erklärt in der Blockwelt: Warum Wasser hart wirken kann, wenn du flach darauf landest.\n\n#wissen #physik #wasser #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "wasser",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Bauchplatscher | Wasser ist hart",
+    "Die Fläche entscheidet"
+  ],
+  "segments": [
+    {
+      "text": "Warum tut ein Bauchplatscher im Wasser so weh?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "💦",
+        "chat": "Spieler: aua!"
+      }
+    },
+    {
+      "text": "Wasser sieht weich aus, ist aber *träge*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💧",
+        "text": "Träges Wasser"
+      }
+    },
+    {
+      "text": "Es muss erst Platz machen, wenn du aufprallst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "⚡",
+        "text": "Aufprall"
+      }
+    },
+    {
+      "text": "Beim flachen Aufprall bremst die ganze Fläche *gleichzeitig*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Beim Kopfsprung trifft nur eine kleine Fläche.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Kleine Fläche"
+      }
+    },
+    {
+      "text": "Die Kraft verteilt sich dort besser.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "💪",
+        "text": "Besser verteilt"
+      }
+    },
+    {
+      "text": "Je größer die bremsende Fläche, desto härter der Schlag.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Darum wird die Haut danach oft rot.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🟥",
+        "text": "Rote Haut"
+      }
+    }
+  ]
+}

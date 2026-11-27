@@ -1,0 +1,124 @@
+{
+  "slug": "geschichte-fahrkarte-in-opas-mantel",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Die Fahrkarte in Opas Mantel 🎫",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Im alten Mantel von Opa finde ich eine Fahrkarte mit meinem Namen.\n\n#geschichte #erzählung #familie #warm #shorts",
+  "tags": [
+    "geschichte",
+    "erzählung",
+    "familie",
+    "warm",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Die Fahrkarte | mein Name",
+    "Opa wusste es"
+  ],
+  "segments": [
+    {
+      "text": "Im alten Mantel von Opa finde ich eine *Fahrkarte*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🎫"
+      }
+    },
+    {
+      "text": "Auf ihr stehen mein Name und das heutige Datum.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎫",
+        "text": "Mein Name"
+      }
+    },
+    {
+      "text": "Ich frage Opa, was das soll.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Er lacht und schüttelt den Kopf.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "😄"
+      }
+    },
+    {
+      "text": "Er hat sie vor Jahren gekauft, für meinen zehnten Geburtstag.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎂",
+        "text": "Zehnter Geburtstag"
+      }
+    },
+    {
+      "text": "Seitdem steckte sie in seinem Mantel, bereit und *wartend*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Er wollte mir einmal das *Meer* zeigen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Er hielt die Fahrkarte all die Jahre treu bereit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎫",
+        "text": "Jahrelang bereit"
+      }
+    },
+    {
+      "text": "Wir fahren noch heute los.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🚂"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "erklaert-block-delfine-schlafen-halb",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Wie schlafen Delfine, ohne zu ertrinken? 🐬",
+  "description": "Erklärt in der Blockwelt: Warum Delfine nur mit einer Gehirnhälfte schlafen und dabei ein Auge offen halten.\n\n#wissen #tiere #delfine #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "tiere",
+    "delfine",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Delfine | schlafen halb",
+    "Ein Auge bleibt offen"
+  ],
+  "segments": [
+    {
+      "text": "Wie schlafen Delfine, ohne zu ertrinken?",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐬",
+        "chat": "Spieler: wie geht das?"
+      }
+    },
+    {
+      "text": "Sie atmen bewusst, also müssen sie *wach* bleiben.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🫧",
+        "text": "Bewusst atmen"
+      }
+    },
+    {
+      "text": "Darum schläft immer nur eine Gehirnhälfte.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🧠",
+        "text": "Halbes Gehirn"
+      }
+    },
+    {
+      "text": "Die andere bleibt wach und steuert das Auftauchen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Oft bleibt dabei ein Auge *offen*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Ein Auge offen"
+      }
+    },
+    {
+      "text": "Nach einer Weile wechseln die Hälften.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔄",
+        "text": "Seitenwechsel"
+      }
+    },
+    {
+      "text": "Delfine schlafen also immer nur halb.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Ihr Gehirn macht Pause, ohne je abzuschalten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🌙",
+        "text": "Nie ganz aus"
+      }
+    }
+  ]
+}

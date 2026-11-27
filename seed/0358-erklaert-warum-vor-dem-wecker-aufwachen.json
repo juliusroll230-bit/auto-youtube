@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-vor-dem-wecker-aufwachen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum wachst du vor dem Wecker auf? ⏰",
+  "description": "Erklärt: Warum viele Menschen kurz vor dem Klingeln wach werden und was dein innerer Takt damit zu tun hat.\n\n#wissen #schlaf #gehirn #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schlaf",
+    "gehirn",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Wecker | zu spät",
+    "Dein Körper wusste es"
+  ],
+  "segments": [
+    {
+      "text": "Warum wachst du oft kurz vor dem Wecker auf?",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⏰"
+      }
+    },
+    {
+      "text": "Dein Körper hat einen inneren *Takt*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🕰️",
+        "text": "Innerer Takt"
+      }
+    },
+    {
+      "text": "Schon vor dem Aufwachen steigen bestimmte Hormone an.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "⚡",
+        "text": "Hormone steigen"
+      }
+    },
+    {
+      "text": "Nachts herrscht Ruhe, morgens beginnt die Aktivierung.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌙",
+          "text": "Nacht"
+        },
+        "rechts": {
+          "objekt": "☀️",
+          "text": "Morgen"
+        }
+      }
+    },
+    {
+      "text": "Feste Weckzeiten verstärken das oft noch *mehr*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Dein Körper plant den Morgen schon vorher.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "kinderzimmer",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Er plant mit"
+      }
+    },
+    {
+      "text": "Er hört den Wecker also *früher* als du.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Und genau deshalb fragst du dich oft:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

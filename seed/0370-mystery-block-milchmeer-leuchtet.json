@@ -1,0 +1,111 @@
+{
+  "slug": "mystery-block-milchmeer-leuchtet",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Das Meer, das nachts milchig leuchtet 🌊",
+  "description": "Blockwelt: Seeleute berichten seit Jahrhunderten von Meeren, die nachts weiß leuchten. Was dahinter steckt, ist nur teilweise geklärt.\n\n#mystery #meer #leuchten #rätsel #shorts",
+  "tags": [
+    "mystery",
+    "meer",
+    "leuchten",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Milchmeer | leuchtet nachts",
+    "Was glüht dort"
+  ],
+  "segments": [
+    {
+      "text": "Nachts wird das Meer plötzlich weiß wie Milch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌊",
+        "chat": "Spieler: es leuchtet!"
+      }
+    },
+    {
+      "text": "Seeleute berichten davon seit Jahrhunderten.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌊",
+        "text": "Indischer Ozean"
+      }
+    },
+    {
+      "text": "Das Licht liegt auf einer riesigen Fläche.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🌌",
+        "text": "Riesige Fläche"
+      }
+    },
+    {
+      "text": "Manche Schiffe fuhren stundenlang durch das *Glühen*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "nacht",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Stundenlang"
+      }
+    },
+    {
+      "text": "Lange hielt man es für Seemannsgarn.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "nacht",
+        "objekt": "⚓",
+        "text": "Nur Garn?"
+      }
+    },
+    {
+      "text": "Ein Satellit zeigte es 2005 aus dem All.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "nacht",
+        "objekt": "🛰️",
+        "text": "Aus dem All"
+      }
+    },
+    {
+      "text": "Vermutlich leuchten *Bakterien*, wenn sie sich stark vermehren.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "nacht",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Warum es genau passiert, bleibt offen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "nacht",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ]
+}

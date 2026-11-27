@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-einschlafzucken",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum zuckst du kurz vorm Einschlafen? 😴",
+  "description": "Erklärt: Warum dein Körper beim Einschlafen manchmal plötzlich zuckt, als würdest du fallen.\n\n#wissen #schlaf #körper #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "schlaf",
+    "körper",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Einschlafzucken | wie Fallen",
+    "Dein Körper irrt"
+  ],
+  "segments": [
+    {
+      "text": "Warum zuckst du plötzlich, kurz bevor du einschläfst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😴"
+      }
+    },
+    {
+      "text": "Es fühlt sich an, als würdest du *fallen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🛌",
+        "text": "Wie ein Sturz"
+      }
+    },
+    {
+      "text": "Genau weiß es niemand, aber es gibt eine Idee.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "💡",
+        "text": "Eine Idee"
+      }
+    },
+    {
+      "text": "Wach sind die Muskeln angespannt, im Schlaf locker.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🏃",
+          "text": "Wach"
+        },
+        "rechts": {
+          "objekt": "😴",
+          "text": "Schlaf"
+        }
+      }
+    },
+    {
+      "text": "Dein Gehirn deutet das Loslassen vielleicht als *Sturz*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Es passiert vielen Menschen und ist meist harmlos.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "kinderzimmer",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "text": "Völlig normal"
+      }
+    },
+    {
+      "text": "Dein Körper hält Entspannen manchmal für *Fallen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Einschlafen noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

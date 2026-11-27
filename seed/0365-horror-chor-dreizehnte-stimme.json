@@ -1,0 +1,112 @@
+{
+  "slug": "horror-chor-dreizehnte-stimme",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Der Chor singt eine Stimme zu viel 🎶",
+  "description": "Eine ausgedachte Gruselgeschichte: Im Schulchor sind zwölf Kinder, aber es singen dreizehn Stimmen.\n\n#horror #gruselig #schule #chor #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "schule",
+    "chor",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Der Chor | dreizehn Stimmen",
+    "Wer singt mit"
+  ],
+  "segments": [
+    {
+      "text": "Der Chor hat zwölf Kinder, aber ich höre *dreizehn* Stimmen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🎶"
+      }
+    },
+    {
+      "text": "Die dreizehnte Stimme ist hoch und ganz leise.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🎶",
+        "text": "Zu viele Stimmen"
+      }
+    },
+    {
+      "text": "Wir zählen durch, doch es sind nur zwölf.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Frau Wolf: Nochmal!"
+      }
+    },
+    {
+      "text": "Die Stimme singt immer einen *Takt* zu spät.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "🎼",
+        "text": "Ein Takt zu spät"
+      }
+    },
+    {
+      "text": "Hinter dem Klavier steht ein Mädchen im weißen Kleid.",
+      "szene": {
+        "typ": "monster",
+        "ort": "schule",
+        "monster": "geist",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Niemand außer mir sieht sie.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Dann singt sie meinen *Namen* mit.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Chor: ...dein Name"
+      }
+    },
+    {
+      "text": "Jetzt hört sie jede Probe zu.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🎹",
+        "text": "Sie hört zu"
+      }
+    }
+  ]
+}

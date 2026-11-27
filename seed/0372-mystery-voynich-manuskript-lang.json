@@ -1,0 +1,680 @@
+{
+  "slug": "mystery-voynich-manuskript-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#1d1a2b",
+    "#c8a46a"
+  ],
+  "accent": "#ffd166",
+  "title": "Das Voynich-Manuskript: Das Buch, das niemand lesen kann 📖",
+  "description": "Seit über 600 Jahren gibt es ein Buch voller Text und Bilder, das bis heute niemand lesen kann. Wir erzählen die Geschichte des Voynich-Manuskripts: Besitzer, Fund, Altersprüfung und die Ideen zur Lösung.\n\n#mystery #rätsel #geschichte #manuskript #voynich",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "manuskript",
+    "voynich"
+  ],
+  "figur": {
+    "farbe": "gelb",
+    "hut": "zylinder",
+    "name": "Forscher"
+  },
+  "thumb_text": [
+    "Voynich | unlesbares Buch",
+    "Wer schrieb es"
+  ],
+  "segments": [
+    {
+      "text": "Es gibt ein Buch, das seit über sechshundert Jahren existiert, und bis heute kann es niemand lesen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Die Seiten sind voller Schrift und voller Bilder, doch kein Mensch weiß, was dort steht. Stimmt das wirklich?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "📖",
+        "text": "Ein Buch ohne Sinn?"
+      }
+    },
+    {
+      "text": "Das ist die Geschichte des Voynich-Manuskripts, des rätselhaftesten Buches der Welt, und sie führt von Prag bis nach Amerika.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📖",
+        "text": "Voynich-Manuskript"
+      }
+    },
+    {
+      "text": "Wir schauen auf das Buch selbst, dann auf seine Besitzer, dann auf die Versuche, es zu knacken, und am Ende auf die offene Frage.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Es liegt heute in einer Bibliothek der Universität Yale in den USA, geschützt hinter Glas und mit einer eigenen Nummer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "cool",
+        "aktion": "steht",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Sie lautet MS vierhundertacht, das ist keine Zauberformel, sondern einfach die Ablagenummer in der Sammlung.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🔢",
+        "text": "Nummer MS 408"
+      }
+    },
+    {
+      "text": "Auf der allerersten Seite steht ein kaum lesbarer Name, der auf einen böhmischen Apotheker am Hof von Prag hindeuten könnte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "💊"
+      }
+    },
+    {
+      "text": "Das Buch hat gut zweihundert Seiten aus dünnem Pergament, also aus Tierhaut, die schon vor Jahrhunderten bearbeitet wurde.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 200,
+        "einheit": "Seiten ungefähr",
+        "objekt": "📜",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Auf diesen Seiten steht Text in einer Schrift, die es sonst nirgends gibt, mit geschwungenen Zeichen, die fast wie Buchstaben aussehen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔤"
+      }
+    },
+    {
+      "text": "Eine ausklappbare Seite ist dabei sogar mehrfach so groß wie die anderen, mit neun runden Bildern, die wie Rosetten aussehen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Ausklappseite"
+      }
+    },
+    {
+      "text": "Die Zeichen stehen in Wörtern, die Wörter in Zeilen, und die Zeilen in Absätzen, genau wie in jedem normalen Buch.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🔤",
+        "text": "Wörter und Zeilen"
+      }
+    },
+    {
+      "text": "Aber kein Fachmann der Welt konnte bisher sagen, welche Sprache dahintersteckt, oder ob es überhaupt eine Sprache ist.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Welche Sprache?"
+      }
+    },
+    {
+      "text": "Dazu kommen die Bilder, und die sind noch seltsamer als der Text, denn man erkennt Pflanzen, die es so nicht gibt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🌿"
+      }
+    },
+    {
+      "text": "Die Bilder lassen sich in einige Teile gliedern.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Bildteile",
+        "punkte": [
+          "Pflanzen",
+          "Sterne und Kreise",
+          "Badende Frauen"
+        ]
+      }
+    },
+    {
+      "text": "In einem Teil sieht man Blumen, Wurzeln und Blätter, die eher wie Fantasie aussehen als wie echte Pflanzen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🌿",
+        "text": "Fremde Pflanzen"
+      }
+    },
+    {
+      "text": "In einem anderen Teil sieht man Kreise mit Sternen und Sonnen, die wie Himmelskarten oder Tierkreiszeichen wirken.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "⭐"
+      }
+    },
+    {
+      "text": "Und in einem dritten Teil baden kleine nackte Frauen in grünen Becken, die durch Röhren miteinander verbunden sind.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🛁",
+        "text": "Badende Frauen"
+      }
+    },
+    {
+      "text": "Dazu kommen Zeichnungen von Sternen, und man erkennt Bilder, die an Fische, Widder oder Stiere des Tierkreises erinnern.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "♈"
+      }
+    },
+    {
+      "text": "Was soll das alles bedeuten, ein Kräuterbuch, ein Arztbuch, ein Geheimcode oder einfach ein sehr aufwendiger Scherz?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Was ist es?"
+      }
+    },
+    {
+      "text": "Fangen wir bei den Besitzern an, denn die Spur des Buches führt zuerst nach Prag, zum Hof eines berühmten Kaisers.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "cool",
+        "aktion": "zeigt",
+        "objekt": "🏰"
+      }
+    },
+    {
+      "text": "Dort lebte um sechzehnhundert Kaiser Rudolf der Zweite, der sich für Alchemie, Magie, Sternkunde und seltene Dinge begeisterte und viele Gelehrte um sich sammelte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "burg",
+        "objekt": "👑",
+        "text": "Kaiser Rudolf II."
+      }
+    },
+    {
+      "text": "Einem später gefundenen Brief zufolge soll er sechshundert Dukaten für das Buch bezahlt haben, eine große Summe.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "burg",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Er glaubte angeblich, der Schreiber sei der englische Gelehrte Roger Bacon gewesen, der im dreizehnten Jahrhundert lebte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🧙"
+      }
+    },
+    {
+      "text": "Diese Idee gilt heute als unwahrscheinlich, denn das Pergament des Buches ist deutlich jünger als Bacon.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📜",
+        "text": "Zu jung für Bacon"
+      }
+    },
+    {
+      "text": "Im Jahr sechzehnhundertneununddreißig schreibt ein Prager Gelehrter namens Georg Baresch einen Brief an einen berühmten Jesuiten.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1639",
+        "text": "Brief aus Prag",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Baresch besaß das Buch, hatte jahrelang versucht, es zu lesen, und war gescheitert, deshalb bat er um Hilfe.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "✉️"
+      }
+    },
+    {
+      "text": "Der Jesuit hieß Athanasius Kircher, und er galt damals als der größte Rätsellöser, der selbst ägyptische Zeichen lesen wollte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🔍",
+        "text": "Athanasius Kircher"
+      }
+    },
+    {
+      "text": "Doch Kircher antwortete anscheinend nie, und so blieb das Buch ein Rätsel, auch für den berühmtesten Gelehrten seiner Zeit.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🔇",
+        "text": "Keine Antwort"
+      }
+    },
+    {
+      "text": "Später erbt ein Freund von Baresch das Buch, der Arzt Johannes Marcus Marci, und er schickt es mit einem Brief nach Rom.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📦"
+      }
+    },
+    {
+      "text": "Ob das Buch bei Kircher ankam, ist nicht sicher, denn in seinen Unterlagen wird es nirgends erwähnt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📦",
+        "text": "Angekommen?"
+      }
+    },
+    {
+      "text": "Danach verliert sich die Spur für fast zweihundert Jahre, und niemand weiß genau, wo das Buch in dieser Zeit lag.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Spur verloren"
+      }
+    },
+    {
+      "text": "Erst im Jahr neunzehnhundertzwölf taucht es wieder auf, und zwar bei einem polnischen Antiquar namens Wilfrid Voynich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Voynich entdeckt es in einem Kloster-College in Italien, wo man eine alte Sammlung verkaufen wollte, und er kauft es.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1912",
+        "text": "Voynichs Fund",
+        "objekt": "📚"
+      }
+    },
+    {
+      "text": "Er bringt das Buch nach Amerika, zeigt es Gelehrten und macht es berühmt, weshalb es heute nach ihm heißt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚢",
+        "text": "Nach Amerika"
+      }
+    },
+    {
+      "text": "Von da an wollen Hunderte kluge Köpfe das Rätsel knacken, darunter auch Profis, die im Zweiten Weltkrieg Geheimcodes brachen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🕵️"
+      }
+    },
+    {
+      "text": "Sie probieren Zahlen, Buchstabentausch, Statistik und Computerprogramme aus, über viele Jahrzehnte hinweg, doch kein Versuch hält einer genauen Prüfung stand.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "💻",
+        "text": "Code-Versuche"
+      }
+    },
+    {
+      "text": "So bleibt das Buch ein Treffpunkt für Forscher, Hobbyleute und Neugierige, die alle ihre Ideen ausprobieren.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 4,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Viele Ideen"
+      }
+    },
+    {
+      "text": "Eine Frage lässt sich aber klären: Wie alt ist das Buch eigentlich? Dafür gibt es einen Test mit Kohlenstoff.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Im Jahr zweitausendneun untersuchen Fachleute kleine Proben des Pergaments und finden heraus, es stammt aus den Jahren vierzehnhundertvier bis vierzehnhundertachtunddreißig.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "1404",
+        "text": "Pergament datiert",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Das Buch ist also über sechshundert Jahre alt, und die Tinte passt ebenfalls zu dieser Zeit.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🧪",
+        "text": "Echte alte Tinte"
+      }
+    },
+    {
+      "text": "Details wie die Zinnen der Burgen in den Zeichnungen sprechen dafür, dass es in Norditalien entstanden sein könnte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "burg",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🏰"
+      }
+    },
+    {
+      "text": "Damit ist klar: Es ist kein neuer Streich, sondern wirklich ein Buch aus dem Mittelalter. Aber was steht darin?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Was steht drin?"
+      }
+    },
+    {
+      "text": "Die erste Idee lautet, es ist ein Geheimcode, bei dem jeder Buchstabe durch ein Zeichen ersetzt wurde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🔐"
+      }
+    },
+    {
+      "text": "Doch bei einem einfachen Tausch würde man die Sprache längst erkennen, und das ist hier nicht der Fall.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🔐",
+          "text": "Einfacher Code"
+        },
+        "rechts": {
+          "objekt": "❓",
+          "text": "Voynich"
+        }
+      }
+    },
+    {
+      "text": "Die zweite Idee lautet, es ist eine echte Sprache, vielleicht eine, die heute niemand mehr kennt oder die erfunden wurde.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🗣️",
+        "text": "Eine fremde Sprache?"
+      }
+    },
+    {
+      "text": "Ein Forscher namens Prescott Currier meinte in den siebziger Jahren, mehrere Schreiber hätten an dem Buch gearbeitet.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Dafür spricht, dass die Wörter sich so verhalten wie in echten Sprachen: Manche sind sehr häufig, andere kommen nur ganz selten vor.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📊"
+      }
+    },
+    {
+      "text": "Auch bestimmte Wörter tauchen nur in bestimmten Teilen des Buches auf, ganz wie bei einem Fachbuch mit Kapiteln.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "📊",
+        "text": "Wörter nach Teilen"
+      }
+    },
+    {
+      "text": "Die dritte Idee lautet, es ist ein Scherz oder Unsinn, geschrieben, damit es nach Geheimwissen aussieht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🃏",
+        "text": "Nur ein Scherz?"
+      }
+    },
+    {
+      "text": "Dagegen sprechen die gleichmäßige, flüssige Schrift und die Mühe, die in den Zeichnungen und Farben steckt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🖌️"
+      }
+    },
+    {
+      "text": "Es gibt kaum Korrekturen im Text, kaum ausgestrichene Wörter oder Flecken, was dafür spricht, dass der Schreiber von einer fertigen Vorlage abgeschrieben hat.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "✍️",
+        "text": "Keine Korrekturen"
+      }
+    },
+    {
+      "text": "Ein reiner Scherz wäre kaum so aufwendig, aber ganz ausschließen kann man ihn bisher auch nicht.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🃏",
+          "text": "Scherz"
+        },
+        "rechts": {
+          "objekt": "📖",
+          "text": "Echtes Wissen"
+        }
+      }
+    },
+    {
+      "text": "Im Jahr zweitausendneunzehn behauptet ein Forscher, er habe das Rätsel gelöst, es sei eine alte, mehrsprachige Mischung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "📰"
+      }
+    },
+    {
+      "text": "Die Presse berichtet groß darüber, doch Fachleute für mittelalterliche Texte prüfen die Idee und halten sie nicht für überzeugend.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📰",
+        "text": "Kritik der Fachleute"
+      }
+    },
+    {
+      "text": "So ging es mit fast jeder angeblichen Lösung: erst Jubel, dann Zweifel, dann wieder Stille.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "text": "Viele Lösungen"
+      }
+    },
+    {
+      "text": "Und inzwischen helfen auch Computer mit künstlicher Intelligenz, Muster im Text zu finden, doch bisher ohne Durchbruch.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💻"
+      }
+    },
+    {
+      "text": "Forscher zählen Zeichen, Wörter und Wiederholungen, und die Muster erinnern auffallend an echte Sprachen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Wörter gezählt"
+      }
+    },
+    {
+      "text": "Sie zeigen zwar, dass der Text eine Struktur hat, aber sie sagen nicht, was er bedeutet.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "📈",
+        "text": "Muster ohne Sinn"
+      }
+    },
+    {
+      "text": "Vielleicht fehlt uns einfach der Schlüssel, vielleicht gibt es gar keinen, und genau das macht den Fall so besonders.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "🗝️",
+        "text": "Fehlt der Schlüssel?"
+      }
+    },
+    {
+      "text": "Heute kann jeder das Buch online ansehen, denn die Bibliothek hat alle Seiten in hoher Qualität ins Netz gestellt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "💻"
+      }
+    },
+    {
+      "text": "Ein paar Seiten fehlen, die in der Zählung des Buches Lücken hinterlassen, und niemand weiß, was auf ihnen stand.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "📄",
+        "text": "Fehlende Seiten"
+      }
+    },
+    {
+      "text": "Das bedeutet, dass du selbst durch die Seiten blättern und die seltsamen Pflanzen, die Sterne und die Zeichen in Ruhe betrachten kannst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "🌐",
+        "text": "Online ansehen"
+      }
+    },
+    {
+      "text": "Und weil so viele Menschen mitdenken, könnte eines Tages jemand das Rätsel lösen, vielleicht sogar ein Schüler.",
+      "szene": {
+        "typ": "figur",
+        "ort": "buero",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🎓"
+      }
+    },
+    {
+      "text": "Bis dahin bleibt das Voynich-Manuskript ein Buch, das alles zu wissen scheint und nichts verrät.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "buero",
+        "objekt": "📖",
+        "text": "Schweigt weiter"
+      }
+    },
+    {
+      "text": "Ein Buch voller Wissen, geschrieben von jemandem, dessen Namen, Sprache und Absicht wir nicht kennen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "buero",
+        "objekt": "❓",
+        "text": "Wer schrieb es?"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du an einen Geheimcode, eine verlorene Sprache oder an einen Scherz? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

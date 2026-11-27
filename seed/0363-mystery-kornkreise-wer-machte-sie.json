@@ -1,0 +1,113 @@
+{
+  "slug": "mystery-kornkreise-wer-machte-sie",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Wer machte die Kreise im Kornfeld? 🌾",
+  "description": "In England tauchten ab den 1970er-Jahren perfekte Kreise in Getreidefeldern auf. 1991 gestanden zwei Männer, viele davon gemacht zu haben.\n\n#mystery #kornkreise #rätsel #england #shorts",
+  "tags": [
+    "mystery",
+    "kornkreise",
+    "rätsel",
+    "england",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Kornkreise | Ufo oder Streich",
+    "Zwei Männer gestehen"
+  ],
+  "segments": [
+    {
+      "text": "Wer legte über Nacht diese Kreise ins Kornfeld?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌾"
+      }
+    },
+    {
+      "text": "In England tauchten sie ab den siebziger Jahren auf.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🌾",
+        "text": "England"
+      }
+    },
+    {
+      "text": "Das Korn lag sauber gedrückt und fast ohne Knicke.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🌾",
+        "text": "Sauber gedrückt"
+      }
+    },
+    {
+      "text": "Die Akte sagt:",
+      "szene": {
+        "typ": "akte",
+        "text": "Akte Kornkreis",
+        "punkte": [
+          "Perfekte Kreise",
+          "Über Nacht",
+          "Keine Spuren?"
+        ]
+      }
+    },
+    {
+      "text": "Manche dachten sofort an *Ufos*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🛸",
+        "text": "Ufos?"
+      }
+    },
+    {
+      "text": "Dann gestanden zwei Männer: Wir waren es.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Sie legten die Kreise mit Brettern und *Seilen*.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Bretter, Seile"
+      }
+    },
+    {
+      "text": "Und doch fragen sich viele bis heute:",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    }
+  ],
+  "ende": "loop"
+}

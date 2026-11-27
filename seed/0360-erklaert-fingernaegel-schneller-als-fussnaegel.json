@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-fingernaegel-schneller-als-fussnaegel",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum wachsen Fingernägel schneller? 💅",
+  "description": "Erklärt: Warum Fingernägel deutlich schneller wachsen als Fußnägel und was man darüber weiß.\n\n#wissen #körper #nägel #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "nägel",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gruen"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Fingernägel | schneller",
+    "Wer macht den Unterschied"
+  ],
+  "segments": [
+    {
+      "text": "Warum wachsen Fingernägel schneller als Fußnägel?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💅"
+      }
+    },
+    {
+      "text": "Fingernägel wachsen deutlich *schneller*, das lässt sich messen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "📏",
+        "text": "Messbar schneller"
+      }
+    },
+    {
+      "text": "Genau erklärt ist der Grund aber nicht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Grund offen"
+      }
+    },
+    {
+      "text": "Vermutet wird:",
+      "szene": {
+        "typ": "liste",
+        "text": "Mögliche Gründe",
+        "punkte": [
+          "Mehr Durchblutung",
+          "Mehr Bewegung",
+          "Mehr Reize"
+        ]
+      }
+    },
+    {
+      "text": "Deine Hände sind ständig in *Bewegung*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Füße stecken meist in Schuhen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 3,
+        "gefuehl": "neutral",
+        "aktion": "haende",
+        "text": "Im Schuh"
+      }
+    },
+    {
+      "text": "Wer die Hände viel nutzt, regt wohl das Wachstum an.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Ein ganzer Fingernagel braucht grob ein halbes Jahr.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "⏳",
+        "text": "Ein halbes Jahr"
+      }
+    }
+  ]
+}
