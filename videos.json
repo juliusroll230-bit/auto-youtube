@@ -6,11 +6,110 @@
  },
  "videos": [
   {
+   "id": "iN-7QUTUmO0",
+   "title": "Das Meer, das nachts milchig leuchtet 🌊",
+   "text": "Blockwelt: Seeleute berichten seit Jahrhunderten von Meeren, die nachts weiß leuchten. Was dahinter steckt, ist nur teilweise geklärt.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-27T20:35:46+00:00",
+   "thumb": "thumbs/iN-7QUTUmO0.jpg"
+  },
+  {
+   "id": "tOaw8SbOI1o",
+   "title": "Das Geräusch, das niemand erklären konnte 🌊",
+   "text": "Im Jahr 1997 hörten Messgeräte im Pazifik ein extrem lautes Geräusch. Woher es kam, wurde erst Jahre später ungefähr geklärt.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-27T19:35:39+00:00",
+   "thumb": "thumbs/tOaw8SbOI1o.jpg"
+  },
+  {
+   "id": "10o7tL_0EAI",
+   "title": "Jeder Abonnent = 1 Mitarbeiter in meinem Spielestudio (Tag 4) 🎮",
+   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meinem Spielestudio „Abo Games“ ein. Heute: 198 Mitarbeiter und 63.300 € Spielgeld auf dem Konto (alles nur im Spiel).",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-27T19:26:37+00:00",
+   "thumb": "thumbs/10o7tL_0EAI.jpg"
+  },
+  {
+   "id": "DlOcp78tF34",
+   "title": "Die Himmelsscheibe von Nebra: Raub, Fund und Rätsel 🌌",
+   "text": "1999 graben Raubgräber in Sachsen-Anhalt eine grüne Scheibe aus. Wir erzählen die Geschichte der Himmelsscheibe von Nebra, vom Fund über die Hehler bis zur Frage, was sie zeigt.",
+   "niche": "Geschichte",
+   "views": 1,
+   "published": "2026-11-27T19:01:54+00:00",
+   "thumb": "thumbs/DlOcp78tF34.jpg"
+  },
+  {
+   "id": "2xXvWep6Wgg",
+   "title": "Die Schrift, die niemand mehr lesen kann 🪵",
+   "text": "Auf der Osterinsel gibt es Holztafeln mit einer Schrift namens Rongorongo. Bis heute hat niemand sie nachweislich entziffert.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-27T18:36:03+00:00",
+   "thumb": "thumbs/2xXvWep6Wgg.jpg"
+  },
+  {
+   "id": "33OuJcB3_xk",
+   "title": "Der Tempel, den man aus einem Felsen schlug 🛕",
+   "text": "In Ellora in Indien steht ein Tempel, der von oben nach unten aus einem einzigen Felsen geschlagen wurde. Wie genau das gelang, ist bis heute offen.",
+   "niche": "Wissen",
+   "views": 0,
+   "published": "2026-11-27T17:36:12+00:00",
+   "thumb": "thumbs/33OuJcB3_xk.jpg"
+  },
+  {
+   "id": "_5FYfSliptE",
+   "title": "Jeden Abend brennt eine Kerze im Fenster 🕯️",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Die Nachbarin zündet jeden Abend eine Kerze an, und ich verstehe erst spät, warum.",
+   "niche": "Geschichte",
+   "views": 0,
+   "published": "2026-11-27T16:35:52+00:00",
+   "thumb": "thumbs/_5FYfSliptE.jpg"
+  },
+  {
+   "id": "ZiQ9uaEt-js",
+   "title": "Die Fahrkarte in Opas Mantel 🎫",
+   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im alten Mantel von Opa finde ich eine Fahrkarte mit meinem Namen.",
+   "niche": "Geschichte",
+   "views": 553,
+   "published": "2026-11-27T15:36:02+00:00",
+   "thumb": "thumbs/ZiQ9uaEt-js.jpg"
+  },
+  {
+   "id": "ECivkfDCmuI",
+   "title": "Warum ist der Himmel abends rot? 🌅",
+   "text": "Warum der Himmel abends rot leuchtet: Das Licht nimmt einen längeren Weg, und das Blau geht dabei verloren.",
+   "niche": "Wissen",
+   "views": 619,
+   "published": "2026-11-27T14:35:38+00:00",
+   "thumb": "thumbs/ECivkfDCmuI.jpg"
+  },
+  {
+   "id": "75b6fOclXE8",
+   "title": "Warum juckt ein Mückenstich? 🦟",
+   "text": "Was die Mücke beim Stechen in die Haut gibt, warum dein Körper mit Histamin antwortet und was gegen den Juckreiz hilft.",
+   "niche": "Wissen",
+   "views": 551,
+   "published": "2026-11-27T13:35:55+00:00",
+   "thumb": "thumbs/75b6fOclXE8.jpg"
+  },
+  {
+   "id": "mknnta714pI",
+   "title": "Der Chor singt eine Stimme zu viel 🎶",
+   "text": "Eine ausgedachte Gruselgeschichte: Im Schulchor sind zwölf Kinder, aber es singen dreizehn Stimmen.",
+   "niche": "Wissen",
+   "views": 1154,
+   "published": "2026-11-27T12:35:54+00:00",
+   "thumb": "thumbs/mknnta714pI.jpg"
+  },
+  {
    "id": "nbngog8g_6Q",
    "title": "Zu viel Wasser trinken: Was passiert? 💧",
    "text": "Warum man sich auch an Wasser überfordern kann, was dabei im Blut passiert und wie viel die Nieren pro Stunde schaffen.",
    "niche": "Wissen",
-   "views": 185,
+   "views": 998,
    "published": "2026-11-27T11:35:54+00:00",
    "thumb": "thumbs/nbngog8g_6Q.jpg"
   },
@@ -19,7 +118,7 @@
    "title": "Mein Hund wartet nachts auf der Treppe 🐕",
    "text": "Eine ausgedachte Gruselgeschichte: Mein Hund wedelt jede Nacht vor der Treppe, auf der niemand steht.",
    "niche": "Wissen",
-   "views": 295,
+   "views": 963,
    "published": "2026-11-27T10:35:55+00:00",
    "thumb": "thumbs/sM2EM2j4zOA.jpg"
   },
@@ -28,7 +127,7 @@
    "title": "Nase zuhalten beim Niesen? 🤧",
    "text": "Erklärt in der Blockwelt: Warum Niesen so viel Druck macht und warum es keine gute Idee ist, dabei die Nase zuzuhalten.",
    "niche": "Wissen",
-   "views": 68,
+   "views": 195,
    "published": "2026-11-27T09:35:40+00:00",
    "thumb": "thumbs/PI9AiGessH8.jpg"
   },
@@ -37,108 +136,9 @@
    "title": "Wenn das Licht ausgeht, bleib stehen 🔦",
    "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Im Schulflur gibt es eine einzige Regel, wenn das Licht ausgeht.",
    "niche": "Wissen",
-   "views": 65,
+   "views": 140,
    "published": "2026-11-27T08:35:43+00:00",
    "thumb": "thumbs/XJalI_6VcyI.jpg"
-  },
-  {
-   "id": "URRsKQcNa7g",
-   "title": "Steig nachts nie in den letzten Wagen 🚇",
-   "text": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Auf dem Server gibt es eine dritte Regel. Steig nachts niemals in den letzten Wagen der U-Bahn.",
-   "niche": "Wissen",
-   "views": 216,
-   "published": "2026-11-27T07:35:56+00:00",
-   "thumb": "thumbs/URRsKQcNa7g.jpg"
-  },
-  {
-   "id": "0XwKpvZ5s8s",
-   "title": "Der Urmensch, der nie existierte 🦴",
-   "text": "Blockwelt: 1912 galt ein Fund in England als das fehlende Bindeglied zum Menschen. Vier Jahrzehnte später kam heraus, dass es eine Fälschung war.",
-   "niche": "Geschichte",
-   "views": 18,
-   "published": "2026-11-27T06:35:40+00:00",
-   "thumb": "thumbs/0XwKpvZ5s8s.jpg"
-  },
-  {
-   "id": "HNLTUagAuiM",
-   "title": "Wer baut mir jeden Tag eine Stufe? 🪜",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt, in der Blockwelt: Jeden Morgen steht eine neue Stufe vor meinem Haus auf dem Felsen, und niemand will es gewesen sein.",
-   "niche": "Geschichte",
-   "views": 0,
-   "published": "2026-11-26T20:35:31+00:00",
-   "thumb": "thumbs/HNLTUagAuiM.jpg"
-  },
-  {
-   "id": "vNd-7qMZZ5I",
-   "title": "Die Frau im Tal, die niemand kannte 🧳",
-   "text": "Norwegen, 1970: Im Isdalen wird eine tote Frau gefunden. Sie hatte viele falsche Namen, und bis heute ist ihre Identität nicht geklärt.",
-   "niche": "Wissen",
-   "views": 0,
-   "published": "2026-11-26T19:35:32+00:00",
-   "thumb": "thumbs/vNd-7qMZZ5I.jpg"
-  },
-  {
-   "id": "MG5f_2UjzlI",
-   "title": "Jeder Abonnent = 1 Mitarbeiter in meiner Raketenfirma (Tag 4) 🚀",
-   "text": "Für jeden Abonnenten stelle ich einen Mitarbeiter in meiner Raketenfirma „Abo Space“ ein. Heute: 189 Mitarbeiter und 59.700 € Spielgeld auf dem Konto (alles nur im Spiel).",
-   "niche": "Wissen",
-   "views": 390,
-   "published": "2026-11-26T19:08:56+00:00",
-   "thumb": "thumbs/MG5f_2UjzlI.jpg"
-  },
-  {
-   "id": "gzj1tVPHL5I",
-   "title": "Der Wal, den niemand je sah 🐋",
-   "text": "Seit 1989 nehmen Unterwassermikrofone einen Ruf bei 52 Hertz auf, höher als bei Blauwalen. Gesehen hat dieses Tier bisher niemand.",
-   "niche": "Wissen",
-   "views": 398,
-   "published": "2026-11-26T18:35:41+00:00",
-   "thumb": "thumbs/gzj1tVPHL5I.jpg"
-  },
-  {
-   "id": "2s3nb0x1YSs",
-   "title": "Auf der Parkbank steht mein Name 🌳",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Im Park steht eine Bank mit meinem Namen, und ich weiß nicht, woher sie kommt.",
-   "niche": "Geschichte",
-   "views": 427,
-   "published": "2026-11-26T14:36:42+00:00",
-   "thumb": "thumbs/2s3nb0x1YSs.jpg"
-  },
-  {
-   "id": "DBX5NhQsbRM",
-   "title": "Der Nachbar will jeden Abend ein Ei 🥚",
-   "text": "Eine ausgedachte Geschichte, ruhig erzählt: Jeden Abend klingelt der neue Nachbar, und erst am Ende verstehe ich, warum.",
-   "niche": "Geschichte",
-   "views": 973,
-   "published": "2026-11-26T13:55:43+00:00",
-   "thumb": "thumbs/DBX5NhQsbRM.jpg"
-  },
-  {
-   "id": "1PBCTQQg4Pg",
-   "title": "Was passiert, wenn du dich erschreckst? 😱",
-   "text": "Was in der ersten Sekunde eines Schrecks in deinem Körper passiert und warum du zusammenzuckst, bevor du denken kannst.",
-   "niche": "Wissen",
-   "views": 517,
-   "published": "2026-11-26T12:35:53+00:00",
-   "thumb": "thumbs/1PBCTQQg4Pg.jpg"
-  },
-  {
-   "id": "73OOd0N0JlM",
-   "title": "Was passiert, wenn du nie Zähne putzt? 🦷",
-   "text": "Wie Bakterien aus Zucker Säure machen, warum Zahnfleisch blutet und was zwei Minuten am Tag verhindern.",
-   "niche": "Wissen",
-   "views": 434,
-   "published": "2026-11-26T10:35:55+00:00",
-   "thumb": "thumbs/73OOd0N0JlM.jpg"
-  },
-  {
-   "id": "EOyWBgUPPVw",
-   "title": "Was passiert, wenn dir eiskalt wird? 🥶",
-   "text": "Was dein Körper bei extremer Kälte tut, ab wann Unterkühlung beginnt und warum nasse Kleidung besonders gefährlich ist.",
-   "niche": "Wissen",
-   "views": 890,
-   "published": "2026-11-26T09:35:38+00:00",
-   "thumb": "thumbs/EOyWBgUPPVw.jpg"
   }
  ]
 }
