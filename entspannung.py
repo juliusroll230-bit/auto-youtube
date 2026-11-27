@@ -279,10 +279,11 @@ def use_story(uploads, today=None, n=0):
 def learn_rows(uploads, today=None):
     """Für den Reiter Quiet Corner: je Merkmal die Werte mit Aufrufen pro Tag, Anzahl und „x % sicher“."""
     today = today or _dt.date.today()
-    ups = [{**u, "inhalt": "Geschichte" if u.get("story") else "Szene",
+    ups = [{**u, "inhalt": "History" if u.get("history") else "Geschichte" if u.get("story") else "Szene",
             "zeit": None if u.get("hour") is None else "morgens" if u["hour"] < 12 else "abends"} for u in uploads]
     groups = (("scene", SCENES), ("minutes", {m: dauer_text(m) for m in MINUTES}),
-              ("inhalt", {"Geschichte": "Mit Einschlaf-Geschichte", "Szene": "Nur Szene und Klang"}),
+              ("inhalt", {"History": "Sleep History (ganze Geschichte)", "Geschichte": "Mit Einschlaf-Geschichte",
+                          "Szene": "Nur Szene und Klang"}),
               ("zeit", {"morgens": "Upload morgens", "abends": "Upload abends"}))
     groups += tuple(STYLE_KEYS.items())   # Titel-, Vorschaubild- und Klang-Stil; ältere Uploads zählen als Standard
     ups = [{**u, **{k: u.get(k) or STYLE_DEFAULT[k] for k in STYLE_KEYS}} for u in ups]
@@ -560,11 +561,12 @@ def thumbnail(idea_id, minutes, loop_mp4, path, text=None, style="links"):
     img.save(path, "JPEG", quality=90)
 
 
-def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=None):
+def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=None, history=None):
     """Fertiges Video (mp4), Thumbnail (jpg), Teaser-Short (mp4) und Text (json). Gibt die Pfade zurück.
 
     story (aus sleepstory.stories()): Erzählstimme liest die Geschichte, die Szene läuft leise darunter und danach weiter.
-    Die Länge richtet sich dann nach der Geschichte (out["minutes"]), `minutes` ist nur der Mindestwert."""
+    Die Länge richtet sich dann nach der Geschichte (out["minutes"]), `minutes` ist nur der Mindestwert.
+    history (aus sleephistory.scripts()): Sleep History mit Kapiteln und Kapitel-Karten (1 bis 3 Stunden), siehe sleephistory.py."""
     if idea_id not in IDEA:
         raise ValueError(f"Unbekannte Idee {idea_id}, erlaubt: {', '.join(IDEA)}")
     i = IDEA[idea_id]
@@ -580,7 +582,13 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=Non
         loop_mp4, loop_wav = os.path.join(tmp, "loop.mp4"), os.path.join(tmp, "loop.wav")
         _render(_opt(i), loop_mp4)
         _wav(loop_wav, sound)
-        if story:
+        if history:
+            import sleephistory
+            name = f"quiet-{idea_id}-{history['id']}"
+            mp4 = out["video"] = os.path.join(out_dir, name + ".mp4")
+            minutes, chapters = sleephistory.build_into(history, idea_id, loop_mp4, loop_wav, tmp, mp4, RATE)
+            out.update(minutes=minutes, history=history["id"], chapters=chapters)
+        elif story:
             import sleepstory
             narr = os.path.join(tmp, "story.wav")
             secs = sleepstory.narrate(story["text"], narr, RATE)
@@ -589,8 +597,10 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=Non
             name = f"quiet-{idea_id}-{story['id']}"
             mp4 = out["video"] = os.path.join(out_dir, name + ".mp4")
         out["thumb"] = os.path.join(out_dir, name + ".jpg")
-        thumbnail(idea_id, minutes, loop_mp4, out["thumb"], text=(story or {}).get("thumb"), style=styles["thumb_style"])
-        if story:
+        thumbnail(idea_id, minutes, loop_mp4, out["thumb"], text=(history or story or {}).get("thumb"), style=styles["thumb_style"])
+        if history:
+            pass   # schon gemischt (sleephistory.build_into)
+        elif story:
             sleepstory.mux(loop_mp4, loop_wav, narr, minutes, mp4, RATE)
         else:
             subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", loop_mp4,
@@ -599,8 +609,9 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=Non
                            check=True)
         if teaser:
             t_mp4, t_wav = os.path.join(tmp, "teaser.mp4"), os.path.join(tmp, "teaser.wav")
-            over = {"dur": TEASER_S, "title": story["title"] if story else i["title"],
-                    "sub": "a sleep story on the channel" if story else f"{hours_en(minutes).lower()} on the channel"}
+            over = {"dur": TEASER_S, "title": (history or story or i)["title"],
+                    "sub": "the entire story on the channel" if history else "a sleep story on the channel" if story
+                    else f"{hours_en(minutes).lower()} on the channel"}
             _render(_opt(i), t_mp4, wide=False, over=over, start=5.0)
             n = TEASER_S * RATE
             s = np.concatenate([sound, sound])[5 * RATE:5 * RATE + n].copy()
@@ -614,7 +625,12 @@ def build(idea_id, minutes, out_dir, seed=1, teaser=True, story=None, styles=Non
                             out["teaser"]], check=True)
     out["info"] = os.path.join(out_dir, name + ".json")
     with open(out["info"], "w", encoding="utf-8") as f:
-        json.dump(story_meta(story, idea_id, minutes, seed) if story else meta(idea_id, minutes, seed, styles["title_style"]), f, ensure_ascii=False, indent=2)
+        if history:
+            import sleephistory
+            info = sleephistory.meta(history, idea_id, minutes, out["chapters"])
+        else:
+            info = story_meta(story, idea_id, minutes, seed) if story else meta(idea_id, minutes, seed, styles["title_style"])
+        json.dump(info, f, ensure_ascii=False, indent=2)
     return out
 
 

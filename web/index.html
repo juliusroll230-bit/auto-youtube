@@ -2079,6 +2079,10 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         <div class="card-h"><div><h2>Sonntags-Zusammenschnitt</h2><div class="sub" id="zsSub"></div></div></div>
         <div class="card-b" id="zsBody"></div>
       </div>
+      <div class="card" id="gsCard">
+        <div class="card-h"><div><h2>Die ganze Geschichte (Samstag)</h2><div class="sub" id="gsSub"></div></div></div>
+        <div class="card-b" id="gsBody"></div>
+      </div>
       <div class="card cm-plan">
         <div class="card-h"><div><h2>Community-Posts heute</h2><div class="sub" id="cmPlanSub2"></div></div><a class="link" href="#community">Alle Posts</a></div>
         <div class="card-b"><ol class="cm-tl" id="cmTl2"></ol></div>
@@ -5700,6 +5704,38 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
       actBtn(Z.on ? "Ausschalten" : "Einschalten", "", function () { return api("api/wochenschnitt/settings", { on: !Z.on }).then(soon); })
     ], "an oder aus"));
   }
+  function renderGanze(d) {
+    var G = d.ganze || {}, box = $("gsBody");
+    if (!box) return;
+    var key = JSON.stringify(G);
+    if (box.dataset.key === key) return;
+    box.dataset.key = key;
+    clear(box);
+    var nxt = G.next ? new Date(G.next) : null;
+    $("gsSub").textContent = !G.on ? "Ausgeschaltet" : G.script ? "Läuft automatisch · nächster " + (nxt ? fDayS.format(nxt) + " " + fTime.format(nxt) + " Uhr" : "Samstag 19:00 Uhr") : "Wartet auf ein Skript";
+    var line = function (t) { box.appendChild(h("p", { cls: "label", text: t })); };
+    if (G.on) {
+      if (G.script) line("Als Nächstes: „" + G.script.title + "“, ca. " + G.script.minutes + " Minuten. Ersetzt samstags das normale lange Video.");
+      else line("Kein Skript in seed-long/. Die tägliche Skript-Aufgabe schreibt eins pro Woche, bis dahin läuft samstags das normale lange Video.");
+      if (G.status === "rendert") line("Rendert gerade. Das dauert einige Stunden, um 19 Uhr wird hochgeladen.");
+      if (G.status === "übersprungen" || G.status === "fehler") line("Zuletzt ausgelassen: " + (G.reason || "") + ". Dafür lief das normale lange Video.");
+      if (G.cuts_waiting) line(G.cuts_waiting + (G.cuts_waiting === 1 ? " Ausschnitt wartet" : " Ausschnitte warten") + ", ab 12 Uhr geht 1 am Tag als Short raus.");
+    }
+    if (G.last) {
+      box.appendChild(h("p", { cls: "label" }, [h("span", { text: "Zuletzt: " }),
+        h("a", { cls: "link", href: "https://youtu.be/" + G.last.video_id, target: "_blank", rel: "noopener", text: G.last.title }),
+        h("span", { text: G.last.views != null ? ", " + nf.format(G.last.views) + " Aufrufe" : "" })]));
+    }
+    var C = G.compare || {};
+    if (C.ganze && C.ganze.n && C.normal && C.normal.n) {
+      var t = function (x) { return (x.views != null ? nf.format(x.views) + " Aufrufe" : "noch keine Aufrufe") + (x.watch_min != null ? ", " + String(x.watch_min).replace(".", ",") + " Min. angesehen" : ""); };
+      line("Vergleich (Ø je Video): ganze Geschichte " + t(C.ganze) + " · normale lange Videos " + t(C.normal) + ".");
+    }
+    box.appendChild(uiFold("gs-set", "Einstellungen", [
+      h("p", { cls: "label", text: "Ausschnitte bisher gepostet: " + nf.format(G.cuts_posted || 0) + ". Wartende Skripte: " + nf.format(G.waiting || 0) + "." }),
+      actBtn(G.on ? "Ausschalten" : "Einschalten", "", function () { return api("api/ganze/settings", { on: !G.on }).then(soon); })
+    ], "an oder aus"));
+  }
   function renderPlan(d, sch) {
     renderNext(sch);
     var nClips = sch.filter(function (x) { return x.clip; }).length;
@@ -6167,7 +6203,7 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
     renderSocialView(d);
     if (pg === "ruhe") renderQuiet(d);
     if (pg === "en") renderEn(d);
-    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); renderWochenschnitt(d); } }
+    if (pg === "hauptkanal") { if (NAV.sub === "videos") renderVideos(d); else { renderPlan(d, sch); renderAbgabe(d); renderWochenschnitt(d); renderGanze(d); } }
     renderChannel(d);
     renderHours(d);
     renderKp(d);
@@ -7174,6 +7210,10 @@ a.btn#soPack { text-decoration: none; color: #fff; display: inline-flex; align-i
         return [E.ready || E.waiting ? "ok" : "warn", E.ready || E.waiting ? "Läuft" : "Wartet", stNum(E.waiting || 0, "Skript wartet", "Skripte warten")]; } },
     { q: "#enLearnCard", what: "Welche Effekte, Musik und Übergänge auf dem englischen Kanal die meisten Aufrufe bringen. Die App nimmt davon öfter." },
     { q: "#enUpsCard", what: "Alle englischen Shorts mit ihren Aufrufen." },
+    { q: "#gsCard", what: "Samstags kommt statt des langen Videos eine große Geschichte komplett mit Kapiteln. Danach schneidet die App 5 Shorts daraus.",
+      st: function (d) { var G = d.ganze || {}; if (!G.on) return ["off", "Aus", "langes Video wie immer"];
+        if (!G.script && !G.last) return ["todo", "Wartet", "kein Skript"];
+        return [G.status === "fehler" ? "warn" : "ok", G.status === "fehler" ? "Wartet" : "Läuft", "Samstag 19 Uhr", G.last && G.last.views != null ? nf.format(G.last.views) + " Aufrufe zuletzt" : null]; } },
     { q: "#zsCard", what: "Sonntags um 17 Uhr kommt statt des langen Videos ein Zusammenschnitt deiner besten Shorts der Woche, Platz 1 zum Schluss.",
       st: function (d) { var Z = d.wochenschnitt || {}; if (!Z.on) return ["off", "Aus", "langes Video wie immer"];
         return [Z.status === "fehler" ? "warn" : "ok", Z.status === "fehler" ? "Wartet" : "Läuft", "Sonntag 17 Uhr", Z.last && Z.last.views != null ? nf.format(Z.last.views) + " Aufrufe zuletzt" : null]; } },

@@ -667,6 +667,8 @@ def posted_items():
         if u.get("lang"):   # lange Videos: Sonntags-Zusammenschnitt gegen eigene lange Videos (seit 26.11.2026)
             item.setdefault("features", {})["zusammenschnitt"] = (
                 "Zusammenschnitt" if u.get("zusammenschnitt") else "eigenes langes Video")
+            if not u.get("zusammenschnitt"):   # „Die ganze Geschichte“ (samstags) gegen normale lange Videos (seit 26.11.2026)
+                item["features"]["ganze"] = "Ganze Geschichte" if u.get("ganze") else "normales langes Video"
         if not item.get("marks") and spec:
             item["marks"] = sentence_marks(spec)
             item["marks_estimated"] = True
@@ -1105,6 +1107,7 @@ def dashboard(extra=None, working=None, repo=True):
         "abgabe": _safe(lambda: __import__("abgabe").overview(cfg, st), {}),
         "push": _safe(lambda: __import__("push").overview(cfg), {}),
         "wochenschnitt": _safe(lambda: __import__("zusammenschnitt").overview(posted), {}),
+        "ganze": _safe(lambda: __import__("ganze").overview(posted), {}),
         "en": _safe(lambda: __import__("en").overview(cfg, posted), {}),
         "comments": _safe(lambda: __import__("comments").overview(cfg), {}),
         "binge": _safe(lambda: _binge_overview(cfg, st), {}),
