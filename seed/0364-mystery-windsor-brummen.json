@@ -1,0 +1,110 @@
+{
+  "slug": "mystery-windsor-brummen",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Das Brummen, das eine ganze Stadt hörte 🔊",
+  "description": "Seit 2011 beschweren sich Menschen in Windsor in Kanada über ein tiefes Brummen. Die Quelle wurde untersucht, aber nicht endgültig bewiesen.\n\n#mystery #brummen #kanada #rätsel #shorts",
+  "tags": [
+    "mystery",
+    "brummen",
+    "kanada",
+    "rätsel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Brummen | Tag und Nacht",
+    "Wer macht den Ton"
+  ],
+  "segments": [
+    {
+      "text": "In einer Stadt in Kanada brummt es plötzlich Tag und Nacht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔊"
+      }
+    },
+    {
+      "text": "Es geschah in Windsor, direkt am Grenzfluss.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Windsor, Kanada"
+      }
+    },
+    {
+      "text": "Viele hörten es, manche spürten es in den Wänden.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🏠",
+        "text": "Es vibriert"
+      }
+    },
+    {
+      "text": "Die Akte sagt:",
+      "szene": {
+        "typ": "akte",
+        "text": "Akte Brummen",
+        "punkte": [
+          "Tiefer Ton",
+          "Tag und Nacht",
+          "Quelle unbekannt"
+        ]
+      }
+    },
+    {
+      "text": "Man verdächtigte Schiffe, Gas und Fabriken.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🏭",
+        "text": "Wer ist es?"
+      }
+    },
+    {
+      "text": "Eine Untersuchung wies vermutlich auf eine Fabrik am *Fluss*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Sicher bewiesen ist das bis heute *nicht*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    },
+    {
+      "text": "Die Stadt hört weiter genau hin.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "👂",
+        "text": "Genau hinhören"
+      }
+    }
+  ]
+}

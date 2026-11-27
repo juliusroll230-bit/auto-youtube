@@ -1,0 +1,113 @@
+{
+  "slug": "erklaert-block-muschel-meeresrauschen",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Hörst du in der Muschel wirklich das Meer? 🐚",
+  "description": "Erklärt in der Blockwelt: Was du wirklich hörst, wenn du eine Muschel ans Ohr hältst.\n\n#wissen #physik #muschel #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "muschel",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Muschel | kein Meer",
+    "Du hörst deine Umgebung"
+  ],
+  "segments": [
+    {
+      "text": "Was hörst du wirklich, wenn du eine Muschel ans Ohr hältst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐚",
+        "chat": "Spieler: das Meer!"
+      }
+    },
+    {
+      "text": "Du hörst *Umgebungsgeräusche*, die sich dort sammeln.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👂",
+        "text": "Umgebung"
+      }
+    },
+    {
+      "text": "Die Muschel fängt sie ein und verstärkt sie.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🐚",
+        "text": "Verstärkt"
+      }
+    },
+    {
+      "text": "Jede hohle Form macht das Gleiche.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Auch eine Tasse am Ohr rauscht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Tasse rauscht"
+      }
+    },
+    {
+      "text": "Das Rauschen ändert sich mit der *Form*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "☕",
+        "text": "Andere Form"
+      }
+    },
+    {
+      "text": "Das Meeresrauschen kommt also aus deiner Umgebung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also frag dich beim nächsten Strandurlaub noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

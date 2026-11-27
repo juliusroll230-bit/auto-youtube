@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-aktuell-wespen-erkennen-gesichter",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Wespen erkennen Gesichter, trotz winzigem Gehirn 🐝",
+  "description": "Aktuell: Forschende haben bei nordamerikanischen Papierwespen Nervenzellen gefunden, die auf Wespengesichter reagieren (Studie in der Fachzeitschrift Cell).\n\n#wissen #aktuell #wespen #gehirn #shorts",
+  "tags": [
+    "wissen",
+    "aktuell",
+    "wespen",
+    "gehirn",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Wespen | erkennen Gesichter",
+    "Winziges Gehirn, großer Trick"
+  ],
+  "segments": [
+    {
+      "text": "Was haben Wespen und du im Kopf gemeinsam?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🐝"
+      }
+    },
+    {
+      "text": "Wespen haben Nervenzellen, die auf *Gesichter* reagieren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🐝",
+        "text": "Gesichtszellen"
+      }
+    },
+    {
+      "text": "Forscher fanden sie bei Papierwespen aus Nordamerika.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Papierwespen"
+      }
+    },
+    {
+      "text": "Sie erkennen so, wer im Nest das Sagen hat.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Sogar, wer einen Kampf *gewonnen* hat, merken sie sich.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏆",
+        "text": "Sieger erkannt"
+      }
+    },
+    {
+      "text": "Winziges Wespenhirn gegen großes Menschenhirn.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🐝",
+          "text": "Winzig"
+        },
+        "rechts": {
+          "objekt": "🧠",
+          "text": "Groß"
+        }
+      }
+    },
+    {
+      "text": "Beide lösten das Problem unabhängig und ähnlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Gleich sind die Zellen aber nicht.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "feld",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Nur ähnlich"
+      }
+    }
+  ],
+  "aktuell": true
+}

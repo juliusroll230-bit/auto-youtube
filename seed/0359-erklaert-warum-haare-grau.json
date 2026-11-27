@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-warum-haare-grau",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum werden Haare eigentlich grau? 👴",
+  "description": "Erklärt: Was in der Haarwurzel passiert, wenn Haare ihre Farbe verlieren.\n\n#wissen #körper #haare #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "haare",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Graue Haare | ohne Farbe",
+    "Nicht wirklich grau"
+  ],
+  "segments": [
+    {
+      "text": "Warum werden Haare mit den Jahren grau?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "👴"
+      }
+    },
+    {
+      "text": "Jedes Haar bekommt seine Farbe von *Pigmentzellen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎨",
+        "text": "Pigmentzellen"
+      }
+    },
+    {
+      "text": "Sie sitzen tief in der Haarwurzel.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "🔬",
+        "text": "In der Wurzel"
+      }
+    },
+    {
+      "text": "Jung gibt es viel Farbstoff, später deutlich weniger.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "👦",
+          "text": "Viel Farbe"
+        },
+        "rechts": {
+          "objekt": "👴",
+          "text": "Wenig Farbe"
+        }
+      }
+    },
+    {
+      "text": "Mit den Jahren bilden sie weniger *Melanin*.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Neue Haare wachsen dann ohne Farbe nach.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Farblos"
+      }
+    },
+    {
+      "text": "Graue Haare sind in Wahrheit gar nicht grau, sondern farblos.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Erst die Mischung mit dunklen Haaren wirkt grau.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🎨",
+        "text": "Mischung"
+      }
+    }
+  ]
+}
