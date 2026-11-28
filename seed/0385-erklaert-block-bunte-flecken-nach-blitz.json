@@ -1,0 +1,103 @@
+{
+  "slug": "erklaert-block-bunte-flecken-nach-blitz",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum siehst du nach dem Blitz Flecken? 📸",
+  "description": "Erklärt in der Blockwelt: Warum helle Lichtblitze im Auge nachwirken.\n\n#wissen #körper #auge #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "auge",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Blitz | Flecken im Auge",
+    "Das Nachbild"
+  ],
+  "segments": [
+    {
+      "text": "Warum siehst du nach einem Kamerablitz noch *Flecken*?",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📸",
+        "chat": "Spieler: ich sehe nichts!"
+      }
+    },
+    {
+      "text": "Das grelle Licht überreizt die Zellen im Auge.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "👁️",
+        "text": "Überreizt"
+      }
+    },
+    {
+      "text": "Sie brauchen Sekunden, um sich zu erholen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "⏱️",
+        "text": "Erholung"
+      }
+    },
+    {
+      "text": "Bis dahin melden sie noch *Licht*, das gar nicht da ist.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Auch nach Sonne oder Lampe passiert das.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "stadt",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Nachbild"
+      }
+    },
+    {
+      "text": "Der Fleck kommt nur aus deinem Auge, nicht aus der Welt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Nach kurzer Zeit verschwindet er von selbst.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "✨",
+        "text": "Verschwindet"
+      }
+    }
+  ]
+}

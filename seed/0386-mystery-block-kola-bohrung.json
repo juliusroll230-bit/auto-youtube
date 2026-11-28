@@ -1,0 +1,119 @@
+{
+  "slug": "mystery-block-kola-bohrung",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Das tiefste Loch der Erde 🕳️",
+  "description": "Blockwelt: Auf der Halbinsel Kola in Russland bohrten Forscher über zwanzig Jahre lang in die Tiefe. Warum sie aufhörten, hat einen überraschenden Grund.\n\n#mystery #rätsel #erde #bohrung #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "erde",
+    "bohrung",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Kola | tiefstes Loch",
+    "Warum sie stoppten"
+  ],
+  "segments": [
+    {
+      "text": "Ein Loch, *zwölf Kilometer* tief, mitten in Russland.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🕳️",
+        "chat": "Spieler: wie tief?"
+      }
+    },
+    {
+      "text": "Es liegt auf der Halbinsel Kola.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Halbinsel Kola"
+      }
+    },
+    {
+      "text": "Ab 1970 bohrten Forscher dort über zwanzig Jahre.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "⛏️",
+        "text": "Seit 1970"
+      }
+    },
+    {
+      "text": "Am Ende maß man zwölftausendzweihundert Meter.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "📏",
+        "text": "12.262 Meter"
+      }
+    },
+    {
+      "text": "Dann stoppten sie: Am Grund war es über *180 Grad* heiß.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "schockiert"
+        }
+      }
+    },
+    {
+      "text": "Im Netz hieß es später, Mikrofone hätten Schreie aufgenommen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🎤"
+      }
+    },
+    {
+      "text": "Doch das war nur ein erfundenes Gerücht.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "❌",
+        "text": "Nur Gerücht"
+      }
+    },
+    {
+      "text": "Das Gerücht war falsch, doch die *Hitze* war echt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Es gilt bis heute als tiefste Bohrung der Erde.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🏆",
+        "text": "Tiefste Bohrung"
+      }
+    }
+  ]
+}

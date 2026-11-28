@@ -1,0 +1,102 @@
+{
+  "slug": "en-school-sixty-seconds",
+  "quelle": "horror-block-schule-sechzig-sekunden",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "School: 60 seconds until the bell 🔔",
+  "description": "An invented scary story in a blocky game world: the school is empty, and you have only sixty seconds before the bell rings.\n\n#horror #scary #blockworld #school #shorts",
+  "tags": [
+    "horror",
+    "scary",
+    "blockworld",
+    "school",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "ende": "loop",
+  "thumb_text": [
+    "SCHOOL | countdown",
+    "The bell rings"
+  ],
+  "segments": [
+    {
+      "text": "Sixty *seconds* left before the school bell rings.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "augen": "#ff2a1f",
+        "chat": "Server: bell in 60 s"
+      }
+    },
+    {
+      "text": "The school is empty, and every door stands open.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "schule",
+        "objekt": "🚪",
+        "text": "Empty school"
+      }
+    },
+    {
+      "text": "You run, but the *hallway* keeps getting longer.",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🏃"
+      }
+    },
+    {
+      "text": "Behind you, footsteps run in the same rhythm.",
+      "szene": {
+        "typ": "monster",
+        "ort": "schule",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "rennt"
+      }
+    },
+    {
+      "text": "The clock suddenly shows only ten seconds.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "schule",
+        "objekt": "⏱️",
+        "text": "Ten seconds left"
+      }
+    },
+    {
+      "text": "The bell does not ring for students, it rings for *you*.",
+      "szene": {
+        "typ": "horror",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "augen": "#ff2a1f",
+        "chat": "Bell: break is over"
+      }
+    },
+    {
+      "text": "Now run, because in a moment there will be again",
+      "szene": {
+        "typ": "figur",
+        "ort": "schule",
+        "gefuehl": "angst",
+        "aktion": "rennt",
+        "objekt": "🔔"
+      }
+    }
+  ]
+}

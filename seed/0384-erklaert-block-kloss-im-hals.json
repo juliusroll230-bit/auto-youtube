@@ -1,0 +1,103 @@
+{
+  "slug": "erklaert-block-kloss-im-hals",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum hast du einen Kloß im Hals? 😢",
+  "description": "Erklärt in der Blockwelt: Warum starke Gefühle ein Druckgefühl im Hals auslösen können.\n\n#wissen #körper #gefühle #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "gefühle",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Kloß im Hals | nichts da",
+    "Dein Körper spannt an"
+  ],
+  "segments": [
+    {
+      "text": "Du bist traurig, und plötzlich sitzt ein *Kloß* im Hals.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "objekt": "😢",
+        "chat": "Spieler: ich kann nicht sprechen"
+      }
+    },
+    {
+      "text": "Da ist gar nichts, aber du spürst Druck.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "😶",
+        "text": "Nichts im Hals"
+      }
+    },
+    {
+      "text": "Starke Gefühle schalten deinen Körper auf Stress.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "haus",
+        "objekt": "⚡",
+        "text": "Stress an"
+      }
+    },
+    {
+      "text": "Dabei spannen sich Muskeln im Hals an.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "haende",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Tief atmen und schlucken lockert sie wieder.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "text": "Tief atmen"
+      }
+    },
+    {
+      "text": "Der Kloß ist nur *Muskelspannung*, kein Fremdkörper.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Meist geht er nach ein paar Minuten vorbei.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⏳",
+        "text": "Geht vorbei"
+      }
+    }
+  ]
+}

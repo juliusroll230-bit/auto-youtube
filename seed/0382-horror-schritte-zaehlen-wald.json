@@ -1,0 +1,107 @@
+{
+  "slug": "horror-schritte-zaehlen-wald",
+  "stil": "cartoon",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Zähl nachts nie deine Schritte im Wald 🌲",
+  "description": "Eine ausgedachte Gruselgeschichte: Eine einfache Regel für den Heimweg durch den Wald, und was passiert, wenn man sie bricht.\n\n#horror #gruselig #wald #regel #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "wald",
+    "regel",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Wald | Schritte zählen",
+    "Hundert und eins"
+  ],
+  "segments": [
+    {
+      "text": "Zähl nachts nie deine *Schritte* im Wald.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌲"
+      }
+    },
+    {
+      "text": "Ich tat es trotzdem, um mich nicht zu verirren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "👣",
+        "text": "Schritt für Schritt"
+      }
+    },
+    {
+      "text": "Bei Schritt neunundneunzig wurde es still.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 99,
+        "einheit": "Schritte",
+        "objekt": "👣",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Ich hielt an, doch etwas ging weiter.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "versteckt",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Hinter mir stand ein Schatten, der leise *zählte*.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Er sagte nur: hundert.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "🔢",
+        "text": "Hundert"
+      }
+    },
+    {
+      "text": "Er zählt nicht meine Schritte, sondern seine bis zu *mir*.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f"
+      }
+    },
+    {
+      "text": "Hunderteins.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "🌲"
+      }
+    }
+  ]
+}

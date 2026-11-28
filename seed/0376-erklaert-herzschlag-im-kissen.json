@@ -1,0 +1,111 @@
+{
+  "slug": "erklaert-herzschlag-im-kissen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum hörst du nachts deinen Herzschlag? ❤️",
+  "description": "Erklärt: Warum du im stillen Bett plötzlich deinen eigenen Puls im Kissen hörst.\n\n#wissen #körper #herz #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "herz",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "rot"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Herzschlag | im Kissen",
+    "Er war immer da"
+  ],
+  "segments": [
+    {
+      "text": "Warum hörst du nachts deinen Herzschlag im Kissen?",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "❤️"
+      }
+    },
+    {
+      "text": "Dein Herz schlägt am Tag ungefähr hunderttausend Mal.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 100000,
+        "einheit": "Schläge am Tag",
+        "objekt": "🫀",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Tagsüber *übertönt* der Lärm jeden Schlag.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🔊",
+        "text": "Zu viel Lärm"
+      }
+    },
+    {
+      "text": "Nachts ist es still, und dein Ohr liegt am Kissen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "kinderzimmer",
+        "objekt": "🛏️",
+        "text": "Ohr am Kissen"
+      }
+    },
+    {
+      "text": "Das Kissen verschließt den *Gehörgang* fast ganz.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "denkt"
+        }
+      }
+    },
+    {
+      "text": "Der Puls wandert durch deinen Kopf direkt ins Ohr.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "kinderzimmer",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Weg durch Kopf"
+      }
+    },
+    {
+      "text": "Er war nie leiser, du hörst ihn nur endlich.",
+      "szene": {
+        "typ": "figur",
+        "ort": "kinderzimmer",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Schlaf gut, auch wenn es laut pocht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "kinderzimmer",
+        "objekt": "🤫",
+        "text": "Endlich hörbar"
+      }
+    }
+  ]
+}

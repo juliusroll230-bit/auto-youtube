@@ -1,0 +1,120 @@
+{
+  "slug": "erklaert-aktuell-hera-dimorphos",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Was passiert, wenn man einen Asteroiden rammt? ☄️",
+  "description": "Aktuell: Die ESA-Sonde Hera hat erste Nahaufnahmen vom Asteroiden Dimorphos geschickt, den die NASA-Sonde DART 2022 absichtlich gerammt hat (Meldungen vom 25.11.2026).\n\n#wissen #aktuell #raumfahrt #asteroid #shorts",
+  "tags": [
+    "wissen",
+    "aktuell",
+    "raumfahrt",
+    "asteroid",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Asteroid | gerammt",
+    "Was Hera sah"
+  ],
+  "segments": [
+    {
+      "text": "Was passiert, wenn du einen Asteroiden absichtlich rammst?",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "☄️"
+      }
+    },
+    {
+      "text": "Eine Raumsonde stürzte 2022 gezielt auf den Asteroiden Dimorphos.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "2022",
+        "text": "Sonde rammt Dimorphos",
+        "objekt": "🛰️"
+      }
+    },
+    {
+      "text": "Dimorphos ist nur einhunderteinundfünfzig Meter breit.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 151,
+        "einheit": "Meter breit",
+        "objekt": "☄️",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Seine Umlaufzeit wurde um dreiunddreißig Minuten kürzer.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "⏱️",
+        "text": "Minus 33 Minuten"
+      }
+    },
+    {
+      "text": "Jetzt hat die ESA-Sonde *Hera* ihn aus der Nähe fotografiert.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "📷"
+      }
+    },
+    {
+      "text": "Der Einschlag hinterließ einen Krater so groß wie ein Stadion.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🏟️",
+        "text": "Stadion-Krater"
+      }
+    },
+    {
+      "text": "Vorher glatter Brocken, jetzt eine abgeflachte Seite.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☄️",
+          "text": "Vorher"
+        },
+        "rechts": {
+          "objekt": "💥",
+          "text": "Nachher"
+        }
+      }
+    },
+    {
+      "text": "Um beide Asteroiden schweben *Hunderte* Felsbrocken, und niemand weiß genau, woher.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "🪨"
+      }
+    },
+    {
+      "text": "Im Dezember fliegt Hera noch näher heran.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🛰️",
+        "text": "Dezember: näher"
+      }
+    }
+  ],
+  "aktuell": true
+}

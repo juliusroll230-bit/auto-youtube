@@ -1,0 +1,111 @@
+{
+  "slug": "horror-block-lagerfeuer-einer-mehr",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Horror",
+  "colors": [
+    "#10141c",
+    "#6a7a9a"
+  ],
+  "accent": "#ff3b2f",
+  "title": "Am Lagerfeuer sitzt einer zu viel 🔥",
+  "description": "Eine ausgedachte Gruselgeschichte in der Blockwelt: Beim Lagerfeuer auf dem Server zählt der Chat mehr Spieler, als du siehst.\n\n#horror #gruselig #blockwelt #lagerfeuer #shorts",
+  "tags": [
+    "horror",
+    "gruselig",
+    "blockwelt",
+    "lagerfeuer",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "gruselig",
+  "thumb_text": [
+    "Lagerfeuer | einer zu viel",
+    "Zähl noch mal"
+  ],
+  "segments": [
+    {
+      "text": "Am Lagerfeuer sitzt immer einer mehr, als ihr seid.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔥",
+        "chat": "Server: 4 Spieler online"
+      }
+    },
+    {
+      "text": "Du zählst vier Gesichter im Schein des Feuers.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "augen": "#ff2a1f",
+        "chat": "Chat: wir sind zu fünft"
+      }
+    },
+    {
+      "text": "Der Chat meldet fünf Namen, aber du siehst vier.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "💬",
+        "text": "Fünf im Chat"
+      }
+    },
+    {
+      "text": "Der fünfte sitzt still und hat keinen *Namen*.",
+      "szene": {
+        "typ": "monster",
+        "ort": "dunkelwald",
+        "monster": "schatten",
+        "gefuehl": "angst",
+        "aktion": "schlurft"
+      }
+    },
+    {
+      "text": "Über seinem Kopf steht nur ein leeres Schild.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dunkelwald",
+        "objekt": "🪧",
+        "text": "Leeres Schild"
+      }
+    },
+    {
+      "text": "Er dreht sich langsam zu dir um.",
+      "szene": {
+        "typ": "horror",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "augen": "#ff2a1f",
+        "chat": "Chat: er war schon vorher da"
+      }
+    },
+    {
+      "text": "Er saß schon *dort*, bevor ihr kamt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dunkelwald",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Zähl noch mal nach, denn",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dunkelwald",
+        "objekt": "🔥",
+        "text": "Zähl nach"
+      }
+    }
+  ],
+  "ende": "loop"
+}
