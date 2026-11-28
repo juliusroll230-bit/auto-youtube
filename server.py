@@ -1474,7 +1474,10 @@ def post_relax(manual=False):
                 ups = (store.read("relax.json", {}) or {}).get("uploads") or []
             except Exception:
                 traceback.print_exc()
-            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, st.get("relax_cap"))
+            vcap = relax_long_cap(cfg)   # Kanal nicht bestätigt: nur Videos bis 15 Minuten
+            st = store.state()
+            caps = [c for c in (st.get("relax_cap"), vcap) if c]
+            idea, minutes = entspannung.choose(ups, cfg.get("relax_length", "auto"), store.now().date(), n, min(caps) if caps else None)
             shutil.rmtree(folder, ignore_errors=True)
             styles = entspannung.choose_style(ups, store.now().date(), n)
             story = history = None
@@ -1604,6 +1607,35 @@ def relax_retry_teasers(cfg):
     store.write("relax.json", cur)
 
 
+VERIFY_TEXT = ("Dein Quiet-Corner-Kanal ist noch nicht per Telefon bestätigt. Darum darf er nur Videos bis 15 Minuten hochladen. "
+               "Bestätige ihn auf youtube.com/verify (dauert ca. 2 Minuten), dann kommen wieder lange Videos von selbst.")
+
+
+def relax_long_cap(cfg):
+    """Fragt YouTube, ob der Kanal lange Videos darf. Nein: Länge auf die kürzeste Stufe (15 Min.) und Hinweis im Reiter.
+    Wieder ja: Begrenzung und Hinweis zurücknehmen. Unbekannt oder Fehler: nichts ändern (None)."""
+    import entspannung
+    try:
+        s = yt.long_uploads_status({**cfg, "refresh_token": cfg["relax_token"]})
+    except Exception:
+        return None
+    info = store.read("relax.json", {}) or {}
+    if s and s != "allowed":
+        if not info.get("verify") or info.get("notice") != VERIFY_TEXT:
+            info["verify"], info["notice"] = True, VERIFY_TEXT
+            store.write("relax.json", info)
+        return entspannung.LADDER[-1]
+    if s == "allowed" and info.get("verify"):
+        info["verify"], info["notice"] = False, ""
+        store.write("relax.json", info)
+        with store.LOCK:
+            st = store.state()
+            st["relax_cap"] = None
+            store.write("state.json", st)
+        store.log("ok", "Quiet Corner: Kanal ist bestätigt, lange Videos sind wieder erlaubt.")
+    return None
+
+
 def relax_check_uploads(cfg):
     """Prüft, ob YouTube die letzten Quiet-Corner-Videos wirklich angenommen hat. Zu lange werden abgelehnt:
     dann kürzer weitermachen und den Platz des Tages neu vergeben (Neu-Upload in kürzerer Form)."""
@@ -1614,8 +1646,7 @@ def relax_check_uploads(cfg):
         traceback.print_exc()
     info = store.read("relax.json", {}) or {}
     today = store.now().date()
-    recent = [u for u in info.get("uploads") or []
-              if (today - dt.date.fromisoformat(u["at"])).days <= 3 and not u.get("ok")]
+    recent = [u for u in info.get("uploads") or [] if not u.get("ok")]   # auch ältere: abgelehnte Videos sollen nicht liegen bleiben
     if not recent:
         return
     states = yt.upload_states({**cfg, "refresh_token": cfg["relax_token"]}, [u["video_id"] for u in recent])
@@ -1635,9 +1666,16 @@ def relax_check_uploads(cfg):
     if not lost:
         store.write("relax.json", info)
         return
+    for u in lost:   # kaputte Videos und ihre Teaser vom Kanal nehmen (sie lassen sich nicht abspielen)
+        for vid in (u["video_id"], u.get("teaser_id")):
+            if vid:
+                try:
+                    yt.delete_video({**cfg, "refresh_token": cfg["relax_token"]}, vid)
+                except Exception as e:
+                    store.log("warn", f"Quiet Corner: abgelehntes Video {vid} nicht gelöscht: {e}")
     info["uploads"] = keep
     info["rejected"] = (info.get("rejected") or [])[-20:] + [{"video_id": u["video_id"], "title": u["title"], "minutes": u.get("minutes"), "at": u["at"]} for u in lost]
-    if cap:
+    if cap and not info.get("verify"):
         info["notice"] = (f"YouTube hat ein Video wegen der Länge abgelehnt. Neue Videos sind jetzt höchstens {entspannung.dauer_text(cap)} lang. "
                           "Wenn du den Kanal auf youtube.com/verify bestätigt hast, in „Länge“ wieder eine längere wählen.")
     store.write("relax.json", info)

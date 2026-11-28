@@ -948,7 +948,7 @@ def relax_overview(cfg, st):
             "on": bool(cfg["relax_on"]), "minutes": cfg["relax_minutes"], "hour": cfg["relax_hour"],
             "length": length, "shorts": bool(cfg.get("relax_shorts", True)), "banner": cfg.get("relax_banner", "A"),
             "branded": info.get("branded"), "last": st.get("relax_last"), "error": info.get("error"),
-            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "cap": st.get("relax_cap"), "notice": info.get("notice") or "", "stats_at": info.get("stats_at"),
+            "error_text": relax_error_text(info.get("error")), "phase": st.get("relax_phase") or "", "cap": st.get("relax_cap"), "notice": info.get("notice") or "", "verify": bool(info.get("verify")), "stats_at": info.get("stats_at"),
             "uploads": ups[-60:][::-1], "learn": learnt,
             "plan": entspannung.plan(ups, length, today, int(st.get("relax_n", 0)), 7, entspannung.slots(cfg), st.get("relax_cap")),
             "per_day": int(cfg.get("relax_per_day", 2)), "slots": entspannung.slots(cfg),

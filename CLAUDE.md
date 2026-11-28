@@ -551,3 +551,8 @@ Fakten mit **zwei unabhängigen Quellen** prüfen (Web-Suche), Quellen ins Skrip
   Pyramiden, Titanic, Nibelungen, Grimms Märchen und woher sie kommen, Troja, Kolumbus' Fahrt, Pompeji, Atlantis (als Sage), Djatlow-Pass (echtes Rätsel).
 - Merkmal „Ganze Geschichte (lange Videos)“ vergleicht mit normalen langen Videos (Aufrufe, Wiedergabezeit). Ca. nach 4 Wochen Julius die Zahlen zeigen.
 - Test: `tests/ganze_test.py`.
+
+Lange Videos (Julius 28.11.2026: alle 1- und 3-Stunden-Videos „Verarbeitung abgebrochen, Video ist zu lang“): Ein Kanal ohne Telefon-Bestätigung (youtube.com/verify)
+darf nur 15 Minuten hochladen. `server.relax_long_cap` fragt vor jedem Bau `yt.long_uploads_status` (channels.list `longUploadsStatus`) und begrenzt auf 15 Minuten,
+solange der Kanal nicht „allowed“ ist (Hinweis mit Link im Reiter Quiet Corner, `verify`). Danach hebt es die Grenze selbst auf.
+`relax_check_uploads` prüft alle Uploads ohne Haken (nicht nur 3 Tage), löscht abgelehnte Videos samt Teaser vom Kanal und gibt den Platz zurück. Test: `tests/verify_test.py`.
