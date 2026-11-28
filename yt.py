@@ -206,6 +206,17 @@ def thumb_not_allowed(error):
     return status == 403 or "forbidden" in text or "permission" in text and "thumbnail" in text
 
 
+def long_uploads_status(cfg):
+    """"allowed", "eligible" oder "disallowed": Darf der Kanal Videos über 15 Minuten hochladen? ("" = unbekannt).
+    Ohne Bestätigung per Telefon (youtube.com/verify) sind es höchstens 15 Minuten."""
+    items = client(cfg).channels().list(part="status", mine=True).execute().get("items", [])
+    return (items[0].get("status", {}).get("longUploadsStatus") or "") if items else ""
+
+
+def delete_video(cfg, video_id):
+    client(cfg).videos().delete(id=video_id).execute()
+
+
 def channel(cfg):
     items = client(cfg).channels().list(part="snippet,statistics", mine=True).execute().get("items", [])
     if not items:
