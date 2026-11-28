@@ -1,0 +1,124 @@
+{
+  "slug": "geschichte-bus-wartet-immer",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Warum der Bus jeden Morgen auf mich wartet 🚌",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Der Busfahrer wartet jeden Morgen auf mich, und ich frage ihn eines Tages, warum.\n\n#geschichte #erzählung #alltag #warm #shorts",
+  "tags": [
+    "geschichte",
+    "erzählung",
+    "alltag",
+    "warm",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Der Bus | wartet",
+    "Sein Grund"
+  ],
+  "segments": [
+    {
+      "text": "Jeden Morgen fährt der Bus erst los, wenn ich *einsteige*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🚌"
+      }
+    },
+    {
+      "text": "Auch wenn ich zu spät renne, öffnet er die Tür.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚪",
+        "text": "Tür geht auf"
+      }
+    },
+    {
+      "text": "Ich bedanke mich, und er nickt nur.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Eines Tages frage ich ihn, warum er wartet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🤔"
+      }
+    },
+    {
+      "text": "Er sagt, sein Fahrer hat früher auch auf ihn gewartet.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚌",
+        "text": "Sein Fahrer"
+      }
+    },
+    {
+      "text": "Damals war er selbst ein Schulkind und immer *zu spät*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🎒"
+      }
+    },
+    {
+      "text": "Heute gibt er dieses Warten jeden Morgen weiter.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "jubelt"
+        }
+      }
+    },
+    {
+      "text": "Zwei Sekunden Geduld reichen, damit sich jemand *willkommen* fühlt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Morgen halte ich einem Jüngeren die Tür auf.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🚪",
+        "text": "Weitergeben"
+      }
+    }
+  ]
+}

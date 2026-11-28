@@ -1,0 +1,666 @@
+{
+  "slug": "mystery-antikythera-mechanismus-lang",
+  "stil": "cartoon",
+  "laenge": "lang",
+  "niche": "Mystery",
+  "stimmung": "mysterioes",
+  "colors": [
+    "#10243a",
+    "#d4a85a"
+  ],
+  "accent": "#ffd166",
+  "title": "Antikythera: Die Maschine, die es nicht geben dürfte ⚙️",
+  "description": "Taucher holen im Jahr 1900 einen verklumpten Bronzefund aus einem Schiffswrack, und darin stecken Zahnräder. Wir erzählen die Geschichte des Mechanismus von Antikythera: Fund, Funktion, Forschung und die offenen Fragen.\n\n#mystery #rätsel #geschichte #antike #antikythera",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "geschichte",
+    "antike",
+    "antikythera"
+  ],
+  "figur": {
+    "farbe": "blau",
+    "hut": "zylinder",
+    "name": "Forscher"
+  },
+  "thumb_text": [
+    "Antikythera | Zahnräder",
+    "Wer baute das"
+  ],
+  "segments": [
+    {
+      "text": "Vor über hundert Jahren holen Taucher ein verklumptes Stück Bronze aus dem Meer, und es ändert unser Bild der Antike.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⚙️"
+      }
+    },
+    {
+      "text": "Es ist zerfressen, grün und sieht aus wie ein Stein, doch darin stecken Zahnräder, die niemand dort erwartet hätte. Wie kann das sein?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "⚙️",
+        "text": "Zahnräder im Meer"
+      }
+    },
+    {
+      "text": "Das ist die Geschichte des Mechanismus von Antikythera, der ältesten bekannten Maschine dieser Art, und sie führt vom Meeresgrund bis in moderne Labore.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "⚙️",
+        "text": "Antikythera"
+      }
+    },
+    {
+      "text": "Wir schauen auf den Fund, auf das Schiff, auf die Maschine selbst, auf die Forscher und am Ende auf die offenen Fragen.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Der Plan"
+      }
+    },
+    {
+      "text": "Beginnen wir im Jahr neunzehnhundert, mit ein paar Schwammtauchern, die auf dem Heimweg von der Küste Nordafrikas in einen Sturm geraten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🌊"
+      }
+    },
+    {
+      "text": "Sie suchen Schutz bei der kleinen griechischen Insel Antikythera, die zwischen Kythira und Kreta liegt.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Insel Antikythera"
+      }
+    },
+    {
+      "text": "Als der Sturm vorbei ist, taucht einer von ihnen ab, um nach Schwämmen zu suchen, und findet in etwa zweiundvierzig Metern Tiefe etwas Unheimliches.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🤿",
+        "text": "Tauchgang"
+      }
+    },
+    {
+      "text": "Laut Überlieferung kommt er hastig hoch und erzählt von Leichen und Pferden auf dem Grund, und die Kameraden halten ihn für verrückt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "angst",
+        "aktion": "schockiert",
+        "objekt": "😱"
+      }
+    },
+    {
+      "text": "Doch als sie selbst hinuntertauchen, sehen sie, dass es Statuen sind, aus Marmor und aus Bronze, die dort seit Jahrhunderten liegen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🗿",
+        "text": "Statuen am Grund"
+      }
+    },
+    {
+      "text": "Sie haben ein altes Schiffswrack entdeckt, voller Schätze, und das spricht sich schnell bis zu den Behörden in Athen herum.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🚢",
+        "text": "Altes Wrack"
+      }
+    },
+    {
+      "text": "In den folgenden Monaten holen Taucher und Marine Statuen, Vasen, Schmuck und Münzen aus dem Wrack, eine gewaltige Ausbeute.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Die Münzen helfen, das Schiff zu datieren, denn sie lassen darauf schließen, dass es etwa zwischen siebzig und sechzig vor Christus unterging.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🪙",
+        "text": "Münzen als Beweis"
+      }
+    },
+    {
+      "text": "Damit ist das Schiff über zweitausend Jahre alt, und es sank wahrscheinlich auf einer Fahrt, die in Richtung Rom führte.",
+      "szene": {
+        "typ": "jahr",
+        "jahr": "70 v. Chr.",
+        "text": "Schiff sinkt",
+        "objekt": "🚢"
+      }
+    },
+    {
+      "text": "Dass es Beute aus griechischen Städten geladen hatte, halten manche Fachleute für möglich, aber sicher ist das nicht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Zwischen all den Prachtstücken liegt auch ein unscheinbarer, zerbrochener Klumpen, den zuerst kaum jemand beachtet.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "neutral",
+        "aktion": "steht",
+        "objekt": "🪨"
+      }
+    },
+    {
+      "text": "Er kommt wie vieles andere ins Nationalmuseum nach Athen, wo er zunächst in einer Kiste liegt, ohne dass sich jemand um ihn kümmert.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "📦",
+        "text": "In der Kiste"
+      }
+    },
+    {
+      "text": "Und dann, im Jahr neunzehnhundertzwei, passiert etwas, denn der Klumpen bricht auseinander, und im Inneren wird ein Zahnrad sichtbar.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "schockiert",
+        "objekt": "⚙️"
+      }
+    },
+    {
+      "text": "Ein Archäologe bemerkt es, und er erkennt sofort, dass das nicht zu einer antiken Statue oder Vase passt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🔍",
+        "text": "Ein Zahnrad"
+      }
+    },
+    {
+      "text": "Zahnräder kannte man aus Uhren, aber doch nicht aus der Antike, oder etwa doch? Die Frage lässt die Fachwelt nicht mehr los.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Zahnrad in der Antike?"
+      }
+    },
+    {
+      "text": "Zuerst glauben manche, es sei ein Fehler, ein Stück, das später in das Wrack gerutscht sei, vielleicht sogar eine Uhr aus der Neuzeit.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🕰️"
+      }
+    },
+    {
+      "text": "Doch es lag mitten im Wrack, zwischen Funden, die alle zweitausend Jahre alt sind, und das Bronzestück ist so zerfressen wie der Rest.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🧪",
+        "text": "Gleiche Korrosion"
+      }
+    },
+    {
+      "text": "Also steht fest: Dieses Gerät gehört wirklich zu dem Schiff, und die Griechen haben es gebaut oder wenigstens besessen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Heute besteht der Mechanismus aus zweiundachtzig Bruchstücken, sieben größeren und fünfundsiebzig kleinen.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 82,
+        "einheit": "Fragmente",
+        "objekt": "🧩",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Zusammen ergeben sie nur Teile eines Geräts, das ursprünglich vielleicht so groß wie ein Schuhkarton war und in einem Holzkasten saß.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "📦",
+        "text": "Etwa Schuhkarton-Größe"
+      }
+    },
+    {
+      "text": "Von diesem Kasten ist fast nichts mehr da, aber an einigen Stellen erkennt man noch, wie die Teile einst zusammenpassten.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🧩"
+      }
+    },
+    {
+      "text": "Jahrzehntelang kann niemand sagen, was das Ding eigentlich konnte, und es liegt unbeachtet im Museum.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "haende",
+        "text": "Rätsel im Museum"
+      }
+    },
+    {
+      "text": "Das ändert sich erst in den fünfziger Jahren, als der Wissenschaftshistoriker Derek de Solla Price das Stück genauer untersucht.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "🧑‍🔬"
+      }
+    },
+    {
+      "text": "Er will wissen, wie viele Zähne jedes Zahnrad hat, und wie die Räder zusammenarbeiten, denn nur so lässt sich die Funktion erraten.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🔢",
+        "text": "Zähne zählen"
+      }
+    },
+    {
+      "text": "Dazu nutzt er in den siebziger Jahren Röntgen- und Gammastrahlen, mit denen man in das Innere des Klumpens schauen kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "☢️"
+      }
+    },
+    {
+      "text": "Auf den Aufnahmen sieht man erstmals Zahnräder, die ineinandergreifen, und Beschriftungen, die in die Bronze graviert sind.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "📷",
+        "text": "Röntgenbild"
+      }
+    },
+    {
+      "text": "Price nennt das Gerät schon früh einen Computer, aber was genau rechnet es denn aus?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🧮",
+        "text": "Was rechnet es?"
+      }
+    },
+    {
+      "text": "Die Antwort lautet: den Himmel, genauer gesagt die Bewegungen von Sonne und Mond und die Zeit, die dazu gehört.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌙"
+      }
+    },
+    {
+      "text": "Wenn man eine Kurbel an der Seite drehte, liefen auf der Vorderseite Zeiger über runde Skalen, ganz wie bei einer Uhr.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "⚙️",
+        "text": "Kurbel und Zeiger"
+      }
+    },
+    {
+      "text": "Das Gerät hatte mehrere Anzeigen, von denen sich die wichtigsten gut erkennen lassen.",
+      "szene": {
+        "typ": "liste",
+        "text": "Die Anzeigen",
+        "punkte": [
+          "Sonnenkalender",
+          "Mondkalender",
+          "Finsterniskalender"
+        ]
+      }
+    },
+    {
+      "text": "Ein Zeiger stand für die Sonne, ein anderer für den Mond, und beide wanderten über Skalen mit den Monaten des Jahres.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "☀️",
+        "text": "Sonne und Mond"
+      }
+    },
+    {
+      "text": "Besonders klug war die Anzeige der Mondphasen, denn eine kleine Kugel drehte sich und zeigte, ob gerade Neumond oder Vollmond war.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌗"
+      }
+    },
+    {
+      "text": "Wie kann so etwas ohne Strom und ohne Motor funktionieren? Allein durch geschickt gewählte Zahnräder mit genau passender Zahl von Zähnen.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "⚙️",
+        "text": "Nur mit Zahnrädern"
+      }
+    },
+    {
+      "text": "Von den Zahnrädern des Geräts sind heute noch dreißig erhalten.",
+      "szene": {
+        "typ": "zahl",
+        "zahl": 30,
+        "einheit": "Zahnräder erhalten",
+        "objekt": "⚙️",
+        "farbcode": "#0c0c14"
+      }
+    },
+    {
+      "text": "Die Zähne sind winzig und dreieckig, und einige sind so fein, dass man sie fast nur mit dem Mikroskop erkennt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🔬"
+      }
+    },
+    {
+      "text": "Das ist beeindruckend, denn dieses Handwerk gilt als so fein, dass man es für Jahrhunderte danach nicht mehr in dieser Form kennt.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "🛠️",
+        "text": "Feine Handarbeit"
+      }
+    },
+    {
+      "text": "Der Mechanismus wirkt komplexer als astronomische Uhren, die erst im späten Mittelalter gebaut wurden.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "⚙️",
+          "text": "Antikythera"
+        },
+        "rechts": {
+          "objekt": "🕰️",
+          "text": "Uhren, spätes Mittelalter"
+        }
+      }
+    },
+    {
+      "text": "Und die Maschine konnte noch mehr, denn sie sagte voraus, wann der Mond sich verfinstern würde.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🌑"
+      }
+    },
+    {
+      "text": "Dafür nutzte sie einen Zyklus, den schon die Babylonier kannten, den Saros, der zweihundertdreiundzwanzig Mondmonate umfasst, also gut achtzehn Jahre.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🌑",
+        "text": "Saros-Zyklus"
+      }
+    },
+    {
+      "text": "Nach dieser Zeit wiederholen sich Sonnen- und Mondfinsternisse in ähnlicher Form, und das konnte der Mechanismus anzeigen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "weltall",
+        "anzahl": 3,
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "text": "Finsternisse"
+      }
+    },
+    {
+      "text": "Ein weiterer Zeiger folgte dem Metonischen Zyklus: Nach neunzehn Jahren fallen die Mondphasen wieder auf dieselben Tage im Jahr.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📅"
+      }
+    },
+    {
+      "text": "Das war für den Kalender der Griechen wichtig, denn sie wollten Mondmonate und Sonnenjahr miteinander in Einklang bringen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "📅",
+        "text": "Kalender abgleichen"
+      }
+    },
+    {
+      "text": "Und noch eine kleine Skala zählte die Jahre bis zu den nächsten Spielen, denn dort stand der Zyklus der Olympischen Spiele.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "🏅",
+        "text": "Olympische Spiele"
+      }
+    },
+    {
+      "text": "Auf dem Gehäuse standen außerdem viele Zeilen Text, eine Art Gebrauchsanweisung, in winzigen Buchstaben.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "objekt": "📜"
+      }
+    },
+    {
+      "text": "Rund dreitausend Buchstaben sind heute noch lesbar, und sie nennen Planeten, Sternbilder und die Namen der Monate.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "📜",
+        "text": "Rund 3.000 Buchstaben"
+      }
+    },
+    {
+      "text": "Das deutet darauf hin, dass das Gerät vielleicht auch zeigte, wo die Planeten am Himmel stehen, nicht nur Sonne und Mond.",
+      "szene": {
+        "typ": "figur",
+        "ort": "weltall",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🪐"
+      }
+    },
+    {
+      "text": "Ob es wirklich alle fünf damals bekannten Planeten zeigte, ist bis heute Gegenstand der Forschung und nicht endgültig bewiesen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "labor",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "In den Jahren zweitausendfünf und danach bringen Forscher moderne Computertomografen nach Athen, die winzige Details erkennen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏥"
+      }
+    },
+    {
+      "text": "Das Gerät wird in dünne Scheiben gerechnet, und plötzlich werden Buchstaben und Zahnradzähne sichtbar, die zuvor verborgen waren.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "labor",
+        "objekt": "💻",
+        "text": "Scheibe für Scheibe"
+      }
+    },
+    {
+      "text": "Mit diesen Daten bauen Forscher, Uhrmacher und Hobbybastler Modelle, die zeigen, wie die Maschine einst gearbeitet haben könnte.",
+      "szene": {
+        "typ": "figur",
+        "ort": "labor",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "🛠️"
+      }
+    },
+    {
+      "text": "Manche Nachbauten laufen heute wirklich, aus Bronze oder sogar aus Bausteinen, und sie zeigen das Gleiche wie das Original.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "labor",
+        "anzahl": 3,
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "text": "Nachbauten laufen"
+      }
+    },
+    {
+      "text": "Wer aber hat dieses Wunderwerk gebaut? Genau das weiß niemand, und es gibt dazu mehrere Vermutungen, aber keine sichere.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    },
+    {
+      "text": "Manche denken an die Schule des berühmten Archimedes, doch der lebte mehr als hundert Jahre früher, und belegt ist die Verbindung nicht.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "stadt",
+        "objekt": "🧠",
+        "text": "Archimedes?"
+      }
+    },
+    {
+      "text": "Andere denken an Gelehrte auf der Insel Rhodos, wo Sternkunde und Handwerk blühten, doch auch das ist eine Vermutung.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🏝️"
+      }
+    },
+    {
+      "text": "Und es gibt ein weiteres Rätsel: Nirgendwo wurde bisher ein zweites Gerät dieser Art aus der Antike gefunden. Wie kann das sein?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "stadt",
+        "objekt": "❓",
+        "text": "Nur ein einziges?"
+      }
+    },
+    {
+      "text": "Vielleicht gab es mehrere, aber Bronze wurde im Altertum oft eingeschmolzen, und so ging die Spur der Geräte verloren.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "🔥"
+      }
+    },
+    {
+      "text": "Wenn das stimmt, dann war der Mechanismus nur ein Zufallsfund, ein Glücksfall, der durch einen Schiffsuntergang bewahrt wurde.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🌊",
+        "text": "Glücksfall Schiffbruch"
+      }
+    },
+    {
+      "text": "Die Fragmente liegen heute im Archäologischen Nationalmuseum in Athen, wo man die größten Stücke hinter Glas bewundern kann.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "zeigt",
+        "objekt": "🏛️"
+      }
+    },
+    {
+      "text": "Und trotzdem bleibt Erstaunen zurück: Vor über zweitausend Jahren bauten Menschen ein Gerät, das den Himmel auf einen Handgriff verkleinerte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "weltall",
+        "objekt": "🌌",
+        "text": "Der Himmel zum Drehen"
+      }
+    },
+    {
+      "text": "Wie viele solcher Erfindungen sind einfach im Meer, im Feuer oder in der Vergessenheit verschwunden, ohne dass wir je davon erfahren?",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "weltall",
+        "objekt": "❓",
+        "text": "Was ging verloren?"
+      }
+    },
+    {
+      "text": "Jetzt bist du dran: Glaubst du, dass es weitere solche Maschinen gab? Schreib es in die Kommentare.",
+      "szene": {
+        "typ": "figur",
+        "ort": "stadt",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "objekt": "💬"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "mystery-yonaguni-unterwasser-stufen",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Baute jemand diese Stufen unter Wasser? 🌊",
+  "description": "Echtes Rätsel: Vor der japanischen Insel Yonaguni liegt eine Felsformation unter Wasser. Ob sie natürlich ist oder von Menschen bearbeitet wurde, ist umstritten.\n\n#mystery #rätsel #japan #unterwasser #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "japan",
+    "unterwasser",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Yonaguni | Stufen im Meer",
+    "Natur oder Menschen"
+  ],
+  "segments": [
+    {
+      "text": "Taucher stehen vor Stufen und Kanten, tief unter Wasser.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🤿"
+      }
+    },
+    {
+      "text": "Sie liegen vor der japanischen Insel Yonaguni.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Yonaguni"
+      }
+    },
+    {
+      "text": "Ein Taucher entdeckte die Formation 1985 zufällig.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🤿",
+        "text": "Entdeckt 1985"
+      }
+    },
+    {
+      "text": "Sie ist etwa zweihundert Meter lang und wirkt *gemeißelt*.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "meer",
+        "objekt": "🧱",
+        "text": "Wie gemeißelt?"
+      }
+    },
+    {
+      "text": "Natürlicher Fels oder Menschenwerk?",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🪨",
+          "text": "Natur"
+        },
+        "rechts": {
+          "objekt": "🏛️",
+          "text": "Menschen"
+        }
+      }
+    },
+    {
+      "text": "Viele Geologen sehen darin *Erosion* des Sandsteins.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Andere vermuten eine versunkene Kultur, doch Beweise fehlen.",
+      "szene": {
+        "typ": "figur",
+        "ort": "meer",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    },
+    {
+      "text": "Ob Menschen nachhalfen, ist bis heute offen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "meer",
+        "objekt": "🌊",
+        "text": "Bis heute offen"
+      }
+    }
+  ]
+}

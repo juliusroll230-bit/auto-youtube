@@ -1,0 +1,123 @@
+{
+  "slug": "geschichte-opa-kuechenuhr-zurueck",
+  "stil": "cartoon",
+  "niche": "Erzählung",
+  "colors": [
+    "#2b3a55",
+    "#e8a87c"
+  ],
+  "accent": "#ffd27a",
+  "title": "Warum Opa die Küchenuhr jeden Abend zurückstellt ⏰",
+  "description": "Eine ausgedachte Geschichte, ruhig erzählt: Opa stellt jeden Abend die Uhr zurück, und ich dachte lange, er sei vergesslich.\n\n#geschichte #erzählung #familie #warm #shorts",
+  "tags": [
+    "geschichte",
+    "erzählung",
+    "familie",
+    "warm",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "warm",
+  "thumb_text": [
+    "Opas Uhr | geht falsch",
+    "Warum er es tut"
+  ],
+  "segments": [
+    {
+      "text": "Opa stellt jeden Abend die Küchenuhr zehn Minuten *zurück*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "⏰"
+      }
+    },
+    {
+      "text": "Ich dachte, er sei vergesslich geworden.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🤔",
+        "text": "Vergesslich?"
+      }
+    },
+    {
+      "text": "Ich frage ihn, doch er zwinkert nur.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Wenn ich ins Bett soll, sagt er: Schau, es ist noch früh.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🛏️",
+        "text": "Noch früh"
+      }
+    },
+    {
+      "text": "Dann liest er mir noch ein ganzes Kapitel vor.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "📖"
+      }
+    },
+    {
+      "text": "Mama erzählt später, dass er das schon bei ihr machte.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👩",
+        "text": "Schon bei Mama"
+      }
+    },
+    {
+      "text": "Er lacht und sagt, die Uhr dürfe ruhig lügen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Seine Uhr geht falsch, damit wir Zeit *gewinnen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Ich werde sie nie richtig stellen.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "⏰",
+        "text": "Bleibt falsch"
+      }
+    }
+  ]
+}

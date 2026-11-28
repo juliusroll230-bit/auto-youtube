@@ -1,0 +1,115 @@
+{
+  "slug": "erklaert-warum-frieren-nach-schwimmen",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum frierst du nach dem Schwimmen? 🥶",
+  "description": "Erklärt: Warum dir nach dem Baden kalt wird, selbst wenn die Sonne scheint.\n\n#wissen #körper #kälte #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "kälte",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Frieren | trotz Sonne",
+    "Nasse Haut klaut Wärme"
+  ],
+  "segments": [
+    {
+      "text": "Warum frierst du nach dem Schwimmen, obwohl die Sonne scheint?",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "objekt": "🥶"
+      }
+    },
+    {
+      "text": "Auf deiner Haut liegt ein dünner Wasserfilm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "💧",
+        "text": "Nasser Film"
+      }
+    },
+    {
+      "text": "Wasser verdunstet, und das *entzieht* dir Wärme.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "strand",
+        "objekt": "♨️",
+        "text": "Verdunstung"
+      }
+    },
+    {
+      "text": "Wind macht es noch schlimmer.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "strand",
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "denken",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Ein trockenes Handtuch stoppt das fast sofort.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🧖",
+          "text": "Trocken"
+        },
+        "rechts": {
+          "objekt": "💦",
+          "text": "Nass"
+        }
+      }
+    },
+    {
+      "text": "Darum zittern am Strand oft alle zusammen.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "strand",
+        "anzahl": 3,
+        "gefuehl": "angst",
+        "aktion": "zittert",
+        "text": "Alle frieren"
+      }
+    },
+    {
+      "text": "Dir wird kalt, weil das Wasser deine Wärme *mitnimmt*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "strand",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Rubbel dich ab, dann wird dir schnell wieder warm.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "strand",
+        "objekt": "🧣",
+        "text": "Abtrocknen"
+      }
+    }
+  ]
+}

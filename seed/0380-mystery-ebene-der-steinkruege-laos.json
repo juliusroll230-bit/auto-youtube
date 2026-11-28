@@ -1,0 +1,110 @@
+{
+  "slug": "mystery-ebene-der-steinkruege-laos",
+  "stil": "cartoon",
+  "niche": "Mystery",
+  "colors": [
+    "#14213d",
+    "#8d99ae"
+  ],
+  "accent": "#ffb703",
+  "title": "Wozu dienten die Steinkrüge in Laos? 🏺",
+  "description": "Echtes Rätsel: In Laos stehen über zweitausend riesige Steinkrüge. Wer sie baute und wozu, ist nicht abschließend geklärt.\n\n#mystery #rätsel #laos #geschichte #shorts",
+  "tags": [
+    "mystery",
+    "rätsel",
+    "laos",
+    "geschichte",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "gelb"
+  },
+  "stimmung": "mysterioes",
+  "thumb_text": [
+    "Steinkrüge | Laos",
+    "Wozu dienten sie"
+  ],
+  "segments": [
+    {
+      "text": "Wozu dienten die über zweitausend Steinkrüge in Laos?",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "🏺"
+      }
+    },
+    {
+      "text": "Sie stehen verstreut auf einer Hochebene.",
+      "szene": {
+        "typ": "karte",
+        "objekt": "🗺️",
+        "text": "Ebene der Krüge"
+      }
+    },
+    {
+      "text": "Manche sind drei Meter hoch und wiegen *Tonnen*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🏺",
+        "text": "Bis 3 Meter"
+      }
+    },
+    {
+      "text": "Gemacht wurden sie wohl vor rund zweitausend Jahren.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "dorf",
+        "objekt": "⏳",
+        "text": "Rund 2.000 Jahre"
+      }
+    },
+    {
+      "text": "Die Forscherin Colani untersuchte sie in den dreißiger Jahren.",
+      "szene": {
+        "typ": "akte",
+        "text": "Madeleine Colani",
+        "punkte": [
+          "Aus Frankreich",
+          "1930er Jahre"
+        ]
+      }
+    },
+    {
+      "text": "Viele halten sie für *Urnen*, doch sicher ist das nicht.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "dorf",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "staunen",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Wer sie baute und wozu, ist bis heute *offen*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "dorf",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "objekt": "❓"
+      }
+    },
+    {
+      "text": "Darum fragt man sich noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "dorf",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

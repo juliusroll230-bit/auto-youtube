@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-augenringe",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum bekommst du Augenringe? 😴",
+  "description": "Erklärt: Warum die dünne Haut unter den Augen Schatten zeigt, wenn du müde bist.\n\n#wissen #körper #haut #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "haut",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Augenringe | Durchblick",
+    "Haut ist hauchdünn"
+  ],
+  "segments": [
+    {
+      "text": "Warum bekommst du Augenringe, wenn du müde bist?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "traurig",
+        "aktion": "zeigt",
+        "objekt": "😴"
+      }
+    },
+    {
+      "text": "Die Haut unter deinen Augen ist *hauchdünn*.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Hauchdünne Haut"
+      }
+    },
+    {
+      "text": "Darunter schimmern kleine Blutgefäße durch.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🩸",
+        "text": "Gefäße scheinen durch"
+      }
+    },
+    {
+      "text": "Müde Haut wird *blasser*, die Schatten fallen auf.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "😊",
+          "text": "Ausgeruht"
+        },
+        "rechts": {
+          "objekt": "😴",
+          "text": "Müde"
+        }
+      }
+    },
+    {
+      "text": "Manche haben sie auch von Natur aus.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "freude",
+          "aktion": "winkt"
+        }
+      }
+    },
+    {
+      "text": "Mit dem Alter wird die Haut noch dünner.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "haus",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Dünner mit Alter"
+      }
+    },
+    {
+      "text": "Du schaust durch die Haut direkt auf deine *Blutgefäße*.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also schau morgen früh in den Spiegel und frag dich:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🪞",
+        "text": "Spiegel-Check"
+      }
+    }
+  ],
+  "ende": "loop"
+}

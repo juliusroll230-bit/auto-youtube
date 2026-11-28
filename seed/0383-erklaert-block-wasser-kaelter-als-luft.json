@@ -1,0 +1,107 @@
+{
+  "slug": "erklaert-block-wasser-kaelter-als-luft",
+  "stil": "cartoon",
+  "welt": "block",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum fühlt sich Wasser kälter an als Luft? 💧",
+  "description": "Erklärt in der Blockwelt: Warum gleich kaltes Wasser viel kälter wirkt als Luft.\n\n#wissen #physik #wasser #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "physik",
+    "wasser",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "blau"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Wasser | klaut Wärme",
+    "Gleiche Gradzahl"
+  ],
+  "segments": [
+    {
+      "text": "Warum fühlt sich Wasser kälter an als gleich kalte Luft?",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "💧",
+        "chat": "Spieler: brr!"
+      }
+    },
+    {
+      "text": "Wasser leitet Wärme *viel* schneller ab als Luft.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "💧",
+        "text": "Wärme-Dieb"
+      }
+    },
+    {
+      "text": "Es zieht Wärme aus deiner Haut, bis du frierst.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "feld",
+        "objekt": "🥶",
+        "text": "Wärme weg"
+      }
+    },
+    {
+      "text": "Zwanzig Grad Luft gegen zwanzig Grad Wasser.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "🌬️",
+          "text": "Luft"
+        },
+        "rechts": {
+          "objekt": "🌊",
+          "text": "Wasser"
+        }
+      }
+    },
+    {
+      "text": "Bei Luft frierst du kaum, im Wasser schon.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "feld",
+        "gefuehl": "freude",
+        "aktion": "winkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zittert"
+        }
+      }
+    },
+    {
+      "text": "Dein Körper verliert im Wasser Wärme *rasend* schnell.",
+      "szene": {
+        "typ": "figur",
+        "ort": "feld",
+        "gefuehl": "staunen",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Also spür beim nächsten Baden noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "feld",
+        "objekt": "🌊",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}

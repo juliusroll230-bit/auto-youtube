@@ -1,0 +1,116 @@
+{
+  "slug": "erklaert-warum-augenlid-zuckt",
+  "stil": "cartoon",
+  "niche": "Erklären",
+  "colors": [
+    "#1b2a49",
+    "#4aa3df"
+  ],
+  "accent": "#ffe14d",
+  "title": "Warum zuckt dein Augenlid manchmal? 👁️",
+  "description": "Erklärt: Warum einzelne Muskelfasern im Augenlid zucken, und wann es meistens harmlos ist.\n\n#wissen #körper #auge #erklärt #shorts",
+  "tags": [
+    "wissen",
+    "körper",
+    "auge",
+    "erklärt",
+    "shorts"
+  ],
+  "figur": {
+    "farbe": "lila"
+  },
+  "stimmung": "neugierig",
+  "thumb_text": [
+    "Augenlid | zuckt allein",
+    "Dein Muskel feuert"
+  ],
+  "segments": [
+    {
+      "text": "Warum zuckt dein Augenlid manchmal, ganz ohne Grund?",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "staunen",
+        "aktion": "zeigt",
+        "objekt": "👁️"
+      }
+    },
+    {
+      "text": "Ein winziger Muskel im Lid *feuert* ohne Befehl.",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "👁️",
+        "text": "Lid-Muskel"
+      }
+    },
+    {
+      "text": "Nur ein paar Fasern zucken, nicht das ganze Lid.",
+      "szene": {
+        "typ": "raetsel",
+        "ort": "labor",
+        "objekt": "🔬",
+        "text": "Wenige Fasern"
+      }
+    },
+    {
+      "text": "Müdigkeit, Stress und Koffein können es auslösen.",
+      "szene": {
+        "typ": "zwei",
+        "ort": "haus",
+        "gefuehl": "denken",
+        "aktion": "denkt",
+        "zweite": {
+          "farbe": "gelb",
+          "gefuehl": "angst",
+          "aktion": "zeigt"
+        }
+      }
+    },
+    {
+      "text": "Auch lange Bildschirmzeit macht es häufiger.",
+      "szene": {
+        "typ": "gruppe",
+        "ort": "buero",
+        "anzahl": 3,
+        "gefuehl": "denken",
+        "aktion": "zeigt",
+        "text": "Bildschirm"
+      }
+    },
+    {
+      "text": "Ausschlafen hilft oft mehr als noch ein Kaffee.",
+      "szene": {
+        "typ": "vergleich",
+        "links": {
+          "objekt": "☕",
+          "text": "Kaffee"
+        },
+        "rechts": {
+          "objekt": "😴",
+          "text": "Schlaf"
+        }
+      }
+    },
+    {
+      "text": "Dein Lid ist also nur *überreizt*, nicht kaputt.",
+      "szene": {
+        "typ": "figur",
+        "ort": "haus",
+        "gefuehl": "freude",
+        "aktion": "jubelt",
+        "objekt": "💡"
+      }
+    },
+    {
+      "text": "Wenn es jetzt wieder zuckt, frag dich noch mal:",
+      "szene": {
+        "typ": "objekt",
+        "ort": "haus",
+        "objekt": "🤔",
+        "text": "Noch mal"
+      }
+    }
+  ],
+  "ende": "loop"
+}
